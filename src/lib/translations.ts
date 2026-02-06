@@ -321,10 +321,10 @@ export const translations: Record<Language, TranslationSchema> = {
           category: "Port Call Coordination",
           title: "Shared Port Call Flow",
           description:
-            "Shared visibility of port call status across agents, terminals and service providers. NauticOps connects stakeholders to share operational progress, incidents, disruptions and planning updates, avoiding misalignment.",
+            "Shared visibility of port call status across agents, terminals, and service providers. NauticOps connects stakeholders to share operational progress, incidents, breakdowns, and planning changes in real time, preventing misalignment throughout the port call.",
           stats: [
             { label: "Manual exchanges", value: "Reduced" },
-            { label: "Port call status", value: "Centralized" },
+            { label: "Port call operational status", value: "Centralized" },
           ],
         },
         {
@@ -641,7 +641,7 @@ export const translations: Record<Language, TranslationSchema> = {
           category: "Coordinación de Escala",
           title: "Flujo de Escala Compartido",
           description:
-            "Visibilidad compartida del estado de la escala entre agentes, terminales y proveedores de servicios. NauticOps conecta a los actores para compartir progresos operativos, incidencias, averías y cambios de planificación, evitando desalineaciones.",
+            "Visibilidad compartida del estado de la escala entre agentes, terminales y proveedores de servicios. NauticOps conecta a los actores para compartir progresos operativos, incidencias, averías y cambios de planificación en tiempo real, evitando desalineaciones durante la escala.",
           stats: [
             { label: "Intercambios manuales", value: "Reducido" },
             { label: "Estado operativo de la escala", value: "Centralizado" },
