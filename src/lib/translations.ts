@@ -158,29 +158,29 @@ export const translations: Record<Language, TranslationSchema> = {
 
     context: {
       badge: "The Port Today",
-      title: "Today's Port Ecosystem",
+      title: "The current port environment",
       subtitle:
-        "Every port call involves multiple actors working in parallel: authorities, agents, terminals, pilots, tugs and service providers. Each operates on their own systems and timelines. A shared, real-time view across all of them is still uncommon.",
+        "Each port call involves the coordination of multiple actors working in parallel, including port authorities, agents, terminals, pilots, tug operators, and service providers. Each manages information and processes through their own systems. Achieving a shared, real-time view across all stakeholders remains a common challenge.",
       items: [
         {
-          title: "Many Actors, Many Systems",
+          title: "Multiple stakeholders, multiple systems",
           description:
-            "Port authorities, agents, terminals, pilots, tugs and service providers each manage their own schedules and data across separate tools.",
+            "Port authorities, agents, terminals, pilots, tug operators, and service providers manage schedules and data through specialised platforms tailored to their specific roles.",
         },
         {
-          title: "Timelines That Keep Moving",
+          title: "Continuously evolving schedules",
           description:
-            "ETAs, berth windows and service schedules change constantly. Keeping every party aligned requires timely and synchronized information.",
+            "ETAs, berth windows, and service schedules are constantly updated. Keeping all stakeholders aligned requires consistent, shared, and up-to-date information.",
         },
         {
-          title: "Specialised Tools, Limited Cross-Visibility",
+          title: "Specialised systems, limited cross-visibility",
           description:
-            "Port Community Systems, ERPs and terminal operating systems each serve a clear purpose. Visibility across them, however, is often limited.",
+            "Port Community Systems, ERPs, and terminal systems perform essential functions. However, cross-system visibility between them is often partial or fragmented.",
         },
         {
-          title: "A Growing Need for Coordination",
+          title: "A growing need for shared coordination",
           description:
-            "As trade volumes rise and regulatory requirements expand, the value of a shared coordination layer becomes increasingly clear.",
+            "As volumes, operational complexity, and regulatory requirements increase, the value of a shared coordination layer across stakeholders becomes increasingly clear.",
         },
       ],
     },
@@ -478,29 +478,29 @@ export const translations: Record<Language, TranslationSchema> = {
 
     context: {
       badge: "El Puerto Hoy",
-      title: "El Entorno Portuario Actual",
+      title: "El entorno portuario actual",
       subtitle:
-        "Cada escala implica múltiples actores trabajando en paralelo: autoridades, agentes, terminales, prácticos, remolcadores y proveedores de servicios. Cada uno opera con sus propios sistemas y cronogramas. Una visión compartida y en tiempo real entre todos ellos sigue siendo poco habitual.",
+        "Cada escala portuaria implica la coordinación de múltiples actores que operan en paralelo: autoridades, agentes, terminales, prácticos, remolcadores y proveedores de servicios. Cada uno gestiona su información y procesos en sistemas propios. Lograr una visión compartida y actualizada en tiempo real entre todos ellos sigue siendo un reto habitual.",
       items: [
         {
-          title: "Muchos Actores, Muchos Sistemas",
+          title: "Múltiples actores, múltiples sistemas",
           description:
-            "Autoridades portuarias, agentes, terminales, prácticos, remolcadores y proveedores de servicios gestionan sus horarios y datos en herramientas separadas.",
+            "Autoridades portuarias, agentes, terminales, prácticos, remolcadores y proveedores de servicios gestionan horarios y datos desde plataformas especializadas, adaptadas a sus funciones específicas.",
         },
         {
-          title: "Cronogramas en Constante Cambio",
+          title: "Cronogramas en evolución constante",
           description:
-            "Los ETAs, las ventanas de atraque y los horarios de servicios cambian continuamente. Mantener a todas las partes alineadas requiere información sincronizada y oportuna.",
+            "Las ETAs, ventanas de atraque y horarios de servicio se actualizan de forma continua. Mantener a todos los actores alineados requiere información coherente, compartida y actualizada.",
         },
         {
-          title: "Herramientas Especializadas, Visibilidad Cruzada Limitada",
+          title: "Sistemas especializados, visibilidad transversal limitada",
           description:
-            "Los Port Community Systems, ERPs y sistemas de terminal cumplen funciones claras. Sin embargo, la visibilidad transversal entre ellos suele ser limitada.",
+            "Los Port Community Systems, ERPs y sistemas de terminal cumplen funciones clave. Sin embargo, la visibilidad transversal entre ellos suele ser parcial o fragmentada.",
         },
         {
-          title: "Una Necesidad Creciente de Coordinación",
+          title: "Una necesidad creciente de coordinación compartida",
           description:
-            "A medida que crecen los volúmenes de comercio y las exigencias regulatorias, el valor de una capa de coordinación compartida resulta cada vez más evidente.",
+            "A medida que aumentan los volúmenes, la complejidad operativa y las exigencias regulatorias, disponer de una capa de coordinación compartida entre actores cobra cada vez mayor relevancia.",
         },
       ],
     },
