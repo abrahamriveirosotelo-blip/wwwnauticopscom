@@ -48,11 +48,11 @@ const HeroSection = () => {
             {t.hero.subtitle}
           </p>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up opacity-0 stagger-3">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
               variant="hero"
               size="xl"
-              className="w-full sm:w-auto shadow-[0_0_30px_-5px_hsl(200_70%_45%/0.4)]"
+              className="w-full sm:w-auto shadow-[0_0_30px_-5px_hsl(200_70%_45%/0.4)] animate-fade-in-up opacity-0 stagger-4"
               onClick={() => {
                 document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" });
                 setTimeout(() => document.getElementById("name")?.focus(), 800);
@@ -61,7 +61,7 @@ const HeroSection = () => {
               {t.hero.ctaPrimary}
               <ArrowRight className="h-5 w-5" />
             </Button>
-            <a href="https://app.nauticops.com/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+            <a href="https://app.nauticops.com/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto animate-fade-in-up opacity-0 stagger-5">
               <Button variant="heroOutline" size="xl" className="w-full">
                 <Play className="h-5 w-5" />
                 {t.hero.ctaSecondary}
