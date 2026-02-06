@@ -25,7 +25,7 @@ const UseCasesSection = () => {
           {t.useCases.cases.map((useCase, index) => {
             const Icon = iconMap[index];
             return (
-              <div key={useCase.title} className="card-maritime p-8">
+              <div key={useCase.title} className="card-maritime p-5 sm:p-8">
                 <div className="flex items-center gap-5">
                   <div className="icon-container w-14 h-14 flex-shrink-0">
                     <Icon className="h-7 w-7 text-secondary" />
@@ -44,11 +44,11 @@ const UseCasesSection = () => {
                   {useCase.description}
                 </p>
                 
-                <div className="flex gap-6 pt-4 border-t border-border">
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-4 border-t border-border">
                   {useCase.stats.map((stat) => (
-                    <div key={stat.label}>
-                      <div className="text-2xl font-bold text-secondary">{stat.value}</div>
-                      <div className="text-sm text-muted-foreground">{stat.label}</div>
+                    <div key={stat.label} className="min-w-0">
+                      <div className="text-lg sm:text-2xl font-bold text-secondary break-words">{stat.value}</div>
+                      <div className="text-xs sm:text-sm text-muted-foreground">{stat.label}</div>
                     </div>
                   ))}
                 </div>

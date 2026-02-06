@@ -27,7 +27,7 @@ const ContextSection = () => {
             return (
               <div
                 key={item.title}
-                className="card-maritime p-8"
+                className="card-maritime p-5 sm:p-8"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="icon-container w-14 h-14 mb-6">

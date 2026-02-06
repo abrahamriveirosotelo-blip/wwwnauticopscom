@@ -161,7 +161,7 @@
   
   /* Section spacing */
   .section-padding {
-    @apply py-20 md:py-28 lg:py-32;
+    @apply py-14 sm:py-20 md:py-28 lg:py-32;
   }
   
   .section-padding-sm {
@@ -174,11 +174,11 @@
   }
   
   .heading-xl {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight;
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight;
   }
   
   .heading-lg {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight;
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight;
   }
   
   .heading-md {
