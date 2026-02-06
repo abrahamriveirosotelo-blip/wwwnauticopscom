@@ -220,24 +220,24 @@ export const translations: Record<Language, TranslationSchema> = {
 
     howItFits: {
       badge: "How It Fits",
-      title: "Three Steps to Shared Visibility",
+      title: "Three Steps Towards a Shared Visibility",
       subtitle:
-        "Getting started is simple. NauticOps fits into your existing ecosystem without disruption.",
+        "Adoption is straightforward. NauticOps fits into your existing ecosystem without disruption.",
       steps: [
         {
           title: "Connect Your Data",
           description:
-            "Link NauticOps to your systems via standard APIs or manual input. Compatible with PCS, ERPs, TOS and more. No migration required.",
+            "Connect NauticOps to your systems via standard APIs or manual input. Compatible with PCS, ERPs, TOS and other common systems. No migration required.",
         },
         {
           title: "See a Shared View",
           description:
-            "ETAs, berth schedules, service status and vessel information come together on a single, real-time dashboard accessible to all parties.",
+            "ETAs, berth schedules, service readiness and relevant information are consolidated into a single near real-time view, accessible to all authorised stakeholders.",
         },
         {
           title: "Coordinate Together",
           description:
-            "Status updates, timeline changes and notifications reach every relevant stakeholder automatically. Less manual follow-up, more aligned coordination.",
+            "Status updates, schedule changes and notifications are automatically shared with relevant stakeholders. Less manual follow-up, more aligned coordination.",
         },
       ],
     },
@@ -540,24 +540,24 @@ export const translations: Record<Language, TranslationSchema> = {
 
     howItFits: {
       badge: "Cómo Encaja",
-      title: "Tres Pasos hacia la Visibilidad Compartida",
+      title: "Tres Pasos hacia una Visibilidad Compartida",
       subtitle:
-        "Comenzar es sencillo. NauticOps encaja en su ecosistema existente sin disrupciones.",
+        "La adopción es sencilla. NauticOps encaja en su ecosistema existente sin generar disrupciones.",
       steps: [
         {
           title: "Conecte sus Datos",
           description:
-            "Vincule NauticOps a sus sistemas mediante APIs estándar o entrada manual. Compatible con PCS, ERPs, TOS y más. Sin migración necesaria.",
+            "Conecte NauticOps a sus sistemas mediante APIs estándar o entrada manual. Compatible con PCS, ERPs, TOS y otros sistemas habituales. No requiere migraciones.",
         },
         {
           title: "Vea una Vista Compartida",
           description:
-            "ETAs, horarios de atraque, estado de servicios e información del buque se reúnen en un único panel en tiempo real accesible para todas las partes.",
+            "ETAs, horarios de atraque, estado de servicios e información relevante se consolidan en un único panel en tiempo casi real, accesible para todas las partes autorizadas.",
         },
         {
           title: "Coordinen Juntos",
           description:
-            "Actualizaciones de estado, cambios de cronograma y notificaciones llegan a cada actor relevante de forma automática. Menos seguimiento manual, más coordinación alineada.",
+            "Las actualizaciones de estado, cambios de cronograma y notificaciones se distribuyen automáticamente a los actores relevantes. Menos seguimiento manual, mayor coordinación alineada.",
         },
       ],
     },
