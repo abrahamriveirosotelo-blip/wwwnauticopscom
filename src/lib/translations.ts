@@ -383,13 +383,13 @@ export const translations: Record<Language, TranslationSchema> = {
     },
 
     cta: {
-      title: "Interested in Shared Port Call Visibility?",
+      title: "Looking to improve coordination and visibility across your port calls?",
       subtitle:
-        "Request a demo to see how NauticOps complements your existing systems with a shared coordination layer for port calls.",
+        "Request a demo to discover how NauticOps complements your existing systems with a shared coordination layer for port calls.",
       benefits: [
         "Personalised platform walkthrough",
         "Discussion of your specific use cases",
-        "Integration assessment for your systems",
+        "Integration assessment with your systems",
         "Pilot programme options",
       ],
       formTitle: "Request a Demo",
@@ -413,7 +413,7 @@ export const translations: Record<Language, TranslationSchema> = {
           other: "Other",
         },
         submit: "Request Demo",
-        disclaimer: "We'll respond within 24 hours. No spam, ever.",
+        disclaimer: "We'll get back to you within 24 hours.",
       },
       success: {
         title: "Thank You!",
@@ -703,9 +703,9 @@ export const translations: Record<Language, TranslationSchema> = {
     },
 
     cta: {
-      title: "¿Le interesa mejorar la coordinación y visibilidad de sus escalas?",
+      title: "¿Le interesa mejorar la coordinación y la visibilidad de sus escalas?",
       subtitle:
-        "Solicite una demo para descubrir cómo NauticOps complementa sus sistemas actuales con una capa de coordinación compartida para escalas portuarias.",
+        "Solicite una demo para descubrir cómo NauticOps complementa sus sistemas actuales con una capa de coordinación compartida para la gestión de escalas portuarias.",
       benefits: [
         "Recorrido personalizado de la plataforma",
         "Análisis de sus casos de uso específicos",
