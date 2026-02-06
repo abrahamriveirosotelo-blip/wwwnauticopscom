@@ -67,25 +67,25 @@ const CTASection = () => {
   ];
 
   return (
-    <section id="cta" className="section-padding hero-gradient hero-pattern relative">
+    <section id="cta" className="section-padding bg-section-alt relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Content */}
             <div>
-              <h2 className="heading-lg text-primary-foreground mb-6 text-balance">
+              <h2 className="heading-lg text-foreground mb-6 text-balance">
                 {t.cta.title}
               </h2>
-              <p className="body-lg text-primary-foreground/80 mb-8">
+              <p className="body-lg text-muted-foreground mb-8">
                 {t.cta.subtitle}
               </p>
               <ul className="space-y-4">
                 {t.cta.benefits.map((item) => (
                   <li key={item} className="flex items-center gap-3">
-                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-foreground/20">
-                      <Check className="h-4 w-4 text-primary-foreground" />
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-secondary/10">
+                      <Check className="h-4 w-4 text-secondary" />
                     </div>
-                    <span className="text-primary-foreground/90">{item}</span>
+                    <span className="text-foreground">{item}</span>
                   </li>
                 ))}
               </ul>
