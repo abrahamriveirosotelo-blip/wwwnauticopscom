@@ -295,13 +295,13 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Use Cases",
       title: "Real Port Scenarios, Tangible Results",
       subtitle:
-        "Practical examples of how NauticOps supports day-to-day coordination across the port ecosystem.",
+        "Practical examples of how NauticOps supports day-to-day coordination across port call stakeholders through shared, real-time operational data.",
       cases: [
         {
           category: "Arrival Coordination",
           title: "Synchronized ETA Updates",
           description:
-            "When a vessel's ETA changes, pilots, towage, mooring, terminals and agents are notified simultaneously. All stakeholders operate on a shared, real-time schedule.",
+            "When a vessel's ETA changes, pilots, towage, mooring, terminals and agents are notified simultaneously. All stakeholders operate on a shared, real-time port call timeline.",
           stats: [
             { label: "Manual coordination effort", value: "Significantly reduced" },
             { label: "Operational alignment", value: "Real-time" },
@@ -311,29 +311,29 @@ export const translations: Record<Language, TranslationSchema> = {
           category: "Service Scheduling",
           title: "Aligned Port Services",
           description:
-            "Once a berth window is confirmed, service providers automatically receive their assignments. Status updates are shared in a coordinated manner with agents and port authorities.",
+            "When a berth window or operational change is confirmed, all involved actors receive synchronized updates. The port call status evolves consistently for everyone.",
           stats: [
-            { label: "Scheduling time", value: "Reduced" },
-            { label: "Confirmation speed", value: "Up to 3x faster" },
+            { label: "Rescheduling time", value: "Reduced" },
+            { label: "Change confirmation", value: "Up to 3x faster" },
           ],
         },
         {
-          category: "Pre-Arrival Coordination",
-          title: "Simplified Pre-Arrival Workflow",
+          category: "Port Call Coordination",
+          title: "Shared Port Call Flow",
           description:
-            "Shared visibility of pre-arrival documentation and approval status across stakeholders. NauticOps connects agents, terminals and port authorities, reducing manual exchanges and coordination gaps.",
+            "Shared visibility of port call status across agents, terminals and service providers. NauticOps connects stakeholders to share operational progress, incidents, disruptions and planning updates, avoiding misalignment.",
           stats: [
             { label: "Manual exchanges", value: "Reduced" },
-            { label: "Coordination status", value: "Centralised" },
+            { label: "Port call status", value: "Centralized" },
           ],
         },
         {
-          category: "Visibility & Analytics",
+          category: "Visibility & Insights",
           title: "Port Management Indicators",
           description:
-            "Consolidated visibility of turnaround times, berth utilisation and service performance. Identify patterns, generate KPIs and support operational and regulatory decision-making.",
+            "Consolidated visibility of turnaround times, berth utilization and service progress. Identify incidents, operational patterns and generate KPIs to support operational decision-making.",
           stats: [
-            { label: "Reporting", value: "On-demand" },
+            { label: "Operational visibility", value: "On-demand" },
             { label: "Data consolidation", value: "Automated" },
           ],
         },
@@ -615,7 +615,7 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Casos de Uso",
       title: "Escenarios Portuarios Reales, Resultados Tangibles",
       subtitle:
-        "Ejemplos prácticos de cómo NauticOps facilita la coordinación diaria entre los distintos actores del ecosistema portuario.",
+        "Ejemplos prácticos de cómo NauticOps facilita la coordinación diaria entre los distintos actores de una escala portuaria, compartiendo información operativa en tiempo real.",
       cases: [
         {
           category: "Coordinación de Arribos",
@@ -631,29 +631,29 @@ export const translations: Record<Language, TranslationSchema> = {
           category: "Programación de Servicios",
           title: "Servicios Portuarios Alineados",
           description:
-            "Cuando un buque confirma su ventana de atraque, los proveedores de servicios reciben automáticamente sus asignaciones. Las actualizaciones de estado fluyen de forma coordinada hacia el agente y la autoridad portuaria.",
+            "Cuando se confirma una ventana de atraque o un cambio operativo, los actores implicados reciben la información actualizada de forma coordinada. El estado de la escala evoluciona de manera sincronizada para todos.",
           stats: [
-            { label: "Tiempo de programación", value: "Reducido" },
-            { label: "Velocidad de confirmación", value: "Hasta 3x más rápida" },
+            { label: "Tiempo de reprogramación", value: "Reducido" },
+            { label: "Confirmación de cambios", value: "Hasta 3x más rápida" },
           ],
         },
         {
-          category: "Coordinación de Pre-Arribo",
-          title: "Flujo Pre-Arribo Simplificado",
+          category: "Coordinación de Escala",
+          title: "Flujo de Escala Compartido",
           description:
-            "Visibilidad compartida del estado de la documentación y autorizaciones de pre-arribo entre los distintos actores. NauticOps conecta a agentes, terminales y autoridad portuaria, evitando intercambios manuales y desalineaciones.",
+            "Visibilidad compartida del estado de la escala entre agentes, terminales y proveedores de servicios. NauticOps conecta a los actores para compartir progresos operativos, incidencias, averías y cambios de planificación, evitando desalineaciones.",
           stats: [
             { label: "Intercambios manuales", value: "Reducido" },
-            { label: "Estado de coordinación", value: "Centralizado" },
+            { label: "Estado operativo de la escala", value: "Centralizado" },
           ],
         },
         {
           category: "Visibilidad y Análisis",
           title: "Indicadores de Gestión Portuaria",
           description:
-            "Visibilidad consolidada de tiempos de rotación, utilización de atraques y rendimiento de servicios. Identifique patrones, genere KPIs y facilite la toma de decisiones operativas y regulatorias.",
+            "Visibilidad consolidada de tiempos de rotación, utilización de atraques y progreso de servicios. Identifique incidencias, patrones operativos y genere KPIs que apoyen la toma de decisiones operativas.",
           stats: [
-            { label: "Generación de informes", value: "Bajo demanda" },
+            { label: "Visualización operativa", value: "Bajo demanda" },
             { label: "Consolidación de datos", value: "Automatizada" },
           ],
         },
