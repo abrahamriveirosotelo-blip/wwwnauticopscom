@@ -344,30 +344,30 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Trust & Ecosystem",
       title: "Built for the Maritime Industry",
       subtitle:
-        "NauticOps is designed with the security, standards and integrations that port stakeholders expect.",
+        "NauticOps is designed to support day-to-day operational coordination between port stakeholders, with security, reliability, and a natural fit within existing port ecosystems.",
       points: [
         {
-          title: "Enterprise Security",
+          title: "Enterprise-Grade Security",
           description:
-            "SOC 2 compliant infrastructure with end-to-end encryption and role-based access controls.",
+            "Operational information is shared securely, with role-based access so each stakeholder sees only what is relevant to them during the port call.",
         },
         {
-          title: "Open Standards",
+          title: "Open Integration",
           description:
-            "Built on maritime data standards (DCSA, S-100) for seamless integration and interoperability.",
+            "NauticOps connects easily with the systems already used by port stakeholders, without requiring changes to their tools or established workflows.",
         },
         {
-          title: "API-First Design",
+          title: "Connectivity-Oriented Design",
           description:
-            "RESTful APIs enable integration with any PCS, ERP, TOS or custom maritime system.",
+            "Built as an operational coordination layer, enabling smooth sharing of statuses, progress updates, and incidents across all involved parties.",
         },
         {
-          title: "Industry Informed",
+          title: "Industry-Informed",
           description:
-            "Developed with input from port authorities, agents and terminal operators.",
+            "Developed based on real operational experience from agents, terminals, service providers, and port operators.",
         },
       ],
-      ecosystemTitle: "Integrates With Your Existing Ecosystem",
+      ecosystemTitle: "Integrates with existing port ecosystems",
       ecosystemItems: [
         "Port Community Systems",
         "ERP Platforms",
@@ -664,30 +664,30 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Confianza y Ecosistema",
       title: "Diseñado para la Industria Marítima",
       subtitle:
-        "NauticOps está diseñado con la seguridad, los estándares y las integraciones que los actores portuarios necesitan.",
+        "NauticOps está diseñado para facilitar la coordinación operativa entre actores portuarios, con seguridad, fiabilidad y encaje natural en el ecosistema existente.",
       points: [
         {
           title: "Seguridad Empresarial",
           description:
-            "Infraestructura conforme a SOC 2 con cifrado de extremo a extremo y controles de acceso basados en roles.",
+            "La información operativa se comparte de forma segura, con control de accesos por rol para que cada actor vea únicamente lo que necesita durante la escala.",
         },
         {
-          title: "Estándares Abiertos",
+          title: "Integración Abierta",
           description:
-            "Construido sobre estándares de datos marítimos (DCSA, S-100) para integración e interoperabilidad.",
+            "NauticOps se conecta fácilmente con los sistemas que ya utilizan los actores portuarios, sin requerir cambios en sus herramientas ni en sus procesos habituales.",
         },
         {
-          title: "Diseño API-First",
+          title: "Diseño orientado a la Conectividad",
           description:
-            "APIs RESTful para integración con cualquier PCS, ERP, TOS o sistema marítimo personalizado.",
+            "Pensado para actuar como una capa de conexión operativa, facilitando el intercambio de estados, progresos e incidencias entre actores de forma fluida.",
         },
         {
           title: "Informado por la Industria",
           description:
-            "Desarrollado con aportes de autoridades portuarias, agentes y operadores de terminales.",
+            "Desarrollado a partir de la experiencia real de agentes, terminales, proveedores de servicios y operadores portuarios.",
         },
       ],
-      ecosystemTitle: "Se Integra con su Ecosistema Existente",
+      ecosystemTitle: "Se integra con el ecosistema portuario existente",
       ecosystemItems: [
         "Port Community Systems",
         "Plataformas ERP",
