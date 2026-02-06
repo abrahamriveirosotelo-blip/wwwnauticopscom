@@ -52,7 +52,7 @@ const HeroSection = () => {
             <Button
               variant="hero"
               size="xl"
-              className="w-full sm:w-auto"
+              className="w-full sm:w-auto shadow-[0_0_30px_-5px_hsl(200_70%_45%/0.4)]"
               onClick={() => {
                 document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" });
                 setTimeout(() => document.getElementById("name")?.focus(), 800);
