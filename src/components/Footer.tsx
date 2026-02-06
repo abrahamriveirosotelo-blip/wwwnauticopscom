@@ -115,7 +115,7 @@ const Footer = () => {
           <p className="text-xs text-primary-foreground/50">
             © {new Date().getFullYear()} NauticOps. {t.footer.copyright}
           </p>
-          <p className="text-xs text-primary-foreground/50">
+          <p className="text-xs text-primary-foreground/30 italic tracking-wide">
             {t.footer.tagline}
           </p>
         </div>
