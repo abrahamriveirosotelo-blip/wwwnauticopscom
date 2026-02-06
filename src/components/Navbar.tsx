@@ -22,7 +22,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <a href="#" className="flex items-center">
-            <img src={nauticopsLogo} alt="NauticOps" className="h-9 w-auto" />
+            <img src={nauticopsLogo} alt="NauticOps" className="h-8 w-auto" />
           </a>
           
           {/* Desktop Navigation */}
