@@ -1,13 +1,14 @@
-import { Anchor } from "lucide-react";
+import nauticopsLogo from "@/assets/nauticops-logo.png";
 
 const Logo = () => {
   return (
-    <div className="flex items-center gap-2">
-      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-secondary">
-        <Anchor className="h-5 w-5 text-secondary-foreground" />
-      </div>
-      <span className="text-xl font-bold text-foreground">NauticOps</span>
-    </div>
+    <a href="#" className="flex items-center">
+      <img
+        src={nauticopsLogo}
+        alt="NauticOps"
+        className="h-10 w-auto"
+      />
+    </a>
   );
 };
 

@@ -1,5 +1,6 @@
 import { Linkedin, Twitter, Mail } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import nauticopsLogo from "@/assets/nauticops-logo.png";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -36,11 +37,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-8">
           {/* Brand — uses same logo as Navbar */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-secondary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-secondary-foreground"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>
-              </div>
-              <span className="text-xl font-bold">NauticOps</span>
+            <div className="mb-6">
+              <img src={nauticopsLogo} alt="NauticOps" className="h-10 w-auto" />
             </div>
             <p className="text-primary-foreground/60 mb-6 max-w-xs text-sm leading-relaxed">
               {t.footer.description}
