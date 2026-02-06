@@ -3,21 +3,21 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const iconMap = [Link2, Eye, Bell];
 
-const HowItWorksSection = () => {
+const HowItFitsSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="how-it-works" className="section-padding bg-background">
+    <section id="how-it-fits" className="section-padding bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-muted text-muted-foreground">
-            {t.howItWorks.badge}
+            {t.howItFits.badge}
           </span>
           <h2 className="heading-lg text-foreground mb-6 text-balance">
-            {t.howItWorks.title}
+            {t.howItFits.title}
           </h2>
           <p className="body-lg text-muted-foreground text-balance">
-            {t.howItWorks.subtitle}
+            {t.howItFits.subtitle}
           </p>
         </div>
         
@@ -25,7 +25,7 @@ const HowItWorksSection = () => {
           <div className="hidden lg:block absolute top-24 left-[16.67%] right-[16.67%] h-0.5 bg-gradient-to-r from-secondary/20 via-secondary to-secondary/20" />
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6">
-            {t.howItWorks.steps.map((step, index) => {
+            {t.howItFits.steps.map((step, index) => {
               const Icon = iconMap[index];
               return (
                 <div key={step.title} className="relative text-center">
@@ -53,4 +53,4 @@ const HowItWorksSection = () => {
   );
 };
 
-export default HowItWorksSection;
+export default HowItFitsSection;
