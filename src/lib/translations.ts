@@ -146,7 +146,7 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Port Call Coordination Platform",
       title: "Shared Visibility for Every Port Call",
       subtitle:
-        "NauticOps connects port authorities, agents, terminals and service providers on a single coordination layer. It complements your existing systems, not replaces them.",
+        "NauticOps provides a shared coordination layer across the different actors involved in a port call, while respecting the systems and responsibilities of each organization. It complements existing systems, without replacing them or interfering with current processes.",
       ctaPrimary: "Request a Demo",
       ctaSecondary: "View Platform",
       stats: {
@@ -466,7 +466,7 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Plataforma de Coordinación de Escalas",
       title: "Visibilidad Compartida para Cada Escala Portuaria",
       subtitle:
-        "NauticOps conecta a autoridades portuarias, agentes, terminales y proveedores de servicios en una capa de coordinación compartida. Complementa sus sistemas actuales, no los reemplaza.",
+        "NauticOps proporciona una capa de coordinación compartida entre los distintos actores involucrados en una escala portuaria, respetando los sistemas y responsabilidades de cada organización. Complementa los sistemas existentes, sin reemplazarlos ni interferir con los procesos actuales.",
       ctaPrimary: "Solicitar una Demo",
       ctaSecondary: "Ver Plataforma",
       stats: {
