@@ -68,7 +68,7 @@ type TranslationSchema = {
     ecosystemTitle: string;
     ecosystemItems: string[];
     backedBy: string;
-    backedByItems: string[];
+    backedByItems: Array<{ name: string; url: string }>;
   };
   cta: {
     title: string;
@@ -377,8 +377,9 @@ export const translations: Record<Language, TranslationSchema> = {
       ],
       backedBy: "Supported by leading port innovation and entrepreneurship programmes.",
       backedByItems: [
-        "La Lonja Tech",
-        "Incubazul / BlueCore",
+        { name: "La Lonja Tech", url: "https://lalonjatech.com" },
+        { name: "Incubazul / BlueCore", url: "https://incubazul.es" },
+        { name: "Santander X Explorer", url: "https://explorerbyx.org" },
       ],
     },
 
@@ -697,8 +698,9 @@ export const translations: Record<Language, TranslationSchema> = {
       ],
       backedBy: "Acompañado y respaldado por programas líderes de innovación y emprendimiento portuario.",
       backedByItems: [
-        "La Lonja Tech",
-        "Incubazul / BlueCore",
+        { name: "La Lonja Tech", url: "https://lalonjatech.com" },
+        { name: "Incubazul / BlueCore", url: "https://incubazul.es" },
+        { name: "Santander X Explorer", url: "https://explorerbyx.org" },
       ],
     },
 
