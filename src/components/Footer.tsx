@@ -38,7 +38,7 @@ const Footer = () => {
           {/* Brand — uses same logo as Navbar */}
           <div className="lg:col-span-2">
             <div className="mb-6">
-              <img src={nauticopsLogo} alt="NauticOps" className="h-8 w-auto" />
+              <img src={nauticopsLogo} alt="NauticOps" className="h-12 w-auto" />
             </div>
             <p className="text-primary-foreground/60 mb-6 max-w-xs text-sm leading-relaxed">
               {t.footer.description}
