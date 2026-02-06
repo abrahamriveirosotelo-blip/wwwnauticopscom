@@ -2,95 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    /* Maritime-inspired color palette */
+    --background: 210 40% 98%;
+    --foreground: 215 45% 15%;
+    
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 215 45% 15%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --popover-foreground: 215 45% 15%;
+    
+    /* Deep navy - primary brand color */
+    --primary: 215 55% 18%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Ocean teal - secondary accent */
+    --secondary: 195 60% 45%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 210 25% 93%;
+    --muted-foreground: 215 20% 45%;
+    
+    /* Teal accent for CTAs */
+    --accent: 185 65% 42%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 195 60% 45%;
+    
+    --radius: 0.625rem;
+    
+    /* Custom semantic tokens */
+    --navy-deep: 215 55% 12%;
+    --navy-medium: 215 55% 18%;
+    --navy-light: 215 45% 25%;
+    --ocean-primary: 195 60% 45%;
+    --ocean-light: 195 55% 55%;
+    --ocean-pale: 195 50% 95%;
+    --sky-light: 200 60% 94%;
+    --slate-warm: 215 15% 55%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 215 55% 8%;
     --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
+    --card: 215 55% 12%;
     --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
+    --popover: 215 55% 12%;
     --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
+    --primary: 195 60% 50%;
+    --primary-foreground: 215 55% 8%;
+    --secondary: 215 45% 25%;
     --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --muted: 215 45% 18%;
+    --muted-foreground: 210 20% 65%;
+    --accent: 185 65% 45%;
+    --accent-foreground: 215 55% 8%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 215 45% 22%;
+    --input: 215 45% 22%;
+    --ring: 195 60% 50%;
   }
 }
 
@@ -98,8 +76,180 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Hero section styles */
+  .hero-gradient {
+    background: linear-gradient(135deg, hsl(215 55% 12%) 0%, hsl(215 55% 22%) 50%, hsl(195 55% 30%) 100%);
+  }
+  
+  .hero-pattern {
+    background-image: 
+      radial-gradient(ellipse 80% 50% at 50% -20%, hsl(195 60% 45% / 0.15) 0%, transparent 60%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  
+  /* Wave decoration */
+  .wave-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+  
+  .wave-bottom svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 80px;
+  }
+  
+  /* Card styles */
+  .card-maritime {
+    @apply bg-card rounded-xl;
+    box-shadow: 0 4px 24px -4px hsl(215 55% 18% / 0.12);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .card-maritime:hover {
+    box-shadow: 0 12px 40px -8px hsl(215 55% 18% / 0.18);
+    transform: translateY(-4px);
+  }
+  
+  /* Section spacing */
+  .section-padding {
+    @apply py-20 md:py-28 lg:py-32;
+  }
+  
+  .section-padding-sm {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+  
+  /* Text styles */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .heading-xl {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight;
+  }
+  
+  .heading-lg {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight;
+  }
+  
+  .heading-md {
+    @apply text-2xl md:text-3xl font-semibold tracking-tight;
+  }
+  
+  .heading-sm {
+    @apply text-xl md:text-2xl font-semibold;
+  }
+  
+  .body-lg {
+    @apply text-lg md:text-xl leading-relaxed;
+  }
+  
+  .body-md {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+  
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  .animate-slide-in-left {
+    animation: slideInLeft 0.6s ease-out forwards;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.6s ease-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeInUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+  
+  @keyframes slideInLeft {
+    from { 
+      opacity: 0; 
+      transform: translateX(-30px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateX(0); 
+    }
+  }
+  
+  @keyframes slideInRight {
+    from { 
+      opacity: 0; 
+      transform: translateX(30px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateX(0); 
+    }
+  }
+  
+  /* Stagger animation delays */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+  .stagger-6 { animation-delay: 0.6s; }
+  
+  /* CTA gradient button */
+  .btn-cta-gradient {
+    background: linear-gradient(135deg, hsl(185 65% 42%) 0%, hsl(195 60% 45%) 100%);
+    @apply font-semibold;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-cta-gradient:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px -4px hsl(185 65% 42% / 0.4);
+  }
+  
+  /* Ocean background section */
+  .bg-ocean-subtle {
+    background: linear-gradient(180deg, hsl(195 50% 97%) 0%, hsl(200 45% 94%) 100%);
+  }
+  
+  /* Icon container */
+  .icon-container {
+    @apply flex items-center justify-center rounded-xl;
+    background: linear-gradient(135deg, hsl(195 60% 45% / 0.12) 0%, hsl(185 65% 42% / 0.08) 100%);
   }
 }
