@@ -57,14 +57,14 @@ const TrustSection = () => {
           <p className="text-xs text-muted-foreground/70 mb-5 uppercase tracking-wider font-medium">
             {t.trust.backedBy}
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-6">
+          <div className="flex flex-wrap justify-center items-center gap-5">
             {t.trust.backedByItems.map((item) => (
               <a
                 key={item.name}
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-muted-foreground/60 hover:text-secondary transition-colors"
+                className="px-5 py-2.5 rounded-md border border-border bg-card text-sm font-semibold text-muted-foreground cursor-pointer hover:text-secondary hover:border-secondary/40 hover:shadow-sm transition-all duration-200"
               >
                 {item.name}
               </a>
