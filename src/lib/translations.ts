@@ -266,7 +266,7 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           title: "Pilots and Towage",
           description:
-            "Advance visibility of arrivals, confirmation of service windows and seamless coordination with other port operational actors.",
+            "Advanced visibility of arrivals, confirmation of service windows and seamless coordination with other port operational actors.",
         },
         {
           title: "Shipping Lines",
@@ -281,7 +281,7 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           title: "Technology Integrators",
           description:
-            "APIs and data flows enabling NauticOps to integrate as a complementary coordination layer within existing port infrastructure.",
+            "APIs and data flows that enable NauticOps to operate as a complementary coordination layer within existing port infrastructure.",
         },
         {
           title: "Partners and Investors",
