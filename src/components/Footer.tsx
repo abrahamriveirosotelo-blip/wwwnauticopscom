@@ -1,30 +1,32 @@
-import Logo from "./Logo";
 import { Linkedin, Twitter, Mail } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   const footerLinks = {
     product: [
-      { label: "Features", href: "#solution" },
-      { label: "Use Cases", href: "#use-cases" },
-      { label: "Integrations", href: "#trust" },
-      { label: "Pricing", href: "#" },
+      { label: t.footer.links.features, href: "#solution" },
+      { label: t.footer.links.useCases, href: "#use-cases" },
+      { label: t.footer.links.integrations, href: "#trust" },
+      { label: t.footer.links.pricing, href: "#" },
     ],
     company: [
-      { label: "About Us", href: "#" },
-      { label: "Careers", href: "#" },
-      { label: "Contact", href: "#cta" },
-      { label: "Partners", href: "#" },
+      { label: t.footer.links.aboutUs, href: "#" },
+      { label: t.footer.links.careers, href: "#" },
+      { label: t.footer.links.contact, href: "#cta" },
+      { label: t.footer.links.partners, href: "#" },
     ],
     resources: [
-      { label: "Documentation", href: "#" },
-      { label: "API Reference", href: "#" },
-      { label: "Blog", href: "#" },
-      { label: "Case Studies", href: "#" },
+      { label: t.footer.links.documentation, href: "#" },
+      { label: t.footer.links.apiReference, href: "#" },
+      { label: t.footer.links.blog, href: "#" },
+      { label: t.footer.links.caseStudies, href: "#" },
     ],
     legal: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
-      { label: "Security", href: "#" },
+      { label: t.footer.links.privacyPolicy, href: "#" },
+      { label: t.footer.links.termsOfService, href: "#" },
+      { label: t.footer.links.security, href: "#" },
     ],
   };
 
@@ -57,8 +59,7 @@ const Footer = () => {
               <span className="text-xl font-bold">NauticOps</span>
             </div>
             <p className="text-primary-foreground/70 mb-6 max-w-xs">
-              Real-time operational coordination for port calls. 
-              Connecting stakeholders without replacing existing systems.
+              {t.footer.description}
             </p>
             <div className="flex gap-4">
               <a
@@ -87,7 +88,7 @@ const Footer = () => {
           
           {/* Links */}
           <div>
-            <h4 className="font-semibold mb-4">Product</h4>
+            <h4 className="font-semibold mb-4">{t.footer.product}</h4>
             <ul className="space-y-3">
               {footerLinks.product.map((link) => (
                 <li key={link.label}>
@@ -103,7 +104,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-semibold mb-4">Company</h4>
+            <h4 className="font-semibold mb-4">{t.footer.company}</h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
@@ -119,7 +120,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-semibold mb-4">Resources</h4>
+            <h4 className="font-semibold mb-4">{t.footer.resources}</h4>
             <ul className="space-y-3">
               {footerLinks.resources.map((link) => (
                 <li key={link.label}>
@@ -135,7 +136,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-semibold mb-4">Legal</h4>
+            <h4 className="font-semibold mb-4">{t.footer.legal}</h4>
             <ul className="space-y-3">
               {footerLinks.legal.map((link) => (
                 <li key={link.label}>
@@ -154,10 +155,10 @@ const Footer = () => {
         {/* Bottom */}
         <div className="border-t border-primary-foreground/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-primary-foreground/60">
-            © {new Date().getFullYear()} NauticOps. All rights reserved.
+            © {new Date().getFullYear()} NauticOps. {t.footer.copyright}
           </p>
           <p className="text-sm text-primary-foreground/60">
-            Designed for the maritime industry.
+            {t.footer.tagline}
           </p>
         </div>
       </div>

@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import heroImage from "@/assets/hero-port.jpg";
 
 const HeroSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -31,44 +34,43 @@ const HeroSection = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="animate-fade-in-up opacity-0">
             <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium rounded-full bg-primary-foreground/10 text-primary-foreground border border-primary-foreground/20">
-              Real-Time Port Call Coordination
+              {t.hero.badge}
             </span>
           </div>
           
           <h1 className="heading-xl text-primary-foreground mb-6 animate-fade-in-up opacity-0 stagger-1 text-balance">
-            Unified Visibility for Every Port Call
+            {t.hero.title}
           </h1>
           
           <p className="body-lg text-primary-foreground/80 mb-10 max-w-2xl mx-auto animate-fade-in-up opacity-0 stagger-2 text-balance">
-            NauticOps connects port authorities, agents, terminals, and service providers 
-            on a single coordination platform—without replacing your existing systems.
+            {t.hero.subtitle}
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up opacity-0 stagger-3">
             <Button variant="hero" size="xl" className="w-full sm:w-auto">
-              Request a Demo
+              {t.hero.ctaPrimary}
               <ArrowRight className="h-5 w-5" />
             </Button>
             <Button variant="heroOutline" size="xl" className="w-full sm:w-auto">
               <Play className="h-5 w-5" />
-              View Platform
+              {t.hero.ctaSecondary}
             </Button>
           </div>
           
           <div className="mt-16 flex items-center justify-center gap-8 animate-fade-in-up opacity-0 stagger-4">
             <div className="text-center">
               <div className="text-3xl font-bold text-primary-foreground">50+</div>
-              <div className="text-sm text-primary-foreground/60">Port Calls Managed</div>
+              <div className="text-sm text-primary-foreground/60">{t.hero.stats.portCalls}</div>
             </div>
             <div className="h-12 w-px bg-primary-foreground/20" />
             <div className="text-center">
               <div className="text-3xl font-bold text-primary-foreground">24/7</div>
-              <div className="text-sm text-primary-foreground/60">Real-Time Updates</div>
+              <div className="text-sm text-primary-foreground/60">{t.hero.stats.realTime}</div>
             </div>
             <div className="h-12 w-px bg-primary-foreground/20" />
             <div className="text-center">
               <div className="text-3xl font-bold text-primary-foreground">100%</div>
-              <div className="text-sm text-primary-foreground/60">System Agnostic</div>
+              <div className="text-sm text-primary-foreground/60">{t.hero.stats.systemAgnostic}</div>
             </div>
           </div>
         </div>
