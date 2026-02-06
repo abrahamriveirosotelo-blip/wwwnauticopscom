@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const CTASection = () => {
@@ -13,19 +13,39 @@ const CTASection = () => {
     role: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setError("");
+
     const roleLabelMap: Record<string, string> = {};
     roleOptions.forEach((opt) => { roleLabelMap[opt.value] = opt.label; });
     const roleLabel = roleLabelMap[formData.role] || formData.role;
 
-    const subject = encodeURIComponent(`Demo Request from ${formData.name} - ${formData.company}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\nRole: ${roleLabel}`
-    );
-    window.open(`mailto:info@nauticops.com?subject=${subject}&body=${body}`, "_self");
-    setIsSubmitted(true);
+    try {
+      const res = await fetch("https://formspree.io/f/mvzboodr", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          role: roleLabel,
+        }),
+      });
+      if (res.ok) {
+        setIsSubmitted(true);
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -144,10 +164,19 @@ const CTASection = () => {
                         ))}
                       </select>
                     </div>
-                    <Button type="submit" variant="default" size="xl" className="w-full">
-                      {t.cta.form.submit}
-                      <ArrowRight className="h-5 w-5" />
+                    <Button type="submit" variant="default" size="xl" className="w-full" disabled={isSubmitting}>
+                      {isSubmitting ? (
+                        <Loader2 className="h-5 w-5 animate-spin" />
+                      ) : (
+                        <>
+                          {t.cta.form.submit}
+                          <ArrowRight className="h-5 w-5" />
+                        </>
+                      )}
                     </Button>
+                    {error && (
+                      <p className="text-sm text-destructive text-center">{error}</p>
+                    )}
                     <p className="text-xs text-muted-foreground text-center">
                       {t.cta.form.disclaimer}
                     </p>
