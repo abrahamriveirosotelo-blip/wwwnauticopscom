@@ -318,13 +318,13 @@ export const translations: Record<Language, TranslationSchema> = {
           ],
         },
         {
-          category: "Documentation",
+          category: "Pre-Arrival Coordination",
           title: "Simplified Pre-Arrival Workflow",
           description:
-            "Pre-arrival documentation and approvals are centralised in a single environment. Port authorities can track submissions, validations and approvals without manual exchanges.",
+            "Shared visibility of pre-arrival documentation and approval status across stakeholders. NauticOps connects agents, terminals and port authorities, reducing manual exchanges and coordination gaps.",
           stats: [
-            { label: "Processing time", value: "Reduced" },
-            { label: "Compliance tracking", value: "Centralised" },
+            { label: "Manual exchanges", value: "Reduced" },
+            { label: "Coordination status", value: "Centralised" },
           ],
         },
         {
@@ -638,13 +638,13 @@ export const translations: Record<Language, TranslationSchema> = {
           ],
         },
         {
-          category: "Documentación",
+          category: "Coordinación de Pre-Arribo",
           title: "Flujo Pre-Arribo Simplificado",
           description:
-            "Documentación y autorizaciones de pre-arribo centralizadas en un único entorno. La autoridad portuaria puede consultar el estado de envíos, aprobaciones y validaciones sin intercambios manuales.",
+            "Visibilidad compartida del estado de la documentación y autorizaciones de pre-arribo entre los distintos actores. NauticOps conecta a agentes, terminales y autoridad portuaria, evitando intercambios manuales y desalineaciones.",
           stats: [
-            { label: "Tiempo de procesamiento", value: "Reducido" },
-            { label: "Seguimiento del cumplimiento", value: "Centralizado" },
+            { label: "Intercambios manuales", value: "Reducido" },
+            { label: "Estado de coordinación", value: "Centralizado" },
           ],
         },
         {
