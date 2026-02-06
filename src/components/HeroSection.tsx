@@ -32,7 +32,7 @@ const HeroSection = () => {
       </div>
       
       {/* Content */}
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-32 pb-32">
+      <div className="container relative z-10 mx-auto px-5 sm:px-6 lg:px-8 pt-28 md:pt-32 pb-20 sm:pb-32">
         <div className="max-w-4xl mx-auto text-center">
           <div className="animate-fade-in-up opacity-0 mt-6 md:mt-8">
             <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium rounded-full bg-primary-foreground/10 text-primary-foreground border border-primary-foreground/20">
@@ -69,17 +69,17 @@ const HeroSection = () => {
             </a>
           </div>
           
-          <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-8 animate-fade-in-up opacity-0 stagger-4">
-            <div className="text-center max-w-[200px]">
-              <div className="text-sm font-medium text-primary-foreground/80">{t.hero.stats.portCalls}</div>
+          <div className="mt-10 sm:mt-16 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 animate-fade-in-up opacity-0 stagger-4">
+            <div className="text-center max-w-[250px] sm:max-w-[200px]">
+              <div className="text-xs sm:text-sm font-medium text-primary-foreground/80">{t.hero.stats.portCalls}</div>
             </div>
             <div className="hidden sm:block h-8 w-px bg-primary-foreground/20" />
-            <div className="text-center max-w-[200px]">
-              <div className="text-sm font-medium text-primary-foreground/80">{t.hero.stats.realTime}</div>
+            <div className="text-center max-w-[250px] sm:max-w-[200px]">
+              <div className="text-xs sm:text-sm font-medium text-primary-foreground/80">{t.hero.stats.realTime}</div>
             </div>
             <div className="hidden sm:block h-8 w-px bg-primary-foreground/20" />
-            <div className="text-center max-w-[200px]">
-              <div className="text-sm font-medium text-primary-foreground/80">{t.hero.stats.systemAgnostic}</div>
+            <div className="text-center max-w-[250px] sm:max-w-[200px]">
+              <div className="text-xs sm:text-sm font-medium text-primary-foreground/80">{t.hero.stats.systemAgnostic}</div>
             </div>
           </div>
         </div>

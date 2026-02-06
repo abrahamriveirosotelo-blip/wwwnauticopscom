@@ -92,7 +92,7 @@ const CTASection = () => {
             </div>
             
             {/* Form */}
-            <div className="bg-card rounded-2xl p-8 shadow-xl">
+            <div className="bg-card rounded-2xl p-5 sm:p-8 shadow-xl">
               {!isSubmitted ? (
                 <>
                   <h3 className="heading-sm text-foreground mb-6 text-center">

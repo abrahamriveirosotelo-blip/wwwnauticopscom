@@ -32,7 +32,7 @@ const AboutSection = () => {
             const Icon = memberIcons[index];
 
             return (
-              <div key={member.name} className="card-maritime p-8">
+              <div key={member.name} className="card-maritime p-5 sm:p-8">
                 {/* Header */}
                 <div className="flex items-center gap-4 mb-4">
                   <div className="icon-container w-14 h-14 flex-shrink-0">
