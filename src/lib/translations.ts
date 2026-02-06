@@ -187,7 +187,7 @@ export const translations: Record<Language, TranslationSchema> = {
 
     solution: {
       badge: "Our Approach",
-      title: "A Coordination Layer That Works Alongside Your Systems",
+      title: "A Coordination Layer That Works Alongside Existing Systems",
       subtitle:
         "NauticOps connects data and stakeholders to create shared visibility across the port call, without requiring changes to your existing processes or tools.",
       features: [
@@ -507,9 +507,9 @@ export const translations: Record<Language, TranslationSchema> = {
 
     solution: {
       badge: "Nuestro Enfoque",
-      title: "Una Capa de Coordinación que Trabaja Junto a sus Sistemas",
+      title: "Una Capa de Coordinación que Trabaja Junto a los Sistemas Existentes",
       subtitle:
-        "NauticOps conecta datos y actores para crear visibilidad compartida a lo largo de la escala portuaria, sin requerir cambios en sus procesos ni herramientas actuales.",
+        "NauticOps conecta datos y actores para crear visibilidad compartida a lo largo de la escala portuaria, sin requerir cambios en sus procesos ni en sus herramientas actuales.",
       features: [
         {
           title: "Complementario por Diseño",
@@ -529,7 +529,7 @@ export const translations: Record<Language, TranslationSchema> = {
       ],
       cardTitle: "Diseñado para Encajar, No para Competir",
       cardDescription:
-        "NauticOps respeta su infraestructura existente y añade una capa de coordinación compartida junto a sus sistemas actuales, generando valor para todos los actores.",
+        "NauticOps respeta su infraestructura existente y añade una capa de coordinación compartida que se integra junto a sus sistemas actuales, generando valor para todos los actores.",
       benefits: [
         "Funciona junto a sus sistemas actuales",
         "Sin interrupciones en flujos de trabajo establecidos",
