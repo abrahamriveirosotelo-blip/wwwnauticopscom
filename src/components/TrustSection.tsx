@@ -36,7 +36,7 @@ const TrustSection = () => {
           })}
         </div>
         
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto mb-16">
           <p className="text-center text-sm text-muted-foreground mb-8 uppercase tracking-wider font-medium">
             {t.trust.ecosystemTitle}
           </p>
@@ -48,6 +48,23 @@ const TrustSection = () => {
               >
                 {name}
               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Institutional backing */}
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-sm text-muted-foreground mb-4">
+            {t.trust.backedBy}
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            {t.trust.backedByItems.map((name) => (
+              <span
+                key={name}
+                className="px-5 py-2 bg-card rounded-md border border-border text-sm font-semibold text-foreground"
+              >
+                {name}
+              </span>
             ))}
           </div>
         </div>

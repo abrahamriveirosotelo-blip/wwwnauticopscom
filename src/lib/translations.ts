@@ -67,6 +67,8 @@ type TranslationSchema = {
     points: Array<{ title: string; description: string }>;
     ecosystemTitle: string;
     ecosystemItems: string[];
+    backedBy: string;
+    backedByItems: string[];
   };
   cta: {
     title: string;
@@ -131,7 +133,7 @@ type TranslationSchema = {
 export const translations: Record<Language, TranslationSchema> = {
   en: {
     nav: {
-      context: "Context",
+      context: "The Port Today",
       solution: "Solution",
       howItFits: "How It Fits",
       whoItsFor: "Who It's For",
@@ -141,10 +143,10 @@ export const translations: Record<Language, TranslationSchema> = {
     },
 
     hero: {
-      badge: "Real-Time Port Call Coordination",
+      badge: "Port Call Coordination Platform",
       title: "Shared Visibility for Every Port Call",
       subtitle:
-        "NauticOps brings port authorities, agents, terminals and service providers onto a single coordination layer—complementing your existing systems, not replacing them.",
+        "NauticOps connects port authorities, agents, terminals and service providers on a single coordination layer. It complements your existing systems, not replaces them.",
       ctaPrimary: "Request a Demo",
       ctaSecondary: "View Platform",
       stats: {
@@ -155,59 +157,59 @@ export const translations: Record<Language, TranslationSchema> = {
     },
 
     context: {
-      badge: "Current Context",
-      title: "A Complex Ecosystem with Many Moving Parts",
+      badge: "The Port Today",
+      title: "Today's Port Ecosystem",
       subtitle:
-        "Port operations involve multiple stakeholders, systems and service providers—each with their own tools and timelines. Creating a shared, real-time view across this ecosystem remains a key coordination challenge.",
+        "Every port call involves multiple actors working in parallel: authorities, agents, terminals, pilots, tugs and service providers. Each operates on their own systems and timelines. A shared, real-time view across all of them is still uncommon.",
       items: [
         {
-          title: "Multiple Stakeholders",
+          title: "Many Actors, Many Systems",
           description:
-            "Port authorities, agents, terminals, pilots, tugs and service providers each manage their own data and schedules across different systems.",
+            "Port authorities, agents, terminals, pilots, tugs and service providers each manage their own schedules and data across separate tools.",
         },
         {
-          title: "Dynamic Timelines",
+          title: "Timelines That Keep Moving",
           description:
-            "ETAs, berth windows and service schedules evolve continuously. Keeping all parties aligned requires timely, synchronized information sharing.",
+            "ETAs, berth windows and service schedules change constantly. Keeping every party aligned requires timely and synchronized information.",
         },
         {
-          title: "Diverse Systems",
+          title: "Specialised Tools, Limited Cross-Visibility",
           description:
-            "Port Community Systems, ERPs, terminal operating systems and other tools each serve a specific purpose. Cross-system visibility is often limited.",
+            "Port Community Systems, ERPs and terminal operating systems each serve a clear purpose. Visibility across them, however, is often limited.",
         },
         {
-          title: "Growing Complexity",
+          title: "A Growing Need for Coordination",
           description:
-            "As trade volumes grow and regulatory demands increase, the need for a shared coordination layer becomes increasingly relevant.",
+            "As trade volumes rise and regulatory requirements expand, the value of a shared coordination layer becomes increasingly clear.",
         },
       ],
     },
 
     solution: {
       badge: "Our Approach",
-      title: "A Coordination Layer That Complements Your Ecosystem",
+      title: "A Coordination Layer That Works Alongside Your Systems",
       subtitle:
-        "NauticOps works alongside your existing systems—connecting data and stakeholders to create shared visibility without requiring process changes.",
+        "NauticOps connects data and stakeholders to create shared visibility across the port call, without requiring changes to your existing processes.",
       features: [
         {
-          title: "Complementary by Nature",
+          title: "Complementary by Design",
           description:
-            "Designed to enhance, not replace, your current tools. NauticOps integrates with PCS, ERPs and terminal systems to create a unified view.",
+            "NauticOps enhances your current tools instead of replacing them. It integrates with PCS, ERPs and terminal systems to build a unified coordination view.",
         },
         {
-          title: "Synchronized in Real Time",
+          title: "Real-Time Synchronisation",
           description:
-            "All stakeholders access the same live data—ETAs, berth assignments, service readiness—reducing the need for manual coordination.",
+            "All stakeholders access the same live data: ETAs, berth assignments and service readiness. Manual coordination is reduced significantly.",
         },
         {
-          title: "Role-Appropriate Access",
+          title: "Role-Based Access",
           description:
-            "Each participant sees the information relevant to their role, with appropriate permissions and data privacy built in.",
+            "Each participant sees only the information relevant to their role, with built-in permissions and data privacy.",
         },
       ],
-      cardTitle: "Designed to Fit, Not to Compete",
+      cardTitle: "Built to Fit, Not to Compete",
       cardDescription:
-        "NauticOps respects your investment in existing infrastructure. It sits alongside your current tools, adding a shared coordination layer that benefits every stakeholder.",
+        "NauticOps respects your existing infrastructure. It adds a shared coordination layer alongside your current tools, delivering value to every stakeholder.",
       benefits: [
         "Works alongside your current systems",
         "No disruption to established workflows",
@@ -220,22 +222,22 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "How It Fits",
       title: "Three Steps to Shared Visibility",
       subtitle:
-        "Getting started is straightforward. NauticOps is designed for easy adoption, fitting into your existing ecosystem without disruption.",
+        "Getting started is simple. NauticOps fits into your existing ecosystem without disruption.",
       steps: [
         {
           title: "Connect Your Data",
           description:
-            "Link NauticOps to your existing systems via standard APIs or manual input. We work with PCS, ERPs, TOS and more—no migration needed.",
+            "Link NauticOps to your systems via standard APIs or manual input. Compatible with PCS, ERPs, TOS and more. No migration required.",
         },
         {
           title: "See a Shared View",
           description:
-            "All port call data—ETAs, berth schedules, service status, vessel information—brought together on a single, real-time dashboard.",
+            "ETAs, berth schedules, service status and vessel information come together on a single, real-time dashboard accessible to all parties.",
         },
         {
           title: "Coordinate Together",
           description:
-            "Status updates, timeline changes and notifications reach every relevant stakeholder automatically. Less manual communication, more aligned operations.",
+            "Status updates, timeline changes and notifications reach every relevant stakeholder automatically. Less manual follow-up, more aligned coordination.",
         },
       ],
     },
@@ -244,27 +246,27 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Who It's For",
       title: "Built for the Entire Port Ecosystem",
       subtitle:
-        "NauticOps serves the full range of port stakeholders—from regulatory authorities to operational service providers—with a shared coordination platform.",
+        "NauticOps serves all port stakeholders, from regulatory authorities to service providers, with a shared coordination platform.",
       audiences: [
         {
           title: "Port Authorities",
           description:
-            "Gain a comprehensive view of all port calls, coordinate vessel traffic and monitor regulatory compliance with real-time visibility.",
+            "A comprehensive view of all port calls, vessel traffic coordination and regulatory compliance with real-time visibility.",
         },
         {
           title: "Shipping Agents",
           description:
-            "Manage multiple port calls across vessels, track service providers and keep principals informed with live updates.",
+            "Manage multiple port calls, track service providers and keep principals informed with live updates across vessels.",
         },
         {
           title: "Terminal Operators",
           description:
-            "Plan berth allocation, coordinate cargo operations and stay aligned with all stakeholders on vessel timelines.",
+            "Plan berth allocation, coordinate cargo handling and stay aligned with stakeholders on vessel timelines.",
         },
         {
           title: "Pilots & Tugs",
           description:
-            "View vessel arrivals in advance, confirm service windows and coordinate with other maritime services seamlessly.",
+            "View arrivals in advance, confirm service windows and coordinate seamlessly with other maritime services.",
         },
         {
           title: "Shipping Lines",
@@ -274,12 +276,12 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           title: "Service Providers",
           description:
-            "Receive service requests promptly, confirm availability and update completion status for all parties involved.",
+            "Receive service requests on time, confirm availability and update completion status for all parties involved.",
         },
         {
           title: "Technology Integrators",
           description:
-            "Leverage open APIs to connect NauticOps with existing port infrastructure and digital ecosystems.",
+            "Use open APIs to connect NauticOps with existing port infrastructure and digital ecosystems.",
         },
         {
           title: "Industry Partners",
@@ -291,48 +293,48 @@ export const translations: Record<Language, TranslationSchema> = {
 
     useCases: {
       badge: "Use Cases",
-      title: "Real Port Scenarios, Tangible Value",
+      title: "Real Port Scenarios, Tangible Results",
       subtitle:
-        "See how NauticOps supports everyday coordination across the port ecosystem with practical, real-world scenarios.",
+        "Practical examples of how NauticOps supports daily coordination across the port ecosystem.",
       cases: [
         {
           category: "Arrival Coordination",
           title: "Synchronized ETA Updates",
           description:
-            "When a vessel's ETA changes, NauticOps notifies pilots, tugs, mooring and the terminal simultaneously—so everyone adjusts from a single, shared timeline.",
+            "When a vessel's ETA changes, pilots, tugs, mooring and the terminal are all notified at once, so everyone adjusts from a single shared timeline.",
           stats: [
-            { label: "Coordination Time", value: "-85%" },
-            { label: "Alignment Gaps", value: "-60%" },
+            { label: "Coordination effort", value: "Significantly reduced" },
+            { label: "Alignment", value: "Real-time" },
           ],
         },
         {
           category: "Service Scheduling",
           title: "Aligned Port Services",
           description:
-            "When a vessel confirms its berth window, all service providers—fuel, provisions, waste removal—receive their assigned windows. Status updates flow back to the agent and port authority in real time.",
+            "Once a vessel confirms its berth window, all service providers receive their assigned slots. Status updates flow back to the agent and port authority in real time.",
           stats: [
-            { label: "Scheduling Delays", value: "-40%" },
-            { label: "Confirmation Speed", value: "3×" },
+            { label: "Scheduling time", value: "Reduced" },
+            { label: "Confirmation speed", value: "Up to 3x faster" },
           ],
         },
         {
           category: "Documentation",
           title: "Streamlined Pre-Arrival Workflow",
           description:
-            "All pre-arrival documents and clearances tracked in one place. The port authority sees submission status, agents track approvals, and reminders are triggered automatically when needed.",
+            "Pre-arrival documents and clearances are tracked in one place. The port authority sees submission status, agents track approvals, and reminders trigger automatically.",
           stats: [
-            { label: "Processing Time", value: "-50%" },
-            { label: "Compliance Gaps", value: "-70%" },
+            { label: "Processing time", value: "Reduced" },
+            { label: "Compliance tracking", value: "Centralised" },
           ],
         },
         {
           category: "Performance Visibility",
-          title: "Port Operations Insights",
+          title: "Port Performance Insights",
           description:
-            "Track turnaround times, berth utilisation and service performance across all port calls. Identify patterns, measure KPIs and generate reports for stakeholders and regulators.",
+            "Turnaround times, berth utilisation and service performance across all port calls. Identify patterns, measure KPIs and generate reports for stakeholders.",
           stats: [
-            { label: "Report Generation", value: "Instant" },
-            { label: "Data Accuracy", value: "99%" },
+            { label: "Report generation", value: "On demand" },
+            { label: "Data consolidation", value: "Automated" },
           ],
         },
       ],
@@ -362,7 +364,7 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           title: "Industry Informed",
           description:
-            "Developed with input from port authorities, agents and terminal operators worldwide.",
+            "Developed with input from port authorities, agents and terminal operators.",
         },
       ],
       ecosystemTitle: "Integrates With Your Existing Ecosystem",
@@ -373,12 +375,17 @@ export const translations: Record<Language, TranslationSchema> = {
         "Vessel Tracking Services",
         "Maritime Data Providers",
       ],
+      backedBy: "Supported and accompanied by leading innovation and port ecosystem programmes.",
+      backedByItems: [
+        "La Lonja Tech",
+        "Incubazul / BlueCore",
+      ],
     },
 
     cta: {
-      title: "Ready to Explore Shared Port Call Visibility?",
+      title: "Interested in Shared Port Call Visibility?",
       subtitle:
-        "Request a demo to see how NauticOps can complement your existing systems with a shared coordination layer for port operations.",
+        "Request a demo to see how NauticOps complements your existing systems with a shared coordination layer for port calls.",
       benefits: [
         "Personalised platform walkthrough",
         "Discussion of your specific use cases",
@@ -446,7 +453,7 @@ export const translations: Record<Language, TranslationSchema> = {
 
   es: {
     nav: {
-      context: "Contexto",
+      context: "El Puerto Hoy",
       solution: "Solución",
       howItFits: "Cómo Encaja",
       whoItsFor: "Para Quién",
@@ -456,10 +463,10 @@ export const translations: Record<Language, TranslationSchema> = {
     },
 
     hero: {
-      badge: "Coordinación de Escalas en Tiempo Real",
+      badge: "Plataforma de Coordinación de Escalas",
       title: "Visibilidad Compartida para Cada Escala Portuaria",
       subtitle:
-        "NauticOps conecta a autoridades portuarias, agentes, terminales y proveedores de servicios en una capa de coordinación compartida—complementando sus sistemas existentes, sin reemplazarlos.",
+        "NauticOps conecta a autoridades portuarias, agentes, terminales y proveedores de servicios en una capa de coordinación compartida. Complementa sus sistemas actuales, no los reemplaza.",
       ctaPrimary: "Solicitar una Demo",
       ctaSecondary: "Ver Plataforma",
       stats: {
@@ -470,63 +477,63 @@ export const translations: Record<Language, TranslationSchema> = {
     },
 
     context: {
-      badge: "Situación Actual",
-      title: "Un Ecosistema Complejo con Muchas Partes en Movimiento",
+      badge: "El Puerto Hoy",
+      title: "El Entorno Portuario Actual",
       subtitle:
-        "Las operaciones portuarias involucran múltiples actores, sistemas y proveedores de servicios—cada uno con sus propias herramientas y cronogramas. Crear una visión compartida y en tiempo real sigue siendo un desafío clave de coordinación.",
+        "Cada escala implica múltiples actores trabajando en paralelo: autoridades, agentes, terminales, prácticos, remolcadores y proveedores de servicios. Cada uno opera con sus propios sistemas y cronogramas. Una visión compartida y en tiempo real entre todos ellos sigue siendo poco habitual.",
       items: [
         {
-          title: "Múltiples Actores",
+          title: "Muchos Actores, Muchos Sistemas",
           description:
-            "Autoridades portuarias, agentes, terminales, prácticos, remolcadores y proveedores de servicios gestionan sus propios datos y horarios en sistemas diferentes.",
+            "Autoridades portuarias, agentes, terminales, prácticos, remolcadores y proveedores de servicios gestionan sus horarios y datos en herramientas separadas.",
         },
         {
-          title: "Cronogramas Dinámicos",
+          title: "Cronogramas en Constante Cambio",
           description:
-            "Los ETAs, ventanas de atraque y horarios de servicios evolucionan continuamente. Mantener a todas las partes alineadas requiere información sincronizada y oportuna.",
+            "Los ETAs, las ventanas de atraque y los horarios de servicios cambian continuamente. Mantener a todas las partes alineadas requiere información sincronizada y oportuna.",
         },
         {
-          title: "Sistemas Diversos",
+          title: "Herramientas Especializadas, Visibilidad Cruzada Limitada",
           description:
-            "Port Community Systems, ERPs, sistemas de terminal y otras herramientas cumplen funciones específicas. La visibilidad cruzada entre sistemas suele ser limitada.",
+            "Los Port Community Systems, ERPs y sistemas de terminal cumplen funciones claras. Sin embargo, la visibilidad transversal entre ellos suele ser limitada.",
         },
         {
-          title: "Complejidad Creciente",
+          title: "Una Necesidad Creciente de Coordinación",
           description:
-            "A medida que crecen los volúmenes de comercio y las exigencias regulatorias, la necesidad de una capa de coordinación compartida se vuelve cada vez más relevante.",
+            "A medida que crecen los volúmenes de comercio y las exigencias regulatorias, el valor de una capa de coordinación compartida resulta cada vez más evidente.",
         },
       ],
     },
 
     solution: {
       badge: "Nuestro Enfoque",
-      title: "Una Capa de Coordinación que Complementa su Ecosistema",
+      title: "Una Capa de Coordinación que Trabaja Junto a sus Sistemas",
       subtitle:
-        "NauticOps trabaja junto a sus sistemas existentes—conectando datos y actores para crear visibilidad compartida sin requerir cambios de procesos.",
+        "NauticOps conecta datos y actores para crear visibilidad compartida a lo largo de la escala, sin requerir cambios en sus procesos actuales.",
       features: [
         {
-          title: "Complementario por Naturaleza",
+          title: "Complementario por Diseño",
           description:
-            "Diseñado para mejorar, no reemplazar, sus herramientas actuales. NauticOps se integra con PCS, ERPs y sistemas de terminal para crear una vista unificada.",
+            "NauticOps mejora sus herramientas actuales en lugar de reemplazarlas. Se integra con PCS, ERPs y sistemas de terminal para construir una vista de coordinación unificada.",
         },
         {
           title: "Sincronización en Tiempo Real",
           description:
-            "Todos los actores acceden a los mismos datos en vivo—ETAs, asignaciones de atraque, disponibilidad de servicios—reduciendo la necesidad de coordinación manual.",
+            "Todos los actores acceden a los mismos datos en vivo: ETAs, asignaciones de atraque y disponibilidad de servicios. La coordinación manual se reduce de forma significativa.",
         },
         {
-          title: "Acceso Adecuado al Rol",
+          title: "Acceso Basado en Roles",
           description:
-            "Cada participante ve la información relevante para su función, con permisos apropiados y privacidad de datos incorporada.",
+            "Cada participante ve únicamente la información relevante para su función, con permisos y privacidad de datos incorporados.",
         },
       ],
       cardTitle: "Diseñado para Encajar, No para Competir",
       cardDescription:
-        "NauticOps respeta su inversión en infraestructura existente. Se sitúa junto a sus herramientas actuales, añadiendo una capa de coordinación compartida que beneficia a todos los actores.",
+        "NauticOps respeta su infraestructura existente. Añade una capa de coordinación compartida junto a sus herramientas actuales, generando valor para todos los actores.",
       benefits: [
         "Funciona junto a sus sistemas actuales",
         "Sin interrupciones a flujos de trabajo establecidos",
-        "Desplegable en semanas, no meses",
+        "Desplegable en semanas, no en meses",
         "Mejoras de visibilidad inmediatas",
       ],
     },
@@ -535,22 +542,22 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Cómo Encaja",
       title: "Tres Pasos hacia la Visibilidad Compartida",
       subtitle:
-        "Comenzar es sencillo. NauticOps está diseñado para una adopción fácil, encajando en su ecosistema existente sin disrupciones.",
+        "Comenzar es sencillo. NauticOps encaja en su ecosistema existente sin disrupciones.",
       steps: [
         {
-          title: "Conecte Sus Datos",
+          title: "Conecte sus Datos",
           description:
-            "Vincule NauticOps a sus sistemas existentes mediante APIs estándar o entrada manual. Trabajamos con PCS, ERPs, TOS y más—sin migración necesaria.",
+            "Vincule NauticOps a sus sistemas mediante APIs estándar o entrada manual. Compatible con PCS, ERPs, TOS y más. Sin migración necesaria.",
         },
         {
           title: "Vea una Vista Compartida",
           description:
-            "Todos los datos de escala—ETAs, horarios de atraque, estado de servicios, información del buque—reunidos en un único panel en tiempo real.",
+            "ETAs, horarios de atraque, estado de servicios e información del buque se reúnen en un único panel en tiempo real accesible para todas las partes.",
         },
         {
           title: "Coordinen Juntos",
           description:
-            "Actualizaciones de estado, cambios de cronograma y notificaciones llegan a cada actor relevante automáticamente. Menos comunicación manual, operaciones más alineadas.",
+            "Actualizaciones de estado, cambios de cronograma y notificaciones llegan a cada actor relevante de forma automática. Menos seguimiento manual, más coordinación alineada.",
         },
       ],
     },
@@ -559,95 +566,95 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Para Quién",
       title: "Diseñado para Todo el Ecosistema Portuario",
       subtitle:
-        "NauticOps sirve a toda la gama de actores portuarios—desde autoridades reguladoras hasta proveedores de servicios—con una plataforma de coordinación compartida.",
+        "NauticOps sirve a todos los actores portuarios, desde autoridades reguladoras hasta proveedores de servicios, con una plataforma de coordinación compartida.",
       audiences: [
         {
           title: "Autoridades Portuarias",
           description:
-            "Obtenga una vista integral de todas las escalas, coordine el tráfico de buques y supervise el cumplimiento normativo con visibilidad en tiempo real.",
+            "Vista integral de todas las escalas, coordinación del tráfico de buques y seguimiento del cumplimiento normativo con visibilidad en tiempo real.",
         },
         {
           title: "Agentes Marítimos",
           description:
-            "Gestione múltiples escalas en varios buques, haga seguimiento de proveedores de servicios y mantenga informados a sus armadores con actualizaciones en vivo.",
+            "Gestión de múltiples escalas, seguimiento de proveedores de servicios e información actualizada para armadores en tiempo real.",
         },
         {
           title: "Operadores de Terminal",
           description:
-            "Planifique la asignación de atraques, coordine operaciones de carga y manténgase alineado con todos los actores en los cronogramas de buques.",
+            "Planificación de atraques, coordinación de operaciones de carga y alineación con todos los actores en los cronogramas de buques.",
         },
         {
           title: "Prácticos y Remolcadores",
           description:
-            "Vea las llegadas de buques con anticipación, confirme ventanas de servicio y coordine con otros servicios marítimos de forma fluida.",
+            "Visualización anticipada de llegadas, confirmación de ventanas de servicio y coordinación fluida con otros servicios marítimos.",
         },
         {
           title: "Líneas Navieras",
           description:
-            "Realice seguimiento de las escalas de su flota, monitoree tiempos de rotación y reciba actualizaciones proactivas sobre cambios de horario.",
+            "Seguimiento de escalas de flota, monitoreo de tiempos de rotación y actualizaciones proactivas sobre cambios de horario.",
         },
         {
           title: "Proveedores de Servicios",
           description:
-            "Reciba solicitudes de servicio oportunamente, confirme disponibilidad y actualice el estado de finalización para todas las partes involucradas.",
+            "Recepción oportuna de solicitudes, confirmación de disponibilidad y actualización del estado de finalización para todas las partes.",
         },
         {
           title: "Integradores Tecnológicos",
           description:
-            "Aproveche APIs abiertas para conectar NauticOps con la infraestructura portuaria existente y ecosistemas digitales.",
+            "APIs abiertas para conectar NauticOps con la infraestructura portuaria existente y ecosistemas digitales.",
         },
         {
           title: "Socios e Inversores",
           description:
-            "Explore programas piloto, alianzas estratégicas y colaboración temprana en coordinación marítima.",
+            "Programas piloto, alianzas estratégicas y colaboración temprana en coordinación marítima.",
         },
       ],
     },
 
     useCases: {
       badge: "Casos de Uso",
-      title: "Escenarios Portuarios Reales, Valor Tangible",
+      title: "Escenarios Portuarios Reales, Resultados Tangibles",
       subtitle:
-        "Vea cómo NauticOps apoya la coordinación cotidiana en el ecosistema portuario con escenarios prácticos y reales.",
+        "Ejemplos prácticos de cómo NauticOps facilita la coordinación diaria en el ecosistema portuario.",
       cases: [
         {
           category: "Coordinación de Arribos",
           title: "Actualizaciones de ETA Sincronizadas",
           description:
-            "Cuando el ETA de un buque cambia, NauticOps notifica simultáneamente a prácticos, remolcadores, amarradores y la terminal—para que todos se ajusten desde un cronograma compartido.",
+            "Cuando el ETA de un buque cambia, prácticos, remolcadores, amarradores y la terminal son notificados simultáneamente, de modo que todos se ajustan desde un cronograma compartido.",
           stats: [
-            { label: "Tiempo de Coordinación", value: "-85%" },
-            { label: "Brechas de Alineación", value: "-60%" },
+            { label: "Esfuerzo de coordinación", value: "Significativamente reducido" },
+            { label: "Alineación", value: "En tiempo real" },
           ],
         },
         {
           category: "Programación de Servicios",
           title: "Servicios Portuarios Alineados",
           description:
-            "Cuando un buque confirma su ventana de atraque, todos los proveedores—combustible, provisiones, residuos—reciben sus ventanas asignadas. Las actualizaciones de estado fluyen al agente y la autoridad portuaria en tiempo real.",
+            "Cuando un buque confirma su ventana de atraque, todos los proveedores reciben sus slots asignados. Las actualizaciones de estado fluyen al agente y la autoridad portuaria en tiempo real.",
           stats: [
-            { label: "Demoras de Programación", value: "-40%" },
-            { label: "Velocidad de Confirmación", value: "3×" },
+            { label: "Tiempo de programación", value: "Reducido" },
+            { label: "Velocidad de confirmación", value: "Hasta 3x más rápida" },
           ],
         },
         {
           category: "Documentación",
-          title: "Flujo Pre-Arribo Optimizado",
+          title: "Flujo Pre-Arribo Simplificado",
           description:
-            "Todos los documentos y autorizaciones de pre-arribo rastreados en un solo lugar. La autoridad portuaria ve el estado de envío, los agentes rastrean aprobaciones, y los recordatorios se activan automáticamente cuando es necesario.",
+            "Documentos y autorizaciones de pre-arribo centralizados en un solo lugar. La autoridad portuaria ve el estado de envío, los agentes rastrean aprobaciones y los recordatorios se activan automáticamente.",
           stats: [
-            { label: "Tiempo de Procesamiento", value: "-50%" },
-            { label: "Brechas de Cumplimiento", value: "-70%" },
+            { label: "Tiempo de procesamiento", value: "Reducido" },
+            { label: "Seguimiento de cumplimiento", value: "Centralizado" },
           ],
         },
         {
           category: "Visibilidad de Rendimiento",
           title: "Indicadores de Gestión Portuaria",
           description:
-            "Rastree tiempos de rotación, utilización de atraques y rendimiento de servicios en todas las escalas. Identifique patrones, mida KPIs y genere informes para actores y reguladores.",
+            "Tiempos de rotación, utilización de atraques y rendimiento de servicios en todas las escalas. Identifique patrones, mida KPIs y genere informes para actores y reguladores.",
           stats: [
-            { label: "Generación de Informes", value: "Instantánea" },
-            { label: "Precisión de Datos", value: "99%" },
+            { label: "Generación de informes", value: "Bajo demanda" },
+            { label: "Consolidación de datos", value: "Automatizada" },
           ],
         },
       ],
@@ -657,7 +664,7 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Confianza y Ecosistema",
       title: "Diseñado para la Industria Marítima",
       subtitle:
-        "NauticOps está diseñado con la seguridad, estándares e integraciones que los actores portuarios esperan.",
+        "NauticOps está diseñado con la seguridad, los estándares y las integraciones que los actores portuarios necesitan.",
       points: [
         {
           title: "Seguridad Empresarial",
@@ -667,20 +674,20 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           title: "Estándares Abiertos",
           description:
-            "Construido sobre estándares de datos marítimos (DCSA, S-100) para integración e interoperabilidad fluida.",
+            "Construido sobre estándares de datos marítimos (DCSA, S-100) para integración e interoperabilidad.",
         },
         {
           title: "Diseño API-First",
           description:
-            "APIs RESTful permiten integración con cualquier PCS, ERP, TOS o sistema marítimo personalizado.",
+            "APIs RESTful para integración con cualquier PCS, ERP, TOS o sistema marítimo personalizado.",
         },
         {
           title: "Informado por la Industria",
           description:
-            "Desarrollado con aportes de autoridades portuarias, agentes y operadores de terminales de todo el mundo.",
+            "Desarrollado con aportes de autoridades portuarias, agentes y operadores de terminales.",
         },
       ],
-      ecosystemTitle: "Se Integra con Su Ecosistema Existente",
+      ecosystemTitle: "Se Integra con su Ecosistema Existente",
       ecosystemItems: [
         "Port Community Systems",
         "Plataformas ERP",
@@ -688,15 +695,20 @@ export const translations: Record<Language, TranslationSchema> = {
         "Servicios de Seguimiento de Buques",
         "Proveedores de Datos Marítimos",
       ],
+      backedBy: "Acompañado y respaldado por programas líderes de innovación y ecosistema portuario.",
+      backedByItems: [
+        "La Lonja Tech",
+        "Incubazul / BlueCore",
+      ],
     },
 
     cta: {
-      title: "¿Listo para Explorar la Visibilidad Compartida de Escalas?",
+      title: "¿Le interesa la visibilidad compartida de escalas?",
       subtitle:
-        "Solicite una demo para ver cómo NauticOps puede complementar sus sistemas existentes con una capa de coordinación compartida para operaciones portuarias.",
+        "Solicite una demo para ver cómo NauticOps complementa sus sistemas existentes con una capa de coordinación compartida para escalas portuarias.",
       benefits: [
         "Recorrido personalizado de la plataforma",
-        "Discusión de sus casos de uso específicos",
+        "Análisis de sus casos de uso específicos",
         "Evaluación de integración para sus sistemas",
         "Opciones de programa piloto",
       ],
