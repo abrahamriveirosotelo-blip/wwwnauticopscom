@@ -189,7 +189,7 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Our Approach",
       title: "A Coordination Layer That Works Alongside Your Systems",
       subtitle:
-        "NauticOps connects data and stakeholders to create shared visibility across the port call, without requiring changes to your existing processes.",
+        "NauticOps connects data and stakeholders to create shared visibility across the port call, without requiring changes to your existing processes or tools.",
       features: [
         {
           title: "Complementary by Design",
@@ -199,7 +199,7 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           title: "Real-Time Synchronisation",
           description:
-            "All stakeholders access the same live data: ETAs, berth assignments and service readiness. Manual coordination is reduced significantly.",
+            "All stakeholders access the same live data: ETAs, berth assignments and service readiness. Manual coordination is significantly reduced.",
         },
         {
           title: "Role-Based Access",
@@ -209,7 +209,7 @@ export const translations: Record<Language, TranslationSchema> = {
       ],
       cardTitle: "Built to Fit, Not to Compete",
       cardDescription:
-        "NauticOps respects your existing infrastructure. It adds a shared coordination layer alongside your current tools, delivering value to every stakeholder.",
+        "NauticOps respects your existing infrastructure and adds a shared coordination layer alongside your current systems, delivering value to every stakeholder.",
       benefits: [
         "Works alongside your current systems",
         "No disruption to established workflows",
@@ -509,7 +509,7 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Nuestro Enfoque",
       title: "Una Capa de Coordinación que Trabaja Junto a sus Sistemas",
       subtitle:
-        "NauticOps conecta datos y actores para crear visibilidad compartida a lo largo de la escala, sin requerir cambios en sus procesos actuales.",
+        "NauticOps conecta datos y actores para crear visibilidad compartida a lo largo de la escala portuaria, sin requerir cambios en sus procesos ni herramientas actuales.",
       features: [
         {
           title: "Complementario por Diseño",
@@ -524,15 +524,15 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           title: "Acceso Basado en Roles",
           description:
-            "Cada participante ve únicamente la información relevante para su función, con permisos y privacidad de datos incorporados.",
+            "Cada participante visualiza únicamente la información relevante para su función, con permisos y privacidad de datos incorporados.",
         },
       ],
       cardTitle: "Diseñado para Encajar, No para Competir",
       cardDescription:
-        "NauticOps respeta su infraestructura existente. Añade una capa de coordinación compartida junto a sus herramientas actuales, generando valor para todos los actores.",
+        "NauticOps respeta su infraestructura existente y añade una capa de coordinación compartida junto a sus sistemas actuales, generando valor para todos los actores.",
       benefits: [
         "Funciona junto a sus sistemas actuales",
-        "Sin interrupciones a flujos de trabajo establecidos",
+        "Sin interrupciones en flujos de trabajo establecidos",
         "Desplegable en semanas, no en meses",
         "Mejoras de visibilidad inmediatas",
       ],
