@@ -6,6 +6,7 @@ import HowItFitsSection from "@/components/HowItWorksSection";
 import WhoItsForSection from "@/components/WhoItsForSection";
 import UseCasesSection from "@/components/UseCasesSection";
 import TrustSection from "@/components/TrustSection";
+import AboutSection from "@/components/AboutSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
@@ -21,6 +22,7 @@ const Index = () => {
         <WhoItsForSection />
         <UseCasesSection />
         <TrustSection />
+        <AboutSection />
         <CTASection />
       </main>
       <Footer />
