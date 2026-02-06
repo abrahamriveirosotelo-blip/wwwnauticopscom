@@ -15,8 +15,10 @@ const HeroSection = () => {
           alt="Modern port operations"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 hero-gradient opacity-90" />
+        <div className="absolute inset-0 hero-gradient opacity-[0.88]" />
         <div className="absolute inset-0 hero-pattern" />
+        <div className="absolute inset-0 hero-tech-overlay" />
+        <div className="absolute inset-0 hero-vignette" />
       </div>
       
       {/* Wave Bottom */}
@@ -42,7 +44,7 @@ const HeroSection = () => {
             {t.hero.title}
           </h1>
           
-          <p className="body-lg text-primary-foreground/80 mb-10 max-w-2xl mx-auto animate-fade-in-up opacity-0 stagger-2 text-balance">
+          <p className="body-lg text-primary-foreground/85 mb-10 max-w-2xl mx-auto animate-fade-in-up opacity-0 stagger-2 text-balance">
             {t.hero.subtitle}
           </p>
           
