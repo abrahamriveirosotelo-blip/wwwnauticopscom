@@ -457,10 +457,10 @@ export const translations: Record<Language, TranslationSchema> = {
   es: {
     // Navigation
     nav: {
-      problem: "Problema",
+      problem: "El Desafío",
       solution: "Solución",
       howItWorks: "Cómo Funciona",
-      whoItsFor: "Para Quién",
+      whoItsFor: "Destinatarios",
       useCases: "Casos de Uso",
       viewPlatform: "Ver Plataforma",
       requestDemo: "Solicitar Demo",
