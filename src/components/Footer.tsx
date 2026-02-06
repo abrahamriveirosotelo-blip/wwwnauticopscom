@@ -10,19 +10,10 @@ const Footer = () => {
       { label: t.footer.links.features, href: "#solution" },
       { label: t.footer.links.useCases, href: "#use-cases" },
       { label: t.footer.links.integrations, href: "#trust" },
-      { label: t.footer.links.pricing, href: "#" },
     ],
     company: [
-      { label: t.footer.links.aboutUs, href: "#" },
-      { label: t.footer.links.careers, href: "#" },
+      { label: t.footer.links.aboutUs, href: "#about" },
       { label: t.footer.links.contact, href: "#cta" },
-      { label: t.footer.links.partners, href: "#" },
-    ],
-    resources: [
-      { label: t.footer.links.documentation, href: "#" },
-      { label: t.footer.links.apiReference, href: "#" },
-      { label: t.footer.links.blog, href: "#" },
-      { label: t.footer.links.caseStudies, href: "#" },
     ],
     legal: [
       { label: t.footer.links.privacyPolicy, href: "#" },
@@ -89,7 +80,6 @@ const Footer = () => {
           {[
             { title: t.footer.product, links: footerLinks.product },
             { title: t.footer.company, links: footerLinks.company },
-            { title: t.footer.resources, links: footerLinks.resources },
             { title: t.footer.legal, links: footerLinks.legal },
           ].map((section) => (
             <div key={section.title}>
