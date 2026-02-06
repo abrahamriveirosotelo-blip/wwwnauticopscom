@@ -4,6 +4,10 @@ import { type LegalTranslations, legalEn, legalEs } from "./translations/legal";
 export type Language = "en" | "es";
 
 type TranslationSchema = AboutTranslations & LegalTranslations & {
+  integrationCard: {
+    title: string;
+    description: string;
+  };
   nav: {
     context: string;
     solution: string;
@@ -138,6 +142,10 @@ type TranslationSchema = AboutTranslations & LegalTranslations & {
 
 export const translations: Record<Language, TranslationSchema> = {
   en: {
+    integrationCard: {
+      title: "Works with Your Existing Systems",
+      description: "NauticOps integrates with the tools ports already use. It doesn't replace systems—it connects them to provide shared visibility across the port call.",
+    },
     nav: {
       context: "The Port Today",
       solution: "Solution",
@@ -464,6 +472,10 @@ export const translations: Record<Language, TranslationSchema> = {
   },
 
   es: {
+    integrationCard: {
+      title: "Funciona con sus Sistemas Actuales",
+      description: "NauticOps se integra con las herramientas que ya utiliza el puerto. No sustituye sistemas: los conecta para ofrecer una visión compartida de la escala.",
+    },
     nav: {
       context: "El Puerto Hoy",
       solution: "Solución",
