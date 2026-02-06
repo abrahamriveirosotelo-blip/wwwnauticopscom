@@ -16,7 +16,15 @@ const CTASection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    const roleLabelMap: Record<string, string> = {};
+    roleOptions.forEach((opt) => { roleLabelMap[opt.value] = opt.label; });
+    const roleLabel = roleLabelMap[formData.role] || formData.role;
+
+    const subject = encodeURIComponent(`Demo Request from ${formData.name} - ${formData.company}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\nRole: ${roleLabel}`
+    );
+    window.open(`mailto:info@nauticops.com?subject=${subject}&body=${body}`, "_self");
     setIsSubmitted(true);
   };
 
