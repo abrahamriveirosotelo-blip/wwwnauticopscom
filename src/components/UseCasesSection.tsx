@@ -28,10 +28,10 @@ const UseCasesSection = () => {
               <div key={useCase.title} className="card-maritime p-8">
                 <div className="flex items-start gap-5">
                   <div className="icon-container w-14 h-14 flex-shrink-0">
-                    <Icon className="h-7 w-7 text-ocean" />
+                    <Icon className="h-7 w-7 text-secondary" />
                   </div>
                   <div className="flex-1">
-                    <span className="text-sm font-medium text-ocean mb-1 block">
+                    <span className="text-sm font-medium text-secondary mb-1 block">
                       {useCase.category}
                     </span>
                     <h3 className="heading-sm text-foreground mb-3">
@@ -47,7 +47,7 @@ const UseCasesSection = () => {
                 <div className="flex gap-6 pt-4 border-t border-border">
                   {useCase.stats.map((stat) => (
                     <div key={stat.label}>
-                      <div className="text-2xl font-bold text-ocean">{stat.value}</div>
+                      <div className="text-2xl font-bold text-secondary">{stat.value}</div>
                       <div className="text-sm text-muted-foreground">{stat.label}</div>
                     </div>
                   ))}

@@ -7,10 +7,10 @@ const TrustSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="trust" className="section-padding bg-ocean-subtle">
+    <section id="trust" className="section-padding bg-section-alt">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-ocean/10 text-ocean">
+          <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-secondary/10 text-secondary">
             {t.trust.badge}
           </span>
           <h2 className="heading-lg text-foreground mb-6 text-balance">
@@ -27,7 +27,7 @@ const TrustSection = () => {
             return (
               <div key={point.title} className="card-maritime p-6 text-center">
                 <div className="icon-container w-12 h-12 mx-auto mb-4">
-                  <Icon className="h-6 w-6 text-ocean" />
+                  <Icon className="h-6 w-6 text-secondary" />
                 </div>
                 <h3 className="font-semibold text-foreground mb-2">{point.title}</h3>
                 <p className="text-sm text-muted-foreground">{point.description}</p>
@@ -36,7 +36,6 @@ const TrustSection = () => {
           })}
         </div>
         
-        {/* Ecosystem Partners */}
         <div className="max-w-4xl mx-auto">
           <p className="text-center text-sm text-muted-foreground mb-8 uppercase tracking-wider font-medium">
             {t.trust.ecosystemTitle}
@@ -45,7 +44,7 @@ const TrustSection = () => {
             {t.trust.ecosystemItems.map((name) => (
               <div
                 key={name}
-                className="px-6 py-3 bg-card rounded-lg border border-border text-sm font-medium text-muted-foreground"
+                className="px-6 py-3 bg-card rounded-md border border-border text-sm font-medium text-muted-foreground"
               >
                 {name}
               </div>

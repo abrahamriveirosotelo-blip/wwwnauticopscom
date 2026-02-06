@@ -136,7 +136,7 @@ const CTASection = () => {
                         ))}
                       </select>
                     </div>
-                    <Button type="submit" variant="cta" size="xl" className="w-full">
+                    <Button type="submit" variant="default" size="xl" className="w-full">
                       {t.cta.form.submit}
                       <ArrowRight className="h-5 w-5" />
                     </Button>
@@ -147,8 +147,8 @@ const CTASection = () => {
                 </>
               ) : (
                 <div className="text-center py-8">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-ocean/10 mx-auto mb-6">
-                    <Check className="h-8 w-8 text-ocean" />
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-secondary/10 mx-auto mb-6">
+                    <Check className="h-8 w-8 text-secondary" />
                   </div>
                   <h3 className="heading-sm text-foreground mb-3">
                     {t.cta.success.title}
