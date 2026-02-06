@@ -464,7 +464,7 @@ export const translations: Record<Language, TranslationSchema> = {
 
     hero: {
       badge: "Plataforma de Coordinación de Escalas",
-      title: "Visibilidad Compartida para Cada Escala Portuaria",
+      title: "Coordinación y Visibilidad Compartida en Cada Escala Portuaria",
       subtitle:
         "NauticOps proporciona una capa de coordinación compartida entre los distintos actores involucrados en una escala portuaria, respetando los sistemas y responsabilidades de cada organización. Complementa los sistemas existentes, sin reemplazarlos ni interferir con los procesos actuales.",
       ctaPrimary: "Solicitar una Demo",
