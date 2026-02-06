@@ -160,7 +160,7 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "The Port Today",
       title: "The current port environment",
       subtitle:
-        "Each port call involves the coordination of multiple actors working in parallel, including port authorities, agents, terminals, pilots, tug operators, and service providers. Each manages information and processes through their own systems. Achieving a shared, real-time view across all stakeholders remains a common challenge.",
+        "Each port call involves the coordination of multiple actors working in parallel, including port authorities, agents, terminals, pilots, tug operators, and service providers. Each manages information and processes through their own systems. Achieving a shared, real-time view across all stakeholders continues to be a recurring challenge.",
       items: [
         {
           title: "Multiple stakeholders, multiple systems",
@@ -180,7 +180,7 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           title: "A growing need for shared coordination",
           description:
-            "As volumes, operational complexity, and regulatory requirements increase, the value of a shared coordination layer across stakeholders becomes increasingly clear.",
+            "As volumes, operational complexity, and regulatory requirements increase, the value of a shared coordination layer across stakeholders gains growing relevance.",
         },
       ],
     },
@@ -480,7 +480,7 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "El Puerto Hoy",
       title: "El entorno portuario actual",
       subtitle:
-        "Cada escala portuaria implica la coordinación de múltiples actores que operan en paralelo: autoridades, agentes, terminales, prácticos, remolcadores y proveedores de servicios. Cada uno gestiona su información y procesos en sistemas propios. Lograr una visión compartida y actualizada en tiempo real entre todos ellos sigue siendo un reto habitual.",
+        "Cada escala portuaria implica la coordinación de múltiples actores que operan en paralelo: autoridades, agentes, terminales, prácticos, remolcadores y proveedores de servicios. Cada uno gestiona su información y procesos en sistemas propios. Lograr una visión compartida y actualizada en tiempo real entre todos ellos sigue siendo un desafío habitual.",
       items: [
         {
           title: "Múltiples actores, múltiples sistemas",
@@ -500,7 +500,7 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           title: "Una necesidad creciente de coordinación compartida",
           description:
-            "A medida que aumentan los volúmenes, la complejidad operativa y las exigencias regulatorias, disponer de una capa de coordinación compartida entre actores cobra cada vez mayor relevancia.",
+            "A medida que aumentan los volúmenes, la complejidad operativa y las exigencias regulatorias, disponer de una capa de coordinación compartida entre actores adquiere una relevancia creciente.",
         },
       ],
     },
