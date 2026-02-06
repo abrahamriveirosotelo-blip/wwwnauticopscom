@@ -344,30 +344,30 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Trust & Ecosystem",
       title: "Built for Port Call Coordination",
       subtitle:
-        "NauticOps is designed to support day-to-day operational coordination between port stakeholders, with security, reliability, and a natural fit within existing port ecosystems.",
+        "NauticOps is designed to coordinate port calls in real time, connecting stakeholders and sharing key operational information without friction or changes to existing systems.",
       points: [
         {
-          title: "Enterprise-Grade Security",
+          title: "Enterprise Security",
           description:
-            "Operational information is shared securely, with role-based access so each stakeholder sees only what is relevant to them during the port call.",
+            "Operational information is shared securely with role-based access control. Each stakeholder sees only what they need to coordinate their part of the port call.",
         },
         {
           title: "Open Integration",
           description:
-            "NauticOps connects easily with the systems already used by port stakeholders, without requiring changes to their tools or established workflows.",
+            "NauticOps connects easily with the systems port stakeholders already use, without migrations or disruptions to existing workflows.",
         },
         {
-          title: "Connectivity-Oriented Design",
+          title: "Designed for Connectivity",
           description:
-            "Built as an operational coordination layer, enabling smooth sharing of statuses, progress updates, and incidents across all involved parties.",
+            "A coordination layer that connects status updates, operational progress, incidents, breakdowns, and planning changes across all port call stakeholders.",
         },
         {
           title: "Industry-Informed",
           description:
-            "Developed based on real operational experience from agents, terminals, service providers, and port operators.",
+            "Built from real operational experience with agents, terminals, and port service providers, focused on day-to-day coordination challenges.",
         },
       ],
-      ecosystemTitle: "Integrates with existing port ecosystems",
+      ecosystemTitle: "Integrates with the existing port ecosystem",
       ecosystemItems: [
         "Port Community Systems",
         "ERP Platforms",
@@ -664,27 +664,27 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Confianza y Ecosistema",
       title: "Diseñado para la Coordinación de Escalas",
       subtitle:
-        "NauticOps está diseñado para facilitar la coordinación operativa entre actores portuarios, con seguridad, fiabilidad y encaje natural en el ecosistema existente.",
+        "NauticOps está pensado para coordinar escalas portuarias en tiempo real, conectando a los actores implicados y compartiendo información operativa clave sin fricción ni cambios en los sistemas existentes.",
       points: [
         {
           title: "Seguridad Empresarial",
           description:
-            "La información operativa se comparte de forma segura, con control de accesos por rol para que cada actor vea únicamente lo que necesita durante la escala.",
+            "La información operativa se comparte de forma segura, con control de accesos por rol. Cada actor ve únicamente lo que necesita para coordinar su parte de la escala.",
         },
         {
           title: "Integración Abierta",
           description:
-            "NauticOps se conecta fácilmente con los sistemas que ya utilizan los actores portuarios, sin requerir cambios en sus herramientas ni en sus procesos habituales.",
+            "NauticOps se conecta fácilmente con los sistemas que ya utilizan los actores portuarios, sin migraciones ni interrupciones en los flujos de trabajo habituales.",
         },
         {
-          title: "Diseño orientado a la Conectividad",
+          title: "Diseñado para la Conectividad",
           description:
-            "Pensado para actuar como una capa de conexión operativa, facilitando el intercambio de estados, progresos e incidencias entre actores de forma fluida.",
+            "Una capa de coordinación que conecta estados, progresos, incidencias y cambios de planificación entre actores, manteniendo a todos alineados durante la escala.",
         },
         {
           title: "Informado por la Industria",
           description:
-            "Desarrollado a partir de la experiencia real de agentes, terminales, proveedores de servicios y operadores portuarios.",
+            "Construido a partir de la experiencia real de agentes, terminales y proveedores de servicios portuarios, enfocado en problemas operativos del día a día.",
         },
       ],
       ecosystemTitle: "Se integra con el ecosistema portuario existente",
