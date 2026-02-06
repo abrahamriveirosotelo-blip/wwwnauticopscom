@@ -1,7 +1,7 @@
-import { Clock, Truck, FileText, BarChart3 } from "lucide-react";
+import { RefreshCw, ClipboardCheck, FileCheck, BarChart3 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const iconMap = [Clock, Truck, FileText, BarChart3];
+const iconMap = [RefreshCw, ClipboardCheck, FileCheck, BarChart3];
 
 const UseCasesSection = () => {
   const { t } = useLanguage();
