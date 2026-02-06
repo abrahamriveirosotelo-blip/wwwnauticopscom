@@ -108,6 +108,8 @@ type TranslationSchema = {
     company: string;
     resources: string;
     legal: string;
+    directContact: string;
+    directContactDescription: string;
     links: {
       features: string;
       useCases: string;
@@ -430,6 +432,8 @@ export const translations: Record<Language, TranslationSchema> = {
       company: "Company",
       resources: "Resources",
       legal: "Legal",
+      directContact: "Direct Contact",
+      directContactDescription: "Direct contact for pilots, use-case validation and collaboration within the port ecosystem.",
       links: {
         features: "Features",
         useCases: "Use Cases",
@@ -751,6 +755,8 @@ export const translations: Record<Language, TranslationSchema> = {
       company: "Empresa",
       resources: "Recursos",
       legal: "Legal",
+      directContact: "Contacto directo",
+      directContactDescription: "Contacto directo para pilotos, validación de casos de uso y colaboraciones en el ecosistema portuario.",
       links: {
         features: "Características",
         useCases: "Casos de Uso",

@@ -1,4 +1,4 @@
-import { Linkedin, Twitter, Mail } from "lucide-react";
+import { Linkedin, Mail, Phone } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import nauticopsLogo from "@/assets/nauticops-logo.png";
 
@@ -43,21 +43,42 @@ const Footer = () => {
             <p className="text-primary-foreground/60 mb-6 max-w-xs text-sm leading-relaxed">
               {t.footer.description}
             </p>
-            <div className="flex gap-3">
-              {[
-                { icon: Linkedin, label: "LinkedIn" },
-                { icon: Twitter, label: "Twitter" },
-                { icon: Mail, label: "Email" },
-              ].map(({ icon: Icon, label }) => (
-                <a
-                  key={label}
-                  href="#"
-                  className="flex h-9 w-9 items-center justify-center rounded-md bg-primary-foreground/8 hover:bg-primary-foreground/15 transition-colors"
-                  aria-label={label}
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
+            <div className="mt-6">
+              <h4 className="font-semibold mb-4 text-sm">{t.footer.directContact}</h4>
+              <ul className="space-y-3">
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/abraham-riveiro-sotelo-nauticops"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm text-primary-foreground/60 hover:text-primary-foreground hover:underline underline-offset-4 transition-colors cursor-pointer"
+                  >
+                    <Linkedin className="h-4 w-4" />
+                    LinkedIn
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="mailto:info@nauticops.com"
+                    className="inline-flex items-center gap-2 text-sm text-primary-foreground/60 hover:text-primary-foreground hover:underline underline-offset-4 transition-colors cursor-pointer"
+                  >
+                    <Mail className="h-4 w-4" />
+                    info@nauticops.com
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="tel:+34673108104"
+                    className="inline-flex items-center gap-2 text-sm text-primary-foreground/60 hover:text-primary-foreground hover:underline underline-offset-4 transition-colors cursor-pointer"
+                  >
+                    <Phone className="h-4 w-4" />
+                    +34 673 108 104
+                  </a>
+                </li>
+              </ul>
+              <p className="text-xs text-primary-foreground/40 mt-4 max-w-xs leading-relaxed">
+                {t.footer.directContactDescription}
+              </p>
             </div>
           </div>
           
