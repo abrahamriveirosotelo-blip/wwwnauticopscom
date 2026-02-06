@@ -295,23 +295,23 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Use Cases",
       title: "Real Port Scenarios, Tangible Results",
       subtitle:
-        "Practical examples of how NauticOps supports daily coordination across the port ecosystem.",
+        "Practical examples of how NauticOps supports day-to-day coordination across the port ecosystem.",
       cases: [
         {
           category: "Arrival Coordination",
           title: "Synchronized ETA Updates",
           description:
-            "When a vessel's ETA changes, pilots, tugs, mooring and the terminal are all notified at once, so everyone adjusts from a single shared timeline.",
+            "When a vessel's ETA changes, pilots, towage, mooring, terminals and agents are notified simultaneously. All stakeholders operate on a shared, real-time schedule.",
           stats: [
-            { label: "Coordination effort", value: "Significantly reduced" },
-            { label: "Alignment", value: "Real-time" },
+            { label: "Manual coordination effort", value: "Significantly reduced" },
+            { label: "Operational alignment", value: "Real-time" },
           ],
         },
         {
           category: "Service Scheduling",
           title: "Aligned Port Services",
           description:
-            "Once a vessel confirms its berth window, all service providers receive their assigned slots. Status updates flow back to the agent and port authority in real time.",
+            "Once a berth window is confirmed, service providers automatically receive their assignments. Status updates are shared with agents and port authorities in real time.",
           stats: [
             { label: "Scheduling time", value: "Reduced" },
             { label: "Confirmation speed", value: "Up to 3x faster" },
@@ -319,21 +319,21 @@ export const translations: Record<Language, TranslationSchema> = {
         },
         {
           category: "Documentation",
-          title: "Streamlined Pre-Arrival Workflow",
+          title: "Simplified Pre-Arrival Workflow",
           description:
-            "Pre-arrival documents and clearances are tracked in one place. The port authority sees submission status, agents track approvals, and reminders trigger automatically.",
+            "Pre-arrival documentation and approvals are centralised in a single environment. Port authorities can track submissions, validations and approvals without manual exchanges.",
           stats: [
             { label: "Processing time", value: "Reduced" },
             { label: "Compliance tracking", value: "Centralised" },
           ],
         },
         {
-          category: "Performance Visibility",
-          title: "Port Performance Insights",
+          category: "Visibility & Analytics",
+          title: "Port Management Indicators",
           description:
-            "Turnaround times, berth utilisation and service performance across all port calls. Identify patterns, measure KPIs and generate reports for stakeholders.",
+            "Consolidated visibility of turnaround times, berth utilisation and service performance. Identify patterns, generate KPIs and support operational and regulatory decision-making.",
           stats: [
-            { label: "Report generation", value: "On demand" },
+            { label: "Reporting", value: "On-demand" },
             { label: "Data consolidation", value: "Automated" },
           ],
         },
@@ -615,23 +615,23 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Casos de Uso",
       title: "Escenarios Portuarios Reales, Resultados Tangibles",
       subtitle:
-        "Ejemplos prácticos de cómo NauticOps facilita la coordinación diaria en el ecosistema portuario.",
+        "Ejemplos prácticos de cómo NauticOps facilita la coordinación diaria entre los distintos actores del ecosistema portuario.",
       cases: [
         {
           category: "Coordinación de Arribos",
           title: "Actualizaciones de ETA Sincronizadas",
           description:
-            "Cuando el ETA de un buque cambia, prácticos, remolcadores, amarradores y la terminal son notificados simultáneamente, de modo que todos se ajustan desde un cronograma compartido.",
+            "Cuando el ETA de un buque cambia, prácticos, remolcadores, amarradores, terminales y agentes reciben la actualización de forma simultánea. Todos los actores trabajan sobre un cronograma compartido y alineado en tiempo real.",
           stats: [
-            { label: "Esfuerzo de coordinación", value: "Significativamente reducido" },
-            { label: "Alineación", value: "En tiempo real" },
+            { label: "Esfuerzo de coordinación manual", value: "Significativamente reducido" },
+            { label: "Alineación operativa entre actores", value: "En tiempo real" },
           ],
         },
         {
           category: "Programación de Servicios",
           title: "Servicios Portuarios Alineados",
           description:
-            "Cuando un buque confirma su ventana de atraque, todos los proveedores reciben sus slots asignados. Las actualizaciones de estado fluyen al agente y la autoridad portuaria en tiempo real.",
+            "Cuando un buque confirma su ventana de atraque, los proveedores de servicios reciben automáticamente sus asignaciones. Las actualizaciones de estado fluyen de forma coordinada hacia el agente y la autoridad portuaria.",
           stats: [
             { label: "Tiempo de programación", value: "Reducido" },
             { label: "Velocidad de confirmación", value: "Hasta 3x más rápida" },
@@ -641,17 +641,17 @@ export const translations: Record<Language, TranslationSchema> = {
           category: "Documentación",
           title: "Flujo Pre-Arribo Simplificado",
           description:
-            "Documentos y autorizaciones de pre-arribo centralizados en un solo lugar. La autoridad portuaria ve el estado de envío, los agentes rastrean aprobaciones y los recordatorios se activan automáticamente.",
+            "Documentación y autorizaciones de pre-arribo centralizadas en un único entorno. La autoridad portuaria puede consultar el estado de envíos, aprobaciones y validaciones sin intercambios manuales.",
           stats: [
             { label: "Tiempo de procesamiento", value: "Reducido" },
-            { label: "Seguimiento de cumplimiento", value: "Centralizado" },
+            { label: "Seguimiento del cumplimiento", value: "Centralizado" },
           ],
         },
         {
-          category: "Visibilidad de Rendimiento",
+          category: "Visibilidad y Análisis",
           title: "Indicadores de Gestión Portuaria",
           description:
-            "Tiempos de rotación, utilización de atraques y rendimiento de servicios en todas las escalas. Identifique patrones, mida KPIs y genere informes para actores y reguladores.",
+            "Visibilidad consolidada de tiempos de rotación, utilización de atraques y rendimiento de servicios. Identifique patrones, genere KPIs y facilite la toma de decisiones operativas y regulatorias.",
           stats: [
             { label: "Generación de informes", value: "Bajo demanda" },
             { label: "Consolidación de datos", value: "Automatizada" },
