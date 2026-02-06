@@ -208,7 +208,7 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           title: "Works with Your Existing Systems",
           description:
-            "NauticOps integrates with the tools ports already use. It doesn't replace systems—it connects them to provide shared visibility across the port call.",
+            "NauticOps integrates with the tools ports already use. It doesn't replace systems, it connects them to provide shared visibility across the port call.",
         },
         {
           title: "Real-Time Synchronisation",
@@ -538,7 +538,7 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           title: "Funciona con sus Sistemas Actuales",
           description:
-            "NauticOps se integra con las herramientas que ya utiliza el puerto. No sustituye sistemas: los conecta para ofrecer una visión compartida de la escala.",
+            "NauticOps se integra con las herramientas que ya utiliza el puerto. No sustituye sistemas, los conecta para ofrecer una visión compartida de la escala.",
         },
         {
           title: "Sincronización en Tiempo Real",
