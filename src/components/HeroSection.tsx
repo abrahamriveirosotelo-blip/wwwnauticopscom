@@ -30,9 +30,9 @@ const HeroSection = () => {
       </div>
       
       {/* Content */}
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 pt-28 md:pt-32 pb-32">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="animate-fade-in-up opacity-0">
+          <div className="animate-fade-in-up opacity-0 mt-6 md:mt-8">
             <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium rounded-full bg-primary-foreground/10 text-primary-foreground border border-primary-foreground/20">
               {t.hero.badge}
             </span>
