@@ -331,7 +331,7 @@ export const translations: Record<Language, TranslationSchema> = {
           category: "Visibility & Insights",
           title: "Port Management Indicators",
           description:
-            "Consolidated visibility of turnaround times, berth utilization and service progress. Identify incidents, operational patterns and generate KPIs to support day-to-day operational decisions.",
+            "Consolidated visibility of turnaround times, berth utilization and service progress. Identify incidents and operational patterns, supporting day-to-day operational decisions.",
           stats: [
             { label: "Operational visibility", value: "On-demand" },
             { label: "Data consolidation", value: "Automated" },
@@ -651,7 +651,7 @@ export const translations: Record<Language, TranslationSchema> = {
           category: "Visibilidad y Análisis",
           title: "Indicadores de Gestión Portuaria",
           description:
-            "Visibilidad consolidada de tiempos de rotación, utilización de atraques y progreso de servicios. Identifique incidencias, patrones operativos y genere KPIs que apoyen la toma de decisiones operativas.",
+            "Visibilidad consolidada de tiempos de rotación, utilización de atraques y progreso de servicios. Identifique incidencias y patrones operativos, y facilite decisiones en el día a día.",
           stats: [
             { label: "Visualización operativa", value: "Bajo demanda" },
             { label: "Consolidación de datos", value: "Automatizada" },
