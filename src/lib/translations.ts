@@ -150,9 +150,9 @@ export const translations: Record<Language, TranslationSchema> = {
       ctaPrimary: "Request a Demo",
       ctaSecondary: "View Platform",
       stats: {
-        portCalls: "Port Calls Coordinated",
-        realTime: "Real-Time Updates",
-        systemAgnostic: "System Agnostic",
+        portCalls: "Multi-Actor Coordination",
+        realTime: "Near Real-Time Shared Updates",
+        systemAgnostic: "Designed to Integrate with Existing Systems",
       },
     },
 
@@ -470,9 +470,9 @@ export const translations: Record<Language, TranslationSchema> = {
       ctaPrimary: "Solicitar una Demo",
       ctaSecondary: "Ver Plataforma",
       stats: {
-        portCalls: "Escalas Coordinadas",
-        realTime: "Actualizaciones en Tiempo Real",
-        systemAgnostic: "Agnóstico de Sistemas",
+        portCalls: "Coordinación Multiactor",
+        realTime: "Actualizaciones Compartidas en Tiempo Casi Real",
+        systemAgnostic: "Diseñado para Integrarse con Sistemas Existentes",
       },
     },
 

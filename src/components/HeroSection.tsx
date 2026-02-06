@@ -57,20 +57,17 @@ const HeroSection = () => {
             </Button>
           </div>
           
-          <div className="mt-16 flex items-center justify-center gap-8 animate-fade-in-up opacity-0 stagger-4">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-primary-foreground">50+</div>
-              <div className="text-sm text-primary-foreground/60">{t.hero.stats.portCalls}</div>
+          <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-8 animate-fade-in-up opacity-0 stagger-4">
+            <div className="text-center max-w-[200px]">
+              <div className="text-sm font-medium text-primary-foreground/80">{t.hero.stats.portCalls}</div>
             </div>
-            <div className="h-12 w-px bg-primary-foreground/20" />
-            <div className="text-center">
-              <div className="text-3xl font-bold text-primary-foreground">24/7</div>
-              <div className="text-sm text-primary-foreground/60">{t.hero.stats.realTime}</div>
+            <div className="hidden sm:block h-8 w-px bg-primary-foreground/20" />
+            <div className="text-center max-w-[200px]">
+              <div className="text-sm font-medium text-primary-foreground/80">{t.hero.stats.realTime}</div>
             </div>
-            <div className="h-12 w-px bg-primary-foreground/20" />
-            <div className="text-center">
-              <div className="text-3xl font-bold text-primary-foreground">100%</div>
-              <div className="text-sm text-primary-foreground/60">{t.hero.stats.systemAgnostic}</div>
+            <div className="hidden sm:block h-8 w-px bg-primary-foreground/20" />
+            <div className="text-center max-w-[200px]">
+              <div className="text-sm font-medium text-primary-foreground/80">{t.hero.stats.systemAgnostic}</div>
             </div>
           </div>
         </div>
