@@ -1,8 +1,9 @@
 import { type AboutTranslations, aboutEn, aboutEs } from "./translations/about";
+import { type LegalTranslations, legalEn, legalEs } from "./translations/legal";
 
 export type Language = "en" | "es";
 
-type TranslationSchema = AboutTranslations & {
+type TranslationSchema = AboutTranslations & LegalTranslations & {
   nav: {
     context: string;
     solution: string;
@@ -459,6 +460,7 @@ export const translations: Record<Language, TranslationSchema> = {
       tagline: "Designed for the maritime industry.",
     },
     about: aboutEn,
+    legal: legalEn,
   },
 
   es: {
@@ -784,6 +786,7 @@ export const translations: Record<Language, TranslationSchema> = {
       tagline: "Diseñado para la industria marítima.",
     },
     about: aboutEs,
+    legal: legalEs,
   },
 };
 
