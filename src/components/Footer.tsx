@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Linkedin, Mail, Phone } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import nauticopsLogo from "@/assets/nauticops-logo.png";
@@ -16,9 +17,9 @@ const Footer = () => {
       { label: t.footer.links.contact, href: "#cta" },
     ],
     legal: [
-      { label: t.footer.links.privacyPolicy, href: "#" },
-      { label: t.footer.links.termsOfService, href: "#" },
-      { label: t.footer.links.security, href: "#" },
+      { label: t.footer.links.privacyPolicy, href: "/legal/privacy" },
+      { label: t.footer.links.termsOfService, href: "/legal/terms" },
+      { label: t.footer.links.security, href: "/legal/security" },
     ],
   };
 
@@ -87,12 +88,21 @@ const Footer = () => {
               <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-primary-foreground/60 hover:text-primary-foreground transition-colors text-sm"
-                    >
-                      {link.label}
-                    </a>
+                    {link.href.startsWith("/") ? (
+                      <Link
+                        to={link.href}
+                        className="text-primary-foreground/60 hover:text-primary-foreground transition-colors text-sm"
+                      >
+                        {link.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href={link.href}
+                        className="text-primary-foreground/60 hover:text-primary-foreground transition-colors text-sm"
+                      >
+                        {link.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
