@@ -246,42 +246,42 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Who It's For",
       title: "Designed for the Entire Port Ecosystem",
       subtitle:
-        "NauticOps supports all port stakeholders, from regulatory authorities to service providers, through a shared coordination layer.",
+        "NauticOps serves all port stakeholders, from regulatory authorities to service providers, through a shared coordination layer.",
       audiences: [
         {
           title: "Port Authorities",
           description:
-            "Integrated visibility of port calls, vessel traffic and regulatory compliance, supported by shared, real-time information.",
+            "Comprehensive visibility of port calls and vessel traffic, supporting regulatory compliance with real-time insights.",
         },
         {
           title: "Maritime Agents",
           description:
-            "Management of multiple port calls and associated services, with coordinated event tracking and updates for shipowners and operators.",
+            "Management of multiple port calls, event tracking and coordinated updates for shipowners and operators.",
         },
         {
           title: "Terminal Operators",
           description:
-            "Berth and operations planning with early visibility of arrivals, services and relevant schedule changes.",
+            "Berth planning, operational coordination and early visibility of arrivals, services and relevant schedule changes.",
         },
         {
-          title: "Pilots and Tug Operators",
+          title: "Pilots and Towage",
           description:
-            "Improved anticipation of vessel movements, service windows and seamless coordination with other operational stakeholders.",
+            "Advance visibility of arrivals, confirmation of service windows and seamless coordination with other port operational actors.",
         },
         {
           title: "Shipping Lines",
           description:
-            "Centralised tracking of fleet port calls, including time monitoring and proactive notifications on operational changes.",
+            "Centralised monitoring of fleet port calls, including time tracking and proactive notifications on operational changes.",
         },
         {
           title: "Service Providers",
           description:
-            "Reception of service requests, availability confirmation and real-time status updates shared across all parties.",
+            "Reception of service requests, availability confirmation and real-time service status updates shared across stakeholders.",
         },
         {
           title: "Technology Integrators",
           description:
-            "APIs and data flows enabling NauticOps to operate as a complementary coordination layer within existing port infrastructures.",
+            "APIs and data flows enabling NauticOps to integrate as a complementary coordination layer within existing port infrastructure.",
         },
         {
           title: "Partners and Investors",
@@ -571,22 +571,22 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           title: "Autoridades Portuarias",
           description:
-            "Visión integral de las escalas, del tráfico de buques y del cumplimiento normativo, con información compartida y actualizada en tiempo real.",
+            "Visión integral de las escalas y del tráfico de buques, con apoyo al cumplimiento normativo y visibilidad en tiempo real.",
         },
         {
           title: "Agentes Marítimos",
           description:
-            "Gestión de múltiples escalas y servicios asociados, con seguimiento de eventos y actualizaciones coordinadas para armadores y operadores.",
+            "Gestión de múltiples escalas, seguimiento de eventos y actualizaciones coordinadas para armadores y operadores.",
         },
         {
           title: "Operadores de Terminal",
           description:
-            "Planificación de atraques y operaciones con visibilidad anticipada de llegadas, servicios y cambios relevantes en los cronogramas.",
+            "Planificación de atraques, coordinación de operaciones y anticipación de llegadas, servicios y cambios relevantes en los cronogramas.",
         },
         {
           title: "Prácticos y Remolcadores",
           description:
-            "Anticipación de movimientos, ventanas de servicio y coordinación fluida con otros actores operativos del puerto.",
+            "Visualización anticipada de llegadas, confirmación de ventanas de servicio y coordinación fluida con otros actores operativos del puerto.",
         },
         {
           title: "Líneas Navieras",
@@ -596,12 +596,12 @@ export const translations: Record<Language, TranslationSchema> = {
         {
           title: "Proveedores de Servicios",
           description:
-            "Recepción de solicitudes, confirmación de disponibilidad y actualización del estado de los servicios para todas las partes involucradas.",
+            "Recepción de solicitudes, confirmación de disponibilidad y actualización del estado del servicio para todas las partes involucradas.",
         },
         {
           title: "Integradores Tecnológicos",
           description:
-            "APIs y flujos de datos que permiten integrar NauticOps como una capa complementaria dentro de la infraestructura portuaria existente.",
+            "APIs y flujos de datos que permiten integrar NauticOps como capa complementaria dentro de la infraestructura portuaria existente.",
         },
         {
           title: "Socios e Inversores",
