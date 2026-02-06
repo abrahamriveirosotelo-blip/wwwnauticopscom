@@ -20,9 +20,9 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 nav-brand">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-24 items-center justify-between">
-          <a href="#" className="flex items-center py-4">
-            <img src={nauticopsLogo} alt="NauticOps" className="h-14 w-auto" />
+        <div className="flex h-[6.5rem] items-center justify-between">
+          <a href="#" className="flex items-center">
+            <img src={nauticopsLogo} alt="NauticOps" className="h-[4.5rem] w-auto" />
           </a>
           
           {/* Desktop Navigation */}
