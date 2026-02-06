@@ -58,13 +58,16 @@ const TrustSection = () => {
             {t.trust.backedBy}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            {t.trust.backedByItems.map((name) => (
-              <span
-                key={name}
-                className="px-5 py-2 bg-card rounded-md border border-border text-sm font-semibold text-foreground"
+            {t.trust.backedByItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2 bg-card rounded-md border border-border text-sm font-semibold text-foreground hover:border-secondary/50 transition-colors"
               >
-                {name}
-              </span>
+                {item.name}
+              </a>
             ))}
           </div>
         </div>
