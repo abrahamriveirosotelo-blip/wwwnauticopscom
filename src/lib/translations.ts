@@ -206,9 +206,9 @@ export const translations: Record<Language, TranslationSchema> = {
         "NauticOps connects data and stakeholders to create shared visibility across the port call, without requiring changes to your existing processes or tools.",
       features: [
         {
-          title: "Complementary by Design",
+          title: "Works with Your Existing Systems",
           description:
-            "NauticOps enhances your current tools instead of replacing them. It integrates with PCS, ERPs and terminal systems to build a unified coordination view.",
+            "NauticOps integrates with the tools ports already use. It doesn't replace systems—it connects them to provide shared visibility across the port call.",
         },
         {
           title: "Real-Time Synchronisation",
@@ -536,9 +536,9 @@ export const translations: Record<Language, TranslationSchema> = {
         "NauticOps conecta datos y actores para crear visibilidad compartida a lo largo de la escala portuaria, sin requerir cambios en sus procesos ni en sus herramientas actuales.",
       features: [
         {
-          title: "Complementario por Diseño",
+          title: "Funciona con sus Sistemas Actuales",
           description:
-            "NauticOps mejora sus herramientas actuales en lugar de reemplazarlas. Se integra con PCS, ERPs y sistemas de terminal para construir una vista de coordinación unificada.",
+            "NauticOps se integra con las herramientas que ya utiliza el puerto. No sustituye sistemas: los conecta para ofrecer una visión compartida de la escala.",
         },
         {
           title: "Sincronización en Tiempo Real",
