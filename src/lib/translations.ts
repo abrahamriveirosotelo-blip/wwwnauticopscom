@@ -311,7 +311,7 @@ export const translations: Record<Language, TranslationSchema> = {
           category: "Service Scheduling",
           title: "Aligned Port Services",
           description:
-            "When a berth window or operational change is confirmed, all involved actors receive synchronized updates. The port call status evolves consistently for everyone.",
+            "When a berth window is confirmed or an operational change occurs, all involved actors receive synchronized updates. The port call status evolves consistently for everyone.",
           stats: [
             { label: "Rescheduling time", value: "Reduced" },
             { label: "Change confirmation", value: "Up to 3x faster" },
@@ -321,7 +321,7 @@ export const translations: Record<Language, TranslationSchema> = {
           category: "Port Call Coordination",
           title: "Shared Port Call Flow",
           description:
-            "Shared visibility of port call status across agents, terminals, and service providers. NauticOps connects stakeholders to share operational progress, incidents, breakdowns, and planning changes in real time, preventing misalignment throughout the port call.",
+            "Shared visibility of port call status across agents, terminals and service providers. NauticOps connects stakeholders to share operational progress, incidents, breakdowns and planning changes in real time, preventing misalignment throughout the port call.",
           stats: [
             { label: "Manual exchanges", value: "Reduced" },
             { label: "Port call operational status", value: "Centralized" },
@@ -331,7 +331,7 @@ export const translations: Record<Language, TranslationSchema> = {
           category: "Visibility & Insights",
           title: "Port Management Indicators",
           description:
-            "Consolidated visibility of turnaround times, berth utilization and service progress. Identify incidents, operational patterns and generate KPIs to support operational decision-making.",
+            "Consolidated visibility of turnaround times, berth utilization and service progress. Identify incidents, operational patterns and generate KPIs to support day-to-day operational decisions.",
           stats: [
             { label: "Operational visibility", value: "On-demand" },
             { label: "Data consolidation", value: "Automated" },
@@ -631,7 +631,7 @@ export const translations: Record<Language, TranslationSchema> = {
           category: "Programación de Servicios",
           title: "Servicios Portuarios Alineados",
           description:
-            "Cuando se confirma una ventana de atraque o un cambio operativo, los actores implicados reciben la información actualizada de forma coordinada. El estado de la escala evoluciona de manera sincronizada para todos.",
+            "Cuando se confirma una ventana de atraque o se produce un cambio operativo, los actores implicados reciben la información actualizada de forma coordinada. El estado de la escala evoluciona de manera sincronizada para todos.",
           stats: [
             { label: "Tiempo de reprogramación", value: "Reducido" },
             { label: "Confirmación de cambios", value: "Hasta 3x más rápida" },
