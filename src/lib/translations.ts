@@ -344,7 +344,7 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Trust & Ecosystem",
       title: "Built for Port Call Coordination",
       subtitle:
-        "NauticOps is designed to coordinate port calls in real time, connecting stakeholders and sharing key operational information without friction or changes to existing systems.",
+        "NauticOps helps coordinate port calls in real time by connecting stakeholders and sharing key operational information without friction or changes to existing systems.",
       points: [
         {
           title: "Enterprise Security",
@@ -662,9 +662,9 @@ export const translations: Record<Language, TranslationSchema> = {
 
     trust: {
       badge: "Confianza y Ecosistema",
-      title: "Diseñado para la Coordinación de Escalas",
+      title: "Pensado para la Coordinación de Escalas",
       subtitle:
-        "NauticOps está pensado para coordinar escalas portuarias en tiempo real, conectando a los actores implicados y compartiendo información operativa clave sin fricción ni cambios en los sistemas existentes.",
+        "NauticOps ayuda a coordinar escalas portuarias en tiempo real, conectando a los actores implicados y compartiendo información operativa clave sin fricción ni cambios en los sistemas existentes.",
       points: [
         {
           title: "Seguridad Empresarial",
