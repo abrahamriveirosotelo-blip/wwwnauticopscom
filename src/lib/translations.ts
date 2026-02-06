@@ -375,7 +375,7 @@ export const translations: Record<Language, TranslationSchema> = {
         "Vessel Tracking Services",
         "Maritime Data Providers",
       ],
-      backedBy: "Supported and accompanied by leading innovation and port ecosystem programmes.",
+      backedBy: "Supported by leading port innovation and entrepreneurship programmes.",
       backedByItems: [
         "La Lonja Tech",
         "Incubazul / BlueCore",
@@ -695,7 +695,7 @@ export const translations: Record<Language, TranslationSchema> = {
         "Servicios de Seguimiento de Buques",
         "Proveedores de Datos Marítimos",
       ],
-      backedBy: "Acompañado y respaldado por programas líderes de innovación y ecosistema portuario.",
+      backedBy: "Acompañado y respaldado por programas líderes de innovación y emprendimiento portuario.",
       backedByItems: [
         "La Lonja Tech",
         "Incubazul / BlueCore",
