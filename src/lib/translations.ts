@@ -703,13 +703,13 @@ export const translations: Record<Language, TranslationSchema> = {
     },
 
     cta: {
-      title: "¿Le interesa la visibilidad compartida de escalas?",
+      title: "¿Le interesa mejorar la visibilidad compartida de sus escalas?",
       subtitle:
-        "Solicite una demo para ver cómo NauticOps complementa sus sistemas existentes con una capa de coordinación compartida para escalas portuarias.",
+        "Solicite una demo para descubrir cómo NauticOps complementa sus sistemas actuales con una capa de coordinación compartida para la gestión de escalas portuarias.",
       benefits: [
         "Recorrido personalizado de la plataforma",
         "Análisis de sus casos de uso específicos",
-        "Evaluación de integración para sus sistemas",
+        "Evaluación de integración con sus sistemas",
         "Opciones de programa piloto",
       ],
       formTitle: "Solicitar una Demo",
