@@ -26,7 +26,7 @@ const UseCasesSection = () => {
             const Icon = iconMap[index];
             return (
               <div key={useCase.title} className="card-maritime p-8">
-                <div className="flex items-start gap-5">
+                <div className="flex items-center gap-5">
                   <div className="icon-container w-14 h-14 flex-shrink-0">
                     <Icon className="h-7 w-7 text-secondary" />
                   </div>
@@ -34,7 +34,7 @@ const UseCasesSection = () => {
                     <span className="text-sm font-medium text-secondary mb-1 block">
                       {useCase.category}
                     </span>
-                    <h3 className="heading-sm text-foreground mb-3">
+                    <h3 className="heading-sm text-foreground">
                       {useCase.title}
                     </h3>
                   </div>
