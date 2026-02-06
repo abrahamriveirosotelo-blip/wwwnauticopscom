@@ -1,8 +1,8 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import ProblemSection from "@/components/ProblemSection";
+import ContextSection from "@/components/ContextSection";
 import SolutionSection from "@/components/SolutionSection";
-import HowItWorksSection from "@/components/HowItWorksSection";
+import HowItFitsSection from "@/components/HowItWorksSection";
 import WhoItsForSection from "@/components/WhoItsForSection";
 import UseCasesSection from "@/components/UseCasesSection";
 import TrustSection from "@/components/TrustSection";
@@ -15,9 +15,9 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <ProblemSection />
+        <ContextSection />
         <SolutionSection />
-        <HowItWorksSection />
+        <HowItFitsSection />
         <WhoItsForSection />
         <UseCasesSection />
         <TrustSection />

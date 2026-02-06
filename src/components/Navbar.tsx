@@ -10,9 +10,9 @@ const Navbar = () => {
   const { t } = useLanguage();
 
   const navItems = [
-    { label: t.nav.problem, href: "#problem" },
+    { label: t.nav.context, href: "#context" },
     { label: t.nav.solution, href: "#solution" },
-    { label: t.nav.howItWorks, href: "#how-it-works" },
+    { label: t.nav.howItFits, href: "#how-it-fits" },
     { label: t.nav.whoItsFor, href: "#who-its-for" },
     { label: t.nav.useCases, href: "#use-cases" },
   ];
