@@ -31,7 +31,7 @@ const ProblemSection = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="icon-container w-14 h-14 mb-6">
-                  <Icon className="h-7 w-7 text-ocean" />
+                  <Icon className="h-7 w-7 text-secondary" />
                 </div>
                 <h3 className="heading-sm text-foreground mb-3">{problem.title}</h3>
                 <p className="body-md text-muted-foreground">{problem.description}</p>

@@ -22,19 +22,17 @@ const HowItWorksSection = () => {
         </div>
         
         <div className="relative max-w-5xl mx-auto">
-          {/* Connection Line */}
-          <div className="hidden lg:block absolute top-24 left-[16.67%] right-[16.67%] h-0.5 bg-gradient-to-r from-ocean/20 via-ocean to-ocean/20" />
+          <div className="hidden lg:block absolute top-24 left-[16.67%] right-[16.67%] h-0.5 bg-gradient-to-r from-secondary/20 via-secondary to-secondary/20" />
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6">
             {t.howItWorks.steps.map((step, index) => {
               const Icon = iconMap[index];
               return (
                 <div key={step.title} className="relative text-center">
-                  {/* Number Badge */}
                   <div className="relative inline-flex items-center justify-center mb-6">
-                    <div className="absolute inset-0 bg-ocean/10 rounded-full scale-150" />
+                    <div className="absolute inset-0 bg-secondary/10 rounded-full scale-150" />
                     <div className="relative icon-container w-20 h-20 !rounded-full border-4 border-background">
-                      <Icon className="h-8 w-8 text-ocean" />
+                      <Icon className="h-8 w-8 text-secondary" />
                     </div>
                     <span className="absolute -top-2 -right-2 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">
                       {index + 1}
