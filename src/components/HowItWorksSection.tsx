@@ -1,4 +1,4 @@
-import { Link2, Eye, Bell } from "lucide-react";
+import { Link2, Eye, Bell, Plug } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const iconMap = [Link2, Eye, Bell];
@@ -46,6 +46,17 @@ const HowItFitsSection = () => {
                 </div>
               );
             })}
+          </div>
+
+          {/* Integration principle */}
+          <div className="mt-16 max-w-3xl mx-auto card-maritime p-8 md:p-10 flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+            <div className="icon-container w-14 h-14 flex-shrink-0">
+              <Plug className="h-7 w-7 text-secondary" />
+            </div>
+            <div>
+              <h3 className="heading-sm text-foreground mb-2">{t.integrationCard.title}</h3>
+              <p className="body-md text-muted-foreground">{t.integrationCard.description}</p>
+            </div>
           </div>
         </div>
       </div>
