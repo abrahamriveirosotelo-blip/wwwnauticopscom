@@ -79,6 +79,9 @@ const Footer = () => {
               <p className="text-xs text-primary-foreground/40 mt-4 max-w-xs leading-relaxed">
                 {t.footer.directContactDescription}
               </p>
+              <p className="text-xs text-primary-foreground/30 mt-2 max-w-xs leading-relaxed italic">
+                {t.footer.directContactFallback}
+              </p>
             </div>
           </div>
           

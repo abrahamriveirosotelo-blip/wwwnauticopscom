@@ -110,6 +110,7 @@ type TranslationSchema = {
     legal: string;
     directContact: string;
     directContactDescription: string;
+    directContactFallback: string;
     links: {
       features: string;
       useCases: string;
@@ -434,6 +435,7 @@ export const translations: Record<Language, TranslationSchema> = {
       legal: "Legal",
       directContact: "Direct Contact",
       directContactDescription: "Direct contact for pilots, use-case validation and collaboration within the port ecosystem.",
+      directContactFallback: "If a link does not open in your browser, you can copy it and open it directly.",
       links: {
         features: "Features",
         useCases: "Use Cases",
@@ -757,6 +759,7 @@ export const translations: Record<Language, TranslationSchema> = {
       legal: "Legal",
       directContact: "Contacto directo",
       directContactDescription: "Contacto directo para pilotos, validación de casos de uso y colaboraciones en el ecosistema portuario.",
+      directContactFallback: "Si algún enlace no se abre en su navegador, puede copiarlo y abrirlo directamente.",
       links: {
         features: "Características",
         useCases: "Casos de Uso",
