@@ -311,7 +311,7 @@ export const translations: Record<Language, TranslationSchema> = {
           category: "Service Scheduling",
           title: "Aligned Port Services",
           description:
-            "Once a berth window is confirmed, service providers automatically receive their assignments. Status updates are shared with agents and port authorities in real time.",
+            "Once a berth window is confirmed, service providers automatically receive their assignments. Status updates are shared in a coordinated manner with agents and port authorities.",
           stats: [
             { label: "Scheduling time", value: "Reduced" },
             { label: "Confirmation speed", value: "Up to 3x faster" },
