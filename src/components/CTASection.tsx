@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, Check } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const CTASection = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,7 +16,6 @@ const CTASection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
     console.log("Form submitted:", formData);
     setIsSubmitted(true);
   };
@@ -26,6 +27,17 @@ const CTASection = () => {
     });
   };
 
+  const roleOptions = [
+    { value: "port-authority", label: t.cta.form.roles.portAuthority },
+    { value: "shipping-agent", label: t.cta.form.roles.shippingAgent },
+    { value: "terminal-operator", label: t.cta.form.roles.terminalOperator },
+    { value: "shipping-line", label: t.cta.form.roles.shippingLine },
+    { value: "service-provider", label: t.cta.form.roles.serviceProvider },
+    { value: "system-integrator", label: t.cta.form.roles.systemIntegrator },
+    { value: "investor", label: t.cta.form.roles.investor },
+    { value: "other", label: t.cta.form.roles.other },
+  ];
+
   return (
     <section id="cta" className="section-padding hero-gradient hero-pattern relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -34,19 +46,13 @@ const CTASection = () => {
             {/* Left Content */}
             <div>
               <h2 className="heading-lg text-primary-foreground mb-6 text-balance">
-                Ready to Improve Port Call Coordination?
+                {t.cta.title}
               </h2>
               <p className="body-lg text-primary-foreground/80 mb-8">
-                Request a demo to see how NauticOps can create unified visibility 
-                for your port operations—without disrupting your existing systems.
+                {t.cta.subtitle}
               </p>
               <ul className="space-y-4">
-                {[
-                  "Personalized platform walkthrough",
-                  "Discussion of your specific use cases",
-                  "Integration assessment for your systems",
-                  "Pilot program options",
-                ].map((item) => (
+                {t.cta.benefits.map((item) => (
                   <li key={item} className="flex items-center gap-3">
                     <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-foreground/20">
                       <Check className="h-4 w-4 text-primary-foreground" />
@@ -62,18 +68,18 @@ const CTASection = () => {
               {!isSubmitted ? (
                 <>
                   <h3 className="heading-sm text-foreground mb-6 text-center">
-                    Request a Demo
+                    {t.cta.formTitle}
                   </h3>
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                        Full Name
+                        {t.cta.form.name}
                       </label>
                       <Input
                         id="name"
                         name="name"
                         type="text"
-                        placeholder="John Smith"
+                        placeholder={t.cta.form.namePlaceholder}
                         value={formData.name}
                         onChange={handleChange}
                         required
@@ -82,13 +88,13 @@ const CTASection = () => {
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                        Work Email
+                        {t.cta.form.email}
                       </label>
                       <Input
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="john@company.com"
+                        placeholder={t.cta.form.emailPlaceholder}
                         value={formData.email}
                         onChange={handleChange}
                         required
@@ -97,13 +103,13 @@ const CTASection = () => {
                     </div>
                     <div>
                       <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
-                        Company / Organization
+                        {t.cta.form.company}
                       </label>
                       <Input
                         id="company"
                         name="company"
                         type="text"
-                        placeholder="Port of Barcelona"
+                        placeholder={t.cta.form.companyPlaceholder}
                         value={formData.company}
                         onChange={handleChange}
                         required
@@ -112,7 +118,7 @@ const CTASection = () => {
                     </div>
                     <div>
                       <label htmlFor="role" className="block text-sm font-medium text-foreground mb-2">
-                        Your Role
+                        {t.cta.form.role}
                       </label>
                       <select
                         id="role"
@@ -122,23 +128,20 @@ const CTASection = () => {
                         required
                         className="flex h-12 w-full rounded-lg border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                       >
-                        <option value="">Select your role</option>
-                        <option value="port-authority">Port Authority</option>
-                        <option value="shipping-agent">Shipping Agent</option>
-                        <option value="terminal-operator">Terminal Operator</option>
-                        <option value="shipping-line">Shipping Line</option>
-                        <option value="service-provider">Service Provider</option>
-                        <option value="system-integrator">System Integrator</option>
-                        <option value="investor">Investor / Partner</option>
-                        <option value="other">Other</option>
+                        <option value="">{t.cta.form.rolePlaceholder}</option>
+                        {roleOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
                       </select>
                     </div>
                     <Button type="submit" variant="cta" size="xl" className="w-full">
-                      Request Demo
+                      {t.cta.form.submit}
                       <ArrowRight className="h-5 w-5" />
                     </Button>
                     <p className="text-xs text-muted-foreground text-center">
-                      We'll get back to you within 24 hours. No spam, ever.
+                      {t.cta.form.disclaimer}
                     </p>
                   </form>
                 </>
@@ -148,11 +151,10 @@ const CTASection = () => {
                     <Check className="h-8 w-8 text-ocean" />
                   </div>
                   <h3 className="heading-sm text-foreground mb-3">
-                    Thank You!
+                    {t.cta.success.title}
                   </h3>
                   <p className="body-md text-muted-foreground">
-                    We've received your request and will be in touch within 24 hours 
-                    to schedule your personalized demo.
+                    {t.cta.success.message}
                   </p>
                 </div>
               )}
