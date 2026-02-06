@@ -311,7 +311,7 @@ export const translations: Record<Language, TranslationSchema> = {
           category: "Service Scheduling",
           title: "Aligned Port Services",
           description:
-            "When a berth window is confirmed or an operational change occurs, all involved actors receive synchronized updates. The port call status evolves consistently for everyone.",
+            "When a berth window is confirmed or an operational change occurs, all involved actors receive synchronized updates. The port call status is updated in a synchronized way for all involved actors.",
           stats: [
             { label: "Rescheduling time", value: "Reduced" },
             { label: "Change confirmation", value: "Up to 3x faster" },
@@ -631,7 +631,7 @@ export const translations: Record<Language, TranslationSchema> = {
           category: "Programación de Servicios",
           title: "Servicios Portuarios Alineados",
           description:
-            "Cuando se confirma una ventana de atraque o se produce un cambio operativo, los actores implicados reciben la información actualizada de forma coordinada. El estado de la escala evoluciona de manera sincronizada para todos.",
+            "Cuando se confirma una ventana de atraque o se produce un cambio operativo, los actores implicados reciben la información actualizada de forma coordinada. El estado de la escala se actualiza de forma sincronizada para todos los actores.",
           stats: [
             { label: "Tiempo de reprogramación", value: "Reducido" },
             { label: "Confirmación de cambios", value: "Hasta 3x más rápida" },
