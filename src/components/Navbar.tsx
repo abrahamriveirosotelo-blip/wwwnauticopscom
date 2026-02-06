@@ -40,10 +40,19 @@ const Navbar = () => {
           
           <div className="hidden lg:flex items-center gap-3">
             <LanguageSwitcher variant="dark" />
-            <Button variant="ghost" size="sm" className="text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10">
-              {t.nav.viewPlatform}
-            </Button>
-            <Button variant="hero" size="sm">
+            <a href="https://app.nauticops.com/" target="_blank" rel="noopener noreferrer">
+              <Button variant="ghost" size="sm" className="text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10">
+                {t.nav.viewPlatform}
+              </Button>
+            </a>
+            <Button
+              variant="hero"
+              size="sm"
+              onClick={() => {
+                document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" });
+                setTimeout(() => document.getElementById("name")?.focus(), 800);
+              }}
+            >
               {t.nav.requestDemo}
             </Button>
           </div>
@@ -80,10 +89,20 @@ const Navbar = () => {
                 </a>
               ))}
               <div className="flex flex-col gap-2 pt-4 border-t border-primary-foreground/10">
-                <Button variant="ghost" size="sm" className="text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10">
-                  {t.nav.viewPlatform}
-                </Button>
-                <Button variant="hero" size="sm">
+                <a href="https://app.nauticops.com/" target="_blank" rel="noopener noreferrer">
+                  <Button variant="ghost" size="sm" className="w-full text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10">
+                    {t.nav.viewPlatform}
+                  </Button>
+                </a>
+                <Button
+                  variant="hero"
+                  size="sm"
+                  onClick={() => {
+                    setIsOpen(false);
+                    document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" });
+                    setTimeout(() => document.getElementById("name")?.focus(), 800);
+                  }}
+                >
                   {t.nav.requestDemo}
                 </Button>
               </div>
