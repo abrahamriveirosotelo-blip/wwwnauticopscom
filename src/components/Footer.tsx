@@ -54,7 +54,7 @@ const Footer = () => {
                     className="inline-flex items-center gap-2 text-sm text-primary-foreground/60 hover:text-primary-foreground hover:underline underline-offset-4 transition-colors cursor-pointer"
                   >
                     <Linkedin className="h-4 w-4" />
-                    LinkedIn
+                    LinkedIn · Abraham Riveiro
                   </a>
                 </li>
                 <li>
