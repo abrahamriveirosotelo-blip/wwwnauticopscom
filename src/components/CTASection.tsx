@@ -20,6 +20,18 @@ const CTASection = () => {
   const [error, setError] = useState("");
   const formStarted = useRef(false);
 
+  // Declared before handleSubmit to avoid forward-reference issues in production bundles
+  const roleOptions = [
+    { value: "port-authority", label: t.cta.form.roles.portAuthority },
+    { value: "shipping-agent", label: t.cta.form.roles.shippingAgent },
+    { value: "terminal-operator", label: t.cta.form.roles.terminalOperator },
+    { value: "shipping-line", label: t.cta.form.roles.shippingLine },
+    { value: "service-provider", label: t.cta.form.roles.serviceProvider },
+    { value: "system-integrator", label: t.cta.form.roles.systemIntegrator },
+    { value: "investor", label: t.cta.form.roles.investor },
+    { value: "other", label: t.cta.form.roles.other },
+  ];
+
   const handleFormFocus = () => {
     if (!formStarted.current) {
       formStarted.current = true;
@@ -49,7 +61,9 @@ const CTASection = () => {
         }),
       });
       if (res.ok) {
-        trackFormSubmit(formData.role);
+        // Fire GA4 event in its own try/catch so analytics errors
+        // never silently block the success state from rendering
+        try { trackFormSubmit(formData.role); } catch { /* analytics must not break UX */ }
         setIsSubmitted(true);
       } else {
         setError(t.cta.form.errorFallback);
@@ -67,17 +81,6 @@ const CTASection = () => {
       [e.target.name]: e.target.value,
     });
   };
-
-  const roleOptions = [
-    { value: "port-authority", label: t.cta.form.roles.portAuthority },
-    { value: "shipping-agent", label: t.cta.form.roles.shippingAgent },
-    { value: "terminal-operator", label: t.cta.form.roles.terminalOperator },
-    { value: "shipping-line", label: t.cta.form.roles.shippingLine },
-    { value: "service-provider", label: t.cta.form.roles.serviceProvider },
-    { value: "system-integrator", label: t.cta.form.roles.systemIntegrator },
-    { value: "investor", label: t.cta.form.roles.investor },
-    { value: "other", label: t.cta.form.roles.other },
-  ];
 
   return (
     <section id="cta" className="section-padding bg-section-alt relative">
