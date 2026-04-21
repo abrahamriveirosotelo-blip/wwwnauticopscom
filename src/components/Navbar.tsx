@@ -1,15 +1,18 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Menu, X } from "lucide-react";
 import nauticopsLogo from "@/assets/nauticops-logo.png";
 import { trackCtaClick, trackPlatformClick } from "@/lib/analytics";
+import { shippingAgentsEn, shippingAgentsEs } from "@/lib/translations/shippingAgents";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const menuRef = useRef<HTMLDivElement>(null);
+  const saT = language === "es" ? shippingAgentsEs : shippingAgentsEn;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -51,6 +54,12 @@ const Navbar = () => {
                 {item.label}
               </a>
             ))}
+            <Link
+              to="/for-shipping-agents"
+              className="text-sm font-semibold text-secondary hover:text-secondary/80 transition-colors border border-secondary/30 hover:border-secondary/60 px-3 py-1 rounded-full"
+            >
+              {saT.nav.link}
+            </Link>
           </div>
           
           <div className="hidden lg:flex items-center gap-3">
@@ -104,6 +113,13 @@ const Navbar = () => {
                   {item.label}
                 </a>
               ))}
+              <Link
+                to="/for-shipping-agents"
+                onClick={() => setIsOpen(false)}
+                className="text-sm font-semibold text-secondary hover:text-secondary/80 transition-colors"
+              >
+                {saT.nav.link} →
+              </Link>
               <div className="flex flex-col gap-2 pt-4 border-t border-primary-foreground/10">
                 <a href="https://app.nauticops.com/" target="_blank" rel="noopener noreferrer">
                   <Button variant="ghost" size="sm" className="w-full text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10">

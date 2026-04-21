@@ -3,16 +3,18 @@ import { Linkedin, Mail, Phone } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import nauticopsLogo from "@/assets/nauticops-logo.png";
 import { trackContactClick } from "@/lib/analytics";
+import { shippingAgentsEn, shippingAgentsEs } from "@/lib/translations/shippingAgents";
 
 const Footer = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const saT = language === "es" ? shippingAgentsEs : shippingAgentsEn;
 
   const footerLinks = {
     product: [
       { label: t.footer.links.features, href: "#solution" },
       { label: t.footer.links.useCases, href: "#use-cases" },
       { label: t.footer.links.integrations, href: "#trust" },
-      { label: "For Shipping Agents", href: "/for-shipping-agents" },
+      { label: saT.nav.link, href: "/for-shipping-agents" },
     ],
     company: [
       { label: t.footer.links.aboutUs, href: "#about" },

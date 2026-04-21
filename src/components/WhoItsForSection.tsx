@@ -1,14 +1,17 @@
-import { 
-  Building2, 
-  Ship, 
-  Anchor as AnchorIcon, 
-  Container, 
-  Navigation, 
-  Wrench, 
-  Settings, 
-  Briefcase 
+import {
+  Building2,
+  Ship,
+  Anchor as AnchorIcon,
+  Container,
+  Navigation,
+  Wrench,
+  Settings,
+  Briefcase,
+  ArrowRight,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { shippingAgentsEn, shippingAgentsEs } from "@/lib/translations/shippingAgents";
 
 const iconMap = [
   Building2, Ship, Container, AnchorIcon,
@@ -16,7 +19,8 @@ const iconMap = [
 ];
 
 const WhoItsForSection = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const saT = language === "es" ? shippingAgentsEs : shippingAgentsEn;
 
   return (
     <section id="who-its-for" className="section-padding bg-section-alt">
@@ -50,6 +54,17 @@ const WhoItsForSection = () => {
               </div>
             );
           })}
+        </div>
+
+        {/* CTA to shipping agents landing */}
+        <div className="text-center mt-12">
+          <Link
+            to="/for-shipping-agents"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-secondary hover:text-secondary/80 transition-colors"
+          >
+            {saT.nav.link}
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>

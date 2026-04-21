@@ -1,10 +1,13 @@
-import { History, Ship, FileCheck, BarChart3 } from "lucide-react";
+import { History, Ship, FileCheck, BarChart3, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { shippingAgentsEn, shippingAgentsEs } from "@/lib/translations/shippingAgents";
 
 const iconMap = [History, Ship, FileCheck, BarChart3];
 
 const UseCasesSection = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const saT = language === "es" ? shippingAgentsEs : shippingAgentsEn;
 
   return (
     <section id="use-cases" className="section-padding bg-background">
@@ -55,6 +58,17 @@ const UseCasesSection = () => {
               </div>
             );
           })}
+        </div>
+
+        {/* CTA to shipping agents landing */}
+        <div className="text-center mt-12">
+          <Link
+            to="/for-shipping-agents"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-secondary hover:text-secondary/80 transition-colors"
+          >
+            {saT.nav.link}
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>
