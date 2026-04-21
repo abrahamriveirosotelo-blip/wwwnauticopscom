@@ -86,117 +86,117 @@ export type ShippingAgentsTranslations = {
 
 export const shippingAgentsEn: ShippingAgentsTranslations = {
   meta: {
-    title: "NauticOps for Port Agents | Port Call Coordination Layer",
+    title: "NauticOps for Port Agents | Port Call Coordination",
     description:
-      "Stop coordinating port calls through WhatsApp chains. NauticOps gives shipping agents and all port actors a shared operational timeline — one update, everyone aligned.",
+      "Stop coordinating port calls through WhatsApp chains. NauticOps puts every service provider on the same operational view so one update reaches everyone at the same time.",
   },
   nav: { link: "For Port Agents" },
   hero: {
-    badge: "For Port Agents & Shipping Agencies",
-    h1: "One update.\nEvery party aligned.",
+    badge: "For Port Agents and Shipping Agencies",
+    h1: "When the ETA changes,\neveryone needs to know.",
     subtitle:
-      "NauticOps gives shipping agents a single shared operational view of every port call — visible in real time to the pilot, tug, mooring crew, terminal, and port authority.",
-    supportingLine: "No integration project. No system replacement. Active from day one.",
+      "NauticOps puts the port call on a shared screen. The pilot, tug, mooring crew, terminal and port authority all see the same picture, updated in real time.",
+    supportingLine: "No integration project. No system replacement. Operational from day one.",
     impactPhrase:
-      "NauticOps does not replace your systems.\nIt makes them work together.",
-    ctaPrimary: "Request Pilot Access",
-    ctaSecondary: "See the full platform",
+      "NauticOps does not replace your port systems. It coordinates the people and services around them.",
+    ctaPrimary: "Request a pilot",
+    ctaSecondary: "See the platform",
   },
   pain: {
-    badge: "The coordination gap",
-    title: "The cost of coordinating a port call manually",
+    badge: "How port calls work today",
+    title: "What coordination really costs, call by call",
     subtitle:
-      "Every port call involves five to eight actors with different systems, different schedules, and no shared view. The shipping agent absorbs that entire coordination cost — every single call.",
+      "Every port call involves five to eight actors with different systems, different schedules and no shared view. The shipping agent carries that coordination load on every single call.",
     items: [
       {
         title: "You are the only one with the full picture",
-        body: "The pilot, the tug, the terminal and the port authority each have their own partial view. You carry all the threads — and relay every change manually across six different conversations.",
+        body: "The pilot, the tug, the terminal and the port authority each have their own partial view. You carry all the threads and relay every change manually across six different conversations.",
       },
       {
         title: "ETA changes travel slower than the vessel",
         body: "A two-hour delay triggers a chain of calls, messages and re-confirmations. By the time everyone is updated, the service schedule has already shifted and nobody agrees on the new timing.",
       },
       {
-        title: "No confirmation trail. No traceability.",
-        body: "Verbal confirmations and WhatsApp threads are not records. When something goes wrong, there is no log of who confirmed what, when, and under which conditions — and the accountability lands on you.",
+        title: "Verbal confirmations do not leave a trail",
+        body: "WhatsApp threads and phone confirmations are not records. When something goes wrong, there is no log of who confirmed what or when. And the accountability lands on you.",
       },
       {
-        title: "You become the operational bottleneck",
-        body: "The entire port call depends on your availability. If you are unreachable for thirty minutes, the berth assignment, the tug booking and the terminal slot are all on hold.",
+        title: "The whole operation stops when you are not available",
+        body: "If you are unreachable for thirty minutes, the berth assignment, the tug booking and the terminal slot are all on hold. The port call depends entirely on your personal availability.",
       },
     ],
   },
   solution: {
-    badge: "The NauticOps layer",
-    title: "A shared operational view for every port call",
+    badge: "What NauticOps changes",
+    title: "How daily port call coordination works with NauticOps",
     subtitle:
-      "NauticOps connects all actors around a single source of truth for the port call. The shipping agent stops being the relay and starts being the supervisor.",
+      "The shipping agent stops being the one who has to relay everything and gets time to supervise the call instead.",
     features: [
       {
-        title: "One shared operational timeline",
-        body: "Pilot, tug operator, mooring crew, terminal and port authority see the same port call timeline in real time — ETA, berth, service schedule, confirmations. No more fragmented pictures.",
+        title: "A single operational view everyone works from",
+        body: "Pilot, tug operator, mooring crew, terminal and port authority see the same port call in one place: ETA, berth, service schedule, confirmations. No more conflicting information depending on who you ask.",
       },
       {
-        title: "ETA changes propagate instantly",
-        body: "Update the ETA once. Every actor with a service in that call sees the change immediately. Idle time caused by late notification drops to zero.",
+        title: "When the ETA shifts, everyone sees it at the same time",
+        body: "Update the ETA once. Every actor with a service in that call sees the change immediately. Idle time caused by late notification disappears.",
       },
       {
-        title: "Confirmations per actor, on record",
-        body: "Each party confirms their slot directly in the platform. You see the status of every service in real time. No follow-up calls to check if the tug is confirmed.",
+        title: "Every service confirms directly, without going through you",
+        body: "Each party confirms their slot in the platform. You see the status of every service without picking up the phone to chase confirmations.",
       },
       {
-        title: "A layer on top, not a replacement",
-        body: "NauticOps does not replace your PCS, your TOS or your existing tools. It sits on top as a lightweight coordination layer — active from day one, no migration required.",
+        title: "Works with what you already have",
+        body: "NauticOps runs alongside your existing tools. No configuration needed on other parties' side. No new systems to learn before the first port call.",
       },
     ],
   },
   howItWorks: {
-    badge: "Operational flow",
-    title: "From notification to departure.\nOne shared view.",
+    badge: "Step by step",
+    title: "How a port call runs in NauticOps",
     subtitle:
-      "NauticOps does not change how the port call works. It gives every actor visibility of the same call — in real time.",
+      "The process does not change. What changes is that every actor can see it as it happens.",
     steps: [
       {
         number: "01",
-        title: "Vessel notification received",
-        body: "You receive the arrival notice from the shipowner or operator. You create or confirm the port call in NauticOps — ETA, berth, services required.",
+        title: "You receive the arrival notice",
+        body: "You register the port call in NauticOps: ETA, berth and services required. From that moment, every party involved has access to the same information.",
       },
       {
         number: "02",
-        title: "All actors see the same timeline",
-        body: "Pilot station, tug company, mooring crew and terminal access the shared timeline instantly. Each actor sees only what is relevant to their service.",
+        title: "Every actor sees the same timeline",
+        body: "Pilot station, tug company, mooring crew and terminal see the shared schedule instantly. Each one sees only what is relevant to their own service, without information overload.",
       },
       {
         number: "03",
-        title: "Changes propagate. Confirmations accumulate.",
-        body: "When the ETA shifts, every actor is notified. Each one confirms their updated slot directly. You monitor overall progress from a single view — no calls needed.",
+        title: "The ETA shifts. Everyone adjusts.",
+        body: "When timing changes, every actor is notified and confirms their updated slot directly. You monitor the full picture from one view without needing to call anyone.",
       },
     ],
   },
   noReplacement: {
-    badge: "Zero friction adoption",
-    title: "NauticOps sits on top of what you already use",
+    badge: "No integration required",
+    title: "NauticOps works alongside what you already use",
     text1:
-      "No integration project. No data migration. No training week. NauticOps is a lightweight coordination layer that connects the actors of the port call — without replacing any existing system.",
+      "There is no integration project. No data to migrate, no systems to reconfigure. NauticOps connects the actors of the port call as a coordination layer, without touching any existing system.",
     text2:
-      "In pilot mode, onboarding takes less than one working day. You set up the first port call and all actors are operational from that moment.",
+      "In pilot mode, setup takes less than one working day. You register the first port call and all actors are operational from that moment.",
     cardTitle: "What NauticOps does not replace",
     items: [
       {
         label: "Port Community System (PCS)",
-        note: "NauticOps does not replace it — it adds a real-time operational coordination layer on top.",
+        note: "NauticOps adds real-time operational coordination on top of it. Your PCS workflow is unchanged.",
       },
       {
         label: "Terminal Operating System (TOS)",
-        note: "Terminal operations continue in your TOS. NauticOps adds shared timeline visibility.",
+        note: "Terminal operations continue in your TOS. NauticOps adds a shared view of the port call for everyone involved.",
       },
       {
         label: "ERP or back-office systems",
-        note: "Your financial and administrative workflows are untouched.",
+        note: "Your financial and administrative workflows are not touched.",
       },
       {
         label: "Messaging tools",
-        note: "NauticOps is not a chat. It is a structured coordination layer with confirmations and a shared operational record.",
+        note: "NauticOps is not a chat. It is a coordination layer: structured confirmations, shared status, operational record.",
       },
     ],
   },
@@ -204,8 +204,8 @@ export const shippingAgentsEn: ShippingAgentsTranslations = {
     badge: "Sector validation",
     title: "Built with the ecosystem, not outside it",
     subtitle:
-      "NauticOps has been developed with direct input from port actors, maritime operators, and port innovation programmes.",
-    actorsTitle: "Designed for the full port call ecosystem",
+      "NauticOps has been developed with direct input from port operators, maritime service providers and port innovation programmes.",
+    actorsTitle: "The actors it connects",
     actors: [
       "Port Authorities",
       "Shipping Agents",
@@ -225,9 +225,9 @@ export const shippingAgentsEn: ShippingAgentsTranslations = {
   },
   pilotPorts: {
     badge: "Pilot programme",
-    title: "Initial pilot conversations active in",
+    title: "Early conversations underway in",
     subtitle:
-      "We are currently in early dialogue with port actors in these locations for the first live pilots.",
+      "We are working with port operators in these locations to plan the first live deployments.",
     ports: [
       { name: "Vigo", country: "Spain" },
       { name: "Cádiz", country: "Spain" },
@@ -236,14 +236,14 @@ export const shippingAgentsEn: ShippingAgentsTranslations = {
     ],
   },
   bottomCta: {
-    title: "Ready to run your first coordinated port call?",
+    title: "Want to see how NauticOps fits your operation?",
     subtitle:
-      "Request pilot access for your agency. We configure the first port call together — at your port, with your services, with your actors.",
-    button: "Request Pilot Access",
+      "We configure the first port call together, at your port, with your services and your actors. No commitment beyond that first call.",
+    button: "Request a pilot",
   },
   form: {
     badge: "Start your pilot",
-    title: "Request pilot access",
+    title: "Request a pilot",
     name: "Full name",
     namePlaceholder: "Your name",
     company: "Company / Agency",
@@ -264,13 +264,13 @@ export const shippingAgentsEn: ShippingAgentsTranslations = {
     },
     port: "Main port (optional)",
     portPlaceholder: "e.g. Port of Vigo",
-    submit: "Request Pilot Access",
-    disclaimer: "We will contact you within 24 hours to discuss your port and operational context.",
-    errorFallback: "Something went wrong. Please try again or email us at info@nauticops.com",
+    submit: "Request a pilot",
+    disclaimer: "We will contact you within 24 hours to talk about your port and how we can run the first call together.",
+    errorFallback: "Something went wrong. Please try again or write to us at info@nauticops.com",
     success: {
       title: "Request received",
       message:
-        "We will be in touch within 24 hours to discuss your port and how to run the first coordinated port call together.",
+        "We will be in touch within 24 hours to talk about your port and how to coordinate the first call together.",
     },
   },
 };
@@ -281,107 +281,107 @@ export const shippingAgentsEs: ShippingAgentsTranslations = {
   meta: {
     title: "NauticOps para Consignatarios | Coordinación Operativa de Escalas",
     description:
-      "Deja de coordinar la escala por WhatsApp y teléfono. NauticOps da al consignatario y a todos los actores portuarios una visión operativa compartida — una actualización, todos alineados.",
+      "Deja de coordinar la escala por teléfono y WhatsApp. NauticOps pone a todos los actores portuarios en la misma pantalla operativa para que una sola actualización llegue a todos al mismo tiempo.",
   },
   nav: { link: "Para Consignatarios" },
   hero: {
     badge: "Para Consignatarios y Servicios Portuarios",
-    h1: "Una actualización.\nTodos alineados.",
+    h1: "Cuando cambia la ETA,\ntodos tienen que saberlo a la vez.",
     subtitle:
-      "NauticOps da al consignatario una visión operativa única de cada escala — visible en tiempo real para el práctico, remolcador, amarre, terminal y Autoridad Portuaria.",
+      "NauticOps pone la escala en una pantalla compartida. El práctico, el remolcador, el amarre, la terminal y la Autoridad Portuaria ven la misma información, actualizada en tiempo real.",
     supportingLine: "Sin integrar sistemas. Sin sustituir nada. Operativo desde el primer día.",
     impactPhrase:
-      "NauticOps no sustituye tus sistemas.\nHace que trabajen coordinados.",
+      "NauticOps no sustituye tus sistemas portuarios. Coordina a las personas y los servicios que trabajan alrededor de ellos.",
     ctaPrimary: "Solicitar piloto",
     ctaSecondary: "Ver la plataforma",
   },
   pain: {
-    badge: "El problema de la coordinación",
-    title: "El coste real de coordinar una escala manualmente",
+    badge: "Cómo funciona la escala hoy",
+    title: "Lo que cuesta coordinar una escala, llamada a llamada",
     subtitle:
-      "Cada escala implica entre cinco y ocho actores con sistemas distintos, agendas distintas y sin visión compartida. El consignatario absorbe todo ese coste de coordinación — en cada escala.",
+      "Cada escala implica entre cinco y ocho actores con sistemas distintos, agendas distintas y sin visión compartida. El consignatario asume ese coste operativo en cada escala.",
     items: [
       {
-        title: "Tú eres el único con la foto completa",
-        body: "El práctico, el remolcador, la terminal y la Autoridad Portuaria tienen visiones parciales. Tú llevas todos los hilos — y retransmites cada cambio manualmente a través de seis conversaciones distintas.",
+        title: "Tú eres el único que tiene la foto completa",
+        body: "El práctico, el remolcador, la terminal y la Autoridad Portuaria tienen visiones parciales. Tú llevas todos los hilos y tienes que retransmitir cada cambio manualmente por seis conversaciones distintas.",
       },
       {
         title: "Los cambios de ETA viajan más despacio que el buque",
-        body: "Un retraso de dos horas supone una cadena de llamadas, mensajes y reconfirmaciones. Cuando todos están actualizados, el programa de servicios ya ha cambiado y nadie coincide en los nuevos tiempos.",
+        body: "Un retraso de dos horas genera una cadena de llamadas, mensajes y reconfirmaciones. Cuando todos están al día, el programa de servicios ya ha cambiado y nadie coincide en los nuevos tiempos.",
       },
       {
-        title: "Sin confirmaciones registradas. Sin trazabilidad.",
-        body: "Las confirmaciones verbales y los hilos de WhatsApp no son registros. Cuando algo falla, no existe log de quién confirmó qué, cuándo y en qué condiciones — y la responsabilidad recae sobre ti.",
+        title: "Las confirmaciones verbales no dejan rastro",
+        body: "Los hilos de WhatsApp y las confirmaciones telefónicas no son registros. Cuando algo falla, no hay log de quién confirmó qué ni cuándo. Y la responsabilidad recae sobre ti.",
       },
       {
-        title: "Tú eres el cuello de botella de la operación",
-        body: "La escala depende de tu disponibilidad. Si estás treinta minutos sin cobertura, el atraque, el remolcador y el turno de terminal están en espera.",
+        title: "La operación entera para cuando tú no estás disponible",
+        body: "Si estás treinta minutos sin cobertura, el atraque, el remolcador y el turno de terminal están en espera. La escala depende por completo de tu disponibilidad personal.",
       },
     ],
   },
   solution: {
-    badge: "La capa NauticOps",
-    title: "Una visión operativa compartida para cada escala",
+    badge: "Qué cambia con NauticOps",
+    title: "Cómo cambia la coordinación diaria de la escala",
     subtitle:
-      "NauticOps conecta a todos los actores alrededor de una única fuente de verdad para la escala. El consignatario deja de ser el intermediario y pasa a ser el supervisor.",
+      "El consignatario deja de ser el intermediario permanente que tiene que retransmitir todo y puede dedicar ese tiempo a supervisar la escala en su conjunto.",
     features: [
       {
-        title: "Un timeline operativo único y compartido",
-        body: "Práctico, remolcador, amarre, terminal y Autoridad Portuaria ven el mismo timeline en tiempo real — ETA, atraque, programa de servicios, confirmaciones. Sin visiones fragmentadas.",
+        title: "Una única pantalla de la escala para todos",
+        body: "Práctico, remolcador, amarre, terminal y Autoridad Portuaria ven la misma escala en un único sitio: ETA, atraque, programa de servicios y confirmaciones. Sin versiones distintas según con quién hables.",
       },
       {
-        title: "Los cambios de ETA se propagan al instante",
-        body: "Actualizas la ETA una vez. Cada actor con un servicio en esa escala lo ve de forma inmediata. Los tiempos muertos por notificación tardía desaparecen.",
+        title: "Cuando cambia la ETA, todos lo saben al mismo tiempo",
+        body: "Actualizas la ETA una vez. Cada actor con un servicio en esa escala lo ve de inmediato. Los tiempos muertos por notificación tardía desaparecen.",
       },
       {
-        title: "Confirmaciones por actor, registradas",
-        body: "Cada servicio confirma su franja directamente en la plataforma. Ves el estado de cada operación en tiempo real. Sin llamadas para verificar si el remolcador está confirmado.",
+        title: "Cada servicio confirma directamente, sin pasar por ti",
+        body: "Cada actor confirma su franja en la plataforma. Ves el estado de cada servicio sin tener que llamar a nadie para verificarlo.",
       },
       {
-        title: "Una capa encima, no una sustitución",
-        body: "NauticOps no reemplaza tu SCSP, tu TOS ni tus herramientas actuales. Se sitúa encima como capa ligera de coordinación — operativa desde el primer día, sin migración.",
+        title: "Funciona con lo que ya tienes",
+        body: "NauticOps trabaja junto a tus herramientas actuales. No hace falta que el resto configure nada antes de la primera escala.",
       },
     ],
   },
   howItWorks: {
-    badge: "Flujo operativo",
-    title: "Desde la notificación hasta la salida.\nUna visión compartida.",
+    badge: "Paso a paso",
+    title: "Cómo funciona una escala en NauticOps",
     subtitle:
-      "NauticOps no cambia cómo funciona la escala. Da a cada actor visibilidad del mismo escenario — en tiempo real.",
+      "El proceso no cambia. Lo que cambia es que todos los actores pueden verlo tal como ocurre.",
     steps: [
       {
         number: "01",
-        title: "Recibes la notificación de escala",
-        body: "Recibes el aviso de llegada del armador u operador. Creas o confirmas la escala en NauticOps — ETA, atraque, servicios requeridos.",
+        title: "Recibes el aviso de llegada",
+        body: "Registras la escala en NauticOps: ETA, atraque y servicios requeridos. Desde ese momento, todos los actores implicados tienen acceso a la misma información.",
       },
       {
         number: "02",
-        title: "Todos los actores ven el mismo timeline",
-        body: "Prácticos, remolcadores, amarre y terminal acceden al timeline compartido al instante. Cada actor ve solo lo que es relevante para su servicio.",
+        title: "Todos los actores ven el mismo programa",
+        body: "Prácticos, remolcadores, amarre y terminal ven el timeline compartido al instante. Cada uno ve solo lo que corresponde a su servicio, sin sobrecarga de información.",
       },
       {
         number: "03",
-        title: "Los cambios se propagan. Las confirmaciones se acumulan.",
-        body: "Cuando cambia la ETA, todos los actores son notificados. Cada uno confirma su franja actualizada directamente. Tú supervisas el avance desde una única vista — sin llamadas.",
+        title: "Cambia la ETA. Todos se ajustan.",
+        body: "Cuando cambian los tiempos, cada actor recibe la notificación y confirma su franja actualizada directamente. Tú supervisas el avance desde una única vista, sin llamadas.",
       },
     ],
   },
   noReplacement: {
-    badge: "Adopción sin fricción",
-    title: "NauticOps se instala sobre lo que ya usas",
+    badge: "Sin integración, sin proyecto",
+    title: "NauticOps trabaja junto a lo que ya usas",
     text1:
-      "Sin proyecto de integración. Sin migración de datos. Sin semana de formación. NauticOps es una capa ligera de coordinación que conecta a los actores de la escala — sin sustituir ningún sistema existente.",
+      "No hay proyecto de integración. No hay datos que migrar ni sistemas que reconfigurar. NauticOps se instala como capa de coordinación sin modificar nada de lo que ya funciona.",
     text2:
-      "En modo piloto, la puesta en marcha lleva menos de una jornada. Configuras la primera escala y todos los actores están operativos desde ese momento.",
+      "En modo piloto, la puesta en marcha lleva menos de una jornada. Registras la primera escala y todos los actores están operativos desde ese momento.",
     cardTitle: "Lo que NauticOps no sustituye",
     items: [
       {
         label: "Sistema de Comunidad Portuaria (SCSP / PCS)",
-        note: "NauticOps no lo reemplaza — añade una capa de coordinación operativa en tiempo real sobre él.",
+        note: "NauticOps añade coordinación operativa en tiempo real sobre él. Tu flujo de trabajo en el SCSP no cambia.",
       },
       {
         label: "Sistema de Gestión de Terminal (TOS)",
-        note: "Las operaciones de terminal siguen en tu TOS. NauticOps añade visibilidad compartida del timeline de escala.",
+        note: "Las operaciones de terminal siguen en tu TOS. NauticOps añade visibilidad compartida de la escala para todos los implicados.",
       },
       {
         label: "ERP o sistemas administrativos",
@@ -389,7 +389,7 @@ export const shippingAgentsEs: ShippingAgentsTranslations = {
       },
       {
         label: "Herramientas de mensajería",
-        note: "NauticOps no es un chat. Es una capa de coordinación estructurada con confirmaciones y registro operativo.",
+        note: "NauticOps no es un chat. Es una capa de coordinación: confirmaciones estructuradas, estado compartido, registro operativo.",
       },
     ],
   },
@@ -397,8 +397,8 @@ export const shippingAgentsEs: ShippingAgentsTranslations = {
     badge: "Validación sectorial",
     title: "Construido con el ecosistema, no fuera de él",
     subtitle:
-      "NauticOps se ha desarrollado con aportación directa de actores portuarios, operadores marítimos y programas de innovación portuaria.",
-    actorsTitle: "Diseñado para todo el ecosistema de la escala",
+      "NauticOps se ha desarrollado con aportación directa de operadores portuarios, servicios marítimos y programas de innovación del sector.",
+    actorsTitle: "Los actores con los que trabaja",
     actors: [
       "Autoridades Portuarias",
       "Consignatarios",
@@ -418,9 +418,9 @@ export const shippingAgentsEs: ShippingAgentsTranslations = {
   },
   pilotPorts: {
     badge: "Programa piloto",
-    title: "Conversaciones de piloto activas en",
+    title: "Primeras conversaciones en marcha en",
     subtitle:
-      "Actualmente mantenemos diálogo con actores portuarios en estas ubicaciones para los primeros pilotos reales.",
+      "Estamos trabajando con operadores portuarios en estas ubicaciones para planificar los primeros pilotos reales.",
     ports: [
       { name: "Vigo", country: "España" },
       { name: "Cádiz", country: "España" },
@@ -429,14 +429,14 @@ export const shippingAgentsEs: ShippingAgentsTranslations = {
     ],
   },
   bottomCta: {
-    title: "¿Listo para coordinar tu primera escala con visibilidad compartida?",
+    title: "¿Quieres ver cómo encaja NauticOps en tu operativa portuaria?",
     subtitle:
-      "Solicita acceso piloto para tu consignataria. Configuramos la primera escala juntos — en tu puerto, con tus servicios, con tus actores.",
+      "Configuramos la primera escala juntos, en tu puerto, con tus servicios y tus actores. Sin ningún compromiso más allá de esa primera prueba.",
     button: "Solicitar piloto",
   },
   form: {
     badge: "Inicia tu piloto",
-    title: "Solicitar acceso piloto",
+    title: "Solicitar un piloto",
     name: "Nombre completo",
     namePlaceholder: "Tu nombre",
     company: "Empresa / Consignataria",
@@ -458,12 +458,12 @@ export const shippingAgentsEs: ShippingAgentsTranslations = {
     port: "Puerto principal (opcional)",
     portPlaceholder: "Ej. Puerto de Vigo",
     submit: "Solicitar piloto",
-    disclaimer: "Nos pondremos en contacto en menos de 24 horas para hablar de tu puerto y contexto operativo.",
+    disclaimer: "Nos pondremos en contacto en menos de 24 horas para hablar de tu puerto y cómo coordinar juntos la primera escala.",
     errorFallback: "Ha ocurrido un error. Inténtalo de nuevo o escríbenos a info@nauticops.com",
     success: {
       title: "Solicitud recibida",
       message:
-        "Nos pondremos en contacto en menos de 24 horas para hablar de tu puerto y cómo coordinar juntos la primera escala.",
+        "Nos pondremos en contacto en menos de 24 horas para hablar de tu puerto y cómo coordinar la primera escala juntos.",
     },
   },
 };
