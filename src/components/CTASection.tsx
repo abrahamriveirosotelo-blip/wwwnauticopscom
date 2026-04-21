@@ -44,6 +44,10 @@ const CTASection = () => {
     setIsSubmitting(true);
     setError("");
 
+    // Fire GA4 immediately on submit, before the Formspree fetch,
+    // so the conversion is always recorded regardless of network timing.
+    try { trackFormSubmit(formData.role); } catch { /* analytics must not break UX */ }
+
     const roleLabelMap: Record<string, string> = {};
     roleOptions.forEach((opt) => { roleLabelMap[opt.value] = opt.label; });
     const roleLabel = roleLabelMap[formData.role] || formData.role;
@@ -61,9 +65,6 @@ const CTASection = () => {
         }),
       });
       if (res.ok) {
-        // Fire GA4 event in its own try/catch so analytics errors
-        // never silently block the success state from rendering
-        try { trackFormSubmit(formData.role); } catch { /* analytics must not break UX */ }
         setIsSubmitted(true);
       } else {
         setError(t.cta.form.errorFallback);
