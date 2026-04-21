@@ -12,6 +12,7 @@ const Footer = () => {
       { label: t.footer.links.features, href: "#solution" },
       { label: t.footer.links.useCases, href: "#use-cases" },
       { label: t.footer.links.integrations, href: "#trust" },
+      { label: "For Shipping Agents", href: "/for-shipping-agents" },
     ],
     company: [
       { label: t.footer.links.aboutUs, href: "#about" },
