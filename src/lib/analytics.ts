@@ -32,7 +32,7 @@ export function trackFormStart() {
 }
 
 export function trackFormSubmit(role: string) {
-  trackEvent('generate_lead', { role, form_name: 'demo_request' });
+  trackEvent('demo_request_submitted', { role, form_name: 'demo_request' });
 }
 
 export function trackContactClick(type: 'email' | 'phone' | 'linkedin') {
