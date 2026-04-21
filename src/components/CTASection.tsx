@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { trackFormSubmit } from "@/lib/analytics";
 
 const CTASection = () => {
   const { t } = useLanguage();
@@ -11,6 +13,7 @@ const CTASection = () => {
     email: "",
     company: "",
     role: "",
+    message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,21 +37,23 @@ const CTASection = () => {
           email: formData.email,
           company: formData.company,
           role: roleLabel,
+          message: formData.message,
         }),
       });
       if (res.ok) {
+        trackFormSubmit(formData.role);
         setIsSubmitted(true);
       } else {
-        setError("Something went wrong. Please try again.");
+        setError(t.cta.form.errorFallback);
       }
     } catch {
-      setError("Something went wrong. Please try again.");
+      setError(t.cta.form.errorFallback);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -163,6 +168,20 @@ const CTASection = () => {
                           </option>
                         ))}
                       </select>
+                    </div>
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                        {t.cta.form.message}
+                      </label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        placeholder={t.cta.form.messagePlaceholder}
+                        value={formData.message}
+                        onChange={handleChange}
+                        rows={3}
+                        className="resize-none"
+                      />
                     </div>
                     <Button type="submit" variant="default" size="xl" className="w-full" disabled={isSubmitting}>
                       {isSubmitting ? (

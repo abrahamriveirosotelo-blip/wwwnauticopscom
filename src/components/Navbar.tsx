@@ -1,13 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Menu, X } from "lucide-react";
 import nauticopsLogo from "@/assets/nauticops-logo.png";
+import { trackCtaClick } from "@/lib/analytics";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useLanguage();
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen]);
 
   const navItems = [
     { label: t.nav.context, href: "#context" },
@@ -15,11 +29,12 @@ const Navbar = () => {
     { label: t.nav.howItFits, href: "#how-it-fits" },
     { label: t.nav.whoItsFor, href: "#who-its-for" },
     { label: t.nav.useCases, href: "#use-cases" },
+    { label: t.nav.about, href: "#about" },
   ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 nav-brand">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8" ref={menuRef}>
         <div className="flex h-[6.5rem] items-center justify-between">
           <a href="#" className="flex items-center">
             <img src={nauticopsLogo} alt="NauticOps" className="h-[4.5rem] w-auto" />
@@ -49,6 +64,7 @@ const Navbar = () => {
               variant="hero"
               size="sm"
               onClick={() => {
+                trackCtaClick('navbar');
                 document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" });
                 setTimeout(() => document.getElementById("name")?.focus(), 800);
               }}
@@ -56,7 +72,7 @@ const Navbar = () => {
               {t.nav.requestDemo}
             </Button>
           </div>
-          
+
           {/* Mobile Menu Button */}
           <div className="flex lg:hidden items-center gap-3">
             <LanguageSwitcher variant="dark" />
@@ -98,6 +114,7 @@ const Navbar = () => {
                   variant="hero"
                   size="sm"
                   onClick={() => {
+                    trackCtaClick('navbar');
                     setIsOpen(false);
                     document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" });
                     setTimeout(() => document.getElementById("name")?.focus(), 800);

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import heroImage from "@/assets/hero-port.jpg";
+import { trackCtaClick } from "@/lib/analytics";
 
 const HeroSection = () => {
   const { t } = useLanguage();
@@ -44,16 +45,21 @@ const HeroSection = () => {
             {t.hero.title}
           </h1>
           
-          <p className="body-lg text-primary-foreground/85 mb-10 max-w-2xl mx-auto animate-fade-in-up opacity-0 stagger-2 text-balance">
+          <p className="body-lg text-primary-foreground/85 mb-4 max-w-2xl mx-auto animate-fade-in-up opacity-0 stagger-2 text-balance">
             {t.hero.subtitle}
           </p>
-          
+
+          <p className="text-sm font-medium text-primary-foreground/50 mb-10 animate-fade-in-up opacity-0 stagger-2 tracking-wide">
+            {t.hero.supportingLine}
+          </p>
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
               variant="hero"
               size="xl"
               className="w-full sm:w-auto shadow-[0_0_30px_-5px_hsl(200_70%_45%/0.4)] animate-fade-in-up opacity-0 stagger-4"
               onClick={() => {
+                trackCtaClick('hero');
                 document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" });
                 setTimeout(() => document.getElementById("name")?.focus(), 800);
               }}
@@ -61,12 +67,15 @@ const HeroSection = () => {
               {t.hero.ctaPrimary}
               <ArrowRight className="h-5 w-5" />
             </Button>
-            <a href="https://app.nauticops.com/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto animate-fade-in-up opacity-0 stagger-5">
-              <Button variant="heroOutline" size="xl" className="w-full">
-                <Play className="h-5 w-5" />
-                {t.hero.ctaSecondary}
-              </Button>
-            </a>
+            <div className="w-full sm:w-auto animate-fade-in-up opacity-0 stagger-5 flex flex-col items-center gap-1">
+              <a href="https://app.nauticops.com/" target="_blank" rel="noopener noreferrer" className="w-full">
+                <Button variant="heroOutline" size="xl" className="w-full">
+                  <Play className="h-5 w-5" />
+                  {t.hero.ctaSecondary}
+                </Button>
+              </a>
+              <span className="text-xs text-primary-foreground/50">{t.hero.ctaSecondaryHint}</span>
+            </div>
           </div>
           
           <div className="mt-10 sm:mt-16 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 animate-fade-in-up opacity-0 stagger-4">
