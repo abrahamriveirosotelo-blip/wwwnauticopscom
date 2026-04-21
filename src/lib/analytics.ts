@@ -27,6 +27,18 @@ export function trackCtaClick(location: 'navbar' | 'hero' | 'bottom_cta') {
   trackEvent('cta_click', { button_location: location });
 }
 
+export function trackFormStart() {
+  trackEvent('form_start', { form_name: 'demo_request' });
+}
+
 export function trackFormSubmit(role: string) {
-  trackEvent('generate_lead', { role });
+  trackEvent('generate_lead', { role, form_name: 'demo_request' });
+}
+
+export function trackContactClick(type: 'email' | 'phone' | 'linkedin') {
+  trackEvent('contact_click', { contact_type: type });
+}
+
+export function trackPlatformClick(location: 'navbar' | 'hero') {
+  trackEvent('platform_demo_click', { button_location: location });
 }

@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import heroImage from "@/assets/hero-port.jpg";
-import { trackCtaClick } from "@/lib/analytics";
+import { trackCtaClick, trackPlatformClick } from "@/lib/analytics";
 
 const HeroSection = () => {
   const { t } = useLanguage();
@@ -68,7 +68,7 @@ const HeroSection = () => {
               <ArrowRight className="h-5 w-5" />
             </Button>
             <div className="w-full sm:w-auto animate-fade-in-up opacity-0 stagger-5 flex flex-col items-center gap-1">
-              <a href="https://app.nauticops.com/" target="_blank" rel="noopener noreferrer" className="w-full">
+              <a href="https://app.nauticops.com/" target="_blank" rel="noopener noreferrer" onClick={() => trackPlatformClick('hero')} className="w-full">
                 <Button variant="heroOutline" size="xl" className="w-full">
                   <Play className="h-5 w-5" />
                   {t.hero.ctaSecondary}

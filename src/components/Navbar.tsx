@@ -4,7 +4,7 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Menu, X } from "lucide-react";
 import nauticopsLogo from "@/assets/nauticops-logo.png";
-import { trackCtaClick } from "@/lib/analytics";
+import { trackCtaClick, trackPlatformClick } from "@/lib/analytics";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,7 +55,7 @@ const Navbar = () => {
           
           <div className="hidden lg:flex items-center gap-3">
             <LanguageSwitcher variant="dark" />
-            <a href="https://app.nauticops.com/" target="_blank" rel="noopener noreferrer">
+            <a href="https://app.nauticops.com/" target="_blank" rel="noopener noreferrer" onClick={() => trackPlatformClick('navbar')}>
               <Button variant="ghost" size="sm" className="text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10">
                 {t.nav.viewPlatform}
               </Button>

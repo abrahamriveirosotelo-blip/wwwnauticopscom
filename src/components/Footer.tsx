@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Linkedin, Mail, Phone } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import nauticopsLogo from "@/assets/nauticops-logo.png";
+import { trackContactClick } from "@/lib/analytics";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -43,6 +44,7 @@ const Footer = () => {
                     href="https://www.linkedin.com/in/abraham-riveiro-sotelo-nauticops"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackContactClick('linkedin')}
                     className="inline-flex items-center gap-2 text-sm text-primary-foreground/60 hover:text-primary-foreground hover:underline underline-offset-4 transition-colors cursor-pointer"
                   >
                     <Linkedin className="h-4 w-4" />
@@ -52,6 +54,7 @@ const Footer = () => {
                 <li>
                   <a
                     href="mailto:info@nauticops.com"
+                    onClick={() => trackContactClick('email')}
                     className="inline-flex items-center gap-2 text-sm text-primary-foreground/60 hover:text-primary-foreground hover:underline underline-offset-4 transition-colors cursor-pointer"
                   >
                     <Mail className="h-4 w-4" />
@@ -61,6 +64,7 @@ const Footer = () => {
                 <li>
                   <a
                     href="tel:+34673108104"
+                    onClick={() => trackContactClick('phone')}
                     className="inline-flex items-center gap-2 text-sm text-primary-foreground/60 hover:text-primary-foreground hover:underline underline-offset-4 transition-colors cursor-pointer"
                   >
                     <Phone className="h-4 w-4" />

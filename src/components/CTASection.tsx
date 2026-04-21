@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { trackFormSubmit } from "@/lib/analytics";
+import { trackFormStart, trackFormSubmit } from "@/lib/analytics";
 
 const CTASection = () => {
   const { t } = useLanguage();
@@ -18,6 +18,14 @@ const CTASection = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const formStarted = useRef(false);
+
+  const handleFormFocus = () => {
+    if (!formStarted.current) {
+      formStarted.current = true;
+      trackFormStart();
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -103,7 +111,7 @@ const CTASection = () => {
                   <h3 className="heading-sm text-foreground mb-6 text-center">
                     {t.cta.formTitle}
                   </h3>
-                  <form onSubmit={handleSubmit} className="space-y-5">
+                  <form onSubmit={handleSubmit} onFocus={handleFormFocus} className="space-y-5">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                         {t.cta.form.name}
