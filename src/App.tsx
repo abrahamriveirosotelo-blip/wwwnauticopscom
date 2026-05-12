@@ -8,6 +8,7 @@ import { usePageTracking } from "@/hooks/usePageTracking";
 import Index from "./pages/Index";
 import LegalPage from "./pages/LegalPage";
 import ShippingAgentsPage from "./pages/ShippingAgentsPage";
+import DemoAlicante from "./pages/DemoAlicante";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -19,6 +20,7 @@ const AppRoutes = () => {
       <Route path="/" element={<Index />} />
       <Route path="/legal/:section" element={<LegalPage />} />
       <Route path="/for-shipping-agents" element={<ShippingAgentsPage />} />
+      <Route path="/demo/alicante" element={<DemoAlicante />} />
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
       <Route path="*" element={<NotFound />} />
     </Routes>
