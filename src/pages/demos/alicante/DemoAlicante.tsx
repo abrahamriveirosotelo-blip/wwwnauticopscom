@@ -74,18 +74,36 @@ function TimeField({ label, value, isReal, isEmpty }) {
   );
 }
 
-function TugStep({ code, label, time, done, last }) {
+function TugStep({ code, label, planned, real, last }) {
+  const done = !!real;
+  const isLate = real && planned && real !== planned;
   return (
     <div style={{display:"flex",gap:10,alignItems:"flex-start"}}>
       <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
         <div style={{width:30,height:30,borderRadius:"50%",display:"flex",alignItems:"center",
           justifyContent:"center",flexShrink:0,fontSize:9,fontWeight:800,
           background:done?B.navy:B.grayLight,color:done?B.cyan:B.gray}}>{code}</div>
-        {!last&&<div style={{width:2,height:16,background:done?B.cyan:B.grayLight,marginTop:2,borderRadius:1}}/>}
+        {!last&&<div style={{width:2,height:18,background:done?B.cyan:B.grayLight,marginTop:2,borderRadius:1}}/>}
       </div>
-      <div style={{paddingBottom:last?0:6}}>
+      <div style={{paddingBottom:last?0:6,flex:1}}>
         <div style={{fontSize:11,fontWeight:700,color:done?B.navy:B.gray}}>{label}</div>
-        <div style={{fontSize:12,color:done?B.dark:B.gray,fontWeight:done?600:400}}>{time||"—"}</div>
+        <div style={{display:"flex",alignItems:"center",gap:10,marginTop:2}}>
+          <span style={{fontSize:10,color:B.gray}}>Prev. {planned??"—"}</span>
+          {real?(
+            <span style={{fontSize:11,fontWeight:700,
+              color:isLate?B.danger:B.success,fontFamily:"'Courier New',monospace"}}>
+              {real}
+              {isLate&&(
+                <span style={{marginLeft:6,fontSize:9,fontWeight:800,
+                  background:"#FEE2E2",color:B.danger,padding:"1px 5px",borderRadius:4}}>
+                  ⚠ tarde
+                </span>
+              )}
+            </span>
+          ):(
+            <span style={{fontSize:11,color:B.grayLight}}>—</span>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -306,12 +324,14 @@ function Detail({ call, onClose }) {
                   </span>
                 </div>
                 <div style={{marginBottom:16}}>
-                  {[["IR","Salida base",TUG.times.ir_at,true],["COS","Al costado",TUG.times.cos_at,true],
-                    ["RC","Recoge cabo",isAlert?"—":TUG.times.rc_at,!isAlert],
-                    ["SC","Sale costado",isAlert?"—":TUG.times.sc_at,!isAlert],
-                    ["FR","Llega a base",isAlert?"—":TUG.times.fr_at,!isAlert]
-                  ].map(([c,l,t,d],i,a)=>(
-                    <TugStep key={c} code={c} label={l} time={t} done={d} last={i===a.length-1}/>
+                  {[
+                    ["IR",  "Salida base",  TUG.times.ir_at_planned,  TUG.times.ir_at_real],
+                    ["COS", "Al costado",   TUG.times.cos_at_planned, TUG.times.cos_at_real],
+                    ["RC",  "Recoge cabo",  TUG.times.rc_at_planned,  TUG.times.rc_at_real],
+                    ["SC",  "Sale costado", TUG.times.sc_at_planned,  TUG.times.sc_at_real],
+                    ["FR",  "Llega a base", TUG.times.fr_at_planned,  TUG.times.fr_at_real],
+                  ].map(([c,l,p,r],i,a)=>(
+                    <TugStep key={c} code={c} label={l} planned={p} real={r} last={i===a.length-1}/>
                   ))}
                 </div>
                 <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8}}>

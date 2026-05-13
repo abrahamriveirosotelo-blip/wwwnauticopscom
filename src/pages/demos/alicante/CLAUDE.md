@@ -82,17 +82,22 @@ Datos del parte de remolque. El campo `callId` lo vincula a su escala.
     "marinero": "P. Ruiz"
   },
   "times": {
-    "requested_at": "06:45",
-    "ir_at": "07:02",
-    "cos_at": "07:18",
-    "rc_at": null,
-    "sc_at": null,
-    "fr_at": null
+    "requested_at":  "06:45",
+    "ir_at_planned":  "07:00",
+    "ir_at_real":     "07:02",
+    "cos_at_planned": "07:18",
+    "cos_at_real":    "09:32",
+    "rc_at_planned":  "07:21",
+    "rc_at_real":     null,
+    "sc_at_planned":  "07:52",
+    "sc_at_real":     null,
+    "fr_at_planned":  "08:05",
+    "fr_at_real":     null
   }
 }
 ```
 
-`status` puede ser `"en_curso"` o `"completado"`. Los tiempos nulos aparecen como `—` en la UI.
+`status` puede ser `"en_curso"` o `"completado"`. Cada evento tiene un par `_planned` / `_real`; los tiempos `_real` nulos aparecen como `—`. Si `_real` existe y difiere de `_planned`, la UI lo muestra en rojo con badge `⚠ tarde`.
 
 > Para escalar a múltiples servicios, `tugService` deberá convertirse en un array `tugServices[]` y filtrar por `callId` en el componente.
 
@@ -135,8 +140,8 @@ DemoAlicante()
     │   ├── Consignatario
     │   └── Movimientos autorizados — Entrada / Salida
     ├── Tab: Servicios
-    │   ├── Remolque — datos del parte (si gt > 2000 y status ≠ Prevista)
-    │   │   ├── Timeline IR → COS → RC → SC → FR
+    │   ├── Remolque — datos del parte (solo si tugService.callId === call.id)
+    │   │   ├── Timeline IR → COS → RC → SC → FR (previsto vs real; tarda en rojo con badge ⚠)
     │   │   └── Tripulación (patrón, mecánico, marinero)
     │   └── Prácticos — "Sin datos recibidos" (placeholder)
     └── Tab: Documentos

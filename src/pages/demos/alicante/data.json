@@ -270,11 +270,16 @@
     },
     "times": {
       "requested_at": "06:45",
-      "ir_at": "07:02",
-      "cos_at": "07:18",
-      "rc_at": null,
-      "sc_at": null,
-      "fr_at": null
+      "ir_at_planned":  "07:00",
+      "ir_at_real":     "07:02",
+      "cos_at_planned": "07:18",
+      "cos_at_real":    "09:32",
+      "rc_at_planned":  "07:21",
+      "rc_at_real":     null,
+      "sc_at_planned":  "07:52",
+      "sc_at_real":     null,
+      "fr_at_planned":  "08:05",
+      "fr_at_real":     null
     }
   },
 
