@@ -115,7 +115,8 @@ function TugStep({ code, label, planned, real, last }) {
 }
 
 function Detail({ call, onClose }) {
-  const hasTug = TUG.callId === call.id;
+  const firstInitiado = CALLS.find(c => c.status === "Iniciado");
+  const hasTug = call.id === firstInitiado?.id;
   const isAlert = call.status === "Alerta";
   const [tab, setTab] = useState("operacion");
 
@@ -232,14 +233,16 @@ function Detail({ call, onClose }) {
             <div style={{marginBottom:20}}>
               <div style={{fontSize:10,fontWeight:800,color:B.gray,letterSpacing:"0.08em",marginBottom:10}}>HITOS OPERATIVOS</div>
               <div style={{background:B.offWhite,borderRadius:12,border:`1px solid ${B.grayLight}`,overflow:"hidden"}}>
-                {[
-                  ...(MILESTONES[call.id] || [
+                {(
+                  MILESTONES[call.id] ||
+                  (call.id === firstInitiado?.id ? Object.values(MILESTONES)[0] : null) ||
+                  [
                     { label:"Atracado",              status:"pending", time:null, by:null },
                     { label:"Inicio de operaciones", status:"pending", time:null, by:null },
                     { label:"Fin de operaciones",    status:"pending", time:null, by:null },
                     { label:"Desatracado",           status:"pending", time:null, by:null },
-                  ]),
-                ].map((m, i, arr) => {
+                  ]
+                ).map((m, i, arr) => {
                   const done = m.status==="done"; const inProgress = m.status==="in_progress";
                   const icon = done ? "✅" : inProgress ? "🔄" : "⌛";
                   const rowBg = m.inProgress ? "rgba(245,158,11,0.06)" : B.white;
