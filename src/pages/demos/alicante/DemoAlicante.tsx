@@ -443,7 +443,7 @@ export default function App() {
           <div style={{display:"flex",alignItems:"center",gap:6}}>
             <span style={{width:7,height:7,borderRadius:"50%",background:B.success,
               boxShadow:`0 0 6px ${B.success}`,display:"inline-block"}}/>
-            <span style={{color:"rgba(255,255,255,0.45)",fontSize:10,fontWeight:700}}>EN VIVO · 11/05/2026</span>
+            <span style={{color:"rgba(255,255,255,0.45)",fontSize:10,fontWeight:700}}>EN VIVO · {META.date}</span>
           </div>
         </div>
       </div>

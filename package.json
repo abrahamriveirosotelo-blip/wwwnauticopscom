@@ -13,7 +13,8 @@
     "test:watch": "vitest",
     "update-demo": "node scripts/update-alicante.mjs",
     "update-demo:dry": "node scripts/update-alicante.mjs --dry-run",
-    "update-demo:headers": "node scripts/update-alicante.mjs --print-headers"
+    "update-demo:headers": "node scripts/update-alicante.mjs --print-headers",
+    "preview:fresh": "npm run update-demo && npm run build && npm run preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
