@@ -33,10 +33,12 @@ Metadatos del puerto y la fuente de datos.
 {
   "port": "Alicante Port",
   "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-  "date": "11/05/2026",
+  "date": "13/05/2026",
   "refreshHours": 2
 }
 ```
+
+> `refreshHours` es informativo para la UI; el workflow real se ejecuta dos veces al día (08:00 y 12:00 hora España).
 
 ### `calls[]`
 Array de escalas. Campos de cada escala:
@@ -69,7 +71,7 @@ Datos del parte de remolque. El campo `callId` lo vincula a su escala.
 
 ```json
 {
-  "callId": "A202600322",
+  "callId": "A202600259",
   "reportNumber": "027892",
   "tugboat": "HÉRCULES APA",
   "powerPct": 75,
@@ -182,10 +184,11 @@ Es el mismo feed que alimenta `puertoalicante.com/el-puerto/prevision-buques/`.
 
 ## Actualización automática de datos
 
-Un GitHub Actions workflow (`.github/workflows/update-alicante-demo.yml`) descarga el CSV cada 2 horas, actualiza `calls[]` en `data.json`, y hace push. Netlify redespliega automáticamente. La demo muestra siempre escalas reales del puerto.
+Un GitHub Actions workflow (`.github/workflows/update-alicante-demo.yml`) descarga el CSV a las **08:00 y 12:00 hora España**, actualiza `calls[]` en `data.json`, y hace push. Netlify redespliega automáticamente.
 
-**El workflow preserva** `tugService` y `milestones` — son datos manuales de la demo y no se tocan.  
-**El workflow no preserva** `delay`, `alertNote`, `affectedBy`, `affectRisk` — si necesitas el escenario de alerta para una demo, edita `data.json` manualmente después de la actualización.
+En cada actualización el script también **elige automáticamente el escenario de alerta**: busca el barco "en puerto" que comparte muelle con otro barco previsto, lo marca como `"Alerta"`, y genera los campos de impacto en cascada (`affectedBy`, `affectRisk`) y los hitos operativos (`milestones`). No hay IDs hardcodeados — el escenario siempre funciona con los barcos que haya en el CSV en ese momento.
+
+Lo único que se preserva del JSON anterior son los datos manuales del parte de remolque (`tugService.crew`, `tugService.times`, `tugService.tugboat`). El `callId` del tugService se actualiza automáticamente para apuntar al barco elegido para la alerta.
 
 ### Comandos locales
 
@@ -220,10 +223,11 @@ npm run update-demo:headers   # imprime las columnas del CSV (útil si falla la 
 
 ## Notas para la demo
 
-**Escala recomendada para el recorrido guiado:** `WEC MAJORELLE` (id: `A202600322`)  
-6.362 GT, portacontenedores, Muelle 23. Es la única escala con datos reales de remolque, hitos en progreso y alerta activa — cubre todos los paneles del drawer de una vez.
+**Escala recomendada para el recorrido guiado:** el barco con `status: "Alerta"` (ver banner superior de la demo).  
+Es siempre el más interesante: tiene alerta activa, servicio de remolque en curso e hitos en progreso — cubre todos los paneles del drawer de una vez.
 
-**Para mostrar el escenario de alerta:** clicar en `WEC MAJORELLE` (id: `A202600322`)  
-Tiene `status: "Alerta"`, retraso de +4h 15min, y afecta a NIEVES B (riesgo ALTO) y SPIRIT (riesgo MEDIO) en el Muelle 23.
+**Para mostrar el escenario de alerta:** clicar en el barco con badge `⚠ ALERTA` en la tabla, o usar el botón "Ver detalle →" del banner rojo superior.
 
-**Para mostrar el impacto en cascada:** después de la alerta, buscar `NIEVES B` o `SPIRIT` en la tabla — aparecerán con borde naranja y badge de impacto.
+**Para mostrar el impacto en cascada:** buscar el barco con badge `Impacto ALTO` en la tabla — es el que tenía asignado el mismo muelle y queda bloqueado por el retraso.
+
+**El escenario se regenera automáticamente** en cada actualización del CSV: no hay nombres ni IDs hardcodeados en el código. Si el barco actual sale del puerto, el script elegirá el siguiente par válido.

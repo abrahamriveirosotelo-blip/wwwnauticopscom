@@ -8,7 +8,7 @@
   "calls": [
     {
       "id": "A202600259",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "8917869",
       "name": "ARTVIN",
       "gt": 1552,
@@ -19,7 +19,9 @@
       "eta": "2026-04-16T20:00",
       "etd": "2026-05-15T21:00",
       "from": "ALGER",
-      "to": "BALIKESIR"
+      "to": "BALIKESIR",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 15 según lo previsto."
     },
     {
       "id": "A202600317",
@@ -37,23 +39,8 @@
       "to": "DENIA"
     },
     {
-      "id": "A202600335",
-      "status": "Iniciado",
-      "imo": "9237242",
-      "name": "CRACOVIA",
-      "gt": 25028,
-      "len": 180,
-      "berth": "25",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-05-13T08:00",
-      "etd": "2026-05-13T18:00",
-      "from": "ORAN",
-      "to": "ALGER"
-    },
-    {
       "id": "A202600343",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9800398",
       "name": "SANTA CAROLINA",
       "gt": 35035,
@@ -139,11 +126,13 @@
       "eta": "2026-05-15T08:00",
       "etd": "2026-05-16T22:00",
       "from": "TARRAGONA",
-      "to": "HUELVA"
+      "to": "HUELVA",
+      "affectedBy": "A202600259",
+      "affectRisk": "ALTO"
     }
   ],
   "tugService": {
-    "callId": "A202600322",
+    "callId": "A202600259",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -170,49 +159,23 @@
     }
   },
   "milestones": {
-    "A202600322": [
+    "A202600259": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "11/05 · 08:42",
-        "by": "Práctico J. Morales"
+        "time": "16/04 · 20:25",
+        "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
+        "status": "done",
+        "time": "16/04 · 21:30",
+        "by": "Agente: ROMEU Y CIA. S A"
+      },
+      {
+        "label": "Fin de operaciones",
         "status": "in_progress",
-        "time": "En curso",
-        "by": "Agente: A. Pérez"
-      },
-      {
-        "label": "Fin de operaciones",
-        "status": "pending",
-        "time": null,
-        "by": null
-      },
-      {
-        "label": "Desatracado",
-        "status": "pending",
-        "time": null,
-        "by": null
-      }
-    ],
-    "A202600334": [
-      {
-        "label": "Atracado",
-        "status": "done",
-        "time": "11/05 · 08:42",
-        "by": "Práctico L. García"
-      },
-      {
-        "label": "Inicio de operaciones",
-        "status": "done",
-        "time": "11/05 · 09:05",
-        "by": "Agente: Ocean Ports"
-      },
-      {
-        "label": "Fin de operaciones",
-        "status": "pending",
-        "time": null,
+        "time": "En curso — con incidencia",
         "by": null
       },
       {

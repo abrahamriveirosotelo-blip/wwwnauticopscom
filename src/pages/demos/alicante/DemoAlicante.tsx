@@ -115,8 +115,8 @@ function TugStep({ code, label, planned, real, last }) {
 }
 
 function Detail({ call, onClose }) {
-  const firstInitiado = CALLS.find(c => c.status === "Iniciado");
-  const hasTug = call.id === firstInitiado?.id;
+  const primaryCall = CALLS.find(c => c.status === "Alerta") || CALLS.find(c => c.status === "Iniciado");
+  const hasTug = call.id === primaryCall?.id;
   const isAlert = call.status === "Alerta";
   const [tab, setTab] = useState("operacion");
 
@@ -131,12 +131,18 @@ function Detail({ call, onClose }) {
         color:B.white,flexShrink:0,
         borderBottom:isAlert?`3px solid ${B.danger}`:"none"}}>
         {isAlert&&(
-          <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:10,
-            background:"rgba(239,68,68,0.2)",borderRadius:8,padding:"6px 12px"}}>
-            <span style={{fontSize:14}}>⚠</span>
-            <span style={{fontSize:11,fontWeight:800,color:"#FCA5A5",letterSpacing:"0.06em"}}>
-              RETRASO CONFIRMADO · {call.delay}
-            </span>
+          <div style={{marginBottom:10,background:"rgba(239,68,68,0.2)",borderRadius:8,padding:"8px 12px"}}>
+            <div style={{display:"flex",alignItems:"center",gap:8}}>
+              <span style={{fontSize:14}}>⚠</span>
+              <span style={{fontSize:11,fontWeight:800,color:"#FCA5A5",letterSpacing:"0.06em"}}>
+                RETRASO CONFIRMADO · {call.delay}
+              </span>
+            </div>
+            {call.alertNote&&(
+              <div style={{fontSize:11,color:"rgba(252,165,165,0.8)",marginTop:5,lineHeight:1.4}}>
+                {call.alertNote}
+              </div>
+            )}
           </div>
         )}
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
@@ -235,7 +241,7 @@ function Detail({ call, onClose }) {
               <div style={{background:B.offWhite,borderRadius:12,border:`1px solid ${B.grayLight}`,overflow:"hidden"}}>
                 {(
                   MILESTONES[call.id] ||
-                  (call.id === firstInitiado?.id ? Object.values(MILESTONES)[0] : null) ||
+                  (call.id === primaryCall?.id ? Object.values(MILESTONES)[0] : null) ||
                   [
                     { label:"Atracado",              status:"pending", time:null, by:null },
                     { label:"Inicio de operaciones", status:"pending", time:null, by:null },
@@ -492,24 +498,30 @@ export default function App() {
       {/* MAIN */}
       <div style={{padding:"20px 24px"}}>
         {/* Alert banner */}
-        {counts.alerta>0&&(
-          <div style={{background:"rgba(127,29,29,0.95)",border:`1px solid ${B.danger}`,borderRadius:10,
-            padding:"10px 18px",marginBottom:16,display:"flex",alignItems:"center",gap:12}}>
-            <span style={{fontSize:18}}>⚠</span>
-            <div>
-              <div style={{fontSize:12,fontWeight:800,color:"#FCA5A5",letterSpacing:"0.04em"}}>ALERTA OPERATIVA ACTIVA</div>
-              <div style={{fontSize:11,color:"rgba(252,165,165,0.8)",marginTop:2}}>
-                WEC MAJORELLE · Muelle 23 · +4h 15min · NIEVES B y SPIRIT potencialmente afectadas
+        {counts.alerta>0&&(()=>{
+          const alertCall = CALLS.find(c=>c.status==="Alerta");
+          const affected  = CALLS.filter(c=>c.affectedBy===alertCall?.id);
+          const affectedNames = affected.map(c=>c.name).join(" y ");
+          return (
+            <div style={{background:"rgba(127,29,29,0.95)",border:`1px solid ${B.danger}`,borderRadius:10,
+              padding:"10px 18px",marginBottom:16,display:"flex",alignItems:"center",gap:12}}>
+              <span style={{fontSize:18}}>⚠</span>
+              <div>
+                <div style={{fontSize:12,fontWeight:800,color:"#FCA5A5",letterSpacing:"0.04em"}}>ALERTA OPERATIVA ACTIVA</div>
+                <div style={{fontSize:11,color:"rgba(252,165,165,0.8)",marginTop:2}}>
+                  {alertCall?.name} · Muelle {alertCall?.berth} · {alertCall?.delay}
+                  {affectedNames && ` · ${affectedNames} potencialmente afectada${affected.length>1?"s":""}`}
+                </div>
               </div>
+              <button onClick={()=>setSelected(alertCall)}
+                style={{marginLeft:"auto",background:"rgba(239,68,68,0.2)",border:`1px solid ${B.danger}`,
+                  color:"#FCA5A5",borderRadius:7,padding:"5px 14px",cursor:"pointer",
+                  fontSize:11,fontWeight:800,fontFamily:"inherit"}}>
+                Ver detalle →
+              </button>
             </div>
-            <button onClick={()=>setSelected(CALLS.find(c=>c.status==="Alerta"))}
-              style={{marginLeft:"auto",background:"rgba(239,68,68,0.2)",border:`1px solid ${B.danger}`,
-                color:"#FCA5A5",borderRadius:7,padding:"5px 14px",cursor:"pointer",
-                fontSize:11,fontWeight:800,fontFamily:"inherit"}}>
-              Ver detalle →
-            </button>
-          </div>
-        )}
+          );
+        })()}
 
         <div style={{background:B.white,borderRadius:12,border:`1px solid ${B.grayLight}`,
           overflow:"hidden",boxShadow:"0 1px 6px rgba(1,11,36,0.06)"}}>

@@ -88,6 +88,57 @@ function getVal(row, colName) {
   return colName ? (row[colName] ?? '') : '';
 }
 
+function fmtMilestoneTime(ms) {
+  const d = new Date(ms);
+  const pad = n => String(n).padStart(2, '0');
+  return `${pad(d.getDate())}/${pad(d.getMonth() + 1)} · ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
+// --- Escenario de alerta dinámico ---
+// Cada vez que se actualiza el JSON, elige el mejor barco "en puerto" para simular
+// una incidencia real: preferiblemente uno que comparta muelle con otro barco previsto
+// (así se puede mostrar el impacto en cascada durante la demo).
+// No depende de IDs fijos: siempre funciona con los barcos que haya en el CSV.
+const ALERT_DELAY = '+4h 30min';
+
+function buildAlertScenario(calls) {
+  // Buscar par: Iniciado con muelle compartido por un Prevista (cascada de impacto)
+  let alertCall = null;
+  let affectedCall = null;
+  for (const c of calls.filter(c => c.status === 'Iniciado')) {
+    if (c.berth === '—') continue;
+    const next = calls.find(x => x.status === 'Prevista' && x.berth === c.berth);
+    if (next) { alertCall = c; affectedCall = next; break; }
+  }
+  // Fallback: primer Iniciado sin cascada
+  if (!alertCall) alertCall = calls.find(c => c.status === 'Iniciado');
+  if (!alertCall) return null;
+
+  const op = alertCall.op || '';
+  const opCtx = op.startsWith('D/') ? 'descarga' : op.startsWith('C/') ? 'carga' : 'operaciones';
+
+  alertCall.status = 'Alerta';
+  alertCall.delay = ALERT_DELAY;
+  alertCall.alertNote = `Incidencia en ${opCtx}. El buque no liberará el Muelle ${alertCall.berth} según lo previsto.`;
+
+  if (affectedCall) {
+    affectedCall.affectedBy = alertCall.id;
+    affectedCall.affectRisk = 'ALTO';
+  }
+
+  const etaMs = new Date(alertCall.eta).getTime();
+  const milestones = {
+    [alertCall.id]: [
+      { label: 'Atracado',              status: 'done',        time: fmtMilestoneTime(etaMs + 25 * 60000), by: 'Práctico (APA)' },
+      { label: 'Inicio de operaciones', status: 'done',        time: fmtMilestoneTime(etaMs + 90 * 60000), by: `Agente: ${alertCall.agent}` },
+      { label: 'Fin de operaciones',    status: 'in_progress', time: 'En curso — con incidencia',           by: null },
+      { label: 'Desatracado',           status: 'pending',     time: null,                                  by: null },
+    ],
+  };
+
+  return { alertId: alertCall.id, alertName: alertCall.name, affectedName: affectedCall?.name, milestones };
+}
+
 // --- Main ---
 
 async function main() {
@@ -192,29 +243,38 @@ async function main() {
 
   console.log(`✓ ${calls.length} escalas activas/previstas encontradas`);
 
-  // Leer data.json actual para preservar campos manuales
+  // Escenario de alerta dinámico (modifica calls[] en el lugar)
+  const alert = buildAlertScenario(calls);
+  if (alert) {
+    const ac = calls.find(c => c.id === alert.alertId);
+    console.log(`✓ Alerta de demo → ${alert.alertName} · Muelle ${ac?.berth}`);
+    if (alert.affectedName) console.log(`  → Impacto ALTO en ${alert.affectedName} (mismo muelle)`);
+  } else {
+    console.warn('⚠️  No hay barcos en puerto — escenario de alerta no aplicado');
+  }
+
+  // Leer data.json actual para preservar los datos manuales del tugService (tripulación, tiempos)
   const existing = JSON.parse(readFileSync(DATA_PATH, 'utf-8'));
 
   const now = new Date();
   const dateStr = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()}`;
 
   const updated = {
-    meta: {
-      ...existing.meta,
-      date: dateStr,
-    },
+    meta: { ...existing.meta, date: dateStr },
     calls,
-    // Preservar datos manuales de la demo
-    tugService: existing.tugService,
-    milestones: existing.milestones,
+    // callId apunta siempre al barco elegido para la alerta; el resto del tugService es manual
+    tugService: alert
+      ? { ...existing.tugService, callId: alert.alertId }
+      : existing.tugService,
+    // Hitos generados dinámicamente para el barco en alerta
+    milestones: alert ? alert.milestones : existing.milestones,
   };
 
   const json = JSON.stringify(updated, null, 2);
 
   if (isDryRun) {
     console.log('\n--- DRY RUN: data.json no modificado ---');
-    console.log(`Escalas: ${calls.length}`);
-    console.log(`Fecha meta: ${dateStr}`);
+    console.log(`Escalas: ${calls.length}  |  Fecha: ${dateStr}`);
     calls.slice(0, 3).forEach(c =>
       console.log(`  ${c.id} | ${c.name} | ${c.status} | ETA ${c.eta} | Muelle ${c.berth}`)
     );

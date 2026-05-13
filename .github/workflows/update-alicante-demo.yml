@@ -2,7 +2,8 @@ name: Update Alicante Demo Data
 
 on:
   schedule:
-    - cron: '0 */2 * * *'   # cada 2 horas
+    - cron: '0 6 * * *'    # 08:00 España (verano, UTC+2)
+    - cron: '0 10 * * *'   # 12:00 España (verano, UTC+2)
   workflow_dispatch:          # disparo manual desde GitHub Actions
 
 permissions:
