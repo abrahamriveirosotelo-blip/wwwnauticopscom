@@ -74,9 +74,14 @@ function TimeField({ label, value, isReal, isEmpty }) {
   );
 }
 
+function minsFromTime(t: string) {
+  const [h, m] = t.split(":").map(Number);
+  return h * 60 + m;
+}
+
 function TugStep({ code, label, planned, real, last }) {
   const done = !!real;
-  const isLate = real && planned && real !== planned;
+  const isLate = real && planned && (minsFromTime(real) - minsFromTime(planned)) > 5;
   return (
     <div style={{display:"flex",gap:10,alignItems:"flex-start"}}>
       <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
