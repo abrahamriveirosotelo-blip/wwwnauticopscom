@@ -8,7 +8,7 @@ import { usePageTracking } from "@/hooks/usePageTracking";
 import Index from "./pages/Index";
 import LegalPage from "./pages/LegalPage";
 import ShippingAgentsPage from "./pages/ShippingAgentsPage";
-import DemoAlicante from "./pages/DemoAlicante";
+import DemoAlicante from "./pages/demos/alicante/DemoAlicante";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
