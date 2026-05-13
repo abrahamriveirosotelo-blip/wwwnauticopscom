@@ -159,8 +159,12 @@ async function main() {
     const etd = parseDate(getVal(row, resolved.etd));
     if (!isStillActive(etd)) continue; // escala ya finalizada
 
-    // Usar el status del CSV directamente (Iniciado / Prevista)
-    const status = getVal(row, resolved.status) || (eta && new Date(eta) <= new Date() ? 'Iniciado' : 'Prevista');
+    // Derivar status de las fechas, no del CSV.
+    // El portal de la APA tiene lag frecuente actualizando el status:
+    // un barco puede llevar horas en puerto y seguir marcado como "Prevista".
+    // ETA pasado + ETD futuro = en puerto = Iniciado.
+    const etaMs = eta ? new Date(eta).getTime() : null;
+    const status = (etaMs && etaMs <= Date.now()) ? 'Iniciado' : 'Prevista';
 
     // GT y eslora: el CSV usa coma como decimal en algunos campos
     const gt  = parseFloat(getVal(row, resolved.gt).replace(',', '.'))  || 0;
