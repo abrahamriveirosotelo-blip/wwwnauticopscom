@@ -10,7 +10,10 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "update-demo": "node scripts/update-alicante.mjs",
+    "update-demo:dry": "node scripts/update-alicante.mjs --dry-run",
+    "update-demo:headers": "node scripts/update-alicante.mjs --print-headers"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

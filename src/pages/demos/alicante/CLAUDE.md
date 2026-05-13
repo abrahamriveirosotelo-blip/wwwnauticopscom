@@ -178,7 +178,28 @@ Las escalas actuales se obtienen del CSV público de la APA:
 https://www.puertoalicante.com/wp-content/uploads/buques/V_TC_ESCALAS.csv
 ```
 
-Es el mismo feed que alimenta `puertoalicante.com/el-puerto/prevision-buques/`. Para actualizar los datos de la demo con escalas más recientes, descargar el CSV, extraer las columnas relevantes y actualizar `calls[]` en `data.json`.
+Es el mismo feed que alimenta `puertoalicante.com/el-puerto/prevision-buques/`.
+
+## Actualización automática de datos
+
+Un GitHub Actions workflow (`.github/workflows/update-alicante-demo.yml`) descarga el CSV cada 2 horas, actualiza `calls[]` en `data.json`, y hace push. Netlify redespliega automáticamente. La demo muestra siempre escalas reales del puerto.
+
+**El workflow preserva** `tugService` y `milestones` — son datos manuales de la demo y no se tocan.  
+**El workflow no preserva** `delay`, `alertNote`, `affectedBy`, `affectRisk` — si necesitas el escenario de alerta para una demo, edita `data.json` manualmente después de la actualización.
+
+### Comandos locales
+
+```bash
+npm run update-demo           # actualiza data.json con datos frescos
+npm run update-demo:dry       # muestra qué cambiaría sin escribir
+npm run update-demo:headers   # imprime las columnas del CSV (útil si falla la detección)
+```
+
+### Si el script falla con "columna no encontrada"
+
+1. Ejecuta `npm run update-demo:headers` para ver las columnas reales del CSV
+2. Actualiza el objeto `COL` en `scripts/update-alicante.mjs` con los nombres correctos
+3. Las columnas obligatorias son `id`, `name` y `eta`
 
 ---
 
