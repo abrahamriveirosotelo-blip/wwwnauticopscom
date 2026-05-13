@@ -18,21 +18,23 @@ const DATA_PATH = join(__dirname, '../src/pages/demos/alicante/data.json');
 const CSV_URL = 'https://www.puertoalicante.com/wp-content/uploads/buques/V_TC_ESCALAS.csv';
 
 // --- Mapeo de columnas del CSV ---
+// Columnas reales verificadas contra V_TC_ESCALAS.csv (mayo 2026).
 // Si el script falla con "columna no encontrada", ejecuta --print-headers
-// para ver los nombres reales y actualiza este objeto.
+// para ver los nombres actuales y actualiza este objeto.
 const COL = {
-  id:    ['ID_ESCALA', 'ESCALA', 'ID_ESCALA_GEN'],
-  imo:   ['IMO', 'N_IMO', 'NUM_IMO'],
-  name:  ['NOMBRE_BUQUE', 'BUQUE', 'NOMBRE', 'NOM_BUQUE'],
-  gt:    ['GT', 'ARQUEO_BRUTO', 'ARQUEO', 'TRB'],
-  len:   ['ESLORA', 'LOA', 'ESLORA_M', 'ESLORA_PP'],
-  berth: ['MUELLE', 'ATRAQUE', 'COD_MUELLE', 'NOMBRE_MUELLE', 'DESC_MUELLE'],
-  agent: ['CONSIGNATARIO', 'AGENTE', 'CONSIG', 'NOM_CONSIG'],
-  op:    ['TIPO_OPERACION', 'OPERACION', 'TIPO_OP', 'DESC_OPERACION', 'OP'],
-  eta:   ['ETA', 'FECHA_ENTRADA', 'F_ENTRADA', 'F_ETA', 'FECHA_ETA'],
-  etd:   ['ETD', 'FECHA_SALIDA', 'F_SALIDA', 'F_ETD', 'FECHA_ETD'],
-  from:  ['PROCEDENCIA', 'PUERTO_ORIGEN', 'ORIGEN', 'PROC'],
-  to:    ['DESTINO', 'PUERTO_DESTINO', 'DEST'],
+  id:     ['portcallid'],
+  status: ['status'],
+  imo:    ['vessel.imo'],
+  name:   ['vessel.name'],
+  gt:     ['vessel.grossTonnage'],
+  len:    ['vessel.lengthOverallMeters'],
+  berth:  ['operations[0].berth'],
+  agent:  ['operations[0].agent'],
+  op:     ['operations[0].operationType'],
+  eta:    ['timeStamps.plannedArrivalDate'],
+  etd:    ['timeStamps.plannedDepartureDate'],
+  from:   ['voyages.previousPort'],
+  to:     ['voyages.nextPort'],
 };
 
 // --- Helpers ---
@@ -40,22 +42,18 @@ const COL = {
 function parseDate(str) {
   if (!str || !str.trim()) return null;
   const s = str.trim();
-  // DD/MM/YYYY HH:MM  o  DD/MM/YYYY H:MM
-  let m = s.match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{1,2}):(\d{2})/);
-  if (m) return `${m[3]}-${m[2]}-${m[1]}T${m[4].padStart(2, '0')}:${m[5]}`;
-  // YYYY-MM-DD HH:MM
-  m = s.match(/^(\d{4})-(\d{2})-(\d{2})\s+(\d{1,2}):(\d{2})/);
+  // YYYY-MM-DD HH:MM:SS  (formato del CSV de la APA)
+  let m = s.match(/^(\d{4})-(\d{2})-(\d{2})\s+(\d{1,2}):(\d{2})/);
   if (m) return `${m[1]}-${m[2]}-${m[3]}T${m[4].padStart(2, '0')}:${m[5]}`;
+  // DD/MM/YYYY HH:MM  (fallback por si cambia el formato)
+  m = s.match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{1,2}):(\d{2})/);
+  if (m) return `${m[3]}-${m[2]}-${m[1]}T${m[4].padStart(2, '0')}:${m[5]}`;
   return null;
 }
 
-function determineStatus(eta, etd) {
-  const now = Date.now();
-  const etaMs = eta ? new Date(eta).getTime() : null;
-  const etdMs = etd ? new Date(etd).getTime() : null;
-  if (etdMs && etdMs < now) return null; // ya salió — excluir
-  if (etaMs && etaMs <= now) return 'Iniciado';
-  return 'Prevista';
+function isStillActive(etd) {
+  if (!etd) return true;
+  return new Date(etd).getTime() > Date.now();
 }
 
 function resolveCol(headers, candidates) {
@@ -68,7 +66,9 @@ function resolveCol(headers, candidates) {
 }
 
 function parseCsv(text) {
-  const lines = text.split(/\r?\n/).filter(l => l.trim());
+  // Eliminar BOM si existe
+  const clean = text.replace(/^﻿/, '');
+  const lines = clean.split(/\r?\n/).filter(l => l.trim());
   if (!lines.length) throw new Error('CSV vacío');
 
   // Detectar separador: si la primera línea tiene más ";" que "," usamos ";"
@@ -152,31 +152,34 @@ async function main() {
   // Construir calls
   const calls = [];
   for (const row of rows) {
-    const eta = parseDate(getVal(row, resolved.eta));
-    const etd = parseDate(getVal(row, resolved.etd));
-    const status = determineStatus(eta, etd);
-    if (!status) continue; // escala ya terminada
-
     const id = getVal(row, resolved.id);
     if (!id) continue;
 
-    const gt = parseFloat(getVal(row, resolved.gt)) || 0;
-    const len = parseFloat(getVal(row, resolved.len)) || 0;
+    const eta = parseDate(getVal(row, resolved.eta));
+    const etd = parseDate(getVal(row, resolved.etd));
+    if (!isStillActive(etd)) continue; // escala ya finalizada
+
+    // Usar el status del CSV directamente (Iniciado / Prevista)
+    const status = getVal(row, resolved.status) || (eta && new Date(eta) <= new Date() ? 'Iniciado' : 'Prevista');
+
+    // GT y eslora: el CSV usa coma como decimal en algunos campos
+    const gt  = parseFloat(getVal(row, resolved.gt).replace(',', '.'))  || 0;
+    const len = parseFloat(getVal(row, resolved.len).replace(',', '.')) || 0;
 
     calls.push({
       id,
       status,
       imo:   getVal(row, resolved.imo)   || '0000000',
-      name:  getVal(row, resolved.name)  || '—',
-      gt:    isNaN(gt) ? 0 : gt,
+      name:  getVal(row, resolved.name).trim() || '—',
+      gt:    isNaN(gt)  ? 0 : gt,
       len:   isNaN(len) ? 0 : len,
       berth: getVal(row, resolved.berth) || '—',
       agent: getVal(row, resolved.agent) || '—',
       op:    getVal(row, resolved.op)    || '—',
       eta:   eta || '',
       etd:   etd || '',
-      from:  getVal(row, resolved.from)  || '—',
-      to:    getVal(row, resolved.to)    || '—',
+      from:  getVal(row, resolved.from).trim()  || '—',
+      to:    getVal(row, resolved.to).trim()    || '—',
     });
   }
 
