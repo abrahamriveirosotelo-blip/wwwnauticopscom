@@ -76,18 +76,14 @@ function OpTag({ op }) {
   return <span style={{padding:"2px 9px",borderRadius:6,fontSize:10,fontWeight:700,background:bg,color:text}}>{op}</span>;
 }
 
-function TimeRow({ label, planned, real, warn }) {
+function TimeField({ label, value, isReal, isEmpty }) {
   return (
-    <div style={{display:"grid",gridTemplateColumns:"70px 1fr 1fr",gap:8,alignItems:"center",
-      padding:"7px 0",borderBottom:`1px solid ${B.grayLight}`}}>
-      <span style={{fontSize:10,fontWeight:800,color:B.gray,letterSpacing:"0.06em"}}>{label}</span>
-      <div>
-        <div style={{fontSize:9,color:B.gray,marginBottom:2,fontWeight:700}}>PREVISTO</div>
-        <div style={{fontSize:12,fontWeight:500,color:B.dark}}>{planned}</div>
-      </div>
-      <div>
-        <div style={{fontSize:9,color:B.gray,marginBottom:2,fontWeight:700}}>REAL</div>
-        <div style={{fontSize:12,fontWeight:700,color:real?(warn?B.danger:B.success):B.grayLight}}>{real||"—"}</div>
+    <div style={{display:"flex",flexDirection:"column",gap:3}}>
+      <div style={{fontSize:9,fontWeight:800,color:B.gray,letterSpacing:"0.07em"}}>{label}</div>
+      <div style={{fontSize:13,fontWeight:isReal?700:500,
+        color:isEmpty?B.grayLight:isReal?B.success:B.navy,
+        fontFamily:isEmpty?"inherit":"'Courier New',monospace"}}>
+        {value}
       </div>
     </div>
   );
@@ -192,13 +188,34 @@ function Detail({ call, onClose }) {
           {/* Times */}
           <div style={{marginBottom:20}}>
             <div style={{fontSize:10,fontWeight:800,color:B.gray,letterSpacing:"0.08em",marginBottom:10}}>TIEMPOS</div>
-            <div style={{background:B.offWhite,borderRadius:12,padding:"0 16px",border:`1px solid ${B.grayLight}`}}>
-              <TimeRow label="ETA" planned={fmt(call.eta)}
-                real={call.status!=="Prevista"?fmt(new Date(new Date(call.eta).getTime()+12*60000)):null} warn={isAlert}/>
-              <TimeRow label="ATA" planned="—"
-                real={call.status!=="Prevista"?fmt(new Date(new Date(call.eta).getTime()+25*60000)):null} warn={isAlert}/>
-              <TimeRow label="ETD" planned={fmt(call.etd)} real={null}/>
-              <TimeRow label="ATD" planned="—" real={null}/>
+            <div style={{background:B.offWhite,borderRadius:12,border:`1px solid ${B.grayLight}`,overflow:"hidden"}}>
+              {/* Llegada */}
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:0,
+                borderBottom:`1px solid ${B.grayLight}`}}>
+                <div style={{padding:"14px 16px",borderRight:`1px solid ${B.grayLight}`}}>
+                  <TimeField label="ETA · Llegada prevista"
+                    value={fmt(call.eta)} isReal={false} isEmpty={false}/>
+                </div>
+                <div style={{padding:"14px 16px"}}>
+                  {(() => {
+                    const ata = call.status!=="Prevista"
+                      ? fmt(new Date(new Date(call.eta).getTime()+25*60000)) : null;
+                    return <TimeField label="ATA · Llegada real"
+                      value={ata||"—"} isReal={true} isEmpty={!ata}/>;
+                  })()}
+                </div>
+              </div>
+              {/* Salida */}
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:0}}>
+                <div style={{padding:"14px 16px",borderRight:`1px solid ${B.grayLight}`}}>
+                  <TimeField label="ETD · Salida prevista"
+                    value={fmt(call.etd)} isReal={false} isEmpty={false}/>
+                </div>
+                <div style={{padding:"14px 16px"}}>
+                  <TimeField label="ATD · Salida real"
+                    value="—" isReal={true} isEmpty={true}/>
+                </div>
+              </div>
             </div>
           </div>
 
