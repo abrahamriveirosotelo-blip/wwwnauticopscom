@@ -221,6 +221,21 @@
       "to": "SAFI"
     },
     {
+      "id": "A202600351",
+      "status": "Prevista",
+      "imo": "9802231",
+      "name": "J MARE",
+      "gt": 43241,
+      "len": 228,
+      "berth": "17",
+      "agent": "OCEAN PORTS & SHIPPING SL",
+      "op": "C/ CALIZA NAVE",
+      "eta": "2026-05-17T15:00",
+      "etd": "2026-05-20T18:00",
+      "from": "ZONGULDAK",
+      "to": "ORAN"
+    },
+    {
       "id": "A202600342",
       "status": "Prevista",
       "imo": "9134153",
@@ -233,21 +248,6 @@
       "eta": "2026-05-17T19:00",
       "etd": "2026-05-18T14:00",
       "from": "ALGECIRAS",
-      "to": "ORAN"
-    },
-    {
-      "id": "A202600347",
-      "status": "Prevista",
-      "imo": "9353723",
-      "name": "LOLA B",
-      "gt": 8971,
-      "len": 154.85,
-      "berth": "23",
-      "agent": "MILLER Y COMPAÑIA S.A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-05-20T06:00",
-      "etd": "2026-05-20T12:00",
-      "from": "STA. CRUZ",
       "to": "MOSTAGANEM"
     }
   ],
