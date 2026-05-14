@@ -2,7 +2,7 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "13/05/2026",
+    "date": "14/05/2026",
     "refreshHours": 2
   },
   "calls": [
@@ -39,6 +39,21 @@
       "to": "DENIA"
     },
     {
+      "id": "A202600333",
+      "status": "Iniciado",
+      "imo": "9338151",
+      "name": "SIDER BILBAO",
+      "gt": 9177,
+      "len": 136,
+      "berth": "21",
+      "agent": "TERMINALES MARTM. SURESTE S.A.",
+      "op": "D/ CEMENTO INST.ESP.",
+      "eta": "2026-05-09T20:00",
+      "etd": "2026-05-16T10:00",
+      "from": "RADES/TUNIS",
+      "to": "NADOR"
+    },
+    {
       "id": "A202600343",
       "status": "Iniciado",
       "imo": "9800398",
@@ -55,7 +70,7 @@
     },
     {
       "id": "A202600319",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9349227",
       "name": "NJORD",
       "gt": 7720,
@@ -69,21 +84,6 @@
       "to": "PORT SAYD"
     },
     {
-      "id": "A202600309",
-      "status": "Prevista",
-      "imo": "9302255",
-      "name": "SPIRIT",
-      "gt": 7713,
-      "len": 141.65,
-      "berth": "23",
-      "agent": "MAGHREB CONTAINER INTERNATIONAL SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-05-14T08:00",
-      "etd": "2026-05-14T14:00",
-      "from": "BARCELONA",
-      "to": "BARCELONA"
-    },
-    {
       "id": "A202600344",
       "status": "Prevista",
       "imo": "9216470",
@@ -92,11 +92,41 @@
       "len": 112,
       "berth": "17",
       "agent": "ROMEU Y CIA. S A",
-      "op": "D/ ABONO A TOLVA",
-      "eta": "2026-05-14T18:00",
-      "etd": "2026-05-15T12:00",
+      "op": "D/ ABONO INST. ESP.",
+      "eta": "2026-05-15T06:00",
+      "etd": "2026-05-15T14:00",
       "from": "CARTAGENA",
       "to": "SAFI"
+    },
+    {
+      "id": "A202600314",
+      "status": "Prevista",
+      "imo": "9374387",
+      "name": "SARDES",
+      "gt": 5232,
+      "len": 115.46,
+      "berth": "23",
+      "agent": "ROMEU Y CIA. S A",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-05-15T06:00",
+      "etd": "2026-05-15T20:00",
+      "from": "SAGUNTO",
+      "to": "ORAN"
+    },
+    {
+      "id": "A202600260",
+      "status": "Prevista",
+      "imo": "9165310",
+      "name": "MERNA 2",
+      "gt": 29303,
+      "len": 195,
+      "berth": "19",
+      "agent": "ROMEU Y CIA. S A",
+      "op": "C/ VEHICULOS",
+      "eta": "2026-05-15T06:00",
+      "etd": "2026-05-15T20:00",
+      "from": "LIVORNO",
+      "to": "HUELVA"
     },
     {
       "id": "A202600328",
@@ -111,7 +141,7 @@
       "eta": "2026-05-15T08:00",
       "etd": "2026-05-15T23:00",
       "from": "LAS PALMAS",
-      "to": "ORAN"
+      "to": "BARCELONA"
     },
     {
       "id": "A202600330",
@@ -126,9 +156,99 @@
       "eta": "2026-05-15T08:00",
       "etd": "2026-05-16T22:00",
       "from": "TARRAGONA",
-      "to": "HUELVA",
+      "to": "CARTAGENA",
       "affectedBy": "A202600259",
       "affectRisk": "ALTO"
+    },
+    {
+      "id": "A202600344",
+      "status": "Prevista",
+      "imo": "9216470",
+      "name": "KARRUCA",
+      "gt": 5214,
+      "len": 112,
+      "berth": "17",
+      "agent": "ROMEU Y CIA. S A",
+      "op": "D/ ABONO A TOLVA",
+      "eta": "2026-05-15T18:00",
+      "etd": "2026-05-15T12:00",
+      "from": "CARTAGENA",
+      "to": "TENERIFE"
+    },
+    {
+      "id": "A202600309",
+      "status": "Prevista",
+      "imo": "9302255",
+      "name": "SPIRIT",
+      "gt": 7713,
+      "len": 141.65,
+      "berth": "23",
+      "agent": "MAGHREB CONTAINER INTERNATIONAL SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-05-16T08:00",
+      "etd": "2026-05-16T14:00",
+      "from": "BARCELONA",
+      "to": "HUELVA"
+    },
+    {
+      "id": "A202600336",
+      "status": "Prevista",
+      "imo": "9083043",
+      "name": "NANTO",
+      "gt": 7550,
+      "len": 151.14,
+      "berth": "11",
+      "agent": "EUROPEAN FORWARDING SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-05-17T07:00",
+      "etd": "2026-05-17T15:00",
+      "from": "ARRECIFE",
+      "to": "LAS PALMAS"
+    },
+    {
+      "id": "A202600337",
+      "status": "Prevista",
+      "imo": "9430193",
+      "name": "HERCULES J",
+      "gt": 10585,
+      "len": 151.72,
+      "berth": "11",
+      "agent": "EUROPEAN FORWARDING SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-05-17T13:00",
+      "etd": "2026-05-18T21:00",
+      "from": "BARCELONA",
+      "to": "SAFI"
+    },
+    {
+      "id": "A202600342",
+      "status": "Prevista",
+      "imo": "9134153",
+      "name": "WEC MAJORELLE",
+      "gt": 6362,
+      "len": 121.35,
+      "berth": "23",
+      "agent": "A. PEREZ Y CIA. S.L.",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-05-17T19:00",
+      "etd": "2026-05-18T14:00",
+      "from": "ALGECIRAS",
+      "to": "ORAN"
+    },
+    {
+      "id": "A202600347",
+      "status": "Prevista",
+      "imo": "9353723",
+      "name": "LOLA B",
+      "gt": 8971,
+      "len": 154.85,
+      "berth": "23",
+      "agent": "MILLER Y COMPAÑIA S.A",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-05-20T06:00",
+      "etd": "2026-05-20T12:00",
+      "from": "STA. CRUZ",
+      "to": "MOSTAGANEM"
     }
   ],
   "tugService": {
