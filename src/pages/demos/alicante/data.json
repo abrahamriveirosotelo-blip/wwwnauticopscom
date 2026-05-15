@@ -2,13 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "14/05/2026",
+    "date": "15/05/2026",
     "refreshHours": 2
   },
   "calls": [
     {
       "id": "A202600259",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "8917869",
       "name": "ARTVIN",
       "gt": 1552,
@@ -19,39 +19,7 @@
       "eta": "2026-04-16T20:00",
       "etd": "2026-05-15T21:00",
       "from": "ALGER",
-      "to": "BALIKESIR",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 15 según lo previsto."
-    },
-    {
-      "id": "A202600317",
-      "status": "Iniciado",
-      "imo": "1111111",
-      "name": "SEMAC",
-      "gt": 73.22,
-      "len": 22.68,
-      "berth": "7",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "D/C BOYAS PLAYA",
-      "eta": "2026-05-05T06:00",
-      "etd": "2026-05-15T06:00",
-      "from": "DENIA",
-      "to": "DENIA"
-    },
-    {
-      "id": "A202600333",
-      "status": "Iniciado",
-      "imo": "9338151",
-      "name": "SIDER BILBAO",
-      "gt": 9177,
-      "len": 136,
-      "berth": "21",
-      "agent": "TERMINALES MARTM. SURESTE S.A.",
-      "op": "D/ CEMENTO INST.ESP.",
-      "eta": "2026-05-09T20:00",
-      "etd": "2026-05-16T10:00",
-      "from": "RADES/TUNIS",
-      "to": "NADOR"
+      "to": "BALIKESIR"
     },
     {
       "id": "A202600343",
@@ -70,7 +38,7 @@
     },
     {
       "id": "A202600319",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9349227",
       "name": "NJORD",
       "gt": 7720,
@@ -81,11 +49,28 @@
       "eta": "2026-05-14T07:00",
       "etd": "2026-05-15T15:00",
       "from": "DERINCE, KOCAELI",
-      "to": "PORT SAYD"
+      "to": "PORT SAYD",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
+    },
+    {
+      "id": "A202600260",
+      "status": "Iniciado",
+      "imo": "9165310",
+      "name": "MERNA 2",
+      "gt": 29303,
+      "len": 195,
+      "berth": "19",
+      "agent": "ROMEU Y CIA. S A",
+      "op": "C/ VEHICULOS",
+      "eta": "2026-05-15T06:00",
+      "etd": "2026-05-15T20:00",
+      "from": "LIVORNO",
+      "to": "HUELVA"
     },
     {
       "id": "A202600344",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9216470",
       "name": "KARRUCA",
       "gt": 5214,
@@ -100,7 +85,7 @@
     },
     {
       "id": "A202600314",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9374387",
       "name": "SARDES",
       "gt": 5232,
@@ -114,23 +99,8 @@
       "to": "ORAN"
     },
     {
-      "id": "A202600260",
-      "status": "Prevista",
-      "imo": "9165310",
-      "name": "MERNA 2",
-      "gt": 29303,
-      "len": 195,
-      "berth": "19",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "C/ VEHICULOS",
-      "eta": "2026-05-15T06:00",
-      "etd": "2026-05-15T20:00",
-      "from": "LIVORNO",
-      "to": "HUELVA"
-    },
-    {
       "id": "A202600328",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9483358",
       "name": "ISABELLA B",
       "gt": 10585,
@@ -144,36 +114,19 @@
       "to": "BARCELONA"
     },
     {
-      "id": "A202600330",
-      "status": "Prevista",
-      "imo": "9558452",
-      "name": "AMIRA JOY",
-      "gt": 6881,
-      "len": 132,
-      "berth": "15",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "C/ BLOQUES DE MARMOL",
-      "eta": "2026-05-15T08:00",
-      "etd": "2026-05-16T22:00",
-      "from": "TARRAGONA",
-      "to": "CARTAGENA",
-      "affectedBy": "A202600259",
-      "affectRisk": "ALTO"
-    },
-    {
-      "id": "A202600344",
-      "status": "Prevista",
-      "imo": "9216470",
-      "name": "KARRUCA",
-      "gt": 5214,
-      "len": 112,
-      "berth": "17",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "D/ ABONO A TOLVA",
-      "eta": "2026-05-15T18:00",
-      "etd": "2026-05-15T12:00",
-      "from": "CARTAGENA",
-      "to": "TENERIFE"
+      "id": "A202600352",
+      "status": "Iniciado",
+      "imo": "9106297",
+      "name": "MARELLA EXPLORER",
+      "gt": 76998,
+      "len": 262,
+      "berth": "14",
+      "agent": "A. PEREZ Y CIA. S.L.",
+      "op": "CRUCERISTAS",
+      "eta": "2026-05-15T09:00",
+      "etd": "2026-05-15T18:00",
+      "from": "BARCELONA",
+      "to": "PALMA"
     },
     {
       "id": "A202600309",
@@ -203,7 +156,9 @@
       "eta": "2026-05-17T07:00",
       "etd": "2026-05-17T15:00",
       "from": "ARRECIFE",
-      "to": "LAS PALMAS"
+      "to": "LAS PALMAS",
+      "affectedBy": "A202600319",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600337",
@@ -252,7 +207,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600259",
+    "callId": "A202600319",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -279,18 +234,18 @@
     }
   },
   "milestones": {
-    "A202600259": [
+    "A202600319": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "16/04 · 20:25",
+        "time": "14/05 · 07:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "16/04 · 21:30",
-        "by": "Agente: ROMEU Y CIA. S A"
+        "time": "14/05 · 08:30",
+        "by": "Agente: EUROPEAN FORWARDING SL"
       },
       {
         "label": "Fin de operaciones",
