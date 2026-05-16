@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import LegalPage from "./pages/LegalPage";
 import ShippingAgentsPage from "./pages/ShippingAgentsPage";
 import DemoAlicante from "./pages/demos/alicante/DemoAlicante";
+import DemoHuelva from "./pages/demos/huelva/DemoHuelva";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ const AppRoutes = () => {
       <Route path="/legal/:section" element={<LegalPage />} />
       <Route path="/for-shipping-agents" element={<ShippingAgentsPage />} />
       <Route path="/demo/alicante" element={<DemoAlicante />} />
+      <Route path="/demo/huelva" element={<DemoHuelva />} />
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
       <Route path="*" element={<NotFound />} />
     </Routes>
