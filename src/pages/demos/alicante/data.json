@@ -2,25 +2,10 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "15/05/2026",
+    "date": "16/05/2026",
     "refreshHours": 2
   },
   "calls": [
-    {
-      "id": "A202600259",
-      "status": "Iniciado",
-      "imo": "8917869",
-      "name": "ARTVIN",
-      "gt": 1552,
-      "len": 74.96,
-      "berth": "15",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "D/ CRISTAL",
-      "eta": "2026-04-16T20:00",
-      "etd": "2026-05-15T21:00",
-      "from": "ALGER",
-      "to": "BALIKESIR"
-    },
     {
       "id": "A202600343",
       "status": "Iniciado",
@@ -37,100 +22,8 @@
       "to": "A ORDENES"
     },
     {
-      "id": "A202600319",
-      "status": "Alerta",
-      "imo": "9349227",
-      "name": "NJORD",
-      "gt": 7720,
-      "len": 141.58,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-05-14T07:00",
-      "etd": "2026-05-15T15:00",
-      "from": "DERINCE, KOCAELI",
-      "to": "PORT SAYD",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
-    },
-    {
-      "id": "A202600260",
-      "status": "Iniciado",
-      "imo": "9165310",
-      "name": "MERNA 2",
-      "gt": 29303,
-      "len": 195,
-      "berth": "19",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "C/ VEHICULOS",
-      "eta": "2026-05-15T06:00",
-      "etd": "2026-05-15T20:00",
-      "from": "LIVORNO",
-      "to": "HUELVA"
-    },
-    {
-      "id": "A202600344",
-      "status": "Iniciado",
-      "imo": "9216470",
-      "name": "KARRUCA",
-      "gt": 5214,
-      "len": 112,
-      "berth": "17",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "D/ ABONO INST. ESP.",
-      "eta": "2026-05-15T06:00",
-      "etd": "2026-05-15T14:00",
-      "from": "CARTAGENA",
-      "to": "SAFI"
-    },
-    {
-      "id": "A202600314",
-      "status": "Iniciado",
-      "imo": "9374387",
-      "name": "SARDES",
-      "gt": 5232,
-      "len": 115.46,
-      "berth": "23",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-05-15T06:00",
-      "etd": "2026-05-15T20:00",
-      "from": "SAGUNTO",
-      "to": "ORAN"
-    },
-    {
-      "id": "A202600328",
-      "status": "Iniciado",
-      "imo": "9483358",
-      "name": "ISABELLA B",
-      "gt": 10585,
-      "len": 151,
-      "berth": "23",
-      "agent": "MILLER Y COMPAÑIA S.A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-05-15T08:00",
-      "etd": "2026-05-15T23:00",
-      "from": "LAS PALMAS",
-      "to": "BARCELONA"
-    },
-    {
-      "id": "A202600352",
-      "status": "Iniciado",
-      "imo": "9106297",
-      "name": "MARELLA EXPLORER",
-      "gt": 76998,
-      "len": 262,
-      "berth": "14",
-      "agent": "A. PEREZ Y CIA. S.L.",
-      "op": "CRUCERISTAS",
-      "eta": "2026-05-15T09:00",
-      "etd": "2026-05-15T18:00",
-      "from": "BARCELONA",
-      "to": "PALMA"
-    },
-    {
       "id": "A202600309",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9302255",
       "name": "SPIRIT",
       "gt": 7713,
@@ -141,7 +34,9 @@
       "eta": "2026-05-16T08:00",
       "etd": "2026-05-16T14:00",
       "from": "BARCELONA",
-      "to": "HUELVA"
+      "to": "HUELVA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
     },
     {
       "id": "A202600336",
@@ -156,9 +51,7 @@
       "eta": "2026-05-17T07:00",
       "etd": "2026-05-17T15:00",
       "from": "ARRECIFE",
-      "to": "LAS PALMAS",
-      "affectedBy": "A202600319",
-      "affectRisk": "ALTO"
+      "to": "LAS PALMAS"
     },
     {
       "id": "A202600337",
@@ -203,11 +96,13 @@
       "eta": "2026-05-17T19:00",
       "etd": "2026-05-18T14:00",
       "from": "ALGECIRAS",
-      "to": "MOSTAGANEM"
+      "to": "MOSTAGANEM",
+      "affectedBy": "A202600309",
+      "affectRisk": "ALTO"
     }
   ],
   "tugService": {
-    "callId": "A202600319",
+    "callId": "A202600309",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -234,18 +129,18 @@
     }
   },
   "milestones": {
-    "A202600319": [
+    "A202600309": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "14/05 · 07:25",
+        "time": "16/05 · 08:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "14/05 · 08:30",
-        "by": "Agente: EUROPEAN FORWARDING SL"
+        "time": "16/05 · 09:30",
+        "by": "Agente: MAGHREB CONTAINER INTERNATIONAL SL"
       },
       {
         "label": "Fin de operaciones",
