@@ -2,7 +2,7 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "16/05/2026",
+    "date": "17/05/2026",
     "refreshHours": 2
   },
   "calls": [
@@ -22,25 +22,8 @@
       "to": "A ORDENES"
     },
     {
-      "id": "A202600309",
-      "status": "Alerta",
-      "imo": "9302255",
-      "name": "SPIRIT",
-      "gt": 7713,
-      "len": 141.65,
-      "berth": "23",
-      "agent": "MAGHREB CONTAINER INTERNATIONAL SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-05-16T08:00",
-      "etd": "2026-05-16T14:00",
-      "from": "BARCELONA",
-      "to": "HUELVA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
-    },
-    {
       "id": "A202600336",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9083043",
       "name": "NANTO",
       "gt": 7550,
@@ -51,7 +34,9 @@
       "eta": "2026-05-17T07:00",
       "etd": "2026-05-17T15:00",
       "from": "ARRECIFE",
-      "to": "LAS PALMAS"
+      "to": "LAS PALMAS",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
       "id": "A202600337",
@@ -66,7 +51,9 @@
       "eta": "2026-05-17T13:00",
       "etd": "2026-05-18T21:00",
       "from": "BARCELONA",
-      "to": "SAFI"
+      "to": "SAFI",
+      "affectedBy": "A202600336",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600351",
@@ -96,13 +83,11 @@
       "eta": "2026-05-17T19:00",
       "etd": "2026-05-18T14:00",
       "from": "ALGECIRAS",
-      "to": "MOSTAGANEM",
-      "affectedBy": "A202600309",
-      "affectRisk": "ALTO"
+      "to": "MOSTAGANEM"
     }
   ],
   "tugService": {
-    "callId": "A202600309",
+    "callId": "A202600336",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -129,18 +114,18 @@
     }
   },
   "milestones": {
-    "A202600309": [
+    "A202600336": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "16/05 · 08:25",
+        "time": "17/05 · 07:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "16/05 · 09:30",
-        "by": "Agente: MAGHREB CONTAINER INTERNATIONAL SL"
+        "time": "17/05 · 08:30",
+        "by": "Agente: EUROPEAN FORWARDING SL"
       },
       {
         "label": "Fin de operaciones",
