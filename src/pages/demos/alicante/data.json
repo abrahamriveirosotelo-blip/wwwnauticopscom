@@ -2,13 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "18/05/2026",
+    "date": "19/05/2026",
     "refreshHours": 2
   },
   "calls": [
     {
       "id": "A202600317",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "1111111",
       "name": "SEMAC",
       "gt": 73.22,
@@ -19,7 +19,9 @@
       "eta": "2026-05-05T06:00",
       "etd": "2026-05-21T06:00",
       "from": "DENIA",
-      "to": "DENIA"
+      "to": "DENIA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 7 según lo previsto."
     },
     {
       "id": "A202600343",
@@ -37,23 +39,6 @@
       "to": "HUELVA"
     },
     {
-      "id": "A202600337",
-      "status": "Alerta",
-      "imo": "9430193",
-      "name": "HERCULES J",
-      "gt": 10585,
-      "len": 151.72,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-05-17T13:00",
-      "etd": "2026-05-18T21:00",
-      "from": "BARCELONA",
-      "to": "SAFI",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
-    },
-    {
       "id": "A202600351",
       "status": "Iniciado",
       "imo": "9802231",
@@ -67,21 +52,6 @@
       "etd": "2026-05-20T18:00",
       "from": "ZONGULDAK",
       "to": "ORAN"
-    },
-    {
-      "id": "A202600354",
-      "status": "Iniciado",
-      "imo": "9237242",
-      "name": "CRACOVIA",
-      "gt": 25028,
-      "len": 180,
-      "berth": "25",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-05-18T08:00",
-      "etd": "2026-05-18T19:00",
-      "from": "ALGER",
-      "to": "LAS PALMAS"
     },
     {
       "id": "A202600356",
@@ -141,9 +111,7 @@
       "eta": "2026-05-20T07:00",
       "etd": "2026-05-20T21:00",
       "from": "DERINCE, KOCAELI",
-      "to": "BARCELONA",
-      "affectedBy": "A202600337",
-      "affectRisk": "ALTO"
+      "to": "BARCELONA"
     },
     {
       "id": "A202600349",
@@ -192,7 +160,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600337",
+    "callId": "A202600317",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -219,18 +187,18 @@
     }
   },
   "milestones": {
-    "A202600337": [
+    "A202600317": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "17/05 · 13:25",
+        "time": "05/05 · 06:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "17/05 · 14:30",
-        "by": "Agente: EUROPEAN FORWARDING SL"
+        "time": "05/05 · 07:30",
+        "by": "Agente: ROMEU Y CIA. S A"
       },
       {
         "label": "Fin de operaciones",
