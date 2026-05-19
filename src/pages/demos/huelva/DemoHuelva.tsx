@@ -251,8 +251,8 @@ function Detail({ call, onClose }) {
                 ).map((m, i, arr) => {
                   const done = m.status==="done"; const inProgress = m.status==="in_progress";
                   const icon = done ? "✅" : inProgress ? "🔄" : "⌛";
-                  const rowBg = m.inProgress ? "rgba(245,158,11,0.06)" : B.white;
-                  const borderColor = m.inProgress ? B.warning : B.grayLight;
+                  const rowBg = inProgress ? "rgba(245,158,11,0.06)" : B.white;
+                  const borderColor = inProgress ? B.warning : B.grayLight;
                   return (
                     <div key={m.label} style={{
                       display:"flex", alignItems:"center", gap:12,
@@ -330,7 +330,7 @@ function Detail({ call, onClose }) {
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:16}}>
                   <div>
                     <div style={{fontSize:15,fontWeight:800,color:B.navy}}>{TUG.tugboat}</div>
-                    <div style={{fontSize:11,color:B.gray,marginTop:2}}>Parte nº 027892 · {TUG.powerPct}% potencia</div>
+                    <div style={{fontSize:11,color:B.gray,marginTop:2}}>Parte nº {TUG.reportNumber} · {TUG.powerPct}% potencia</div>
                   </div>
                   <span style={{padding:"3px 10px",borderRadius:99,fontSize:9,fontWeight:800,
                     letterSpacing:"0.05em",background:"#DCFCE7",color:"#166534"}}>
@@ -375,7 +375,7 @@ function Detail({ call, onClose }) {
                 <div style={{width:38,height:38,background:B.cyanPale,borderRadius:8,
                   display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>📄</div>
                 <div style={{flex:1}}>
-                  <div style={{fontSize:13,fontWeight:700,color:B.navy}}>Parte de remolque nº 027892</div>
+                  <div style={{fontSize:13,fontWeight:700,color:B.navy}}>Parte de remolque nº {TUG.reportNumber}</div>
                   <div style={{fontSize:11,color:B.gray}}>Recibido vía WhatsApp · 11/05/2026 · OCR completado</div>
                 </div>
                 <span style={{fontSize:9,fontWeight:800,color:B.success,background:"#DCFCE7",
