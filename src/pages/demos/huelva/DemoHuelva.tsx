@@ -458,7 +458,7 @@ export default function DemoHuelva() {
         boxShadow:"0 1px 6px rgba(1,11,36,0.05)"}}>
         {[
           {label:"ESCALAS TOTALES", value:counts.total,    color:B.navy   },
-          {label:"EN PUERTO",       value:counts.iniciado, color:B.success },
+          {label:"EN PUERTO",       value:counts.iniciado+counts.alerta, color:B.success },
           {label:"CON ALERTA",      value:counts.alerta,   color:B.danger  },
           {label:"PREVISTAS",       value:counts.prevista, color:B.cyan    },
         ].map((s,i)=>(
