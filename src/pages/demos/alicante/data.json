@@ -2,13 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "19/05/2026",
+    "date": "20/05/2026",
     "refreshHours": 2
   },
   "calls": [
     {
       "id": "A202600317",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "1111111",
       "name": "SEMAC",
       "gt": 73.22,
@@ -19,24 +19,7 @@
       "eta": "2026-05-05T06:00",
       "etd": "2026-05-21T06:00",
       "from": "DENIA",
-      "to": "DENIA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 7 según lo previsto."
-    },
-    {
-      "id": "A202600343",
-      "status": "Iniciado",
-      "imo": "9800398",
-      "name": "SANTA CAROLINA",
-      "gt": 35035,
-      "len": 199,
-      "berth": "13",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "D/ ESCORIA A GRANEL",
-      "eta": "2026-05-13T17:00",
-      "etd": "2026-05-19T20:00",
-      "from": "ISDEMIR",
-      "to": "HUELVA"
+      "to": "DENIA"
     },
     {
       "id": "A202600351",
@@ -55,7 +38,7 @@
     },
     {
       "id": "A202600356",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9861524",
       "name": "SIDER IBIZA",
       "gt": 4764,
@@ -70,7 +53,7 @@
     },
     {
       "id": "A202600350",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9160334",
       "name": "VECHTBORG",
       "gt": 6130,
@@ -85,7 +68,7 @@
     },
     {
       "id": "A202600347",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9353723",
       "name": "LOLA B",
       "gt": 8971,
@@ -96,11 +79,13 @@
       "eta": "2026-05-20T06:00",
       "etd": "2026-05-20T12:00",
       "from": "STA. CRUZ",
-      "to": "BARCELONA"
+      "to": "BARCELONA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
     },
     {
       "id": "A202600338",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9312200",
       "name": "ENDURANCE",
       "gt": 7642,
@@ -115,7 +100,7 @@
     },
     {
       "id": "A202600349",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9849693",
       "name": "ARVIA",
       "gt": 185581,
@@ -156,11 +141,13 @@
       "eta": "2026-05-22T07:00",
       "etd": "2026-05-22T20:00",
       "from": "LAS PALMAS",
-      "to": "ORAN"
+      "to": "ORAN",
+      "affectedBy": "A202600347",
+      "affectRisk": "ALTO"
     }
   ],
   "tugService": {
-    "callId": "A202600317",
+    "callId": "A202600347",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -187,18 +174,18 @@
     }
   },
   "milestones": {
-    "A202600317": [
+    "A202600347": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "05/05 · 06:25",
+        "time": "20/05 · 06:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "05/05 · 07:30",
-        "by": "Agente: ROMEU Y CIA. S A"
+        "time": "20/05 · 07:30",
+        "by": "Agente: MILLER Y COMPAÑIA S.A"
       },
       {
         "label": "Fin de operaciones",
