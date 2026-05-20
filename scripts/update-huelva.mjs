@@ -81,8 +81,12 @@ function parsePdfText(text) {
     if (m) {
       if (pending) rows.push(pending);
       const [, num, mov, subMov, name, date, time, ban, gt, len, cal, rawBerth, tail] = m;
-      // When Muelle is blank in the PDF the regex captures the agent code as berth.
-      // Detect this: if the captured berth looks like an agent code but tail has no agent.
+      // pdf-parse normalises whitespace so blank-Muelle rows cannot be detected
+      // structurally. Instead: if berth looks like an agent code but tail has no
+      // agent, the Muelle was blank and the regex captured the agent as berth.
+      // AGENT_RE must be kept up to date with agents seen in the PDF; a ⚠ warning
+      // is printed in --print-rows mode whenever an unrecognised value ends up in
+      // berth so new codes are visible at a glance.
       const rawAgent     = extractAgent(tail);
       const agentInBerth = rawAgent === '—' && AGENT_RE.test(rawBerth);
       pending = {
@@ -256,8 +260,12 @@ async function main() {
     console.log(`\nFilas parseadas: ${rows.length}`);
     if (metaDateFromPdf) console.log(`Fecha informe: ${metaDateFromPdf}`);
     rows.forEach(r => {
+      // Warn when berth is a short all-alpha code with no agent found — likely a
+      // new agent code not yet in AGENT_RE that got captured as berth.
+      const suspectBerth = r.berth !== '—' && /^[A-Z.]{2,6}$/.test(r.berth) && r.agent === '—';
+      const flag = suspectBerth ? ' ⚠ berth parece agente — añadir a AGENT_RE' : '';
       console.log(
-        `  ${r.num} ${r.mov}${r.subMov ? ' ' + r.subMov : ''} | ${r.name} | ${r.date} ${r.time} | ${r.berth} | ${r.agent}`
+        `  ${r.num} ${r.mov}${r.subMov ? ' ' + r.subMov : ''} | ${r.name} | ${r.date} ${r.time} | ${r.berth} | ${r.agent}${flag}`
       );
     });
     return;
