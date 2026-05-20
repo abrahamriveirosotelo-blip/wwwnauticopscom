@@ -149,7 +149,7 @@ function Detail({ call, onClose }) {
             <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",letterSpacing:"0.1em",fontWeight:700}}>{call.id}</div>
             <div style={{fontSize:22,fontWeight:800,marginTop:3,letterSpacing:"-0.01em"}}>{call.name}</div>
             <div style={{fontSize:12,color:"rgba(255,255,255,0.6)",marginTop:4}}>
-              IMO {call.imo} · {call.gt.toLocaleString()} GT · {call.len} m
+              {call.imo && call.imo !== '—' ? `IMO ${call.imo} · ` : ''}{call.gt.toLocaleString()} GT · {call.len} m
             </div>
           </div>
           <button onClick={onClose} style={{background:"rgba(255,255,255,0.12)",border:"none",

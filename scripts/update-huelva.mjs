@@ -177,7 +177,7 @@ function movementsToCalls(groups) {
     calls.push({
       id: buildCallId(entry),
       status,
-      imo: '0000000',
+      imo: '—',
       name: g.name,
       gt: entry.gt,
       len: entry.len,
