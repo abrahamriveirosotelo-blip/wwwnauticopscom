@@ -24,7 +24,7 @@ import {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_PATH = join(__dirname, '../src/pages/demos/huelva/data.json');
 const PDF_URL = 'https://intranet.huelvapilots.com/informes/previsiones';
-const AGENT_RE = /\b(E\.CIA|ERS|IBM|PCIA|LAM|PAM|MM|TER|BAL)\b/;
+const AGENT_RE = /\b(E\.CIA|ERS|IBM|PCIA|LAM|PAM|MM|TER|BAL|BER|NEX|LAI|CON|SER|SUAR)\b/;
 
 // num  E|S  [F|-]  [-]  NAME  DD/MM/YYYY  HH:MM  BAN  GT  esl  cal  MUELLE  …
 const ROW_RE =
@@ -80,7 +80,11 @@ function parsePdfText(text) {
     const m = line.match(ROW_RE);
     if (m) {
       if (pending) rows.push(pending);
-      const [, num, mov, subMov, name, date, time, ban, gt, len, cal, berth, tail] = m;
+      const [, num, mov, subMov, name, date, time, ban, gt, len, cal, rawBerth, tail] = m;
+      // When Muelle is blank in the PDF the regex captures the agent code as berth.
+      // Detect this: if the captured berth looks like an agent code but tail has no agent.
+      const rawAgent     = extractAgent(tail);
+      const agentInBerth = rawAgent === '—' && AGENT_RE.test(rawBerth);
       pending = {
         num: parseInt(num, 10),
         mov,
@@ -92,8 +96,8 @@ function parsePdfText(text) {
         gt: parseFloat(gt) || 0,
         len: parseFloat(len) || 0,
         cal: parseFloat(cal) || 0,
-        berth: berth || '—',
-        agent: extractAgent(tail),
+        berth: agentInBerth ? '—' : (rawBerth || '—'),
+        agent: agentInBerth ? rawBerth.match(AGENT_RE)[1] : rawAgent,
         op: extractOp(mov, subMov || '', tail),
         observations: tail.trim(),
       };
