@@ -115,8 +115,7 @@ function TugStep({ code, label, planned, real, last }) {
 }
 
 function Detail({ call, onClose }) {
-  const primaryCall = CALLS.find(c => c.status === "Alerta") || CALLS.find(c => c.status === "Iniciado");
-  const hasTug = call.id === primaryCall?.id;
+  const hasTug = call.id === TUG.callId;
   const isAlert = call.status === "Alerta";
   const [tab, setTab] = useState("operacion");
 
@@ -241,7 +240,7 @@ function Detail({ call, onClose }) {
               <div style={{background:B.offWhite,borderRadius:12,border:`1px solid ${B.grayLight}`,overflow:"hidden"}}>
                 {(
                   MILESTONES[call.id] ||
-                  (call.id === primaryCall?.id ? Object.values(MILESTONES)[0] : null) ||
+                  (call.id === TUG.callId ? Object.values(MILESTONES)[0] : null) ||
                   [
                     { label:"Atracado",              status:"pending", time:null, by:null },
                     { label:"Inicio de operaciones", status:"pending", time:null, by:null },

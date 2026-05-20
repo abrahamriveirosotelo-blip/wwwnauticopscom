@@ -99,9 +99,6 @@ function parsePdfText(text) {
       };
     } else if (pending) {
       pending.observations = [pending.observations, line].filter(Boolean).join(' ');
-      if (pending.observations.length > 120) {
-        pending.op = pending.observations.slice(0, 80);
-      }
     }
   }
   if (pending) rows.push(pending);
