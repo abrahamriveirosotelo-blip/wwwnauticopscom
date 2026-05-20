@@ -24,8 +24,6 @@ import {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_PATH = join(__dirname, '../src/pages/demos/huelva/data.json');
 const PDF_URL = 'https://intranet.huelvapilots.com/informes/previsiones';
-const DEFAULT_FIXTURE = join(__dirname, 'fixtures/huelva-previsiones.pdf');
-
 const AGENT_RE = /\b(E\.CIA|ERS|IBM|PCIA|LAM|PAM|MM|TER|BAL)\b/;
 
 // num  E|S  [F|-]  [-]  NAME  DD/MM/YYYY  HH:MM  BAN  GT  esl  cal  MUELLE  …

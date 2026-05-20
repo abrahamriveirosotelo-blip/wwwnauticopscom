@@ -252,7 +252,6 @@ function Detail({ call, onClose }) {
                   const done = m.status==="done"; const inProgress = m.status==="in_progress";
                   const icon = done ? "✅" : inProgress ? "🔄" : "⌛";
                   const rowBg = inProgress ? "rgba(245,158,11,0.06)" : B.white;
-                  const borderColor = inProgress ? B.warning : B.grayLight;
                   return (
                     <div key={m.label} style={{
                       display:"flex", alignItems:"center", gap:12,
