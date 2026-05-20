@@ -18,7 +18,8 @@ React + TypeScript + Vite SPA. The public marketing website for NauticOps (`naut
 | `/` | `src/pages/Index.tsx` | Main landing page |
 | `/shipping-agents` | `src/pages/ShippingAgentsPage.tsx` | Targeted page for shipping agents |
 | `/legal` | `src/pages/LegalPage.tsx` | Legal / privacy |
-| `/demos/alicante` | `src/pages/demos/alicante/DemoAlicante.tsx` | Interactive demo for Puerto de Alicante prospect |
+| `/demo/alicante` | `src/pages/demos/alicante/DemoAlicante.tsx` | Interactive demo for Puerto de Alicante prospect |
+| `/demo/huelva` | `src/pages/demos/huelva/DemoHuelva.tsx` | Interactive demo for Puerto de Huelva prospect |
 
 ## Architecture
 
@@ -31,13 +32,15 @@ React + TypeScript + Vite SPA. The public marketing website for NauticOps (`naut
 Demos follow a strict separation: **all data in JSON, zero domain data in TSX.**
 
 ```
-src/pages/demos/alicante/
-  DemoAlicante.tsx   — UI and logic only
+src/pages/demos/<port>/
+  Demo<Port>.tsx     — UI and logic only
   data.json          — all calls, tug service, milestones
   CLAUDE.md          — demo-specific documentation
 ```
 
-To update the demo (change vessel data, statuses, alerts), only edit `data.json`. See [demos/alicante/CLAUDE.md](src/pages/demos/alicante/CLAUDE.md) for the full data schema and demo walkthrough notes.
+Ports: `alicante` (CSV auto-update), `huelva` (PDF via `npm run update-demo:huelva`). Cada puerto tiene su propio script de ingesta; sin código compartido entre demos por ahora.
+
+To update a demo (change vessel data, statuses, alerts), only edit that port's `data.json`. See [demos/alicante/CLAUDE.md](src/pages/demos/alicante/CLAUDE.md) or [demos/huelva/CLAUDE.md](src/pages/demos/huelva/CLAUDE.md) for schema and walkthrough notes.
 
 ## Brand colors
 
