@@ -555,7 +555,7 @@ export default function DemoHuelva() {
                     <td style={{padding:"11px 14px"}}>
                       <div style={{fontWeight:800,fontSize:13,color:isAl?B.danger:B.navy}}>{c.name}</div>
                       <div style={{fontSize:10,color:B.gray,marginTop:1,display:"flex",alignItems:"center",gap:5}}>
-                        <span>IMO {c.imo}</span>
+                        {c.imo && c.imo !== '—' && <span>IMO {c.imo}</span>}
                         {isAffected && affectRisk && (
                           <span style={{padding:"1px 6px",borderRadius:4,fontSize:9,fontWeight:800,
                             background:affectRisk.bg,color:affectRisk.color,letterSpacing:"0.04em"}}>
