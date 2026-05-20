@@ -1,0 +1,101 @@
+name: Update Demo Data
+
+on:
+  schedule:
+    - cron: '0 6 * * *'    # 08:00 España (verano, UTC+2)
+    - cron: '0 10 * * *'   # 12:00 España (verano, UTC+2)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-alicante:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.check.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Actualizar datos Alicante
+        run: node scripts/update-alicante.mjs
+
+      - name: Detectar cambios
+        id: check
+        run: |
+          git diff --quiet src/pages/demos/alicante/data.json \
+            && echo "changed=false" >> $GITHUB_OUTPUT \
+            || echo "changed=true"  >> $GITHUB_OUTPUT
+
+      - name: Subir data.json
+        if: steps.check.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: alicante-data
+          path: src/pages/demos/alicante/data.json
+
+  update-huelva:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.check.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Instalar dependencias
+        run: npm ci --ignore-scripts
+
+      - name: Actualizar datos Huelva
+        run: node scripts/update-huelva.mjs
+
+      - name: Detectar cambios
+        id: check
+        run: |
+          git diff --quiet src/pages/demos/huelva/data.json \
+            && echo "changed=false" >> $GITHUB_OUTPUT \
+            || echo "changed=true"  >> $GITHUB_OUTPUT
+
+      - name: Subir data.json
+        if: steps.check.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: huelva-data
+          path: src/pages/demos/huelva/data.json
+
+  commit:
+    needs: [update-alicante, update-huelva]
+    # always() para que corra aunque un job falle; solo commitea los que tuvieron cambios
+    if: always() && (needs.update-alicante.outputs.changed == 'true' || needs.update-huelva.outputs.changed == 'true')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Descargar data.json Alicante
+        if: needs.update-alicante.outputs.changed == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: alicante-data
+          path: src/pages/demos/alicante
+
+      - name: Descargar data.json Huelva
+        if: needs.update-huelva.outputs.changed == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: huelva-data
+          path: src/pages/demos/huelva
+
+      - name: Commitear y pushear
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/pages/demos/alicante/data.json src/pages/demos/huelva/data.json
+          git diff --staged --quiet && echo "Sin cambios finales" && exit 0
+          git commit -m "chore: actualizar datos demos $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push
