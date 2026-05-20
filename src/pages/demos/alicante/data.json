@@ -67,25 +67,8 @@
       "to": "SOUTHAMPTON"
     },
     {
-      "id": "A202600347",
-      "status": "Alerta",
-      "imo": "9353723",
-      "name": "LOLA B",
-      "gt": 8971,
-      "len": 154.85,
-      "berth": "23",
-      "agent": "MILLER Y COMPAÑIA S.A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-05-20T06:00",
-      "etd": "2026-05-20T12:00",
-      "from": "STA. CRUZ",
-      "to": "BARCELONA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
-    },
-    {
       "id": "A202600338",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9312200",
       "name": "ENDURANCE",
       "gt": 7642,
@@ -96,7 +79,9 @@
       "eta": "2026-05-20T07:00",
       "etd": "2026-05-20T21:00",
       "from": "DERINCE, KOCAELI",
-      "to": "BARCELONA"
+      "to": "BARCELONA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
       "id": "A202600349",
@@ -126,7 +111,9 @@
       "eta": "2026-05-21T19:00",
       "etd": "2026-05-22T15:00",
       "from": "TENERIFE",
-      "to": "CARTAGENA"
+      "to": "CARTAGENA",
+      "affectedBy": "A202600338",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600348",
@@ -141,13 +128,11 @@
       "eta": "2026-05-22T07:00",
       "etd": "2026-05-22T20:00",
       "from": "LAS PALMAS",
-      "to": "ORAN",
-      "affectedBy": "A202600347",
-      "affectRisk": "ALTO"
+      "to": "ORAN"
     }
   ],
   "tugService": {
-    "callId": "A202600347",
+    "callId": "A202600338",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -174,18 +159,18 @@
     }
   },
   "milestones": {
-    "A202600347": [
+    "A202600338": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "20/05 · 06:25",
+        "time": "20/05 · 07:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "20/05 · 07:30",
-        "by": "Agente: MILLER Y COMPAÑIA S.A"
+        "time": "20/05 · 08:30",
+        "by": "Agente: EUROPEAN FORWARDING SL"
       },
       {
         "label": "Fin de operaciones",
