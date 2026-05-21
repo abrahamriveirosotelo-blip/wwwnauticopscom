@@ -2,43 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "20/05/2026",
+    "date": "21/05/2026",
     "refreshHours": 2
   },
   "calls": [
     {
-      "id": "A202600317",
-      "status": "Iniciado",
-      "imo": "1111111",
-      "name": "SEMAC",
-      "gt": 73.22,
-      "len": 22.68,
-      "berth": "7",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "D/C BOYAS PLAYA",
-      "eta": "2026-05-05T06:00",
-      "etd": "2026-05-21T06:00",
-      "from": "DENIA",
-      "to": "DENIA"
-    },
-    {
-      "id": "A202600351",
-      "status": "Iniciado",
-      "imo": "9802231",
-      "name": "J MARE",
-      "gt": 43241,
-      "len": 228,
-      "berth": "17",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "C/ CALIZA NAVE",
-      "eta": "2026-05-17T15:00",
-      "etd": "2026-05-20T18:00",
-      "from": "ZONGULDAK",
-      "to": "ORAN"
-    },
-    {
       "id": "A202600356",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9861524",
       "name": "SIDER IBIZA",
       "gt": 4764,
@@ -49,7 +19,9 @@
       "eta": "2026-05-19T15:00",
       "etd": "2026-05-21T23:00",
       "from": "LA GOULETTE NORD",
-      "to": "LAS PALMAS"
+      "to": "LAS PALMAS",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 21 según lo previsto."
     },
     {
       "id": "A202600350",
@@ -67,38 +39,6 @@
       "to": "SOUTHAMPTON"
     },
     {
-      "id": "A202600338",
-      "status": "Alerta",
-      "imo": "9312200",
-      "name": "ENDURANCE",
-      "gt": 7642,
-      "len": 134.58,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-05-20T07:00",
-      "etd": "2026-05-20T21:00",
-      "from": "DERINCE, KOCAELI",
-      "to": "BARCELONA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
-    },
-    {
-      "id": "A202600349",
-      "status": "Iniciado",
-      "imo": "9849693",
-      "name": "ARVIA",
-      "gt": 185581,
-      "len": 344.5,
-      "berth": "14",
-      "agent": "NOATUM MARITIME SPAIN SA",
-      "op": "CRUCERISTAS",
-      "eta": "2026-05-20T08:00",
-      "etd": "2026-05-20T17:30",
-      "from": "CIVIATAVECCHIA",
-      "to": "GANDIA"
-    },
-    {
       "id": "A202600332",
       "status": "Prevista",
       "imo": "9349227",
@@ -111,9 +51,7 @@
       "eta": "2026-05-21T19:00",
       "etd": "2026-05-22T15:00",
       "from": "TENERIFE",
-      "to": "CARTAGENA",
-      "affectedBy": "A202600338",
-      "affectRisk": "ALTO"
+      "to": "CARTAGENA"
     },
     {
       "id": "A202600348",
@@ -132,7 +70,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600338",
+    "callId": "A202600356",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -159,18 +97,18 @@
     }
   },
   "milestones": {
-    "A202600338": [
+    "A202600356": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "20/05 · 07:25",
+        "time": "19/05 · 15:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "20/05 · 08:30",
-        "by": "Agente: EUROPEAN FORWARDING SL"
+        "time": "19/05 · 16:30",
+        "by": "Agente: TERMINALES MARTM. SURESTE S.A."
       },
       {
         "label": "Fin de operaciones",
