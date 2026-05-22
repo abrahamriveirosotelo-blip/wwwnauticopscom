@@ -2,25 +2,10 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "21/05/2026",
+    "date": "22/05/2026",
     "refreshHours": 2
   },
   "calls": [
-    {
-      "id": "A202600356",
-      "status": "Iniciado",
-      "imo": "9861524",
-      "name": "SIDER IBIZA",
-      "gt": 4764,
-      "len": 109.9,
-      "berth": "21",
-      "agent": "TERMINALES MARTM. SURESTE S.A.",
-      "op": "D/ CEMENTO INST. ESP.",
-      "eta": "2026-05-19T15:00",
-      "etd": "2026-05-21T23:00",
-      "from": "LA GOULETTE NORD",
-      "to": "LAS PALMAS"
-    },
     {
       "id": "A202600350",
       "status": "Alerta",
@@ -40,7 +25,7 @@
     },
     {
       "id": "A202600332",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9349227",
       "name": "NJORD",
       "gt": 7720,
@@ -55,7 +40,7 @@
     },
     {
       "id": "A202600338",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9312200",
       "name": "ENDURANCE",
       "gt": 7642,
@@ -70,7 +55,7 @@
     },
     {
       "id": "A202600348",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9404065",
       "name": "CARLOTA B",
       "gt": 7852,
