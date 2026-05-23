@@ -2,75 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "22/05/2026",
+    "date": "23/05/2026",
     "refreshHours": 2
   },
   "calls": [
     {
-      "id": "A202600350",
-      "status": "Alerta",
-      "imo": "9160334",
-      "name": "VECHTBORG",
-      "gt": 6130,
-      "len": 132.2,
-      "berth": "15",
-      "agent": "BERGE MARITIMA, S.L.",
-      "op": "D/ BOBINAS DE PAPEL",
-      "eta": "2026-05-20T05:00",
-      "etd": "2026-05-22T14:00",
-      "from": "SFAX",
-      "to": "BARCELONA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 15 según lo previsto."
-    },
-    {
-      "id": "A202600332",
-      "status": "Iniciado",
-      "imo": "9349227",
-      "name": "NJORD",
-      "gt": 7720,
-      "len": 141.58,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-05-21T19:00",
-      "etd": "2026-05-22T15:00",
-      "from": "TENERIFE",
-      "to": "DERINCE"
-    },
-    {
-      "id": "A202600338",
-      "status": "Iniciado",
-      "imo": "9312200",
-      "name": "ENDURANCE",
-      "gt": 7642,
-      "len": 134.58,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-05-22T07:00",
-      "etd": "2026-05-22T21:00",
-      "from": "DERINCE",
-      "to": "GANDIA"
-    },
-    {
-      "id": "A202600348",
-      "status": "Iniciado",
-      "imo": "9404065",
-      "name": "CARLOTA B",
-      "gt": 7852,
-      "len": 140.64,
-      "berth": "23",
-      "agent": "MILLER Y COMPAÑIA S.A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-05-22T07:00",
-      "etd": "2026-05-22T20:00",
-      "from": "LAS PALMAS",
-      "to": "LAS PALMAS"
-    },
-    {
       "id": "A202600357",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9346677",
       "name": "DINTELDIJK",
       "gt": 2984,
@@ -81,7 +19,9 @@
       "eta": "2026-05-22T12:00",
       "etd": "2026-05-27T09:00",
       "from": "GABES",
-      "to": "BARCELONA"
+      "to": "BARCELONA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 19 según lo previsto."
     },
     {
       "id": "A202600362",
@@ -141,7 +81,9 @@
       "eta": "2026-05-25T07:00",
       "etd": "2026-05-25T14:00",
       "from": "LIVORNO",
-      "to": "BARCELONA"
+      "to": "BARCELONA",
+      "affectedBy": "A202600357",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600330",
@@ -156,9 +98,7 @@
       "eta": "2026-05-25T08:00",
       "etd": "2026-05-28T22:00",
       "from": "TARRAGONA",
-      "to": "ALMERIA",
-      "affectedBy": "A202600350",
-      "affectRisk": "ALTO"
+      "to": "ALMERIA"
     },
     {
       "id": "A202600368",
@@ -252,7 +192,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600350",
+    "callId": "A202600357",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -279,18 +219,18 @@
     }
   },
   "milestones": {
-    "A202600350": [
+    "A202600357": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "20/05 · 05:25",
+        "time": "22/05 · 12:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "20/05 · 06:30",
-        "by": "Agente: BERGE MARITIMA, S.L."
+        "time": "22/05 · 13:30",
+        "by": "Agente: TERMINALES MARTM. SURESTE S.A."
       },
       {
         "label": "Fin de operaciones",
