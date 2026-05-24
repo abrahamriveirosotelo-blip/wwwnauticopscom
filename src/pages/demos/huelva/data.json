@@ -2,7 +2,7 @@
   "meta": {
     "port": "Puerto de Huelva",
     "source": "huelvapilots.com · previsiones",
-    "date": "23/05/2026",
+    "date": "24/05/2026",
     "refreshHours": 24
   },
   "calls": [
@@ -70,83 +70,51 @@
     },
     {
       "id": "H20260523005",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
-      "name": "CASTILLO DE PAMBRE",
-      "gt": 6388,
-      "len": 110,
-      "berth": "RSN",
+      "name": "SONGA COSMOS",
+      "gt": 17862,
+      "len": 170,
+      "berth": "PET",
       "agent": "E.CIA",
-      "op": "Entrada",
-      "eta": "2026-05-23T14:00",
+      "op": "Fondo",
+      "eta": "2026-05-23T21:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
       "id": "H20260523006",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
-      "name": "STAR.MARIA",
-      "gt": 43168,
-      "len": 229,
-      "berth": "MIN",
-      "agent": "PAM",
-      "op": "Entrada",
-      "eta": "2026-05-23T20:00",
+      "name": "OCEAN.SKY",
+      "gt": 11681,
+      "len": 139,
+      "berth": "JGV",
+      "agent": "SER",
+      "op": "Fondo",
+      "eta": "2026-05-23T23:30",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
       "id": "H20260524007",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
-      "name": "THAMESBORG",
-      "gt": 14695,
-      "len": 172,
-      "berth": "TI",
-      "agent": "BER",
-      "op": "Entrada",
-      "eta": "2026-05-24T00:00",
+      "name": "KRASZEWSKI",
+      "gt": 24221,
+      "len": 200,
+      "berth": "JGV",
+      "agent": "PCIA",
+      "op": "Fondo",
+      "eta": "2026-05-24T05:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260521001",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
       "id": "H20260524008",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "ORION.SIRIUS",
-      "gt": 115728,
-      "len": 291,
-      "berth": "ENA",
-      "agent": "IBM",
-      "op": "Entrada",
-      "eta": "2026-05-24T00:01",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260524009",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "MORNING.STAR",
-      "gt": 80370,
-      "len": 271,
-      "berth": "MON",
-      "agent": "E.CIA",
-      "op": "Entrada",
-      "eta": "2026-05-24T09:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260524010",
       "status": "Prevista",
       "imo": "—",
       "name": "TOSCA",
@@ -155,43 +123,13 @@
       "berth": "PET",
       "agent": "MM",
       "op": "Entrada",
-      "eta": "2026-05-24T12:00",
+      "eta": "2026-05-24T10:30",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260524011",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "OCEAN.SKY",
-      "gt": 11681,
-      "len": 139,
-      "berth": "JGV",
-      "agent": "SER",
-      "op": "Entrada",
-      "eta": "2026-05-24T13:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260524012",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "KRASZEWSKI",
-      "gt": 24221,
-      "len": 200,
-      "berth": "JGV",
-      "agent": "PCIA",
-      "op": "Entrada",
-      "eta": "2026-05-24T13:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260524013",
+      "id": "H20260524009",
       "status": "Prevista",
       "imo": "—",
       "name": "THEIA",
@@ -206,7 +144,24 @@
       "to": "—"
     },
     {
-      "id": "H20260524014",
+      "id": "H20260524010",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "THAMESBORG",
+      "gt": 14695,
+      "len": 172,
+      "berth": "TI",
+      "agent": "BER",
+      "op": "Entrada",
+      "eta": "2026-05-24T20:00",
+      "etd": "",
+      "from": "—",
+      "to": "—",
+      "affectedBy": "H20260521001",
+      "affectRisk": "ALTO"
+    },
+    {
+      "id": "H20260524011",
       "status": "Prevista",
       "imo": "—",
       "name": "AA-D",
@@ -221,7 +176,7 @@
       "to": "—"
     },
     {
-      "id": "H20260525015",
+      "id": "H20260525012",
       "status": "Prevista",
       "imo": "—",
       "name": "IVER AMBASSADOR",
@@ -236,7 +191,7 @@
       "to": "—"
     },
     {
-      "id": "H20260525016",
+      "id": "H20260525013",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -251,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260525017",
+      "id": "H20260525014",
       "status": "Prevista",
       "imo": "—",
       "name": "ASH ATLANTIC",
@@ -266,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260525018",
+      "id": "H20260525015",
       "status": "Prevista",
       "imo": "—",
       "name": "GINGA.MARITA",
@@ -281,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260525019",
+      "id": "H20260525016",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ FREEISA",
@@ -296,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260525020",
+      "id": "H20260525017",
       "status": "Prevista",
       "imo": "—",
       "name": "ALBUFERA.TMA",
@@ -311,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260525021",
+      "id": "H20260525018",
       "status": "Prevista",
       "imo": "—",
       "name": "ASIA.UNITY",
@@ -326,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260525022",
+      "id": "H20260525019",
       "status": "Prevista",
       "imo": "—",
       "name": "MEDKON.NLS",
@@ -341,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260526023",
+      "id": "H20260526020",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ TULIPA",
@@ -356,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260526024",
+      "id": "H20260526021",
       "status": "Prevista",
       "imo": "—",
       "name": "HARBIYE",
@@ -371,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260526025",
+      "id": "H20260526022",
       "status": "Prevista",
       "imo": "—",
       "name": "BBC.NYHAVN",
@@ -386,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260526026",
+      "id": "H20260526023",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -401,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260526027",
+      "id": "H20260526024",
       "status": "Prevista",
       "imo": "—",
       "name": "KN.FORTUNE",
@@ -416,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260526028",
+      "id": "H20260526025",
       "status": "Prevista",
       "imo": "—",
       "name": "MH.DAISEN",
@@ -431,7 +386,7 @@
       "to": "—"
     },
     {
-      "id": "H20260526029",
+      "id": "H20260526026",
       "status": "Prevista",
       "imo": "—",
       "name": "BLUE.SKY",
@@ -446,7 +401,7 @@
       "to": "—"
     },
     {
-      "id": "H20260527030",
+      "id": "H20260527027",
       "status": "Prevista",
       "imo": "—",
       "name": "MED BLUE JAY",
@@ -461,7 +416,7 @@
       "to": "—"
     },
     {
-      "id": "H20260527032",
+      "id": "H20260527029",
       "status": "Prevista",
       "imo": "—",
       "name": "DH BLOSSOMING",
@@ -476,7 +431,7 @@
       "to": "—"
     },
     {
-      "id": "H20260528033",
+      "id": "H20260528030",
       "status": "Prevista",
       "imo": "—",
       "name": "ANTRACYTH",
@@ -491,7 +446,7 @@
       "to": "—"
     },
     {
-      "id": "H20260528034",
+      "id": "H20260528031",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ LILIUM",
@@ -506,7 +461,7 @@
       "to": "—"
     },
     {
-      "id": "H20260531035",
+      "id": "H20260531032",
       "status": "Prevista",
       "imo": "—",
       "name": "KYPROS.LAND",
@@ -521,7 +476,7 @@
       "to": "—"
     },
     {
-      "id": "H20260531036",
+      "id": "H20260531033",
       "status": "Prevista",
       "imo": "—",
       "name": "MED TUNCER",

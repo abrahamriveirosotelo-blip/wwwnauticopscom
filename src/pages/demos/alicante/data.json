@@ -2,7 +2,7 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "23/05/2026",
+    "date": "24/05/2026",
     "refreshHours": 2
   },
   "calls": [
@@ -22,21 +22,6 @@
       "to": "BARCELONA",
       "delay": "+4h 30min",
       "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 19 según lo previsto."
-    },
-    {
-      "id": "A202600362",
-      "status": "Prevista",
-      "imo": "9277383",
-      "name": "TINA",
-      "gt": 7519,
-      "len": 136,
-      "berth": "23",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-05-23T12:00",
-      "etd": "2026-05-23T20:00",
-      "from": "Valencia",
-      "to": "CARTAGENA"
     },
     {
       "id": "A202600340",
