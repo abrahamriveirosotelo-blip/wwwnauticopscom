@@ -2,42 +2,10 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "26/05/2026",
+    "date": "27/05/2026",
     "refreshHours": 2
   },
   "calls": [
-    {
-      "id": "A202600357",
-      "status": "Alerta",
-      "imo": "9346677",
-      "name": "DINTELDIJK",
-      "gt": 2984,
-      "len": 89,
-      "berth": "19",
-      "agent": "TERMINALES MARTM. SURESTE S.A.",
-      "op": "D/ CEMENTO INST. ESP.",
-      "eta": "2026-05-22T12:00",
-      "etd": "2026-05-27T09:00",
-      "from": "GABES",
-      "to": "BARCELONA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 19 según lo previsto."
-    },
-    {
-      "id": "A202600339",
-      "status": "Iniciado",
-      "imo": "9312200",
-      "name": "ENDURANCE",
-      "gt": 7642,
-      "len": 134.58,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-05-24T20:30",
-      "etd": "2026-05-26T15:00",
-      "from": "BARCELONA",
-      "to": "BARCELONA"
-    },
     {
       "id": "A202600371",
       "status": "Iniciado",
@@ -45,7 +13,7 @@
       "name": "FRANCISCO DE PAULA NAVARRO",
       "gt": 178,
       "len": 30.46,
-      "berth": "10",
+      "berth": "7",
       "agent": "TECNOLOGIAS Y SERVICIOS AGRARIOS",
       "op": "AVITUALLAMIENTO",
       "eta": "2026-05-25T18:00",
@@ -54,23 +22,8 @@
       "to": "DERINCE"
     },
     {
-      "id": "A202600368",
-      "status": "Iniciado",
-      "imo": "9661857",
-      "name": "CASTILLO DE PAMBRE",
-      "gt": 6388,
-      "len": 110,
-      "berth": "17",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "D/ BETUN INST. ESP.",
-      "eta": "2026-05-25T18:00",
-      "etd": "2026-05-26T16:00",
-      "from": "HUELVA",
-      "to": "DERINCE"
-    },
-    {
       "id": "A202600370",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9848742",
       "name": "CAPE CITIUS",
       "gt": 31622,
@@ -81,11 +34,13 @@
       "eta": "2026-05-26T17:00",
       "etd": "2026-05-28T21:00",
       "from": "BARCELONA",
-      "to": "PORT SAYD"
+      "to": "LAS PALMAS",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
     },
     {
       "id": "A202600341",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9083043",
       "name": "NANTO",
       "gt": 7550,
@@ -100,7 +55,7 @@
     },
     {
       "id": "A202600367",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9169524",
       "name": "AURORA",
       "gt": 76152,
@@ -111,11 +66,11 @@
       "eta": "2026-05-27T07:30",
       "etd": "2026-05-27T16:30",
       "from": "AJACCIO",
-      "to": "LAS PALMAS"
+      "to": "ORAN"
     },
     {
       "id": "A202600363",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9483683",
       "name": "NIEVES B",
       "gt": 10318,
@@ -126,22 +81,37 @@
       "eta": "2026-05-27T08:00",
       "etd": "2026-05-27T12:00",
       "from": "STA. CRUZ",
-      "to": "ORAN"
+      "to": "PALMA"
     },
     {
-      "id": "A202600345",
-      "status": "Prevista",
-      "imo": "9374387",
-      "name": "SARDES",
-      "gt": 5232,
-      "len": 115.46,
-      "berth": "23",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-05-28T05:00",
-      "etd": "2026-05-28T20:00",
-      "from": "SAGUNTO",
-      "to": "LISBOA"
+      "id": "A202600378",
+      "status": "Iniciado",
+      "imo": "9032111",
+      "name": "VB SIERRA AITANA",
+      "gt": 492,
+      "len": 32.18,
+      "berth": "7",
+      "agent": "MILLER Y COMPAÑIA S.A",
+      "op": "REMOLCADOR",
+      "eta": "2026-05-27T08:00",
+      "etd": "2026-12-31T20:00",
+      "from": "CASTELLON",
+      "to": "ALGECIRAS"
+    },
+    {
+      "id": "A202600376",
+      "status": "Iniciado",
+      "imo": "9237242",
+      "name": "CRACOVIA",
+      "gt": 25028,
+      "len": 180,
+      "berth": "25",
+      "agent": "OCEAN PORTS & SHIPPING SL",
+      "op": "PASAJE Y VEHICULOS",
+      "eta": "2026-05-27T08:00",
+      "etd": "2026-05-27T20:00",
+      "from": "ORAN",
+      "to": "LAS PALMAS"
     },
     {
       "id": "A202600365",
@@ -156,7 +126,9 @@
       "eta": "2026-05-28T08:00",
       "etd": "2026-05-28T14:00",
       "from": "PUERTO DEL ROSARIO",
-      "to": "PALMA"
+      "to": "LAS PALMAS",
+      "affectedBy": "A202600370",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600372",
@@ -171,7 +143,7 @@
       "eta": "2026-05-28T19:00",
       "etd": "2026-05-29T15:00",
       "from": "TENERIFE",
-      "to": "ALGECIRAS"
+      "to": "BARCELONA"
     },
     {
       "id": "A202600189",
@@ -186,9 +158,7 @@
       "eta": "2026-05-29T08:00",
       "etd": "2026-05-29T22:00",
       "from": "MISURATA",
-      "to": "LAS PALMAS",
-      "affectedBy": "A202600357",
-      "affectRisk": "ALTO"
+      "to": "A ORDENES"
     },
     {
       "id": "A202600364",
@@ -203,7 +173,7 @@
       "eta": "2026-05-29T14:00",
       "etd": "2026-05-30T02:00",
       "from": "TENERIFE",
-      "to": "ORAN"
+      "to": "ALGER"
     },
     {
       "id": "A202600373",
@@ -218,11 +188,11 @@
       "eta": "2026-05-30T07:00",
       "etd": "2026-06-04T07:30",
       "from": "BARCELONA",
-      "to": "PORT SAYD"
+      "to": "LISBOA"
     }
   ],
   "tugService": {
-    "callId": "A202600357",
+    "callId": "A202600370",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -249,18 +219,18 @@
     }
   },
   "milestones": {
-    "A202600357": [
+    "A202600370": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "22/05 · 12:25",
+        "time": "26/05 · 17:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "22/05 · 13:30",
-        "by": "Agente: TERMINALES MARTM. SURESTE S.A."
+        "time": "26/05 · 18:30",
+        "by": "Agente: NOATUM MARITIME SPAIN SA"
       },
       {
         "label": "Fin de operaciones",
