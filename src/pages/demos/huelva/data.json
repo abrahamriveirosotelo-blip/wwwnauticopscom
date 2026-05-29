@@ -100,20 +100,18 @@
     },
     {
       "id": "H20260529007",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "STROMBOLI M",
       "gt": 23261,
       "len": 183,
       "berth": "RSF",
       "agent": "E.CIA",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-05-29T12:15",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260529004",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
       "id": "H20260529008",
@@ -188,7 +186,9 @@
       "eta": "2026-05-30T01:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "affectedBy": "H20260529004",
+      "affectRisk": "ALTO"
     },
     {
       "id": "H20260530013",
@@ -209,21 +209,6 @@
       "id": "H20260530014",
       "status": "Prevista",
       "imo": "—",
-      "name": "MT.SOLERO",
-      "gt": 13471,
-      "len": 150,
-      "berth": "DEC",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-05-30T06:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260530015",
-      "status": "Prevista",
-      "imo": "—",
       "name": "BUENAVISTA.EXPRESS",
       "gt": 26916,
       "len": 157,
@@ -236,37 +221,22 @@
       "to": "—"
     },
     {
-      "id": "H20260530016",
+      "id": "H20260530015",
       "status": "Prevista",
       "imo": "—",
-      "name": "FAITHFUL.STAR",
-      "gt": 20043,
-      "len": 175,
+      "name": "MT.SOLERO",
+      "gt": 13471,
+      "len": 150,
       "berth": "DEC",
-      "agent": "NEX",
-      "op": "Entrada",
-      "eta": "2026-05-30T08:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260530017",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "BOYNE",
-      "gt": 3974,
-      "len": 106,
-      "berth": "DC2",
       "agent": "—",
       "op": "Entrada",
-      "eta": "2026-05-30T08:00",
+      "eta": "2026-05-30T07:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260530018",
+      "id": "H20260530016",
       "status": "Prevista",
       "imo": "—",
       "name": "GAS AEGEAN",
@@ -281,7 +251,22 @@
       "to": "—"
     },
     {
-      "id": "H20260530019",
+      "id": "H20260530017",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "FAITHFUL.STAR",
+      "gt": 20043,
+      "len": 175,
+      "berth": "DEC",
+      "agent": "NEX",
+      "op": "Entrada",
+      "eta": "2026-05-30T09:30",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260530018",
       "status": "Prevista",
       "imo": "—",
       "name": "MED TUNCER",
@@ -296,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260530020",
+      "id": "H20260530019",
       "status": "Prevista",
       "imo": "—",
       "name": "BISCAY",
@@ -311,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260530021",
+      "id": "H20260530020",
       "status": "Prevista",
       "imo": "—",
       "name": "SPIRIT",
@@ -326,7 +311,22 @@
       "to": "—"
     },
     {
-      "id": "H20260530023",
+      "id": "H20260530021",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "BOYNE",
+      "gt": 3974,
+      "len": 106,
+      "berth": "DC2",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-05-30T16:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260530022",
       "status": "Prevista",
       "imo": "—",
       "name": "THEIA",
@@ -341,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260530024",
+      "id": "H20260530023",
       "status": "Prevista",
       "imo": "—",
       "name": "TOSCA",
@@ -356,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260530025",
+      "id": "H20260530024",
       "status": "Prevista",
       "imo": "—",
       "name": "BBC BRISBANE",
@@ -371,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260530026",
+      "id": "H20260530025",
       "status": "Prevista",
       "imo": "—",
       "name": "MED SERHAT",
@@ -386,7 +386,7 @@
       "to": "—"
     },
     {
-      "id": "H20260530027",
+      "id": "H20260530026",
       "status": "Prevista",
       "imo": "—",
       "name": "COSTANZA M",
@@ -401,7 +401,7 @@
       "to": "—"
     },
     {
-      "id": "H20260531028",
+      "id": "H20260531027",
       "status": "Prevista",
       "imo": "—",
       "name": "TRANS.CHEMICA",
@@ -416,12 +416,12 @@
       "to": "—"
     },
     {
-      "id": "H20260531029",
+      "id": "H20260531028",
       "status": "Prevista",
       "imo": "—",
-      "name": "ALBUFERA.TMA",
-      "gt": 3978,
-      "len": 100,
+      "name": "MUNDAKA NM",
+      "gt": 4137,
+      "len": 103,
       "berth": "JGV",
       "agent": "CON",
       "op": "Entrada",
@@ -431,7 +431,7 @@
       "to": "—"
     },
     {
-      "id": "H20260531030",
+      "id": "H20260531029",
       "status": "Prevista",
       "imo": "—",
       "name": "KYPROS.LAND",
@@ -441,6 +441,21 @@
       "agent": "PAM",
       "op": "Entrada",
       "eta": "2026-05-31T15:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260601030",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "AQUARIUS",
+      "gt": 6454,
+      "len": 134,
+      "berth": "MUL",
+      "agent": "TER",
+      "op": "Entrada",
+      "eta": "2026-06-01T13:00",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -524,6 +539,21 @@
       "id": "H20260605036",
       "status": "Prevista",
       "imo": "—",
+      "name": "CAPTAIN.RAVI",
+      "gt": 24165,
+      "len": 190,
+      "berth": "JGV",
+      "agent": "PAM",
+      "op": "Entrada",
+      "eta": "2026-06-05T12:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260605037",
+      "status": "Prevista",
+      "imo": "—",
       "name": "FLAVIN",
       "gt": 64555,
       "len": 250,
@@ -536,7 +566,7 @@
       "to": "—"
     },
     {
-      "id": "H20260607037",
+      "id": "H20260607038",
       "status": "Prevista",
       "imo": "—",
       "name": "MEDKON.NLS",
@@ -551,7 +581,7 @@
       "to": "—"
     },
     {
-      "id": "H20260608038",
+      "id": "H20260608039",
       "status": "Prevista",
       "imo": "—",
       "name": "KARINA TERESA",
@@ -566,7 +596,7 @@
       "to": "—"
     },
     {
-      "id": "H20260608039",
+      "id": "H20260608040",
       "status": "Prevista",
       "imo": "—",
       "name": "FG.ROTTERDAM",
@@ -581,7 +611,7 @@
       "to": "—"
     },
     {
-      "id": "H20260609040",
+      "id": "H20260609041",
       "status": "Prevista",
       "imo": "—",
       "name": "BCH.BRAMBERG",
