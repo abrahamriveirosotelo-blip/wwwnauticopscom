@@ -2,7 +2,7 @@
   "meta": {
     "port": "Puerto de Huelva",
     "source": "huelvapilots.com · previsiones",
-    "date": "30/05/2026",
+    "date": "31/05/2026",
     "refreshHours": 24
   },
   "calls": [
@@ -53,23 +53,6 @@
     },
     {
       "id": "H20260529004",
-      "status": "Alerta",
-      "imo": "—",
-      "name": "ALISIOS.LNG",
-      "gt": 12888,
-      "len": 133,
-      "berth": "ENA",
-      "agent": "E.CIA",
-      "op": "Fondo",
-      "eta": "2026-05-29T09:00",
-      "etd": "",
-      "from": "—",
-      "to": "—",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle ENA según lo previsto."
-    },
-    {
-      "id": "H20260529005",
       "status": "Iniciado",
       "imo": "—",
       "name": "STROMBOLI M",
@@ -84,37 +67,7 @@
       "to": "—"
     },
     {
-      "id": "H20260529006",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "MAGPIE",
-      "gt": 7617,
-      "len": 127,
-      "berth": "JGV",
-      "agent": "ERS",
-      "op": "Fondo",
-      "eta": "2026-05-29T18:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260529007",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "BC.MIKLAGARD",
-      "gt": 3981,
-      "len": 109,
-      "berth": "DCS",
-      "agent": "—",
-      "op": "Fondo",
-      "eta": "2026-05-29T18:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260530008",
+      "id": "H20260530005",
       "status": "Iniciado",
       "imo": "—",
       "name": "GAS.VICTORY",
@@ -129,7 +82,7 @@
       "to": "—"
     },
     {
-      "id": "H20260530009",
+      "id": "H20260530006",
       "status": "Iniciado",
       "imo": "—",
       "name": "GAS AEGEAN",
@@ -144,8 +97,8 @@
       "to": "—"
     },
     {
-      "id": "H20260530010",
-      "status": "Iniciado",
+      "id": "H20260530007",
+      "status": "Alerta",
       "imo": "—",
       "name": "FAITHFUL.STAR",
       "gt": 20043,
@@ -156,116 +109,43 @@
       "eta": "2026-05-30T09:30",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle DEC según lo previsto."
     },
     {
-      "id": "H20260530011",
+      "id": "H20260530008",
       "status": "Iniciado",
-      "imo": "—",
-      "name": "MED TUNCER",
-      "gt": 5665,
-      "len": 124,
-      "berth": "DCN",
-      "agent": "IBM",
-      "op": "Fondo",
-      "eta": "2026-05-30T10:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260530012",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "MT.SOLERO",
-      "gt": 13471,
-      "len": 150,
-      "berth": "DCS",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-05-30T14:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260530013",
-      "status": "Prevista",
       "imo": "—",
       "name": "BOYNE",
       "gt": 3974,
       "len": 106,
       "berth": "DC2",
       "agent": "—",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-05-30T16:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260530014",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "OIZMENDI",
-      "gt": 2036,
-      "len": 80,
-      "berth": "MUL",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-05-30T16:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260530015",
-      "status": "Prevista",
+      "id": "H20260530009",
+      "status": "Iniciado",
       "imo": "—",
       "name": "BBC BRISBANE",
       "gt": 6309,
       "len": 129,
       "berth": "TI",
       "agent": "BER",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-05-30T19:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260530016",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "SPIRIT",
-      "gt": 7713,
-      "len": 142,
-      "berth": "MUL",
-      "agent": "TER",
-      "op": "Entrada",
-      "eta": "2026-05-30T23:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260531017",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "TRANS.CHEMICA",
-      "gt": 6868,
-      "len": 124,
-      "berth": "RSS",
-      "agent": "IBM",
-      "op": "Entrada",
-      "eta": "2026-05-31T07:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260531018",
-      "status": "Prevista",
+      "id": "H20260531010",
+      "status": "Iniciado",
       "imo": "—",
       "name": "TOSCA",
       "gt": 5577,
@@ -279,7 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260531019",
+      "id": "H20260531011",
       "status": "Prevista",
       "imo": "—",
       "name": "LA BELLE DE CADIX",
@@ -289,12 +169,12 @@
       "agent": "LAI",
       "op": "Entrada",
       "eta": "2026-05-31T09:00",
-      "etd": "2026-05-31T08:00",
+      "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260531020",
+      "id": "H20260531012",
       "status": "Prevista",
       "imo": "—",
       "name": "MED SERHAT",
@@ -306,25 +186,12 @@
       "eta": "2026-05-31T10:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "affectedBy": "H20260530007",
+      "affectRisk": "ALTO"
     },
     {
-      "id": "H20260531021",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "MUNDAKA NM",
-      "gt": 4137,
-      "len": 103,
-      "berth": "CPA",
-      "agent": "CON",
-      "op": "Entrada",
-      "eta": "2026-05-31T12:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260531022",
+      "id": "H20260531013",
       "status": "Prevista",
       "imo": "—",
       "name": "KYPROS.LAND",
@@ -339,7 +206,22 @@
       "to": "—"
     },
     {
-      "id": "H20260531023",
+      "id": "H20260531014",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "MT.SOLERO",
+      "gt": 13471,
+      "len": 150,
+      "berth": "DCS",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-05-31T14:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260531015",
       "status": "Prevista",
       "imo": "—",
       "name": "COSTANZA M",
@@ -354,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260531024",
+      "id": "H20260531016",
       "status": "Prevista",
       "imo": "—",
       "name": "THEIA",
@@ -369,7 +251,22 @@
       "to": "—"
     },
     {
-      "id": "H20260601025",
+      "id": "H20260601017",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "MUNDAKA NM",
+      "gt": 4137,
+      "len": 103,
+      "berth": "CPA",
+      "agent": "CON",
+      "op": "Entrada",
+      "eta": "2026-06-01T12:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260601018",
       "status": "Prevista",
       "imo": "—",
       "name": "AQUARIUS",
@@ -384,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260601026",
+      "id": "H20260601019",
       "status": "Prevista",
       "imo": "—",
       "name": "RELIABLE",
@@ -399,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260602027",
+      "id": "H20260602020",
       "status": "Prevista",
       "imo": "—",
       "name": "YASA.BEGONIA",
@@ -414,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260602028",
+      "id": "H20260602021",
       "status": "Prevista",
       "imo": "—",
       "name": "ARKLOW MEADOW",
@@ -429,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260602029",
+      "id": "H20260602022",
       "status": "Prevista",
       "imo": "—",
       "name": "ECO.TIDE",
@@ -444,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260604030",
+      "id": "H20260604023",
       "status": "Prevista",
       "imo": "—",
       "name": "ALICE.COSULICH",
@@ -456,12 +353,10 @@
       "eta": "2026-06-04T00:01",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260529004",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
-      "id": "H20260605031",
+      "id": "H20260605024",
       "status": "Prevista",
       "imo": "—",
       "name": "KING ARTHUR",
@@ -476,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260605032",
+      "id": "H20260605025",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -491,7 +386,7 @@
       "to": "—"
     },
     {
-      "id": "H20260605033",
+      "id": "H20260605026",
       "status": "Prevista",
       "imo": "—",
       "name": "CAPTAIN.RAVI",
@@ -506,7 +401,7 @@
       "to": "—"
     },
     {
-      "id": "H20260605034",
+      "id": "H20260605027",
       "status": "Prevista",
       "imo": "—",
       "name": "SFL.FRASER",
@@ -521,7 +416,7 @@
       "to": "—"
     },
     {
-      "id": "H20260605035",
+      "id": "H20260605028",
       "status": "Prevista",
       "imo": "—",
       "name": "FLAVIN",
@@ -536,7 +431,7 @@
       "to": "—"
     },
     {
-      "id": "H20260607036",
+      "id": "H20260606029",
       "status": "Prevista",
       "imo": "—",
       "name": "MEDKON.NLS",
@@ -545,13 +440,13 @@
       "berth": "MUL",
       "agent": "MM",
       "op": "Entrada",
-      "eta": "2026-06-07T04:00",
+      "eta": "2026-06-06T15:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260608037",
+      "id": "H20260608030",
       "status": "Prevista",
       "imo": "—",
       "name": "KARINA TERESA",
@@ -566,7 +461,7 @@
       "to": "—"
     },
     {
-      "id": "H20260608038",
+      "id": "H20260608031",
       "status": "Prevista",
       "imo": "—",
       "name": "FG.ROTTERDAM",
@@ -581,7 +476,7 @@
       "to": "—"
     },
     {
-      "id": "H20260609039",
+      "id": "H20260609032",
       "status": "Prevista",
       "imo": "—",
       "name": "BCH.BRAMBERG",
@@ -597,7 +492,7 @@
     }
   ],
   "tugService": {
-    "callId": "H20260529004",
+    "callId": "H20260530007",
     "reportNumber": "031245",
     "tugboat": "REMOLCADOR ODIEL",
     "powerPct": 70,
@@ -624,18 +519,18 @@
     }
   },
   "milestones": {
-    "H20260529004": [
+    "H20260530007": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "29/05 · 09:25",
+        "time": "30/05 · 09:55",
         "by": "Práctico (Huelva)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "29/05 · 10:30",
-        "by": "Agente: E.CIA"
+        "time": "30/05 · 11:00",
+        "by": "Agente: NEX"
       },
       {
         "label": "Fin de operaciones",
