@@ -2,13 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "01/06/2026",
+    "date": "02/06/2026",
     "refreshHours": 2
   },
   "calls": [
     {
       "id": "A202600382",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9256779",
       "name": "NUEVO PANCHILLETA",
       "gt": 350,
@@ -19,24 +19,9 @@
       "eta": "2026-05-28T14:00",
       "etd": "2026-06-12T08:00",
       "from": "CARTAGENA",
-      "to": "A ORDENES"
-    },
-    {
-      "id": "A202600373",
-      "status": "Alerta",
-      "imo": "9083043",
-      "name": "NANTO",
-      "gt": 7550,
-      "len": 151.14,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-05-31T07:00",
-      "etd": "2026-06-01T21:00",
-      "from": "BARCELONA",
-      "to": "GIBRALTAR",
+      "to": "A ORDENES",
       "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 17 según lo previsto."
     },
     {
       "id": "A202600330",
@@ -54,21 +39,6 @@
       "to": "ORAN"
     },
     {
-      "id": "A202600386",
-      "status": "Iniciado",
-      "imo": "9237242",
-      "name": "CRACOVIA",
-      "gt": 25028,
-      "len": 180,
-      "berth": "25",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-06-01T08:00",
-      "etd": "2026-06-01T20:00",
-      "from": "ALGER",
-      "to": "OLBIA"
-    },
-    {
       "id": "A202600374",
       "status": "Prevista",
       "imo": "9430193",
@@ -81,9 +51,7 @@
       "eta": "2026-06-02T13:00",
       "etd": "2026-06-03T15:00",
       "from": "ARRECIFE",
-      "to": "ALGER",
-      "affectedBy": "A202600373",
-      "affectRisk": "ALTO"
+      "to": "ALGER"
     },
     {
       "id": "A202600387",
@@ -162,7 +130,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600373",
+    "callId": "A202600382",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -189,18 +157,18 @@
     }
   },
   "milestones": {
-    "A202600373": [
+    "A202600382": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "31/05 · 07:25",
+        "time": "28/05 · 14:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "31/05 · 08:30",
-        "by": "Agente: EUROPEAN FORWARDING SL"
+        "time": "28/05 · 15:30",
+        "by": "Agente: ROMEU Y CIA. S A"
       },
       {
         "label": "Fin de operaciones",
