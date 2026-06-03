@@ -52,25 +52,8 @@
       "to": "TENERIFE"
     },
     {
-      "id": "A202600379",
-      "status": "Alerta",
-      "imo": "9287687",
-      "name": "SANTUCA B",
-      "gt": 7519,
-      "len": 137.5,
-      "berth": "23",
-      "agent": "MILLER Y COMPAÑIA S.A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-06-03T08:00",
-      "etd": "2026-06-03T12:00",
-      "from": "STA. CRUZ",
-      "to": "ORAN",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
-    },
-    {
       "id": "A202600388",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9378498",
       "name": "COSTA PACIFICA",
       "gt": 114425,
@@ -81,7 +64,9 @@
       "eta": "2026-06-03T09:00",
       "etd": "2026-06-03T19:00",
       "from": "PALMA",
-      "to": "ALMERIA"
+      "to": "ALMERIA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 14 según lo previsto."
     },
     {
       "id": "A202600391",
@@ -111,9 +96,7 @@
       "eta": "2026-06-05T08:00",
       "etd": "2026-06-05T20:00",
       "from": "ARRECIFE",
-      "to": "CARTAGENA",
-      "affectedBy": "A202600379",
-      "affectRisk": "ALTO"
+      "to": "CARTAGENA"
     },
     {
       "id": "A202600385",
@@ -143,7 +126,9 @@
       "eta": "2026-06-06T09:30",
       "etd": "2026-06-06T20:30",
       "from": "CIVIATAVECCHIA",
-      "to": "MISURATA"
+      "to": "MISURATA",
+      "affectedBy": "A202600388",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600381",
@@ -207,7 +192,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600379",
+    "callId": "A202600388",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -234,18 +219,18 @@
     }
   },
   "milestones": {
-    "A202600379": [
+    "A202600388": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "03/06 · 08:25",
+        "time": "03/06 · 09:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "03/06 · 09:30",
-        "by": "Agente: MILLER Y COMPAÑIA S.A"
+        "time": "03/06 · 10:30",
+        "by": "Agente: A. PEREZ Y CIA. S.L."
       },
       {
         "label": "Fin de operaciones",

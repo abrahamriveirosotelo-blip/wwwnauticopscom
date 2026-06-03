@@ -22,22 +22,7 @@
       "to": "—"
     },
     {
-      "id": "H20260529002",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "STROMBOLI M",
-      "gt": 23261,
-      "len": 183,
-      "berth": "RS4",
-      "agent": "E.CIA",
-      "op": "Fondo",
-      "eta": "2026-05-29T12:15",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260530003",
+      "id": "H20260530002",
       "status": "Iniciado",
       "imo": "—",
       "name": "BBC BRISBANE",
@@ -52,8 +37,8 @@
       "to": "—"
     },
     {
-      "id": "H20260601004",
-      "status": "Alerta",
+      "id": "H20260601003",
+      "status": "Iniciado",
       "imo": "—",
       "name": "MT.SOLERO",
       "gt": 13471,
@@ -64,13 +49,11 @@
       "eta": "2026-06-01T15:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle DCS según lo previsto."
+      "to": "—"
     },
     {
-      "id": "H20260602005",
-      "status": "Iniciado",
+      "id": "H20260602004",
+      "status": "Alerta",
       "imo": "—",
       "name": "ALICE.COSULICH",
       "gt": 8847,
@@ -81,10 +64,12 @@
       "eta": "2026-06-02T03:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle ENA según lo previsto."
     },
     {
-      "id": "H20260602006",
+      "id": "H20260602005",
       "status": "Iniciado",
       "imo": "—",
       "name": "CANNETO M",
@@ -99,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260603007",
+      "id": "H20260603006",
       "status": "Iniciado",
       "imo": "—",
       "name": "MED SERHAT",
@@ -114,24 +99,7 @@
       "to": "—"
     },
     {
-      "id": "H20260603008",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "TORM LOUISE",
-      "gt": 29283,
-      "len": 183,
-      "berth": "DCS",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-06-03T14:00",
-      "etd": "",
-      "from": "—",
-      "to": "—",
-      "affectedBy": "H20260601004",
-      "affectRisk": "ALTO"
-    },
-    {
-      "id": "H20260603009",
+      "id": "H20260603007",
       "status": "Prevista",
       "imo": "—",
       "name": "MUNDAKA NM",
@@ -146,13 +114,13 @@
       "to": "—"
     },
     {
-      "id": "H20260603010",
+      "id": "H20260603008",
       "status": "Prevista",
       "imo": "—",
       "name": "TORM CAVATINA",
       "gt": 27061,
       "len": 183,
-      "berth": "PET",
+      "berth": "DEC",
       "agent": "E.CIA",
       "op": "Entrada",
       "eta": "2026-06-03T23:00",
@@ -161,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260603012",
+      "id": "H20260603010",
       "status": "Prevista",
       "imo": "—",
       "name": "IVER AMBASSADOR",
@@ -176,7 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260604013",
+      "id": "H20260604011",
       "status": "Prevista",
       "imo": "—",
       "name": "COSTANZA M",
@@ -191,7 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260604014",
+      "id": "H20260604012",
       "status": "Prevista",
       "imo": "—",
       "name": "GAS.ESCO",
@@ -206,7 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260604015",
+      "id": "H20260604013",
       "status": "Prevista",
       "imo": "—",
       "name": "CONTSHIP.LUV",
@@ -221,7 +189,7 @@
       "to": "—"
     },
     {
-      "id": "H20260604016",
+      "id": "H20260604014",
       "status": "Prevista",
       "imo": "—",
       "name": "CAROLINE ESSBERGER",
@@ -236,7 +204,7 @@
       "to": "—"
     },
     {
-      "id": "H20260604017",
+      "id": "H20260604015",
       "status": "Prevista",
       "imo": "—",
       "name": "CUNO ESSBERGER",
@@ -251,7 +219,7 @@
       "to": "—"
     },
     {
-      "id": "H20260604018",
+      "id": "H20260604016",
       "status": "Prevista",
       "imo": "—",
       "name": "CORAL ESSBERGER",
@@ -266,7 +234,7 @@
       "to": "—"
     },
     {
-      "id": "H20260604019",
+      "id": "H20260604017",
       "status": "Prevista",
       "imo": "—",
       "name": "SOUSELAS",
@@ -281,7 +249,7 @@
       "to": "—"
     },
     {
-      "id": "H20260604020",
+      "id": "H20260604018",
       "status": "Prevista",
       "imo": "—",
       "name": "EINSTEIN",
@@ -296,7 +264,7 @@
       "to": "—"
     },
     {
-      "id": "H20260605021",
+      "id": "H20260605019",
       "status": "Prevista",
       "imo": "—",
       "name": "KING ARTHUR",
@@ -311,7 +279,7 @@
       "to": "—"
     },
     {
-      "id": "H20260605022",
+      "id": "H20260605020",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -323,10 +291,12 @@
       "eta": "2026-06-05T05:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "affectedBy": "H20260602004",
+      "affectRisk": "ALTO"
     },
     {
-      "id": "H20260605023",
+      "id": "H20260605021",
       "status": "Prevista",
       "imo": "—",
       "name": "SFL.FRASER",
@@ -341,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260606024",
+      "id": "H20260606022",
       "status": "Prevista",
       "imo": "—",
       "name": "FLAVIN",
@@ -356,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260606025",
+      "id": "H20260606023",
       "status": "Prevista",
       "imo": "—",
       "name": "CAPTAIN.RAVI",
@@ -371,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260606026",
+      "id": "H20260606024",
       "status": "Prevista",
       "imo": "—",
       "name": "BREB.TIMBER",
@@ -386,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260606027",
+      "id": "H20260606025",
       "status": "Prevista",
       "imo": "—",
       "name": "MEDKON.NLS",
@@ -401,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260607028",
+      "id": "H20260607026",
       "status": "Prevista",
       "imo": "—",
       "name": "LA BELLE DE CADIX",
@@ -416,7 +386,7 @@
       "to": "—"
     },
     {
-      "id": "H20260608029",
+      "id": "H20260608027",
       "status": "Prevista",
       "imo": "—",
       "name": "KARINA TERESA",
@@ -431,7 +401,7 @@
       "to": "—"
     },
     {
-      "id": "H20260608030",
+      "id": "H20260608028",
       "status": "Prevista",
       "imo": "—",
       "name": "DH.ADMIRAL",
@@ -446,7 +416,7 @@
       "to": "—"
     },
     {
-      "id": "H20260608031",
+      "id": "H20260608029",
       "status": "Prevista",
       "imo": "—",
       "name": "CITRUS VITA BRASIL",
@@ -461,7 +431,7 @@
       "to": "—"
     },
     {
-      "id": "H20260610033",
+      "id": "H20260610031",
       "status": "Prevista",
       "imo": "—",
       "name": "BCH.BRAMBERG",
@@ -476,7 +446,7 @@
       "to": "—"
     },
     {
-      "id": "H20260613035",
+      "id": "H20260613033",
       "status": "Prevista",
       "imo": "—",
       "name": "DM.BEA",
@@ -492,7 +462,7 @@
     }
   ],
   "tugService": {
-    "callId": "H20260601004",
+    "callId": "H20260602004",
     "reportNumber": "031245",
     "tugboat": "REMOLCADOR ODIEL",
     "powerPct": 70,
@@ -519,18 +489,18 @@
     }
   },
   "milestones": {
-    "H20260601004": [
+    "H20260602004": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "01/06 · 15:25",
+        "time": "02/06 · 03:25",
         "by": "Práctico (Huelva)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "01/06 · 16:30",
-        "by": "Agente: —"
+        "time": "02/06 · 04:30",
+        "by": "Agente: E.CIA"
       },
       {
         "label": "Fin de operaciones",
