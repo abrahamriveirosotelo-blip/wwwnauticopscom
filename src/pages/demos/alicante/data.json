@@ -2,26 +2,24 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "02/06/2026",
+    "date": "03/06/2026",
     "refreshHours": 2
   },
   "calls": [
     {
       "id": "A202600382",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "9256779",
       "name": "NUEVO PANCHILLETA",
       "gt": 350,
       "len": 44,
-      "berth": "17",
+      "berth": "7",
       "agent": "ROMEU Y CIA. S A",
       "op": "INACTIVO",
       "eta": "2026-05-28T14:00",
       "etd": "2026-06-12T08:00",
       "from": "CARTAGENA",
-      "to": "A ORDENES",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 17 según lo previsto."
+      "to": "A ORDENES"
     },
     {
       "id": "A202600330",
@@ -39,23 +37,8 @@
       "to": "ORAN"
     },
     {
-      "id": "A202600374",
-      "status": "Iniciado",
-      "imo": "9430193",
-      "name": "HERCULES J",
-      "gt": 10585,
-      "len": 151.72,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-06-02T13:00",
-      "etd": "2026-06-03T15:00",
-      "from": "ARRECIFE",
-      "to": "ALGER"
-    },
-    {
       "id": "A202600387",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9237242",
       "name": "CRACOVIA",
       "gt": 25028,
@@ -70,7 +53,7 @@
     },
     {
       "id": "A202600379",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9287687",
       "name": "SANTUCA B",
       "gt": 7519,
@@ -81,11 +64,13 @@
       "eta": "2026-06-03T08:00",
       "etd": "2026-06-03T12:00",
       "from": "STA. CRUZ",
-      "to": "ORAN"
+      "to": "ORAN",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
     },
     {
       "id": "A202600388",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9378498",
       "name": "COSTA PACIFICA",
       "gt": 114425,
@@ -96,22 +81,22 @@
       "eta": "2026-06-03T09:00",
       "etd": "2026-06-03T19:00",
       "from": "PALMA",
-      "to": "PORT SAYD"
+      "to": "ALMERIA"
     },
     {
-      "id": "A202600189",
+      "id": "A202600391",
       "status": "Prevista",
-      "imo": "8716954",
-      "name": "MERNA 1",
-      "gt": 7067,
-      "len": 125.16,
-      "berth": "19",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "C/ VEHICULOS",
-      "eta": "2026-06-05T07:00",
-      "etd": "2026-06-05T22:00",
-      "from": "MISURATA",
-      "to": "ALMERIA"
+      "imo": "9349227",
+      "name": "NJORD",
+      "gt": 7720,
+      "len": 141.58,
+      "berth": "11",
+      "agent": "EUROPEAN FORWARDING SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-06-04T19:00",
+      "etd": "2026-06-05T15:00",
+      "from": "TENERIFE",
+      "to": "TENERIFE"
     },
     {
       "id": "A202600380",
@@ -126,11 +111,103 @@
       "eta": "2026-06-05T08:00",
       "etd": "2026-06-05T20:00",
       "from": "ARRECIFE",
-      "to": "TENERIFE"
+      "to": "CARTAGENA",
+      "affectedBy": "A202600379",
+      "affectRisk": "ALTO"
+    },
+    {
+      "id": "A202600385",
+      "status": "Prevista",
+      "imo": "9175494",
+      "name": "RAHAF 1",
+      "gt": 29303,
+      "len": 195.1,
+      "berth": "19",
+      "agent": "ROMEU Y CIA. S A",
+      "op": "C/ VEHICULOS",
+      "eta": "2026-06-06T06:00",
+      "etd": "2026-06-06T22:00",
+      "from": "MISURATA",
+      "to": "MOSTAGANEM"
+    },
+    {
+      "id": "A202600389",
+      "status": "Prevista",
+      "imo": "9200938",
+      "name": "NAUTICA",
+      "gt": 30277,
+      "len": 181,
+      "berth": "14",
+      "agent": "A. PEREZ Y CIA. S.L.",
+      "op": "CRUCERISTAS",
+      "eta": "2026-06-06T09:30",
+      "etd": "2026-06-06T20:30",
+      "from": "CIVIATAVECCHIA",
+      "to": "MISURATA"
+    },
+    {
+      "id": "A202600381",
+      "status": "Prevista",
+      "imo": "9083043",
+      "name": "NANTO",
+      "gt": 7550,
+      "len": 151.14,
+      "berth": "11",
+      "agent": "EUROPEAN FORWARDING SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-06-07T07:00",
+      "etd": "2026-06-07T15:00",
+      "from": "ARRECIFE",
+      "to": "LAS PALMAS"
+    },
+    {
+      "id": "A202600390",
+      "status": "Prevista",
+      "imo": "9108063",
+      "name": "PIRITA",
+      "gt": 6326,
+      "len": 132,
+      "berth": "23",
+      "agent": "A. PEREZ Y CIA. S.L.",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-06-07T14:00",
+      "etd": "2026-06-08T02:00",
+      "from": "ALGECIRAS",
+      "to": "CADIZ"
+    },
+    {
+      "id": "A202600392",
+      "status": "Prevista",
+      "imo": "9430193",
+      "name": "HERCULES J",
+      "gt": 10585,
+      "len": 151.72,
+      "berth": "11",
+      "agent": "EUROPEAN FORWARDING SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-06-08T07:00",
+      "etd": "2026-06-08T21:00",
+      "from": "BARCELONA",
+      "to": "OLBIA"
+    },
+    {
+      "id": "A202600396",
+      "status": "Prevista",
+      "imo": "9163685",
+      "name": "DINTELBORG",
+      "gt": 6235,
+      "len": 133.41,
+      "berth": "13",
+      "agent": "BERGE MARITIMA, S.L.",
+      "op": "D/ BOBINAS ",
+      "eta": "2026-06-09T06:00",
+      "etd": "2026-06-10T14:00",
+      "from": "HARAHOLMEN",
+      "to": "ALGER"
     }
   ],
   "tugService": {
-    "callId": "A202600382",
+    "callId": "A202600379",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -157,18 +234,18 @@
     }
   },
   "milestones": {
-    "A202600382": [
+    "A202600379": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "28/05 · 14:25",
+        "time": "03/06 · 08:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "28/05 · 15:30",
-        "by": "Agente: ROMEU Y CIA. S A"
+        "time": "03/06 · 09:30",
+        "by": "Agente: MILLER Y COMPAÑIA S.A"
       },
       {
         "label": "Fin de operaciones",
