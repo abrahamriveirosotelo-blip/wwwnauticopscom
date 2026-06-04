@@ -2,13 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "03/06/2026",
+    "date": "04/06/2026",
     "refreshHours": 2
   },
   "calls": [
     {
       "id": "A202600382",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9256779",
       "name": "NUEVO PANCHILLETA",
       "gt": 350,
@@ -19,7 +19,9 @@
       "eta": "2026-05-28T14:00",
       "etd": "2026-06-12T08:00",
       "from": "CARTAGENA",
-      "to": "A ORDENES"
+      "to": "A ORDENES",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 7 según lo previsto."
     },
     {
       "id": "A202600330",
@@ -37,38 +39,6 @@
       "to": "ORAN"
     },
     {
-      "id": "A202600387",
-      "status": "Iniciado",
-      "imo": "9237242",
-      "name": "CRACOVIA",
-      "gt": 25028,
-      "len": 180,
-      "berth": "25",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-06-03T08:00",
-      "etd": "2026-06-03T20:00",
-      "from": "ORAN",
-      "to": "TENERIFE"
-    },
-    {
-      "id": "A202600388",
-      "status": "Alerta",
-      "imo": "9378498",
-      "name": "COSTA PACIFICA",
-      "gt": 114425,
-      "len": 290.2,
-      "berth": "14",
-      "agent": "A. PEREZ Y CIA. S.L.",
-      "op": "CRUCERISTAS",
-      "eta": "2026-06-03T09:00",
-      "etd": "2026-06-03T19:00",
-      "from": "PALMA",
-      "to": "ALMERIA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 14 según lo previsto."
-    },
-    {
       "id": "A202600391",
       "status": "Prevista",
       "imo": "9349227",
@@ -81,7 +51,22 @@
       "eta": "2026-06-04T19:00",
       "etd": "2026-06-05T15:00",
       "from": "TENERIFE",
-      "to": "TENERIFE"
+      "to": "ORAN"
+    },
+    {
+      "id": "A202600385",
+      "status": "Prevista",
+      "imo": "9175494",
+      "name": "RAHAF 1",
+      "gt": 29303,
+      "len": 195.1,
+      "berth": "19",
+      "agent": "ROMEU Y CIA. S A",
+      "op": "C/ VEHICULOS",
+      "eta": "2026-06-05T06:00",
+      "etd": "2026-06-06T22:00",
+      "from": "MISURATA",
+      "to": "MOSTAGANEM"
     },
     {
       "id": "A202600380",
@@ -96,22 +81,7 @@
       "eta": "2026-06-05T08:00",
       "etd": "2026-06-05T20:00",
       "from": "ARRECIFE",
-      "to": "CARTAGENA"
-    },
-    {
-      "id": "A202600385",
-      "status": "Prevista",
-      "imo": "9175494",
-      "name": "RAHAF 1",
-      "gt": 29303,
-      "len": 195.1,
-      "berth": "19",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "C/ VEHICULOS",
-      "eta": "2026-06-06T06:00",
-      "etd": "2026-06-06T22:00",
-      "from": "MISURATA",
-      "to": "MOSTAGANEM"
+      "to": "TENERIFE"
     },
     {
       "id": "A202600389",
@@ -126,9 +96,22 @@
       "eta": "2026-06-06T09:30",
       "etd": "2026-06-06T20:30",
       "from": "CIVIATAVECCHIA",
-      "to": "MISURATA",
-      "affectedBy": "A202600388",
-      "affectRisk": "ALTO"
+      "to": "LAS PALMAS"
+    },
+    {
+      "id": "A202600392",
+      "status": "Prevista",
+      "imo": "9430193",
+      "name": "HERCULES J",
+      "gt": 10585,
+      "len": 151.72,
+      "berth": "11",
+      "agent": "EUROPEAN FORWARDING SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-06-06T13:00",
+      "etd": "2026-06-07T15:00",
+      "from": "BARCELONA",
+      "to": "OLBIA"
     },
     {
       "id": "A202600381",
@@ -143,7 +126,22 @@
       "eta": "2026-06-07T07:00",
       "etd": "2026-06-07T15:00",
       "from": "ARRECIFE",
-      "to": "LAS PALMAS"
+      "to": "ALGER"
+    },
+    {
+      "id": "A202600400",
+      "status": "Prevista",
+      "imo": "9629809",
+      "name": "LOTTA",
+      "gt": 2597,
+      "len": 88,
+      "berth": "17",
+      "agent": "ROMEU Y CIA. S A",
+      "op": "C/ CALIZA ",
+      "eta": "2026-06-07T08:00",
+      "etd": "2026-06-08T15:00",
+      "from": "SETE",
+      "to": "HUELVA"
     },
     {
       "id": "A202600390",
@@ -158,7 +156,7 @@
       "eta": "2026-06-07T14:00",
       "etd": "2026-06-08T02:00",
       "from": "ALGECIRAS",
-      "to": "CADIZ"
+      "to": "BARCELONA"
     },
     {
       "id": "A202600392",
@@ -173,7 +171,7 @@
       "eta": "2026-06-08T07:00",
       "etd": "2026-06-08T21:00",
       "from": "BARCELONA",
-      "to": "OLBIA"
+      "to": "ALMERIA"
     },
     {
       "id": "A202600396",
@@ -188,11 +186,56 @@
       "eta": "2026-06-09T06:00",
       "etd": "2026-06-10T14:00",
       "from": "HARAHOLMEN",
-      "to": "ALGER"
+      "to": "HULL"
+    },
+    {
+      "id": "A202600393",
+      "status": "Prevista",
+      "imo": "9312200",
+      "name": "ENDURANCE",
+      "gt": 7642,
+      "len": 134.58,
+      "berth": "11",
+      "agent": "EUROPEAN FORWARDING SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-06-10T07:00",
+      "etd": "2026-06-10T21:00",
+      "from": "DERINCE, KOCAELI",
+      "to": "Santa Cruz de Tenerife"
+    },
+    {
+      "id": "A202600397",
+      "status": "Prevista",
+      "imo": "9483683",
+      "name": "NIEVES B",
+      "gt": 10318,
+      "len": 151.72,
+      "berth": "23",
+      "agent": "MILLER Y COMPAÑIA S.A",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-06-10T08:00",
+      "etd": "2026-06-10T12:00",
+      "from": "Santa Cruz de la Palma",
+      "to": "CARTAGENA"
+    },
+    {
+      "id": "A202600366",
+      "status": "Prevista",
+      "imo": "9398773",
+      "name": "ELBWINTER",
+      "gt": 10585,
+      "len": 151,
+      "berth": "23",
+      "agent": "MAGHREB CONTAINER INTERNATIONAL SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-06-10T08:00",
+      "etd": "2026-06-10T14:00",
+      "from": "BARCELONA",
+      "to": "MOSTAGANEM"
     }
   ],
   "tugService": {
-    "callId": "A202600388",
+    "callId": "A202600382",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -219,18 +262,18 @@
     }
   },
   "milestones": {
-    "A202600388": [
+    "A202600382": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "03/06 · 09:25",
+        "time": "28/05 · 14:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "03/06 · 10:30",
-        "by": "Agente: A. PEREZ Y CIA. S.L."
+        "time": "28/05 · 15:30",
+        "by": "Agente: ROMEU Y CIA. S A"
       },
       {
         "label": "Fin de operaciones",
