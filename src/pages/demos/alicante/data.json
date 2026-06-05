@@ -2,13 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "04/06/2026",
+    "date": "05/06/2026",
     "refreshHours": 2
   },
   "calls": [
     {
       "id": "A202600382",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "9256779",
       "name": "NUEVO PANCHILLETA",
       "gt": 350,
@@ -19,9 +19,7 @@
       "eta": "2026-05-28T14:00",
       "etd": "2026-06-12T08:00",
       "from": "CARTAGENA",
-      "to": "A ORDENES",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 7 según lo previsto."
+      "to": "A ORDENES"
     },
     {
       "id": "A202600330",
@@ -34,13 +32,13 @@
       "agent": "ROMEU Y CIA. S A",
       "op": "C/ BLOQUES DE MARMOL",
       "eta": "2026-06-01T07:00",
-      "etd": "2026-06-04T22:00",
+      "etd": "2026-06-05T22:00",
       "from": "TARRAGONA",
       "to": "ORAN"
     },
     {
       "id": "A202600391",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9349227",
       "name": "NJORD",
       "gt": 7720,
@@ -51,11 +49,13 @@
       "eta": "2026-06-04T19:00",
       "etd": "2026-06-05T15:00",
       "from": "TENERIFE",
-      "to": "ORAN"
+      "to": "TENERIFE",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
       "id": "A202600385",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9175494",
       "name": "RAHAF 1",
       "gt": 29303,
@@ -66,11 +66,11 @@
       "eta": "2026-06-05T06:00",
       "etd": "2026-06-06T22:00",
       "from": "MISURATA",
-      "to": "MOSTAGANEM"
+      "to": "ORAN"
     },
     {
       "id": "A202600380",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9436305",
       "name": "VERONICA B",
       "gt": 7852,
@@ -81,7 +81,7 @@
       "eta": "2026-06-05T08:00",
       "etd": "2026-06-05T20:00",
       "from": "ARRECIFE",
-      "to": "TENERIFE"
+      "to": "MOSTAGANEM"
     },
     {
       "id": "A202600389",
@@ -111,7 +111,24 @@
       "eta": "2026-06-06T13:00",
       "etd": "2026-06-07T15:00",
       "from": "BARCELONA",
-      "to": "OLBIA"
+      "to": "OLBIA",
+      "affectedBy": "A202600391",
+      "affectRisk": "ALTO"
+    },
+    {
+      "id": "A202600403",
+      "status": "Prevista",
+      "imo": "9768514",
+      "name": "IVER AMBASSADOR",
+      "gt": 7009,
+      "len": 109.9,
+      "berth": "17",
+      "agent": "OCEAN PORTS & SHIPPING SL",
+      "op": "D/ BETUN INST. ESP.",
+      "eta": "2026-06-07T01:00",
+      "etd": "2026-06-07T18:00",
+      "from": "HUELVA",
+      "to": "ALGER"
     },
     {
       "id": "A202600381",
@@ -126,7 +143,7 @@
       "eta": "2026-06-07T07:00",
       "etd": "2026-06-07T15:00",
       "from": "ARRECIFE",
-      "to": "ALGER"
+      "to": "HUELVA"
     },
     {
       "id": "A202600400",
@@ -141,7 +158,7 @@
       "eta": "2026-06-07T08:00",
       "etd": "2026-06-08T15:00",
       "from": "SETE",
-      "to": "HUELVA"
+      "to": "BARCELONA"
     },
     {
       "id": "A202600390",
@@ -156,7 +173,7 @@
       "eta": "2026-06-07T14:00",
       "etd": "2026-06-08T02:00",
       "from": "ALGECIRAS",
-      "to": "BARCELONA"
+      "to": "HULL"
     },
     {
       "id": "A202600392",
@@ -171,7 +188,37 @@
       "eta": "2026-06-08T07:00",
       "etd": "2026-06-08T21:00",
       "from": "BARCELONA",
-      "to": "ALMERIA"
+      "to": "Santa Cruz de Tenerife"
+    },
+    {
+      "id": "A202600402",
+      "status": "Prevista",
+      "imo": "9237242",
+      "name": "CRACOVIA",
+      "gt": 25028,
+      "len": 180,
+      "berth": "25",
+      "agent": "OCEAN PORTS & SHIPPING SL",
+      "op": "PASAJE Y VEHICULOS",
+      "eta": "2026-06-08T08:00",
+      "etd": "2026-06-08T20:00",
+      "from": "ALGER",
+      "to": "CARTAGENA"
+    },
+    {
+      "id": "A202600404",
+      "status": "Prevista",
+      "imo": "9731547",
+      "name": "CEMBROOK",
+      "gt": 3517,
+      "len": 99,
+      "berth": "19",
+      "agent": "OCEAN PORTS & SHIPPING SL",
+      "op": "C/ CEMENTO INST. ESP.",
+      "eta": "2026-06-09T05:00",
+      "etd": "2026-06-10T14:00",
+      "from": "AUGUSTA",
+      "to": "MOSTAGANEM"
     },
     {
       "id": "A202600396",
@@ -186,7 +233,22 @@
       "eta": "2026-06-09T06:00",
       "etd": "2026-06-10T14:00",
       "from": "HARAHOLMEN",
-      "to": "HULL"
+      "to": "ALMERIA"
+    },
+    {
+      "id": "A202600401",
+      "status": "Prevista",
+      "imo": "9250464",
+      "name": "MSC OPERA",
+      "gt": 65591,
+      "len": 274,
+      "berth": "14",
+      "agent": "LANTIMAR S.L.",
+      "op": "CRUCERISTAS",
+      "eta": "2026-06-09T08:00",
+      "etd": "2026-06-09T17:00",
+      "from": "LISBOA",
+      "to": "CADIZ"
     },
     {
       "id": "A202600393",
@@ -201,7 +263,7 @@
       "eta": "2026-06-10T07:00",
       "etd": "2026-06-10T21:00",
       "from": "DERINCE, KOCAELI",
-      "to": "Santa Cruz de Tenerife"
+      "to": "ORAN"
     },
     {
       "id": "A202600397",
@@ -216,7 +278,7 @@
       "eta": "2026-06-10T08:00",
       "etd": "2026-06-10T12:00",
       "from": "Santa Cruz de la Palma",
-      "to": "CARTAGENA"
+      "to": "MAHON, MENORCA"
     },
     {
       "id": "A202600366",
@@ -231,11 +293,26 @@
       "eta": "2026-06-10T08:00",
       "etd": "2026-06-10T14:00",
       "from": "BARCELONA",
-      "to": "MOSTAGANEM"
+      "to": "HULL"
+    },
+    {
+      "id": "A202600398",
+      "status": "Prevista",
+      "imo": "9404065",
+      "name": "CARLOTA B",
+      "gt": 7852,
+      "len": 140.64,
+      "berth": "—",
+      "agent": "MILLER Y COMPAÑIA S.A",
+      "op": "—",
+      "eta": "2026-06-12T08:00",
+      "etd": "2026-06-12T20:00",
+      "from": "LAS PALMAS DE GRAN CANARIA",
+      "to": "Santa Cruz de Tenerife"
     }
   ],
   "tugService": {
-    "callId": "A202600382",
+    "callId": "A202600391",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -262,18 +339,18 @@
     }
   },
   "milestones": {
-    "A202600382": [
+    "A202600391": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "28/05 · 14:25",
+        "time": "04/06 · 19:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "28/05 · 15:30",
-        "by": "Agente: ROMEU Y CIA. S A"
+        "time": "04/06 · 20:30",
+        "by": "Agente: EUROPEAN FORWARDING SL"
       },
       {
         "label": "Fin de operaciones",
