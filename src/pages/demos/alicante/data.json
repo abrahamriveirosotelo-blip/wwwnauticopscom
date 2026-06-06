@@ -2,7 +2,7 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "05/06/2026",
+    "date": "06/06/2026",
     "refreshHours": 2
   },
   "calls": [
@@ -39,21 +39,6 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle BAHIA según lo previsto."
     },
     {
-      "id": "A202600391",
-      "status": "Iniciado",
-      "imo": "9349227",
-      "name": "NJORD",
-      "gt": 7720,
-      "len": 141.58,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-06-04T19:00",
-      "etd": "2026-06-05T15:00",
-      "from": "TENERIFE",
-      "to": "TENERIFE"
-    },
-    {
       "id": "A202600385",
       "status": "Iniciado",
       "imo": "9175494",
@@ -67,21 +52,6 @@
       "etd": "2026-06-06T22:00",
       "from": "MISURATA",
       "to": "ORAN"
-    },
-    {
-      "id": "A202600380",
-      "status": "Iniciado",
-      "imo": "9436305",
-      "name": "VERONICA B",
-      "gt": 7852,
-      "len": 140.62,
-      "berth": "23",
-      "agent": "MILLER Y COMPAÑIA S.A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-06-05T08:00",
-      "etd": "2026-06-05T20:00",
-      "from": "ARRECIFE",
-      "to": "MOSTAGANEM"
     },
     {
       "id": "A202600389",
