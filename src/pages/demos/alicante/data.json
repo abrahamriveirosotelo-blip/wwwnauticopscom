@@ -2,7 +2,7 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "06/06/2026",
+    "date": "07/06/2026",
     "refreshHours": 2
   },
   "calls": [
@@ -23,7 +23,7 @@
     },
     {
       "id": "A202600330",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "9558452",
       "name": "AMIRA JOY",
       "gt": 6881,
@@ -34,43 +34,11 @@
       "eta": "2026-06-01T07:00",
       "etd": "2026-06-07T22:00",
       "from": "TARRAGONA",
-      "to": "ORAN",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle BAHIA según lo previsto."
-    },
-    {
-      "id": "A202600385",
-      "status": "Iniciado",
-      "imo": "9175494",
-      "name": "RAHAF 1",
-      "gt": 29303,
-      "len": 195.1,
-      "berth": "21",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "C/ VEHICULOS",
-      "eta": "2026-06-05T06:00",
-      "etd": "2026-06-06T22:00",
-      "from": "MISURATA",
       "to": "ORAN"
     },
     {
-      "id": "A202600389",
-      "status": "Iniciado",
-      "imo": "9200938",
-      "name": "NAUTICA",
-      "gt": 30277,
-      "len": 181,
-      "berth": "14",
-      "agent": "A. PEREZ Y CIA. S.L.",
-      "op": "CRUCERISTAS",
-      "eta": "2026-06-06T09:30",
-      "etd": "2026-06-06T20:30",
-      "from": "CIVIATAVECCHIA",
-      "to": "LAS PALMAS"
-    },
-    {
       "id": "A202600392",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9430193",
       "name": "HERCULES J",
       "gt": 10585,
@@ -81,11 +49,13 @@
       "eta": "2026-06-06T13:00",
       "etd": "2026-06-07T15:00",
       "from": "BARCELONA",
-      "to": "OLBIA"
+      "to": "OLBIA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
       "id": "A202600403",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9768514",
       "name": "IVER AMBASSADOR",
       "gt": 7009,
@@ -100,7 +70,7 @@
     },
     {
       "id": "A202600381",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9083043",
       "name": "NANTO",
       "gt": 7550,
@@ -115,7 +85,7 @@
     },
     {
       "id": "A202600400",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9629809",
       "name": "LOTTA",
       "gt": 2597,
@@ -126,9 +96,7 @@
       "eta": "2026-06-07T08:00",
       "etd": "2026-06-08T15:00",
       "from": "SETE",
-      "to": "BARCELONA",
-      "affectedBy": "A202600330",
-      "affectRisk": "ALTO"
+      "to": "BARCELONA"
     },
     {
       "id": "A202600390",
@@ -158,7 +126,9 @@
       "eta": "2026-06-08T07:00",
       "etd": "2026-06-08T21:00",
       "from": "BARCELONA",
-      "to": "Santa Cruz de Tenerife"
+      "to": "Santa Cruz de Tenerife",
+      "affectedBy": "A202600392",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600402",
@@ -282,7 +252,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600330",
+    "callId": "A202600392",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -309,18 +279,18 @@
     }
   },
   "milestones": {
-    "A202600330": [
+    "A202600392": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "01/06 · 07:25",
+        "time": "06/06 · 13:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "01/06 · 08:30",
-        "by": "Agente: ROMEU Y CIA. S A"
+        "time": "06/06 · 14:30",
+        "by": "Agente: EUROPEAN FORWARDING SL"
       },
       {
         "label": "Fin de operaciones",
