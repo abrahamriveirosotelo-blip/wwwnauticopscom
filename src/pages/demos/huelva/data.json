@@ -7,25 +7,8 @@
   },
   "calls": [
     {
-      "id": "H20260606001",
+      "id": "H20260608001",
       "status": "Alerta",
-      "imo": "—",
-      "name": "TOSCA",
-      "gt": 5577,
-      "len": 110,
-      "berth": "PEN",
-      "agent": "MM",
-      "op": "Fondo",
-      "eta": "2026-06-06T18:00",
-      "etd": "",
-      "from": "—",
-      "to": "—",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle PEN según lo previsto."
-    },
-    {
-      "id": "H20260608002",
-      "status": "Iniciado",
       "imo": "—",
       "name": "KWINTEBANK",
       "gt": 6378,
@@ -36,25 +19,27 @@
       "eta": "2026-06-08T00:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle TI según lo previsto."
     },
     {
-      "id": "H20260608003",
-      "status": "Prevista",
+      "id": "H20260608002",
+      "status": "Iniciado",
       "imo": "—",
       "name": "MY.ARMONY",
       "gt": 2999,
       "len": 94,
-      "berth": "JGV",
+      "berth": "CPA",
       "agent": "CON",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-06-08T12:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260608004",
+      "id": "H20260608003",
       "status": "Prevista",
       "imo": "—",
       "name": "AQUARIUS",
@@ -69,7 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260608005",
+      "id": "H20260608004",
       "status": "Prevista",
       "imo": "—",
       "name": "CITRUS VITA BRASIL",
@@ -84,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260609006",
+      "id": "H20260609005",
       "status": "Prevista",
       "imo": "—",
       "name": "TRANS TIND",
@@ -99,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260609007",
+      "id": "H20260609006",
       "status": "Prevista",
       "imo": "—",
       "name": "DING.HENG.23",
@@ -114,7 +99,7 @@
       "to": "—"
     },
     {
-      "id": "H20260609008",
+      "id": "H20260609007",
       "status": "Prevista",
       "imo": "—",
       "name": "BUENAVISTA.EXPRESS",
@@ -129,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260609009",
+      "id": "H20260609008",
       "status": "Prevista",
       "imo": "—",
       "name": "DARMIK",
@@ -144,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260609010",
+      "id": "H20260609009",
       "status": "Prevista",
       "imo": "—",
       "name": "BERGE.RYSY",
@@ -159,7 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260609011",
+      "id": "H20260609010",
       "status": "Prevista",
       "imo": "—",
       "name": "AMARELLA",
@@ -169,6 +154,21 @@
       "agent": "BER",
       "op": "Entrada",
       "eta": "2026-06-09T10:15",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260609011",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "GAS AEGEAN",
+      "gt": 9134,
+      "len": 120,
+      "berth": "FER",
+      "agent": "BER",
+      "op": "Entrada",
+      "eta": "2026-06-09T11:00",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -186,9 +186,7 @@
       "eta": "2026-06-09T21:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260606001",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
       "id": "H20260609013",
@@ -293,16 +291,33 @@
       "eta": "2026-06-10T23:45",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "affectedBy": "H20260608001",
+      "affectRisk": "ALTO"
     },
     {
       "id": "H20260611020",
       "status": "Prevista",
       "imo": "—",
+      "name": "SOLERO",
+      "gt": 19992,
+      "len": 150,
+      "berth": "DEC",
+      "agent": "PCIA",
+      "op": "Entrada",
+      "eta": "2026-06-11T01:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260611021",
+      "status": "Prevista",
+      "imo": "—",
       "name": "GAS.VICTORY",
       "gt": 4749,
       "len": 100,
-      "berth": "RSF",
+      "berth": "RSN",
       "agent": "E.CIA",
       "op": "Entrada",
       "eta": "2026-06-11T06:00",
@@ -311,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260611021",
+      "id": "H20260611022",
       "status": "Prevista",
       "imo": "—",
       "name": "KARINA TERESA",
@@ -326,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260611022",
+      "id": "H20260611023",
       "status": "Prevista",
       "imo": "—",
       "name": "CAPTAIN.RAVI",
@@ -341,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260611023",
+      "id": "H20260611024",
       "status": "Prevista",
       "imo": "—",
       "name": "CAPE.ANTIBES",
@@ -356,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260611024",
+      "id": "H20260611025",
       "status": "Prevista",
       "imo": "—",
       "name": "NATHEA.M",
@@ -371,7 +386,7 @@
       "to": "—"
     },
     {
-      "id": "H20260612025",
+      "id": "H20260612026",
       "status": "Prevista",
       "imo": "—",
       "name": "IVER BEST",
@@ -386,7 +401,7 @@
       "to": "—"
     },
     {
-      "id": "H20260612026",
+      "id": "H20260612027",
       "status": "Prevista",
       "imo": "—",
       "name": "BCH.BRAMBERG",
@@ -401,7 +416,22 @@
       "to": "—"
     },
     {
-      "id": "H20260613027",
+      "id": "H20260612028",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "NQ LILIUM",
+      "gt": 5744,
+      "len": 116,
+      "berth": "ATC",
+      "agent": "ERS",
+      "op": "Entrada",
+      "eta": "2026-06-12T22:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260613029",
       "status": "Prevista",
       "imo": "—",
       "name": "DM.BEA",
@@ -416,7 +446,7 @@
       "to": "—"
     },
     {
-      "id": "H20260614029",
+      "id": "H20260614031",
       "status": "Prevista",
       "imo": "—",
       "name": "EXCELLION",
@@ -429,10 +459,25 @@
       "etd": "",
       "from": "—",
       "to": "—"
+    },
+    {
+      "id": "H20260615032",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "GASLOW WINDSOR",
+      "gt": 120709,
+      "len": 297,
+      "berth": "ENA",
+      "agent": "MM",
+      "op": "Entrada",
+      "eta": "2026-06-15T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
     }
   ],
   "tugService": {
-    "callId": "H20260606001",
+    "callId": "H20260608001",
     "reportNumber": "031245",
     "tugboat": "REMOLCADOR ODIEL",
     "powerPct": 70,
@@ -459,18 +504,18 @@
     }
   },
   "milestones": {
-    "H20260606001": [
+    "H20260608001": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "06/06 · 18:25",
+        "time": "08/06 · 00:25",
         "by": "Práctico (Huelva)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "06/06 · 19:30",
-        "by": "Agente: MM"
+        "time": "08/06 · 01:30",
+        "by": "Agente: BER"
       },
       {
         "label": "Fin de operaciones",
