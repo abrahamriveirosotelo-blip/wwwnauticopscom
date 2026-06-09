@@ -2,7 +2,7 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "08/06/2026",
+    "date": "09/06/2026",
     "refreshHours": 2
   },
   "calls": [
@@ -54,23 +54,8 @@
       "alertNote": "Incidencia en carga. El buque no liberará el Muelle 17 según lo previsto."
     },
     {
-      "id": "A202600402",
-      "status": "Iniciado",
-      "imo": "9237242",
-      "name": "CRACOVIA",
-      "gt": 25028,
-      "len": 180,
-      "berth": "25",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-06-08T08:00",
-      "etd": "2026-06-08T20:00",
-      "from": "ALGER",
-      "to": "CADIZ"
-    },
-    {
       "id": "A202600404",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9731547",
       "name": "CEMBROOK",
       "gt": 3517,
@@ -85,7 +70,7 @@
     },
     {
       "id": "A202600396",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9163685",
       "name": "DINTELBORG",
       "gt": 6235,
@@ -100,7 +85,7 @@
     },
     {
       "id": "A202600401",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9250464",
       "name": "MSC OPERA",
       "gt": 65591,
