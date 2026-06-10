@@ -2,7 +2,7 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "09/06/2026",
+    "date": "10/06/2026",
     "refreshHours": 2
   },
   "calls": [
@@ -37,23 +37,6 @@
       "to": "BARCELONA"
     },
     {
-      "id": "A202600400",
-      "status": "Alerta",
-      "imo": "9629809",
-      "name": "LOTTA",
-      "gt": 2597,
-      "len": 88,
-      "berth": "17",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "C/ CALIZA ",
-      "eta": "2026-06-07T08:00",
-      "etd": "2026-06-09T15:00",
-      "from": "SETE",
-      "to": "HUELVA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en carga. El buque no liberará el Muelle 17 según lo previsto."
-    },
-    {
       "id": "A202600404",
       "status": "Iniciado",
       "imo": "9731547",
@@ -84,40 +67,8 @@
       "to": "TENERIFE"
     },
     {
-      "id": "A202600401",
-      "status": "Iniciado",
-      "imo": "9250464",
-      "name": "MSC OPERA",
-      "gt": 65591,
-      "len": 274,
-      "berth": "14",
-      "agent": "LANTIMAR S.L.",
-      "op": "CRUCERISTAS",
-      "eta": "2026-06-09T08:00",
-      "etd": "2026-06-09T17:00",
-      "from": "LISBOA",
-      "to": "MISURATA"
-    },
-    {
-      "id": "A202600403",
-      "status": "Prevista",
-      "imo": "9768514",
-      "name": "IVER AMBASSADOR",
-      "gt": 7009,
-      "len": 109.9,
-      "berth": "17",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "D/ BETUN INST. ESP.",
-      "eta": "2026-06-09T22:00",
-      "etd": "2026-06-09T18:00",
-      "from": "HUELVA",
-      "to": "MAHON",
-      "affectedBy": "A202600400",
-      "affectRisk": "ALTO"
-    },
-    {
       "id": "A202600393",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9312200",
       "name": "ENDURANCE",
       "gt": 7642,
@@ -132,7 +83,7 @@
     },
     {
       "id": "A202600397",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9483683",
       "name": "NIEVES B",
       "gt": 10318,
@@ -143,11 +94,13 @@
       "eta": "2026-06-10T08:00",
       "etd": "2026-06-10T12:00",
       "from": "STA. CRUZ",
-      "to": "BARCELONA"
+      "to": "BARCELONA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
     },
     {
       "id": "A202600406",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9378498",
       "name": "COSTA PACIFICA",
       "gt": 114425,
@@ -173,11 +126,13 @@
       "eta": "2026-06-11T08:00",
       "etd": "2026-06-11T14:00",
       "from": "BARCELONA",
-      "to": "CADIZ"
+      "to": "CADIZ",
+      "affectedBy": "A202600397",
+      "affectRisk": "ALTO"
     }
   ],
   "tugService": {
-    "callId": "A202600400",
+    "callId": "A202600397",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -204,18 +159,18 @@
     }
   },
   "milestones": {
-    "A202600400": [
+    "A202600397": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "07/06 · 08:25",
+        "time": "10/06 · 08:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "07/06 · 09:30",
-        "by": "Agente: ROMEU Y CIA. S A"
+        "time": "10/06 · 09:30",
+        "by": "Agente: MILLER Y COMPAÑIA S.A"
       },
       {
         "label": "Fin de operaciones",
