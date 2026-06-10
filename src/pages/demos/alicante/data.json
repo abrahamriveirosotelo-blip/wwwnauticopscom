@@ -8,7 +8,7 @@
   "calls": [
     {
       "id": "A202600382",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9256779",
       "name": "NUEVO PANCHILLETA",
       "gt": 350,
@@ -19,7 +19,9 @@
       "eta": "2026-05-28T14:00",
       "etd": "2026-06-12T08:00",
       "from": "CARTAGENA",
-      "to": "A ORDENES"
+      "to": "A ORDENES",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 7 según lo previsto."
     },
     {
       "id": "A202600385",
@@ -82,23 +84,6 @@
       "to": "OLBIA"
     },
     {
-      "id": "A202600397",
-      "status": "Alerta",
-      "imo": "9483683",
-      "name": "NIEVES B",
-      "gt": 10318,
-      "len": 151.72,
-      "berth": "23",
-      "agent": "MILLER Y COMPAÑIA S.A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-06-10T08:00",
-      "etd": "2026-06-10T12:00",
-      "from": "STA. CRUZ",
-      "to": "BARCELONA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
-    },
-    {
       "id": "A202600406",
       "status": "Iniciado",
       "imo": "9378498",
@@ -126,13 +111,11 @@
       "eta": "2026-06-11T08:00",
       "etd": "2026-06-11T14:00",
       "from": "BARCELONA",
-      "to": "CADIZ",
-      "affectedBy": "A202600397",
-      "affectRisk": "ALTO"
+      "to": "CADIZ"
     }
   ],
   "tugService": {
-    "callId": "A202600397",
+    "callId": "A202600382",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -159,18 +142,18 @@
     }
   },
   "milestones": {
-    "A202600397": [
+    "A202600382": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "10/06 · 08:25",
+        "time": "28/05 · 14:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "10/06 · 09:30",
-        "by": "Agente: MILLER Y COMPAÑIA S.A"
+        "time": "28/05 · 15:30",
+        "by": "Agente: ROMEU Y CIA. S A"
       },
       {
         "label": "Fin de operaciones",
