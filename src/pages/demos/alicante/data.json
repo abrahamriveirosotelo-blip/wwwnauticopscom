@@ -8,7 +8,7 @@
   "calls": [
     {
       "id": "A202600385",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9175494",
       "name": "RAHAF 1",
       "gt": 29303,
@@ -19,7 +19,9 @@
       "eta": "2026-06-05T06:00",
       "etd": "2026-06-12T22:00",
       "from": "MISURATA",
-      "to": "BARCELONA"
+      "to": "BARCELONA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en carga. El buque no liberará el Muelle BAHIA según lo previsto."
     },
     {
       "id": "A202600396",
@@ -50,23 +52,6 @@
       "etd": "2026-06-12T00:00",
       "from": "IBIZA",
       "to": "PALMA DE MALLORCA"
-    },
-    {
-      "id": "A202600366",
-      "status": "Alerta",
-      "imo": "9398773",
-      "name": "ELBWINTER",
-      "gt": 10585,
-      "len": 151,
-      "berth": "23",
-      "agent": "MAGHREB CONTAINER INTERNATIONAL SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-06-11T08:00",
-      "etd": "2026-06-11T14:00",
-      "from": "BARCELONA",
-      "to": "CADIZ",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
     },
     {
       "id": "A202600422",
@@ -111,9 +96,7 @@
       "eta": "2026-06-12T08:00",
       "etd": "2026-06-12T20:00",
       "from": "LAS PALMAS",
-      "to": "TENERIFE",
-      "affectedBy": "A202600366",
-      "affectRisk": "ALTO"
+      "to": "TENERIFE"
     },
     {
       "id": "A202600409",
@@ -207,7 +190,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600366",
+    "callId": "A202600385",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -234,18 +217,18 @@
     }
   },
   "milestones": {
-    "A202600366": [
+    "A202600385": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "11/06 · 08:25",
+        "time": "05/06 · 06:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "11/06 · 09:30",
-        "by": "Agente: MAGHREB CONTAINER INTERNATIONAL SL"
+        "time": "05/06 · 07:30",
+        "by": "Agente: ROMEU Y CIA. S A"
       },
       {
         "label": "Fin de operaciones",
