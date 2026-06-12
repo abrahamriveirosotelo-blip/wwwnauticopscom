@@ -2,13 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "11/06/2026",
+    "date": "12/06/2026",
     "refreshHours": 2
   },
   "calls": [
     {
       "id": "A202600385",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "9175494",
       "name": "RAHAF 1",
       "gt": 29303,
@@ -19,43 +19,11 @@
       "eta": "2026-06-05T06:00",
       "etd": "2026-06-12T22:00",
       "from": "MISURATA",
-      "to": "BARCELONA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en carga. El buque no liberará el Muelle BAHIA según lo previsto."
-    },
-    {
-      "id": "A202600396",
-      "status": "Iniciado",
-      "imo": "9163685",
-      "name": "DINTELBORG",
-      "gt": 6235,
-      "len": 133.41,
-      "berth": "13",
-      "agent": "BERGE MARITIMA, S.L.",
-      "op": "D/ BOBINAS ",
-      "eta": "2026-06-09T06:00",
-      "etd": "2026-06-11T14:00",
-      "from": "HARAHOLMEN",
-      "to": "MISURATA"
-    },
-    {
-      "id": "A202600405",
-      "status": "Iniciado",
-      "imo": "8816352",
-      "name": "SIRIOS CEMENT V",
-      "gt": 2453,
-      "len": 86,
-      "berth": "19",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "C/ CEMENTO INST. ESP.",
-      "eta": "2026-06-11T00:00",
-      "etd": "2026-06-12T00:00",
-      "from": "IBIZA",
-      "to": "PALMA DE MALLORCA"
+      "to": "BARCELONA"
     },
     {
       "id": "A202600422",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "1111111",
       "name": "SEMAC",
       "gt": 73.22,
@@ -70,7 +38,7 @@
     },
     {
       "id": "A202600394",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9349227",
       "name": "NJORD",
       "gt": 7720,
@@ -81,11 +49,13 @@
       "eta": "2026-06-12T07:00",
       "etd": "2026-06-12T21:00",
       "from": "TENERIFE",
-      "to": "PALMA"
+      "to": "PALMA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
       "id": "A202600398",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9404065",
       "name": "CARLOTA B",
       "gt": 7852,
@@ -100,7 +70,7 @@
     },
     {
       "id": "A202600409",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9106297",
       "name": "MARELLA EXPLORER",
       "gt": 76998,
@@ -126,7 +96,9 @@
       "eta": "2026-06-13T13:00",
       "etd": "2026-06-13T21:00",
       "from": "BARCELONA",
-      "to": "ALMERIA"
+      "to": "ALMERIA",
+      "affectedBy": "A202600394",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600412",
@@ -190,7 +162,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600385",
+    "callId": "A202600394",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -217,18 +189,18 @@
     }
   },
   "milestones": {
-    "A202600385": [
+    "A202600394": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "05/06 · 06:25",
+        "time": "12/06 · 07:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "05/06 · 07:30",
-        "by": "Agente: ROMEU Y CIA. S A"
+        "time": "12/06 · 08:30",
+        "by": "Agente: EUROPEAN FORWARDING SL"
       },
       {
         "label": "Fin de operaciones",
