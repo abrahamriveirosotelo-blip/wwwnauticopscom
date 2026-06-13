@@ -102,36 +102,6 @@
       "id": "H20260613007",
       "status": "Prevista",
       "imo": "—",
-      "name": "LA BELLE DE CADIX",
-      "gt": 2038,
-      "len": 103,
-      "berth": "LEV",
-      "agent": "LAI",
-      "op": "Entrada",
-      "eta": "2026-06-13T12:30",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260613008",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "BOMAR CERES",
-      "gt": 3997,
-      "len": 107,
-      "berth": "RSS",
-      "agent": "IBM",
-      "op": "Entrada",
-      "eta": "2026-06-13T13:30",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260613009",
-      "status": "Prevista",
-      "imo": "—",
       "name": "DH.ADMIRAL",
       "gt": 6052,
       "len": 120,
@@ -144,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260613010",
+      "id": "H20260613008",
       "status": "Prevista",
       "imo": "—",
       "name": "YUSUF.BEY",
@@ -159,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260613011",
+      "id": "H20260613009",
       "status": "Prevista",
       "imo": "—",
       "name": "DM.BEA",
@@ -174,7 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260613012",
+      "id": "H20260613010",
       "status": "Prevista",
       "imo": "—",
       "name": "CANNETO M",
@@ -189,7 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260614013",
+      "id": "H20260614011",
       "status": "Prevista",
       "imo": "—",
       "name": "CONTSHIP.ZEN",
@@ -206,7 +176,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260614014",
+      "id": "H20260614012",
       "status": "Prevista",
       "imo": "—",
       "name": "IKIGAI",
@@ -221,7 +191,7 @@
       "to": "—"
     },
     {
-      "id": "H20260614015",
+      "id": "H20260614013",
       "status": "Prevista",
       "imo": "—",
       "name": "FLAVIN",
@@ -236,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260614016",
+      "id": "H20260614014",
       "status": "Prevista",
       "imo": "—",
       "name": "SOLAR AILENE",
@@ -251,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260614017",
+      "id": "H20260614015",
       "status": "Prevista",
       "imo": "—",
       "name": "SIGAIA THERESA",
@@ -266,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260614018",
+      "id": "H20260614016",
       "status": "Prevista",
       "imo": "—",
       "name": "RF.RAN",
@@ -281,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260614019",
+      "id": "H20260614017",
       "status": "Prevista",
       "imo": "—",
       "name": "NAVIG8 GUARD",
@@ -296,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260614020",
+      "id": "H20260614018",
       "status": "Prevista",
       "imo": "—",
       "name": "GAS.VICTORY",
@@ -311,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260614021",
+      "id": "H20260614019",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -326,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260615023",
+      "id": "H20260615021",
       "status": "Prevista",
       "imo": "—",
       "name": "CAPTAIN.RAVI",
@@ -341,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260615025",
+      "id": "H20260615023",
       "status": "Prevista",
       "imo": "—",
       "name": "MEDKON.NLS",
@@ -356,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260615026",
+      "id": "H20260615024",
       "status": "Prevista",
       "imo": "—",
       "name": "DARMIK",
@@ -371,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260615027",
+      "id": "H20260615025",
       "status": "Prevista",
       "imo": "—",
       "name": "GASLOG.WINDSOR",
@@ -386,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260616028",
+      "id": "H20260616026",
       "status": "Prevista",
       "imo": "—",
       "name": "NISEKO.GALAXY",
@@ -401,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260616029",
+      "id": "H20260616027",
       "status": "Prevista",
       "imo": "—",
       "name": "KING ARTHUR",
@@ -416,7 +386,7 @@
       "to": "—"
     },
     {
-      "id": "H20260617030",
+      "id": "H20260617028",
       "status": "Prevista",
       "imo": "—",
       "name": "BBC.XINGANC",
@@ -431,7 +401,7 @@
       "to": "—"
     },
     {
-      "id": "H20260617031",
+      "id": "H20260617029",
       "status": "Prevista",
       "imo": "—",
       "name": "RODINA",
@@ -446,7 +416,7 @@
       "to": "—"
     },
     {
-      "id": "H20260618032",
+      "id": "H20260618030",
       "status": "Prevista",
       "imo": "—",
       "name": "CIELO.DI.GATEA",
@@ -461,7 +431,7 @@
       "to": "—"
     },
     {
-      "id": "H20260620033",
+      "id": "H20260620031",
       "status": "Prevista",
       "imo": "—",
       "name": "IOLCO.DESTINY",
