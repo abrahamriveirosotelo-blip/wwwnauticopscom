@@ -2,28 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "13/06/2026",
+    "date": "14/06/2026",
     "refreshHours": 2
   },
   "calls": [
     {
-      "id": "A202600395",
-      "status": "Prevista",
-      "imo": "9312200",
-      "name": "ENDURANCE",
-      "gt": 7642,
-      "len": 134.58,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-06-13T13:00",
-      "etd": "2026-06-13T21:00",
-      "from": "BARCELONA",
-      "to": "ALMERIA"
-    },
-    {
       "id": "A202600412",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9430193",
       "name": "HERCULES J",
       "gt": 10585,
@@ -38,7 +23,7 @@
     },
     {
       "id": "A202600410",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9200938",
       "name": "NAUTICA",
       "gt": 30277,
@@ -49,7 +34,9 @@
       "eta": "2026-06-14T09:30",
       "etd": "2026-06-14T20:30",
       "from": "CIVIATAVECCHIA",
-      "to": "DERINCE"
+      "to": "DERINCE",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 14 según lo previsto."
     },
     {
       "id": "A202600408",
@@ -79,11 +66,13 @@
       "eta": "2026-06-15T07:45",
       "etd": "2026-06-15T17:30",
       "from": "LISBOA",
-      "to": "LIVORNO"
+      "to": "LIVORNO",
+      "affectedBy": "A202600410",
+      "affectRisk": "ALTO"
     }
   ],
   "tugService": {
-    "callId": "A202600394",
+    "callId": "A202600410",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -110,18 +99,18 @@
     }
   },
   "milestones": {
-    "A202600394": [
+    "A202600410": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "12/06 · 07:25",
+        "time": "14/06 · 09:55",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "12/06 · 08:30",
-        "by": "Agente: EUROPEAN FORWARDING SL"
+        "time": "14/06 · 11:00",
+        "by": "Agente: A. PEREZ Y CIA. S.L."
       },
       {
         "label": "Fin de operaciones",
