@@ -87,21 +87,6 @@
       "id": "H20260614007",
       "status": "Iniciado",
       "imo": "—",
-      "name": "FU.ZHOU.WAN",
-      "gt": 8505,
-      "len": 109,
-      "berth": "RSS",
-      "agent": "E.CIA",
-      "op": "Fondo",
-      "eta": "2026-06-14T17:30",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260614008",
-      "status": "Iniciado",
-      "imo": "—",
       "name": "GAS.VICTORY",
       "gt": 4749,
       "len": 100,
@@ -114,7 +99,7 @@
       "to": "—"
     },
     {
-      "id": "H20260615009",
+      "id": "H20260615008",
       "status": "Iniciado",
       "imo": "—",
       "name": "DH.ADMIRAL",
@@ -129,22 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260615010",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "RF.RAN",
-      "gt": 4917,
-      "len": 113,
-      "berth": "RS4",
-      "agent": "IBM",
-      "op": "Entrada",
-      "eta": "2026-06-15T13:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260616012",
+      "id": "H20260616010",
       "status": "Prevista",
       "imo": "—",
       "name": "NISEKO.GALAXY",
@@ -159,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260616013",
+      "id": "H20260616011",
       "status": "Prevista",
       "imo": "—",
       "name": "DARMIK",
@@ -174,7 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260616014",
+      "id": "H20260616012",
       "status": "Prevista",
       "imo": "—",
       "name": "MEDKON.NLS",
@@ -191,7 +161,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260617015",
+      "id": "H20260617013",
       "status": "Prevista",
       "imo": "—",
       "name": "BBC.XINGANC",
@@ -206,7 +176,7 @@
       "to": "—"
     },
     {
-      "id": "H20260617016",
+      "id": "H20260617014",
       "status": "Prevista",
       "imo": "—",
       "name": "KING ARTHUR",
@@ -221,7 +191,7 @@
       "to": "—"
     },
     {
-      "id": "H20260617017",
+      "id": "H20260617015",
       "status": "Prevista",
       "imo": "—",
       "name": "RODINA",
@@ -236,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260618018",
+      "id": "H20260618016",
       "status": "Prevista",
       "imo": "—",
       "name": "CIELO.DI.GATEA",
@@ -251,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260619019",
+      "id": "H20260619017",
       "status": "Prevista",
       "imo": "—",
       "name": "TRANS EXETER",
@@ -266,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260620020",
+      "id": "H20260620018",
       "status": "Prevista",
       "imo": "—",
       "name": "IOLCO.DESTINY",
@@ -281,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260621021",
+      "id": "H20260621019",
       "status": "Prevista",
       "imo": "—",
       "name": "WILSON ALSTER",
@@ -296,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260621022",
+      "id": "H20260621020",
       "status": "Prevista",
       "imo": "—",
       "name": "GAS AEGEAN",
