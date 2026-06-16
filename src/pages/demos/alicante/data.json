@@ -7,21 +7,6 @@
   },
   "calls": [
     {
-      "id": "A202600427",
-      "status": "Iniciado",
-      "imo": "9557795",
-      "name": "SEDRATA",
-      "gt": 8161,
-      "len": 119,
-      "berth": "13",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "D-E/CRISTAL",
-      "eta": "2026-06-14T08:00",
-      "etd": "2026-06-16T14:00",
-      "from": "ARGEL",
-      "to": "ARGEL"
-    },
-    {
       "id": "A202600423",
       "status": "Iniciado",
       "imo": "9874088",

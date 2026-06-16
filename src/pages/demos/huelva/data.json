@@ -100,21 +100,6 @@
     },
     {
       "id": "H20260616008",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "DARMIK",
-      "gt": 4999,
-      "len": 119,
-      "berth": "FNS",
-      "agent": "BER",
-      "op": "Entrada",
-      "eta": "2026-06-16T11:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260616009",
       "status": "Prevista",
       "imo": "—",
       "name": "MEDKON.NLS",
@@ -131,7 +116,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260617010",
+      "id": "H20260617009",
       "status": "Prevista",
       "imo": "—",
       "name": "BBC.XINGANC",
@@ -140,13 +125,13 @@
       "berth": "FON",
       "agent": "—",
       "op": "Entrada",
-      "eta": "2026-06-17T08:00",
+      "eta": "2026-06-17T09:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260617011",
+      "id": "H20260617010",
       "status": "Prevista",
       "imo": "—",
       "name": "KING ARTHUR",
@@ -161,7 +146,7 @@
       "to": "—"
     },
     {
-      "id": "H20260617012",
+      "id": "H20260617011",
       "status": "Prevista",
       "imo": "—",
       "name": "RODINA",
@@ -176,7 +161,7 @@
       "to": "—"
     },
     {
-      "id": "H20260618013",
+      "id": "H20260618012",
       "status": "Prevista",
       "imo": "—",
       "name": "BELLINGSHAUSEN",
@@ -184,6 +169,21 @@
       "len": 87,
       "berth": "JGV",
       "agent": "BER",
+      "op": "Entrada",
+      "eta": "2026-06-18T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260618013",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "DING.HENG.23",
+      "gt": 6205,
+      "len": 120,
+      "berth": "RSF",
+      "agent": "E.CIA",
       "op": "Entrada",
       "eta": "2026-06-18T00:00",
       "etd": "",
