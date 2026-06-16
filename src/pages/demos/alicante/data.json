@@ -2,7 +2,7 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "15/06/2026",
+    "date": "16/06/2026",
     "refreshHours": 2
   },
   "calls": [
@@ -22,23 +22,6 @@
       "to": "ARGEL"
     },
     {
-      "id": "A202600416",
-      "status": "Alerta",
-      "imo": "9226906",
-      "name": "ARCADIA",
-      "gt": 84342,
-      "len": 285.28,
-      "berth": "14",
-      "agent": "NOATUM MARITIME SPAIN SA",
-      "op": "CRUCERISTAS",
-      "eta": "2026-06-15T07:45",
-      "etd": "2026-06-15T17:30",
-      "from": "LISBOA",
-      "to": "LIVORNO",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 14 según lo previsto."
-    },
-    {
       "id": "A202600423",
       "status": "Iniciado",
       "imo": "9874088",
@@ -54,53 +37,8 @@
       "to": "A ORDENES"
     },
     {
-      "id": "A202600426",
-      "status": "Iniciado",
-      "imo": "8911841",
-      "name": "MALTA CEMENT",
-      "gt": 2429,
-      "len": 88,
-      "berth": "19",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "C/ CEMENTO INST. ESP.",
-      "eta": "2026-06-15T08:00",
-      "etd": "2026-06-16T09:00",
-      "from": "ALMERIA",
-      "to": "ALMERIA"
-    },
-    {
-      "id": "A202600424",
-      "status": "Iniciado",
-      "imo": "8816352",
-      "name": "SIRIOS CEMENT V",
-      "gt": 2453,
-      "len": 88,
-      "berth": "19",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "E/ CEMENTO INST. ESP.",
-      "eta": "2026-06-15T08:00",
-      "etd": "2026-06-16T09:00",
-      "from": "PALMA DE MALLORCA",
-      "to": "ALMERIA"
-    },
-    {
-      "id": "A202600429",
-      "status": "Iniciado",
-      "imo": "9237242",
-      "name": "CRACOVIA",
-      "gt": 25028,
-      "len": 180,
-      "berth": "25",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "D/E PASAJE Y VEHÍCULOS",
-      "eta": "2026-06-15T08:00",
-      "etd": "2026-06-15T20:00",
-      "from": "ARGEL",
-      "to": "ORAN"
-    },
-    {
       "id": "A202600430",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9861081",
       "name": "MINT",
       "gt": 44019,
@@ -111,7 +49,9 @@
       "eta": "2026-06-15T08:00",
       "etd": "2026-06-19T20:00",
       "from": "TRIESTRE",
-      "to": "CARTAGENA"
+      "to": "CARTAGENA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 17 según lo previsto."
     },
     {
       "id": "A202600415",
@@ -126,9 +66,7 @@
       "eta": "2026-06-17T07:00",
       "etd": "2026-06-17T17:00",
       "from": "CIVITAVECCHIA",
-      "to": "BARCELONA",
-      "affectedBy": "A202600416",
-      "affectRisk": "ALTO"
+      "to": "BARCELONA"
     },
     {
       "id": "A202600433",
@@ -203,11 +141,13 @@
       "eta": "2026-06-20T08:00",
       "etd": "2026-06-21T12:00",
       "from": "ARZEW",
-      "to": "A ORDENES"
+      "to": "A ORDENES",
+      "affectedBy": "A202600430",
+      "affectRisk": "ALTO"
     }
   ],
   "tugService": {
-    "callId": "A202600416",
+    "callId": "A202600430",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -234,18 +174,18 @@
     }
   },
   "milestones": {
-    "A202600416": [
+    "A202600430": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "15/06 · 08:10",
+        "time": "15/06 · 08:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "15/06 · 09:15",
-        "by": "Agente: NOATUM MARITIME SPAIN SA"
+        "time": "15/06 · 09:30",
+        "by": "Agente: OCEAN PORTS & SHIPPING SL"
       },
       {
         "label": "Fin de operaciones",
