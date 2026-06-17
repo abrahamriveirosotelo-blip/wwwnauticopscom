@@ -30,7 +30,7 @@
       "name": "CANNETO M",
       "gt": 13671,
       "len": 161,
-      "berth": "PET",
+      "berth": "PES",
       "agent": "E.CIA",
       "op": "Fondo",
       "eta": "2026-06-13T23:30",
@@ -75,7 +75,7 @@
       "name": "GAS.ESCO",
       "gt": 5910,
       "len": 119,
-      "berth": "PET",
+      "berth": "PEN",
       "agent": "E.CIA",
       "op": "Fondo",
       "eta": "2026-06-16T21:00",
@@ -100,7 +100,7 @@
     },
     {
       "id": "H20260617007",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "NAVIG8 GUARD",
       "gt": 30237,
@@ -114,19 +114,21 @@
       "to": "—"
     },
     {
-      "id": "H20260617008",
+      "id": "H20260618008",
       "status": "Prevista",
       "imo": "—",
-      "name": "RODINA",
-      "gt": 29173,
-      "len": 189,
-      "berth": "JGV",
-      "agent": "ERS",
+      "name": "BUENAVISTA.EXPRESS",
+      "gt": 26916,
+      "len": 157,
+      "berth": "MUL",
+      "agent": "—",
       "op": "Entrada",
-      "eta": "2026-06-17T13:45",
+      "eta": "2026-06-18T06:45",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "affectedBy": "H20260610001",
+      "affectRisk": "ALTO"
     },
     {
       "id": "H20260618009",
@@ -177,23 +179,6 @@
       "id": "H20260618012",
       "status": "Prevista",
       "imo": "—",
-      "name": "BUENAVISTA.EXPRESS",
-      "gt": 26916,
-      "len": 157,
-      "berth": "MUL",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-06-18T12:00",
-      "etd": "",
-      "from": "—",
-      "to": "—",
-      "affectedBy": "H20260610001",
-      "affectRisk": "ALTO"
-    },
-    {
-      "id": "H20260618013",
-      "status": "Prevista",
-      "imo": "—",
       "name": "BELLINGSHAUSEN",
       "gt": 2452,
       "len": 87,
@@ -206,7 +191,7 @@
       "to": "—"
     },
     {
-      "id": "H20260618014",
+      "id": "H20260618013",
       "status": "Prevista",
       "imo": "—",
       "name": "WILSON ALSTER",
@@ -221,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260618015",
+      "id": "H20260618014",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ LILIUM",
@@ -236,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260619016",
+      "id": "H20260619015",
       "status": "Prevista",
       "imo": "—",
       "name": "TRANS EXETER",
@@ -251,22 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260619017",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "CATHY THERESA",
-      "gt": 5706,
-      "len": 102,
-      "berth": "RSF",
-      "agent": "E.CIA",
-      "op": "Entrada",
-      "eta": "2026-06-19T00:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260619018",
+      "id": "H20260619016",
       "status": "Prevista",
       "imo": "—",
       "name": "CIELO.DI.GATEA",
@@ -281,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260619019",
+      "id": "H20260619017",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -296,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260619020",
+      "id": "H20260619018",
       "status": "Prevista",
       "imo": "—",
       "name": "CONTSHIP.SKY",
@@ -311,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260619022",
+      "id": "H20260619020",
       "status": "Prevista",
       "imo": "—",
       "name": "CUTLASS.GALAXY",
@@ -326,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260619023",
+      "id": "H20260619021",
       "status": "Prevista",
       "imo": "—",
       "name": "YASA ORION",
@@ -341,7 +311,22 @@
       "to": "—"
     },
     {
-      "id": "H20260620024",
+      "id": "H20260619022",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "CATHY THERESA",
+      "gt": 5706,
+      "len": 102,
+      "berth": "RSF",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-06-19T21:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260620023",
       "status": "Prevista",
       "imo": "—",
       "name": "ALICE.COSULICH",
@@ -356,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260620025",
+      "id": "H20260620024",
       "status": "Prevista",
       "imo": "—",
       "name": "BOYNE",
@@ -371,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260620026",
+      "id": "H20260620025",
       "status": "Prevista",
       "imo": "—",
       "name": "IOLCO.DESTINY",
@@ -386,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260620027",
+      "id": "H20260620026",
       "status": "Prevista",
       "imo": "—",
       "name": "NESTOR",
@@ -401,7 +386,7 @@
       "to": "—"
     },
     {
-      "id": "H20260621028",
+      "id": "H20260621027",
       "status": "Prevista",
       "imo": "—",
       "name": "DING.HENG.23",
@@ -416,7 +401,7 @@
       "to": "—"
     },
     {
-      "id": "H20260621029",
+      "id": "H20260621028",
       "status": "Prevista",
       "imo": "—",
       "name": "LA BELLE DE CADIX",
@@ -431,7 +416,7 @@
       "to": "—"
     },
     {
-      "id": "H20260621030",
+      "id": "H20260621029",
       "status": "Prevista",
       "imo": "—",
       "name": "GAS AEGEAN",
@@ -446,7 +431,7 @@
       "to": "—"
     },
     {
-      "id": "H20260621031",
+      "id": "H20260621030",
       "status": "Prevista",
       "imo": "—",
       "name": "SONANGOL HUILA",
@@ -461,7 +446,7 @@
       "to": "—"
     },
     {
-      "id": "H20260623033",
+      "id": "H20260623032",
       "status": "Prevista",
       "imo": "—",
       "name": "GULLFELLET",
@@ -476,7 +461,7 @@
       "to": "—"
     },
     {
-      "id": "H20260624034",
+      "id": "H20260624033",
       "status": "Prevista",
       "imo": "—",
       "name": "ORIENTAL VIOLA",
@@ -491,7 +476,7 @@
       "to": "—"
     },
     {
-      "id": "H20260626035",
+      "id": "H20260626034",
       "status": "Prevista",
       "imo": "—",
       "name": "ATHENIAN.HARMONY",

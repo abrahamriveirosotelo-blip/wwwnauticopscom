@@ -8,7 +8,7 @@
   "calls": [
     {
       "id": "A202600430",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9861081",
       "name": "MINT",
       "gt": 44019,
@@ -19,7 +19,9 @@
       "eta": "2026-06-15T06:00",
       "etd": "2026-06-19T20:00",
       "from": "TRIESTE",
-      "to": "MISURATA"
+      "to": "MISURATA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en carga. El buque no liberará el Muelle 17 según lo previsto."
     },
     {
       "id": "A202600423",
@@ -65,23 +67,6 @@
       "etd": "2026-06-17T20:00",
       "from": "ORAN",
       "to": "DERINCE, KOCAELI"
-    },
-    {
-      "id": "A202600420",
-      "status": "Alerta",
-      "imo": "9483358",
-      "name": "ISABELLA B",
-      "gt": 10585,
-      "len": 151,
-      "berth": "23",
-      "agent": "MILLER Y COMPAÑIA S.A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-06-17T08:00",
-      "etd": "2026-06-17T12:00",
-      "from": "STA.CRUZ",
-      "to": "ALGER",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
     },
     {
       "id": "A202600431",
@@ -171,9 +156,7 @@
       "eta": "2026-06-19T08:00",
       "etd": "2026-06-19T20:00",
       "from": "TENERIFE",
-      "to": "ALGER",
-      "affectedBy": "A202600420",
-      "affectRisk": "ALTO"
+      "to": "ALGER"
     },
     {
       "id": "A202600345",
@@ -222,7 +205,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600420",
+    "callId": "A202600430",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -249,18 +232,18 @@
     }
   },
   "milestones": {
-    "A202600420": [
+    "A202600430": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "17/06 · 08:25",
+        "time": "15/06 · 06:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "17/06 · 09:30",
-        "by": "Agente: MILLER Y COMPAÑIA S.A"
+        "time": "15/06 · 07:30",
+        "by": "Agente: OCEAN PORTS & SHIPPING SL"
       },
       {
         "label": "Fin de operaciones",
