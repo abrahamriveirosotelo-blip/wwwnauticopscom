@@ -5,11 +5,16 @@ declare global {
   }
 }
 
-const GA_ID = 'G-LBV7LSXJDD';
+const MAIN_GA_ID = 'G-LBV7LSXJDD';
+const ALICANTE_DEMO_GA_ID = 'G-Y97GNPJTGY';
+
+function getMeasurementIdForPath(path: string) {
+  return path.startsWith('/demo/alicante') ? ALICANTE_DEMO_GA_ID : MAIN_GA_ID;
+}
 
 export function trackPageView(path: string, title?: string) {
   if (typeof window.gtag !== 'function') return;
-  window.gtag('config', GA_ID, {
+  window.gtag('config', getMeasurementIdForPath(path), {
     page_path: path,
     page_title: title ?? document.title,
   });
@@ -20,7 +25,10 @@ export function trackEvent(
   params?: Record<string, string | number | boolean>
 ) {
   if (typeof window.gtag !== 'function') return;
-  window.gtag('event', eventName, params);
+  window.gtag('event', eventName, {
+    ...params,
+    send_to: getMeasurementIdForPath(window.location.pathname),
+  });
 }
 
 export function trackCtaClick(location: 'navbar' | 'hero' | 'bottom_cta') {
