@@ -7,24 +7,7 @@
   },
   "calls": [
     {
-      "id": "H20260610001",
-      "status": "Alerta",
-      "imo": "—",
-      "name": "AQUARIUS",
-      "gt": 6454,
-      "len": 134,
-      "berth": "MUL",
-      "agent": "TER",
-      "op": "Fondo",
-      "eta": "2026-06-10T09:00",
-      "etd": "",
-      "from": "—",
-      "to": "—",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle MUL según lo previsto."
-    },
-    {
-      "id": "H20260617002",
+      "id": "H20260617001",
       "status": "Iniciado",
       "imo": "—",
       "name": "BBC.XINGANC",
@@ -39,7 +22,7 @@
       "to": "—"
     },
     {
-      "id": "H20260617003",
+      "id": "H20260617002",
       "status": "Iniciado",
       "imo": "—",
       "name": "NAVIG8 GUARD",
@@ -54,7 +37,7 @@
       "to": "—"
     },
     {
-      "id": "H20260618004",
+      "id": "H20260618003",
       "status": "Iniciado",
       "imo": "—",
       "name": "ELENA",
@@ -69,8 +52,8 @@
       "to": "—"
     },
     {
-      "id": "H20260618005",
-      "status": "Iniciado",
+      "id": "H20260618004",
+      "status": "Alerta",
       "imo": "—",
       "name": "MARFAAM",
       "gt": 5422,
@@ -81,10 +64,12 @@
       "eta": "2026-06-18T20:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle JGV según lo previsto."
     },
     {
-      "id": "H20260619006",
+      "id": "H20260619005",
       "status": "Iniciado",
       "imo": "—",
       "name": "ASP.RAINBOW",
@@ -99,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260619007",
+      "id": "H20260619006",
       "status": "Iniciado",
       "imo": "—",
       "name": "CUTLASS.GALAXY",
@@ -114,7 +99,7 @@
       "to": "—"
     },
     {
-      "id": "H20260619008",
+      "id": "H20260619007",
       "status": "Iniciado",
       "imo": "—",
       "name": "NESTOR",
@@ -129,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260619009",
+      "id": "H20260619008",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ LILIUM",
@@ -144,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260619010",
+      "id": "H20260619009",
       "status": "Prevista",
       "imo": "—",
       "name": "SEYMA",
@@ -159,7 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260619011",
+      "id": "H20260619010",
       "status": "Prevista",
       "imo": "—",
       "name": "MARIE CURIE",
@@ -171,12 +156,10 @@
       "eta": "2026-06-19T17:15",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260610001",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
-      "id": "H20260619012",
+      "id": "H20260619011",
       "status": "Prevista",
       "imo": "—",
       "name": "EINSTEIN",
@@ -191,7 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260619013",
+      "id": "H20260619012",
       "status": "Prevista",
       "imo": "—",
       "name": "YASA ORION",
@@ -206,7 +189,7 @@
       "to": "—"
     },
     {
-      "id": "H20260619014",
+      "id": "H20260619013",
       "status": "Prevista",
       "imo": "—",
       "name": "SIGAIA THERESA",
@@ -221,7 +204,7 @@
       "to": "—"
     },
     {
-      "id": "H20260620016",
+      "id": "H20260620014",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -236,7 +219,7 @@
       "to": "—"
     },
     {
-      "id": "H20260620017",
+      "id": "H20260620015",
       "status": "Prevista",
       "imo": "—",
       "name": "BOYNE",
@@ -251,7 +234,7 @@
       "to": "—"
     },
     {
-      "id": "H20260620018",
+      "id": "H20260620016",
       "status": "Prevista",
       "imo": "—",
       "name": "GAS AEGEAN",
@@ -266,7 +249,7 @@
       "to": "—"
     },
     {
-      "id": "H20260620019",
+      "id": "H20260620017",
       "status": "Prevista",
       "imo": "—",
       "name": "TRANS EXETER",
@@ -281,7 +264,7 @@
       "to": "—"
     },
     {
-      "id": "H20260620020",
+      "id": "H20260620018",
       "status": "Prevista",
       "imo": "—",
       "name": "TOMINY.PROSPERITY",
@@ -296,7 +279,7 @@
       "to": "—"
     },
     {
-      "id": "H20260620021",
+      "id": "H20260620019",
       "status": "Prevista",
       "imo": "—",
       "name": "LADY LAGUNA",
@@ -308,10 +291,12 @@
       "eta": "2026-06-20T10:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "affectedBy": "H20260618004",
+      "affectRisk": "ALTO"
     },
     {
-      "id": "H20260620022",
+      "id": "H20260620020",
       "status": "Prevista",
       "imo": "—",
       "name": "ALISIOS.LNG",
@@ -320,13 +305,13 @@
       "berth": "ENA",
       "agent": "E.CIA",
       "op": "Entrada",
-      "eta": "2026-06-20T12:00",
+      "eta": "2026-06-20T19:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260620023",
+      "id": "H20260620021",
       "status": "Prevista",
       "imo": "—",
       "name": "SANTORINA",
@@ -341,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260620024",
+      "id": "H20260620022",
       "status": "Prevista",
       "imo": "—",
       "name": "POESTELLA",
@@ -356,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260621025",
+      "id": "H20260621023",
       "status": "Prevista",
       "imo": "—",
       "name": "MAERSK KAYA",
@@ -371,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260621026",
+      "id": "H20260621024",
       "status": "Prevista",
       "imo": "—",
       "name": "IOLCO.DESTINY",
@@ -386,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260621027",
+      "id": "H20260621025",
       "status": "Prevista",
       "imo": "—",
       "name": "FUGA",
@@ -401,7 +386,7 @@
       "to": "—"
     },
     {
-      "id": "H20260621028",
+      "id": "H20260621026",
       "status": "Prevista",
       "imo": "—",
       "name": "DING.HENG.23",
@@ -416,7 +401,7 @@
       "to": "—"
     },
     {
-      "id": "H20260621030",
+      "id": "H20260621028",
       "status": "Prevista",
       "imo": "—",
       "name": "CASTILLO DE ARTEAGA",
@@ -431,7 +416,7 @@
       "to": "—"
     },
     {
-      "id": "H20260621031",
+      "id": "H20260621029",
       "status": "Prevista",
       "imo": "—",
       "name": "LA BELLE DE CADIX",
@@ -446,7 +431,7 @@
       "to": "—"
     },
     {
-      "id": "H20260621033",
+      "id": "H20260621031",
       "status": "Prevista",
       "imo": "—",
       "name": "SONANGOL HUILA",
@@ -461,7 +446,7 @@
       "to": "—"
     },
     {
-      "id": "H20260622034",
+      "id": "H20260622032",
       "status": "Prevista",
       "imo": "—",
       "name": "ASPEN",
@@ -476,7 +461,7 @@
       "to": "—"
     },
     {
-      "id": "H20260622036",
+      "id": "H20260622034",
       "status": "Prevista",
       "imo": "—",
       "name": "VALPIAVE",
@@ -491,7 +476,7 @@
       "to": "—"
     },
     {
-      "id": "H20260622037",
+      "id": "H20260622035",
       "status": "Prevista",
       "imo": "—",
       "name": "MED TUNCER",
@@ -506,7 +491,7 @@
       "to": "—"
     },
     {
-      "id": "H20260623038",
+      "id": "H20260623036",
       "status": "Prevista",
       "imo": "—",
       "name": "GULLFELLET",
@@ -521,7 +506,7 @@
       "to": "—"
     },
     {
-      "id": "H20260624040",
+      "id": "H20260624038",
       "status": "Prevista",
       "imo": "—",
       "name": "ORIENTAL VIOLA",
@@ -536,7 +521,7 @@
       "to": "—"
     },
     {
-      "id": "H20260625041",
+      "id": "H20260625039",
       "status": "Prevista",
       "imo": "—",
       "name": "SEA.URCHIN",
@@ -551,7 +536,7 @@
       "to": "—"
     },
     {
-      "id": "H20260626042",
+      "id": "H20260626040",
       "status": "Prevista",
       "imo": "—",
       "name": "ATHENIAN.HARMONY",
@@ -567,7 +552,7 @@
     }
   ],
   "tugService": {
-    "callId": "H20260610001",
+    "callId": "H20260618004",
     "reportNumber": "031245",
     "tugboat": "REMOLCADOR ODIEL",
     "powerPct": 70,
@@ -594,18 +579,18 @@
     }
   },
   "milestones": {
-    "H20260610001": [
+    "H20260618004": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "10/06 · 09:25",
+        "time": "18/06 · 20:25",
         "by": "Práctico (Huelva)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "10/06 · 10:30",
-        "by": "Agente: TER"
+        "time": "18/06 · 21:30",
+        "by": "Agente: BER"
       },
       {
         "label": "Fin de operaciones",
