@@ -2,45 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "19/06/2026",
+    "date": "20/06/2026",
     "refreshHours": 2
   },
   "calls": [
     {
-      "id": "A202600430",
-      "status": "Iniciado",
-      "imo": "9861081",
-      "name": "MINT",
-      "gt": 44019,
-      "len": 228,
-      "berth": "17",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "C/ CALIZA",
-      "eta": "2026-06-15T06:00",
-      "etd": "2026-06-19T20:00",
-      "from": "TRIESTE",
-      "to": "MISURATA"
-    },
-    {
-      "id": "A202600414",
-      "status": "Alerta",
-      "imo": "9349227",
-      "name": "NJORD",
-      "gt": 7720,
-      "len": 141.58,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-06-18T19:00",
-      "etd": "2026-06-19T15:00",
-      "from": "TENERIFE",
-      "to": "BARCELONA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
-    },
-    {
       "id": "A202600425",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9528706",
       "name": "SIDER LONDON",
       "gt": 9177,
@@ -51,41 +19,13 @@
       "eta": "2026-06-19T06:00",
       "etd": "2026-06-22T00:00",
       "from": "BIZERTE",
-      "to": "BARCELONA"
-    },
-    {
-      "id": "A202600421",
-      "status": "Iniciado",
-      "imo": "9404065",
-      "name": "CARLOTA B",
-      "gt": 7852,
-      "len": 140.64,
-      "berth": "23",
-      "agent": "MILLER Y COMPAÑIA S.A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-06-19T08:00",
-      "etd": "2026-06-19T20:00",
-      "from": "TENERIFE",
-      "to": "ALGER"
-    },
-    {
-      "id": "A202600345",
-      "status": "Iniciado",
-      "imo": "9374387",
-      "name": "SARDES",
-      "gt": 5232,
-      "len": 115.46,
-      "berth": "23",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-06-19T08:00",
-      "etd": "2026-06-19T20:00",
-      "from": "SAGUNTO",
-      "to": "ALMERIA"
+      "to": "BARCELONA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 21 según lo previsto."
     },
     {
       "id": "A202600435",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9557795",
       "name": "SEDRATA",
       "gt": 8161,
@@ -100,7 +40,7 @@
     },
     {
       "id": "A202600417",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9083043",
       "name": "NANTO",
       "gt": 7550,
@@ -111,13 +51,11 @@
       "eta": "2026-06-20T07:00",
       "etd": "2026-06-20T15:00",
       "from": "BARCELONA",
-      "to": "CARTAGENA",
-      "affectedBy": "A202600414",
-      "affectRisk": "ALTO"
+      "to": "CARTAGENA"
     }
   ],
   "tugService": {
-    "callId": "A202600414",
+    "callId": "A202600425",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -144,18 +82,18 @@
     }
   },
   "milestones": {
-    "A202600414": [
+    "A202600425": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "18/06 · 19:25",
+        "time": "19/06 · 06:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "18/06 · 20:30",
-        "by": "Agente: EUROPEAN FORWARDING SL"
+        "time": "19/06 · 07:30",
+        "by": "Agente: TERMINALES MARTM. SURESTE S.A."
       },
       {
         "label": "Fin de operaciones",
