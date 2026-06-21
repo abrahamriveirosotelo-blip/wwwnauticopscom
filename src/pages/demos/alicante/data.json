@@ -2,7 +2,7 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "20/06/2026",
+    "date": "21/06/2026",
     "refreshHours": 2
   },
   "calls": [
@@ -37,21 +37,6 @@
       "etd": "2026-06-22T15:00",
       "from": "CARTAGENA",
       "to": "LIVORNO"
-    },
-    {
-      "id": "A202600417",
-      "status": "Iniciado",
-      "imo": "9083043",
-      "name": "NANTO",
-      "gt": 7550,
-      "len": 151.14,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-06-20T07:00",
-      "etd": "2026-06-20T15:00",
-      "from": "BARCELONA",
-      "to": "CARTAGENA"
     }
   ],
   "tugService": {
