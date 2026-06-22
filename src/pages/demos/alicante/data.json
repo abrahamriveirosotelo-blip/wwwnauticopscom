@@ -2,30 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "21/06/2026",
+    "date": "22/06/2026",
     "refreshHours": 2
   },
   "calls": [
     {
-      "id": "A202600425",
-      "status": "Alerta",
-      "imo": "9528706",
-      "name": "SIDER LONDON",
-      "gt": 9177,
-      "len": 136.43,
-      "berth": "21",
-      "agent": "TERMINALES MARTM. SURESTE S.A.",
-      "op": "D/ CEMENTO INST.ESP.",
-      "eta": "2026-06-19T06:00",
-      "etd": "2026-06-22T00:00",
-      "from": "BIZERTE",
-      "to": "BARCELONA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 21 según lo previsto."
-    },
-    {
       "id": "A202600435",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9557795",
       "name": "SEDRATA",
       "gt": 8161,
@@ -36,11 +19,13 @@
       "eta": "2026-06-20T06:00",
       "etd": "2026-06-22T15:00",
       "from": "CARTAGENA",
-      "to": "LIVORNO"
+      "to": "LIVORNO",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 13 según lo previsto."
     }
   ],
   "tugService": {
-    "callId": "A202600425",
+    "callId": "A202600435",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -67,18 +52,18 @@
     }
   },
   "milestones": {
-    "A202600425": [
+    "A202600435": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "19/06 · 06:25",
+        "time": "20/06 · 06:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "19/06 · 07:30",
-        "by": "Agente: TERMINALES MARTM. SURESTE S.A."
+        "time": "20/06 · 07:30",
+        "by": "Agente: ROMEU Y CIA. S A"
       },
       {
         "label": "Fin de operaciones",
