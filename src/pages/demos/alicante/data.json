@@ -5,25 +5,7 @@
     "date": "22/06/2026",
     "refreshHours": 2
   },
-  "calls": [
-    {
-      "id": "A202600435",
-      "status": "Alerta",
-      "imo": "9557795",
-      "name": "SEDRATA",
-      "gt": 8161,
-      "len": 119,
-      "berth": "13",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-06-20T06:00",
-      "etd": "2026-06-22T15:00",
-      "from": "CARTAGENA",
-      "to": "LIVORNO",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 13 según lo previsto."
-    }
-  ],
+  "calls": [],
   "tugService": {
     "callId": "A202600435",
     "reportNumber": "027892",
