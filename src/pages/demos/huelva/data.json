@@ -117,21 +117,6 @@
       "id": "H20260624008",
       "status": "Prevista",
       "imo": "—",
-      "name": "ELBWINTER",
-      "gt": 10585,
-      "len": 151,
-      "berth": "MUL",
-      "agent": "TER",
-      "op": "Entrada",
-      "eta": "2026-06-24T18:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260624009",
-      "status": "Prevista",
-      "imo": "—",
       "name": "ORIENTAL VIOLA",
       "gt": 9442,
       "len": 142,
@@ -146,22 +131,22 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260624010",
+      "id": "H20260624009",
       "status": "Prevista",
       "imo": "—",
-      "name": "KLARA",
-      "gt": 4102,
-      "len": 107,
-      "berth": "JGV",
-      "agent": "PAM",
+      "name": "ELBWINTER",
+      "gt": 10585,
+      "len": 151,
+      "berth": "MUL",
+      "agent": "TER",
       "op": "Entrada",
-      "eta": "2026-06-24T20:00",
+      "eta": "2026-06-24T19:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260624011",
+      "id": "H20260624010",
       "status": "Prevista",
       "imo": "—",
       "name": "ISLAS.TRES",
@@ -176,7 +161,7 @@
       "to": "—"
     },
     {
-      "id": "H20260625012",
+      "id": "H20260625011",
       "status": "Prevista",
       "imo": "—",
       "name": "MED CANARY",
@@ -191,22 +176,22 @@
       "to": "—"
     },
     {
-      "id": "H20260625013",
+      "id": "H20260625012",
       "status": "Prevista",
       "imo": "—",
-      "name": "KING ARTHUR",
-      "gt": 4761,
-      "len": 104,
-      "berth": "RSN",
-      "agent": "E.CIA",
+      "name": "KLARA",
+      "gt": 4102,
+      "len": 107,
+      "berth": "JGV",
+      "agent": "PAM",
       "op": "Entrada",
-      "eta": "2026-06-25T10:00",
+      "eta": "2026-06-25T07:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260625014",
+      "id": "H20260625013",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -221,13 +206,13 @@
       "to": "—"
     },
     {
-      "id": "H20260625015",
+      "id": "H20260625014",
       "status": "Prevista",
       "imo": "—",
       "name": "IVER AMBASSADOR",
       "gt": 7009,
       "len": 110,
-      "berth": "RSF",
+      "berth": "RSS",
       "agent": "E.CIA",
       "op": "Entrada",
       "eta": "2026-06-25T19:00",
@@ -236,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260626016",
+      "id": "H20260626015",
       "status": "Prevista",
       "imo": "—",
       "name": "KARRUCA",
@@ -246,6 +231,21 @@
       "agent": "BER",
       "op": "Entrada",
       "eta": "2026-06-26T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260626016",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "KING ARTHUR",
+      "gt": 4761,
+      "len": 104,
+      "berth": "RSN",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-06-26T06:00",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -311,7 +311,22 @@
       "to": "—"
     },
     {
-      "id": "H20260628021",
+      "id": "H20260627021",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "CONTSHIP.CUB",
+      "gt": 11716,
+      "len": 159,
+      "berth": "MUL",
+      "agent": "MM",
+      "op": "Entrada",
+      "eta": "2026-06-27T19:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260628022",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -326,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260629022",
+      "id": "H20260629023",
       "status": "Prevista",
       "imo": "—",
       "name": "LNG PORT HARCOURT II",
@@ -335,13 +350,13 @@
       "berth": "ENA",
       "agent": "MM",
       "op": "Entrada",
-      "eta": "2026-06-29T06:00",
+      "eta": "2026-06-29T14:30",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260630023",
+      "id": "H20260630024",
       "status": "Prevista",
       "imo": "—",
       "name": "OTIS",
