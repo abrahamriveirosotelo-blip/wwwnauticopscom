@@ -2,13 +2,13 @@
   "meta": {
     "port": "Puerto de Huelva",
     "source": "huelvapilots.com · previsiones",
-    "date": "23/06/2026",
+    "date": "24/06/2026",
     "refreshHours": 24
   },
   "calls": [
     {
       "id": "H20260617001",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "—",
       "name": "BBC.XINGANC",
       "gt": 8255,
@@ -19,28 +19,11 @@
       "eta": "2026-06-17T07:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle FON según lo previsto."
-    },
-    {
-      "id": "H20260619002",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "NESTOR",
-      "gt": 2452,
-      "len": 90,
-      "berth": "JGV",
-      "agent": "BER",
-      "op": "Fondo",
-      "eta": "2026-06-19T07:00",
-      "etd": "",
-      "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260619003",
-      "status": "Iniciado",
+      "id": "H20260619002",
+      "status": "Alerta",
       "imo": "—",
       "name": "SEYMA",
       "gt": 4364,
@@ -51,10 +34,12 @@
       "eta": "2026-06-19T17:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle DEC según lo previsto."
     },
     {
-      "id": "H20260621004",
+      "id": "H20260621003",
       "status": "Iniciado",
       "imo": "—",
       "name": "CB ADRIATIC",
@@ -69,22 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260622006",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "ASPEN",
-      "gt": 62172,
-      "len": 250,
-      "berth": "MON",
-      "agent": "BER",
-      "op": "Fondo",
-      "eta": "2026-06-22T09:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260622007",
+      "id": "H20260622004",
       "status": "Iniciado",
       "imo": "—",
       "name": "VALPIAVE",
@@ -99,144 +69,37 @@
       "to": "—"
     },
     {
-      "id": "H20260623008",
+      "id": "H20260623005",
       "status": "Iniciado",
-      "imo": "—",
-      "name": "MED TUNCER",
-      "gt": 5665,
-      "len": 124,
-      "berth": "DEC",
-      "agent": "IBM",
-      "op": "Fondo",
-      "eta": "2026-06-23T08:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260623009",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "GULLFELLET",
-      "gt": 12085,
-      "len": 146,
-      "berth": "RS4",
-      "agent": "E.CIA",
-      "op": "Fondo",
-      "eta": "2026-06-23T13:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260623010",
-      "status": "Prevista",
       "imo": "—",
       "name": "IVYAN",
       "gt": 4423,
       "len": 110,
       "berth": "DEC",
       "agent": "—",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-06-23T15:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260623011",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "ALICE.COSULICH",
-      "gt": 8847,
-      "len": 113,
-      "berth": "ENA",
-      "agent": "E.CIA",
-      "op": "Entrada",
-      "eta": "2026-06-23T18:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260623012",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "BUENAVISTA.EXPRESS",
-      "gt": 26916,
-      "len": 157,
-      "berth": "MUL",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-06-23T18:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260624013",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "GANT.FLAIR",
-      "gt": 17018,
-      "len": 170,
-      "berth": "JGV",
-      "agent": "ERS",
-      "op": "Entrada",
-      "eta": "2026-06-24T04:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260624014",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "KING ARTHUR",
-      "gt": 4761,
-      "len": 104,
-      "berth": "RSN",
-      "agent": "E.CIA",
-      "op": "Entrada",
-      "eta": "2026-06-24T06:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260624015",
-      "status": "Prevista",
+      "id": "H20260624006",
+      "status": "Iniciado",
       "imo": "—",
       "name": "SCRATES",
       "gt": 41676,
       "len": 227,
       "berth": "FON",
       "agent": "—",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-06-24T09:00",
-      "etd": "",
-      "from": "—",
-      "to": "—",
-      "affectedBy": "H20260617001",
-      "affectRisk": "ALTO"
-    },
-    {
-      "id": "H20260624016",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "KLARA",
-      "gt": 15549,
-      "len": 165,
-      "berth": "JGV",
-      "agent": "PAM",
-      "op": "Entrada",
-      "eta": "2026-06-24T12:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260624017",
+      "id": "H20260624007",
       "status": "Prevista",
       "imo": "—",
       "name": "FG.ROTTERDAM",
@@ -251,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260624018",
+      "id": "H20260624008",
       "status": "Prevista",
       "imo": "—",
       "name": "ELBWINTER",
@@ -266,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260624019",
+      "id": "H20260624009",
       "status": "Prevista",
       "imo": "—",
       "name": "ORIENTAL VIOLA",
@@ -278,10 +141,27 @@
       "eta": "2026-06-24T19:00",
       "etd": "",
       "from": "—",
+      "to": "—",
+      "affectedBy": "H20260619002",
+      "affectRisk": "ALTO"
+    },
+    {
+      "id": "H20260624010",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "KLARA",
+      "gt": 4102,
+      "len": 107,
+      "berth": "JGV",
+      "agent": "PAM",
+      "op": "Entrada",
+      "eta": "2026-06-24T20:00",
+      "etd": "",
+      "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260624020",
+      "id": "H20260624011",
       "status": "Prevista",
       "imo": "—",
       "name": "ISLAS.TRES",
@@ -296,7 +176,52 @@
       "to": "—"
     },
     {
-      "id": "H20260625021",
+      "id": "H20260625012",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "MED CANARY",
+      "gt": 5633,
+      "len": 120,
+      "berth": "DEC",
+      "agent": "NEX",
+      "op": "Entrada",
+      "eta": "2026-06-25T04:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260625013",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "KING ARTHUR",
+      "gt": 4761,
+      "len": 104,
+      "berth": "RSN",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-06-25T10:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260625014",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "EPIC BORINQUEN",
+      "gt": 6220,
+      "len": 113,
+      "berth": "PET",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-06-25T12:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260625015",
       "status": "Prevista",
       "imo": "—",
       "name": "IVER AMBASSADOR",
@@ -305,28 +230,13 @@
       "berth": "RSF",
       "agent": "E.CIA",
       "op": "Entrada",
-      "eta": "2026-06-25T00:00",
+      "eta": "2026-06-25T19:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260625022",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "SEA.URCHIN",
-      "gt": 62624,
-      "len": 249,
-      "berth": "MON",
-      "agent": "IBM",
-      "op": "Entrada",
-      "eta": "2026-06-25T06:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260626023",
+      "id": "H20260626016",
       "status": "Prevista",
       "imo": "—",
       "name": "KARRUCA",
@@ -341,7 +251,22 @@
       "to": "—"
     },
     {
-      "id": "H20260626024",
+      "id": "H20260626017",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "SAKRAN.H",
+      "gt": 1233,
+      "len": 75,
+      "berth": "JGV",
+      "agent": "PAM",
+      "op": "Entrada",
+      "eta": "2026-06-26T07:30",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260626018",
       "status": "Prevista",
       "imo": "—",
       "name": "ATHENIAN.HARMONY",
@@ -356,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260627025",
+      "id": "H20260627019",
       "status": "Prevista",
       "imo": "—",
       "name": "DH BLOSSOMING",
@@ -371,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260627027",
+      "id": "H20260627020",
       "status": "Prevista",
       "imo": "—",
       "name": "GENOA.STAR",
@@ -386,7 +311,22 @@
       "to": "—"
     },
     {
-      "id": "H20260629028",
+      "id": "H20260628021",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "NEW FRONTIER1",
+      "gt": 9816,
+      "len": 120,
+      "berth": "ENA",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-06-28T01:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260629022",
       "status": "Prevista",
       "imo": "—",
       "name": "LNG PORT HARCOURT II",
@@ -401,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630029",
+      "id": "H20260630023",
       "status": "Prevista",
       "imo": "—",
       "name": "OTIS",
@@ -417,7 +357,7 @@
     }
   ],
   "tugService": {
-    "callId": "H20260617001",
+    "callId": "H20260619002",
     "reportNumber": "031245",
     "tugboat": "REMOLCADOR ODIEL",
     "powerPct": 70,
@@ -444,17 +384,17 @@
     }
   },
   "milestones": {
-    "H20260617001": [
+    "H20260619002": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "17/06 · 07:25",
+        "time": "19/06 · 17:25",
         "by": "Práctico (Huelva)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "17/06 · 08:30",
+        "time": "19/06 · 18:30",
         "by": "Agente: —"
       },
       {
