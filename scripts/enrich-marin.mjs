@@ -69,7 +69,10 @@ async function resolveVessel(call, searchHtml = null) {
   });
   if (!match) {
     const n = candidates.length;
-    return { resolved: false, reason: `sin match fiable (${n} candidato${n === 1 ? '' : 's'})` };
+    const reason = n === 0
+      ? 'sin resultados en VesselFinder'
+      : `${n} resultado${n === 1 ? '' : 's'} pero ninguno aceptable (nombre/tipo comercial/IMO)`;
+    return { resolved: false, reason };
   }
 
   // Verificar el IMO en la ficha de detalle (el id de búsqueda de 7 dígitos no

@@ -61,7 +61,7 @@
   },
   "ANNA::ROUEN": {
     "resolved": false,
-    "reason": "sin match fiable (20 candidatos)",
+    "reason": "20 resultados pero ninguno aceptable (nombre/tipo comercial/IMO)",
     "checkedAt": "2026-06-25T18:26:29Z"
   },
   "GRETA C::A ORDENES": {
@@ -96,7 +96,7 @@
   },
   "AROSA NUEVE::PASAJES": {
     "resolved": false,
-    "reason": "sin match fiable (1 candidato)",
+    "reason": "1 resultado pero ninguno aceptable (nombre/tipo comercial/IMO)",
     "checkedAt": "2026-06-25T18:26:37Z"
   },
   "EVITA::A CORUNA": {
