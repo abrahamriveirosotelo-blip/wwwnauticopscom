@@ -18,6 +18,9 @@
     "update-demo:huelva": "node scripts/update-huelva.mjs",
     "update-demo:huelva:dry": "node scripts/update-huelva.mjs --dry-run",
     "update-demo:huelva:debug": "node scripts/update-huelva.mjs --print-rows",
+    "update-demo:marin": "node scripts/update-marin.mjs",
+    "update-demo:marin:dry": "node scripts/update-marin.mjs --dry-run",
+    "update-demo:marin:debug": "node scripts/update-marin.mjs --print-rows",
     "preview:fresh": "npm run update-demo && npm run build && npm run preview"
   },
   "dependencies": {
