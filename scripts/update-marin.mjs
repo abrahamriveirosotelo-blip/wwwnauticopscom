@@ -105,15 +105,22 @@ async function main() {
   const esperados = parseMarinPage(esperadosHtml);
   const puerto = parseMarinPage(puertoHtml);
 
-  if (esperados.kind !== 'eta') console.warn('⚠️  La página de esperados no termina en ETA');
-  if (puerto.kind !== 'etd') console.warn('⚠️  La página de en-puerto no termina en ETD');
-
   if (printRows) {
-    console.log(`\nEsperados (ETA): ${esperados.rows.length} filas`);
+    console.log(`\nEsperados (${esperados.kind}): ${esperados.rows.length} filas`);
     esperados.rows.forEach(r => console.log(`  ${r.escala} | ${r.name} | ${r.berth} | ${r.when}`));
-    console.log(`\nEn puerto (ETD): ${puerto.rows.length} filas`);
+    console.log(`\nEn puerto (${puerto.kind}): ${puerto.rows.length} filas`);
     puerto.rows.forEach(r => console.log(`  ${r.escala} | ${r.name} | ${r.berth} | ${r.when}`));
     return;
+  }
+
+  // Si cambia la estructura de las tablas (otra cabecera/orden de columnas), fallar
+  // explícitamente en vez de escribir un data.json incoherente (p. ej. todo "Prevista")
+  // que el workflow commitearía sin que nadie lo revise. Usa --print-rows para diagnosticar.
+  if (esperados.kind !== 'eta' || puerto.kind !== 'etd') {
+    throw new Error(
+      `Estructura inesperada en apmarin.com (esperados=${esperados.kind}, en-puerto=${puerto.kind}; ` +
+      `se esperaba eta/etd). ¿Cambió la tabla? Revisa con --print-rows.`
+    );
   }
 
   const existing = existsSync(DATA_PATH)

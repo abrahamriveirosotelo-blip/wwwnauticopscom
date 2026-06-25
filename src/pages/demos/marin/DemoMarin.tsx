@@ -240,7 +240,6 @@ function Detail({ call, onClose }) {
               <div style={{background:B.offWhite,borderRadius:12,border:`1px solid ${B.grayLight}`,overflow:"hidden"}}>
                 {(
                   MILESTONES[call.id] ||
-                  (call.id === TUG.callId ? Object.values(MILESTONES)[0] : null) ||
                   [
                     { label:"Atracado",              status:"pending", time:null, by:null },
                     { label:"Inicio de operaciones", status:"pending", time:null, by:null },
