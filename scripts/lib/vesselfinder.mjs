@@ -19,7 +19,25 @@ const COMMERCIAL_TYPE =
 const NONCOMMERCIAL_TYPE =
   /pleasure|sailing|yacht|tug|fishing|pilot|dredg|unknown|high speed|dive|research|law enforce|search and rescue|buoy|tender|supply|passenger|ferry|sar\b/i;
 
-const clean = s => (s || '').replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+const ENTITIES = {
+  '&amp;': '&', '&quot;': '"', '&#39;': "'", '&apos;': "'", '&nbsp;': ' ',
+  '&aacute;': 'á', '&eacute;': 'é', '&iacute;': 'í', '&oacute;': 'ó', '&uacute;': 'ú',
+  '&Aacute;': 'Á', '&Eacute;': 'É', '&Iacute;': 'Í', '&Oacute;': 'Ó', '&Uacute;': 'Ú',
+  '&ntilde;': 'ñ', '&Ntilde;': 'Ñ', '&uuml;': 'ü', '&ouml;': 'ö', '&auml;': 'ä',
+};
+
+function decodeEntities(str) {
+  return str.replace(/&#x([0-9a-fA-F]+);|&#(\d+);|&[a-zA-Z]+;/g, m => {
+    if (ENTITIES[m] !== undefined) return ENTITIES[m];
+    const hex = m.match(/&#x([0-9a-fA-F]+);/);
+    if (hex) return String.fromCharCode(parseInt(hex[1], 16));
+    const dec = m.match(/&#(\d+);/);
+    if (dec) return String.fromCharCode(parseInt(dec[1], 10));
+    return m;
+  });
+}
+
+const clean = s => decodeEntities((s || '').replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
 const toInt = s => {
   const n = parseInt(String(s).replace(/[^\d]/g, ''), 10);
   return Number.isFinite(n) ? n : 0;
