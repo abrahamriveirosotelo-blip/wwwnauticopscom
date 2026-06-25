@@ -69,10 +69,38 @@ jobs:
           name: huelva-data
           path: src/pages/demos/huelva/data.json
 
+  update-marin:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.check.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Actualizar datos Marín
+        run: node scripts/update-marin.mjs
+
+      - name: Detectar cambios
+        id: check
+        run: |
+          git diff --quiet src/pages/demos/marin/data.json \
+            && echo "changed=false" >> $GITHUB_OUTPUT \
+            || echo "changed=true"  >> $GITHUB_OUTPUT
+
+      - name: Subir data.json
+        if: steps.check.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: marin-data
+          path: src/pages/demos/marin/data.json
+
   commit:
-    needs: [update-alicante, update-huelva]
+    needs: [update-alicante, update-huelva, update-marin]
     # always() para que corra aunque un job falle; solo commitea los que tuvieron cambios
-    if: always() && (needs.update-alicante.outputs.changed == 'true' || needs.update-huelva.outputs.changed == 'true')
+    if: always() && (needs.update-alicante.outputs.changed == 'true' || needs.update-huelva.outputs.changed == 'true' || needs.update-marin.outputs.changed == 'true')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -91,11 +119,18 @@ jobs:
           name: huelva-data
           path: src/pages/demos/huelva
 
+      - name: Descargar data.json Marín
+        if: needs.update-marin.outputs.changed == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: marin-data
+          path: src/pages/demos/marin
+
       - name: Commitear y pushear
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/pages/demos/alicante/data.json src/pages/demos/huelva/data.json
+          git add src/pages/demos/alicante/data.json src/pages/demos/huelva/data.json src/pages/demos/marin/data.json
           git diff --staged --quiet && echo "Sin cambios finales" && exit 0
           git commit -m "chore: actualizar datos demos $(date -u '+%Y-%m-%d %H:%M UTC')"
           git push
