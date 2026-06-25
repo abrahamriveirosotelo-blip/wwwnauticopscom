@@ -64,7 +64,9 @@ El script [`scripts/update-marin.mjs`](../../../../scripts/update-marin.mjs) des
 
 En cada ejecución también **elige el escenario de alerta**: un buque "en puerto" (`Iniciado`) que comparte muelle con otro `Prevista` → `"Alerta"` + retraso + impacto en cascada (`affectedBy`, `affectRisk: "ALTO"`) + hitos operativos. La comparación de muelles ignora acentos/mayúsculas (la AP escribe "Marin" en una tabla y "Marín" en la otra). No hay IDs hardcodeados.
 
-Se preservan del JSON anterior los datos manuales del parte de remolque (`tugService.crew`, `tugService.times`, `tugService.tugboat`). El `callId` se actualiza al barco elegido para la alerta.
+Se preservan del JSON anterior los datos manuales del parte de remolque (`tugService.crew`, `tugService.times`, `tugService.tugboat`). El `callId` se actualiza al barco elegido para la alerta; si en alguna ejecución no hay barcos en puerto (sin alerta), `callId` y `milestones` se vacían para no apuntar a una escala que ya no existe.
+
+El remolcador de Marín es **`AMARE MARÍN`** (`tugService.tugboat`).
 
 ### Comandos locales
 
@@ -104,6 +106,6 @@ Tras actualizar, el barco en **Alerta** y el de **impacto ALTO** se eligen autom
 
 ## Pendiente
 
-- [ ] Nombre real del remolcador de Marín en `tugService.tugboat` (placeholder: `REMOLCADOR RÍA DE PONTEVEDRA`).
+- [x] Nombre real del remolcador de Marín en `tugService.tugboat` → `AMARE MARÍN`.
 - [ ] Contacto/prospecto concreto al que va dirigida la demo (como Esther en Alicante).
 - [ ] Aprovechar la columna `Norays` (no se vuelca al JSON; podría mostrarse en el drawer).

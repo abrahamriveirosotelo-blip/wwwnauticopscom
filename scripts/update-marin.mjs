@@ -43,7 +43,7 @@ const SEED = {
   tugService: {
     callId: '',
     reportNumber: '004821',
-    tugboat: 'REMOLCADOR RÍA DE PONTEVEDRA',
+    tugboat: 'AMARE MARÍN',
     powerPct: 70,
     rope: true,
     shipEngine: false,
@@ -146,10 +146,13 @@ async function main() {
       refreshHours: base.meta?.refreshHours ?? 12,
     },
     calls,
+    // Sin alerta no debe quedar un callId/milestones apuntando a una escala que
+    // ya no existe en `calls`: se conservan tripulación/tiempos pero se limpian
+    // el vínculo y los hitos para no dejar el drawer en estado incoherente.
     tugService: alert
       ? { ...base.tugService, callId: alert.alertId }
-      : base.tugService,
-    milestones: alert ? alert.milestones : (base.milestones || {}),
+      : { ...base.tugService, callId: '' },
+    milestones: alert ? alert.milestones : {},
   };
 
   if (isDryRun) {

@@ -29,8 +29,8 @@ function fmt(iso) {
 function opColor(op) {
   if (op.includes("PORTACONTENEDORES")) return { bg:"#DBEAFE", text:"#1D4ED8" };
   if (op.includes("PASAJE")) return { bg:"#EDE9FE", text:"#6D28D9" };
-  if (op.startsWith("D/")) return { bg:"#FEF3C7", text:"#92400E" };
-  if (op.startsWith("C/")) return { bg:"#D1FAE5", text:"#065F46" };
+  if (op.startsWith("D/") || op.startsWith("D.")) return { bg:"#FEF3C7", text:"#92400E" }; // descarga
+  if (op.startsWith("C/") || op.startsWith("C.")) return { bg:"#D1FAE5", text:"#065F46" }; // carga
   return { bg:B.grayLight, text:B.gray };
 }
 
