@@ -128,8 +128,8 @@ export function destinationConfirms(vfDestination, call) {
   const d = normName(vfDestination);
   if (!d) return false;
   if (d.includes('MARIN')) return true; // entrante
-  const to = normName(call.to);
-  if (to && to !== '—' && d.split(' ').some(tok => tok.length > 3 && to.includes(tok))) return true;
+  const to = normName(call.to); // normName('—') === '' → basta con comprobar `to`
+  if (to && d.split(' ').some(tok => tok.length > 3 && to.includes(tok))) return true;
   return false;
 }
 
