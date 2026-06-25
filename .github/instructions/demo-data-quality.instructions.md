@@ -20,11 +20,11 @@ The demo data for Puerto de Marín is scraped from two static HTML tables publis
 by the port authority (`apmarin.com`): `buques_esperados` (ETA) and `buques_puerto`
 (ETD). They are joined by the `Escala` code (`M2026…`), which is the same in both.
 
-Marín's tables do **not** publish `IMO`, `GT` (tonnage) or length. These are degraded:
-`imo` is always `'—'`, and `gt`/`len` are `0` — do not flag any of these as missing
-fields. `DemoMarin.tsx` shows "Datos de buque no publicados por la AP" instead of
-"0 GT · 0 m". Do not enrich these from external sources (product decision: only
-real data from the official source).
+Marín's tables do **not** publish `IMO`, `GT` (tonnage), length or flag. `update-marin.mjs`
+leaves them degraded (`imo: '—'`, `gt`/`len`: `0`) — do not flag any of these as missing
+fields. A second step, `enrich-marin.mjs`, fills them from vesselfinder.com **when the match
+is reliable** (see below); when it isn't, they stay degraded and `DemoMarin.tsx` shows
+"Datos de buque no publicados por la AP" instead of "0 GT · 0 m".
 
 A vessel appears in `buques_esperados` **or** `buques_puerto`, never both at once, so
 a single scrape never has ETA and ETD for the same call. `update-marin.mjs` recovers

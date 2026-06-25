@@ -57,15 +57,22 @@ async function resolveVessel(call) {
     await sleep(THROTTLE_MS);
     return d;
   });
-  if (!match) return { resolved: false, reason: `sin match fiable (${candidates.length} candidatos)` };
+  if (!match) {
+    const n = candidates.length;
+    return { resolved: false, reason: `sin match fiable (${n} candidato${n === 1 ? '' : 's'})` };
+  }
 
   // Completar callsign / LOA precisa desde la ficha del candidato elegido.
+  // Si el match es 'destination-confirmed', matchVessel ya descargó la ficha y
+  // mezcló esos campos → evitamos una petición (y un throttle) redundantes.
   let merged = { ...match.candidate };
-  try {
-    const detail = await fetchDetail(match.candidate.detailId);
-    await sleep(THROTTLE_MS);
-    merged = { ...merged, ...pickDetailFields(detail) };
-  } catch { /* la búsqueda ya trae lo esencial */ }
+  if (match.confidence !== 'destination-confirmed') {
+    try {
+      const detail = await fetchDetail(match.candidate.detailId);
+      await sleep(THROTTLE_MS);
+      merged = { ...merged, ...pickDetailFields(detail) };
+    } catch { /* la búsqueda ya trae lo esencial */ }
+  }
 
   if (!merged.imo) return { resolved: false, reason: 'candidato sin IMO' };
   return {
@@ -85,8 +92,9 @@ async function resolveVessel(call) {
 }
 
 function nowIso() {
-  const d = new Date();
-  return d.toISOString().slice(0, 19);
+  // ISO en UTC conservando la 'Z' para que new Date(checkedAt) reparse en UTC
+  // (sin la Z se interpretaría como hora local y desplazaría el TTL).
+  return new Date().toISOString().slice(0, 19) + 'Z';
 }
 
 function applyToCall(call, e) {
