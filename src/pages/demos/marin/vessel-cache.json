@@ -12,7 +12,7 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T17:27:41"
+    "resolvedAt": "2026-06-25T18:05:36Z"
   },
   "DAGMAR": {
     "resolved": true,
@@ -27,7 +27,7 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "destination-confirmed",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T17:27:45"
+    "resolvedAt": "2026-06-25T18:05:39Z"
   },
   "NATALIE": {
     "resolved": true,
@@ -42,7 +42,7 @@
     "destination": "Pasajes, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T17:27:48"
+    "resolvedAt": "2026-06-25T18:05:42Z"
   },
   "GLORIOUS": {
     "resolved": true,
@@ -57,12 +57,12 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T17:27:51"
+    "resolvedAt": "2026-06-25T18:05:46Z"
   },
   "ANNA": {
     "resolved": false,
     "reason": "sin match fiable (20 candidatos)",
-    "checkedAt": "2026-06-25T17:27:53"
+    "checkedAt": "2026-06-25T18:05:47Z"
   },
   "GRETA C": {
     "resolved": true,
@@ -77,7 +77,7 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T17:27:56"
+    "resolvedAt": "2026-06-25T18:05:50Z"
   },
   "FWN ATLANTIDE": {
     "resolved": true,
@@ -92,12 +92,12 @@
     "destination": "ES MAR",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T17:27:59"
+    "resolvedAt": "2026-06-25T18:05:53Z"
   },
   "AROSA NUEVE": {
     "resolved": false,
-    "reason": "sin match fiable (1 candidatos)",
-    "checkedAt": "2026-06-25T17:28:01"
+    "reason": "sin match fiable (1 candidato)",
+    "checkedAt": "2026-06-25T18:05:55Z"
   },
   "EVITA": {
     "resolved": true,
@@ -112,7 +112,7 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "destination-confirmed",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T17:28:06"
+    "resolvedAt": "2026-06-25T18:06:00Z"
   },
   "DANZIGERGRACHT": {
     "resolved": true,
@@ -127,7 +127,7 @@
     "destination": "Nantes, France",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T17:28:09"
+    "resolvedAt": "2026-06-25T18:06:03Z"
   },
   "NICOLA L": {
     "resolved": true,
@@ -142,7 +142,7 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T17:28:12"
+    "resolvedAt": "2026-06-25T18:06:06Z"
   },
   "SOPHIE": {
     "resolved": true,
@@ -157,6 +157,6 @@
     "destination": "Montreal, Canada",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T17:28:15"
+    "resolvedAt": "2026-06-25T18:06:09Z"
   }
 }

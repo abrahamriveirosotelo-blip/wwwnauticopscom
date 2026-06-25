@@ -62,19 +62,25 @@ async function resolveVessel(call) {
     return { resolved: false, reason: `sin match fiable (${n} candidato${n === 1 ? '' : 's'})` };
   }
 
-  // Completar callsign / LOA precisa desde la ficha del candidato elegido.
+  // Verificar el IMO en la ficha de detalle (el id de búsqueda de 7 dígitos no
+  // garantiza un IMO real). Si la ficha no se puede leer o no trae IMO → NO
+  // resuelto, para no escribir ids internos de VesselFinder como si fueran IMO.
   // Si el match es 'destination-confirmed', matchVessel ya descargó la ficha y
-  // mezcló esos campos → evitamos una petición (y un throttle) redundantes.
+  // verificó el IMO → evitamos una petición (y un throttle) redundantes.
   let merged = { ...match.candidate };
   if (match.confidence !== 'destination-confirmed') {
+    let detail;
     try {
-      const detail = await fetchDetail(match.candidate.detailId);
+      detail = await fetchDetail(match.candidate.detailId);
       await sleep(THROTTLE_MS);
-      merged = { ...merged, ...pickDetailFields(detail) };
-    } catch { /* la búsqueda ya trae lo esencial */ }
+    } catch {
+      return { resolved: false, reason: 'no se pudo verificar la ficha (IMO sin confirmar)' };
+    }
+    if (!detail.imo) return { resolved: false, reason: 'ficha sin IMO verificable' };
+    merged = { ...merged, ...pickDetailFields(detail) };
   }
 
-  if (!merged.imo) return { resolved: false, reason: 'candidato sin IMO' };
+  if (!merged.imo) return { resolved: false, reason: 'IMO no verificado' };
   return {
     resolved: true,
     imo: merged.imo,
@@ -143,8 +149,10 @@ async function main() {
 
   for (const [key, call] of byName) {
     let entry = cache[key];
+    // checkedAt no parseable (NaN) → tratar como stale para que se reintente.
+    const checkedMs = entry ? new Date(entry.checkedAt || 0).getTime() : 0;
     const stale = entry && entry.resolved === false &&
-      (Date.now() - new Date(entry.checkedAt || 0).getTime() > ttlMs);
+      (!Number.isFinite(checkedMs) || Date.now() - checkedMs > ttlMs);
 
     if (!entry || (entry.resolved === false && (force || stale)) || (force && entry.resolved)) {
       try {

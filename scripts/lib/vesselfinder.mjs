@@ -136,7 +136,9 @@ export async function matchVessel(call, candidates, fetchDetail) {
   for (const c of viable) {
     let detail = null;
     try { detail = await fetchDetail(c.detailId); } catch { /* sigue */ }
-    if (detail && destinationConfirms(detail.destination, call)) {
+    // Conservador: exige IMO verificado en la ficha (el id de búsqueda de 7
+    // dígitos no garantiza un IMO real) Y un destino que confirme la escala.
+    if (detail && detail.imo && destinationConfirms(detail.destination, call)) {
       return { candidate: { ...c, ...pickDetailFields(detail) }, confidence: 'destination-confirmed' };
     }
   }
