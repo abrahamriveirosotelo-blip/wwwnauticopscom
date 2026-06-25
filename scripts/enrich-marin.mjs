@@ -33,16 +33,24 @@ const CACHE_PATH = join(__dirname, '../src/pages/demos/marin/vessel-cache.json')
 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36';
 const THROTTLE_MS = 1500;          // cortesía entre peticiones
+const REQUEST_TIMEOUT_MS = 15000;  // aborta si VesselFinder se cuelga (CI predecible)
 const UNRESOLVED_TTL_DAYS = 7;     // reintentar nombres no resueltos pasada 1 semana
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 async function fetchText(url) {
-  const res = await fetch(url, {
-    headers: { 'User-Agent': UA, 'Accept': 'text/html,application/xhtml+xml', 'Accept-Language': 'es,en' },
-  });
-  if (!res.ok) throw new Error(`HTTP ${res.status} en ${url}`);
-  return res.text();
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), REQUEST_TIMEOUT_MS);
+  try {
+    const res = await fetch(url, {
+      headers: { 'User-Agent': UA, 'Accept': 'text/html,application/xhtml+xml', 'Accept-Language': 'es,en' },
+      signal: ctrl.signal,
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status} en ${url}`);
+    return await res.text();
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 const fetchDetail = async id => parseDetail(await fetchText(DETAIL_URL(id)));
@@ -162,8 +170,10 @@ async function main() {
         if (r.resolved) { resolvedNow++; console.log(`✓ ${call.name} → IMO ${r.imo} · ${r.vesselType} · ${r.flag} · ${r.gt} GT · ${r.len}m (${r.confidence})`); }
         else { console.log(`· ${call.name} → ${r.reason}`); }
       } catch (err) {
-        console.warn(`⚠️  ${call.name}: ${err.message}`);
-        continue;
+        // No usar `continue`: si había una entrada cacheada previa (resuelta),
+        // se re-aplica más abajo. Así un error transitorio (sobre todo en
+        // --force) no descarta el enriquecimiento ya guardado en data.json.
+        console.warn(`⚠️  ${call.name}: ${err.message}${entry?.resolved ? ' — se conserva la caché previa' : ''}`);
       }
     } else {
       fromCache++;
