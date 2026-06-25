@@ -56,9 +56,11 @@ async function fetchText(url) {
 const fetchDetail = async id => parseDetail(await fetchText(DETAIL_URL(id)));
 
 /** Resuelve un buque por nombre: search → match conservador → detalle. */
-async function resolveVessel(call) {
-  const search = await fetchText(SEARCH_URL(call.name));
-  await sleep(THROTTLE_MS);
+async function resolveVessel(call, searchHtml = null) {
+  // Reutiliza el HTML de búsqueda si se pasa (p. ej. desde --vessel) para no
+  // repetir la misma petición a vesselfinder.com.
+  const search = searchHtml ?? await fetchText(SEARCH_URL(call.name));
+  if (!searchHtml) await sleep(THROTTLE_MS);
   const candidates = parseSearchResults(search);
   const match = await matchVessel(call, candidates, async id => {
     const d = await fetchDetail(id);
@@ -142,7 +144,7 @@ async function main() {
     candidates.forEach(c =>
       console.log(`  ${c.imo || c.detailId} | ${c.name} | ${c.type} | ${c.flag} | ${c.gt} GT | ${c.length}m`)
     );
-    const r = await resolveVessel({ name, to: '—', op: '' });
+    const r = await resolveVessel({ name, to: '—', op: '' }, html);
     console.log('\nResultado:', JSON.stringify(r, null, 2));
     return;
   }
