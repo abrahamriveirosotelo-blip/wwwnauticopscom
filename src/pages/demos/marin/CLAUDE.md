@@ -49,12 +49,31 @@ Por eso en un **arranque en frío** (sin `data.json` previo) los barcos ya en pu
 
 ### Campos que la AP no publica
 
-Las tablas de Marín **no incluyen `IMO`, `GT` (arqueo) ni eslora**. Se degradan a `'—'` / `0`:
+Las tablas de Marín **no incluyen `IMO`, `GT` (arqueo), eslora ni bandera**. Se rellenan en un segundo paso desde vesselfinder.com (ver «Enriquecimiento» más abajo) y, cuando no hay match fiable, se degradan a `'—'` / `0`:
 
-- `imo` siempre `'—'` (el componente ya lo omite del header).
+- `imo` queda `'—'` (el componente lo omite del header).
 - `gt` y `len` valen `0`; `DemoMarin.tsx` muestra **"Datos de buque no publicados por la AP"** en el header del drawer y `—` en la columna GT de la tabla.
 
-No se enriquecen desde fuentes externas (decisión de producto: 100 % datos reales de la fuente oficial). Ver [demo-data-quality.instructions.md](../../../../.github/instructions/demo-data-quality.instructions.md).
+Ver [demo-data-quality.instructions.md](../../../../.github/instructions/demo-data-quality.instructions.md).
+
+### Enriquecimiento de datos de buque (vesselfinder.com)
+
+El script [`scripts/enrich-marin.mjs`](../../../../scripts/enrich-marin.mjs) (lib en [`scripts/lib/vesselfinder.mjs`](../../../../scripts/lib/vesselfinder.mjs)) busca cada buque por nombre en vesselfinder.com y rellena **datos estáticos**: `imo`, `gt`, `len`, `flag` (bandera), `vesselType`, `built`, `callsign`. Se ejecuta **después** de `update-marin.mjs` (que resetea esos campos en cada actualización).
+
+**Matching conservador** (los nombres no son únicos): solo se acepta un buque si hay un **único candidato de tipo comercial** con ese nombre exacto, o si el **`Destination` de VesselFinder confirma** la escala (contiene "Marin" para entrantes, o coincide con `to` para salientes). Ante la duda se deja `'—'` — nunca se asigna el IMO/GT de otro barco.
+
+**Caché** [`vessel-cache.json`](vessel-cache.json), keyed por nombre normalizado: los particulares son inmutables, así que un buque se resuelve una vez y no se vuelve a pedir (los no resueltos se reintentan a los 7 días). Esto minimiza peticiones a VesselFinder. Si `update-marin.mjs` resetea `data.json`, `enrich-marin.mjs` lo re-aplica desde la caché **sin** volver a la red.
+
+> **Solo datos estáticos.** Velocidad, posición y ETA en vivo NO salen del HTML público de VesselFinder (se cargan por JS / API de pago) — no se intentan. Ver el ToS más abajo.
+
+```bash
+npm run enrich-demo:marin            # enriquece data.json (usa caché)
+npm run enrich-demo:marin:dry        # sin escribir
+npm run enrich-demo:marin:force      # reintenta todo, ignorando la caché
+node scripts/enrich-marin.mjs --vessel "GLORIOUS"   # prueba un nombre suelto
+```
+
+> **ToS / rate-limit:** los términos de VesselFinder restringen el scraping automatizado. El paso de enriquecimiento en CI es `continue-on-error` y throttlea 1,5 s entre peticiones; si las IPs de GitHub Actions se bloquean, la caché commiteada mantiene lo ya resuelto.
 
 ---
 
@@ -94,7 +113,7 @@ Fixtures de referencia: [`scripts/fixtures/marin-esperados.html`](../../../../sc
 
 ## Actualización automática (CI)
 
-El workflow [`.github/workflows/update-demos.yml`](../../../../.github/workflows/update-demos.yml) ejecuta el job `update-marin` dos veces al día (08:00 y 12:00 hora España) junto a Alicante y Huelva, y commitea `data.json` si cambió. Netlify redespliega.
+El workflow [`.github/workflows/update-demos.yml`](../../../../.github/workflows/update-demos.yml) ejecuta el job `update-marin` dos veces al día (08:00 y 12:00 hora España) junto a Alicante y Huelva: corre `update-marin.mjs`, luego `enrich-marin.mjs` (paso `continue-on-error`), y commitea `data.json` + `vessel-cache.json` si cambiaron. Netlify redespliega.
 
 ---
 
@@ -107,5 +126,7 @@ Tras actualizar, el barco en **Alerta** y el de **impacto ALTO** se eligen autom
 ## Pendiente
 
 - [x] Nombre real del remolcador de Marín en `tugService.tugboat` → `AMARE MARÍN`.
+- [x] Enriquecer IMO/GT/eslora/bandera/tipo desde vesselfinder.com (`enrich-marin.mjs`).
+- [ ] Datos en vivo (velocidad/posición/ETA): requieren navegador headless o API de pago.
 - [ ] Contacto/prospecto concreto al que va dirigida la demo (como Esther en Alicante).
 - [ ] Aprovechar la columna `Norays` (no se vuelca al JSON; podría mostrarse en el drawer).

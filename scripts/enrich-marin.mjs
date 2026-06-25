@@ -1,0 +1,178 @@
+#!/usr/bin/env node
+/**
+ * Enriquece las escalas de la demo de Marín con datos ESTÁTICOS de buque
+ * (IMO, GT, eslora, bandera, tipo, año, callsign) desde vesselfinder.com.
+ *
+ * Pensado para ejecutarse DESPUÉS de scripts/update-marin.mjs: este reescribe
+ * data.json dejando imo='—'/gt=0/len=0; aquí se rellenan a partir del nombre
+ * del buque, con matching conservador (ver scripts/lib/vesselfinder.mjs).
+ *
+ * Caché: src/pages/demos/marin/vessel-cache.json. Los particulares de un buque
+ * son inmutables (IMO/GT/eslora/bandera) → se resuelven una vez por nombre y no
+ * se vuelven a pedir; minimiza peticiones (rate-limit / ToS de VesselFinder).
+ * Si el matching no es fiable, la escala se deja SIN enriquecer (degrada a '—').
+ *
+ * Uso:
+ *   node scripts/enrich-marin.mjs
+ *   node scripts/enrich-marin.mjs --dry-run
+ *   node scripts/enrich-marin.mjs --force          # reintenta lo cacheado
+ *   node scripts/enrich-marin.mjs --vessel "GLORIOUS"   # prueba un nombre
+ */
+
+import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+import {
+  SEARCH_URL, DETAIL_URL, parseSearchResults, parseDetail,
+  matchVessel, pickDetailFields, normName,
+} from './lib/vesselfinder.mjs';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const DATA_PATH = join(__dirname, '../src/pages/demos/marin/data.json');
+const CACHE_PATH = join(__dirname, '../src/pages/demos/marin/vessel-cache.json');
+
+const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36';
+const THROTTLE_MS = 1500;          // cortesía entre peticiones
+const UNRESOLVED_TTL_DAYS = 7;     // reintentar nombres no resueltos pasada 1 semana
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+async function fetchText(url) {
+  const res = await fetch(url, {
+    headers: { 'User-Agent': UA, 'Accept': 'text/html,application/xhtml+xml', 'Accept-Language': 'es,en' },
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status} en ${url}`);
+  return res.text();
+}
+
+const fetchDetail = async id => parseDetail(await fetchText(DETAIL_URL(id)));
+
+/** Resuelve un buque por nombre: search → match conservador → detalle. */
+async function resolveVessel(call) {
+  const search = await fetchText(SEARCH_URL(call.name));
+  await sleep(THROTTLE_MS);
+  const candidates = parseSearchResults(search);
+  const match = await matchVessel(call, candidates, async id => {
+    const d = await fetchDetail(id);
+    await sleep(THROTTLE_MS);
+    return d;
+  });
+  if (!match) return { resolved: false, reason: `sin match fiable (${candidates.length} candidatos)` };
+
+  // Completar callsign / LOA precisa desde la ficha del candidato elegido.
+  let merged = { ...match.candidate };
+  try {
+    const detail = await fetchDetail(match.candidate.detailId);
+    await sleep(THROTTLE_MS);
+    merged = { ...merged, ...pickDetailFields(detail) };
+  } catch { /* la búsqueda ya trae lo esencial */ }
+
+  if (!merged.imo) return { resolved: false, reason: 'candidato sin IMO' };
+  return {
+    resolved: true,
+    imo: merged.imo,
+    gt: merged.gt || 0,
+    len: merged.length || 0,
+    beam: merged.beam || 0,
+    flag: merged.flag || '',
+    vesselType: merged.type || '',
+    built: merged.built || 0,
+    callsign: merged.callsign || '',
+    destination: merged.destination || '',
+    confidence: match.confidence,
+    source: 'vesselfinder.com',
+  };
+}
+
+function nowIso() {
+  const d = new Date();
+  return d.toISOString().slice(0, 19);
+}
+
+function applyToCall(call, e) {
+  call.imo = e.imo;
+  if (e.gt) call.gt = e.gt;
+  if (e.len) call.len = e.len;
+  call.flag = e.flag || call.flag || '';
+  call.vesselType = e.vesselType || call.vesselType || '';
+  if (e.built) call.built = e.built;
+  if (e.callsign) call.callsign = e.callsign;
+}
+
+async function main() {
+  const args = process.argv.slice(2);
+  const isDryRun = args.includes('--dry-run');
+  const force = args.includes('--force');
+  const vIdx = args.indexOf('--vessel');
+
+  // Modo prueba: un solo nombre, imprime candidatos y resultado.
+  if (vIdx !== -1) {
+    const name = args[vIdx + 1];
+    if (!name) throw new Error('Uso: --vessel "NOMBRE"');
+    const html = await fetchText(SEARCH_URL(name));
+    const candidates = parseSearchResults(html);
+    console.log(`\nCandidatos para "${name}": ${candidates.length}`);
+    candidates.forEach(c =>
+      console.log(`  ${c.imo || c.detailId} | ${c.name} | ${c.type} | ${c.flag} | ${c.gt} GT | ${c.length}m`)
+    );
+    const r = await resolveVessel({ name, to: '—', op: '' });
+    console.log('\nResultado:', JSON.stringify(r, null, 2));
+    return;
+  }
+
+  const data = JSON.parse(readFileSync(DATA_PATH, 'utf-8'));
+  const cache = existsSync(CACHE_PATH) ? JSON.parse(readFileSync(CACHE_PATH, 'utf-8')) : {};
+
+  // Un representante por nombre normalizado (varias escalas comparten buque).
+  const byName = new Map();
+  for (const call of data.calls) {
+    const key = normName(call.name);
+    if (!byName.has(key)) byName.set(key, call);
+  }
+
+  let enriched = 0, resolvedNow = 0, unresolved = 0, fromCache = 0;
+  const ttlMs = UNRESOLVED_TTL_DAYS * 86400 * 1000;
+
+  for (const [key, call] of byName) {
+    let entry = cache[key];
+    const stale = entry && entry.resolved === false &&
+      (Date.now() - new Date(entry.checkedAt || 0).getTime() > ttlMs);
+
+    if (!entry || (entry.resolved === false && (force || stale)) || (force && entry.resolved)) {
+      try {
+        const r = await resolveVessel(call);
+        entry = r.resolved ? { ...r, resolvedAt: nowIso() } : { resolved: false, reason: r.reason, checkedAt: nowIso() };
+        cache[key] = entry;
+        if (r.resolved) { resolvedNow++; console.log(`✓ ${call.name} → IMO ${r.imo} · ${r.vesselType} · ${r.flag} · ${r.gt} GT · ${r.len}m (${r.confidence})`); }
+        else { console.log(`· ${call.name} → ${r.reason}`); }
+      } catch (err) {
+        console.warn(`⚠️  ${call.name}: ${err.message}`);
+        continue;
+      }
+    } else {
+      fromCache++;
+    }
+
+    if (entry?.resolved) {
+      for (const c of data.calls) if (normName(c.name) === key) applyToCall(c, entry);
+      enriched++;
+    } else {
+      unresolved++;
+    }
+  }
+
+  console.log(`\nResumen: ${enriched} buques enriquecidos · ${resolvedNow} resueltos ahora · ${fromCache} de caché · ${unresolved} sin match`);
+
+  if (isDryRun) {
+    console.log('\n--- DRY RUN: no se escribe data.json ni cache ---');
+    return;
+  }
+  writeFileSync(CACHE_PATH, JSON.stringify(cache, null, 2) + '\n', 'utf-8');
+  writeFileSync(DATA_PATH, JSON.stringify(data, null, 2) + '\n', 'utf-8');
+  console.log('✓ data.json y vessel-cache.json actualizados');
+}
+
+main().catch(err => {
+  console.error('Error:', err.message);
+  process.exit(1);
+});

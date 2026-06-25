@@ -21,6 +21,9 @@
     "update-demo:marin": "node scripts/update-marin.mjs",
     "update-demo:marin:dry": "node scripts/update-marin.mjs --dry-run",
     "update-demo:marin:debug": "node scripts/update-marin.mjs --print-rows",
+    "enrich-demo:marin": "node scripts/enrich-marin.mjs",
+    "enrich-demo:marin:dry": "node scripts/enrich-marin.mjs --dry-run",
+    "enrich-demo:marin:force": "node scripts/enrich-marin.mjs --force",
     "preview:fresh": "npm run update-demo && npm run build && npm run preview"
   },
   "dependencies": {

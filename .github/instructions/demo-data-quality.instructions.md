@@ -30,3 +30,16 @@ A vessel appears in `buques_esperados` **or** `buques_puerto`, never both at onc
 a single scrape never has ETA and ETD for the same call. `update-marin.mjs` recovers
 the missing one from the previous `data.json`; on a cold start (no prior file) in-port
 vessels legitimately show `eta: ""` until a later run captures it. This is expected.
+
+### Marín vessel enrichment (vesselfinder.com)
+
+`imo`/`gt`/`len`/`flag`/`vesselType` are NOT from the port authority — `enrich-marin.mjs`
+fills them from vesselfinder.com **after** `update-marin.mjs`. Matching is **conservative**:
+a vessel is only enriched when there is a single commercial-type result for the exact name,
+or when VesselFinder's `Destination` confirms the call (contains "Marin", or matches `to`).
+When uncertain it is left at `'—'`/`0` — never guess another ship's IMO/GT. So some calls
+staying unenriched (e.g. ambiguous names) is correct behaviour, not a bug.
+
+Results are cached in `src/pages/demos/marin/vessel-cache.json` (keyed by normalized name;
+static particulars are immutable). Only **static** data is scraped — live speed/position/ETA
+are not available from VesselFinder's public HTML and are intentionally not attempted.
