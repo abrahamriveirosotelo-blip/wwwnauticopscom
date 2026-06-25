@@ -1,5 +1,5 @@
 {
-  "ELISA K": {
+  "ELISA K::NEA MOUDHANIA": {
     "resolved": true,
     "imo": "9879064",
     "gt": 2999,
@@ -12,9 +12,9 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T18:05:36Z"
+    "resolvedAt": "2026-06-25T18:26:18Z"
   },
-  "DAGMAR": {
+  "DAGMAR::ALGECIRAS": {
     "resolved": true,
     "imo": "9354399",
     "gt": 9962,
@@ -27,9 +27,9 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "destination-confirmed",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T18:05:39Z"
+    "resolvedAt": "2026-06-25T18:26:21Z"
   },
-  "NATALIE": {
+  "NATALIE::PASAJES": {
     "resolved": true,
     "imo": "9361720",
     "gt": 2998,
@@ -42,9 +42,9 @@
     "destination": "Pasajes, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T18:05:42Z"
+    "resolvedAt": "2026-06-25T18:26:24Z"
   },
-  "GLORIOUS": {
+  "GLORIOUS::A ORDENES": {
     "resolved": true,
     "imo": "9729831",
     "gt": 36313,
@@ -57,14 +57,14 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T18:05:46Z"
+    "resolvedAt": "2026-06-25T18:26:27Z"
   },
-  "ANNA": {
+  "ANNA::ROUEN": {
     "resolved": false,
     "reason": "sin match fiable (20 candidatos)",
-    "checkedAt": "2026-06-25T18:05:47Z"
+    "checkedAt": "2026-06-25T18:26:29Z"
   },
-  "GRETA C": {
+  "GRETA C::A ORDENES": {
     "resolved": true,
     "imo": "1031020",
     "gt": 4766,
@@ -77,9 +77,9 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T18:05:50Z"
+    "resolvedAt": "2026-06-25T18:26:32Z"
   },
-  "FWN ATLANTIDE": {
+  "FWN ATLANTIDE::RADICATEL": {
     "resolved": true,
     "imo": "9535620",
     "gt": 8059,
@@ -92,14 +92,14 @@
     "destination": "ES MAR",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T18:05:53Z"
+    "resolvedAt": "2026-06-25T18:26:35Z"
   },
-  "AROSA NUEVE": {
+  "AROSA NUEVE::PASAJES": {
     "resolved": false,
     "reason": "sin match fiable (1 candidato)",
-    "checkedAt": "2026-06-25T18:05:55Z"
+    "checkedAt": "2026-06-25T18:26:37Z"
   },
-  "EVITA": {
+  "EVITA::A CORUNA": {
     "resolved": true,
     "imo": "9604964",
     "gt": 34778,
@@ -112,9 +112,9 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "destination-confirmed",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T18:06:00Z"
+    "resolvedAt": "2026-06-25T18:26:40Z"
   },
-  "DANZIGERGRACHT": {
+  "DANZIGERGRACHT::CUXHAVEN": {
     "resolved": true,
     "imo": "9420796",
     "gt": 13558,
@@ -127,9 +127,9 @@
     "destination": "Nantes, France",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T18:06:03Z"
+    "resolvedAt": "2026-06-25T18:26:43Z"
   },
-  "NICOLA L": {
+  "NICOLA L::PASAJES": {
     "resolved": true,
     "imo": "9361718",
     "gt": 2998,
@@ -142,9 +142,9 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T18:06:06Z"
+    "resolvedAt": "2026-06-25T18:26:46Z"
   },
-  "SOPHIE": {
+  "SOPHIE::A ORDENES": {
     "resolved": true,
     "imo": "1060502",
     "gt": 11442,
@@ -157,6 +157,6 @@
     "destination": "Montreal, Canada",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T18:06:09Z"
+    "resolvedAt": "2026-06-25T18:26:49Z"
   }
 }

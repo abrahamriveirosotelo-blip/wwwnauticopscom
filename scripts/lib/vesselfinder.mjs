@@ -29,7 +29,7 @@ const toInt = s => {
 export function normName(s) {
   return (s || '')
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .toUpperCase().replace(/[.\-]/g, ' ').replace(/\s+/g, ' ').trim();
+    .toUpperCase().replace(/[^A-Z0-9]+/g, ' ').trim();
 }
 
 /** ¿Es un tipo de buque mercante (candidato válido para una escala de Marín)? */

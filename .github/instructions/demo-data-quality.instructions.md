@@ -40,6 +40,6 @@ or when VesselFinder's `Destination` confirms the call (contains "Marin", or mat
 When uncertain it is left at `'—'`/`0` — never guess another ship's IMO/GT. So some calls
 staying unenriched (e.g. ambiguous names) is correct behaviour, not a bug.
 
-Results are cached in `src/pages/demos/marin/vessel-cache.json` (keyed by normalized name;
-static particulars are immutable). Only **static** data is scraped — live speed/position/ETA
+Results are cached in `src/pages/demos/marin/vessel-cache.json` (keyed by normalized
+name + destination, since names are not unique; static particulars are immutable). Only **static** data is scraped — live speed/position/ETA
 are not available from VesselFinder's public HTML and are intentionally not attempted.

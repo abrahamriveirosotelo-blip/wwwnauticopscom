@@ -111,6 +111,11 @@ function nowIso() {
   return new Date().toISOString().slice(0, 19) + 'Z';
 }
 
+/** Clave de caché/agrupación: nombre + destino normalizados (los nombres no son únicos). */
+function cacheKey(call) {
+  return `${normName(call.name)}::${normName(call.to)}`;
+}
+
 function applyToCall(call, e) {
   call.imo = e.imo;
   if (e.gt) call.gt = e.gt;
@@ -145,17 +150,19 @@ async function main() {
   const data = JSON.parse(readFileSync(DATA_PATH, 'utf-8'));
   const cache = existsSync(CACHE_PATH) ? JSON.parse(readFileSync(CACHE_PATH, 'utf-8')) : {};
 
-  // Un representante por nombre normalizado (varias escalas comparten buque).
-  const byName = new Map();
+  // Clave de caché = nombre + destino (`to`): los nombres NO son únicos, así que
+  // dos buques distintos con el mismo nombre pero diferente destino se resuelven
+  // por separado y no se propaga el enriquecimiento de uno al otro.
+  const byKey = new Map();
   for (const call of data.calls) {
-    const key = normName(call.name);
-    if (!byName.has(key)) byName.set(key, call);
+    const key = cacheKey(call);
+    if (!byKey.has(key)) byKey.set(key, call);
   }
 
   let enriched = 0, resolvedNow = 0, unresolved = 0, fromCache = 0;
   const ttlMs = UNRESOLVED_TTL_DAYS * 86400 * 1000;
 
-  for (const [key, call] of byName) {
+  for (const [key, call] of byKey) {
     let entry = cache[key];
     // checkedAt no parseable (NaN) → tratar como stale para que se reintente.
     const checkedMs = entry ? new Date(entry.checkedAt || 0).getTime() : 0;
@@ -180,7 +187,7 @@ async function main() {
     }
 
     if (entry?.resolved) {
-      for (const c of data.calls) if (normName(c.name) === key) applyToCall(c, entry);
+      for (const c of data.calls) if (cacheKey(c) === key) applyToCall(c, entry);
       enriched++;
     } else {
       unresolved++;

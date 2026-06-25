@@ -62,7 +62,7 @@ El script [`scripts/enrich-marin.mjs`](../../../../scripts/enrich-marin.mjs) (li
 
 **Matching conservador** (los nombres no son únicos): solo se acepta un buque si hay un **único candidato de tipo comercial** con ese nombre exacto, o si el **`Destination` de VesselFinder confirma** la escala (contiene "Marin" para entrantes, o coincide con `to` para salientes). Ante la duda se deja `'—'` — nunca se asigna el IMO/GT de otro barco.
 
-**Caché** [`vessel-cache.json`](vessel-cache.json), keyed por nombre normalizado: los particulares son inmutables, así que un buque se resuelve una vez y no se vuelve a pedir (los no resueltos se reintentan a los 7 días). Esto minimiza peticiones a VesselFinder. Si `update-marin.mjs` resetea `data.json`, `enrich-marin.mjs` lo re-aplica desde la caché **sin** volver a la red.
+**Caché** [`vessel-cache.json`](vessel-cache.json), keyed por **nombre + destino (`to`) normalizados** (los nombres no son únicos: así dos buques distintos con el mismo nombre no se mezclan): los particulares son inmutables, así que un buque se resuelve una vez y no se vuelve a pedir (los no resueltos se reintentan a los 7 días). Esto minimiza peticiones a VesselFinder. Si `update-marin.mjs` resetea `data.json`, `enrich-marin.mjs` lo re-aplica desde la caché **sin** volver a la red.
 
 > **Solo datos estáticos.** Velocidad, posición y ETA en vivo NO salen del HTML público de VesselFinder (se cargan por JS / API de pago) — no se intentan. Ver el ToS más abajo.
 
