@@ -1,5 +1,5 @@
 ---
-applyTo: "src/pages/demos/**,scripts/update-*.mjs"
+applyTo: "src/pages/demos/**,scripts/update-*.mjs,scripts/enrich-*.mjs,scripts/lib/*.mjs"
 ---
 
 # Demo data quality
