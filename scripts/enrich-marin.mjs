@@ -34,7 +34,8 @@ const CACHE_PATH = join(__dirname, '../src/pages/demos/marin/vessel-cache.json')
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36';
 const THROTTLE_MS = 1500;          // cortesía entre peticiones
 const REQUEST_TIMEOUT_MS = 15000;  // aborta si VesselFinder se cuelga (CI predecible)
-const UNRESOLVED_TTL_DAYS = 7;     // reintentar nombres no resueltos pasada 1 semana
+const UNRESOLVED_TTL_DAYS = 7;     // reintentar "sin match" estable pasada 1 semana
+const ERROR_RETRY_HOURS = 6;       // reintentar fallos de red mucho antes (no en cada cron)
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -166,13 +167,16 @@ async function main() {
 
   let enriched = 0, resolvedNow = 0, unresolved = 0, fromCache = 0;
   const ttlMs = UNRESOLVED_TTL_DAYS * 86400 * 1000;
+  const errorMs = ERROR_RETRY_HOURS * 3600 * 1000;
 
   for (const [key, call] of byKey) {
     let entry = cache[key];
     // checkedAt no parseable (NaN) → tratar como stale para que se reintente.
     const checkedMs = entry ? new Date(entry.checkedAt || 0).getTime() : 0;
+    // Los fallos de red (entry.error) se reintentan mucho antes que un "sin match" estable.
+    const maxAge = entry?.error ? errorMs : ttlMs;
     const stale = entry && entry.resolved === false &&
-      (!Number.isFinite(checkedMs) || Date.now() - checkedMs > ttlMs);
+      (!Number.isFinite(checkedMs) || Date.now() - checkedMs > maxAge);
 
     if (!entry || (entry.resolved === false && (force || stale)) || (force && entry.resolved)) {
       try {
@@ -186,6 +190,12 @@ async function main() {
         // se re-aplica más abajo. Así un error transitorio (sobre todo en
         // --force) no descarta el enriquecimiento ya guardado en data.json.
         console.warn(`⚠️  ${call.name}: ${err.message}${entry?.resolved ? ' — se conserva la caché previa' : ''}`);
+        // Persistir el fallo (con checkedAt + TTL corto) para no reintentar en
+        // CADA ejecución del cron si es persistente. No pisa una entrada resuelta.
+        if (!entry?.resolved) {
+          entry = { resolved: false, error: true, reason: `error: ${err.message}`, checkedAt: nowIso() };
+          cache[key] = entry;
+        }
       }
     } else {
       fromCache++;
