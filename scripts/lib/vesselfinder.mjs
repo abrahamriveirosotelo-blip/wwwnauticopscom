@@ -98,8 +98,11 @@ export function parseSearchResults(html) {
 /** Parsea la ficha de detalle: IMO, bandera, callsign, GT, LOA, año, destino, tipo. */
 export function parseDetail(html) {
   const pairs = {};
+  // El valor se captura como HTML interno completo ([\s\S]*?) y luego clean() le
+  // quita las etiquetas: así no se pierde el dato si VesselFinder lo envuelve en
+  // <a>/<b>/<span> (p. ej. IMO/GT/LOA/flag enlazados).
   const re =
-    /<td class="(?:tpc1|n3)">([^<]+?)\s*(?:<small>[^<]*<\/small>\s*)?<\/td>\s*<td class="(?:tpc2|v3[^"]*)">([^<]*)<\/td>/gi;
+    /<td class="(?:tpc1|n3)">([^<]+?)\s*(?:<small>[^<]*<\/small>\s*)?<\/td>\s*<td class="(?:tpc2|v3[^"]*)">([\s\S]*?)<\/td>/gi;
   let m;
   while ((m = re.exec(html))) pairs[clean(m[1])] = clean(m[2]);
 
