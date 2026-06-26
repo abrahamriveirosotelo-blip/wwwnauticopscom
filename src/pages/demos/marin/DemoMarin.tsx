@@ -152,7 +152,8 @@ function Detail({ call, onClose }) {
               {(() => {
                 const parts = [];
                 if (call.imo && call.imo !== '—') parts.push(`IMO ${call.imo}`);
-                if (call.gt) parts.push(`${call.gt.toLocaleString()} GT · ${call.len} m`);
+                if (call.gt) parts.push(`${call.gt.toLocaleString()} GT`);
+                if (call.len) parts.push(`${call.len} m`);
                 if (call.flag) parts.push(call.flag);
                 if (call.vesselType) parts.push(call.vesselType);
                 return parts.length ? parts.join(' · ') : 'Datos de buque no publicados por la AP';
