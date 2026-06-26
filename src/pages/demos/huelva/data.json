@@ -75,7 +75,7 @@
       "name": "NQ LAELIA",
       "gt": 5744,
       "len": 116,
-      "berth": "DEC",
+      "berth": "DCN",
       "agent": "—",
       "op": "Fondo",
       "eta": "2026-06-25T12:00",
@@ -130,7 +130,7 @@
     },
     {
       "id": "H20260626009",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "ATHENIAN.HARMONY",
       "gt": 11865,
@@ -141,9 +141,7 @@
       "eta": "2026-06-26T10:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260624002",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
       "id": "H20260626010",
@@ -155,7 +153,7 @@
       "berth": "MUL",
       "agent": "TER",
       "op": "Entrada",
-      "eta": "2026-06-26T14:00",
+      "eta": "2026-06-26T14:15",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -239,11 +237,11 @@
       "id": "H20260627016",
       "status": "Prevista",
       "imo": "—",
-      "name": "ORUBA",
-      "gt": 7238,
-      "len": 131,
-      "berth": "JGV",
-      "agent": "PAM",
+      "name": "FT QUINTO",
+      "gt": 5112,
+      "len": 120,
+      "berth": "RSS",
+      "agent": "E.CIA",
       "op": "Entrada",
       "eta": "2026-06-27T12:00",
       "etd": "",
@@ -269,21 +267,6 @@
       "id": "H20260627018",
       "status": "Prevista",
       "imo": "—",
-      "name": "CONTSHIP.CUB",
-      "gt": 11716,
-      "len": 159,
-      "berth": "MUL",
-      "agent": "MM",
-      "op": "Entrada",
-      "eta": "2026-06-27T19:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260627019",
-      "status": "Prevista",
-      "imo": "—",
       "name": "NEW FRONTIER1",
       "gt": 9816,
       "len": 120,
@@ -291,6 +274,21 @@
       "agent": "E.CIA",
       "op": "Entrada",
       "eta": "2026-06-27T21:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260628019",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "CONTSHIP.CUB",
+      "gt": 11716,
+      "len": 159,
+      "berth": "MUL",
+      "agent": "MM",
+      "op": "Entrada",
+      "eta": "2026-06-28T04:00",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -374,6 +372,21 @@
       "id": "H20260629025",
       "status": "Prevista",
       "imo": "—",
+      "name": "ORUBA",
+      "gt": 7238,
+      "len": 131,
+      "berth": "JGV",
+      "agent": "PAM",
+      "op": "Entrada",
+      "eta": "2026-06-29T12:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260629026",
+      "status": "Prevista",
+      "imo": "—",
       "name": "LNG PORT HARCOURT II",
       "gt": 116568,
       "len": 292,
@@ -386,7 +399,7 @@
       "to": "—"
     },
     {
-      "id": "H20260629026",
+      "id": "H20260629027",
       "status": "Prevista",
       "imo": "—",
       "name": "ASH.BALTIC",
@@ -401,7 +414,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630027",
+      "id": "H20260630028",
       "status": "Prevista",
       "imo": "—",
       "name": "CRINIS",
@@ -416,7 +429,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630028",
+      "id": "H20260630029",
       "status": "Prevista",
       "imo": "—",
       "name": "RED.OPAL",
@@ -431,7 +444,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630029",
+      "id": "H20260630030",
       "status": "Prevista",
       "imo": "—",
       "name": "DARMIK",
@@ -446,7 +459,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630030",
+      "id": "H20260630031",
       "status": "Prevista",
       "imo": "—",
       "name": "OTIS",
@@ -461,7 +474,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630031",
+      "id": "H20260630032",
       "status": "Prevista",
       "imo": "—",
       "name": "ATROTOS",
@@ -473,10 +486,12 @@
       "eta": "2026-06-30T15:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "affectedBy": "H20260624002",
+      "affectRisk": "ALTO"
     },
     {
-      "id": "H20260701032",
+      "id": "H20260701033",
       "status": "Prevista",
       "imo": "—",
       "name": "DING.HENG.23",

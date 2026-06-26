@@ -2,13 +2,13 @@
   "meta": {
     "port": "Puerto de Marín",
     "source": "apmarin.com · buques esperados + en puerto",
-    "date": "25/06/2026",
+    "date": "26/06/2026",
     "refreshHours": 12
   },
   "calls": [
     {
       "id": "M202600418",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "Elisa K",
       "gt": 0,
@@ -17,13 +17,13 @@
       "agent": "Ceferino Nogueira, S.A.",
       "op": "C. Papel y pasta",
       "eta": "2026-06-25T20:00",
-      "etd": "",
+      "etd": "2026-06-26T20:00",
       "from": "Sevilla",
       "to": "Nea Moudhania"
     },
     {
       "id": "M202600403",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "—",
       "name": "Dagmar",
       "gt": 0,
@@ -32,30 +32,15 @@
       "agent": "Perez Torres Maritima, S.L.",
       "op": "D/C. Contenedores llenos",
       "eta": "2026-06-25T20:00",
-      "etd": "",
+      "etd": "2026-06-27T23:00",
       "from": "Vigo",
-      "to": "Algeciras"
-    },
-    {
-      "id": "M202600404",
-      "status": "Alerta",
-      "imo": "—",
-      "name": "Natalie",
-      "gt": 0,
-      "len": 0,
-      "berth": "Nuevo Comercial Marin Atraque 1",
-      "agent": "Perez Torres Maritima, S.L.",
-      "op": "D. Productos siderúrgicos",
-      "eta": "",
-      "etd": "2026-06-25T20:00",
-      "from": "Ijmuiden",
-      "to": "Pasajes",
+      "to": "Algeciras",
       "delay": "+3h 45min",
-      "alertNote": "Incidencia en descarga. El buque no liberará el muelle Nuevo Comercial Marin Atraque 1 según lo previsto."
+      "alertNote": "Incidencia en descarga. El buque no liberará el muelle Adolfo Reboredo Atraque 1 según lo previsto."
     },
     {
       "id": "M202600417",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "Glorious",
       "gt": 0,
@@ -64,22 +49,22 @@
       "agent": "Ceferino Nogueira, S.A.",
       "op": "D. Cereales y su harina",
       "eta": "2026-06-26T06:30",
-      "etd": "",
+      "etd": "2026-07-06T21:00",
       "from": "New Orleans International",
       "to": "A Órdenes"
     },
     {
       "id": "M202600405",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "Anna",
       "gt": 0,
       "len": 0,
-      "berth": "Adolfo Reboredo Atraque 1",
+      "berth": "Fondeo Zona Ii",
       "agent": "Perez Torres Maritima, S.L.",
-      "op": "C. Otros productos metalúrgicos",
+      "op": "—",
       "eta": "2026-06-26T13:00",
-      "etd": "",
+      "etd": "2026-07-01T20:00",
       "from": "Moerdijk",
       "to": "Rouen"
     },
@@ -111,7 +96,9 @@
       "eta": "2026-06-27T00:00",
       "etd": "",
       "from": "Radicatel",
-      "to": "Radicatel"
+      "to": "Radicatel",
+      "affectedBy": "M202600403",
+      "affectRisk": "ALTO"
     },
     {
       "id": "M202600408",
@@ -171,15 +158,13 @@
       "eta": "2026-06-28T20:00",
       "etd": "",
       "from": "Ijmuiden",
-      "to": "Pasajes",
-      "affectedBy": "M202600404",
-      "affectRisk": "ALTO"
+      "to": "Pasajes"
     },
     {
       "id": "M202600416",
       "status": "Prevista",
       "imo": "—",
-      "name": "Sophie",
+      "name": "Baltic Transport",
       "gt": 0,
       "len": 0,
       "berth": "Nuevo Comercial Marin Atraque 1",
@@ -207,7 +192,7 @@
     }
   ],
   "tugService": {
-    "callId": "M202600404",
+    "callId": "M202600403",
     "reportNumber": "004821",
     "tugboat": "AMARE MARÍN",
     "powerPct": 70,
@@ -234,17 +219,17 @@
     }
   },
   "milestones": {
-    "M202600404": [
+    "M202600403": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "25/06 · 12:25",
+        "time": "25/06 · 20:25",
         "by": "Práctico (Marín)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "25/06 · 13:30",
+        "time": "25/06 · 21:30",
         "by": "Agente: Perez Torres Maritima, S.L."
       },
       {
