@@ -158,5 +158,20 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-06-25T18:26:49Z"
+  },
+  "BALTIC TRANSPORT::A ORDENES": {
+    "resolved": true,
+    "imo": "9864760",
+    "gt": 2518,
+    "len": 90,
+    "beam": 12,
+    "flag": "Portugal (Madeira)",
+    "vesselType": "General Cargo Ship",
+    "built": 2021,
+    "callsign": "CQ2513",
+    "destination": "Gijon, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-06-26T13:18:22Z"
   }
 }
