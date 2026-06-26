@@ -84,10 +84,11 @@ jobs:
         run: node scripts/update-marin.mjs
 
       # Enriquece con datos de buque (IMO/GT/eslora/bandera) desde vesselfinder.com.
-      # No fatal: si las IPs de Actions están limitadas, la caché commiteada mantiene
-      # lo ya resuelto; solo los buques nuevos quedarían sin enriquecer.
+      # No fatal SOLO en el cron (si las IPs de Actions están limitadas, la caché
+      # commiteada mantiene lo ya resuelto). En ejecuciones manuales (workflow_dispatch)
+      # sí falla, para detectar regresiones de parsing/escritura cuanto antes.
       - name: Enriquecer datos de buque Marín
-        continue-on-error: true
+        continue-on-error: ${{ github.event_name == 'schedule' }}
         run: node scripts/enrich-marin.mjs
 
       - name: Detectar cambios
