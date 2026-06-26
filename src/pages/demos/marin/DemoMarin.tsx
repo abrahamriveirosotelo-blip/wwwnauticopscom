@@ -150,7 +150,7 @@ function Detail({ call, onClose }) {
             <div style={{fontSize:22,fontWeight:800,marginTop:3,letterSpacing:"-0.01em"}}>{call.name}</div>
             <div style={{fontSize:12,color:"rgba(255,255,255,0.6)",marginTop:4}}>
               {(() => {
-                const parts = [];
+                const parts: string[] = [];
                 if (call.imo && call.imo !== '—') parts.push(`IMO ${call.imo}`);
                 if (call.gt) parts.push(`${call.gt.toLocaleString()} GT`);
                 if (call.len) parts.push(`${call.len} m`);

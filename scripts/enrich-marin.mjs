@@ -123,13 +123,15 @@ function cacheKey(call) {
 }
 
 function applyToCall(call, e) {
+  // Refleja fielmente la entrada (resuelta) de caché, también cuando un valor
+  // numérico es 0; si no, data.json podría quedar desincronizado con la caché.
   call.imo = e.imo;
-  if (e.gt) call.gt = e.gt;
-  if (e.len) call.len = e.len;
-  call.flag = e.flag || call.flag || '';
-  call.vesselType = e.vesselType || call.vesselType || '';
-  if (e.built) call.built = e.built;
-  if (e.callsign) call.callsign = e.callsign;
+  call.gt = e.gt ?? 0;
+  call.len = e.len ?? 0;
+  call.flag = e.flag || '';
+  call.vesselType = e.vesselType || '';
+  call.built = e.built ?? 0;
+  call.callsign = e.callsign || '';
 }
 
 async function main() {
@@ -186,14 +188,16 @@ async function main() {
         if (r.resolved) { resolvedNow++; console.log(`✓ ${call.name} → IMO ${r.imo} · ${r.vesselType} · ${r.flag} · ${r.gt} GT · ${r.len}m (${r.confidence})`); }
         else { console.log(`· ${call.name} → ${r.reason}`); }
       } catch (err) {
+        // Normaliza el error (puede no ser un Error con .message).
+        const msg = err instanceof Error ? err.message : String(err);
         // No usar `continue`: si había una entrada cacheada previa (resuelta),
         // se re-aplica más abajo. Así un error transitorio (sobre todo en
         // --force) no descarta el enriquecimiento ya guardado en data.json.
-        console.warn(`⚠️  ${call.name}: ${err.message}${entry?.resolved ? ' — se conserva la caché previa' : ''}`);
+        console.warn(`⚠️  ${call.name}: ${msg}${entry?.resolved ? ' — se conserva la caché previa' : ''}`);
         // Persistir el fallo (con checkedAt + TTL corto) para no reintentar en
         // CADA ejecución del cron si es persistente. No pisa una entrada resuelta.
         if (!entry?.resolved) {
-          entry = { resolved: false, error: true, reason: `error: ${err.message}`, checkedAt: nowIso() };
+          entry = { resolved: false, error: true, reason: `error: ${msg}`, checkedAt: nowIso() };
           cache[key] = entry;
         }
       }
