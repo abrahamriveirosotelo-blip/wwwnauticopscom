@@ -108,8 +108,8 @@ export function parseDetail(html) {
 
   // El destino usa otro marcado (vilabel + valor en el siguiente bloque).
   const dest =
-    (html.match(/Destination<\/[^>]+>\s*<[^>]+>([^<]{2,60})</i) || [])[1] ||
-    (html.match(/"vilabel">Destination[\s\S]{0,40}?>([^<]{2,60})</i) || [])[1] ||
+    (html.match(/Destination<\/[^>]+>\s*<[^>]+>([^<]{2,})</i) || [])[1] ||
+    (html.match(/"vilabel">Destination[\s\S]{0,40}?>([^<]{2,})</i) || [])[1] ||
     '';
 
   const imo = pairs['IMO number'];
