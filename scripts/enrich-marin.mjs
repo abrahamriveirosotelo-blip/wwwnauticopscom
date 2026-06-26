@@ -182,12 +182,24 @@ async function main() {
       (!Number.isFinite(checkedMs) || Date.now() - checkedMs > maxAge);
 
     if (!entry || (entry.resolved === false && (force || stale)) || (force && entry.resolved)) {
+      const prev = entry;
       try {
         const r = await resolveVessel(call);
-        entry = r.resolved ? { ...r, resolvedAt: nowIso() } : { resolved: false, reason: r.reason, checkedAt: nowIso() };
-        cache[key] = entry;
-        if (r.resolved) { resolvedNow++; console.log(`✓ ${call.name} → IMO ${r.imo} · ${r.vesselType} · ${r.flag} · ${r.gt} GT · ${r.len}m (${r.confidence})`); }
-        else { console.log(`· ${call.name} → ${r.reason}`); }
+        if (r.resolved) {
+          entry = { ...r, resolvedAt: nowIso() };
+          cache[key] = entry;
+          resolvedNow++;
+          console.log(`✓ ${call.name} → IMO ${r.imo} · ${r.vesselType} · ${r.flag} · ${r.gt} GT · ${r.len}m (${r.confidence})`);
+        } else if (prev?.resolved) {
+          // No degradar una resolución válida (datos estáticos inmutables) por un
+          // reintento --force que no encuentra match (cambio de HTML / fallo de parsing).
+          entry = prev;
+          console.log(`· ${call.name} → reintento sin match; se conserva la resolución previa (IMO ${prev.imo})`);
+        } else {
+          entry = { resolved: false, reason: r.reason, checkedAt: nowIso() };
+          cache[key] = entry;
+          console.log(`· ${call.name} → ${r.reason}`);
+        }
       } catch (err) {
         // Normaliza el error (puede no ser un Error con .message).
         const msg = err instanceof Error ? err.message : String(err);
