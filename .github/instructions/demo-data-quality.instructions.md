@@ -33,8 +33,8 @@ vessels legitimately show `eta: ""` until a later run captures it. This is expec
 
 ### Marín vessel enrichment (vesselfinder.com)
 
-`imo`/`gt`/`len`/`flag`/`vesselType` are NOT from the port authority — `enrich-marin.mjs`
-fills them from vesselfinder.com **after** `update-marin.mjs`. Matching is **conservative**:
+`imo`/`gt`/`len`/`flag`/`vesselType`/`built`/`callsign` are NOT from the port authority —
+`enrich-marin.mjs` fills them from vesselfinder.com **after** `update-marin.mjs`. Matching is **conservative**:
 a vessel is only enriched when there is a single commercial-type result for the exact name,
 or when VesselFinder's `Destination` confirms the call (contains "Marin", or matches `to`).
 When uncertain it is left at `'—'`/`0` — never guess another ship's IMO/GT. So some calls

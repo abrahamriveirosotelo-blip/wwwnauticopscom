@@ -145,6 +145,7 @@ async function main() {
     const name = args[vIdx + 1];
     if (!name) throw new Error('Uso: --vessel "NOMBRE"');
     const html = await fetchText(SEARCH_URL(name));
+    await sleep(THROTTLE_MS); // cortesía antes de las posibles peticiones de ficha en resolveVessel
     const candidates = parseSearchResults(html);
     console.log(`\nCandidatos para "${name}": ${candidates.length}`);
     candidates.forEach(c =>
