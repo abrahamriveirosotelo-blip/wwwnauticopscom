@@ -44,7 +44,10 @@ async function fetchText(url) {
   const timer = setTimeout(() => ctrl.abort(), REQUEST_TIMEOUT_MS);
   try {
     const res = await fetch(url, {
-      headers: { 'User-Agent': UA, 'Accept': 'text/html,application/xhtml+xml', 'Accept-Language': 'es,en' },
+      // Inglés forzado: parseDetail()/matching asumen etiquetas y tipos en inglés
+      // ("IMO number", "Gross Tonnage", "Bulk Carrier"…). Evita que VesselFinder
+      // localice el HTML y rompa el parseo/matching.
+      headers: { 'User-Agent': UA, 'Accept': 'text/html,application/xhtml+xml', 'Accept-Language': 'en-US,en;q=0.9' },
       signal: ctrl.signal,
     });
     if (!res.ok) throw new Error(`HTTP ${res.status} en ${url}`);
