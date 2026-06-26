@@ -49,10 +49,10 @@ Por eso en un **arranque en frío** (sin `data.json` previo) los barcos ya en pu
 
 ### Campos que la AP no publica
 
-Las tablas de Marín **no incluyen `IMO`, `GT` (arqueo), eslora ni bandera**. Se rellenan en un segundo paso desde vesselfinder.com (ver «Enriquecimiento» más abajo) y, cuando no hay match fiable, se degradan a `'—'` / `0`:
+Las tablas de Marín **no incluyen `IMO`, `GT` (arqueo), eslora ni bandera**. `update-marin.mjs` los deja degradados (`imo: '—'`, `gt`/`len`: `0`); luego `enrich-marin.mjs` los rellena desde vesselfinder.com **cuando el match es fiable** (ver «Enriquecimiento» más abajo). Si el match no es fiable, se quedan degradados:
 
-- `imo` queda `'—'` (el componente lo omite del header).
-- `gt` y `len` valen `0`; `DemoMarin.tsx` muestra **"Datos de buque no publicados por la AP"** en el header del drawer y `—` en la columna GT de la tabla.
+- `imo`: enriquecido con el IMO real, o `'—'` si no hay match (el componente lo omite del header cuando es `'—'`).
+- `gt`/`len`: enriquecidos con el valor real, o `0` si no hay match. Con `gt`/`len` a `0` y sin otros datos, `DemoMarin.tsx` muestra **"Datos de buque no publicados por la AP"** en el header del drawer y `—` en la columna GT de la tabla.
 
 Ver [demo-data-quality.instructions.md](../../../../.github/instructions/demo-data-quality.instructions.md).
 
