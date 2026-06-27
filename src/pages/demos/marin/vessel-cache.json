@@ -173,5 +173,35 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-06-26T13:18:22Z"
+  },
+  "FEDERAL ST LAURENT::A ORDENES": {
+    "resolved": true,
+    "imo": "9838462",
+    "gt": 20763,
+    "len": 200,
+    "beam": 24,
+    "flag": "Marshall Islands",
+    "vesselType": "Bulk Carrier",
+    "built": 2019,
+    "callsign": "V7A2319",
+    "destination": "Marin, Pontevedra, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-06-27T08:41:07Z"
+  },
+  "VERTOM PORTO::CHALKIS": {
+    "resolved": true,
+    "imo": "9515010",
+    "gt": 2984,
+    "len": 90,
+    "beam": 14,
+    "flag": "Netherlands",
+    "vesselType": "General Cargo Ship",
+    "built": 2010,
+    "callsign": "PCGG",
+    "destination": "Marin, Pontevedra, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-06-27T08:41:10Z"
   }
 }
