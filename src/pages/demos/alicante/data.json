@@ -2,40 +2,10 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "27/06/2026",
+    "date": "28/06/2026",
     "refreshHours": 2
   },
   "calls": [
-    {
-      "id": "A202600457",
-      "status": "Iniciado",
-      "imo": "9682875",
-      "name": "HARMONY OF THE SEAS",
-      "gt": 222703,
-      "len": 362,
-      "berth": "14",
-      "agent": "LANTIMAR S.L.",
-      "op": "CRUCERISTAS",
-      "eta": "2026-06-27T05:45",
-      "etd": "2026-06-27T15:30",
-      "from": "CARTAGENA",
-      "to": "BARCELONA"
-    },
-    {
-      "id": "A202600449",
-      "status": "Iniciado",
-      "imo": "9849693",
-      "name": "ARVIA",
-      "gt": 185581,
-      "len": 344.5,
-      "berth": "14",
-      "agent": "NOATUM MARITIME SPAIN SA",
-      "op": "CRUCERISTAS",
-      "eta": "2026-06-27T07:00",
-      "etd": "2026-06-27T17:30",
-      "from": "MALAGA",
-      "to": "LA SEYNE-SUR-MER"
-    },
     {
       "id": "A202600443",
       "status": "Alerta",
@@ -55,7 +25,7 @@
     },
     {
       "id": "A202600455",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "8911841",
       "name": "MALTA CEMENT",
       "gt": 2429,
@@ -70,7 +40,7 @@
     },
     {
       "id": "A202600454",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9768514",
       "name": "IVER AMBASSADOR",
       "gt": 7009,
@@ -85,7 +55,7 @@
     },
     {
       "id": "A202600444",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9430193",
       "name": "HERCULES J",
       "gt": 10585,
@@ -96,9 +66,7 @@
       "eta": "2026-06-28T07:00",
       "etd": "2026-06-28T21:00",
       "from": "ARRECIFE",
-      "to": "TENERIFE",
-      "affectedBy": "A202600443",
-      "affectRisk": "ALTO"
+      "to": "TENERIFE"
     },
     {
       "id": "A202600451",

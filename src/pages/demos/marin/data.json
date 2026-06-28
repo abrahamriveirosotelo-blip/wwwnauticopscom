@@ -2,13 +2,13 @@
   "meta": {
     "port": "Puerto de Marín",
     "source": "apmarin.com · buques esperados + en puerto",
-    "date": "27/06/2026",
+    "date": "28/06/2026",
     "refreshHours": 12
   },
   "calls": [
     {
       "id": "M202600417",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "9729831",
       "name": "Glorious",
       "gt": 36313,
@@ -20,8 +20,6 @@
       "etd": "2026-07-06T21:00",
       "from": "New Orleans International",
       "to": "A Órdenes",
-      "delay": "+3h 45min",
-      "alertNote": "Incidencia en descarga. El buque no liberará el muelle Comercial Oeste según lo previsto.",
       "flag": "Marshall Islands",
       "vesselType": "Bulk Carrier",
       "built": 2014,
@@ -29,18 +27,20 @@
     },
     {
       "id": "M202600405",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "—",
       "name": "Anna",
       "gt": 0,
       "len": 0,
-      "berth": "Fondeo Zona Ii",
+      "berth": "Adolfo Reboredo Atraque 1",
       "agent": "Perez Torres Maritima, S.L.",
-      "op": "—",
+      "op": "C. Otros productos metalúrgicos",
       "eta": "2026-06-26T08:00",
       "etd": "2026-07-01T20:00",
       "from": "Moerdijk",
-      "to": "Rouen"
+      "to": "Rouen",
+      "delay": "+3h 45min",
+      "alertNote": "Incidencia en carga. El buque no liberará el muelle Adolfo Reboredo Atraque 1 según lo previsto."
     },
     {
       "id": "M202600420",
@@ -63,14 +63,14 @@
     },
     {
       "id": "M202600423",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9604964",
       "name": "Evita",
       "gt": 34778,
       "len": 200,
-      "berth": "Leiros Atraque 2",
+      "berth": "Fondeo Zona Ii",
       "agent": "Ceferino Nogueira, S.A.",
-      "op": "D. Cereales y su harina",
+      "op": "—",
       "eta": "2026-06-27T08:00",
       "etd": "2026-07-01T18:00",
       "from": "Tubarão",
@@ -79,21 +79,6 @@
       "vesselType": "Bulk Carrier",
       "built": 2012,
       "callsign": "V7A6519"
-    },
-    {
-      "id": "M202600408",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "Arosa Nueve",
-      "gt": 0,
-      "len": 0,
-      "berth": "De La Zona De Expansion Este",
-      "agent": "Velaspex, Sl.",
-      "op": "D. Otros productos alimenticios",
-      "eta": "",
-      "etd": "2026-06-27T10:00",
-      "from": "Tromso",
-      "to": "Pasajes"
     },
     {
       "id": "M202600426",
@@ -166,6 +151,8 @@
       "etd": "",
       "from": "Aviles",
       "to": "Cuxhaven",
+      "affectedBy": "M202600405",
+      "affectRisk": "ALTO",
       "flag": "Netherlands",
       "vesselType": "General Cargo Ship",
       "built": 2009,
@@ -211,7 +198,7 @@
     }
   ],
   "tugService": {
-    "callId": "M202600417",
+    "callId": "M202600405",
     "reportNumber": "004821",
     "tugboat": "AMARE MARÍN",
     "powerPct": 70,
@@ -238,18 +225,18 @@
     }
   },
   "milestones": {
-    "M202600417": [
+    "M202600405": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "26/06 · 06:55",
+        "time": "26/06 · 08:25",
         "by": "Práctico (Marín)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "26/06 · 08:00",
-        "by": "Agente: Ceferino Nogueira, S.A."
+        "time": "26/06 · 09:30",
+        "by": "Agente: Perez Torres Maritima, S.L."
       },
       {
         "label": "Fin de operaciones",
