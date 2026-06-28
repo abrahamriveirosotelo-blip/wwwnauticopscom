@@ -27,21 +27,6 @@
       "id": "H20260628002",
       "status": "Iniciado",
       "imo": "—",
-      "name": "KARRUCA",
-      "gt": 5214,
-      "len": 112,
-      "berth": "FNS",
-      "agent": "BER",
-      "op": "Fondo",
-      "eta": "2026-06-28T02:30",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260628003",
-      "status": "Iniciado",
-      "imo": "—",
       "name": "GOLDEN.GARDENIA",
       "gt": 4002,
       "len": 99,
@@ -54,7 +39,7 @@
       "to": "—"
     },
     {
-      "id": "H20260628004",
+      "id": "H20260628003",
       "status": "Prevista",
       "imo": "—",
       "name": "WILSON STADT",
@@ -69,7 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260628005",
+      "id": "H20260628004",
       "status": "Prevista",
       "imo": "—",
       "name": "EMS.CAPE",
@@ -84,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260629006",
+      "id": "H20260629005",
       "status": "Prevista",
       "imo": "—",
       "name": "LNG CLEAN VISION",
@@ -99,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260629007",
+      "id": "H20260629006",
       "status": "Prevista",
       "imo": "—",
       "name": "V CENTENARIO",
@@ -114,7 +99,7 @@
       "to": "—"
     },
     {
-      "id": "H20260629008",
+      "id": "H20260629007",
       "status": "Prevista",
       "imo": "—",
       "name": "ORUBA",
@@ -129,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260629009",
+      "id": "H20260629008",
       "status": "Prevista",
       "imo": "—",
       "name": "LNG PORT HARCOURT II",
@@ -144,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260629010",
+      "id": "H20260629009",
       "status": "Prevista",
       "imo": "—",
       "name": "SCANDIC",
@@ -161,7 +146,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260630011",
+      "id": "H20260630010",
       "status": "Prevista",
       "imo": "—",
       "name": "CRINIS",
@@ -176,7 +161,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630012",
+      "id": "H20260630011",
       "status": "Prevista",
       "imo": "—",
       "name": "RED.OPAL",
@@ -191,7 +176,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630013",
+      "id": "H20260630012",
       "status": "Prevista",
       "imo": "—",
       "name": "DARMIK",
@@ -206,7 +191,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630014",
+      "id": "H20260630013",
       "status": "Prevista",
       "imo": "—",
       "name": "DH.ADMIRAL",
@@ -221,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630015",
+      "id": "H20260630014",
       "status": "Prevista",
       "imo": "—",
       "name": "ASH.BALTIC",
@@ -236,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630016",
+      "id": "H20260630015",
       "status": "Prevista",
       "imo": "—",
       "name": "OTIS",
@@ -251,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630017",
+      "id": "H20260630016",
       "status": "Prevista",
       "imo": "—",
       "name": "ATROTOS",
@@ -266,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630018",
+      "id": "H20260630017",
       "status": "Prevista",
       "imo": "—",
       "name": "KRITI.SAILOR",
@@ -281,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630019",
+      "id": "H20260630018",
       "status": "Prevista",
       "imo": "—",
       "name": "GAS.ESCO",
@@ -296,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260701020",
+      "id": "H20260701019",
       "status": "Prevista",
       "imo": "—",
       "name": "DING.HENG.23",
