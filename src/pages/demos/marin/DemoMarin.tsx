@@ -27,6 +27,7 @@ function fmt(iso) {
 }
 
 function aisAtMarin(c) { return /MARIN/i.test(c.aisDestination||""); }
+function aisDestEqualsTo(c) { const d=(c.aisDestination||"").toUpperCase(); const to=(c.to||"").toUpperCase().replace(/[^A-Z0-9 ]/g," "); if(!d||!to||to==="—") return false; return to.split(/\s+/).some(t=>t.length>3 && d.includes(t)); }
 
 function opColor(op) {
   if (op.includes("PORTACONTENEDORES")) return { bg:"#DBEAFE", text:"#1D4ED8" };
@@ -257,23 +258,37 @@ function Detail({ call, onClose }) {
                   </div>
                   {call.aisAt?<span style={{fontSize:10,color:B.gray}}>recibido {call.aisAt}</span>:null}
                 </div>
-                {call.status==="Prevista"&&(call.aisStatus==="Atracado"||call.aisStatus==="Fondeado")&&aisAtMarin(call)&&(
-                  <div style={{fontSize:11,color:B.warning,fontWeight:600,marginBottom:10}}>⚠ La AP la anuncia como prevista, pero el AIS la sitúa ya {call.aisStatus.toLowerCase()} en Marín.</div>
+                {aisAtMarin(call) ? (
+                  <>
+                    {call.status==="Prevista"&&(call.aisStatus==="Atracado"||call.aisStatus==="Fondeado")&&(
+                      <div style={{fontSize:11,color:B.warning,fontWeight:600,marginBottom:10}}>⚠ La AP la anuncia como prevista, pero el AIS la sitúa ya {call.aisStatus.toLowerCase()} en Marín.</div>
+                    )}
+                    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+                      <div>
+                        <div style={{fontSize:9,color:B.gray,fontWeight:700,marginBottom:2}}>ETA A MARÍN · AP</div>
+                        <div style={{fontSize:12,fontWeight:600,color:B.navy}}>{fmt(call.eta)}</div>
+                      </div>
+                      <div>
+                        <div style={{fontSize:9,color:B.gray,fontWeight:700,marginBottom:2}}>ETA A MARÍN · AIS</div>
+                        <div style={{fontSize:12,fontWeight:600,color:call.aisEta?B.cyan:B.gray}}>{call.aisEta?fmt(call.aisEta):"—"}</div>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div style={{fontSize:11,color:B.gray,marginBottom:10}}>El AIS refleja el <strong>tramo actual</strong> del buque, no su llegada a Marín.{aisDestEqualsTo(call)?` Marín es una escala intermedia hacia su destino (${call.to}).`:call.aisDestination?` El buque está en otra escala antes de Marín.`:""}</div>
+                    <div style={{display:"flex",flexDirection:"column",gap:8}}>
+                      <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",gap:10}}>
+                        <span style={{fontSize:9,color:B.gray,fontWeight:700}}>TRAMO ACTUAL · AIS</span>
+                        <span style={{fontSize:12,fontWeight:600,color:B.navy,textAlign:"right"}}>{call.aisStatus==="Navegando"?"→ ":"⚓ "}{call.aisDestination||"—"}{call.aisEta?` · ETA ${fmt(call.aisEta)}`:""}</span>
+                      </div>
+                      <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",gap:10}}>
+                        <span style={{fontSize:9,color:B.gray,fontWeight:700}}>ETA A MARÍN · AP</span>
+                        <span style={{fontSize:12,fontWeight:600,color:B.navy}}>{fmt(call.eta)}</span>
+                      </div>
+                    </div>
+                  </>
                 )}
-                {call.status==="Prevista"&&(call.aisStatus==="Atracado"||call.aisStatus==="Fondeado")&&!aisAtMarin(call)&&call.aisDestination&&(
-                  <div style={{fontSize:11,color:B.gray,marginBottom:10}}>Según AIS, {call.aisStatus.toLowerCase()} aún fuera de Marín — destino reportado: {call.aisDestination}.</div>
-                )}
-                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
-                  <div>
-                    <div style={{fontSize:9,color:B.gray,fontWeight:700,marginBottom:2}}>ETA AP</div>
-                    <div style={{fontSize:12,fontWeight:600,color:B.navy}}>{fmt(call.eta)}</div>
-                  </div>
-                  <div>
-                    <div style={{fontSize:9,color:B.gray,fontWeight:700,marginBottom:2}}>ETA AIS</div>
-                    <div style={{fontSize:12,fontWeight:600,color:call.aisEta?B.cyan:B.gray}}>{call.aisEta?fmt(call.aisEta):"—"}</div>
-                  </div>
-                </div>
-                {call.aisDestination?<div style={{fontSize:10,color:aisAtMarin(call)?B.gray:B.warning,marginTop:10}}>Destino AIS: {call.aisDestination}</div>:null}
               </div>
             </div>
           )}
