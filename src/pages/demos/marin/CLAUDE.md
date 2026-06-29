@@ -129,7 +129,7 @@ Fixtures de referencia: [`scripts/fixtures/marin-esperados.html`](../../../../sc
 
 ## Actualización automática (CI)
 
-El workflow [`.github/workflows/update-demos.yml`](../../../../.github/workflows/update-demos.yml) ejecuta el job `update-marin` dos veces al día (08:00 y 12:00 hora España) junto a Alicante y Huelva: corre `update-marin.mjs`, luego `enrich-marin.mjs` (estático) y `enrich-marin-live.mjs` (AIS en vivo) — ambos `continue-on-error` en el cron — y commitea `data.json` + `vessel-cache.json` si cambiaron. Netlify redespliega.
+El workflow [`.github/workflows/update-demos.yml`](../../../../.github/workflows/update-demos.yml) ejecuta el job `update-marin` cada 2 horas (06:00–22:00 hora España) junto a Alicante y Huelva: corre `update-marin.mjs`, luego `enrich-marin.mjs` (estático) y `enrich-marin-live.mjs` (AIS en vivo) — ambos `continue-on-error` en el cron — y commitea `data.json` + `vessel-cache.json` si cambiaron. Netlify redespliega.
 
 ---
 

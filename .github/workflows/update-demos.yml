@@ -2,8 +2,9 @@ name: Update Demo Data
 
 on:
   schedule:
-    - cron: '0 6 * * *'    # 08:00 España (verano, UTC+2)
-    - cron: '0 10 * * *'   # 12:00 España (verano, UTC+2)
+    # Cada 2 h en horario de operación portuaria: 06:00–22:00 España (verano, UTC+2).
+    # Más frescura para los datos AIS en vivo sin saturar VesselFinder.
+    - cron: '0 4-20/2 * * *'
   workflow_dispatch:
 
 permissions:
