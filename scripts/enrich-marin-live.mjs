@@ -81,6 +81,7 @@ function applyLive(call, live) {
   call.aisStatus = mapStatus(live.navStatus);
   call.aisEta = aisEtaToSpainIso(live.aisEta);
   call.aisSpeed = live.speed || 0;
+  call.aisDraught = live.draught || 0;
   call.aisDestination = live.destination || '';
   call.aisAt = live.positionReceived || '';
 }

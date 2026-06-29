@@ -33,7 +33,7 @@ vessels legitimately show `eta: ""` until a later run captures it. This is expec
 
 ### Marín vessel enrichment (vesselfinder.com)
 
-`imo`/`gt`/`len`/`flag`/`vesselType`/`built`/`callsign` are NOT from the port authority —
+`imo`/`gt`/`dwt`/`len`/`flag`/`vesselType`/`built`/`callsign` are NOT from the port authority —
 `enrich-marin.mjs` fills them from vesselfinder.com **after** `update-marin.mjs`. Matching is **conservative**:
 a vessel is only enriched when there is a single commercial-type result for the exact name,
 or when VesselFinder's `Destination` confirms the call (contains "Marin", or matches `to`).
@@ -43,10 +43,12 @@ staying unenriched (e.g. ambiguous names) is correct behaviour, not a bug.
 Results are cached in `src/pages/demos/marin/vessel-cache.json` (keyed by normalized
 name + destination, since names are not unique; static particulars are immutable).
 
-`enrich-marin-live.mjs` adds **live AIS** fields (`aisStatus`, `aisSpeed`, `aisEta`,
-`aisAt`) from VesselFinder, by IMO, **without caching** (dynamic — re-fetched each run).
-Only vessels currently under way carry an ETA/speed; moored vessels don't (they have
-arrived — not a bug). The AIS ETA is UTC and is converted to Europe/Madrid to be
-comparable with the port authority's local ETA. These fields are optional: a vessel
-without recent AIS simply has none, and the UI hides the AIS card for it. Only **static** data is scraped — live speed/position/ETA
-are not available from VesselFinder's public HTML and are intentionally not attempted.
+`enrich-marin-live.mjs` adds **live AIS** fields (`aisStatus`, `aisSpeed`, `aisDraught`,
+`aisEta`, `aisDestination`, `aisAt`) from VesselFinder, by IMO, **without caching**
+(dynamic — re-fetched each run). Only vessels currently under way carry an ETA/speed;
+moored vessels don't (they have arrived — not a bug). The AIS ETA is UTC and is converted
+to Europe/Madrid to be comparable with the port authority's local ETA. These fields are
+optional: a vessel without recent AIS simply has none, and the UI hides the AIS card for it.
+
+Position (lat/lon), course/heading and distance-to-go are NOT in VesselFinder's public
+HTML (JS map widget / premium) and are intentionally not scraped — they'd need a paid AIS API.

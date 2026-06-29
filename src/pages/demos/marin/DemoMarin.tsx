@@ -156,6 +156,7 @@ function Detail({ call, onClose }) {
                 const parts: string[] = [];
                 if (call.imo && call.imo !== '—') parts.push(`IMO ${call.imo}`);
                 if (call.gt) parts.push(`${call.gt.toLocaleString()} GT`);
+                if (call.dwt) parts.push(`${call.dwt.toLocaleString()} t DWT`);
                 if (call.len) parts.push(`${call.len} m`);
                 if (call.flag) parts.push(call.flag);
                 if (call.vesselType) parts.push(call.vesselType);
@@ -255,6 +256,7 @@ function Detail({ call, onClose }) {
                   <div>
                     <span style={{fontSize:13,fontWeight:700,color:B.navy}}>{call.aisStatus==="Navegando"?"🧭 Navegando":"⚓ "+call.aisStatus}</span>
                     {call.aisSpeed?<span style={{fontSize:12,color:B.gray,marginLeft:8}}>{call.aisSpeed} kn</span>:null}
+                    {call.aisDraught?<span style={{fontSize:12,color:B.gray,marginLeft:8}}>· calado {call.aisDraught} m</span>:null}
                   </div>
                   {call.aisAt?<span style={{fontSize:10,color:B.gray}}>recibido {call.aisAt}</span>:null}
                 </div>

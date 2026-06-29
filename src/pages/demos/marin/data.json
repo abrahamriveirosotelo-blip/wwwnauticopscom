@@ -28,7 +28,9 @@
       "aisEta": "",
       "aisSpeed": 0,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "5 min ago"
+      "aisAt": "1 min ago",
+      "dwt": 63339,
+      "aisDraught": 13
     },
     {
       "id": "M202600405",
@@ -69,7 +71,9 @@
       "aisEta": "",
       "aisSpeed": 0,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "1 min ago"
+      "aisAt": "2 min ago",
+      "dwt": 61464,
+      "aisDraught": 11.8
     },
     {
       "id": "M202600426",
@@ -93,7 +97,9 @@
       "aisEta": "",
       "aisSpeed": 0,
       "aisDestination": "Marin, Pontevedra Anch., Spain",
-      "aisAt": "2 min ago"
+      "aisAt": "1 min ago",
+      "dwt": 34492,
+      "aisDraught": 10.8
     },
     {
       "id": "M202600424",
@@ -113,11 +119,13 @@
       "vesselType": "General Cargo Ship",
       "built": 2006,
       "callsign": "V2HW7",
-      "aisStatus": "Atracado",
-      "aisEta": "",
-      "aisSpeed": 0,
-      "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2 min ago"
+      "aisStatus": "Navegando",
+      "aisEta": "2026-07-02T00:00",
+      "aisSpeed": 2.1,
+      "aisDestination": "Pasajes, Spain",
+      "aisAt": "0 min ago",
+      "dwt": 4995,
+      "aisDraught": 5.1
     },
     {
       "id": "M202600427",
@@ -141,7 +149,9 @@
       "aisEta": "",
       "aisSpeed": 0,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "1 min ago"
+      "aisAt": "3 min ago",
+      "dwt": 4891,
+      "aisDraught": 3.8
     },
     {
       "id": "M202600415",
@@ -163,9 +173,11 @@
       "callsign": "PBLJ",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-01T08:00",
-      "aisSpeed": 13.1,
+      "aisSpeed": 13.5,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "1 min ago"
+      "aisAt": "1 min ago",
+      "dwt": 18143,
+      "aisDraught": 7
     },
     {
       "id": "M202600429",
@@ -189,7 +201,9 @@
       "aisEta": "",
       "aisSpeed": 0,
       "aisDestination": "Setubal, Portugal",
-      "aisAt": "5 min ago"
+      "aisAt": "4 min ago",
+      "dwt": 5744,
+      "aisDraught": 6.3
     },
     {
       "id": "M202600416",
@@ -213,7 +227,9 @@
       "aisEta": "",
       "aisSpeed": 0,
       "aisDestination": "Gijon, Spain",
-      "aisAt": "3 min ago"
+      "aisAt": "1 min ago",
+      "dwt": 3812,
+      "aisDraught": 5.3
     },
     {
       "id": "M202600421",
@@ -237,9 +253,11 @@
       "callsign": "CQUZ",
       "aisStatus": "Navegando",
       "aisEta": "2026-06-29T19:30",
-      "aisSpeed": 10.3,
+      "aisSpeed": 0.1,
       "aisDestination": "Algeciras, Spain",
-      "aisAt": "0 min ago"
+      "aisAt": "1 min ago",
+      "dwt": 11431,
+      "aisDraught": 8.3
     }
   ],
   "tugService": {

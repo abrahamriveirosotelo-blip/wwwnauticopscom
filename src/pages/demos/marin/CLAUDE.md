@@ -58,7 +58,7 @@ Ver [demo-data-quality.instructions.md](../../../../.github/instructions/demo-da
 
 ### Enriquecimiento de datos de buque (vesselfinder.com)
 
-El script [`scripts/enrich-marin.mjs`](../../../../scripts/enrich-marin.mjs) (lib en [`scripts/lib/vesselfinder.mjs`](../../../../scripts/lib/vesselfinder.mjs)) busca cada buque por nombre en vesselfinder.com y rellena **datos estáticos**: `imo`, `gt`, `len`, `flag` (bandera), `vesselType`, `built`, `callsign`. Se ejecuta **después** de `update-marin.mjs` (que resetea esos campos en cada actualización).
+El script [`scripts/enrich-marin.mjs`](../../../../scripts/enrich-marin.mjs) (lib en [`scripts/lib/vesselfinder.mjs`](../../../../scripts/lib/vesselfinder.mjs)) busca cada buque por nombre en vesselfinder.com y rellena **datos estáticos**: `imo`, `gt`, `dwt` (peso muerto), `len`, `flag` (bandera), `vesselType`, `built`, `callsign`. Se ejecuta **después** de `update-marin.mjs` (que resetea esos campos en cada actualización).
 
 **Matching conservador** (los nombres no son únicos): solo se acepta un buque si hay un **único candidato de tipo comercial** con ese nombre exacto, o si el **`Destination` de VesselFinder confirma** la escala (contiene "Marin" para entrantes, o coincide con `to` para salientes). Ante la duda se deja `'—'` — nunca se asigna el IMO/GT de otro barco.
 
@@ -77,7 +77,7 @@ node scripts/enrich-marin.mjs --vessel "GLORIOUS"   # prueba un nombre suelto
 
 ### Datos AIS en vivo (estado, velocidad, ETA reportada)
 
-[`scripts/enrich-marin-live.mjs`](../../../../scripts/enrich-marin-live.mjs) añade datos **dinámicos** desde la ficha de VesselFinder: `aisStatus` (Navegando/Atracado/Fondeado), `aisSpeed` (nudos), `aisEta` (ETA reportada por AIS) y `aisAt` (frescura de la posición). Corre **después** de `enrich-marin.mjs` (necesita el `imo`); hace **una petición por IMO** ya conocido (sin búsqueda).
+[`scripts/enrich-marin-live.mjs`](../../../../scripts/enrich-marin-live.mjs) añade datos **dinámicos** desde la ficha de VesselFinder: `aisStatus` (Navegando/Atracado/Fondeado), `aisSpeed` (nudos), `aisDraught` (calado actual en m), `aisEta` (ETA reportada por AIS) y `aisAt` (frescura de la posición). Corre **después** de `enrich-marin.mjs` (necesita el `imo`); hace **una petición por IMO** ya conocido (sin búsqueda).
 
 A diferencia de los particulares, esto **NO se cachea** (cambia constantemente) → se re-pide en cada ejecución. La celda "Predicted ETA" de la tabla de VesselFinder está gateada (premium), pero la ETA, la velocidad y el estado aparecen en la frase resumen y en un span `_mcol12ext`, de donde se leen. Solo los buques **en navegación** traen ETA/velocidad; los atracados no (correcto: ya llegaron).
 

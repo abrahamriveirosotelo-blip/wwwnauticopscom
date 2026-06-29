@@ -119,6 +119,7 @@ export function parseDetail(html) {
     flag: pairs['AIS Flag'] || pairs['Flag'] || '',
     callsign: pairs['Callsign'] || '',
     gt: toInt(pairs['Gross Tonnage']),
+    dwt: toInt(pairs['Deadweight (t)'] || pairs['Deadweight']),
     loa: parseFloat(pairs['Length Overall']) || 0,
     built: toInt(pairs['Year of Build']),
     type: pairs['AIS Type'] || pairs['Ship type'] || '',
@@ -198,11 +199,14 @@ export function parseLiveData(html) {
   const positionReceived = clean(
     (html.match(/id="lastrep"[\s\S]*?<span[^>]*>\s*([^<]+?ago)\s*<\/span>/i) || [])[1]
   );
+  // Calado AIS en vivo (cómo va de cargado el buque ahora), p. ej. "7.0 m".
+  const draught = parseFloat((html.match(/Current draught<\/td>\s*<td[^>]*>\s*([\d.]+)/i) || [])[1]) || 0;
 
   return {
     navStatus: navStatus === '—' ? '' : navStatus,
     aisEta: aisEta === '—' ? '' : aisEta,
     speed,
+    draught,
     destination: clean(dest) === '—' ? '' : clean(dest),
     positionReceived: positionReceived === '—' ? '' : positionReceived,
   };
@@ -213,6 +217,7 @@ export function pickDetailFields(detail) {
   const out = {};
   if (detail.imo) out.imo = detail.imo;
   if (detail.gt) out.gt = detail.gt;
+  if (detail.dwt) out.dwt = detail.dwt;
   if (detail.loa) out.length = Math.round(detail.loa);
   if (detail.flag) out.flag = detail.flag;
   if (detail.callsign) out.callsign = detail.callsign;

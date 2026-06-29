@@ -102,6 +102,7 @@ async function resolveVessel(call, searchHtml = null) {
     resolved: true,
     imo: merged.imo,
     gt: merged.gt || 0,
+    dwt: merged.dwt || 0,
     len: merged.length || 0,
     beam: merged.beam || 0,
     flag: merged.flag || '',
@@ -130,6 +131,7 @@ function applyToCall(call, e) {
   // numérico es 0; si no, data.json podría quedar desincronizado con la caché.
   call.imo = e.imo;
   call.gt = e.gt ?? 0;
+  call.dwt = e.dwt ?? 0;
   call.len = e.len ?? 0;
   call.flag = e.flag || '';
   call.vesselType = e.vesselType || '';

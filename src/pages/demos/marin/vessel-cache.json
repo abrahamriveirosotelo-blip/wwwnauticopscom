@@ -18,16 +18,17 @@
     "resolved": true,
     "imo": "9354399",
     "gt": 9962,
+    "dwt": 11431,
     "len": 134,
     "beam": 22,
     "flag": "Portugal (Madeira)",
     "vesselType": "Container Ship",
     "built": 2006,
     "callsign": "CQUZ",
-    "destination": "Marin, Pontevedra, Spain",
+    "destination": "Algeciras, Spain",
     "confidence": "destination-confirmed",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T18:26:21Z"
+    "resolvedAt": "2026-06-29T16:53:50Z"
   },
   "NATALIE::PASAJES": {
     "resolved": true,
@@ -48,6 +49,7 @@
     "resolved": true,
     "imo": "9729831",
     "gt": 36313,
+    "dwt": 63339,
     "len": 200,
     "beam": 32,
     "flag": "Marshall Islands",
@@ -57,12 +59,12 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T18:26:27Z"
+    "resolvedAt": "2026-06-29T16:53:17Z"
   },
   "ANNA::ROUEN": {
     "resolved": false,
     "reason": "20 resultados pero ninguno aceptable (nombre/tipo comercial/IMO)",
-    "checkedAt": "2026-06-25T18:26:29Z"
+    "checkedAt": "2026-06-29T16:53:23Z"
   },
   "GRETA C::A ORDENES": {
     "resolved": true,
@@ -103,6 +105,7 @@
     "resolved": true,
     "imo": "9604964",
     "gt": 34778,
+    "dwt": 61464,
     "len": 200,
     "beam": 32,
     "flag": "Marshall Islands",
@@ -112,37 +115,39 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "destination-confirmed",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T18:26:40Z"
+    "resolvedAt": "2026-06-29T16:53:28Z"
   },
   "DANZIGERGRACHT::CUXHAVEN": {
     "resolved": true,
     "imo": "9420796",
     "gt": 13558,
+    "dwt": 18143,
     "len": 157,
     "beam": 23,
     "flag": "Netherlands",
     "vesselType": "General Cargo Ship",
     "built": 2009,
     "callsign": "PBLJ",
-    "destination": "Nantes, France",
+    "destination": "Marin, Pontevedra, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T18:26:43Z"
+    "resolvedAt": "2026-06-29T16:53:40Z"
   },
   "NICOLA L::PASAJES": {
     "resolved": true,
     "imo": "9361718",
     "gt": 2998,
+    "dwt": 4995,
     "len": 90,
     "beam": 14,
     "flag": "Antigua & Barbuda",
     "vesselType": "General Cargo Ship",
     "built": 2006,
     "callsign": "V2HW7",
-    "destination": "Marin, Pontevedra, Spain",
+    "destination": "Pasajes, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-25T18:26:46Z"
+    "resolvedAt": "2026-06-29T16:53:34Z"
   },
   "SOPHIE::A ORDENES": {
     "resolved": true,
@@ -163,6 +168,7 @@
     "resolved": true,
     "imo": "9864760",
     "gt": 2518,
+    "dwt": 3812,
     "len": 90,
     "beam": 12,
     "flag": "Portugal (Madeira)",
@@ -172,27 +178,29 @@
     "destination": "Gijon, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-26T13:18:22Z"
+    "resolvedAt": "2026-06-29T16:53:47Z"
   },
   "FEDERAL ST LAURENT::A ORDENES": {
     "resolved": true,
     "imo": "9838462",
     "gt": 20763,
+    "dwt": 34492,
     "len": 200,
     "beam": 24,
     "flag": "Marshall Islands",
     "vesselType": "Bulk Carrier",
     "built": 2019,
     "callsign": "V7A2319",
-    "destination": "Marin, Pontevedra, Spain",
+    "destination": "Marin, Pontevedra Anch., Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-27T08:41:07Z"
+    "resolvedAt": "2026-06-29T16:53:31Z"
   },
   "VERTOM PORTO::CHALKIS": {
     "resolved": true,
     "imo": "9515010",
     "gt": 2984,
+    "dwt": 4891,
     "len": 90,
     "beam": 14,
     "flag": "Netherlands",
@@ -202,12 +210,13 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-27T08:41:10Z"
+    "resolvedAt": "2026-06-29T16:53:37Z"
   },
   "CLARA::BRAKE": {
     "resolved": true,
     "imo": "9312676",
     "gt": 3870,
+    "dwt": 5744,
     "len": 106,
     "beam": 14,
     "flag": "Antigua & Barbuda",
@@ -217,51 +226,6 @@
     "destination": "Setubal, Portugal",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-29T11:07:37Z"
-  },
-  "LARIXBORG::A ORDENES": {
-    "resolved": true,
-    "imo": "9489546",
-    "gt": 2409,
-    "len": 83,
-    "beam": 12,
-    "flag": "Netherlands",
-    "vesselType": "General Cargo Ship",
-    "built": 2009,
-    "callsign": "PBVY",
-    "destination": "Marin, Pontevedra, Spain",
-    "confidence": "single-commercial",
-    "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-30T09:45:19Z"
-  },
-  "EDZARD CIRKSENA::SETUBAL": {
-    "resolved": true,
-    "imo": "9375824",
-    "gt": 2451,
-    "len": 88,
-    "beam": 12,
-    "flag": "Antigua & Barbuda",
-    "vesselType": "General Cargo Ship",
-    "built": 2008,
-    "callsign": "V2DE2",
-    "destination": "ESMAR",
-    "confidence": "single-commercial",
-    "source": "vesselfinder.com",
-    "resolvedAt": "2026-07-01T12:30:12Z"
-  },
-  "WILSON NICE::A ORDENES": {
-    "resolved": true,
-    "imo": "9430959",
-    "gt": 6118,
-    "len": 123,
-    "beam": 16,
-    "flag": "Norway",
-    "vesselType": "General Cargo Ship",
-    "built": 2010,
-    "callsign": "LAMY8",
-    "destination": "Marin, Pontevedra, Spain",
-    "confidence": "single-commercial",
-    "source": "vesselfinder.com",
-    "resolvedAt": "2026-07-01T12:30:15Z"
+    "resolvedAt": "2026-06-29T16:53:44Z"
   }
 }
