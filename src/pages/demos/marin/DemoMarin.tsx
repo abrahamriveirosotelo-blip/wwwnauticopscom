@@ -26,6 +26,8 @@ function fmt(iso) {
     d.toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"});
 }
 
+function aisAtMarin(c) { return /MARIN/i.test(c.aisDestination||""); }
+
 function opColor(op) {
   if (op.includes("PORTACONTENEDORES")) return { bg:"#DBEAFE", text:"#1D4ED8" };
   if (op.includes("PASAJE")) return { bg:"#EDE9FE", text:"#6D28D9" };
@@ -255,8 +257,11 @@ function Detail({ call, onClose }) {
                   </div>
                   {call.aisAt?<span style={{fontSize:10,color:B.gray}}>recibido {call.aisAt}</span>:null}
                 </div>
-                {call.status==="Prevista"&&(call.aisStatus==="Atracado"||call.aisStatus==="Fondeado")&&(
-                  <div style={{fontSize:11,color:B.warning,fontWeight:600,marginBottom:10}}>⚠ La AP lo anuncia como previsto, pero el AIS lo sitúa ya {call.aisStatus.toLowerCase()} en puerto.</div>
+                {call.status==="Prevista"&&(call.aisStatus==="Atracado"||call.aisStatus==="Fondeado")&&aisAtMarin(call)&&(
+                  <div style={{fontSize:11,color:B.warning,fontWeight:600,marginBottom:10}}>⚠ La AP la anuncia como prevista, pero el AIS la sitúa ya {call.aisStatus.toLowerCase()} en Marín.</div>
+                )}
+                {call.status==="Prevista"&&(call.aisStatus==="Atracado"||call.aisStatus==="Fondeado")&&!aisAtMarin(call)&&call.aisDestination&&(
+                  <div style={{fontSize:11,color:B.gray,marginBottom:10}}>Según AIS, {call.aisStatus.toLowerCase()} aún fuera de Marín — destino reportado: {call.aisDestination}.</div>
                 )}
                 <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
                   <div>
@@ -268,11 +273,10 @@ function Detail({ call, onClose }) {
                     <div style={{fontSize:12,fontWeight:600,color:call.aisEta?B.cyan:B.gray}}>{call.aisEta?fmt(call.aisEta):"—"}</div>
                   </div>
                 </div>
-                {call.aisDestination?<div style={{fontSize:10,color:B.gray,marginTop:10}}>Destino AIS: {call.aisDestination}</div>:null}
+                {call.aisDestination?<div style={{fontSize:10,color:aisAtMarin(call)?B.gray:B.warning,marginTop:10}}>Destino AIS: {call.aisDestination}</div>:null}
               </div>
             </div>
           )}
-
 
           {/* Operational milestones */}
           {call.status !== "Prevista" && (
@@ -593,9 +597,13 @@ export default function DemoMarin() {
                     <td style={{padding:"11px 14px",fontSize:11,fontFamily:"'Courier New',monospace",color:B.gray,fontWeight:600}}>{c.id}</td>
                     <td style={{padding:"11px 14px"}}><Badge status={c.status}/></td>
                     <td style={{padding:"11px 14px"}}>
-                      <div style={{fontWeight:800,fontSize:13,color:isAl?B.danger:B.navy}}>{c.name}{c.aisStatus && (
-                        <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,verticalAlign:"middle",background:(c.status==="Prevista"&&(c.aisStatus==="Atracado"||c.aisStatus==="Fondeado"))?"#FEF3C7":c.aisStatus==="Navegando"?"#E1F5FE":"#EEF2F7",color:(c.status==="Prevista"&&(c.aisStatus==="Atracado"||c.aisStatus==="Fondeado"))?B.warning:c.aisStatus==="Navegando"?B.cyan:B.gray}}>{c.aisStatus==="Navegando"?"▸ Navegando":"⚓ "+c.aisStatus} (AIS)</span>
-                      )}</div>
+                      <div style={{fontWeight:800,fontSize:13,color:isAl?B.danger:B.navy}}>{c.name}{c.aisStatus && (() => {
+                        const atMarin = aisAtMarin(c);
+                        const disc = c.status==="Prevista" && (c.aisStatus==="Atracado"||c.aisStatus==="Fondeado") && atMarin;
+                        const sailing = c.aisStatus==="Navegando" && atMarin;
+                        if (!disc && !sailing) return null;
+                        return <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,verticalAlign:"middle",background:disc?"#FEF3C7":"#E1F5FE",color:disc?B.warning:B.cyan}}>{disc?"⚓ ya en Marín (AIS)":"▸ navegando → Marín"}</span>;
+                      })()}</div>
                       <div style={{fontSize:10,color:B.gray,marginTop:1,display:"flex",alignItems:"center",gap:5}}>
                         {c.imo && c.imo !== '—' && <span>IMO {c.imo}</span>}
                         {isAffected && affectRisk && (
