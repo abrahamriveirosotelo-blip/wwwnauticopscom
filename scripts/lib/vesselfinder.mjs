@@ -169,6 +169,45 @@ export async function matchVessel(call, candidates, fetchDetail) {
   return null;
 }
 
+/**
+ * Extrae los datos AIS EN VIVO de la ficha de detalle (dinámicos, no cacheables):
+ *   - navStatus: "Under way" / "Moored" / "At anchor" … (texto del estado AIS)
+ *   - aisEta: ETA reportada por AIS, formato VesselFinder ("Jul 1, 06:00"); '' si no hay
+ *   - speed: velocidad en nudos (solo cuando navega), o 0
+ *   - destination: destino AIS ("Marin, Pontevedra, Spain")
+ *   - positionReceived: frescura de la última posición ("0 min ago", "3 days ago")
+ *
+ * Importante: estos campos solo están poblados para buques con AIS reciente; la celda
+ * "Predicted ETA" de la tabla está gateada (premium), pero la ETA aparece en un span
+ * `_mcol12ext` y en la frase resumen de la página, que es de donde se leen aquí.
+ */
+export function parseLiveData(html) {
+  const navStatus = clean(
+    (html.match(/Navigation Status<\/td>\s*<td[^>]*>([\s\S]*?)<\/td>/i) || [])[1]
+  );
+
+  const sum = html.match(
+    /sailing at a speed of\s*([\d.]+)\s*knots[\s\S]*?expected to arrive there on\s*<strong>([^<]+)<\/strong>/i
+  );
+  const etaSpan = (html.match(/_mcol12ext">ETA:\s*([^<]+)</i) || [])[1];
+  const aisEta = clean(etaSpan || (sum ? sum[2] : ''));
+  const speed = sum ? parseFloat(sum[1]) || 0 : 0;
+
+  const dest =
+    (html.match(/Destination<\/[^>]+>\s*<[^>]+>([^<]{2,})</i) || [])[1] || '';
+  const positionReceived = clean(
+    (html.match(/id="lastrep"[\s\S]*?<span[^>]*>\s*([^<]+?ago)\s*<\/span>/i) || [])[1]
+  );
+
+  return {
+    navStatus: navStatus === '—' ? '' : navStatus,
+    aisEta: aisEta === '—' ? '' : aisEta,
+    speed,
+    destination: clean(dest) === '—' ? '' : clean(dest),
+    positionReceived: positionReceived === '—' ? '' : positionReceived,
+  };
+}
+
 /** Combina los campos más precisos de la ficha sobre los de la búsqueda. */
 export function pickDetailFields(detail) {
   const out = {};

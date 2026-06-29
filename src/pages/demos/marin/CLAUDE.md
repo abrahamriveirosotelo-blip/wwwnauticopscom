@@ -64,7 +64,7 @@ El script [`scripts/enrich-marin.mjs`](../../../../scripts/enrich-marin.mjs) (li
 
 **Caché** [`vessel-cache.json`](vessel-cache.json), keyed por **nombre + destino (`to`) normalizados** (los nombres no son únicos: así dos buques distintos con el mismo nombre no se mezclan): los particulares son inmutables, así que un buque se resuelve una vez y no se vuelve a pedir (los no resueltos se reintentan a los 7 días). Esto minimiza peticiones a VesselFinder. Si `update-marin.mjs` resetea `data.json`, `enrich-marin.mjs` lo re-aplica desde la caché **sin** volver a la red.
 
-> **Solo datos estáticos.** Velocidad, posición y ETA en vivo NO salen del HTML público de VesselFinder (se cargan por JS / API de pago) — no se intentan. Ver el ToS más abajo.
+`enrich-marin.mjs` solo rellena datos **estáticos** (inmutables). Los datos AIS en vivo se tratan aparte (ver siguiente sección).
 
 ```bash
 npm run enrich-demo:marin            # enriquece data.json (usa caché)
@@ -74,6 +74,22 @@ node scripts/enrich-marin.mjs --vessel "GLORIOUS"   # prueba un nombre suelto
 ```
 
 > **ToS / rate-limit:** los términos de VesselFinder restringen el scraping automatizado. El paso de enriquecimiento en CI es `continue-on-error` y throttlea 1,5 s entre peticiones; si las IPs de GitHub Actions se bloquean, la caché commiteada mantiene lo ya resuelto.
+
+### Datos AIS en vivo (estado, velocidad, ETA reportada)
+
+[`scripts/enrich-marin-live.mjs`](../../../../scripts/enrich-marin-live.mjs) añade datos **dinámicos** desde la ficha de VesselFinder: `aisStatus` (Navegando/Atracado/Fondeado), `aisSpeed` (nudos), `aisEta` (ETA reportada por AIS) y `aisAt` (frescura de la posición). Corre **después** de `enrich-marin.mjs` (necesita el `imo`); hace **una petición por IMO** ya conocido (sin búsqueda).
+
+A diferencia de los particulares, esto **NO se cachea** (cambia constantemente) → se re-pide en cada ejecución. La celda "Predicted ETA" de la tabla de VesselFinder está gateada (premium), pero la ETA, la velocidad y el estado aparecen en la frase resumen y en un span `_mcol12ext`, de donde se leen. Solo los buques **en navegación** traen ETA/velocidad; los atracados no (correcto: ya llegaron).
+
+La ETA del AIS viene en **UTC** y se convierte a **hora de España** (`Europe/Madrid`, con DST) para que sea comparable con la ETA de la AP. El valor de la demo: ver que un barco que la AP marca como `Prevista` **ya está atracado** según AIS, o comparar **ETA AP vs ETA AIS**.
+
+```bash
+npm run enrich-demo:marin:live           # rellena datos AIS en vivo
+npm run enrich-demo:marin:live:dry       # sin escribir
+node scripts/enrich-marin-live.mjs --vessel 9420796   # prueba un IMO suelto
+```
+
+En la UI: el drawer muestra una tarjeta **"AIS EN VIVO · VESSELFINDER"** (estado, velocidad, ETA AP vs ETA AIS, destino) y la tabla un chip de estado AIS por escala (en ámbar si la AP la da como prevista pero ya está atracada).
 
 ---
 
@@ -113,7 +129,7 @@ Fixtures de referencia: [`scripts/fixtures/marin-esperados.html`](../../../../sc
 
 ## Actualización automática (CI)
 
-El workflow [`.github/workflows/update-demos.yml`](../../../../.github/workflows/update-demos.yml) ejecuta el job `update-marin` dos veces al día (08:00 y 12:00 hora España) junto a Alicante y Huelva: corre `update-marin.mjs`, luego `enrich-marin.mjs` (paso `continue-on-error`), y commitea `data.json` + `vessel-cache.json` si cambiaron. Netlify redespliega.
+El workflow [`.github/workflows/update-demos.yml`](../../../../.github/workflows/update-demos.yml) ejecuta el job `update-marin` dos veces al día (08:00 y 12:00 hora España) junto a Alicante y Huelva: corre `update-marin.mjs`, luego `enrich-marin.mjs` (estático) y `enrich-marin-live.mjs` (AIS en vivo) — ambos `continue-on-error` en el cron — y commitea `data.json` + `vessel-cache.json` si cambiaron. Netlify redespliega.
 
 ---
 

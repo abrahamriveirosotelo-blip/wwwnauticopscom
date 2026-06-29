@@ -241,6 +241,39 @@ function Detail({ call, onClose }) {
             </div>
           </div>
 
+          {call.aisStatus && (
+            <div style={{marginBottom:20}}>
+              <div style={{fontSize:10,fontWeight:800,color:B.gray,letterSpacing:"0.08em",marginBottom:10,display:"flex",alignItems:"center",gap:6}}>
+                <span style={{width:7,height:7,borderRadius:"50%",display:"inline-block",background:call.aisStatus==="Navegando"?B.success:B.gray}}/>
+                AIS EN VIVO · VESSELFINDER
+              </div>
+              <div style={{background:B.offWhite,borderRadius:12,border:`1px solid ${B.grayLight}`,padding:"14px 16px"}}>
+                <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10}}>
+                  <div>
+                    <span style={{fontSize:13,fontWeight:700,color:B.navy}}>{call.aisStatus==="Navegando"?"🧭 Navegando":"⚓ "+call.aisStatus}</span>
+                    {call.aisSpeed?<span style={{fontSize:12,color:B.gray,marginLeft:8}}>{call.aisSpeed} kn</span>:null}
+                  </div>
+                  {call.aisAt?<span style={{fontSize:10,color:B.gray}}>recibido {call.aisAt}</span>:null}
+                </div>
+                {call.status==="Prevista"&&(call.aisStatus==="Atracado"||call.aisStatus==="Fondeado")&&(
+                  <div style={{fontSize:11,color:B.warning,fontWeight:600,marginBottom:10}}>⚠ La AP lo anuncia como previsto, pero el AIS lo sitúa ya {call.aisStatus.toLowerCase()} en puerto.</div>
+                )}
+                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+                  <div>
+                    <div style={{fontSize:9,color:B.gray,fontWeight:700,marginBottom:2}}>ETA AP</div>
+                    <div style={{fontSize:12,fontWeight:600,color:B.navy}}>{fmt(call.eta)}</div>
+                  </div>
+                  <div>
+                    <div style={{fontSize:9,color:B.gray,fontWeight:700,marginBottom:2}}>ETA AIS</div>
+                    <div style={{fontSize:12,fontWeight:600,color:call.aisEta?B.cyan:B.gray}}>{call.aisEta?fmt(call.aisEta):"—"}</div>
+                  </div>
+                </div>
+                {call.aisDestination?<div style={{fontSize:10,color:B.gray,marginTop:10}}>Destino AIS: {call.aisDestination}</div>:null}
+              </div>
+            </div>
+          )}
+
+
           {/* Operational milestones */}
           {call.status !== "Prevista" && (
             <div style={{marginBottom:20}}>
@@ -560,7 +593,9 @@ export default function DemoMarin() {
                     <td style={{padding:"11px 14px",fontSize:11,fontFamily:"'Courier New',monospace",color:B.gray,fontWeight:600}}>{c.id}</td>
                     <td style={{padding:"11px 14px"}}><Badge status={c.status}/></td>
                     <td style={{padding:"11px 14px"}}>
-                      <div style={{fontWeight:800,fontSize:13,color:isAl?B.danger:B.navy}}>{c.name}</div>
+                      <div style={{fontWeight:800,fontSize:13,color:isAl?B.danger:B.navy}}>{c.name}{c.aisStatus && (
+                        <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,verticalAlign:"middle",background:(c.status==="Prevista"&&(c.aisStatus==="Atracado"||c.aisStatus==="Fondeado"))?"#FEF3C7":c.aisStatus==="Navegando"?"#E1F5FE":"#EEF2F7",color:(c.status==="Prevista"&&(c.aisStatus==="Atracado"||c.aisStatus==="Fondeado"))?B.warning:c.aisStatus==="Navegando"?B.cyan:B.gray}}>{c.aisStatus==="Navegando"?"▸ Navegando":"⚓ "+c.aisStatus} (AIS)</span>
+                      )}</div>
                       <div style={{fontSize:10,color:B.gray,marginTop:1,display:"flex",alignItems:"center",gap:5}}>
                         {c.imo && c.imo !== '—' && <span>IMO {c.imo}</span>}
                         {isAffected && affectRisk && (

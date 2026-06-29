@@ -91,6 +91,13 @@ jobs:
         continue-on-error: ${{ github.event_name == 'schedule' }}
         run: node scripts/enrich-marin.mjs
 
+      # Datos AIS en vivo (estado de navegación, velocidad, ETA reportada). Dinámicos,
+      # no cacheables: una petición por buque ya identificado con IMO. No fatal en el
+      # cron (un buque sin AIS reciente simplemente no trae estos campos).
+      - name: Enriquecer datos AIS en vivo Marín
+        continue-on-error: ${{ github.event_name == 'schedule' }}
+        run: node scripts/enrich-marin-live.mjs
+
       - name: Detectar cambios
         id: check
         run: |
