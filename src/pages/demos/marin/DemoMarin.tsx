@@ -17,7 +17,6 @@ const LOGO_NO  = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5
 const CALLS     = data.calls;
 const TUG       = data.tugService;
 const META      = data.meta;
-const MILESTONES = data.milestones;
 
 function fmt(iso) {
   if (!iso) return "—";
@@ -150,16 +149,7 @@ function Detail({ call, onClose }) {
             <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",letterSpacing:"0.1em",fontWeight:700}}>{call.id}</div>
             <div style={{fontSize:22,fontWeight:800,marginTop:3,letterSpacing:"-0.01em"}}>{call.name}</div>
             <div style={{fontSize:12,color:"rgba(255,255,255,0.6)",marginTop:4}}>
-              {(() => {
-                const parts: string[] = [];
-                if (call.imo && call.imo !== '—') parts.push(`IMO ${call.imo}`);
-                if (call.gt) parts.push(`${call.gt.toLocaleString()} GT`);
-                if (call.dwt) parts.push(`${call.dwt.toLocaleString()} t DWT`);
-                if (call.len) parts.push(`${call.len} m`);
-                if (call.flag) parts.push(call.flag);
-                if (call.vesselType) parts.push(call.vesselType);
-                return parts.length ? parts.join(' · ') : 'Datos de buque no publicados por la AP';
-              })()}
+              {[call.imo && call.imo !== '—' ? `IMO ${call.imo}` : '', call.flag, call.vesselType].filter(Boolean).join(' · ') || 'Datos de buque no publicados por la AP'}
             </div>
           </div>
           <button onClick={onClose} style={{background:"rgba(255,255,255,0.12)",border:"none",
@@ -192,22 +182,31 @@ function Detail({ call, onClose }) {
       <div style={{padding:24,flex:1}}>
         {tab==="operacion"&&<>
           {/* Route */}
-          <div style={{display:"flex",alignItems:"center",gap:12,background:B.offWhite,
-            borderRadius:12,padding:"14px 18px",marginBottom:20,border:`1px solid ${B.grayLight}`}}>
-            <div style={{textAlign:"center",minWidth:70}}>
-              <div style={{fontSize:9,color:B.gray,fontWeight:800,letterSpacing:"0.06em",marginBottom:3}}>ORIGEN</div>
-              <div style={{fontSize:13,fontWeight:700,color:B.navy}}>{call.from}</div>
-            </div>
-            <div style={{flex:1,display:"flex",alignItems:"center",gap:6}}>
-              <div style={{flex:1,height:1,background:B.grayLight}}/>
-              <span style={{fontSize:18,color:B.cyan}}>⚓</span>
-              <div style={{flex:1,height:1,background:B.grayLight}}/>
-            </div>
-            <div style={{textAlign:"center",minWidth:70}}>
-              <div style={{fontSize:9,color:B.gray,fontWeight:800,letterSpacing:"0.06em",marginBottom:3}}>DESTINO</div>
-              <div style={{fontSize:13,fontWeight:700,color:B.navy}}>{call.to}</div>
-            </div>
-          </div>
+          {(() => {
+            const stops = [
+              { label: "ORIGEN", name: call.from, here: false },
+              { label: "ESCALA", name: "Marín", here: true },
+              { label: "DESTINO", name: call.to, here: false },
+            ].filter(st => st.name && st.name !== "—");
+            return (
+              <div style={{marginBottom:20}}>
+                <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:6,background:B.offWhite,borderRadius:12,padding:"14px 12px",border:`1px solid ${B.grayLight}`,flexWrap:"wrap"}}>
+                  {stops.flatMap((st, i) => {
+                    const node = (
+                      <div key={st.label} style={{textAlign:"center",minWidth:58}}>
+                        <div style={{fontSize:8,color:st.here?B.cyan:B.gray,fontWeight:800,letterSpacing:"0.04em",marginBottom:3}}>{st.label}</div>
+                        <div style={{fontSize:st.here?13:12,fontWeight:st.here?800:700,color:st.here?B.cyan:B.navy}}>{st.name}</div>
+                      </div>
+                    );
+                    return i === 0 ? [node] : [<span key={st.label + "_s"} style={{color:B.grayLight,fontSize:16,alignSelf:"center"}}>›</span>, node];
+                  })}
+                </div>
+                {!call.aisAtMarin && call.aisDestination && (
+                  <div style={{fontSize:10,color:B.gray,marginTop:6,textAlign:"center"}}>Rumbo actual (AIS): {call.aisDestination}</div>
+                )}
+              </div>
+            );
+          })()}
 
           {/* Times */}
           <div style={{marginBottom:20}}>
@@ -244,95 +243,36 @@ function Detail({ call, onClose }) {
             </div>
           </div>
 
-          {call.aisStatus && (
-            <div style={{marginBottom:20}}>
-              <div style={{fontSize:10,fontWeight:800,color:B.gray,letterSpacing:"0.08em",marginBottom:10,display:"flex",alignItems:"center",gap:6}}>
-                <span style={{width:7,height:7,borderRadius:"50%",display:"inline-block",background:call.aisStatus==="Navegando"?B.success:B.gray}}/>
-                AIS EN VIVO · VESSELFINDER
-              </div>
-              <div style={{background:B.offWhite,borderRadius:12,border:`1px solid ${B.grayLight}`,padding:"14px 16px"}}>
-                <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10}}>
-                  <div>
-                    <span style={{fontSize:13,fontWeight:700,color:B.navy}}>{(call.aisStatus==="Atracado"||call.aisStatus==="Fondeado"?"⚓ ":call.aisStatus==="Navegando"?"🧭 ":"📍 ")+call.aisStatus}</span>
-                    {call.aisSpeed?<span style={{fontSize:12,color:B.gray,marginLeft:8}}>{call.aisSpeed} kn</span>:null}
-                    {call.aisDraught?<span style={{fontSize:12,color:B.gray,marginLeft:8}}>· calado {call.aisDraught} m</span>:null}
+          {/* Vessel data */}
+          <div style={{marginBottom:20}}>
+            <div style={{fontSize:10,fontWeight:800,color:B.gray,letterSpacing:"0.08em",marginBottom:10}}>DATOS DEL BUQUE</div>
+            <div style={{background:B.offWhite,borderRadius:12,border:`1px solid ${B.grayLight}`,padding:"14px 16px"}}>
+              {(() => {
+                const fields = [
+                  ["IMO", call.imo && call.imo !== "—" ? call.imo : ""],
+                  ["Tipo", call.vesselType || ""],
+                  ["Bandera", call.flag || ""],
+                  ["Arqueo (GT)", call.gt ? call.gt.toLocaleString() : ""],
+                  ["Peso muerto", call.dwt ? `${call.dwt.toLocaleString()} t` : ""],
+                  ["Eslora", call.len ? `${call.len} m` : ""],
+                  ["Calado actual", call.aisDraught ? `${call.aisDraught} m` : ""],
+                  ["Año", call.built ? String(call.built) : ""],
+                  ["Callsign", call.callsign || ""],
+                ].filter(f => f[1]);
+                if (!fields.length) return <div style={{fontSize:12,color:B.gray}}>Datos de buque no publicados por la AP</div>;
+                return (
+                  <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",rowGap:12,columnGap:16}}>
+                    {fields.map(([label, value]) => (
+                      <div key={label}>
+                        <div style={{fontSize:9,color:B.gray,fontWeight:700,letterSpacing:"0.04em",marginBottom:2}}>{label.toUpperCase()}</div>
+                        <div style={{fontSize:13,fontWeight:600,color:B.navy}}>{value}</div>
+                      </div>
+                    ))}
                   </div>
-                  {call.aisAt?<span style={{fontSize:10,color:B.gray}}>recibido {fmt(call.aisAt)}</span>:null}
-                </div>
-                {call.aisAtMarin ? (
-                  <>
-                    {call.status==="Prevista"&&call.aisArrivedMarin&&(
-                      <div style={{fontSize:11,color:B.warning,fontWeight:600}}>⚠ La AP la anuncia como prevista, pero el AIS la sitúa ya {call.aisStatus.toLowerCase()} en Marín.</div>
-                    )}
-                    {!call.aisArrivedMarin&&(call.aisStatus==="Atracado"||call.aisStatus==="Fondeado")&&(
-                      <div style={{fontSize:11,color:B.gray}}>Atracado fuera de Marín, aún de camino a Marín (ETA arriba).</div>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <div style={{fontSize:11,color:B.gray,marginBottom:10}}>El AIS refleja el <strong>tramo actual</strong> del buque, no su llegada a Marín.{call.aisToFinal?` Marín es una escala intermedia hacia su destino (${call.to}).`:call.aisDestination?` El buque está en otra escala antes de Marín.`:""}</div>
-                    <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",gap:10}}>
-                      <span style={{fontSize:9,color:B.gray,fontWeight:700}}>TRAMO ACTUAL · AIS</span>
-                      <span style={{fontSize:12,fontWeight:600,color:B.navy,textAlign:"right"}}>{(call.aisStatus==="Atracado"||call.aisStatus==="Fondeado"?"⚓ ":"→ ")}{call.aisDestination||"—"}{call.aisEta?` · ETA ${fmt(call.aisEta)}`:""}</span>
-                    </div>
-                  </>
-                )}
-              </div>
+                );
+              })()}
             </div>
-          )}
-
-          {/* Operational milestones */}
-          {call.status !== "Prevista" && (
-            <div style={{marginBottom:20}}>
-              <div style={{fontSize:10,fontWeight:800,color:B.gray,letterSpacing:"0.08em",marginBottom:10}}>HITOS OPERATIVOS</div>
-              <div style={{background:B.offWhite,borderRadius:12,border:`1px solid ${B.grayLight}`,overflow:"hidden"}}>
-                {(
-                  MILESTONES[call.id] ||
-                  [
-                    { label:"Atracado",              status:"pending", time:null, by:null },
-                    { label:"Inicio de operaciones", status:"pending", time:null, by:null },
-                    { label:"Fin de operaciones",    status:"pending", time:null, by:null },
-                    { label:"Desatracado",           status:"pending", time:null, by:null },
-                  ]
-                ).map((m, i, arr) => {
-                  const done = m.status==="done"; const inProgress = m.status==="in_progress";
-                  const icon = done ? "✅" : inProgress ? "🔄" : "⌛";
-                  const rowBg = inProgress ? "rgba(245,158,11,0.06)" : B.white;
-                  return (
-                    <div key={m.label} style={{
-                      display:"flex", alignItems:"center", gap:12,
-                      padding:"11px 16px",
-                      background:rowBg,
-                      borderBottom: i < arr.length-1 ? `1px solid ${B.grayLight}` : "none",
-                      borderLeft: inProgress ? `3px solid ${B.warning}` : "3px solid transparent",
-                    }}>
-                      <span style={{fontSize:16, flexShrink:0}}>{icon}</span>
-                      <div style={{flex:1, minWidth:0}}>
-                        <div style={{fontSize:12, fontWeight:700,
-                          color: done ? B.navy : inProgress ? "#92400E" : B.gray}}>
-                          {m.label}
-                        </div>
-                        {m.by && (
-                          <div style={{fontSize:10, color:B.gray, marginTop:2}}>{m.by}</div>
-                        )}
-                      </div>
-                      <div style={{textAlign:"right", flexShrink:0}}>
-                        {m.time ? (
-                          <div style={{fontSize:11, fontWeight:700,
-                            color: done ? B.success : inProgress ? B.warning : B.gray,
-                            fontFamily:"'Courier New', monospace"}}>
-                            {m.time}
-                          </div>
-                        ) : (
-                          <div style={{fontSize:10, color:B.grayLight, fontWeight:600}}>Pendiente</div>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
+          </div>
 
           {/* Agent */}
           <div style={{marginBottom:20}}>

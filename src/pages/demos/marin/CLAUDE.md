@@ -89,7 +89,7 @@ npm run enrich-demo:marin:live:dry       # sin escribir
 node scripts/enrich-marin-live.mjs --vessel 9420796   # prueba un IMO suelto
 ```
 
-En la UI: el drawer muestra una tarjeta **"AIS EN VIVO · VESSELFINDER"** (estado, velocidad, ETA AP vs ETA AIS, destino) y la tabla un chip de estado AIS por escala (en ámbar si la AP la da como prevista pero ya está atracada).
+En la UI: la **ETA AIS** aparece junto a la ETA de la AP en la sección **TIEMPOS** (no en una sección aparte); el **calado actual** va en **DATOS DEL BUQUE** (bajo TIEMPOS); la sección **Ruta** dibuja `Origen → Marín → Destino` (+ "Rumbo actual (AIS)" cuando el buque va a otro puerto); y la **tabla** muestra un chip por escala: ámbar **"⚓ ya en Marín (AIS)"** si `aisArrivedMarin` y la AP la da como prevista, o cian **"▸ rumbo a Marín"** si va de camino.
 
 ---
 
