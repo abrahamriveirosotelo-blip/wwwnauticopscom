@@ -154,13 +154,29 @@ export function buildCalls(esperados, puerto, prevCalls = [], fallbackYear) {
   ingest(esperados.rows, 'eta');
   ingest(puerto.rows, 'etd');
 
+  // Campos añadidos por los scripts de enriquecimiento (no por el scrape de la AP).
+  // Se conservan del JSON anterior para que NO se borren en cada run: si un paso de
+  // enrich se salta o falla, la escala mantiene su último enriquecimiento conocido
+  // (los scripts de enrich lo refrescan cuando sí corren). Sin esto, update-marin
+  // dejaría imo/gt/dwt y todos los aisX en blanco hasta el siguiente enrich exitoso.
+  const ENRICH_FIELDS = [
+    'imo', 'gt', 'dwt', 'len', 'beam', 'flag', 'vesselType', 'built', 'callsign',
+    'aisStatus', 'aisEta', 'aisSpeed', 'aisDraught', 'aisDestination', 'aisAt',
+    'aisAtMarin', 'aisToFinal',
+  ];
+
   // Persistencia: recupera del JSON anterior la ETA/ETD que ya no aparece
-  // en la tabla actual (p. ej. un buque que pasó de "esperado" a "en puerto").
+  // en la tabla actual (p. ej. un buque que pasó de "esperado" a "en puerto"),
+  // y arrastra el enriquecimiento previo.
   for (const call of byId.values()) {
     const prev = prevById.get(call.id);
     if (prev) {
       if (!call.eta && prev.eta) call.eta = prev.eta;
       if (!call.etd && prev.etd) call.etd = prev.etd;
+      for (const f of ENRICH_FIELDS) {
+        const v = prev[f];
+        if (v !== undefined && v !== null && v !== '' && v !== '—' && v !== 0) call[f] = v;
+      }
     }
     call.etd = bumpYearIfRollover(call.eta, call.etd);
   }

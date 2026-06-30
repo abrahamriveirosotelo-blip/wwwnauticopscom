@@ -44,11 +44,18 @@ Results are cached in `src/pages/demos/marin/vessel-cache.json` (keyed by normal
 name + destination, since names are not unique; static particulars are immutable).
 
 `enrich-marin-live.mjs` adds **live AIS** fields (`aisStatus`, `aisSpeed`, `aisDraught`,
-`aisEta`, `aisDestination`, `aisAt`) from VesselFinder, by IMO, **without caching**
-(dynamic — re-fetched each run). Only vessels currently under way carry an ETA/speed;
-moored vessels don't (they have arrived — not a bug). The AIS ETA is UTC and is converted
-to Europe/Madrid to be comparable with the port authority's local ETA. These fields are
-optional: a vessel without recent AIS simply has none, and the UI hides the AIS card for it.
+`aisEta`, `aisDestination`, `aisAt`, plus the derived booleans `aisAtMarin` and
+`aisToFinal`) from VesselFinder, by IMO, **without caching** (dynamic — re-fetched each
+run). The derived booleans are computed in the script (token-matching via the lib), NOT
+in the TSX, so the view never re-implements port matching. The AIS ETA is UTC, converted
+to Europe/Madrid to be comparable with the AP's local ETA; `aisAt` is the absolute snapshot
+time (Europe/Madrid), not a relative "X min ago" string (which would lie once committed).
+Only vessels currently under way carry an ETA/speed; moored ones don't (they've arrived —
+not a bug). These fields are optional and the UI hides the AIS card when absent.
+
+`update-marin.mjs` (via `buildCalls`) carries the enrichment fields forward from the
+previous `data.json`, so a skipped/failed enrich step keeps the last known values instead
+of wiping them; the enrich steps refresh them when they run.
 
 Position (lat/lon), course/heading and distance-to-go are NOT in VesselFinder's public
 HTML (JS map widget / premium) and are intentionally not scraped — they'd need a paid AIS API.

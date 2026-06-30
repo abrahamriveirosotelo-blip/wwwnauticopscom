@@ -92,11 +92,13 @@ jobs:
         continue-on-error: ${{ github.event_name == 'schedule' }}
         run: node scripts/enrich-marin.mjs
 
-      # Datos AIS en vivo (estado de navegación, velocidad, ETA reportada). Dinámicos,
-      # no cacheables: una petición por buque ya identificado con IMO. No fatal en el
-      # cron (un buque sin AIS reciente simplemente no trae estos campos).
+      # Datos AIS en vivo (estado de navegación, velocidad, calado, ETA reportada).
+      # Best-effort y SIEMPRE no fatal: es enriquecimiento dinámico opcional, así que
+      # un fallo (rate-limit/layout) no debe tumbar el job ni descartar los resultados
+      # ya válidos de update-marin/enrich-marin (también en workflow_dispatch). Si falla,
+      # buildCalls conserva el último AIS conocido del data.json previo.
       - name: Enriquecer datos AIS en vivo Marín
-        continue-on-error: ${{ github.event_name == 'schedule' }}
+        continue-on-error: true
         run: node scripts/enrich-marin-live.mjs
 
       - name: Detectar cambios

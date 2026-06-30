@@ -1,16 +1,42 @@
 /**
- * Helpers para enriquecer escalas con datos estáticos de buque desde
- * vesselfinder.com (solo HTML público: IMO, GT, eslora, bandera, tipo, año).
- *
- * Pure functions (parse + match); el fetch/throttle/caché vive en
- * scripts/enrich-marin.mjs. Matching CONSERVADOR: solo se acepta un buque
- * cuando hay un único candidato de tipo comercial o el destino lo confirma;
- * ante la duda se deja sin enriquecer (la demo degrada a '—').
+ * Cliente y parsers de vesselfinder.com para enriquecer escalas (HTML público:
+ * IMO, GT, DWT, eslora, bandera, tipo, año + AIS en vivo). Incluye el cliente
+ * HTTP compartido (UA/throttle/timeout/fetch) que usan enrich-marin.mjs y
+ * enrich-marin-live.mjs, los parsers y el matching CONSERVADOR (solo se acepta
+ * un buque con un único candidato comercial o destino confirmado; ante la duda
+ * se deja sin enriquecer y la demo degrada a '—').
  */
 
 export const SEARCH_URL = name =>
   `https://www.vesselfinder.com/vessels?name=${encodeURIComponent(name)}`;
 export const DETAIL_URL = id => `https://www.vesselfinder.com/vessels/details/${id}`;
+
+/* ------------------------------------------------------------------ *
+ * Cliente HTTP compartido (un único punto para UA/throttle/timeout).
+ * ------------------------------------------------------------------ */
+export const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36';
+export const THROTTLE_MS = 1500;          // cortesía entre peticiones
+export const REQUEST_TIMEOUT_MS = 15000;  // aborta si VesselFinder se cuelga (CI predecible)
+
+export const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+export async function fetchText(url) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), REQUEST_TIMEOUT_MS);
+  try {
+    // Inglés forzado: parseDetail()/matching asumen etiquetas y tipos en inglés
+    // ("IMO number", "Gross Tonnage", "Bulk Carrier"…); evita que VesselFinder
+    // localice el HTML y rompa el parseo.
+    const res = await fetch(url, {
+      headers: { 'User-Agent': UA, 'Accept': 'text/html,application/xhtml+xml', 'Accept-Language': 'en-US,en;q=0.9' },
+      signal: ctrl.signal,
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status} en ${url}`);
+    return await res.text();
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 // Tipos que consideramos buque mercante (los que escalan en Marín).
 const COMMERCIAL_TYPE =
@@ -48,6 +74,21 @@ export function normName(s) {
   return (s || '')
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .toUpperCase().replace(/[^A-Z0-9]+/g, ' ').trim();
+}
+
+/** ¿El destino AIS contiene `port` como TOKEN completo (no substring)? Usa normName
+ *  (mayúsculas + sin acentos + sin puntuación) para comparar de forma robusta.
+ *  Token-match evita falsos positivos tipo "MARINA DI CARRARA"/"SAN MARINO" para "MARIN". */
+export function destMatchesPort(dest, port) {
+  const d = normName(dest).split(' ').filter(Boolean);
+  const p = normName(port).split(' ').filter(t => t.length > 3); // tokens significativos
+  if (!d.length || !p.length) return false;
+  return p.some(t => d.includes(t));
+}
+
+/** ¿El destino AIS es Marín (token "MARIN")? */
+export function destIsMarin(dest) {
+  return normName(dest).split(' ').includes('MARIN');
 }
 
 /** ¿Es un tipo de buque mercante (candidato válido para una escala de Marín)? */
@@ -187,12 +228,13 @@ export function parseLiveData(html) {
     (html.match(/Navigation Status<\/td>\s*<td[^>]*>([\s\S]*?)<\/td>/i) || [])[1]
   );
 
-  const sum = html.match(
-    /sailing at a speed of\s*([\d.]+)\s*knots[\s\S]*?expected to arrive there on\s*<strong>([^<]+)<\/strong>/i
-  );
+  // Velocidad y ETA por separado: un buque puede navegar (con velocidad) sin que
+  // la frase resumen traiga una ETA, y viceversa.
+  const speedM = html.match(/speed of\s*([\d.]+)\s*knots/i);
+  const speed = speedM ? parseFloat(speedM[1]) || 0 : 0;
   const etaSpan = (html.match(/_mcol12ext">ETA:\s*([^<]+)</i) || [])[1];
-  const aisEta = clean(etaSpan || (sum ? sum[2] : ''));
-  const speed = sum ? parseFloat(sum[1]) || 0 : 0;
+  const etaSum = (html.match(/expected to arrive there on\s*<strong>([^<]+)<\/strong>/i) || [])[1];
+  const aisEta = clean(etaSpan || etaSum || '');
 
   const dest =
     (html.match(/Destination<\/[^>]+>\s*<[^>]+>([^<]{2,})</i) || [])[1] || '';

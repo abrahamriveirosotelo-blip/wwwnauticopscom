@@ -26,8 +26,6 @@ function fmt(iso) {
     d.toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"});
 }
 
-function aisAtMarin(c) { return /MARIN/i.test(c.aisDestination||""); }
-function aisDestEqualsTo(c) { const d=(c.aisDestination||"").toUpperCase(); const to=(c.to||"").toUpperCase().replace(/[^A-Z0-9 ]/g," "); if(!d||!to||to==="—") return false; return to.split(/\s+/).some(t=>t.length>3 && d.includes(t)); }
 
 function opColor(op) {
   if (op.includes("PORTACONTENEDORES")) return { bg:"#DBEAFE", text:"#1D4ED8" };
@@ -254,13 +252,13 @@ function Detail({ call, onClose }) {
               <div style={{background:B.offWhite,borderRadius:12,border:`1px solid ${B.grayLight}`,padding:"14px 16px"}}>
                 <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10}}>
                   <div>
-                    <span style={{fontSize:13,fontWeight:700,color:B.navy}}>{call.aisStatus==="Navegando"?"🧭 Navegando":"⚓ "+call.aisStatus}</span>
+                    <span style={{fontSize:13,fontWeight:700,color:B.navy}}>{(call.aisStatus==="Atracado"||call.aisStatus==="Fondeado"?"⚓ ":call.aisStatus==="Navegando"?"🧭 ":"📍 ")+call.aisStatus}</span>
                     {call.aisSpeed?<span style={{fontSize:12,color:B.gray,marginLeft:8}}>{call.aisSpeed} kn</span>:null}
                     {call.aisDraught?<span style={{fontSize:12,color:B.gray,marginLeft:8}}>· calado {call.aisDraught} m</span>:null}
                   </div>
-                  {call.aisAt?<span style={{fontSize:10,color:B.gray}}>recibido {call.aisAt}</span>:null}
+                  {call.aisAt?<span style={{fontSize:10,color:B.gray}}>recibido {fmt(call.aisAt)}</span>:null}
                 </div>
-                {aisAtMarin(call) ? (
+                {call.aisAtMarin ? (
                   <>
                     {call.status==="Prevista"&&(call.aisStatus==="Atracado"||call.aisStatus==="Fondeado")&&(
                       <div style={{fontSize:11,color:B.warning,fontWeight:600,marginBottom:10}}>⚠ La AP la anuncia como prevista, pero el AIS la sitúa ya {call.aisStatus.toLowerCase()} en Marín.</div>
@@ -278,11 +276,11 @@ function Detail({ call, onClose }) {
                   </>
                 ) : (
                   <>
-                    <div style={{fontSize:11,color:B.gray,marginBottom:10}}>El AIS refleja el <strong>tramo actual</strong> del buque, no su llegada a Marín.{aisDestEqualsTo(call)?` Marín es una escala intermedia hacia su destino (${call.to}).`:call.aisDestination?` El buque está en otra escala antes de Marín.`:""}</div>
+                    <div style={{fontSize:11,color:B.gray,marginBottom:10}}>El AIS refleja el <strong>tramo actual</strong> del buque, no su llegada a Marín.{call.aisToFinal?` Marín es una escala intermedia hacia su destino (${call.to}).`:call.aisDestination?` El buque está en otra escala antes de Marín.`:""}</div>
                     <div style={{display:"flex",flexDirection:"column",gap:8}}>
                       <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",gap:10}}>
                         <span style={{fontSize:9,color:B.gray,fontWeight:700}}>TRAMO ACTUAL · AIS</span>
-                        <span style={{fontSize:12,fontWeight:600,color:B.navy,textAlign:"right"}}>{call.aisStatus==="Navegando"?"→ ":"⚓ "}{call.aisDestination||"—"}{call.aisEta?` · ETA ${fmt(call.aisEta)}`:""}</span>
+                        <span style={{fontSize:12,fontWeight:600,color:B.navy,textAlign:"right"}}>{(call.aisStatus==="Atracado"||call.aisStatus==="Fondeado"?"⚓ ":"→ ")}{call.aisDestination||"—"}{call.aisEta?` · ETA ${fmt(call.aisEta)}`:""}</span>
                       </div>
                       <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",gap:10}}>
                         <span style={{fontSize:9,color:B.gray,fontWeight:700}}>ETA A MARÍN · AP</span>
@@ -615,7 +613,7 @@ export default function DemoMarin() {
                     <td style={{padding:"11px 14px"}}><Badge status={c.status}/></td>
                     <td style={{padding:"11px 14px"}}>
                       <div style={{fontWeight:800,fontSize:13,color:isAl?B.danger:B.navy}}>{c.name}{c.aisStatus && (() => {
-                        const atMarin = aisAtMarin(c);
+                        const atMarin = c.aisAtMarin;
                         const disc = c.status==="Prevista" && (c.aisStatus==="Atracado"||c.aisStatus==="Fondeado") && atMarin;
                         const sailing = c.aisStatus==="Navegando" && atMarin;
                         if (!disc && !sailing) return null;

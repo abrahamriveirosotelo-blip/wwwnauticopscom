@@ -77,7 +77,7 @@ node scripts/enrich-marin.mjs --vessel "GLORIOUS"   # prueba un nombre suelto
 
 ### Datos AIS en vivo (estado, velocidad, ETA reportada)
 
-[`scripts/enrich-marin-live.mjs`](../../../../scripts/enrich-marin-live.mjs) añade datos **dinámicos** desde la ficha de VesselFinder: `aisStatus` (Navegando/Atracado/Fondeado), `aisSpeed` (nudos), `aisDraught` (calado actual en m), `aisEta` (ETA reportada por AIS) y `aisAt` (frescura de la posición). Corre **después** de `enrich-marin.mjs` (necesita el `imo`); hace **una petición por IMO** ya conocido (sin búsqueda).
+[`scripts/enrich-marin-live.mjs`](../../../../scripts/enrich-marin-live.mjs) añade datos **dinámicos** desde la ficha de VesselFinder: `aisStatus` (Navegando/Atracado/Fondeado/…), `aisSpeed` (nudos), `aisDraught` (calado actual en m), `aisEta` (ETA reportada por AIS), `aisAt` (timestamp absoluto del snapshot, hora España) y los booleanos derivados `aisAtMarin` (el destino AIS es Marín, por token) y `aisToFinal` (el destino AIS coincide con el `to` de la AP → Marín es escala intermedia). El matching se hace **en el script** (no en el TSX). Corre **después** de `enrich-marin.mjs` (necesita el `imo`); hace **una petición por IMO** ya conocido (sin búsqueda).
 
 A diferencia de los particulares, esto **NO se cachea** (cambia constantemente) → se re-pide en cada ejecución. La celda "Predicted ETA" de la tabla de VesselFinder está gateada (premium), pero la ETA, la velocidad y el estado aparecen en la frase resumen y en un span `_mcol12ext`, de donde se leen. Solo los buques **en navegación** traen ETA/velocidad; los atracados no (correcto: ya llegaron).
 

@@ -1,16 +1,21 @@
 #!/usr/bin/env node
 /**
  * Enriquece las escalas de Marín con datos AIS EN VIVO de vesselfinder.com:
- * estado de navegación (atracado/navegando), velocidad y ETA reportada por AIS.
+ * estado de navegación (atracado/navegando), velocidad, calado y ETA reportada.
  *
  * A diferencia de enrich-marin.mjs (datos estáticos cacheables), estos datos son
  * DINÁMICOS y NO se cachean: se vuelven a pedir en cada ejecución, una petición
  * por buque ya identificado con IMO (no hace falta búsqueda). Pensado para
  * ejecutarse DESPUÉS de enrich-marin.mjs (que es quien rellena el `imo`).
  *
+ * Además calcula, en el script (no en la vista), los booleanos derivados que la
+ * UI necesita: `aisAtMarin` (el destino AIS es Marín, por token) y `aisToFinal`
+ * (el destino AIS coincide con el `to` de la AP → Marín es escala intermedia).
+ *
  * La ETA del AIS se publica en UTC; aquí se convierte a hora de España para que
  * sea comparable con la ETA de la Autoridad Portuaria (que ya está en local).
- * Solo los buques en navegación traen ETA/velocidad; los atracados no.
+ * `aisAt` se guarda como instante absoluto del scrape (hora España), no como
+ * "X min ago", que sería engañoso una vez commiteado en un snapshot estático.
  *
  * Uso:
  *   node scripts/enrich-marin-live.mjs
@@ -21,69 +26,69 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { DETAIL_URL, parseLiveData } from './lib/vesselfinder.mjs';
+import {
+  DETAIL_URL, parseLiveData, fetchText, sleep, THROTTLE_MS,
+  destIsMarin, destMatchesPort,
+} from './lib/vesselfinder.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_PATH = join(__dirname, '../src/pages/demos/marin/data.json');
-
-const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36';
-const THROTTLE_MS = 1500;
-const REQUEST_TIMEOUT_MS = 15000;
 const MONTHS = { Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 };
 
-const sleep = ms => new Promise(r => setTimeout(r, ms));
-
-async function fetchText(url) {
-  const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), REQUEST_TIMEOUT_MS);
-  try {
-    const res = await fetch(url, {
-      headers: { 'User-Agent': UA, 'Accept': 'text/html,application/xhtml+xml', 'Accept-Language': 'en-US,en;q=0.9' },
-      signal: ctrl.signal,
-    });
-    if (!res.ok) throw new Error(`HTTP ${res.status} en ${url}`);
-    return await res.text();
-  } finally {
-    clearTimeout(timer);
-  }
-}
-
-/** Estado AIS en inglés → etiqueta corta en español. */
+/** Estado AIS (inglés) → etiqueta en español. Cubre todos los estados AIS estándar. */
 function mapStatus(navStatus) {
   const s = (navStatus || '').toLowerCase();
-  if (s.includes('under way') || s.includes('underway')) return 'Navegando';
+  if (!s) return '';
+  if (s.includes('under way') || s.includes('underway') || s.includes('sailing')) return 'Navegando';
   if (s.includes('moor')) return 'Atracado';
   if (s.includes('anchor')) return 'Fondeado';
-  return navStatus || '';
+  if (s.includes('not under command')) return 'Sin gobierno';
+  if (s.includes('restricted')) return 'Maniobra restringida';
+  if (s.includes('constrained') || s.includes('draught')) return 'Restringido por calado';
+  if (s.includes('aground')) return 'Varado';
+  if (s.includes('fishing')) return 'Pescando';
+  return navStatus; // estado desconocido: se conserva el texto crudo
 }
 
-/** "Jul 1, 06:00" (UTC) → ISO naive en hora de España, comparable con la ETA de la AP. */
-function aisEtaToSpainIso(text) {
-  const m = (text || '').match(/^([A-Z][a-z]{2})\s+(\d{1,2}),\s*(\d{1,2}):(\d{2})$/);
-  if (!m) return '';
-  const mo = MONTHS[m[1]];
-  if (!mo) return '';
-  const day = +m[2], h = +m[3], mi = +m[4];
-  const year = new Date().getUTCFullYear();
-  const mk = y => new Date(Date.UTC(y, mo - 1, day, h, mi));
-  let utc = mk(year);
-  // Si cae muy en el pasado, cruza fin de año (Dic → Ene).
-  if (utc.getTime() < Date.now() - 30 * 86400 * 1000) utc = mk(year + 1);
+/** Cualquier Date → ISO naive en hora de España (Europe/Madrid, con DST). */
+function toSpainIso(date) {
   const p = new Intl.DateTimeFormat('en-CA', {
     timeZone: 'Europe/Madrid', year: 'numeric', month: '2-digit', day: '2-digit',
     hour: '2-digit', minute: '2-digit', hour12: false,
-  }).formatToParts(utc).reduce((a, x) => (a[x.type] = x.value, a), {});
+  }).formatToParts(date).reduce((a, x) => (a[x.type] = x.value, a), {});
   const hh = p.hour === '24' ? '00' : p.hour;
   return `${p.year}-${p.month}-${p.day}T${hh}:${p.minute}`;
 }
 
-function applyLive(call, live) {
+/** "Jul 1, 06:00" (UTC, con o sin año/sufijo) → ISO naive en hora de España. */
+function aisEtaToSpainIso(text) {
+  const m = (text || '').match(/([A-Z][a-z]{2})\s+(\d{1,2}),?\s+(?:(\d{4})\s+)?(\d{1,2}):(\d{2})/);
+  if (!m) return '';
+  const mo = MONTHS[m[1]];
+  if (!mo) return '';
+  const day = +m[2], explicitYear = m[3] ? +m[3] : null, h = +m[4], mi = +m[5];
+  const mk = y => new Date(Date.UTC(y, mo - 1, day, h, mi));
+  let utc;
+  if (explicitYear) {
+    utc = mk(explicitYear);
+  } else {
+    const y = new Date().getUTCFullYear();
+    utc = mk(y);
+    if (utc.getTime() < Date.now() - 30 * 86400 * 1000) utc = mk(y + 1); // cruza fin de año
+  }
+  return toSpainIso(utc);
+}
+
+function applyLive(call, live, scrapedAt) {
   call.aisStatus = mapStatus(live.navStatus);
   call.aisEta = aisEtaToSpainIso(live.aisEta);
   call.aisSpeed = live.speed || 0;
   call.aisDraught = live.draught || 0;
   call.aisDestination = live.destination || '';
-  call.aisAt = live.positionReceived || '';
+  call.aisAt = scrapedAt; // instante del snapshot (hora España), no "X min ago"
+  // Booleanos derivados (matching en el script, no en la vista):
+  call.aisAtMarin = destIsMarin(live.destination);            // el AIS lo sitúa en/hacia Marín
+  call.aisToFinal = !call.aisAtMarin && destMatchesPort(live.destination, call.to); // Marín es escala intermedia
 }
 
 async function main() {
@@ -96,37 +101,44 @@ async function main() {
     if (!imo) throw new Error('Uso: --vessel <IMO>');
     const live = parseLiveData(await fetchText(DETAIL_URL(imo)));
     console.log('Live:', JSON.stringify(live, null, 2));
-    console.log('→ estado:', mapStatus(live.navStatus), '| ETA España:', aisEtaToSpainIso(live.aisEta) || '—');
+    console.log('→ estado:', mapStatus(live.navStatus), '| ETA España:', aisEtaToSpainIso(live.aisEta) || '—',
+      '| atMarin:', destIsMarin(live.destination));
     return;
   }
 
   const data = JSON.parse(readFileSync(DATA_PATH, 'utf-8'));
   const targets = data.calls.filter(c => c.imo && c.imo !== '—');
   console.log(`Buques con IMO a consultar: ${targets.length}`);
+  if (!targets.length) {
+    console.warn('⚠️  Ninguna escala tiene IMO — ejecuta antes enrich-marin.mjs (rellena el imo).');
+  }
 
   // Un buque (mismo IMO) puede tener varias escalas: se consulta una vez y se aplica a todas.
   const seen = new Map();
-  let live = 0, navegando = 0;
+  let navegando = 0;
 
   for (const imo of [...new Set(targets.map(c => c.imo))]) {
     try {
-      const data_ = parseLiveData(await fetchText(DETAIL_URL(imo)));
-      await sleep(THROTTLE_MS);
-      seen.set(imo, data_);
-      const st = mapStatus(data_.navStatus);
+      const liveData = parseLiveData(await fetchText(DETAIL_URL(imo)));
+      seen.set(imo, liveData);
+      const st = mapStatus(liveData.navStatus);
       if (st === 'Navegando') navegando++;
-      console.log(`✓ ${imo} → ${st || '—'}${data_.speed ? ` · ${data_.speed} kn` : ''}${data_.aisEta ? ` · ETA AIS ${data_.aisEta}` : ''} (${data_.positionReceived || 'sin posición'})`);
+      console.log(`✓ ${imo} → ${st || '—'}${liveData.speed ? ` · ${liveData.speed} kn` : ''}${liveData.draught ? ` · calado ${liveData.draught} m` : ''}${liveData.aisEta ? ` · ETA AIS ${liveData.aisEta}` : ''}`);
     } catch (err) {
       console.warn(`⚠️  ${imo}: ${err instanceof Error ? err.message : String(err)}`);
+    } finally {
+      await sleep(THROTTLE_MS); // cortesía SIEMPRE, también tras un fallo (no hostigar en rate-limit)
     }
   }
 
+  const scrapedAt = toSpainIso(new Date());
+  let applied = 0;
   for (const call of data.calls) {
     const l = seen.get(call.imo);
-    if (l) { applyLive(call, l); live++; }
+    if (l) { applyLive(call, l, scrapedAt); applied++; }
   }
 
-  console.log(`\nResumen: ${live} escalas con datos AIS · ${navegando} navegando`);
+  console.log(`\nResumen: ${applied} escalas con datos AIS · ${navegando} navegando · snapshot ${scrapedAt}`);
 
   if (isDryRun) {
     console.log('\n--- DRY RUN: data.json no modificado ---');

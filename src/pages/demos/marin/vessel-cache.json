@@ -227,5 +227,21 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-06-29T16:53:44Z"
+  },
+  "LARIXBORG::A ORDENES": {
+    "resolved": true,
+    "imo": "9489546",
+    "gt": 2409,
+    "dwt": 3750,
+    "len": 83,
+    "beam": 12,
+    "flag": "Netherlands",
+    "vesselType": "General Cargo Ship",
+    "built": 2009,
+    "callsign": "PBVY",
+    "destination": "Marin, Pontevedra, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-06-30T10:17:43Z"
   }
 }
