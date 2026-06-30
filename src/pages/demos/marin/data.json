@@ -2,7 +2,7 @@
   "meta": {
     "port": "Puerto de Marín",
     "source": "apmarin.com · buques esperados + en puerto",
-    "date": "29/06/2026",
+    "date": "30/06/2026",
     "refreshHours": 12
   },
   "calls": [
@@ -81,27 +81,8 @@
       "callsign": "V7A2319"
     },
     {
-      "id": "M202600424",
-      "status": "Iniciado",
-      "imo": "9361718",
-      "name": "Nicola L",
-      "gt": 2998,
-      "len": 90,
-      "berth": "Nuevo Comercial Marin Atraque 1",
-      "agent": "Perez Torres Maritima, S.L.",
-      "op": "D. Productos siderúrgicos",
-      "eta": "2026-06-28T20:00",
-      "etd": "2026-06-29T20:00",
-      "from": "Ijmuiden",
-      "to": "Pasajes",
-      "flag": "Antigua & Barbuda",
-      "vesselType": "General Cargo Ship",
-      "built": 2006,
-      "callsign": "V2HW7"
-    },
-    {
       "id": "M202600427",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9515010",
       "name": "Vertom Porto",
       "gt": 2984,
@@ -110,7 +91,7 @@
       "agent": "Ceferino Nogueira, S.A.",
       "op": "C. Papel y pasta",
       "eta": "2026-06-29T11:30",
-      "etd": "",
+      "etd": "2026-06-30T19:00",
       "from": "Casablanca",
       "to": "Chalkis",
       "flag": "Netherlands",
@@ -195,6 +176,25 @@
       "vesselType": "Container Ship",
       "built": 2006,
       "callsign": "CQUZ"
+    },
+    {
+      "id": "M202600431",
+      "status": "Prevista",
+      "imo": "9489546",
+      "name": "Larixborg",
+      "gt": 2409,
+      "len": 83,
+      "berth": "Nuevo Comercial Marin Atraque 1",
+      "agent": "Perez Torres Maritima, S.L.",
+      "op": "D. Productos siderúrgicos",
+      "eta": "2026-07-05T22:00",
+      "etd": "",
+      "from": "Ijmuiden",
+      "to": "A Órdenes",
+      "flag": "Netherlands",
+      "vesselType": "General Cargo Ship",
+      "built": 2009,
+      "callsign": "PBVY"
     }
   ],
   "tugService": {

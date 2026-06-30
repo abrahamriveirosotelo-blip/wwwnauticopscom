@@ -2,60 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "29/06/2026",
+    "date": "30/06/2026",
     "refreshHours": 2
   },
   "calls": [
     {
-      "id": "A202600443",
-      "status": "Iniciado",
-      "imo": "9312200",
-      "name": "ENDURANCE",
-      "gt": 7642,
-      "len": 134.58,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-06-27T07:00",
-      "etd": "2026-06-29T15:00",
-      "from": "BARCELONA",
-      "to": "A ORDENES"
-    },
-    {
-      "id": "A202600462",
-      "status": "Iniciado",
-      "imo": "9250464",
-      "name": "MSC OPERA",
-      "gt": 65591,
-      "len": 274,
-      "berth": "14",
-      "agent": "LANTIMAR S.L.",
-      "op": "CRUCERISTAS",
-      "eta": "2026-06-29T07:45",
-      "etd": "2026-06-29T17:00",
-      "from": "LISBOA",
-      "to": "LAS PALMAS"
-    },
-    {
-      "id": "A202600456",
-      "status": "Alerta",
-      "imo": "9237242",
-      "name": "CRACOVIA",
-      "gt": 25028,
-      "len": 180,
-      "berth": "25",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-06-29T08:00",
-      "etd": "2026-06-29T20:00",
-      "from": "ALGER",
-      "to": "HUELVA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 25 según lo previsto."
-    },
-    {
       "id": "A202600461",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9265421",
       "name": "EL DJAZAIR II",
       "gt": 20024,
@@ -67,8 +20,8 @@
       "etd": "2026-06-30T19:00",
       "from": "ORAN",
       "to": "BARCELONA",
-      "affectedBy": "A202600456",
-      "affectRisk": "ALTO"
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 25 según lo previsto."
     },
     {
       "id": "A202600458",
@@ -86,6 +39,38 @@
       "to": "ORAN"
     },
     {
+      "id": "A202600477",
+      "status": "Prevista",
+      "imo": "9237242",
+      "name": "CRACOVIA",
+      "gt": 25028,
+      "len": 180,
+      "berth": "25",
+      "agent": "OCEAN PORTS & SHIPPING SL",
+      "op": "PASAJE Y VEHICULOS",
+      "eta": "2026-07-01T08:00",
+      "etd": "2026-07-01T20:00",
+      "from": "ORAN",
+      "to": "ORAN",
+      "affectedBy": "A202600461",
+      "affectRisk": "ALTO"
+    },
+    {
+      "id": "A202600474",
+      "status": "Prevista",
+      "imo": "8911841",
+      "name": "MALTA CEMENT",
+      "gt": 2429,
+      "len": 88,
+      "berth": "19",
+      "agent": "OCEAN PORTS & SHIPPING SL",
+      "op": "C/ CEMENTO INST. ESP.",
+      "eta": "2026-07-01T09:00",
+      "etd": "2026-07-02T14:00",
+      "from": "ALMERIA",
+      "to": "MAHON"
+    },
+    {
       "id": "A202600446",
       "status": "Prevista",
       "imo": "9398773",
@@ -98,7 +83,22 @@
       "eta": "2026-07-02T08:00",
       "etd": "2026-07-02T14:00",
       "from": "CASTELLON",
-      "to": "MAHON"
+      "to": "ALMERIA"
+    },
+    {
+      "id": "A202600476",
+      "status": "Prevista",
+      "imo": "8816352",
+      "name": "SIRIOS CEMENT V",
+      "gt": 2453,
+      "len": 86,
+      "berth": "19",
+      "agent": "OCEAN PORTS & SHIPPING SL",
+      "op": "C/ CEMENTO INST. ESP.",
+      "eta": "2026-07-02T08:00",
+      "etd": "2026-07-03T08:00",
+      "from": "ALMERIA",
+      "to": "GANDIA"
     },
     {
       "id": "A202600460",
@@ -113,7 +113,22 @@
       "eta": "2026-07-02T12:00",
       "etd": "2026-07-04T22:00",
       "from": "PORTO VESME",
-      "to": "ORAN"
+      "to": "TENERIFE"
+    },
+    {
+      "id": "A202600464",
+      "status": "Prevista",
+      "imo": "9349227",
+      "name": "NJORD",
+      "gt": 7720,
+      "len": 141.58,
+      "berth": "11",
+      "agent": "EUROPEAN FORWARDING SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-07-03T01:00",
+      "etd": "2026-07-03T15:00",
+      "from": "TENERIFE",
+      "to": "DERINCE"
     },
     {
       "id": "A202600459",
@@ -128,11 +143,71 @@
       "eta": "2026-07-03T08:00",
       "etd": "2026-07-03T23:00",
       "from": "ARRECIFE",
+      "to": "LAS PALMAS"
+    },
+    {
+      "id": "A202600465",
+      "status": "Prevista",
+      "imo": "9083043",
+      "name": "NANTO",
+      "gt": 7550,
+      "len": 151.14,
+      "berth": "11",
+      "agent": "EUROPEAN FORWARDING SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-07-04T07:00",
+      "etd": "2026-07-04T15:00",
+      "from": "BARCELONA",
+      "to": "PALMA"
+    },
+    {
+      "id": "A202600466",
+      "status": "Prevista",
+      "imo": "9430193",
+      "name": "HERCULES J",
+      "gt": 10585,
+      "len": 151.72,
+      "berth": "11",
+      "agent": "EUROPEAN FORWARDING SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-07-05T07:00",
+      "etd": "2026-07-05T21:00",
+      "from": "ARRECIFE",
+      "to": "HUELVA"
+    },
+    {
+      "id": "A202600473",
+      "status": "Prevista",
+      "imo": "9505560",
+      "name": "WISLABORG",
+      "gt": 6668,
+      "len": 106,
+      "berth": "13",
+      "agent": "BERGE MARITIMA, S.L.",
+      "op": "D/ BOBINAS DE PAPEL",
+      "eta": "2026-07-06T06:00",
+      "etd": "2026-07-07T14:00",
+      "from": "HOLMSUND",
       "to": "ALMERIA"
+    },
+    {
+      "id": "A202600469",
+      "status": "Prevista",
+      "imo": "9108063",
+      "name": "PIRITA",
+      "gt": 6326,
+      "len": 132,
+      "berth": "23",
+      "agent": "A. PEREZ Y CIA. S.L.",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-07-06T08:00",
+      "etd": "2026-07-06T20:00",
+      "from": "ALGECIRAS",
+      "to": "ALGER"
     }
   ],
   "tugService": {
-    "callId": "A202600456",
+    "callId": "A202600461",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -159,18 +234,18 @@
     }
   },
   "milestones": {
-    "A202600456": [
+    "A202600461": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "29/06 · 08:25",
+        "time": "30/06 · 08:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "29/06 · 09:30",
-        "by": "Agente: OCEAN PORTS & SHIPPING SL"
+        "time": "30/06 · 09:30",
+        "by": "Agente: ROMEU Y CIA. S A"
       },
       {
         "label": "Fin de operaciones",
