@@ -28,11 +28,12 @@
       "aisStatus": "Atracado",
       "aisDraught": 13,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-06-30T12:40",
+      "aisAt": "2026-06-30T12:50",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisEta": "",
-      "aisSpeed": 0
+      "aisSpeed": 0,
+      "aisArrivedMarin": true
     },
     {
       "id": "M202600405",
@@ -73,11 +74,12 @@
       "aisStatus": "Atracado",
       "aisDraught": 11.8,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-06-30T12:40",
+      "aisAt": "2026-06-30T12:50",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisEta": "",
-      "aisSpeed": 0
+      "aisSpeed": 0,
+      "aisArrivedMarin": true
     },
     {
       "id": "M202600426",
@@ -101,11 +103,12 @@
       "aisStatus": "Fondeado",
       "aisDraught": 10.8,
       "aisDestination": "Marin, Pontevedra Anch., Spain",
-      "aisAt": "2026-06-30T12:40",
+      "aisAt": "2026-06-30T12:50",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisEta": "",
-      "aisSpeed": 0
+      "aisSpeed": 0,
+      "aisArrivedMarin": true
     },
     {
       "id": "M202600427",
@@ -129,11 +132,12 @@
       "aisStatus": "Atracado",
       "aisDraught": 3.8,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-06-30T12:40",
+      "aisAt": "2026-06-30T12:50",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisEta": "",
-      "aisSpeed": 0
+      "aisSpeed": 0,
+      "aisArrivedMarin": true
     },
     {
       "id": "M202600415",
@@ -156,12 +160,13 @@
       "callsign": "PBLJ",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-01T08:00",
-      "aisSpeed": 12.3,
+      "aisSpeed": 10.7,
       "aisDraught": 7,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-06-30T12:40",
+      "aisAt": "2026-06-30T12:50",
       "aisAtMarin": true,
-      "aisToFinal": false
+      "aisToFinal": false,
+      "aisArrivedMarin": false
     },
     {
       "id": "M202600429",
@@ -186,10 +191,11 @@
       "aisEta": "2026-07-01T19:00",
       "aisDraught": 4.2,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-06-30T12:40",
+      "aisAt": "2026-06-30T12:50",
       "aisAtMarin": true,
       "aisToFinal": false,
-      "aisSpeed": 0
+      "aisSpeed": 0,
+      "aisArrivedMarin": false
     },
     {
       "id": "M202600416",
@@ -214,10 +220,11 @@
       "aisEta": "2026-07-31T22:00",
       "aisDraught": 4.3,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-06-30T12:40",
+      "aisAt": "2026-06-30T12:50",
       "aisAtMarin": true,
       "aisToFinal": false,
-      "aisSpeed": 0
+      "aisSpeed": 0,
+      "aisArrivedMarin": false
     },
     {
       "id": "M202600421",
@@ -241,13 +248,14 @@
       "aisStatus": "Atracado",
       "aisDraught": 8.3,
       "aisDestination": "Algeciras, Spain",
-      "aisAt": "2026-06-30T12:40",
+      "aisAt": "2026-06-30T12:50",
       "aisAtMarin": false,
       "aisToFinal": true,
       "affectedBy": "M202600405",
       "affectRisk": "ALTO",
       "aisEta": "",
-      "aisSpeed": 0
+      "aisSpeed": 0,
+      "aisArrivedMarin": false
     },
     {
       "id": "M202600431",
@@ -270,12 +278,13 @@
       "callsign": "PBVY",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-06T00:00",
-      "aisSpeed": 9.4,
+      "aisSpeed": 9.3,
       "aisDraught": 5.5,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-06-30T12:40",
+      "aisAt": "2026-06-30T12:50",
       "aisAtMarin": true,
-      "aisToFinal": false
+      "aisToFinal": false,
+      "aisArrivedMarin": false
     }
   ],
   "tugService": {

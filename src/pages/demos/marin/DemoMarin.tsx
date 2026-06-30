@@ -260,8 +260,11 @@ function Detail({ call, onClose }) {
                 </div>
                 {call.aisAtMarin ? (
                   <>
-                    {call.status==="Prevista"&&(call.aisStatus==="Atracado"||call.aisStatus==="Fondeado")&&(
+                    {call.status==="Prevista"&&call.aisArrivedMarin&&(
                       <div style={{fontSize:11,color:B.warning,fontWeight:600,marginBottom:10}}>⚠ La AP la anuncia como prevista, pero el AIS la sitúa ya {call.aisStatus.toLowerCase()} en Marín.</div>
+                    )}
+                    {!call.aisArrivedMarin&&(call.aisStatus==="Atracado"||call.aisStatus==="Fondeado")&&(
+                      <div style={{fontSize:11,color:B.gray,marginBottom:10}}>Atracado fuera de Marín, aún de camino — la ETA de abajo es la llegada estimada a Marín.</div>
                     )}
                     <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
                       <div>

@@ -162,7 +162,7 @@ export function buildCalls(esperados, puerto, prevCalls = [], fallbackYear) {
   const ENRICH_FIELDS = [
     'imo', 'gt', 'dwt', 'len', 'beam', 'flag', 'vesselType', 'built', 'callsign',
     'aisStatus', 'aisEta', 'aisSpeed', 'aisDraught', 'aisDestination', 'aisAt',
-    'aisAtMarin', 'aisToFinal',
+    'aisAtMarin', 'aisToFinal', 'aisArrivedMarin',
   ];
 
   // Persistencia: recupera del JSON anterior la ETA/ETD que ya no aparece

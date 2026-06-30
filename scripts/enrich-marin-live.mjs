@@ -87,8 +87,12 @@ function applyLive(call, live, scrapedAt) {
   call.aisDestination = live.destination || '';
   call.aisAt = scrapedAt; // instante del snapshot (hora España), no "X min ago"
   // Booleanos derivados (matching en el script, no en la vista):
-  call.aisAtMarin = destIsMarin(live.destination);            // el AIS lo sitúa en/hacia Marín
+  call.aisAtMarin = destIsMarin(live.destination);            // destino AIS = Marín (rumbo o ya en Marín)
   call.aisToFinal = !call.aisAtMarin && destMatchesPort(live.destination, call.to); // Marín es escala intermedia
+  // ¿YA ha llegado a Marín? Atracado/fondeado con destino Marín y SIN ETA pendiente:
+  // un buque parado con ETA futura está en otro punto camino de Marín, no en Marín.
+  call.aisArrivedMarin =
+    call.aisAtMarin && (call.aisStatus === 'Atracado' || call.aisStatus === 'Fondeado') && !call.aisEta;
 }
 
 async function main() {
