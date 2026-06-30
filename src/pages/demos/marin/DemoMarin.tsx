@@ -15,7 +15,6 @@ const LOGO_NO  = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5
 
 
 const CALLS     = data.calls;
-const TUG       = data.tugService;
 const META      = data.meta;
 
 function fmt(iso) {
@@ -74,48 +73,7 @@ function TimeField({ label, value, isReal, isEmpty }) {
   );
 }
 
-function minsFromTime(t: string) {
-  const [h, m] = t.split(":").map(Number);
-  return h * 60 + m;
-}
-
-function TugStep({ code, label, planned, real, last }) {
-  const done = !!real;
-  const isLate = real && planned && (minsFromTime(real) - minsFromTime(planned)) > 5;
-  return (
-    <div style={{display:"flex",gap:10,alignItems:"flex-start"}}>
-      <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
-        <div style={{width:30,height:30,borderRadius:"50%",display:"flex",alignItems:"center",
-          justifyContent:"center",flexShrink:0,fontSize:9,fontWeight:800,
-          background:done?B.navy:B.grayLight,color:done?B.cyan:B.gray}}>{code}</div>
-        {!last&&<div style={{width:2,height:18,background:done?B.cyan:B.grayLight,marginTop:2,borderRadius:1}}/>}
-      </div>
-      <div style={{paddingBottom:last?0:6,flex:1}}>
-        <div style={{fontSize:11,fontWeight:700,color:done?B.navy:B.gray}}>{label}</div>
-        <div style={{display:"flex",alignItems:"center",gap:10,marginTop:2}}>
-          <span style={{fontSize:10,color:B.gray}}>Prev. {planned??"—"}</span>
-          {real?(
-            <span style={{fontSize:11,fontWeight:700,
-              color:isLate?B.danger:B.success,fontFamily:"'Courier New',monospace"}}>
-              {real}
-              {isLate&&(
-                <span style={{marginLeft:6,fontSize:9,fontWeight:800,
-                  background:"#FEE2E2",color:B.danger,padding:"1px 5px",borderRadius:4}}>
-                  ⚠ tarde
-                </span>
-              )}
-            </span>
-          ):(
-            <span style={{fontSize:11,color:B.grayLight}}>—</span>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function Detail({ call, onClose }) {
-  const hasTug = call.id === TUG.callId;
   const isAlert = call.status === "Alerta";
   const [tab, setTab] = useState("operacion");
 
@@ -168,7 +126,7 @@ function Detail({ call, onClose }) {
 
       {/* Tabs */}
       <div style={{display:"flex",borderBottom:`2px solid ${B.grayLight}`,background:B.offWhite,flexShrink:0}}>
-        {[["operacion","Operación"],["servicios","Servicios"],["documentos","Documentos"]].map(([k,l])=>(
+        {[["operacion","Operación"],["ruta","Ruta"]].map(([k,l])=>(
           <button key={k} onClick={()=>setTab(k)} style={{
             flex:1,padding:"12px 0",border:"none",background:"transparent",
             fontSize:11,fontWeight:800,cursor:"pointer",letterSpacing:"0.05em",fontFamily:"inherit",
@@ -181,32 +139,17 @@ function Detail({ call, onClose }) {
 
       <div style={{padding:24,flex:1}}>
         {tab==="operacion"&&<>
-          {/* Route */}
-          {(() => {
-            const stops = [
-              { label: "ORIGEN", name: call.from, here: false },
-              { label: "ESCALA", name: "Marín", here: true },
-              { label: "DESTINO", name: call.to, here: false },
-            ].filter(st => st.name && st.name !== "—");
-            return (
-              <div style={{marginBottom:20}}>
-                <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:6,background:B.offWhite,borderRadius:12,padding:"14px 12px",border:`1px solid ${B.grayLight}`,flexWrap:"wrap"}}>
-                  {stops.flatMap((st, i) => {
-                    const node = (
-                      <div key={st.label} style={{textAlign:"center",minWidth:58}}>
-                        <div style={{fontSize:8,color:st.here?B.cyan:B.gray,fontWeight:800,letterSpacing:"0.04em",marginBottom:3}}>{st.label}</div>
-                        <div style={{fontSize:st.here?13:12,fontWeight:st.here?800:700,color:st.here?B.cyan:B.navy}}>{st.name}</div>
-                      </div>
-                    );
-                    return i === 0 ? [node] : [<span key={st.label + "_s"} style={{color:B.grayLight,fontSize:16,alignSelf:"center"}}>›</span>, node];
-                  })}
-                </div>
-                {!call.aisAtMarin && call.aisDestination && (
-                  <div style={{fontSize:10,color:B.gray,marginTop:6,textAlign:"center"}}>Rumbo actual (AIS): {call.aisDestination}</div>
-                )}
-              </div>
-            );
-          })()}
+          {/* Escala */}
+          <div style={{display:"flex",gap:12,background:B.offWhite,borderRadius:12,padding:"14px 18px",marginBottom:20,border:`1px solid ${B.grayLight}`}}>
+            <div style={{flex:1}}>
+              <div style={{fontSize:9,color:B.gray,fontWeight:800,letterSpacing:"0.06em",marginBottom:3}}>PUERTO DE ESCALA</div>
+              <div style={{fontSize:14,fontWeight:700,color:B.navy}}>{META.port}</div>
+            </div>
+            <div style={{flex:1,textAlign:"right"}}>
+              <div style={{fontSize:9,color:B.gray,fontWeight:800,letterSpacing:"0.06em",marginBottom:3}}>Nº DE ESCALA</div>
+              <div style={{fontSize:14,fontWeight:700,color:B.navy,fontFamily:"'Courier New',monospace"}}>{call.id}</div>
+            </div>
+          </div>
 
           {/* Times */}
           <div style={{marginBottom:20}}>
@@ -307,77 +250,51 @@ function Detail({ call, onClose }) {
           </div>
         </>}
 
-        {tab==="servicios"&&<>
-          {hasTug?(
-            <div>
-              <div style={{fontSize:10,fontWeight:800,color:B.gray,letterSpacing:"0.08em",marginBottom:10}}>REMOLQUE</div>
-              <div style={{background:B.offWhite,borderRadius:12,padding:18,border:`1px solid ${B.grayLight}`}}>
-                <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:16}}>
-                  <div>
-                    <div style={{fontSize:15,fontWeight:800,color:B.navy}}>{TUG.tugboat}</div>
-                    <div style={{fontSize:11,color:B.gray,marginTop:2}}>Parte nº {TUG.reportNumber} · {TUG.powerPct}% potencia</div>
-                  </div>
-                  <span style={{padding:"3px 10px",borderRadius:99,fontSize:9,fontWeight:800,
-                    letterSpacing:"0.05em",background:"#DCFCE7",color:"#166534"}}>
-                    {TUG.status==="en_curso"?"⚠ EN CURSO":"COMPLETADO"}
-                  </span>
-                </div>
-                <div style={{marginBottom:16}}>
-                  {[
-                    ["IR",  "Salida base",  TUG.times.ir_at_planned,  TUG.times.ir_at_real],
-                    ["COS", "Al costado",   TUG.times.cos_at_planned, TUG.times.cos_at_real],
-                    ["RC",  "Recoge cabo",  TUG.times.rc_at_planned,  TUG.times.rc_at_real],
-                    ["SC",  "Sale costado", TUG.times.sc_at_planned,  TUG.times.sc_at_real],
-                    ["FR",  "Llega a base", TUG.times.fr_at_planned,  TUG.times.fr_at_real],
-                  ].map(([c,l,p,r],i,a)=>(
-                    <TugStep key={c} code={c} label={l} planned={p} real={r} last={i===a.length-1}/>
-                  ))}
-                </div>
-                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8}}>
-                  {[["Patrón",TUG.crew.patron],["Mecánico",TUG.crew.mecanico],["Marinero",TUG.crew.marinero]].map(([r,n])=>(
-                    <div key={r} style={{background:B.white,borderRadius:8,padding:"8px 10px",border:`1px solid ${B.grayLight}`}}>
-                      <div style={{fontSize:9,color:B.gray,fontWeight:800,letterSpacing:"0.05em"}}>{r.toUpperCase()}</div>
-                      <div style={{fontSize:12,color:B.navy,fontWeight:700,marginTop:2}}>{n}</div>
+        {tab==="ruta"&&<>
+          <div style={{marginBottom:14}}>
+            <div style={{fontSize:10,fontWeight:800,color:B.gray,letterSpacing:"0.08em",marginBottom:4}}>RUTA DEL BUQUE</div>
+            <div style={{fontSize:11,color:B.gray}}>Travesía conocida, con los tiempos de la escala en Marín. Otras escalas se mostrarán cuando haya datos.</div>
+          </div>
+          {(() => {
+            const ata = call.status!=="Prevista" && call.eta ? fmt(new Date(new Date(call.eta).getTime()+25*60000)) : null;
+            const legs = [];
+            if (call.from && call.from!=="—") legs.push({ label:"ORIGEN", port:call.from });
+            legs.push({ label:"ESCALA", port:"Marín", here:true });
+            if (call.to && call.to!=="—") legs.push({ label:"DESTINO", port:call.to, etaAis: call.aisToFinal && call.aisEta ? call.aisEta : "" });
+            return (
+              <div>
+                {legs.map((leg, i) => (
+                  <div key={leg.label} style={{display:"flex",gap:12}}>
+                    <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+                      <div style={{width:13,height:13,borderRadius:"50%",flexShrink:0,marginTop:2,background:leg.here?B.cyan:B.white,border:`2px solid ${leg.here?B.cyan:B.grayLight}`}}/>
+                      {i<legs.length-1 && <div style={{flex:1,width:2,background:B.grayLight,margin:"2px 0"}}/>}
                     </div>
-                  ))}
-                </div>
+                    <div style={{flex:1,paddingBottom: i<legs.length-1?18:0}}>
+                      <div style={{fontSize:9,color:B.gray,fontWeight:800,letterSpacing:"0.05em"}}>{leg.label}</div>
+                      <div style={{fontSize:15,fontWeight:800,color:leg.here?B.cyan:B.navy}}>{leg.port}</div>
+                      {leg.here && (
+                        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",rowGap:8,columnGap:12,marginTop:8,background:B.offWhite,borderRadius:10,padding:"10px 12px",border:`1px solid ${B.grayLight}`}}>
+                          {[["ETA · Llegada prevista",fmt(call.eta)],["ATA · Llegada real",ata||"—"],["ETD · Salida prevista",fmt(call.etd)],["ATD · Salida real","—"]].map(([l,v]) => (
+                            <div key={l}>
+                              <div style={{fontSize:9,color:B.gray,fontWeight:700,marginBottom:2}}>{l}</div>
+                              <div style={{fontSize:12,fontWeight:700,color:B.navy,fontFamily:"'Courier New', monospace"}}>{v}</div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      {!leg.here && leg.etaAis && (
+                        <div style={{fontSize:11,color:B.cyan,fontWeight:600,marginTop:2}}>ETA estimada (AIS): {fmt(leg.etaAis)}</div>
+                      )}
+                    </div>
+                  </div>
+                ))}
               </div>
-            </div>
-          ):(
-            <div style={{background:B.offWhite,borderRadius:12,padding:32,textAlign:"center",
-              color:B.gray,border:`1px solid ${B.grayLight}`}}>
-              <div style={{fontSize:28,marginBottom:8}}>📋</div>
-              <div style={{fontSize:13,fontWeight:600}}>Sin servicios registrados aún</div>
-            </div>
+            );
+          })()}
+          {!call.aisAtMarin && call.aisDestination && (
+            <div style={{fontSize:11,color:B.gray,marginTop:14,padding:"10px 12px",background:B.offWhite,borderRadius:10,border:`1px solid ${B.grayLight}`}}>🛰 Rumbo actual (AIS): {call.aisStatus==="Navegando"?"navegando hacia":"en"} {call.aisDestination}{call.aisEta?` · ETA ${fmt(call.aisEta)}`:""}.</div>
           )}
         </>}
-
-        {tab==="documentos"&&(
-          <div style={{display:"flex",flexDirection:"column",gap:10}}>
-            {hasTug&&(
-              <div style={{display:"flex",alignItems:"center",gap:12,padding:"12px 16px",
-                background:B.offWhite,borderRadius:10,border:`1px solid ${B.grayLight}`}}>
-                <div style={{width:38,height:38,background:B.cyanPale,borderRadius:8,
-                  display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>📄</div>
-                <div style={{flex:1}}>
-                  <div style={{fontSize:13,fontWeight:700,color:B.navy}}>Parte de remolque nº {TUG.reportNumber}</div>
-                  <div style={{fontSize:11,color:B.gray}}>Recibido vía WhatsApp · 11/05/2026 · OCR completado</div>
-                </div>
-                <span style={{fontSize:9,fontWeight:800,color:B.success,background:"#DCFCE7",
-                  padding:"3px 8px",borderRadius:6,letterSpacing:"0.04em"}}>✓ OCR</span>
-              </div>
-            )}
-            <div style={{display:"flex",alignItems:"center",gap:12,padding:"12px 16px",
-              background:B.offWhite,borderRadius:10,border:`1px solid ${B.grayLight}`}}>
-              <div style={{width:38,height:38,background:"#EDE9FE",borderRadius:8,
-                display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>📋</div>
-              <div style={{flex:1}}>
-                <div style={{fontSize:13,fontWeight:700,color:B.navy}}>NOA · {call.id}</div>
-                <div style={{fontSize:11,color:B.gray}}>Notice of Arrival · AP Marín</div>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
