@@ -616,11 +616,10 @@ export default function DemoMarin() {
                     <td style={{padding:"11px 14px"}}><Badge status={c.status}/></td>
                     <td style={{padding:"11px 14px"}}>
                       <div style={{fontWeight:800,fontSize:13,color:isAl?B.danger:B.navy}}>{c.name}{c.aisStatus && (() => {
-                        const atMarin = c.aisAtMarin;
-                        const disc = c.status==="Prevista" && (c.aisStatus==="Atracado"||c.aisStatus==="Fondeado") && atMarin;
-                        const sailing = c.aisStatus==="Navegando" && atMarin;
-                        if (!disc && !sailing) return null;
-                        return <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,verticalAlign:"middle",background:disc?"#FEF3C7":"#E1F5FE",color:disc?B.warning:B.cyan}}>{disc?"⚓ ya en Marín (AIS)":"▸ navegando → Marín"}</span>;
+                        const arrived = c.status==="Prevista" && c.aisArrivedMarin;
+                        const bound = c.status==="Prevista" && c.aisAtMarin && !c.aisArrivedMarin;
+                        if (!arrived && !bound) return null;
+                        return <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,verticalAlign:"middle",background:arrived?"#FEF3C7":"#E1F5FE",color:arrived?B.warning:B.cyan}}>{arrived?"⚓ ya en Marín (AIS)":"▸ rumbo a Marín"}</span>;
                       })()}</div>
                       <div style={{fontSize:10,color:B.gray,marginTop:1,display:"flex",alignItems:"center",gap:5}}>
                         {c.imo && c.imo !== '—' && <span>IMO {c.imo}</span>}
