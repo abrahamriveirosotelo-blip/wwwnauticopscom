@@ -8,7 +8,7 @@
   "calls": [
     {
       "id": "H20260624001",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "—",
       "name": "NAVIG8.EXCEL",
       "gt": 30380,
@@ -19,9 +19,7 @@
       "eta": "2026-06-24T21:30",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle DCS según lo previsto."
+      "to": "—"
     },
     {
       "id": "H20260629002",
@@ -40,7 +38,7 @@
     },
     {
       "id": "H20260629003",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "—",
       "name": "IJBORG",
       "gt": 8999,
@@ -51,7 +49,9 @@
       "eta": "2026-06-29T12:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle TI según lo previsto."
     },
     {
       "id": "H20260630004",
@@ -85,53 +85,21 @@
     },
     {
       "id": "H20260630006",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "ERDEK",
       "gt": 5797,
       "len": 125,
       "berth": "DCS",
       "agent": "—",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-06-30T12:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260624001",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
       "id": "H20260630007",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "NQ LILIUM",
-      "gt": 5744,
-      "len": 116,
-      "berth": "RSF",
-      "agent": "MM",
-      "op": "Entrada",
-      "eta": "2026-06-30T14:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260630008",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "CRINIS",
-      "gt": 17025,
-      "len": 169,
-      "berth": "CPA",
-      "agent": "PAM",
-      "op": "Entrada",
-      "eta": "2026-06-30T14:15",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260630009",
       "status": "Prevista",
       "imo": "—",
       "name": "KRITI.SAILOR",
@@ -146,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630010",
+      "id": "H20260630008",
       "status": "Prevista",
       "imo": "—",
       "name": "ATROTOS",
@@ -161,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630011",
+      "id": "H20260630009",
       "status": "Prevista",
       "imo": "—",
       "name": "BUENAVISTA.EXPRESS",
@@ -176,22 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630012",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "KING ARTHUR",
-      "gt": 4761,
-      "len": 104,
-      "berth": "RSF",
-      "agent": "E.CIA",
-      "op": "Entrada",
-      "eta": "2026-06-30T20:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260630013",
+      "id": "H20260630010",
       "status": "Prevista",
       "imo": "—",
       "name": "OTIS",
@@ -206,7 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630014",
+      "id": "H20260630011",
       "status": "Prevista",
       "imo": "—",
       "name": "GAS.ESCO",
@@ -221,13 +174,13 @@
       "to": "—"
     },
     {
-      "id": "H20260630015",
+      "id": "H20260630012",
       "status": "Prevista",
       "imo": "—",
       "name": "MED NORDIC",
       "gt": 5651,
       "len": 129,
-      "berth": "RSN",
+      "berth": "RSS",
       "agent": "IBM",
       "op": "Entrada",
       "eta": "2026-06-30T23:00",
@@ -236,7 +189,7 @@
       "to": "—"
     },
     {
-      "id": "H20260701016",
+      "id": "H20260701013",
       "status": "Prevista",
       "imo": "—",
       "name": "DING.HENG.23",
@@ -251,7 +204,7 @@
       "to": "—"
     },
     {
-      "id": "H20260701017",
+      "id": "H20260701014",
       "status": "Prevista",
       "imo": "—",
       "name": "DARMIK",
@@ -260,19 +213,19 @@
       "berth": "FOR",
       "agent": "BER",
       "op": "Entrada",
-      "eta": "2026-07-01T10:00",
+      "eta": "2026-07-01T04:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260701018",
+      "id": "H20260701015",
       "status": "Prevista",
       "imo": "—",
       "name": "DH.ADMIRAL",
       "gt": 6052,
       "len": 120,
-      "berth": "PET",
+      "berth": "PEN",
       "agent": "E.CIA",
       "op": "Entrada",
       "eta": "2026-07-01T18:00",
@@ -281,7 +234,7 @@
       "to": "—"
     },
     {
-      "id": "H20260701019",
+      "id": "H20260701016",
       "status": "Prevista",
       "imo": "—",
       "name": "ORUBA",
@@ -296,7 +249,7 @@
       "to": "—"
     },
     {
-      "id": "H20260702020",
+      "id": "H20260702017",
       "status": "Prevista",
       "imo": "—",
       "name": "LILA.VANCOUVER",
@@ -311,7 +264,37 @@
       "to": "—"
     },
     {
-      "id": "H20260704022",
+      "id": "H20260703018",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "KING ARTHUR",
+      "gt": 4761,
+      "len": 104,
+      "berth": "RSF",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-03T20:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260704019",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "NQ VICTORIA",
+      "gt": 5303,
+      "len": 115,
+      "berth": "RSF",
+      "agent": "IBM",
+      "op": "Entrada",
+      "eta": "2026-07-04T02:30",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260704021",
       "status": "Prevista",
       "imo": "—",
       "name": "SSI.FORMIDABLE",
@@ -324,6 +307,23 @@
       "etd": "",
       "from": "—",
       "to": "—"
+    },
+    {
+      "id": "H20260705022",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "SNP.STAR",
+      "gt": 2474,
+      "len": 82,
+      "berth": "TI",
+      "agent": "BER",
+      "op": "Entrada",
+      "eta": "2026-07-05T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—",
+      "affectedBy": "H20260629003",
+      "affectRisk": "ALTO"
     },
     {
       "id": "H20260705023",
@@ -354,10 +354,25 @@
       "etd": "",
       "from": "—",
       "to": "—"
+    },
+    {
+      "id": "H20260706025",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "ALICE.COSULICH",
+      "gt": 8847,
+      "len": 113,
+      "berth": "ENA",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-06T09:45",
+      "etd": "",
+      "from": "—",
+      "to": "—"
     }
   ],
   "tugService": {
-    "callId": "H20260624001",
+    "callId": "H20260629003",
     "reportNumber": "031245",
     "tugboat": "REMOLCADOR ODIEL",
     "powerPct": 70,
@@ -384,18 +399,18 @@
     }
   },
   "milestones": {
-    "H20260624001": [
+    "H20260629003": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "24/06 · 21:55",
+        "time": "29/06 · 12:25",
         "by": "Práctico (Huelva)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "24/06 · 23:00",
-        "by": "Agente: NEX"
+        "time": "29/06 · 13:30",
+        "by": "Agente: BER"
       },
       {
         "label": "Fin de operaciones",

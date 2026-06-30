@@ -71,6 +71,21 @@
       "to": "MAHON"
     },
     {
+      "id": "A202600463",
+      "status": "Prevista",
+      "imo": "9083043",
+      "name": "NANTO",
+      "gt": 7550,
+      "len": 151.14,
+      "berth": "11",
+      "agent": "EUROPEAN FORWARDING SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-07-01T10:00",
+      "etd": "2026-07-01T21:00",
+      "from": "DERINCE",
+      "to": "BARCELONA"
+    },
+    {
       "id": "A202600446",
       "status": "Prevista",
       "imo": "9398773",
