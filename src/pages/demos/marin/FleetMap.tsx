@@ -126,8 +126,11 @@ export default function FleetMap({ calls, fmt, onSelect }) {
           este div) puede salirse del mapa sin cortarse, y los z-index de Leaflet quedan
           contenidos por debajo del drawer de la escala. */}
       <div style={{ position: "relative", isolation: "isolate" }}>
-        {/* Capa de recorte: redondea las esquinas del mapa (tiles). */}
-        <div style={{ borderRadius: 12, overflow: "hidden", border: `1px solid ${C.gray}22` }}>
+        {/* Capa de recorte: redondea las esquinas del mapa (tiles). isolation:isolate crea
+            su propio contexto de apilamiento, así los z-index internos de Leaflet (200–700)
+            quedan CONTENIDOS aquí y no tapan la tarjeta de hover ni la nota (que son
+            hermanas de este div, con z-index por encima). */}
+        <div style={{ isolation: "isolate", borderRadius: 12, overflow: "hidden", border: `1px solid ${C.gray}22` }}>
           <div ref={containerRef} style={{ height: 440, width: "100%" }} />
         </div>
 
