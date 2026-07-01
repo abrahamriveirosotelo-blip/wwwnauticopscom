@@ -1,5 +1,6 @@
 import { useState } from "react";
 import data from "./data.json";
+import FleetMap from "./FleetMap";
 
 const B = {
   navyDeep:"#010B24", navy:"#0A1F3D", navyMid:"#0F3460",
@@ -421,6 +422,9 @@ export default function DemoMarin() {
             </div>
           );
         })()}
+
+        {/* Mapa global de la flota: posición AIS en vivo (aisstream) */}
+        <FleetMap calls={CALLS} fmt={fmt}/>
 
         <div style={{background:B.white,borderRadius:12,border:`1px solid ${B.grayLight}`,
           overflow:"hidden",boxShadow:"0 1px 6px rgba(1,11,36,0.06)"}}>
