@@ -160,7 +160,7 @@ export function buildCalls(esperados, puerto, prevCalls = [], fallbackYear) {
   // (los scripts de enrich lo refrescan cuando sí corren). Sin esto, update-marin
   // dejaría imo/gt/dwt y todos los aisX en blanco hasta el siguiente enrich exitoso.
   const ENRICH_FIELDS = [
-    'imo', 'detailId', 'gt', 'dwt', 'len', 'beam', 'flag', 'vesselType', 'built', 'callsign',
+    'imo', 'mmsi', 'detailId', 'gt', 'dwt', 'len', 'beam', 'flag', 'vesselType', 'built', 'callsign',
     'aisStatus', 'aisEta', 'aisSpeed', 'aisDraught', 'aisDestination', 'aisAt',
     'aisAtMarin', 'aisToFinal', 'aisArrivedMarin',
   ];

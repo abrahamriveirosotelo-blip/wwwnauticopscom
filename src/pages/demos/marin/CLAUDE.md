@@ -58,7 +58,7 @@ Ver [demo-data-quality.instructions.md](../../../../.github/instructions/demo-da
 
 ### Enriquecimiento de datos de buque (vesselfinder.com)
 
-El script [`scripts/enrich-marin.mjs`](../../../../scripts/enrich-marin.mjs) (lib en [`scripts/lib/vesselfinder.mjs`](../../../../scripts/lib/vesselfinder.mjs)) busca cada buque por nombre en vesselfinder.com y rellena **datos estáticos**: `imo`, `gt`, `dwt` (peso muerto), `len`, `flag` (bandera), `vesselType`, `built`, `callsign`. Se ejecuta **después** de `update-marin.mjs` (que resetea esos campos en cada actualización).
+El script [`scripts/enrich-marin.mjs`](../../../../scripts/enrich-marin.mjs) (lib en [`scripts/lib/vesselfinder.mjs`](../../../../scripts/lib/vesselfinder.mjs)) busca cada buque por nombre en vesselfinder.com y rellena **datos estáticos**: `imo`, `mmsi`, `gt`, `dwt` (peso muerto), `len`, `flag` (bandera), `vesselType`, `built`, `callsign`. Se ejecuta **después** de `update-marin.mjs` (que resetea esos campos en cada actualización).
 
 **Matching conservador** (los nombres no son únicos): solo se acepta un buque si hay un **único candidato de tipo comercial** con ese nombre exacto, o si el **`Destination` de VesselFinder confirma** la escala (contiene "Marin" para entrantes, o coincide con `to` para salientes). Ante la duda se deja `'—'` — nunca se asigna el IMO/GT de otro barco.
 

@@ -39,7 +39,7 @@ vessels would otherwise render empty.
 
 ### Marín vessel enrichment (vesselfinder.com)
 
-`imo`/`gt`/`dwt`/`len`/`flag`/`vesselType`/`built`/`callsign` are NOT from the port authority —
+`imo`/`mmsi`/`gt`/`dwt`/`len`/`flag`/`vesselType`/`built`/`callsign` are NOT from the port authority —
 `enrich-marin.mjs` fills them from vesselfinder.com **after** `update-marin.mjs`. Matching is **conservative**:
 a vessel is only enriched when there is a single commercial-type result for the exact name,
 or when VesselFinder's `Destination` confirms the call (contains "Marin", or matches `to`).

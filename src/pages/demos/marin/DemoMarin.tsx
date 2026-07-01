@@ -189,6 +189,7 @@ function Detail({ call, onClose }) {
               {(() => {
                 const fields = [
                   ["IMO", call.imo && call.imo !== "—" ? call.imo : ""],
+                  ["MMSI", call.mmsi || ""],
                   ["Tipo", call.vesselType || ""],
                   ["Bandera", call.flag || ""],
                   ["Arqueo (GT)", call.gt ? call.gt.toLocaleString() : ""],

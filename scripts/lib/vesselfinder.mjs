@@ -154,8 +154,13 @@ export function parseDetail(html) {
     '';
 
   const imo = pairs['IMO number'];
+  // MMSI: del resumen "(IMO xxx, MMSI yyy)" o de la fila "IMO / MMSI" (imo / mmsi).
+  const mmsi =
+    ((html.match(/,\s*MMSI\s+(\d{6,9})/i) || [])[1]) ||
+    ((html.match(/\b\d{7}\s*\/\s*(\d{6,9})\b/) || [])[1]) || '';
   return {
     imo: imo && /^\d{7}$/.test(imo) ? imo : null,
+    mmsi,
     name: pairs['Vessel Name'] || '',
     flag: pairs['AIS Flag'] || pairs['Flag'] || '',
     callsign: pairs['Callsign'] || '',
@@ -258,6 +263,7 @@ export function parseLiveData(html) {
 export function pickDetailFields(detail) {
   const out = {};
   if (detail.imo) out.imo = detail.imo;
+  if (detail.mmsi) out.mmsi = detail.mmsi;
   if (detail.gt) out.gt = detail.gt;
   if (detail.dwt) out.dwt = detail.dwt;
   if (detail.loa) out.length = Math.round(detail.loa);

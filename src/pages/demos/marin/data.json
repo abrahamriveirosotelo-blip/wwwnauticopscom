@@ -34,7 +34,8 @@
       "aisEta": "",
       "aisSpeed": 0,
       "aisArrivedMarin": true,
-      "detailId": "9729831"
+      "detailId": "9729831",
+      "mmsi": "538005907"
     },
     {
       "id": "M202600405",
@@ -81,7 +82,8 @@
       "aisEta": "",
       "aisSpeed": 0,
       "aisArrivedMarin": true,
-      "detailId": "9604964"
+      "detailId": "9604964",
+      "mmsi": "538011061"
     },
     {
       "id": "M202600426",
@@ -111,7 +113,8 @@
       "aisEta": "",
       "aisSpeed": 0,
       "aisArrivedMarin": true,
-      "detailId": "9838462"
+      "detailId": "9838462",
+      "mmsi": "538008404"
     },
     {
       "id": "M202600427",
@@ -141,7 +144,8 @@
       "aisEta": "",
       "aisSpeed": 0,
       "aisArrivedMarin": true,
-      "detailId": "9515010"
+      "detailId": "9515010",
+      "mmsi": "245947000"
     },
     {
       "id": "M202600415",
@@ -171,7 +175,8 @@
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false,
-      "detailId": "9420796"
+      "detailId": "9420796",
+      "mmsi": "244149000"
     },
     {
       "id": "M202600429",
@@ -201,7 +206,8 @@
       "aisToFinal": false,
       "aisSpeed": 0,
       "aisArrivedMarin": false,
-      "detailId": "9312676"
+      "detailId": "9312676",
+      "mmsi": "304444000"
     },
     {
       "id": "M202600416",
@@ -231,7 +237,8 @@
       "aisToFinal": false,
       "aisSpeed": 0,
       "aisArrivedMarin": false,
-      "detailId": "9864760"
+      "detailId": "9864760",
+      "mmsi": "255916084"
     },
     {
       "id": "M202600421",
@@ -263,7 +270,8 @@
       "aisEta": "",
       "aisSpeed": 0,
       "aisArrivedMarin": false,
-      "detailId": "9354399"
+      "detailId": "9354399",
+      "mmsi": "255826000"
     },
     {
       "id": "M202600431",
@@ -293,7 +301,8 @@
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false,
-      "detailId": "9489546"
+      "detailId": "9489546",
+      "mmsi": "246639000"
     }
   ]
 }
