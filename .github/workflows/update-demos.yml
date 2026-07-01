@@ -101,6 +101,13 @@ jobs:
         continue-on-error: true
         run: node scripts/enrich-marin-live.mjs
 
+      # NOTA: la posición AIS (scripts/enrich-marin-ais.mjs, aisstream) NO corre en el
+      # cron. Los buques emiten posición cada varios minutos, así que una ventana de
+      # Actions es demasiado corta para captar la flota. Se ejecuta EN LOCAL con ventana
+      # larga y se commitea data.json a mano (ver src/pages/demos/marin/CLAUDE.md).
+      # buildCalls arrastra las posiciones ya commiteadas, así que update-marin no las
+      # borra. Reactivar aquí cuando haya un servidor con el WebSocket abierto 24/7.
+
       - name: Detectar cambios
         id: check
         run: |

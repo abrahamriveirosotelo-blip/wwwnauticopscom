@@ -1,5 +1,6 @@
 import { useState } from "react";
 import data from "./data.json";
+import FleetMap from "./FleetMap";
 
 const B = {
   navyDeep:"#010B24", navy:"#0A1F3D", navyMid:"#0F3460",
@@ -80,7 +81,7 @@ function Detail({ call, onClose }) {
   return (
     <div style={{position:"fixed",right:0,top:0,bottom:0,width:490,
       background:B.white,boxShadow:`-4px 0 40px rgba(1,11,36,0.2)`,
-      display:"flex",flexDirection:"column",zIndex:100,
+      display:"flex",flexDirection:"column",zIndex:1001,
       fontFamily:"'Nunito',system-ui,sans-serif",overflowY:"auto"}}>
 
       {/* Header */}
@@ -422,6 +423,10 @@ export default function DemoMarin() {
           );
         })()}
 
+        {/* Mapa global de la flota: posición AIS en vivo (aisstream).
+            Clic en un buque → abre su escala (mismo drawer que la tabla). */}
+        <FleetMap calls={CALLS} fmt={fmt} onSelect={setSelected}/>
+
         <div style={{background:B.white,borderRadius:12,border:`1px solid ${B.grayLight}`,
           overflow:"hidden",boxShadow:"0 1px 6px rgba(1,11,36,0.06)"}}>
           <table style={{width:"100%",borderCollapse:"collapse"}}>
@@ -509,7 +514,7 @@ export default function DemoMarin() {
 
       {selected&&<>
         <div onClick={()=>setSelected(null)}
-          style={{position:"fixed",inset:0,background:"rgba(1,11,36,0.45)",zIndex:99}}/>
+          style={{position:"fixed",inset:0,background:"rgba(1,11,36,0.45)",zIndex:1000}}/>
         <Detail call={selected} onClose={()=>setSelected(null)}/>
       </>}
     </div>
