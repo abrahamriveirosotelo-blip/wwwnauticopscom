@@ -32,12 +32,15 @@ const DATA_PATH = join(__dirname, '../src/pages/demos/marin/data.json');
 const URL_ESPERADOS = 'https://www.apmarin.com/es/paginas/buques_esperados';
 const URL_PUERTO    = 'https://www.apmarin.com/es/paginas/buques_puerto';
 
+// Debe coincidir con la cadencia del cron en .github/workflows/update-demos.yml.
+const REFRESH_HOURS = 2;
+
 const SEED = {
   meta: {
     port: 'Puerto de Marín',
     source: 'apmarin.com · buques esperados + en puerto',
     date: '',
-    refreshHours: 12,
+    refreshHours: REFRESH_HOURS,
   },
   calls: [],
 };
@@ -136,7 +139,7 @@ async function main() {
       port: 'Puerto de Marín',
       source: 'apmarin.com · buques esperados + en puerto',
       date: todayStr(),
-      refreshHours: base.meta?.refreshHours ?? 12,
+      refreshHours: REFRESH_HOURS, // se sobrescribe siempre para reflejar la cadencia real del cron
     },
     calls,
   };
