@@ -163,6 +163,9 @@ export function buildCalls(esperados, puerto, prevCalls = [], fallbackYear) {
     'imo', 'mmsi', 'detailId', 'gt', 'dwt', 'len', 'beam', 'flag', 'vesselType', 'built', 'callsign',
     'aisStatus', 'aisEta', 'aisSpeed', 'aisDraught', 'aisDestination', 'aisAt',
     'aisAtMarin', 'aisToFinal', 'aisArrivedMarin',
+    // Posición en vivo (aisstream, enrich-marin-ais.mjs): se arrastra para que un
+    // buque que no emitió en la última ventana conserve su última posición conocida.
+    'aisLat', 'aisLon', 'aisSog', 'aisCog', 'aisHeading', 'aisPosAt',
   ];
 
   // Persistencia: recupera del JSON anterior la ETA/ETD que ya no aparece

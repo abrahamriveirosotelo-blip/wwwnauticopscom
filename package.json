@@ -26,6 +26,8 @@
     "enrich-demo:marin:force": "node scripts/enrich-marin.mjs --force",
     "enrich-demo:marin:live": "node scripts/enrich-marin-live.mjs",
     "enrich-demo:marin:live:dry": "node scripts/enrich-marin-live.mjs --dry-run",
+    "enrich-demo:marin:ais": "node scripts/enrich-marin-ais.mjs",
+    "enrich-demo:marin:ais:dry": "node scripts/enrich-marin-ais.mjs --dry-run",
     "preview:fresh": "npm run update-demo && npm run build && npm run preview"
   },
   "dependencies": {
