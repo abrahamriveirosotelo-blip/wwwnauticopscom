@@ -148,7 +148,9 @@ function collectPositions(WS, key, mmsis, sec, { onFlush, flushSeconds = 0 } = {
     deadlineTimer = setTimeout(finish, sec * 1000);
     // Vuelca a disco cada `flushSeconds` (runs largos): permite commitear progresivamente
     // sin parar el proceso, y que un corte no planificado no pierda más de una ventana.
-    if (onFlush && flushSeconds > 0) flushTimer = setInterval(() => onFlush(positions), flushSeconds * 1000);
+    // Guarda `stopped`: un tick ya encolado no se cancela con clearInterval, así que
+    // sin esto podría colarse un volcado extra tras finish() (Ctrl-C/deadline).
+    if (onFlush && flushSeconds > 0) flushTimer = setInterval(() => { if (!stopped) onFlush(positions); }, flushSeconds * 1000);
     process.once('SIGINT', onSigint);
     connect();
     console.log(`aisstream · ${mmsis.length} MMSI · ventana ${sec}s (reconecta si el socket se cae${onFlush && flushSeconds > 0 ? `; vuelca cada ${flushSeconds}s` : ''})…`);
