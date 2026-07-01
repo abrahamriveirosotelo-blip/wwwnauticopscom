@@ -50,7 +50,7 @@ function FitBounds({ points }) {
   return null;
 }
 
-export default function FleetMap({ calls, fmt }) {
+export default function FleetMap({ calls, fmt, onSelect }) {
   // Un buque puede tener varias escalas: dedupe por MMSI (o nombre) quedándonos con
   // la que tenga posición. Solo se pintan los que tienen lat/lon.
   const vessels = useMemo(() => {
@@ -100,7 +100,12 @@ export default function FleetMap({ calls, fmt }) {
             const deg = v.aisHeading ?? v.aisCog ?? null;
             const color = statusColor(v.aisStatus);
             return (
-              <Marker key={v.mmsi || v.name} position={[v.aisLat, v.aisLon]} icon={vesselIcon(deg, color)}>
+              <Marker
+                key={v.mmsi || v.name}
+                position={[v.aisLat, v.aisLon]}
+                icon={vesselIcon(deg, color)}
+                eventHandlers={onSelect ? { click: () => onSelect(v) } : undefined}
+              >
                 <Tooltip direction="top" offset={[0, -12]}>
                   <div style={{ fontWeight: 800, color: C.navy }}>{v.name}</div>
                   <div style={{ fontSize: 11, color: C.gray, marginTop: 2 }}>
@@ -114,6 +119,11 @@ export default function FleetMap({ calls, fmt }) {
                   {v.aisPosAt && (
                     <div style={{ fontSize: 10, color: C.gray, marginTop: 2 }}>
                       posición: {fmt ? fmt(v.aisPosAt) : v.aisPosAt}
+                    </div>
+                  )}
+                  {onSelect && (
+                    <div style={{ fontSize: 10, color: C.cyan, fontWeight: 700, marginTop: 3 }}>
+                      clic para ver la escala →
                     </div>
                   )}
                 </Tooltip>

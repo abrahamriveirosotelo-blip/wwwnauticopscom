@@ -423,8 +423,9 @@ export default function DemoMarin() {
           );
         })()}
 
-        {/* Mapa global de la flota: posición AIS en vivo (aisstream) */}
-        <FleetMap calls={CALLS} fmt={fmt}/>
+        {/* Mapa global de la flota: posición AIS en vivo (aisstream).
+            Clic en un buque → abre su escala (mismo drawer que la tabla). */}
+        <FleetMap calls={CALLS} fmt={fmt} onSelect={setSelected}/>
 
         <div style={{background:B.white,borderRadius:12,border:`1px solid ${B.grayLight}`,
           overflow:"hidden",boxShadow:"0 1px 6px rgba(1,11,36,0.06)"}}>
