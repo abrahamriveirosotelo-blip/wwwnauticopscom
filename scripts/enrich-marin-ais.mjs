@@ -81,12 +81,14 @@ function collectPositions(WS, key, mmsis, sec, { onFlush, flushSeconds = 0 } = {
     let stopped = false;
     let deadlineTimer = null;
     let flushTimer = null;
+    let reconnectTimer = null;
 
     const finish = () => {
       if (stopped) return;
       stopped = true;
       clearTimeout(deadlineTimer);
       clearInterval(flushTimer);
+      clearTimeout(reconnectTimer); // no reabrir el socket tras terminar
       process.off('SIGINT', onSigint);
       try { ws && ws.close(); } catch { /* noop */ }
       resolve(positions);
@@ -123,6 +125,7 @@ function collectPositions(WS, key, mmsis, sec, { onFlush, flushSeconds = 0 } = {
     };
 
     const connect = () => {
+      if (stopped) return; // finish() pudo dispararse durante el backoff de reconexión
       ws = new WS(STREAM_URL);
       ws.binaryType = 'arraybuffer'; // aisstream envía frames binarios
       ws.addEventListener('open', () => ws.send(JSON.stringify({
@@ -138,7 +141,7 @@ function collectPositions(WS, key, mmsis, sec, { onFlush, flushSeconds = 0 } = {
         const leftMs = endAt - Date.now();
         if (leftMs <= 1500) { finish(); return; } // ya casi en el deadline: no reconectar
         console.log(`  … socket cerrado; reconectando (${Math.round(leftMs / 1000)}s restantes, ${positions.size}/${mmsis.length} captados)`);
-        setTimeout(connect, 1000);
+        reconnectTimer = setTimeout(connect, 1000);
       });
     };
 
