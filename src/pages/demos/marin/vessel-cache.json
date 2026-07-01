@@ -29,7 +29,8 @@
     "confidence": "destination-confirmed",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-06-29T16:53:50Z",
-    "detailId": "9354399"
+    "detailId": "9354399",
+    "mmsi": "255826000"
   },
   "NATALIE::PASAJES": {
     "resolved": true,
@@ -61,7 +62,8 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-06-29T16:53:17Z",
-    "detailId": "9729831"
+    "detailId": "9729831",
+    "mmsi": "538005907"
   },
   "ANNA::ROUEN": {
     "resolved": false,
@@ -118,7 +120,8 @@
     "confidence": "destination-confirmed",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-06-29T16:53:28Z",
-    "detailId": "9604964"
+    "detailId": "9604964",
+    "mmsi": "538011061"
   },
   "DANZIGERGRACHT::CUXHAVEN": {
     "resolved": true,
@@ -135,7 +138,8 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-06-29T16:53:40Z",
-    "detailId": "9420796"
+    "detailId": "9420796",
+    "mmsi": "244149000"
   },
   "NICOLA L::PASAJES": {
     "resolved": true,
@@ -183,7 +187,8 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-06-29T16:53:47Z",
-    "detailId": "9864760"
+    "detailId": "9864760",
+    "mmsi": "255916084"
   },
   "FEDERAL ST LAURENT::A ORDENES": {
     "resolved": true,
@@ -200,7 +205,8 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-06-29T16:53:31Z",
-    "detailId": "9838462"
+    "detailId": "9838462",
+    "mmsi": "538008404"
   },
   "VERTOM PORTO::CHALKIS": {
     "resolved": true,
@@ -217,7 +223,8 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-06-29T16:53:37Z",
-    "detailId": "9515010"
+    "detailId": "9515010",
+    "mmsi": "245947000"
   },
   "CLARA::BRAKE": {
     "resolved": true,
@@ -234,7 +241,8 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-06-29T16:53:44Z",
-    "detailId": "9312676"
+    "detailId": "9312676",
+    "mmsi": "304444000"
   },
   "LARIXBORG::A ORDENES": {
     "resolved": true,
@@ -251,6 +259,7 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-06-30T10:17:43Z",
-    "detailId": "9489546"
+    "detailId": "9489546",
+    "mmsi": "246639000"
   }
 }

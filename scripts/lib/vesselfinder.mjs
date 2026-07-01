@@ -86,9 +86,15 @@ export function destMatchesPort(dest, port) {
   return p.some(t => d.includes(t));
 }
 
-/** ¿El destino AIS es Marín (token "MARIN")? */
+/** ¿El destino AIS es Marín? Reconoce el nombre ("MARIN" como token) y el UN/LOCODE
+ *  de Marín (ESMAR), que VesselFinder a veces reporta como "ES MAR" o "ESMAR" en lugar
+ *  del topónimo (p. ej. FWN ATLANTIDE). Exigir "ES"+"MAR" contiguos evita el "MAR"
+ *  suelto de otros topónimos (Mar del Plata, Mar Ligure…). */
 export function destIsMarin(dest) {
-  return normName(dest).split(' ').includes('MARIN');
+  const toks = normName(dest).split(' ').filter(Boolean);
+  if (toks.includes('MARIN') || toks.includes('ESMAR')) return true;
+  const i = toks.indexOf('ES');
+  return i !== -1 && toks[i + 1] === 'MAR';
 }
 
 /** ¿Es un tipo de buque mercante (candidato válido para una escala de Marín)? */
@@ -149,8 +155,8 @@ export function parseDetail(html) {
 
   // El destino usa otro marcado (vilabel + valor en el siguiente bloque).
   const dest =
-    (html.match(/Destination<\/[^>]+>\s*<[^>]+>([^<]{2,})</i) || [])[1] ||
-    (html.match(/"vilabel">Destination[\s\S]{0,40}?>([^<]{2,})</i) || [])[1] ||
+    (html.match(/Destination<\/[^>]+>\s*<[^>]+>([^<]{2,})\s*</i) || [])[1] ||
+    (html.match(/"vilabel">Destination[\s\S]{0,40}?>([^<]{2,})\s*</i) || [])[1] ||
     '';
 
   const imo = pairs['IMO number'];
@@ -177,9 +183,9 @@ export function parseDetail(html) {
 export function destinationConfirms(vfDestination, call) {
   const d = normName(vfDestination);
   if (!d) return false;
-  // Token completo "MARIN" (normName ya tokeniza por espacios): evita falsos
-  // positivos como "SAN MARINO" o "MARINA DI ...".
-  if (d.split(' ').includes('MARIN')) return true; // entrante
+  // Entrante: nombre "MARIN" (token) o el LOCODE ESMAR — ver destIsMarin, que evita
+  // falsos positivos ("SAN MARINO"/"MARINA DI ...") y reconoce "ES MAR"/"ESMAR".
+  if (destIsMarin(vfDestination)) return true; // entrante
   const to = normName(call.to); // normName('—') === '' → basta con comprobar `to`
   if (to && d.split(' ').some(tok => tok.length > 3 && to.includes(tok))) return true;
   return false;
@@ -237,12 +243,12 @@ export function parseLiveData(html) {
   // la frase resumen traiga una ETA, y viceversa.
   const speedM = html.match(/speed of\s*([\d.]+)\s*knots/i);
   const speed = speedM ? parseFloat(speedM[1]) || 0 : 0;
-  const etaSpan = (html.match(/_mcol12ext">ETA:\s*([^<]+)</i) || [])[1];
+  const etaSpan = (html.match(/_mcol12ext">ETA:\s*([^<]+?)\s*</i) || [])[1];
   const etaSum = (html.match(/expected to arrive there on\s*<strong>([^<]+)<\/strong>/i) || [])[1];
   const aisEta = clean(etaSpan || etaSum || '');
 
   const dest =
-    (html.match(/Destination<\/[^>]+>\s*<[^>]+>([^<]{2,})</i) || [])[1] || '';
+    (html.match(/Destination<\/[^>]+>\s*<[^>]+>([^<]{2,})\s*</i) || [])[1] || '';
   const positionReceived = clean(
     (html.match(/id="lastrep"[\s\S]*?<span[^>]*>\s*([^<]+?ago)\s*<\/span>/i) || [])[1]
   );
