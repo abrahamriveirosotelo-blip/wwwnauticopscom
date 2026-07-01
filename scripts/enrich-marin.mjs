@@ -121,6 +121,7 @@ function applyToCall(call, e) {
   call.gt = e.gt ?? 0;
   call.dwt = e.dwt ?? 0;
   call.len = e.len ?? 0;
+  call.beam = e.beam ?? 0;   // la caché ya guarda manga y buildCalls la arrastra; materialízala
   call.flag = e.flag || '';
   call.vesselType = e.vesselType || '';
   call.built = e.built ?? 0;

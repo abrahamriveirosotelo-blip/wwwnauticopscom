@@ -195,6 +195,7 @@ function Detail({ call, onClose }) {
                   ["Arqueo (GT)", call.gt ? call.gt.toLocaleString() : ""],
                   ["Peso muerto", call.dwt ? `${call.dwt.toLocaleString()} t` : ""],
                   ["Eslora", call.len ? `${call.len} m` : ""],
+                  ["Manga", call.beam ? `${call.beam} m` : ""],
                   ["Calado actual", call.aisDraught ? `${call.aisDraught} m` : ""],
                   ["Año", call.built ? String(call.built) : ""],
                   ["Callsign", call.callsign || ""],

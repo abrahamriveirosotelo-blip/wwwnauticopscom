@@ -47,8 +47,10 @@ function mapStatus(navStatus) {
   if (s.includes('moor')) return 'Atracado';
   if (s.includes('anchor')) return 'Fondeado';
   if (s.includes('not under command')) return 'Sin gobierno';
-  if (s.includes('restricted')) return 'Maniobra restringida';
+  // "Constrained by draught" antes que "restricted": un texto tipo "restricted by
+  // draught" debe caer en calado, no en maniobra (el caso de calado tiene prioridad).
   if (s.includes('constrained') || s.includes('draught')) return 'Restringido por calado';
+  if (s.includes('restricted')) return 'Maniobra restringida';
   if (s.includes('aground')) return 'Varado';
   if (s.includes('fishing')) return 'Pescando';
   return navStatus; // estado desconocido: se conserva el texto crudo
