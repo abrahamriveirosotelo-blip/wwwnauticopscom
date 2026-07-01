@@ -81,7 +81,7 @@ function Detail({ call, onClose }) {
   return (
     <div style={{position:"fixed",right:0,top:0,bottom:0,width:490,
       background:B.white,boxShadow:`-4px 0 40px rgba(1,11,36,0.2)`,
-      display:"flex",flexDirection:"column",zIndex:100,
+      display:"flex",flexDirection:"column",zIndex:1001,
       fontFamily:"'Nunito',system-ui,sans-serif",overflowY:"auto"}}>
 
       {/* Header */}
@@ -514,7 +514,7 @@ export default function DemoMarin() {
 
       {selected&&<>
         <div onClick={()=>setSelected(null)}
-          style={{position:"fixed",inset:0,background:"rgba(1,11,36,0.45)",zIndex:99}}/>
+          style={{position:"fixed",inset:0,background:"rgba(1,11,36,0.45)",zIndex:1000}}/>
         <Detail call={selected} onClose={()=>setSelected(null)}/>
       </>}
     </div>

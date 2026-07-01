@@ -101,7 +101,8 @@ export default function FleetMap({ calls, fmt, onSelect }) {
       const m = L.marker([v.aisLat, v.aisLon], { icon: vesselIcon(deg, statusColor(v.aisStatus)) })
         .bindTooltip(vesselTooltip(v, fmt, !!onSelect), { direction: "top", offset: [0, -12] })
         .addTo(layer);
-      if (onSelect) m.on("click", () => onSelect(v));
+      // Cierra el tooltip al clicar para que no quede flotando sobre el drawer.
+      if (onSelect) m.on("click", () => { m.closeTooltip(); onSelect(v); });
       pts.push([v.aisLat, v.aisLon]);
     }
 
@@ -124,7 +125,10 @@ export default function FleetMap({ calls, fmt, onSelect }) {
         </div>
       </div>
 
-      <div style={{ position: "relative", borderRadius: 12, overflow: "hidden", border: `1px solid ${C.gray}22` }}>
+      {/* isolation:isolate crea un contexto de apilamiento propio para el mapa, así los
+          z-index internos de Leaflet (marcadores 600, tooltips 650, popups 700) no se
+          superponen al drawer de la escala (que está por encima con su propio z-index). */}
+      <div style={{ position: "relative", isolation: "isolate", borderRadius: 12, overflow: "hidden", border: `1px solid ${C.gray}22` }}>
         <div ref={containerRef} style={{ height: 440, width: "100%" }} />
 
         {!vessels.length && (
