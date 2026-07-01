@@ -9,8 +9,9 @@
  * ejecutarse DESPUÉS de enrich-marin.mjs (que es quien rellena el `imo`).
  *
  * Además calcula, en el script (no en la vista), los booleanos derivados que la
- * UI necesita: `aisAtMarin` (el destino AIS es Marín, por token) y `aisToFinal`
- * (el destino AIS coincide con el `to` de la AP → Marín es escala intermedia).
+ * UI necesita: `aisAtMarin` (el destino AIS es Marín, por token), `aisToFinal`
+ * (el destino AIS coincide con el `to` de la AP → Marín es escala intermedia) y
+ * `aisArrivedMarin` (atracado/fondeado en Marín y SIN ETA pendiente → ya ha llegado).
  *
  * La ETA del AIS se publica en UTC; aquí se convierte a hora de España para que
  * sea comparable con la ETA de la Autoridad Portuaria (que ya está en local).
@@ -128,6 +129,12 @@ async function main() {
   for (const [imo, detailId] of idByImo) {
     try {
       const liveData = parseLiveData(await fetchText(DETAIL_URL(detailId)));
+      // Parse vacío (p. ej. cambio de layout) → tratar como fallo y NO aplicar:
+      // no sobrescribir el AIS previo bueno con blancos (enfoque best-effort).
+      if (!liveData.navStatus && !liveData.destination) {
+        console.warn(`⚠️  ${imo}: ficha sin datos AIS legibles (¿cambio de layout?) — no se aplica`);
+        continue;
+      }
       seen.set(imo, liveData);
       const st = mapStatus(liveData.navStatus);
       if (st === 'Navegando') navegando++;
