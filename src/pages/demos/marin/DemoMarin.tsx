@@ -160,7 +160,7 @@ function Detail({ call, onClose }) {
                 borderBottom:`1px solid ${B.grayLight}`}}>
                 <div style={{padding:"14px 16px",borderRight:`1px solid ${B.grayLight}`}}>
                   <TimeField label="ETA · Llegada prevista"
-                    value={fmt(call.eta)} isReal={false} isEmpty={false}/>
+                    value={fmt(call.eta)} isReal={false} isEmpty={!call.eta}/>
                   {call.aisAtMarin && call.aisEta && (<div style={{fontSize:11,color:B.cyan,fontWeight:600,marginTop:6}}>AIS · en vivo: {fmt(call.aisEta)}</div>)}
                 </div>
                 <div style={{padding:"14px 16px"}}>
@@ -172,7 +172,7 @@ function Detail({ call, onClose }) {
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:0}}>
                 <div style={{padding:"14px 16px",borderRight:`1px solid ${B.grayLight}`}}>
                   <TimeField label="ETD · Salida prevista"
-                    value={fmt(call.etd)} isReal={false} isEmpty={false}/>
+                    value={fmt(call.etd)} isReal={false} isEmpty={!call.etd}/>
                 </div>
                 <div style={{padding:"14px 16px"}}>
                   <TimeField label="ATD · Salida real"
