@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -8,7 +8,8 @@ import "leaflet/dist/leaflet.css";
  * buque → onSelect(call) (mismo drawer que la tabla).
  *
  * Leaflet a pelo (BSD-2-Clause), sin react-leaflet, para no arrastrar su licencia
- * Hippocratic-2.1. */
+ * Hippocratic-2.1. La tarjeta de hover se renderiza FUERA del contenedor Leaflet
+ * (que tiene overflow:hidden), para que no se corte cerca de los bordes del mapa. */
 
 // Puerto de Marín (Ría de Pontevedra).
 const MARIN = { lat: 42.4053, lon: -8.7020, label: "Puerto de Marín" };
@@ -17,8 +18,6 @@ const C = {
   navy: "#0A1F3D", cyan: "#079FE6", success: "#00C896",
   warning: "#F59E0B", gray: "#64748B", white: "#FFFFFF",
 };
-
-const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
 
 /** Color del marcador según el estado AIS (o gris si desconocido). */
 function statusColor(aisStatus) {
@@ -45,22 +44,11 @@ const marinIcon = L.divIcon({
   className: "", iconSize: [26, 26], iconAnchor: [13, 13],
 });
 
-/** HTML del tooltip de un buque (Leaflet acepta strings en bindTooltip). */
-function vesselTooltip(v, fmt, clickable) {
-  const rows = [
-    `<div style="font-weight:800;color:${C.navy}">${esc(v.name)}</div>`,
-    `<div style="font-size:11px;color:${C.gray};margin-top:2px">${esc(v.aisStatus || "—")}` +
-      `${v.aisSog != null ? ` · ${v.aisSog} kn` : ""}${v.aisCog != null ? ` · rumbo ${Math.round(v.aisCog)}°` : ""}</div>`,
-  ];
-  if (v.aisDestination) rows.push(`<div style="font-size:11px;color:${C.gray}">→ ${esc(v.aisDestination)}</div>`);
-  if (v.aisPosAt) rows.push(`<div style="font-size:10px;color:${C.gray};margin-top:2px">posición: ${esc(fmt ? fmt(v.aisPosAt) : v.aisPosAt)}</div>`);
-  if (clickable) rows.push(`<div style="font-size:10px;color:${C.cyan};font-weight:700;margin-top:3px">clic para ver la escala →</div>`);
-  return rows.join("");
-}
-
 export default function FleetMap({ calls, fmt, onSelect }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
+  // Tarjeta de hover: { x, y, vessel? , marin? } en píxeles del contenedor del mapa.
+  const [hover, setHover] = useState(null);
 
   // Un buque puede tener varias escalas: dedupe por MMSI (o nombre) quedándonos con
   // la que tenga posición. Solo se pintan los que tienen lat/lon.
@@ -81,6 +69,7 @@ export default function FleetMap({ calls, fmt, onSelect }) {
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
+    map.on("movestart", () => setHover(null)); // el hover en píxeles deja de ser válido al mover
     mapRef.current = map;
     return () => { map.remove(); mapRef.current = null; };
   }, []);
@@ -90,27 +79,32 @@ export default function FleetMap({ calls, fmt, onSelect }) {
     const map = mapRef.current;
     if (!map) return;
     const layer = L.layerGroup().addTo(map);
+    const pt = ll => map.latLngToContainerPoint(ll); // píxeles dentro del contenedor
 
-    L.marker([MARIN.lat, MARIN.lon], { icon: marinIcon })
-      .bindTooltip(esc(MARIN.label), { direction: "top", offset: [0, -12] })
-      .addTo(layer);
+    const marin = L.marker([MARIN.lat, MARIN.lon], { icon: marinIcon }).addTo(layer);
+    marin.on("mouseover", () => { const p = pt([MARIN.lat, MARIN.lon]); setHover({ x: p.x, y: p.y, marin: true }); });
+    marin.on("mouseout", () => setHover(null));
 
     const pts = [[MARIN.lat, MARIN.lon]];
     for (const v of vessels) {
       const deg = v.aisHeading ?? v.aisCog ?? null;
-      const m = L.marker([v.aisLat, v.aisLon], { icon: vesselIcon(deg, statusColor(v.aisStatus)) })
-        .bindTooltip(vesselTooltip(v, fmt, !!onSelect), { direction: "top", offset: [0, -12] })
-        .addTo(layer);
-      // Cierra el tooltip al clicar para que no quede flotando sobre el drawer.
-      if (onSelect) m.on("click", () => { m.closeTooltip(); onSelect(v); });
-      pts.push([v.aisLat, v.aisLon]);
+      const ll = [v.aisLat, v.aisLon];
+      const m = L.marker(ll, { icon: vesselIcon(deg, statusColor(v.aisStatus)) }).addTo(layer);
+      m.on("mouseover", () => { const p = pt(ll); setHover({ x: p.x, y: p.y, vessel: v }); });
+      m.on("mouseout", () => setHover(null));
+      if (onSelect) m.on("click", () => { setHover(null); onSelect(v); });
+      pts.push(ll);
     }
 
     if (pts.length <= 1) map.setView([MARIN.lat, MARIN.lon], 8);
     else map.fitBounds(L.latLngBounds(pts), { padding: [40, 40], maxZoom: 11 });
 
     return () => { layer.remove(); };
-  }, [vessels, fmt, onSelect]);
+  }, [vessels, onSelect]);
+
+  const v = hover?.vessel;
+  // Si el hover está cerca del borde superior, la tarjeta se abre HACIA ABAJO.
+  const below = hover ? hover.y < 96 : false;
 
   return (
     <div style={{ marginBottom: 16 }}>
@@ -125,15 +119,49 @@ export default function FleetMap({ calls, fmt, onSelect }) {
         </div>
       </div>
 
-      {/* isolation:isolate crea un contexto de apilamiento propio para el mapa, así los
-          z-index internos de Leaflet (marcadores 600, tooltips 650, popups 700) no se
-          superponen al drawer de la escala (que está por encima con su propio z-index). */}
-      <div style={{ position: "relative", isolation: "isolate", borderRadius: 12, overflow: "hidden", border: `1px solid ${C.gray}22` }}>
-        <div ref={containerRef} style={{ height: 440, width: "100%" }} />
+      {/* Wrapper SIN overflow:hidden e isolation:isolate: la tarjeta de hover (hija de
+          este div) puede salirse del mapa sin cortarse, y los z-index de Leaflet quedan
+          contenidos por debajo del drawer de la escala. */}
+      <div style={{ position: "relative", isolation: "isolate" }}>
+        {/* Capa de recorte: redondea las esquinas del mapa (tiles). */}
+        <div style={{ borderRadius: 12, overflow: "hidden", border: `1px solid ${C.gray}22` }}>
+          <div ref={containerRef} style={{ height: 440, width: "100%" }} />
+        </div>
+
+        {hover && (
+          <div style={{
+            position: "absolute", left: hover.x, top: hover.y, zIndex: 10, pointerEvents: "none",
+            transform: below ? "translate(-50%, 22px)" : "translate(-50%, calc(-100% - 16px))",
+            background: C.white, border: `1px solid ${C.gray}33`, borderRadius: 8,
+            padding: "6px 10px", boxShadow: "0 2px 12px rgba(1,11,36,0.2)", whiteSpace: "nowrap",
+          }}>
+            {hover.marin ? (
+              <div style={{ fontWeight: 800, color: C.navy, fontSize: 12 }}>{MARIN.label}</div>
+            ) : (
+              <>
+                <div style={{ fontWeight: 800, color: C.navy, fontSize: 12 }}>{v.name}</div>
+                <div style={{ fontSize: 11, color: C.gray, marginTop: 2 }}>
+                  {v.aisStatus || "—"}
+                  {v.aisSog != null && ` · ${v.aisSog} kn`}
+                  {v.aisCog != null && ` · rumbo ${Math.round(v.aisCog)}°`}
+                </div>
+                {v.aisDestination && <div style={{ fontSize: 11, color: C.gray }}>→ {v.aisDestination}</div>}
+                {v.aisPosAt && (
+                  <div style={{ fontSize: 10, color: C.gray, marginTop: 2 }}>
+                    posición: {fmt ? fmt(v.aisPosAt) : v.aisPosAt}
+                  </div>
+                )}
+                {onSelect && (
+                  <div style={{ fontSize: 10, color: C.cyan, fontWeight: 700, marginTop: 3 }}>clic para ver la escala →</div>
+                )}
+              </>
+            )}
+          </div>
+        )}
 
         {!vessels.length && (
           <div style={{
-            position: "absolute", left: 12, bottom: 12, zIndex: 500,
+            position: "absolute", left: 12, bottom: 12, zIndex: 10,
             background: "rgba(255,255,255,0.94)", border: `1px solid ${C.gray}33`,
             borderRadius: 8, padding: "8px 12px", fontSize: 11, color: C.gray, maxWidth: 320,
           }}>
