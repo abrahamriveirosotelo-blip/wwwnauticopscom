@@ -33,7 +33,8 @@
       "aisToFinal": false,
       "aisEta": "",
       "aisSpeed": 0,
-      "aisArrivedMarin": true
+      "aisArrivedMarin": true,
+      "detailId": "9729831"
     },
     {
       "id": "M202600405",
@@ -79,7 +80,8 @@
       "aisToFinal": false,
       "aisEta": "",
       "aisSpeed": 0,
-      "aisArrivedMarin": true
+      "aisArrivedMarin": true,
+      "detailId": "9604964"
     },
     {
       "id": "M202600426",
@@ -108,7 +110,8 @@
       "aisToFinal": false,
       "aisEta": "",
       "aisSpeed": 0,
-      "aisArrivedMarin": true
+      "aisArrivedMarin": true,
+      "detailId": "9838462"
     },
     {
       "id": "M202600427",
@@ -137,7 +140,8 @@
       "aisToFinal": false,
       "aisEta": "",
       "aisSpeed": 0,
-      "aisArrivedMarin": true
+      "aisArrivedMarin": true,
+      "detailId": "9515010"
     },
     {
       "id": "M202600415",
@@ -166,7 +170,8 @@
       "aisAt": "2026-06-30T12:50",
       "aisAtMarin": true,
       "aisToFinal": false,
-      "aisArrivedMarin": false
+      "aisArrivedMarin": false,
+      "detailId": "9420796"
     },
     {
       "id": "M202600429",
@@ -195,7 +200,8 @@
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisSpeed": 0,
-      "aisArrivedMarin": false
+      "aisArrivedMarin": false,
+      "detailId": "9312676"
     },
     {
       "id": "M202600416",
@@ -224,7 +230,8 @@
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisSpeed": 0,
-      "aisArrivedMarin": false
+      "aisArrivedMarin": false,
+      "detailId": "9864760"
     },
     {
       "id": "M202600421",
@@ -255,7 +262,8 @@
       "affectRisk": "ALTO",
       "aisEta": "",
       "aisSpeed": 0,
-      "aisArrivedMarin": false
+      "aisArrivedMarin": false,
+      "detailId": "9354399"
     },
     {
       "id": "M202600431",
@@ -284,7 +292,8 @@
       "aisAt": "2026-06-30T12:50",
       "aisAtMarin": true,
       "aisToFinal": false,
-      "aisArrivedMarin": false
+      "aisArrivedMarin": false,
+      "detailId": "9489546"
     }
   ]
 }
