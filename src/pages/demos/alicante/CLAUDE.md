@@ -38,7 +38,7 @@ Metadatos del puerto y la fuente de datos.
 }
 ```
 
-> `refreshHours` es informativo para la UI; el workflow real se ejecuta dos veces al día (08:00 y 12:00 hora España).
+> `refreshHours` es informativo para la UI; el workflow real se ejecuta cada 2 horas (06:00–22:00 hora España).
 
 ### `calls[]`
 Array de escalas. Campos de cada escala:
@@ -184,7 +184,7 @@ Es el mismo feed que alimenta `puertoalicante.com/el-puerto/prevision-buques/`.
 
 ## Actualización automática de datos
 
-Un GitHub Actions workflow (`.github/workflows/update-alicante-demo.yml`) descarga el CSV a las **08:00 y 12:00 hora España**, actualiza `calls[]` en `data.json`, y hace push. Netlify redespliega automáticamente.
+Un GitHub Actions workflow (`.github/workflows/update-demos.yml`) descarga el CSV **cada 2 horas (06:00–22:00 hora España)**, actualiza `calls[]` en `data.json`, y hace push. Netlify redespliega automáticamente.
 
 En cada actualización el script también **elige automáticamente el escenario de alerta**: busca el barco "en puerto" que comparte muelle con otro barco previsto, lo marca como `"Alerta"`, y genera los campos de impacto en cascada (`affectedBy`, `affectRisk`) y los hitos operativos (`milestones`). No hay IDs hardcodeados — el escenario siempre funciona con los barcos que haya en el CSV en ese momento.
 

@@ -25,37 +25,15 @@ import { fileURLToPath } from 'url';
 import {
   SEARCH_URL, DETAIL_URL, parseSearchResults, parseDetail,
   matchVessel, pickDetailFields, normName,
+  THROTTLE_MS, sleep, fetchText,
 } from './lib/vesselfinder.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_PATH = join(__dirname, '../src/pages/demos/marin/data.json');
 const CACHE_PATH = join(__dirname, '../src/pages/demos/marin/vessel-cache.json');
 
-const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36';
-const THROTTLE_MS = 1500;          // cortesía entre peticiones
-const REQUEST_TIMEOUT_MS = 15000;  // aborta si VesselFinder se cuelga (CI predecible)
 const UNRESOLVED_TTL_DAYS = 7;     // reintentar "sin match" estable pasada 1 semana
 const ERROR_RETRY_HOURS = 6;       // reintentar fallos de red mucho antes (no en cada cron)
-
-const sleep = ms => new Promise(r => setTimeout(r, ms));
-
-async function fetchText(url) {
-  const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), REQUEST_TIMEOUT_MS);
-  try {
-    const res = await fetch(url, {
-      // Inglés forzado: parseDetail()/matching asumen etiquetas y tipos en inglés
-      // ("IMO number", "Gross Tonnage", "Bulk Carrier"…). Evita que VesselFinder
-      // localice el HTML y rompa el parseo/matching.
-      headers: { 'User-Agent': UA, 'Accept': 'text/html,application/xhtml+xml', 'Accept-Language': 'en-US,en;q=0.9' },
-      signal: ctrl.signal,
-    });
-    if (!res.ok) throw new Error(`HTTP ${res.status} en ${url}`);
-    return await res.text();
-  } finally {
-    clearTimeout(timer);
-  }
-}
 
 const fetchDetail = async id => parseDetail(await fetchText(DETAIL_URL(id)));
 
@@ -101,7 +79,10 @@ async function resolveVessel(call, searchHtml = null) {
   return {
     resolved: true,
     imo: merged.imo,
+    mmsi: merged.mmsi || '',                 // para futura integración AIS (aisstream)
+    detailId: merged.detailId || merged.imo, // id de ficha VesselFinder (a veces ≠ IMO)
     gt: merged.gt || 0,
+    dwt: merged.dwt || 0,
     len: merged.length || 0,
     beam: merged.beam || 0,
     flag: merged.flag || '',
@@ -129,8 +110,18 @@ function applyToCall(call, e) {
   // Refleja fielmente la entrada (resuelta) de caché, también cuando un valor
   // numérico es 0; si no, data.json podría quedar desincronizado con la caché.
   call.imo = e.imo;
+  if (e.mmsi) call.mmsi = e.mmsi;
+  // Normaliza el detailId en la PROPIA entrada de caché (con el IMO si falta):
+  // como `e` es la entrada de cache[key] por referencia, así queda persistido al
+  // reescribir vessel-cache.json (no solo en data.json). VesselFinder resuelve la
+  // ficha por IMO, así que el fallback es válido y enrich-marin-live siempre tiene
+  // un id de ficha usable (y respeta un detailId real ≠ IMO cuando exista).
+  e.detailId = e.detailId || e.imo;
+  call.detailId = e.detailId;
   call.gt = e.gt ?? 0;
+  call.dwt = e.dwt ?? 0;
   call.len = e.len ?? 0;
+  call.beam = e.beam ?? 0;   // la caché ya guarda manga y buildCalls la arrastra; materialízala
   call.flag = e.flag || '';
   call.vesselType = e.vesselType || '';
   call.built = e.built ?? 0;

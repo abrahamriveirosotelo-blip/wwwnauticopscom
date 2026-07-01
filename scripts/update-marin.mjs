@@ -12,7 +12,7 @@
  * "esperado" y la ETD cuando ya está "en puerto"; el merge con el data.json
  * anterior conserva el dato que ya no aparece en la tabla actual.
  *
- * Preserva tugService (tripulación, tiempos, remolcador) y aplica alerta dinámica.
+ * Marca dinámicamente el escenario de alerta (un buque en puerto que bloquea el muelle de otro previsto).
  *
  * Uso:
  *   node scripts/update-marin.mjs
@@ -32,38 +32,17 @@ const DATA_PATH = join(__dirname, '../src/pages/demos/marin/data.json');
 const URL_ESPERADOS = 'https://www.apmarin.com/es/paginas/buques_esperados';
 const URL_PUERTO    = 'https://www.apmarin.com/es/paginas/buques_puerto';
 
+// Debe coincidir con la cadencia del cron en .github/workflows/update-demos.yml.
+const REFRESH_HOURS = 2;
+
 const SEED = {
   meta: {
     port: 'Puerto de Marín',
     source: 'apmarin.com · buques esperados + en puerto',
     date: '',
-    refreshHours: 12,
+    refreshHours: REFRESH_HOURS,
   },
   calls: [],
-  tugService: {
-    callId: '',
-    reportNumber: '004821',
-    tugboat: 'AMARE MARÍN',
-    powerPct: 70,
-    rope: true,
-    shipEngine: false,
-    status: 'en_curso',
-    crew: { patron: 'X. Rodríguez', mecanico: 'B. Castro', marinero: 'A. Lago' },
-    times: {
-      requested_at: '08:30',
-      ir_at_planned: '08:45',
-      ir_at_real: '08:47',
-      cos_at_planned: '09:05',
-      cos_at_real: '11:40',
-      rc_at_planned: '09:10',
-      rc_at_real: null,
-      sc_at_planned: '09:40',
-      sc_at_real: null,
-      fr_at_planned: '09:55',
-      fr_at_real: null,
-    },
-  },
-  milestones: {},
 };
 
 async function fetchHtml(url) {
@@ -134,6 +113,16 @@ async function main() {
     `✓ ${esperados.rows.length} esperados + ${puerto.rows.length} en puerto → ${calls.length} escalas`
   );
 
+  // Guard: en momentos sin barcos, apmarin devuelve las tablas vacías. No sobre-
+  // escribir un data.json bueno con 0 escalas (dejaría la demo sin barcos); se
+  // conserva el snapshot anterior hasta que el puerto vuelva a listar escalas.
+  if (calls.length === 0 && (existing.calls?.length || 0) > 0) {
+    console.warn(
+      `⚠️  El scrape no devolvió escalas (puerto sin barcos ahora mismo); se conserva el data.json anterior (${existing.calls.length} escalas).`
+    );
+    return;
+  }
+
   const alert = buildAlertScenario(calls);
   if (alert) {
     const ac = calls.find(c => c.id === alert.alertId);
@@ -150,16 +139,9 @@ async function main() {
       port: 'Puerto de Marín',
       source: 'apmarin.com · buques esperados + en puerto',
       date: todayStr(),
-      refreshHours: base.meta?.refreshHours ?? 12,
+      refreshHours: REFRESH_HOURS, // se sobrescribe siempre para reflejar la cadencia real del cron
     },
     calls,
-    // Sin alerta no debe quedar un callId/milestones apuntando a una escala que
-    // ya no existe en `calls`: se conservan tripulación/tiempos pero se limpian
-    // el vínculo y los hitos para no dejar el drawer en estado incoherente.
-    tugService: alert
-      ? { ...base.tugService, callId: alert.alertId }
-      : { ...base.tugService, callId: '' },
-    milestones: alert ? alert.milestones : {},
   };
 
   if (isDryRun) {

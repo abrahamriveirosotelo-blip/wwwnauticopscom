@@ -154,13 +154,30 @@ export function buildCalls(esperados, puerto, prevCalls = [], fallbackYear) {
   ingest(esperados.rows, 'eta');
   ingest(puerto.rows, 'etd');
 
+  // Campos añadidos por los scripts de enriquecimiento (no por el scrape de la AP).
+  // Se conservan del JSON anterior para que NO se borren en cada run: si un paso de
+  // enrich se salta o falla, la escala mantiene su último enriquecimiento conocido
+  // (los scripts de enrich lo refrescan cuando sí corren). Sin esto, update-marin
+  // dejaría imo/gt/dwt y todos los aisX en blanco hasta el siguiente enrich exitoso.
+  const ENRICH_FIELDS = [
+    'imo', 'mmsi', 'detailId', 'gt', 'dwt', 'len', 'beam', 'flag', 'vesselType', 'built', 'callsign',
+    'aisStatus', 'aisEta', 'aisSpeed', 'aisDraught', 'aisDestination', 'aisAt',
+    'aisAtMarin', 'aisToFinal', 'aisArrivedMarin',
+  ];
+
   // Persistencia: recupera del JSON anterior la ETA/ETD que ya no aparece
-  // en la tabla actual (p. ej. un buque que pasó de "esperado" a "en puerto").
+  // en la tabla actual (p. ej. un buque que pasó de "esperado" a "en puerto"),
+  // y arrastra el enriquecimiento previo.
   for (const call of byId.values()) {
     const prev = prevById.get(call.id);
     if (prev) {
       if (!call.eta && prev.eta) call.eta = prev.eta;
       if (!call.etd && prev.etd) call.etd = prev.etd;
+      for (const f of ENRICH_FIELDS) {
+        // Conserva cualquier valor previo definido, incluidos los 0 válidos
+        // (p. ej. aisSpeed 0 = atracado); los pasos de enrich lo refrescan.
+        if (prev[f] != null) call[f] = prev[f];
+      }
     }
     call.etd = bumpYearIfRollover(call.eta, call.etd);
   }
@@ -178,12 +195,6 @@ export function buildCalls(esperados, puerto, prevCalls = [], fallbackYear) {
  * Escenario de alerta de demo: un buque "en puerto" (Iniciado) que
  * comparte muelle con otro "Prevista" → retraso + impacto en cascada.
  * ------------------------------------------------------------------ */
-
-function fmtMilestoneTime(ms) {
-  const d = new Date(ms);
-  const pad = n => String(n).padStart(2, '0');
-  return `${pad(d.getDate())}/${pad(d.getMonth() + 1)} · ${pad(d.getHours())}:${pad(d.getMinutes())}`;
-}
 
 function opContext(op) {
   const s = (op || '').trim().toUpperCase();
@@ -214,22 +225,5 @@ export function buildAlertScenario(calls) {
     affectedCall.affectRisk = 'ALTO';
   }
 
-  // Ancla de los hitos: la ETA si la conocemos; si solo tenemos la ETD (buque
-  // que entró en puerto antes de que captáramos su ETA), retrocedemos ~8 h para
-  // que "Atracado"/"Inicio de operaciones" caigan antes de la salida prevista.
-  const baseMs = alertCall.eta
-    ? new Date(alertCall.eta).getTime()
-    : alertCall.etd
-      ? new Date(alertCall.etd).getTime() - 8 * 3600 * 1000
-      : Date.now();
-  const milestones = {
-    [alertCall.id]: [
-      { label: 'Atracado',              status: 'done',        time: fmtMilestoneTime(baseMs + 25 * 60000), by: 'Práctico (Marín)' },
-      { label: 'Inicio de operaciones', status: 'done',        time: fmtMilestoneTime(baseMs + 90 * 60000), by: `Agente: ${alertCall.agent}` },
-      { label: 'Fin de operaciones',    status: 'in_progress', time: 'En curso — con incidencia',            by: null },
-      { label: 'Desatracado',           status: 'pending',     time: null,                                   by: null },
-    ],
-  };
-
-  return { alertId: alertCall.id, alertName: alertCall.name, affectedName: affectedCall?.name, milestones };
+  return { alertId: alertCall.id, alertName: alertCall.name, affectedName: affectedCall?.name };
 }
