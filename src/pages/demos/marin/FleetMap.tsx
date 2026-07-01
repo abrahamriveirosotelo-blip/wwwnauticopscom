@@ -31,7 +31,10 @@ function statusColor(aisStatus) {
 /** Icono de buque: flecha orientada al rumbo (heading/COG) o círculo si no hay rumbo. */
 function vesselIcon(deg, color) {
   const html = deg == null
-    ? `<div style="width:14px;height:14px;border-radius:50%;background:${color};border:2px solid ${C.white};box-shadow:0 0 0 1px rgba(0,0,0,0.25)"></div>`
+    // Punto centrado en un contenedor 26×26 para que cuadre con iconAnchor [13,13].
+    ? `<div style="display:flex;align-items:center;justify-content:center;width:26px;height:26px">
+         <div style="width:14px;height:14px;border-radius:50%;background:${color};border:2px solid ${C.white};box-shadow:0 0 0 1px rgba(0,0,0,0.25)"></div>
+       </div>`
     : `<svg width="26" height="26" viewBox="0 0 26 26" style="transform:rotate(${deg}deg);filter:drop-shadow(0 1px 1px rgba(0,0,0,0.35))">
          <path d="M13 2 L20 22 L13 17 L6 22 Z" fill="${color}" stroke="${C.white}" stroke-width="1.5" stroke-linejoin="round"/>
        </svg>`;
@@ -165,8 +168,8 @@ export default function FleetMap({ calls, fmt, onSelect }) {
             background: "rgba(255,255,255,0.94)", border: `1px solid ${C.gray}33`,
             borderRadius: 8, padding: "8px 12px", fontSize: 11, color: C.gray, maxWidth: 320,
           }}>
-            Aún no hay posiciones AIS en el snapshot. Se poblarán cuando ejecutes
-            <b> enrich-marin-ais</b> en local con la clave de aisstream.
+            Aún no hay posiciones AIS en el snapshot. Se poblarán cuando ejecutes{" "}
+            <code style={{ fontSize: 10.5, fontWeight: 700 }}>npm run enrich-demo:marin:ais</code> en local con la clave de aisstream.
           </div>
         )}
       </div>
