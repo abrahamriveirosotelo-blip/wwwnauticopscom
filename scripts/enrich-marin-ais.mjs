@@ -15,12 +15,21 @@
  *
  * Best-effort: sin key, sin WebSocket o si un buque no emite en la ventana, NO se
  * escribe basura — se conserva lo anterior (buildCalls arrastra los campos aisX).
- * Por eso en CI el paso es continue-on-error.
+ *
+ * PENSADO PARA EJECUTARSE EN LOCAL: los buques (sobre todo atracados) emiten posición
+ * cada varios minutos, así que hace falta una ventana LARGA. Déjalo corriendo un rato
+ * (p. ej. antes de una demo) y ve commiteando data.json. Reconecta si aisstream cierra
+ * el socket, vuelca a disco cada `--flush` s (para commitear sin parar el proceso) y
+ * corta limpio con Ctrl-C conservando lo captado. En cada pasada las posiciones se
+ * ACUMULAN (los no captados conservan su última posición). No corre en CI: sin un
+ * servidor con el WebSocket abierto 24/7, una ventana de cron es demasiado corta.
  *
  * Uso:
- *   AISSTREAM_KEY=xxxxx node scripts/enrich-marin-ais.mjs
- *   AISSTREAM_KEY=xxxxx node scripts/enrich-marin-ais.mjs --dry-run
- *   AISSTREAM_KEY=xxxxx node scripts/enrich-marin-ais.mjs --seconds 120
+ *   AISSTREAM_KEY=xxxxx node scripts/enrich-marin-ais.mjs                    # ventana 90 s
+ *   AISSTREAM_KEY=xxxxx node scripts/enrich-marin-ais.mjs --seconds 3600     # 1 h, volcando cada 60 s
+ *   AISSTREAM_KEY=xxxxx node scripts/enrich-marin-ais.mjs --seconds 3600 --flush 120
+ *   AISSTREAM_KEY=xxxxx node scripts/enrich-marin-ais.mjs --dry-run          # sin escribir
+ *   (Ctrl-C en cualquier momento: guarda lo captado y sale)
  */
 
 import { readFileSync, writeFileSync } from 'fs';
@@ -32,6 +41,7 @@ const DATA_PATH = join(__dirname, '../src/pages/demos/marin/data.json');
 
 const STREAM_URL = 'wss://stream.aisstream.io/v0/stream';
 const DEFAULT_SECONDS = 90;
+const DEFAULT_FLUSH_SECONDS = 60; // en runs largos, vuelca data.json cada 60 s
 const MMSI_LIMIT = 50; // límite de FiltersShipMMSI de aisstream
 
 /** Instante (Date) → ISO naive en hora de España (Europe/Madrid, con DST). */
@@ -58,35 +68,38 @@ function parseAisTime(timeUtc) {
 }
 
 /**
- * Escucha el stream `sec` segundos y devuelve Map<mmsi, posición> con la ÚLTIMA
- * posición recibida de cada buque. Resuelve siempre (nunca rechaza): un fallo de
- * red deja el Map con lo que se haya recibido (best-effort).
+ * Escucha el stream hasta `sec` segundos y devuelve Map<mmsi, posición> con la ÚLTIMA
+ * posición de cada buque. RECONECTA si aisstream cierra el socket antes del deadline
+ * (habitual en ventanas largas), para no perder el resto de la ventana. Resuelve
+ * siempre (nunca rechaza): lo captado hasta el corte es el resultado (best-effort).
  */
-function collectPositions(key, mmsis, sec) {
+function collectPositions(key, mmsis, sec, { onFlush, flushSeconds = 0 } = {}) {
   return new Promise(resolve => {
     const positions = new Map();
-    const ws = new WebSocket(STREAM_URL);
-    ws.binaryType = 'arraybuffer'; // aisstream envía frames binarios
+    const endAt = Date.now() + sec * 1000;
+    let ws = null;
+    let stopped = false;
+    let deadlineTimer = null;
+    let flushTimer = null;
 
-    let timer;
-    const done = () => { clearTimeout(timer); try { ws.close(); } catch { /* noop */ } resolve(positions); };
+    const finish = () => {
+      if (stopped) return;
+      stopped = true;
+      clearTimeout(deadlineTimer);
+      clearInterval(flushTimer);
+      process.off('SIGINT', onSigint);
+      try { ws && ws.close(); } catch { /* noop */ }
+      resolve(positions);
+    };
+    // Ctrl-C: cortar limpio conservando lo captado (para runs largos que se paran a mano).
+    const onSigint = () => { console.log('\n⏹  Ctrl-C: guardo lo captado y salgo…'); finish(); };
 
-    ws.addEventListener('open', () => {
-      ws.send(JSON.stringify({
-        APIKey: key,
-        BoundingBoxes: [[[-90, -180], [90, 180]]], // todo el globo; acotamos por MMSI
-        FiltersShipMMSI: mmsis,
-        FilterMessageTypes: ['PositionReport'],
-      }));
-      console.log(`Conectado a aisstream · ${mmsis.length} MMSI · ventana ${sec}s…`);
-      timer = setTimeout(done, sec * 1000);
-    });
-
-    ws.addEventListener('message', ev => {
+    const onMessage = ev => {
       let msg;
       try { msg = JSON.parse(typeof ev.data === 'string' ? ev.data : Buffer.from(ev.data).toString('utf8')); }
       catch { return; }
-      if (msg.error) { console.error('aisstream error:', msg.error); return; }
+      // Error del protocolo (p. ej. API key inválida): es fatal → parar, no reconectar en bucle.
+      if (msg.error) { console.error('aisstream error:', msg.error); finish(); return; }
       if (msg.MessageType !== 'PositionReport') return;
       const meta = msg.MetaData || {};
       const pr = msg.Message.PositionReport;
@@ -105,12 +118,37 @@ function collectPositions(key, mmsis, sec) {
         timeUtc: meta.time_utc || null,
       });
       if (first) {
-        console.log(`  ✓ MMSI ${mmsi}: ${pr.Latitude.toFixed(3)}, ${pr.Longitude.toFixed(3)} · ${pr.Sog} kn · COG ${pr.Cog}°`);
+        console.log(`  ✓ MMSI ${mmsi}: ${pr.Latitude.toFixed(3)}, ${pr.Longitude.toFixed(3)} · ${pr.Sog} kn · COG ${pr.Cog}° · ${positions.size}/${mmsis.length}`);
       }
-    });
+    };
 
-    ws.addEventListener('error', e => console.error('WS error:', e?.message || e));
-    ws.addEventListener('close', () => { /* done() ya resuelve; cierre limpio no hace nada */ });
+    const connect = () => {
+      ws = new WebSocket(STREAM_URL);
+      ws.binaryType = 'arraybuffer'; // aisstream envía frames binarios
+      ws.addEventListener('open', () => ws.send(JSON.stringify({
+        APIKey: key,
+        BoundingBoxes: [[[-90, -180], [90, 180]]], // todo el globo; acotamos por MMSI
+        FiltersShipMMSI: mmsis,
+        FilterMessageTypes: ['PositionReport'],
+      })));
+      ws.addEventListener('message', onMessage);
+      ws.addEventListener('error', e => console.error('WS error:', e?.message || e));
+      ws.addEventListener('close', () => {
+        if (stopped) return;
+        const leftMs = endAt - Date.now();
+        if (leftMs <= 1500) { finish(); return; } // ya casi en el deadline: no reconectar
+        console.log(`  … socket cerrado; reconectando (${Math.round(leftMs / 1000)}s restantes, ${positions.size}/${mmsis.length} captados)`);
+        setTimeout(connect, 1000);
+      });
+    };
+
+    deadlineTimer = setTimeout(finish, sec * 1000);
+    // Vuelca a disco cada `flushSeconds` (runs largos): permite commitear progresivamente
+    // sin parar el proceso, y que un corte no planificado no pierda más de una ventana.
+    if (onFlush && flushSeconds > 0) flushTimer = setInterval(() => onFlush(positions), flushSeconds * 1000);
+    process.once('SIGINT', onSigint);
+    connect();
+    console.log(`aisstream · ${mmsis.length} MMSI · ventana ${sec}s (reconecta si el socket se cae${onFlush && flushSeconds > 0 ? `; vuelca cada ${flushSeconds}s` : ''})…`);
   });
 }
 
@@ -132,6 +170,8 @@ async function main() {
   const isDryRun = args.includes('--dry-run');
   const sIdx = args.indexOf('--seconds');
   const seconds = sIdx !== -1 ? (parseInt(args[sIdx + 1], 10) || DEFAULT_SECONDS) : DEFAULT_SECONDS;
+  const fIdx = args.indexOf('--flush');
+  const flushSeconds = fIdx !== -1 ? (parseInt(args[fIdx + 1], 10) || 0) : DEFAULT_FLUSH_SECONDS;
 
   const key = process.env.AISSTREAM_KEY;
   if (!key) {
@@ -157,25 +197,27 @@ async function main() {
     console.warn(`⚠️  ${mmsis.length} MMSI > límite ${MMSI_LIMIT} de aisstream; solo se localizarán los primeros ${MMSI_LIMIT}.`);
   }
 
-  const positions = await collectPositions(key, mmsis.slice(0, MMSI_LIMIT), seconds);
-  const scrapedAt = toSpainIso(new Date());
+  // Aplica las posiciones captadas y (salvo dry-run) escribe data.json. Se usa tanto
+  // en los volcados progresivos como en el resumen final.
+  const write = (pos, label) => {
+    const scrapedAt = toSpainIso(new Date());
+    let located = 0;
+    for (const call of data.calls) {
+      const p = call.mmsi ? pos.get(String(call.mmsi)) : null;
+      if (p) { applyPosition(call, p, scrapedAt); located++; }
+    }
+    if (!isDryRun) writeFileSync(DATA_PATH, JSON.stringify(data, null, 2) + '\n', 'utf-8');
+    console.log(`${label}: ${located}/${data.calls.length} escalas con posición · ${pos.size}/${mmsis.length} MMSI · ${scrapedAt}${isDryRun ? ' · DRY RUN (no escrito)' : ' · data.json escrito'}`);
+  };
 
-  let located = 0;
-  for (const call of data.calls) {
-    const p = call.mmsi ? positions.get(String(call.mmsi)) : null;
-    if (p) { applyPosition(call, p, scrapedAt); located++; }
-  }
+  const positions = await collectPositions(key, mmsis.slice(0, MMSI_LIMIT), seconds, {
+    onFlush: isDryRun ? null : pos => write(pos, '  💾 volcado parcial'),
+    flushSeconds,
+  });
 
-  console.log(`\nResumen: ${located}/${data.calls.length} escalas con posición · ${positions.size}/${mmsis.length} MMSI emitieron · snapshot ${scrapedAt}`);
+  write(positions, '\nResumen final');
   const missing = mmsis.filter(m => !positions.has(m));
-  if (missing.length) console.log(`Sin posición en la ventana (se conserva la anterior): ${missing.join(', ')}`);
-
-  if (isDryRun) {
-    console.log('\n--- DRY RUN: data.json no modificado ---');
-    return;
-  }
-  writeFileSync(DATA_PATH, JSON.stringify(data, null, 2) + '\n', 'utf-8');
-  console.log('✓ data.json actualizado con posiciones AIS');
+  if (missing.length) console.log(`Sin posición (se conserva la anterior): ${missing.join(', ')}`);
 }
 
 main().catch(err => {

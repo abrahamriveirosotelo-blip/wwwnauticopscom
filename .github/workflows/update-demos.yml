@@ -101,17 +101,12 @@ jobs:
         continue-on-error: true
         run: node scripts/enrich-marin-live.mjs
 
-      # Posición en vivo (lat/lon/rumbo/velocidad) desde aisstream.io. Best-effort y
-      # SIEMPRE no fatal: requiere el secret AISSTREAM_KEY; si no está, el script se
-      # omite solo (sale 0). Escucha 120 s el stream WebSocket filtrando por MMSI (algo
-      # más de margen para pillar buques atracados, que emiten cada ~3 min). Si un buque
-      # no emite en la ventana, buildCalls conserva su última posición: el mapa se va
-      # rellenando entre ejecuciones del cron.
-      - name: Enriquecer posición AIS Marín (aisstream)
-        continue-on-error: true
-        env:
-          AISSTREAM_KEY: ${{ secrets.AISSTREAM_KEY }}
-        run: node scripts/enrich-marin-ais.mjs --seconds 120
+      # NOTA: la posición AIS (scripts/enrich-marin-ais.mjs, aisstream) NO corre en el
+      # cron. Los buques emiten posición cada varios minutos, así que una ventana de
+      # Actions es demasiado corta para captar la flota. Se ejecuta EN LOCAL con ventana
+      # larga y se commitea data.json a mano (ver src/pages/demos/marin/CLAUDE.md).
+      # buildCalls arrastra las posiciones ya commiteadas, así que update-marin no las
+      # borra. Reactivar aquí cuando haya un servidor con el WebSocket abierto 24/7.
 
       - name: Detectar cambios
         id: check

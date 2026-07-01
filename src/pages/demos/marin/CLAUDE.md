@@ -97,13 +97,24 @@ En la UI: la **ETA AIS** aparece junto a la ETA de la AP en la sección **TIEMPO
 
 Separación de responsabilidades: aquí **solo** se trata cinemática de posición; el estado (`aisStatus`) y la ETA siguen viniendo de `enrich-marin-live.mjs`. Los valores AIS "no disponible" (SOG 102.3, COG 360, proa 511) se normalizan a `null`.
 
-**Best-effort, no cacheable** (la posición cambia constantemente): requiere el secret **`AISSTREAM_KEY`** ([API key gratuita](https://aisstream.io/apikeys)); sin key el script se **omite solo** (sale 0). Si un buque no emite en la ventana, `buildCalls` conserva su última posición conocida. Cobertura de aisstream: costera (~200 km); buena para buques navegando hacia Marín, con posibles huecos en mar abierto o en el fondo de la ría.
+**Best-effort, no cacheable** (la posición cambia constantemente): requiere el secret **`AISSTREAM_KEY`** ([API key gratuita](https://aisstream.io/apikeys)); sin key el script se **omite solo** (sale 0). Si un buque no emite en la ventana, se conserva su última posición conocida (`buildCalls` arrastra los campos `aisLat/aisLon/…`). Cobertura de aisstream: costera (~200 km); buena para buques navegando hacia Marín, con posibles huecos en mar abierto o en el fondo de la ría.
+
+**Se ejecuta EN LOCAL, NO en CI.** Los buques (sobre todo atracados) emiten posición cada varios minutos, así que una ventana de cron es demasiado corta para captar la flota. El flujo es dejar el script corriendo un rato (p. ej. antes de una demo) e ir **commiteando `data.json` progresivamente**. El script está pensado para eso:
+
+- **`--seconds N`**: duración de la ventana. Para llenar el mapa, ventana larga (p. ej. `3600`).
+- **Reconecta** solo si aisstream cierra el socket (habitual en runs largos).
+- **`--flush N`** (60 s por defecto): vuelca `data.json` cada N s → puedes commitear sin parar el proceso.
+- **Ctrl-C**: corta limpio guardando lo captado.
+- **Acumula entre pasadas**: los no captados conservan su posición anterior.
 
 ```bash
-AISSTREAM_KEY=xxxxx npm run enrich-demo:marin:ais         # rellena posición
-AISSTREAM_KEY=xxxxx npm run enrich-demo:marin:ais:dry     # sin escribir
-AISSTREAM_KEY=xxxxx node scripts/enrich-marin-ais.mjs --seconds 120
+AISSTREAM_KEY=xxxxx npm run enrich-demo:marin:ais           # ventana 90 s (prueba rápida)
+AISSTREAM_KEY=xxxxx npm run enrich-demo:marin:ais:long      # 1 h, volcando cada 60 s
+AISSTREAM_KEY=xxxxx node scripts/enrich-marin-ais.mjs --seconds 3600 --flush 120
+AISSTREAM_KEY=xxxxx npm run enrich-demo:marin:ais:dry       # sin escribir
 ```
+
+En la UI: el mapa **POSICIÓN DE LA FLOTA** (`FleetMap.tsx`, Leaflet + OpenStreetMap) pinta cada buque con posición, orientado al rumbo y coloreado por estado; **clic en un buque abre su escala** (mismo drawer que la tabla). Sin posiciones, muestra solo Marín.
 
 ---
 
@@ -141,9 +152,9 @@ Fixtures de referencia: [`scripts/fixtures/marin-esperados.html`](../../../../sc
 
 ## Actualización automática (CI)
 
-El workflow [`.github/workflows/update-demos.yml`](../../../../.github/workflows/update-demos.yml) ejecuta el job `update-marin` cada 2 horas (06:00–22:00 hora España) junto a Alicante y Huelva: corre `update-marin.mjs`, luego `enrich-marin.mjs` (estático), `enrich-marin-live.mjs` (AIS en vivo) y `enrich-marin-ais.mjs` (posición vía aisstream) — los tres `continue-on-error` — y commitea `data.json` + `vessel-cache.json` si cambiaron. Netlify redespliega.
+El workflow [`.github/workflows/update-demos.yml`](../../../../.github/workflows/update-demos.yml) ejecuta el job `update-marin` cada 2 horas (06:00–22:00 hora España) junto a Alicante y Huelva: corre `update-marin.mjs`, luego `enrich-marin.mjs` (estático) y `enrich-marin-live.mjs` (AIS en vivo) — ambos `continue-on-error` — y commitea `data.json` + `vessel-cache.json` si cambiaron. Netlify redespliega.
 
-> El paso de posición necesita el secret **`AISSTREAM_KEY`** (Settings → Secrets → Actions). Sin él, ese paso se omite solo y el resto del pipeline sigue igual.
+> La **posición AIS** (`enrich-marin-ais.mjs`, aisstream) **NO** corre en el cron: necesita ventanas largas (ver sección anterior), así que se ejecuta en local y se commitea a mano. `update-marin`/`buildCalls` arrastran las posiciones ya commiteadas, así que el cron no las borra. Se reactivará en CI cuando haya un servidor con el WebSocket abierto 24/7.
 
 ---
 
