@@ -52,12 +52,12 @@ function mapStatus(navStatus) {
 
 /** Cualquier Date → ISO naive en hora de España (Europe/Madrid, con DST). */
 function toSpainIso(date) {
+  // hourCycle 'h23' garantiza horas 00–23 (evita el "24:00" que desplazaría el día).
   const p = new Intl.DateTimeFormat('en-CA', {
     timeZone: 'Europe/Madrid', year: 'numeric', month: '2-digit', day: '2-digit',
-    hour: '2-digit', minute: '2-digit', hour12: false,
+    hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
   }).formatToParts(date).reduce((a, x) => (a[x.type] = x.value, a), {});
-  const hh = p.hour === '24' ? '00' : p.hour;
-  return `${p.year}-${p.month}-${p.day}T${hh}:${p.minute}`;
+  return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}`;
 }
 
 /** "Jul 1, 06:00" (UTC, con o sin año/sufijo) → ISO naive en hora de España. */
@@ -118,12 +118,16 @@ async function main() {
   }
 
   // Un buque (mismo IMO) puede tener varias escalas: se consulta una vez y se aplica a todas.
+  // Se usa el `detailId` de la ficha (que el enrich estático persiste) por si no coincide
+  // con el IMO; si no está, se cae al IMO (VesselFinder resuelve la ficha por IMO).
   const seen = new Map();
+  const idByImo = new Map();
+  for (const c of targets) if (!idByImo.has(c.imo)) idByImo.set(c.imo, c.detailId || c.imo);
   let navegando = 0;
 
-  for (const imo of [...new Set(targets.map(c => c.imo))]) {
+  for (const [imo, detailId] of idByImo) {
     try {
-      const liveData = parseLiveData(await fetchText(DETAIL_URL(imo)));
+      const liveData = parseLiveData(await fetchText(DETAIL_URL(detailId)));
       seen.set(imo, liveData);
       const st = mapStatus(liveData.navStatus);
       if (st === 'Navegando') navegando++;

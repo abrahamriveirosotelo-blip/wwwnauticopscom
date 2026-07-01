@@ -164,12 +164,8 @@ function Detail({ call, onClose }) {
                   {call.aisAtMarin && call.aisEta && (<div style={{fontSize:11,color:B.cyan,fontWeight:600,marginTop:6}}>AIS · en vivo: {fmt(call.aisEta)}</div>)}
                 </div>
                 <div style={{padding:"14px 16px"}}>
-                  {(() => {
-                    const ata = call.status!=="Prevista" && call.eta
-                      ? fmt(new Date(new Date(call.eta).getTime()+25*60000)) : null;
-                    return <TimeField label="ATA · Llegada real"
-                      value={ata||"—"} isReal={true} isEmpty={!ata}/>;
-                  })()}
+                  <TimeField label="ATA · Llegada real"
+                    value="—" isReal={true} isEmpty={true}/>
                 </div>
               </div>
               {/* Salida */}
@@ -256,7 +252,6 @@ function Detail({ call, onClose }) {
             <div style={{fontSize:11,color:B.gray}}>Travesía conocida, con los tiempos de la escala en Marín. Otras escalas se mostrarán cuando haya datos.</div>
           </div>
           {(() => {
-            const ata = call.status!=="Prevista" && call.eta ? fmt(new Date(new Date(call.eta).getTime()+25*60000)) : null;
             const legs = [];
             if (call.from && call.from!=="—") legs.push({ label:"ORIGEN", port:call.from });
             legs.push({ label:"ESCALA", port:"Marín", here:true });
@@ -274,7 +269,7 @@ function Detail({ call, onClose }) {
                       <div style={{fontSize:15,fontWeight:800,color:leg.here?B.cyan:B.navy}}>{leg.port}</div>
                       {leg.here && (
                         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",rowGap:8,columnGap:12,marginTop:8,background:B.offWhite,borderRadius:10,padding:"10px 12px",border:`1px solid ${B.grayLight}`}}>
-                          {[["ETA · Llegada prevista",fmt(call.eta)],["ATA · Llegada real",ata||"—"],["ETD · Salida prevista",fmt(call.etd)],["ATD · Salida real","—"]].map(([l,v]) => (
+                          {[["ETA · Llegada prevista",fmt(call.eta)],["ATA · Llegada real","—"],["ETD · Salida prevista",fmt(call.etd)],["ATD · Salida real","—"]].map(([l,v]) => (
                             <div key={l}>
                               <div style={{fontSize:9,color:B.gray,fontWeight:700,marginBottom:2}}>{l}</div>
                               <div style={{fontSize:12,fontWeight:700,color:B.navy,fontFamily:"'Courier New', monospace"}}>{v}</div>

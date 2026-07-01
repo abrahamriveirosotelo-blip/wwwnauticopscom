@@ -79,6 +79,7 @@ async function resolveVessel(call, searchHtml = null) {
   return {
     resolved: true,
     imo: merged.imo,
+    detailId: merged.detailId || merged.imo, // id de ficha VesselFinder (a veces ≠ IMO)
     gt: merged.gt || 0,
     dwt: merged.dwt || 0,
     len: merged.length || 0,
@@ -108,6 +109,7 @@ function applyToCall(call, e) {
   // Refleja fielmente la entrada (resuelta) de caché, también cuando un valor
   // numérico es 0; si no, data.json podría quedar desincronizado con la caché.
   call.imo = e.imo;
+  if (e.detailId) call.detailId = e.detailId;
   call.gt = e.gt ?? 0;
   call.dwt = e.dwt ?? 0;
   call.len = e.len ?? 0;

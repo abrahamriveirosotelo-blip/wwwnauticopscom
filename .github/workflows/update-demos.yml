@@ -2,8 +2,8 @@ name: Update Demo Data
 
 on:
   schedule:
-    # Cada 2 h en horario de operación portuaria: 06:00–22:00 España (verano, UTC+2).
-    # Más frescura para los datos AIS en vivo sin saturar VesselFinder.
+    # Cada 2 h en horario diurno: 04:00–20:00 UTC → 06:00–22:00 España en verano (CEST),
+    # 05:00–21:00 en invierno (CET). Frescura para el AIS sin saturar VesselFinder.
     - cron: '0 4-20/2 * * *'
   workflow_dispatch:
 

@@ -160,7 +160,7 @@ export function buildCalls(esperados, puerto, prevCalls = [], fallbackYear) {
   // (los scripts de enrich lo refrescan cuando sí corren). Sin esto, update-marin
   // dejaría imo/gt/dwt y todos los aisX en blanco hasta el siguiente enrich exitoso.
   const ENRICH_FIELDS = [
-    'imo', 'gt', 'dwt', 'len', 'beam', 'flag', 'vesselType', 'built', 'callsign',
+    'imo', 'detailId', 'gt', 'dwt', 'len', 'beam', 'flag', 'vesselType', 'built', 'callsign',
     'aisStatus', 'aisEta', 'aisSpeed', 'aisDraught', 'aisDestination', 'aisAt',
     'aisAtMarin', 'aisToFinal', 'aisArrivedMarin',
   ];
@@ -174,8 +174,9 @@ export function buildCalls(esperados, puerto, prevCalls = [], fallbackYear) {
       if (!call.eta && prev.eta) call.eta = prev.eta;
       if (!call.etd && prev.etd) call.etd = prev.etd;
       for (const f of ENRICH_FIELDS) {
-        const v = prev[f];
-        if (v !== undefined && v !== null && v !== '' && v !== '—' && v !== 0) call[f] = v;
+        // Conserva cualquier valor previo definido, incluidos los 0 válidos
+        // (p. ej. aisSpeed 0 = atracado); los pasos de enrich lo refrescan.
+        if (prev[f] != null) call[f] = prev[f];
       }
     }
     call.etd = bumpYearIfRollover(call.eta, call.etd);
