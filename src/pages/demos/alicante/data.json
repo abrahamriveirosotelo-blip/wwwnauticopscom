@@ -2,30 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "30/06/2026",
+    "date": "01/07/2026",
     "refreshHours": 2
   },
   "calls": [
     {
-      "id": "A202600461",
-      "status": "Alerta",
-      "imo": "9265421",
-      "name": "EL DJAZAIR II",
-      "gt": 20024,
-      "len": 145,
-      "berth": "25",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-06-30T08:00",
-      "etd": "2026-06-30T19:00",
-      "from": "ORAN",
-      "to": "BARCELONA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 25 según lo previsto."
-    },
-    {
       "id": "A202600458",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9483358",
       "name": "ISABELLA B",
       "gt": 10585,
@@ -36,11 +19,13 @@
       "eta": "2026-07-01T08:00",
       "etd": "2026-07-01T12:00",
       "from": "STA. CRUZ",
-      "to": "ORAN"
+      "to": "ORAN",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
     },
     {
       "id": "A202600477",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9237242",
       "name": "CRACOVIA",
       "gt": 25028,
@@ -51,13 +36,11 @@
       "eta": "2026-07-01T08:00",
       "etd": "2026-07-01T20:00",
       "from": "ORAN",
-      "to": "ORAN",
-      "affectedBy": "A202600461",
-      "affectRisk": "ALTO"
+      "to": "ORAN"
     },
     {
       "id": "A202600474",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "8911841",
       "name": "MALTA CEMENT",
       "gt": 2429,
@@ -98,7 +81,9 @@
       "eta": "2026-07-02T08:00",
       "etd": "2026-07-02T14:00",
       "from": "CASTELLON",
-      "to": "ALMERIA"
+      "to": "ALMERIA",
+      "affectedBy": "A202600458",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600476",
@@ -114,21 +99,6 @@
       "etd": "2026-07-03T08:00",
       "from": "ALMERIA",
       "to": "GANDIA"
-    },
-    {
-      "id": "A202600460",
-      "status": "Prevista",
-      "imo": "9432505",
-      "name": "SIDER SONJA",
-      "gt": 5629,
-      "len": 108,
-      "berth": "15",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "C/ BIOMASA",
-      "eta": "2026-07-02T12:00",
-      "etd": "2026-07-04T22:00",
-      "from": "PORTO VESME",
-      "to": "TENERIFE"
     },
     {
       "id": "A202600464",
@@ -191,6 +161,21 @@
       "to": "HUELVA"
     },
     {
+      "id": "A202600460",
+      "status": "Prevista",
+      "imo": "9432505",
+      "name": "SIDER SONJA",
+      "gt": 5629,
+      "len": 108,
+      "berth": "15",
+      "agent": "ROMEU Y CIA. S A",
+      "op": "C/ BIOMASA",
+      "eta": "2026-07-05T12:00",
+      "etd": "2026-07-07T22:00",
+      "from": "PORTO VESME",
+      "to": "TENERIFE"
+    },
+    {
       "id": "A202600473",
       "status": "Prevista",
       "imo": "9505560",
@@ -222,7 +207,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600461",
+    "callId": "A202600458",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -249,18 +234,18 @@
     }
   },
   "milestones": {
-    "A202600461": [
+    "A202600458": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "30/06 · 08:25",
+        "time": "01/07 · 08:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "30/06 · 09:30",
-        "by": "Agente: ROMEU Y CIA. S A"
+        "time": "01/07 · 09:30",
+        "by": "Agente: MILLER Y COMPAÑIA S.A"
       },
       {
         "label": "Fin de operaciones",
