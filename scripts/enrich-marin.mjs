@@ -111,10 +111,13 @@ function applyToCall(call, e) {
   // numérico es 0; si no, data.json podría quedar desincronizado con la caché.
   call.imo = e.imo;
   if (e.mmsi) call.mmsi = e.mmsi;
-  // Backfill con el IMO si la caché aún no tiene detailId (entradas previas a su
-  // introducción): VesselFinder resuelve la ficha por IMO, así siempre queda
-  // persistido en data.json un id de ficha usable por enrich-marin-live.
-  call.detailId = e.detailId || e.imo;
+  // Normaliza el detailId en la PROPIA entrada de caché (con el IMO si falta):
+  // como `e` es la entrada de cache[key] por referencia, así queda persistido al
+  // reescribir vessel-cache.json (no solo en data.json). VesselFinder resuelve la
+  // ficha por IMO, así que el fallback es válido y enrich-marin-live siempre tiene
+  // un id de ficha usable (y respeta un detailId real ≠ IMO cuando exista).
+  e.detailId = e.detailId || e.imo;
+  call.detailId = e.detailId;
   call.gt = e.gt ?? 0;
   call.dwt = e.dwt ?? 0;
   call.len = e.len ?? 0;

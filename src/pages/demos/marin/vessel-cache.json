@@ -28,7 +28,8 @@
     "destination": "Algeciras, Spain",
     "confidence": "destination-confirmed",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-29T16:53:50Z"
+    "resolvedAt": "2026-06-29T16:53:50Z",
+    "detailId": "9354399"
   },
   "NATALIE::PASAJES": {
     "resolved": true,
@@ -59,7 +60,8 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-29T16:53:17Z"
+    "resolvedAt": "2026-06-29T16:53:17Z",
+    "detailId": "9729831"
   },
   "ANNA::ROUEN": {
     "resolved": false,
@@ -115,7 +117,8 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "destination-confirmed",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-29T16:53:28Z"
+    "resolvedAt": "2026-06-29T16:53:28Z",
+    "detailId": "9604964"
   },
   "DANZIGERGRACHT::CUXHAVEN": {
     "resolved": true,
@@ -131,7 +134,8 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-29T16:53:40Z"
+    "resolvedAt": "2026-06-29T16:53:40Z",
+    "detailId": "9420796"
   },
   "NICOLA L::PASAJES": {
     "resolved": true,
@@ -178,7 +182,8 @@
     "destination": "Gijon, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-29T16:53:47Z"
+    "resolvedAt": "2026-06-29T16:53:47Z",
+    "detailId": "9864760"
   },
   "FEDERAL ST LAURENT::A ORDENES": {
     "resolved": true,
@@ -194,7 +199,8 @@
     "destination": "Marin, Pontevedra Anch., Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-29T16:53:31Z"
+    "resolvedAt": "2026-06-29T16:53:31Z",
+    "detailId": "9838462"
   },
   "VERTOM PORTO::CHALKIS": {
     "resolved": true,
@@ -210,7 +216,8 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-29T16:53:37Z"
+    "resolvedAt": "2026-06-29T16:53:37Z",
+    "detailId": "9515010"
   },
   "CLARA::BRAKE": {
     "resolved": true,
@@ -226,7 +233,8 @@
     "destination": "Setubal, Portugal",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-29T16:53:44Z"
+    "resolvedAt": "2026-06-29T16:53:44Z",
+    "detailId": "9312676"
   },
   "LARIXBORG::A ORDENES": {
     "resolved": true,
@@ -242,6 +250,7 @@
     "destination": "Marin, Pontevedra, Spain",
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
-    "resolvedAt": "2026-06-30T10:17:43Z"
+    "resolvedAt": "2026-06-30T10:17:43Z",
+    "detailId": "9489546"
   }
 }
