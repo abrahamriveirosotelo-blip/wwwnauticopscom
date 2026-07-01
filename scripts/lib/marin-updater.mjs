@@ -195,12 +195,6 @@ export function buildCalls(esperados, puerto, prevCalls = [], fallbackYear) {
  * comparte muelle con otro "Prevista" → retraso + impacto en cascada.
  * ------------------------------------------------------------------ */
 
-function fmtMilestoneTime(ms) {
-  const d = new Date(ms);
-  const pad = n => String(n).padStart(2, '0');
-  return `${pad(d.getDate())}/${pad(d.getMonth() + 1)} · ${pad(d.getHours())}:${pad(d.getMinutes())}`;
-}
-
 function opContext(op) {
   const s = (op || '').trim().toUpperCase();
   if (s.startsWith('D.') || s.startsWith('D/')) return 'descarga';
@@ -230,22 +224,5 @@ export function buildAlertScenario(calls) {
     affectedCall.affectRisk = 'ALTO';
   }
 
-  // Ancla de los hitos: la ETA si la conocemos; si solo tenemos la ETD (buque
-  // que entró en puerto antes de que captáramos su ETA), retrocedemos ~8 h para
-  // que "Atracado"/"Inicio de operaciones" caigan antes de la salida prevista.
-  const baseMs = alertCall.eta
-    ? new Date(alertCall.eta).getTime()
-    : alertCall.etd
-      ? new Date(alertCall.etd).getTime() - 8 * 3600 * 1000
-      : Date.now();
-  const milestones = {
-    [alertCall.id]: [
-      { label: 'Atracado',              status: 'done',        time: fmtMilestoneTime(baseMs + 25 * 60000), by: 'Práctico (Marín)' },
-      { label: 'Inicio de operaciones', status: 'done',        time: fmtMilestoneTime(baseMs + 90 * 60000), by: `Agente: ${alertCall.agent}` },
-      { label: 'Fin de operaciones',    status: 'in_progress', time: 'En curso — con incidencia',            by: null },
-      { label: 'Desatracado',           status: 'pending',     time: null,                                   by: null },
-    ],
-  };
-
-  return { alertId: alertCall.id, alertName: alertCall.name, affectedName: affectedCall?.name, milestones };
+  return { alertId: alertCall.id, alertName: alertCall.name, affectedName: affectedCall?.name };
 }

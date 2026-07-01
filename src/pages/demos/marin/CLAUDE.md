@@ -17,7 +17,7 @@ NauticOps conecta la información planificada de las autoridades portuarias con 
 
 ```
 DemoMarin.tsx   — Componente React principal (solo UI y lógica; logo en LOGO_PORT como data URI SVG)
-data.json       — Todos los datos de la demo (escalas, servicios, hitos)
+data.json       — Todos los datos de la demo (escalas + enriquecimiento)
 ```
 
 **Regla principal: los datos van en el JSON, nunca en el TSX.**
@@ -97,11 +97,9 @@ En la UI: la **ETA AIS** aparece junto a la ETA de la AP en la sección **TIEMPO
 
 El script [`scripts/update-marin.mjs`](../../../../scripts/update-marin.mjs) descarga las dos páginas, parsea las tablas (parser regex zero-dep en [`scripts/lib/marin-updater.mjs`](../../../../scripts/lib/marin-updater.mjs)), las cruza por escala y escribe `data.json`.
 
-En cada ejecución también **elige el escenario de alerta**: un buque "en puerto" (`Iniciado`) que comparte muelle con otro `Prevista` → `"Alerta"` + retraso + impacto en cascada (`affectedBy`, `affectRisk: "ALTO"`) + hitos operativos. La comparación de muelles ignora acentos/mayúsculas (la AP escribe "Marin" en una tabla y "Marín" en la otra). No hay IDs hardcodeados.
+En cada ejecución también **elige el escenario de alerta**: un buque "en puerto" (`Iniciado`) que comparte muelle con otro `Prevista` → `"Alerta"` + retraso + impacto en cascada (`affectedBy`, `affectRisk: "ALTO"`). La comparación de muelles ignora acentos/mayúsculas (la AP escribe "Marin" en una tabla y "Marín" en la otra). No hay IDs hardcodeados.
 
-Se preservan del JSON anterior los datos manuales del parte de remolque (`tugService.crew`, `tugService.times`, `tugService.tugboat`). El `callId` se actualiza al barco elegido para la alerta; si en alguna ejecución no hay barcos en puerto (sin alerta), `callId` y `milestones` se vacían para no apuntar a una escala que ya no existe.
 
-El remolcador de Marín es **`AMARE MARÍN`** (`tugService.tugboat`).
 
 ### Comandos locales
 
@@ -135,13 +133,12 @@ El workflow [`.github/workflows/update-demos.yml`](../../../../.github/workflows
 
 ## Notas para la demo
 
-Tras actualizar, el barco en **Alerta** y el de **impacto ALTO** se eligen automáticamente (no hay IDs fijos). Usa el banner superior y el drawer de remolque del buque marcado como `Alerta`.
+Tras actualizar, el barco en **Alerta** y el de **impacto ALTO** se eligen automáticamente (no hay IDs fijos). Usa el banner superior o clica el buque marcado como `Alerta`.
 
 ---
 
 ## Pendiente
 
-- [x] Nombre real del remolcador de Marín en `tugService.tugboat` → `AMARE MARÍN`.
 - [x] Enriquecer IMO/GT/eslora/bandera/tipo desde vesselfinder.com (`enrich-marin.mjs`).
 - [ ] Datos en vivo (velocidad/posición/ETA): requieren navegador headless o API de pago.
 - [ ] Contacto/prospecto concreto al que va dirigida la demo (como Esther en Alicante).

@@ -12,7 +12,7 @@
  * "esperado" y la ETD cuando ya está "en puerto"; el merge con el data.json
  * anterior conserva el dato que ya no aparece en la tabla actual.
  *
- * Preserva tugService (tripulación, tiempos, remolcador) y aplica alerta dinámica.
+ * Marca dinámicamente el escenario de alerta (un buque en puerto que bloquea el muelle de otro previsto).
  *
  * Uso:
  *   node scripts/update-marin.mjs
@@ -40,30 +40,6 @@ const SEED = {
     refreshHours: 12,
   },
   calls: [],
-  tugService: {
-    callId: '',
-    reportNumber: '004821',
-    tugboat: 'AMARE MARÍN',
-    powerPct: 70,
-    rope: true,
-    shipEngine: false,
-    status: 'en_curso',
-    crew: { patron: 'X. Rodríguez', mecanico: 'B. Castro', marinero: 'A. Lago' },
-    times: {
-      requested_at: '08:30',
-      ir_at_planned: '08:45',
-      ir_at_real: '08:47',
-      cos_at_planned: '09:05',
-      cos_at_real: '11:40',
-      rc_at_planned: '09:10',
-      rc_at_real: null,
-      sc_at_planned: '09:40',
-      sc_at_real: null,
-      fr_at_planned: '09:55',
-      fr_at_real: null,
-    },
-  },
-  milestones: {},
 };
 
 async function fetchHtml(url) {
@@ -163,13 +139,6 @@ async function main() {
       refreshHours: base.meta?.refreshHours ?? 12,
     },
     calls,
-    // Sin alerta no debe quedar un callId/milestones apuntando a una escala que
-    // ya no existe en `calls`: se conservan tripulación/tiempos pero se limpian
-    // el vínculo y los hitos para no dejar el drawer en estado incoherente.
-    tugService: alert
-      ? { ...base.tugService, callId: alert.alertId }
-      : { ...base.tugService, callId: '' },
-    milestones: alert ? alert.milestones : {},
   };
 
   if (isDryRun) {
