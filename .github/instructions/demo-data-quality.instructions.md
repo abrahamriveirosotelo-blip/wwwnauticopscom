@@ -31,6 +31,12 @@ a single scrape never has ETA and ETD for the same call. `update-marin.mjs` reco
 the missing one from the previous `data.json`; on a cold start (no prior file) in-port
 vessels legitimately show `eta: ""` until a later run captures it. This is expected.
 
+**Empty-scrape guard:** if both apmarin tables come back with 0 rows, we assume a
+transient AP glitch (or an off-hours empty listing) rather than "the port has no ships",
+so `update-marin.mjs` does **not** overwrite a non-empty `data.json` with 0 calls — it
+keeps the previous snapshot until the port lists calls again. A committed demo with 0
+vessels would otherwise render empty.
+
 ### Marín vessel enrichment (vesselfinder.com)
 
 `imo`/`gt`/`dwt`/`len`/`flag`/`vesselType`/`built`/`callsign` are NOT from the port authority —

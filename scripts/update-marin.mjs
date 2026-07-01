@@ -134,6 +134,16 @@ async function main() {
     `✓ ${esperados.rows.length} esperados + ${puerto.rows.length} en puerto → ${calls.length} escalas`
   );
 
+  // Guard: en momentos sin barcos, apmarin devuelve las tablas vacías. No sobre-
+  // escribir un data.json bueno con 0 escalas (dejaría la demo sin barcos); se
+  // conserva el snapshot anterior hasta que el puerto vuelva a listar escalas.
+  if (calls.length === 0 && (existing.calls?.length || 0) > 0) {
+    console.warn(
+      `⚠️  El scrape no devolvió escalas (puerto sin barcos ahora mismo); se conserva el data.json anterior (${existing.calls.length} escalas).`
+    );
+    return;
+  }
+
   const alert = buildAlertScenario(calls);
   if (alert) {
     const ac = calls.find(c => c.id === alert.alertId);
