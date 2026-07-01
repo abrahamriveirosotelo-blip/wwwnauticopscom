@@ -1,7 +1,5 @@
 /** Helpers solo para scripts/update-marin.mjs (demo Puerto de Marín). */
 
-export const ALERT_DELAY = '+3h 45min';
-
 /* ------------------------------------------------------------------ *
  * Parsing de las tablas HTML de apmarin.com
  *  - buques_esperados → última columna ETA
@@ -51,13 +49,6 @@ export function parseMarinDate(ddmmHHmm, year) {
   if (!m) return null;
   const [, d, mo, h, mi] = m;
   return `${year}-${mo.padStart(2, '0')}-${d.padStart(2, '0')}T${h.padStart(2, '0')}:${mi}`;
-}
-
-/** Normaliza el muelle para comparar (sin acentos/caso/espacios extra). */
-export function normBerth(b) {
-  return (b || '')
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase().replace(/\s+/g, ' ').trim();
 }
 
 /**
@@ -195,38 +186,11 @@ export function buildCalls(esperados, puerto, prevCalls = [], fallbackYear) {
 }
 
 /* ------------------------------------------------------------------ *
- * Escenario de alerta de demo: un buque "en puerto" (Iniciado) que
- * comparte muelle con otro "Prevista" → retraso + impacto en cascada.
+ * Alertas operativas: la UI las pinta a partir de campos del data.json
+ * (status:'Alerta' + delay/alertNote en la escala en incidencia, y
+ * affectedBy/affectRisk en la escala impactada). YA NO se fabrican aquí.
+ * Solo deben marcarse cuando una FUENTE REAL detecte una incidencia entre
+ * lo previsto por la AP y la realidad (contraste AP vs AIS, prácticos,
+ * remolcadores…). Hasta entonces ninguna escala lleva esos campos y la UI
+ * no muestra ninguna alerta.
  * ------------------------------------------------------------------ */
-
-function opContext(op) {
-  const s = (op || '').trim().toUpperCase();
-  if (s.startsWith('D.') || s.startsWith('D/')) return 'descarga';
-  if (s.startsWith('C.') || s.startsWith('C/')) return 'carga';
-  return 'operaciones';
-}
-
-export function buildAlertScenario(calls) {
-  let alertCall = null;
-  let affectedCall = null;
-  for (const c of calls.filter(c => c.status === 'Iniciado' && c.berth !== '—')) {
-    const next = calls.find(
-      x => x.status === 'Prevista' && normBerth(x.berth) === normBerth(c.berth)
-    );
-    if (next) { alertCall = c; affectedCall = next; break; }
-  }
-  if (!alertCall) alertCall = calls.find(c => c.status === 'Iniciado');
-  if (!alertCall) return null;
-
-  alertCall.status = 'Alerta';
-  alertCall.delay = ALERT_DELAY;
-  alertCall.alertNote =
-    `Incidencia en ${opContext(alertCall.op)}. El buque no liberará el muelle ${alertCall.berth} según lo previsto.`;
-
-  if (affectedCall) {
-    affectedCall.affectedBy = alertCall.id;
-    affectedCall.affectRisk = 'ALTO';
-  }
-
-  return { alertId: alertCall.id, alertName: alertCall.name, affectedName: affectedCall?.name };
-}

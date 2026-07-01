@@ -124,7 +124,9 @@ En la UI: el mapa **POSICIÓN DE LA FLOTA** (`FleetMap.tsx`, Leaflet + OpenStree
 
 El script [`scripts/update-marin.mjs`](../../../../scripts/update-marin.mjs) descarga las dos páginas, parsea las tablas (parser regex zero-dep en [`scripts/lib/marin-updater.mjs`](../../../../scripts/lib/marin-updater.mjs)), las cruza por escala y escribe `data.json`.
 
-En cada ejecución también **elige el escenario de alerta**: un buque "en puerto" (`Iniciado`) que comparte muelle con otro `Prevista` → `"Alerta"` + retraso + impacto en cascada (`affectedBy`, `affectRisk: "ALTO"`). La comparación de muelles ignora acentos/mayúsculas (la AP escribe "Marin" en una tabla y "Marín" en la otra). No hay IDs hardcodeados.
+### Alertas operativas (dirigidas por datos, ya no fabricadas)
+
+La UI muestra una **alerta operativa** cuando una escala trae los campos `status: "Alerta"` + `delay`/`alertNote` (buque en incidencia) y otra trae `affectedBy` + `affectRisk` (escala impactada). **Ya NO se generan automáticamente**: `update-marin.mjs` dejó de fabricar el escenario de demo. Estos campos solo deben marcarse cuando una **fuente real** detecte una incidencia entre lo previsto por la AP y la realidad (contraste AP vs AIS, prácticos, remolcadores…). Mientras ninguna escala los lleve, la demo no muestra alertas (el banner y la píldora del header se ocultan; el KPI "CON ALERTA" queda en 0). La maquinaria de UI se conserva para cuando exista esa detección real.
 
 
 
@@ -162,7 +164,7 @@ El workflow [`.github/workflows/update-demos.yml`](../../../../.github/workflows
 
 ## Notas para la demo
 
-Tras actualizar, el barco en **Alerta** y el de **impacto ALTO** se eligen automáticamente (no hay IDs fijos). Usa el banner superior o clica el buque marcado como `Alerta`.
+La demo muestra datos reales: escalas de la AP + datos AIS en vivo (estado, ETA reportada, posición en el mapa). El gancho "planificado vs ejecutado" sale del **contraste AP vs AIS** (p. ej. un buque que la AP da como `Prevista` y el AIS ya sitúa atracado en Marín, o ETA AP vs ETA AIS). Las **alertas operativas** ya no se inventan: solo aparecerán cuando una fuente real detecte una incidencia (ver «Alertas operativas» arriba).
 
 ---
 

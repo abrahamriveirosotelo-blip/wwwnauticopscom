@@ -40,7 +40,7 @@
     },
     {
       "id": "M202600405",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "—",
       "name": "Anna",
       "gt": 0,
@@ -51,9 +51,7 @@
       "eta": "2026-06-26T08:00",
       "etd": "2026-07-01T20:00",
       "from": "Moerdijk",
-      "to": "Rouen",
-      "delay": "+3h 45min",
-      "alertNote": "Incidencia en carga. El buque no liberará el muelle Adolfo Reboredo Atraque 1 según lo previsto."
+      "to": "Rouen"
     },
     {
       "id": "M202600423",
@@ -284,8 +282,6 @@
       "aisAt": "2026-06-30T12:50",
       "aisAtMarin": false,
       "aisToFinal": true,
-      "affectedBy": "M202600405",
-      "affectRisk": "ALTO",
       "aisEta": "",
       "aisSpeed": 0,
       "aisArrivedMarin": false,

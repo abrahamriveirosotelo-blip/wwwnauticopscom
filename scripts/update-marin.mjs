@@ -12,8 +12,6 @@
  * "esperado" y la ETD cuando ya está "en puerto"; el merge con el data.json
  * anterior conserva el dato que ya no aparece en la tabla actual.
  *
- * Marca dinámicamente el escenario de alerta (un buque en puerto que bloquea el muelle de otro previsto).
- *
  * Uso:
  *   node scripts/update-marin.mjs
  *   node scripts/update-marin.mjs --dry-run
@@ -24,7 +22,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { parseMarinPage, buildCalls, buildAlertScenario } from './lib/marin-updater.mjs';
+import { parseMarinPage, buildCalls } from './lib/marin-updater.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_PATH = join(__dirname, '../src/pages/demos/marin/data.json');
@@ -121,15 +119,6 @@ async function main() {
       `⚠️  El scrape no devolvió escalas (puerto sin barcos ahora mismo); se conserva el data.json anterior (${existing.calls.length} escalas).`
     );
     return;
-  }
-
-  const alert = buildAlertScenario(calls);
-  if (alert) {
-    const ac = calls.find(c => c.id === alert.alertId);
-    console.log(`✓ Alerta de demo → ${alert.alertName} · Muelle ${ac?.berth}`);
-    if (alert.affectedName) console.log(`  → Impacto ALTO en ${alert.affectedName} (mismo muelle)`);
-  } else {
-    console.warn('⚠️  No hay barcos en puerto — escenario de alerta no aplicado');
   }
 
   const base = existing.meta ? existing : SEED;
