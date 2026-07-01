@@ -73,7 +73,7 @@ function parseAisTime(timeUtc) {
  * (habitual en ventanas largas), para no perder el resto de la ventana. Resuelve
  * siempre (nunca rechaza): lo captado hasta el corte es el resultado (best-effort).
  */
-function collectPositions(key, mmsis, sec, { onFlush, flushSeconds = 0 } = {}) {
+function collectPositions(WS, key, mmsis, sec, { onFlush, flushSeconds = 0 } = {}) {
   return new Promise(resolve => {
     const positions = new Map();
     const endAt = Date.now() + sec * 1000;
@@ -123,7 +123,7 @@ function collectPositions(key, mmsis, sec, { onFlush, flushSeconds = 0 } = {}) {
     };
 
     const connect = () => {
-      ws = new WebSocket(STREAM_URL);
+      ws = new WS(STREAM_URL);
       ws.binaryType = 'arraybuffer'; // aisstream envía frames binarios
       ws.addEventListener('open', () => ws.send(JSON.stringify({
         APIKey: key,
@@ -179,8 +179,14 @@ async function main() {
       'Genera una gratis en https://aisstream.io/apikeys');
     return; // salir 0: paso opcional
   }
-  if (typeof WebSocket === 'undefined') {
-    console.warn('⚠️  Este Node no tiene WebSocket nativo (hace falta Node ≥ 22) — se omite.');
+  // WebSocket global llegó en Node 22; en Node 20 (permitido por engines) usa undici.
+  let WS = globalThis.WebSocket;
+  if (!WS) {
+    try { ({ WebSocket: WS } = await import('undici')); }
+    catch { /* undici no instalado */ }
+  }
+  if (!WS) {
+    console.warn('⚠️  Sin WebSocket (ni global ni undici) — se omite. Usa Node ≥ 22 o instala undici.');
     return;
   }
 
@@ -196,6 +202,8 @@ async function main() {
     // aisstream ignora los MMSI por encima del límite; avísalo en vez de fallar en silencio.
     console.warn(`⚠️  ${mmsis.length} MMSI > límite ${MMSI_LIMIT} de aisstream; solo se localizarán los primeros ${MMSI_LIMIT}.`);
   }
+  // Solo se consultan los primeros MMSI_LIMIT; el resto ni se pide (no cuenta como "sin posición").
+  const queried = mmsis.slice(0, MMSI_LIMIT);
 
   // Aplica las posiciones captadas y (salvo dry-run) escribe data.json. Se usa tanto
   // en los volcados progresivos como en el resumen final.
@@ -207,16 +215,16 @@ async function main() {
       if (p) { applyPosition(call, p, scrapedAt); located++; }
     }
     if (!isDryRun) writeFileSync(DATA_PATH, JSON.stringify(data, null, 2) + '\n', 'utf-8');
-    console.log(`${label}: ${located}/${data.calls.length} escalas con posición · ${pos.size}/${mmsis.length} MMSI · ${scrapedAt}${isDryRun ? ' · DRY RUN (no escrito)' : ' · data.json escrito'}`);
+    console.log(`${label}: ${located}/${data.calls.length} escalas con posición · ${pos.size}/${queried.length} MMSI · ${scrapedAt}${isDryRun ? ' · DRY RUN (no escrito)' : ' · data.json escrito'}`);
   };
 
-  const positions = await collectPositions(key, mmsis.slice(0, MMSI_LIMIT), seconds, {
+  const positions = await collectPositions(WS, key, queried, seconds, {
     onFlush: isDryRun ? null : pos => write(pos, '  💾 volcado parcial'),
     flushSeconds,
   });
 
   write(positions, '\nResumen final');
-  const missing = mmsis.filter(m => !positions.has(m));
+  const missing = queried.filter(m => !positions.has(m));
   if (missing.length) console.log(`Sin posición (se conserva la anterior): ${missing.join(', ')}`);
 }
 

@@ -169,6 +169,7 @@ Tras actualizar, el barco en **Alerta** y el de **impacto ALTO** se eligen autom
 - [x] Enriquecer IMO/GT/eslora/bandera/tipo desde vesselfinder.com (`enrich-marin.mjs`).
 - [x] Datos en vivo de estado/velocidad/ETA (`enrich-marin-live.mjs`, VesselFinder).
 - [x] Posición en vivo (lat/lon/rumbo) desde aisstream.io (`enrich-marin-ais.mjs`).
-- [ ] Mapa en la UI que pinte la posición AIS de cada buque (pendiente de enfoque).
+- [x] Mapa en la UI que pinta la posición AIS de cada buque (`FleetMap.tsx`, Leaflet; clic abre la escala).
+- [ ] Servidor 24/7 para el WebSocket de aisstream (poder poblar posiciones en CI, no solo en local).
 - [ ] Contacto/prospecto concreto al que va dirigida la demo (como Esther en Alicante).
 - [ ] Aprovechar la columna `Norays` (no se vuelca al JSON; podría mostrarse en el drawer).

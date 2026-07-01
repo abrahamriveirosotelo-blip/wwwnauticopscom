@@ -1,11 +1,14 @@
-import { useEffect, useMemo } from "react";
-import { MapContainer, TileLayer, Marker, Tooltip, useMap } from "react-leaflet";
+import { useEffect, useMemo, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 /* Mapa global de la flota: pinta la posición AIS en vivo (aisstream) de cada buque
  * con posición conocida, más el puerto de Marín. Cinemática (lat/lon/rumbo/velocidad)
- * viene de enrich-marin-ais.mjs; los buques sin posición no se pintan. */
+ * viene de enrich-marin-ais.mjs; los buques sin posición no se pintan. Clic en un
+ * buque → onSelect(call) (mismo drawer que la tabla).
+ *
+ * Leaflet a pelo (BSD-2-Clause), sin react-leaflet, para no arrastrar su licencia
+ * Hippocratic-2.1. */
 
 // Puerto de Marín (Ría de Pontevedra).
 const MARIN = { lat: 42.4053, lon: -8.7020, label: "Puerto de Marín" };
@@ -14,6 +17,8 @@ const C = {
   navy: "#0A1F3D", cyan: "#079FE6", success: "#00C896",
   warning: "#F59E0B", gray: "#64748B", white: "#FFFFFF",
 };
+
+const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
 
 /** Color del marcador según el estado AIS (o gris si desconocido). */
 function statusColor(aisStatus) {
@@ -40,17 +45,23 @@ const marinIcon = L.divIcon({
   className: "", iconSize: [26, 26], iconAnchor: [13, 13],
 });
 
-/** Encuadra el mapa a todos los puntos; con un solo punto (solo Marín) fija una vista regional. */
-function FitBounds({ points }) {
-  const map = useMap();
-  useEffect(() => {
-    if (points.length <= 1) { map.setView([MARIN.lat, MARIN.lon], 8); return; }
-    map.fitBounds(L.latLngBounds(points), { padding: [40, 40], maxZoom: 11 });
-  }, [points, map]);
-  return null;
+/** HTML del tooltip de un buque (Leaflet acepta strings en bindTooltip). */
+function vesselTooltip(v, fmt, clickable) {
+  const rows = [
+    `<div style="font-weight:800;color:${C.navy}">${esc(v.name)}</div>`,
+    `<div style="font-size:11px;color:${C.gray};margin-top:2px">${esc(v.aisStatus || "—")}` +
+      `${v.aisSog != null ? ` · ${v.aisSog} kn` : ""}${v.aisCog != null ? ` · rumbo ${Math.round(v.aisCog)}°` : ""}</div>`,
+  ];
+  if (v.aisDestination) rows.push(`<div style="font-size:11px;color:${C.gray}">→ ${esc(v.aisDestination)}</div>`);
+  if (v.aisPosAt) rows.push(`<div style="font-size:10px;color:${C.gray};margin-top:2px">posición: ${esc(fmt ? fmt(v.aisPosAt) : v.aisPosAt)}</div>`);
+  if (clickable) rows.push(`<div style="font-size:10px;color:${C.cyan};font-weight:700;margin-top:3px">clic para ver la escala →</div>`);
+  return rows.join("");
 }
 
 export default function FleetMap({ calls, fmt, onSelect }) {
+  const containerRef = useRef(null);
+  const mapRef = useRef(null);
+
   // Un buque puede tener varias escalas: dedupe por MMSI (o nombre) quedándonos con
   // la que tenga posición. Solo se pintan los que tienen lat/lon.
   const vessels = useMemo(() => {
@@ -63,10 +74,42 @@ export default function FleetMap({ calls, fmt, onSelect }) {
     return [...byKey.values()];
   }, [calls]);
 
-  const points = useMemo(
-    () => [[MARIN.lat, MARIN.lon], ...vessels.map(v => [v.aisLat, v.aisLon])],
-    [vessels]
-  );
+  // Inicializa el mapa una vez.
+  useEffect(() => {
+    if (mapRef.current || !containerRef.current) return;
+    const map = L.map(containerRef.current, { scrollWheelZoom: false }).setView([MARIN.lat, MARIN.lon], 8);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map);
+    mapRef.current = map;
+    return () => { map.remove(); mapRef.current = null; };
+  }, []);
+
+  // (Re)pinta marcadores cuando cambian los buques.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const layer = L.layerGroup().addTo(map);
+
+    L.marker([MARIN.lat, MARIN.lon], { icon: marinIcon })
+      .bindTooltip(esc(MARIN.label), { direction: "top", offset: [0, -12] })
+      .addTo(layer);
+
+    const pts = [[MARIN.lat, MARIN.lon]];
+    for (const v of vessels) {
+      const deg = v.aisHeading ?? v.aisCog ?? null;
+      const m = L.marker([v.aisLat, v.aisLon], { icon: vesselIcon(deg, statusColor(v.aisStatus)) })
+        .bindTooltip(vesselTooltip(v, fmt, !!onSelect), { direction: "top", offset: [0, -12] })
+        .addTo(layer);
+      if (onSelect) m.on("click", () => onSelect(v));
+      pts.push([v.aisLat, v.aisLon]);
+    }
+
+    if (pts.length <= 1) map.setView([MARIN.lat, MARIN.lon], 8);
+    else map.fitBounds(L.latLngBounds(pts), { padding: [40, 40], maxZoom: 11 });
+
+    return () => { layer.remove(); };
+  }, [vessels, fmt, onSelect]);
 
   return (
     <div style={{ marginBottom: 16 }}>
@@ -82,57 +125,7 @@ export default function FleetMap({ calls, fmt, onSelect }) {
       </div>
 
       <div style={{ position: "relative", borderRadius: 12, overflow: "hidden", border: `1px solid ${C.gray}22` }}>
-        <MapContainer
-          style={{ height: 440, width: "100%" }}
-          center={[MARIN.lat, MARIN.lon]}
-          zoom={8}
-          scrollWheelZoom={false}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <Marker position={[MARIN.lat, MARIN.lon]} icon={marinIcon}>
-            <Tooltip direction="top" offset={[0, -12]}>{MARIN.label}</Tooltip>
-          </Marker>
-
-          {vessels.map(v => {
-            const deg = v.aisHeading ?? v.aisCog ?? null;
-            const color = statusColor(v.aisStatus);
-            return (
-              <Marker
-                key={v.mmsi || v.name}
-                position={[v.aisLat, v.aisLon]}
-                icon={vesselIcon(deg, color)}
-                eventHandlers={onSelect ? { click: () => onSelect(v) } : undefined}
-              >
-                <Tooltip direction="top" offset={[0, -12]}>
-                  <div style={{ fontWeight: 800, color: C.navy }}>{v.name}</div>
-                  <div style={{ fontSize: 11, color: C.gray, marginTop: 2 }}>
-                    {v.aisStatus || "—"}
-                    {v.aisSog != null && ` · ${v.aisSog} kn`}
-                    {v.aisCog != null && ` · rumbo ${Math.round(v.aisCog)}°`}
-                  </div>
-                  {v.aisDestination && (
-                    <div style={{ fontSize: 11, color: C.gray }}>→ {v.aisDestination}</div>
-                  )}
-                  {v.aisPosAt && (
-                    <div style={{ fontSize: 10, color: C.gray, marginTop: 2 }}>
-                      posición: {fmt ? fmt(v.aisPosAt) : v.aisPosAt}
-                    </div>
-                  )}
-                  {onSelect && (
-                    <div style={{ fontSize: 10, color: C.cyan, fontWeight: 700, marginTop: 3 }}>
-                      clic para ver la escala →
-                    </div>
-                  )}
-                </Tooltip>
-              </Marker>
-            );
-          })}
-
-          <FitBounds points={points} />
-        </MapContainer>
+        <div ref={containerRef} style={{ height: 440, width: "100%" }} />
 
         {!vessels.length && (
           <div style={{
@@ -140,8 +133,8 @@ export default function FleetMap({ calls, fmt, onSelect }) {
             background: "rgba(255,255,255,0.94)", border: `1px solid ${C.gray}33`,
             borderRadius: 8, padding: "8px 12px", fontSize: 11, color: C.gray, maxWidth: 320,
           }}>
-            Aún no hay posiciones AIS en el snapshot. Se poblarán cuando el pipeline
-            ejecute <b>enrich-marin-ais</b> con la clave de aisstream.
+            Aún no hay posiciones AIS en el snapshot. Se poblarán cuando ejecutes
+            <b> enrich-marin-ais</b> en local con la clave de aisstream.
           </div>
         )}
       </div>
