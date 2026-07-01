@@ -23,21 +23,6 @@
     },
     {
       "id": "H20260629002",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "GAS AEGEAN",
-      "gt": 9134,
-      "len": 120,
-      "berth": "FER",
-      "agent": "BER",
-      "op": "Fondo",
-      "eta": "2026-06-29T00:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260629003",
       "status": "Alerta",
       "imo": "—",
       "name": "IJBORG",
@@ -54,7 +39,7 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle TI según lo previsto."
     },
     {
-      "id": "H20260630004",
+      "id": "H20260630003",
       "status": "Iniciado",
       "imo": "—",
       "name": "ERDEK",
@@ -69,7 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260630005",
+      "id": "H20260630004",
       "status": "Iniciado",
       "imo": "—",
       "name": "KRITI.SAILOR",
@@ -84,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260701006",
+      "id": "H20260701005",
       "status": "Iniciado",
       "imo": "—",
       "name": "DARMIK",
@@ -99,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260701007",
+      "id": "H20260701006",
       "status": "Prevista",
       "imo": "—",
       "name": "HERBEIRA",
@@ -114,7 +99,7 @@
       "to": "—"
     },
     {
-      "id": "H20260701008",
+      "id": "H20260701007",
       "status": "Prevista",
       "imo": "—",
       "name": "ORUBA",
@@ -129,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260701009",
+      "id": "H20260701008",
       "status": "Prevista",
       "imo": "—",
       "name": "DH.ADMIRAL",
@@ -139,6 +124,21 @@
       "agent": "E.CIA",
       "op": "Entrada",
       "eta": "2026-07-01T23:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260702009",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "MAKRO.MARULIC",
+      "gt": 6515,
+      "len": 116,
+      "berth": "PET",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-02T00:01",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -262,7 +262,7 @@
       "etd": "",
       "from": "—",
       "to": "—",
-      "affectedBy": "H20260629003",
+      "affectedBy": "H20260629002",
       "affectRisk": "ALTO"
     },
     {
@@ -311,7 +311,22 @@
       "to": "—"
     },
     {
-      "id": "H20260705021",
+      "id": "H20260704021",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "ZAHRA",
+      "gt": 33817,
+      "len": 183,
+      "berth": "DEC",
+      "agent": "NEX",
+      "op": "Entrada",
+      "eta": "2026-07-04T23:30",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260705022",
       "status": "Prevista",
       "imo": "—",
       "name": "ATROTOS",
@@ -326,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705022",
+      "id": "H20260705023",
       "status": "Prevista",
       "imo": "—",
       "name": "SNP.STAR",
@@ -341,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705023",
+      "id": "H20260705024",
       "status": "Prevista",
       "imo": "—",
       "name": "AFRICAN.ROADRUNNER",
@@ -356,7 +371,22 @@
       "to": "—"
     },
     {
-      "id": "H20260706024",
+      "id": "H20260706025",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "LILA.GELA",
+      "gt": 11628,
+      "len": 145,
+      "berth": "ATC",
+      "agent": "ERS",
+      "op": "Entrada",
+      "eta": "2026-07-06T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260706026",
       "status": "Prevista",
       "imo": "—",
       "name": "VIOLETE.THERESA",
@@ -372,7 +402,7 @@
     }
   ],
   "tugService": {
-    "callId": "H20260629003",
+    "callId": "H20260629002",
     "reportNumber": "031245",
     "tugboat": "REMOLCADOR ODIEL",
     "powerPct": 70,
@@ -399,7 +429,7 @@
     }
   },
   "milestones": {
-    "H20260629003": [
+    "H20260629002": [
       {
         "label": "Atracado",
         "status": "done",

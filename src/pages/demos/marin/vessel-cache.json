@@ -233,5 +233,35 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-06-30T09:45:19Z"
+  },
+  "EDZARD CIRKSENA::SETUBAL": {
+    "resolved": true,
+    "imo": "9375824",
+    "gt": 2451,
+    "len": 88,
+    "beam": 12,
+    "flag": "Antigua & Barbuda",
+    "vesselType": "General Cargo Ship",
+    "built": 2008,
+    "callsign": "V2DE2",
+    "destination": "ESMAR",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-01T12:30:12Z"
+  },
+  "WILSON NICE::A ORDENES": {
+    "resolved": true,
+    "imo": "9430959",
+    "gt": 6118,
+    "len": 123,
+    "beam": 16,
+    "flag": "Norway",
+    "vesselType": "General Cargo Ship",
+    "built": 2010,
+    "callsign": "LAMY8",
+    "destination": "Marin, Pontevedra, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-01T12:30:15Z"
   }
 }
