@@ -99,6 +99,8 @@ Separación de responsabilidades: aquí **solo** se trata cinemática de posici�
 
 **Best-effort, no cacheable** (la posición cambia constantemente): requiere el secret **`AISSTREAM_KEY`** ([API key gratuita](https://aisstream.io/apikeys)); sin key el script se **omite solo** (sale 0). Si un buque no emite en la ventana, se conserva su última posición conocida (`buildCalls` arrastra los campos `aisLat/aisLon/…`). Cobertura de aisstream: costera (~200 km); buena para buques navegando hacia Marín, con posibles huecos en mar abierto o en el fondo de la ría.
 
+> **Node:** usa el **WebSocket global**, disponible en **Node ≥ 22**. En Node 20 (permitido por `engines`) cae automáticamente a **`undici`** (devDependency). Si no hay ninguno de los dos, el script avisa y se omite (no es que "no funcione": faltaría el runtime de WebSocket).
+
 **Se ejecuta EN LOCAL, NO en CI.** Los buques (sobre todo atracados) emiten posición cada varios minutos, así que una ventana de cron es demasiado corta para captar la flota. El flujo es dejar el script corriendo un rato (p. ej. antes de una demo) e ir **commiteando `data.json` progresivamente**. El script está pensado para eso:
 
 - **`--seconds N`**: duración de la ventana. Para llenar el mapa, ventana larga (p. ej. `3600`).
