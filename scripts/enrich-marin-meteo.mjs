@@ -23,12 +23,17 @@ const MG_URL = "https://servizos.meteogalicia.gal/mgrss/observacion/ultimosHorar
 const AEMET_URL = "https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAC71_ATOM.xml";
 const MARIN_ZONES = new Set(["713601C"]); // Rías Baixas - Costa (solo avisos costeros por ahora)
 
-/** "2026-07-02T16:00:00" UTC → "2026-07-02T18:00" hora local de Marín (CEST, UTC+2 en verano). */
-function utcToLocal(isoUtc) {
-  const d = new Date(isoUtc + (isoUtc.endsWith("Z") ? "" : "Z"));
-  const l = new Date(d.getTime() + 2 * 3600 * 1000); // CEST = UTC+2 (dato de verano)
-  return l.toISOString().slice(0, 16);
+/** Cualquier Date → ISO naive en hora de España (Europe/Madrid, con DST). Igual que en los
+ *  otros enrich (evita el desfase fijo +2h que rompería en invierno / CET). */
+function toSpainIso(date) {
+  const p = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/Madrid", year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", hourCycle: "h23",
+  }).formatToParts(date).reduce((a, x) => (a[x.type] = x.value, a), {});
+  return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}`;
 }
+/** ISO UTC de MeteoGalicia ("2026-07-02T16:00:00") → hora local de España. */
+const utcToLocal = isoUtc => toSpainIso(new Date(isoUtc + (isoUtc.endsWith("Z") ? "" : "Z")));
 
 /** Observación de MeteoGalicia (último instante válido). */
 async function fetchObs() {
@@ -82,8 +87,8 @@ async function fetchAvisos() {
     const title = ((e.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || "").trim();
     const summ = ((e.match(/<summary>([\s\S]*?)<\/summary>/) || [])[1] || "").trim();
     const tm = title.match(/Nivel (\w+)\.\s*(.+?)\.\s*(.+)$/i);
-    // "de 13:00 03-07-2026 CEST (UTC+2) a 20:59 03-07-2026 CEST"
-    const wm = summ.match(/de (\d{2}):(\d{2}) (\d{2})-(\d{2})-(\d{4}) CEST[\s\S]*? a (\d{2}):(\d{2}) (\d{2})-(\d{2})-(\d{4}) CEST/);
+    // "de 13:00 03-07-2026 CEST (UTC+2) a 20:59 03-07-2026 CEST". CES?T → acepta CEST (verano) y CET (invierno).
+    const wm = summ.match(/de (\d{2}):(\d{2}) (\d{2})-(\d{2})-(\d{4}) CES?T[\s\S]*? a (\d{2}):(\d{2}) (\d{2})-(\d{2})-(\d{4}) CES?T/);
     if (!tm || !wm) continue;
     const iso = (h, mi, d, mo, y) => `${y}-${mo}-${d}T${h}:${mi}`;
     const det = await capDetail(href); // descripción/motivo + instrucción + web del CAP
@@ -103,8 +108,7 @@ async function fetchAvisos() {
 
 async function main() {
   const [obs, avisos] = await Promise.all([fetchObs(), fetchAvisos()]);
-  const nowLocal = utcToLocal(new Date().toISOString());
-  const meteo = { updatedAt: nowLocal, obs, avisos };
+  const meteo = { updatedAt: toSpainIso(new Date()), obs, avisos };
 
   console.log("Observación (Porto de Marín):", JSON.stringify(obs));
   console.log(`Avisos Rías Baixas (${avisos.length}):`);

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { nivelColor } from "./meteo";
 
 /* Simulación de planificación (vista Cronología). El mapa se centra en Marín y anima la
  * entrada/salida de buques según su ETA/ETD: cada buque ENTRA deslizándose desde la bocana
@@ -21,8 +22,6 @@ const C = {
   navy: "#0A1F3D", cyan: "#079FE6", success: "#00C896", warning: "#F59E0B",
   gray: "#64748B", grayLight: "#E2EBF4", white: "#FFFFFF", offWhite: "#F7FAFD",
 };
-/** Color por nivel de aviso AEMET (amarillo/naranja/rojo). */
-const nivelColor = n => n === "rojo" ? "#DC2626" : n === "naranja" ? "#F97316" : "#EAB308";
 
 const fmtClock = ms => {
   const d = new Date(ms);
@@ -381,9 +380,10 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
         </span>
         <span style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
           {activeAviso && (
-            <span style={{ fontSize: 10, fontWeight: 800, padding: "2px 8px", borderRadius: 6, whiteSpace: "nowrap",
+            <span title={`Aviso AEMET · nivel ${activeAviso.nivel}${activeAviso.descripcion ? " · " + activeAviso.descripcion : ""}`}
+              style={{ fontSize: 10, fontWeight: 800, padding: "2px 8px", borderRadius: 6, whiteSpace: "nowrap",
               background: nivelColor(activeAviso.nivel), color: activeAviso.nivel === "amarillo" ? "#3a2e00" : "#fff" }}>
-              ⚠ {activeAviso.fenomeno}
+              ⚠ {activeAviso.fenomeno} ({activeAviso.nivel})
             </span>
           )}
           <span style={{ fontSize: 11, fontWeight: 700, color: docked ? C.success : C.gray }}>⚓ {docked} en puerto</span>

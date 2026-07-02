@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import data from "./data.json";
 import FleetMap from "./FleetMap";
 import SchedulePlayback from "./SchedulePlayback";
+import { nivelColor, nivelDot } from "./meteo";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const B = {
@@ -24,9 +25,6 @@ const META      = data.meta;
  * por scripts/enrich-marin-meteo.mjs en meta.meteo. Puede no existir (dato aún no traído). */
 const METEO  = META.meteo || null;
 const AVISOS = METEO?.avisos || [];
-/** Color por nivel de aviso AEMET. */
-const nivelColor = n => n === "rojo" ? "#DC2626" : n === "naranja" ? "#F97316" : "#EAB308"; // amarillo
-const nivelDot   = n => n === "rojo" ? "🔴" : n === "naranja" ? "🟠" : "🟡";
 /** Cardinal (16 rumbos) a partir de los grados de dirección del viento. */
 const cardinal = deg => ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSO","SO","OSO","O","ONO","NO","NNO"][Math.round(((deg % 360) / 22.5)) % 16];
 /** Avisos que solapan el día [dayStart, dayStart+24h). */
@@ -674,7 +672,7 @@ function Timeline({ calls, onSelect, selectedId, isMobile, onAvisoClick }) {
                 aria-label={`Aviso ${a.fenomeno} nivel ${a.nivel}`}
                 style={{cursor:"pointer",display:"flex",alignItems:"baseline",gap:6,flexWrap:"wrap",marginBottom:8,
                   borderLeft:`3px solid ${nivelColor(a.nivel)}`,paddingLeft:8}}>
-                <span style={{fontSize:11,fontWeight:800,color:nivelColor(a.nivel),whiteSpace:"nowrap"}}>⚠ {a.fenomeno} · {a.nivel}</span>
+                <span style={{fontSize:11,fontWeight:800,color:nivelColor(a.nivel),whiteSpace:"nowrap"}}>{nivelDot(a.nivel)} {a.fenomeno} · {a.nivel}</span>
                 {a.descripcion && <span style={{fontSize:11,color:B.dark,fontWeight:600}}>{a.descripcion}</span>}
                 <span style={{fontSize:10,color:B.gray,fontWeight:600}}>· {fmtHour(a.desde)}→{fmtHour(a.hasta)}</span>
               </div>
@@ -883,10 +881,10 @@ export default function DemoMarin() {
                   <div style={{display:"flex",flexWrap:"wrap",gap:6,alignItems:"center",marginTop:counts.alerta>0?7:0}}>
                     <span style={{fontSize:10,fontWeight:800,color:"#FCD34D",letterSpacing:"0.04em"}}>AVISOS AEMET · COSTA</span>
                     {AVISOS.map((a,i)=>(
-                      <button key={i} type="button" onClick={()=>setAvisoDetail(a)} title="Ver detalle del aviso"
+                      <button key={i} type="button" onClick={()=>setAvisoDetail(a)} title={`Ver detalle · nivel ${a.nivel}`}
                         style={{fontSize:10,fontWeight:700,padding:"2px 8px",borderRadius:6,whiteSpace:"nowrap",border:"none",
                           cursor:"pointer",fontFamily:"inherit",background:nivelColor(a.nivel),color:a.nivel==="amarillo"?"#3a2e00":"#fff"}}>
-                        {a.fenomeno} · {fmt(a.desde)} → {fmt(a.hasta)} ⓘ
+                        {nivelDot(a.nivel)} {a.fenomeno} ({a.nivel}) · {fmt(a.desde)} → {fmt(a.hasta)} ⓘ
                       </button>
                     ))}
                   </div>
