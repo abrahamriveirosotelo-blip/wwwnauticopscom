@@ -72,9 +72,19 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
     const berth = [];
     for (const c of byKey.values()) {
       const t = c.aisPosAt ? new Date(c.aisPosAt).getTime() : NaN;
-      const freshAis = c.aisLat != null && c.aisLon != null && !Number.isNaN(t) && aisRef - t <= AIS_FRESH_MS;
-      if (freshAis) out.push({ call: c, lat: c.aisLat, lon: c.aisLon, kind: "ais" });
-      else if (c.status === "Iniciado" || c.aisArrivedMarin) berth.push(c);
+      const hasPos = c.aisLat != null && c.aisLon != null && !Number.isNaN(t);
+      const age = aisRef - t; // ms respecto a la posición más nueva del conjunto
+      // Fresca si 0 ≤ edad ≤ 1 h (una marca futura o incoherente no cuenta). Sin
+      // referencia (aisRef===0, no hay posiciones) no se juzga: se muestran todas.
+      const freshAis = hasPos && (aisRef === 0 || (age >= 0 && age <= AIS_FRESH_MS));
+      const inPortAP = c.status === "Iniciado" || c.status === "Alerta";
+      // La AP manda para los atracados: si dice "en puerto", el buque va AL PUERTO,
+      // aunque el AIS traiga una posición (a menudo obsoleta/contradictoria: p. ej.
+      // "Atracado" a 6.8 kn lejos de Marín). El AIS solo posiciona a los que NO están
+      // en puerto (Prevista en ruta). Un Prevista ya en Marín por AIS se pinta en su
+      // posición AIS (cerca del puerto) como "planificado vs ejecutado".
+      if (inPortAP) berth.push(c);
+      else if (freshAis) out.push({ call: c, lat: c.aisLat, lon: c.aisLon, kind: "ais" });
     }
     const n = berth.length;
     berth.forEach((c, i) => {
@@ -164,11 +174,11 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
     <div style={{ marginBottom: 16 }}>
       <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 8 }}>
         <div style={{ fontSize: 13, fontWeight: 800, color: C.navy, letterSpacing: "0.02em" }}>
-          POSICIÓN DE LA FLOTA · AIS EN VIVO
+          POSICIÓN DE LA FLOTA
         </div>
         <div style={{ fontSize: 11, color: C.gray }}>
           {items.length
-            ? `${items.length} buque${items.length === 1 ? "" : "s"} en el mapa`
+            ? `${items.length} buque${items.length === 1 ? "" : "s"} · AIS en vivo + atracados (AP)`
             : "sin buques que mostrar"}
         </div>
       </div>
