@@ -694,18 +694,32 @@ function Timeline({ calls, onSelect, selectedId, isMobile, onAvisoClick }) {
 
 /** Modal con el detalle de un aviso AEMET (motivo, ventana, instrucción, enlace oficial). */
 function AvisoModal({ aviso, onClose }) {
+  const cardRef = useRef(null);
+  // Mueve el foco al modal al abrir y lo devuelve al elemento previo al cerrar; Escape cierra;
+  // Tab queda atrapado dentro del diálogo (accesibilidad de modal).
   useEffect(() => {
-    const onKey = e => { if (e.key === "Escape") onClose(); };
+    const prev = document.activeElement;
+    cardRef.current?.focus();
+    const onKey = e => {
+      if (e.key === "Escape") { onClose(); return; }
+      if (e.key === "Tab") {
+        const f = cardRef.current?.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');
+        if (!f || !f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
     document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
+    return () => { document.removeEventListener("keydown", onKey); if (prev && prev.focus) prev.focus(); };
   }, [onClose]);
   const col = nivelColor(aviso.nivel);
   const txt = aviso.nivel === "amarillo" ? "#3a2e00" : "#fff";
   return (
     <>
       <div onClick={onClose} style={{position:"fixed",inset:0,background:"rgba(1,11,36,0.45)",zIndex:1000}}/>
-      <div role="dialog" aria-modal="true" aria-label={`Aviso AEMET ${aviso.fenomeno}`}
-        style={{position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",zIndex:1001,width:"min(92vw,440px)",
+      <div ref={cardRef} tabIndex={-1} role="dialog" aria-modal="true" aria-label={`Aviso AEMET ${aviso.fenomeno}`}
+        style={{position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",zIndex:1001,width:"min(92vw,440px)",outline:"none",
           background:B.white,borderRadius:14,boxShadow:"0 10px 40px rgba(1,11,36,0.35)",overflow:"hidden"}}>
         <div style={{background:col,padding:"14px 18px",display:"flex",alignItems:"center",justifyContent:"space-between",gap:10}}>
           <div style={{color:txt}}>
