@@ -323,7 +323,11 @@ function CallCard({ call: c, isSel, onSelect }) {
   return (
     <div onClick={open} role="button" tabIndex={0} aria-pressed={isSel}
       aria-label={`Escala ${c.id} · ${c.name}`}
-      onKeyDown={e=>{ if((e.key==="Enter"||e.code==="Space") && !e.repeat){ e.preventDefault(); open(); } }}
+      onKeyDown={e=>{
+        if(e.key==="Enter" && !e.repeat){ e.preventDefault(); open(); }        // Enter: activa en keydown (como un botón nativo)
+        else if(e.code==="Space"){ e.preventDefault(); }                        // Space: evita el scroll aquí; se activa en keyup
+      }}
+      onKeyUp={e=>{ if(e.code==="Space"){ e.preventDefault(); open(); } }}
       style={{
         background:isSel?B.cyanPale:isAl?"#FFF1F1":isAffected?"#FFFBEB":B.white,
         border:`1px solid ${isSel?B.cyan:B.grayLight}`,
