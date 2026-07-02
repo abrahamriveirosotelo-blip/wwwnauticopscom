@@ -31,8 +31,10 @@ const fmtClock = ms => {
 const escapeHtml = s => String(s).replace(/[&<>"']/g, c =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-/* Día/noche: altitud del sol (radianes) para una fecha (ms) en lat/lon — algoritmo de
- * SunCalc (BSD), inlineado para no añadir dependencia ni llamadas de red por día. */
+/* Día/noche: altitud del sol (radianes) para una fecha (ms) en lat/lon.
+ * Portado de SunCalc (https://github.com/mourner/suncalc), © 2014 Vladimir Agafonkin,
+ * licencia BSD 2-Clause. Aviso completo en THIRD_PARTY_NOTICES.md (raíz del proyecto).
+ * Se inlinea para no añadir dependencia ni llamadas de red por día. */
 const RAD = Math.PI / 180;
 function sunAltitude(dateMs, lat, lon) {
   const d = dateMs / 86400000 - 0.5 + 2440588 - 2451545;                    // días desde J2000
