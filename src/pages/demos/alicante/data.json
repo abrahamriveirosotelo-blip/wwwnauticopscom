@@ -8,7 +8,7 @@
   "calls": [
     {
       "id": "A202600474",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "8911841",
       "name": "MALTA CEMENT",
       "gt": 2429,
@@ -19,13 +19,11 @@
       "eta": "2026-07-01T09:00",
       "etd": "2026-07-02T14:00",
       "from": "ALMERIA",
-      "to": "MAHON",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en carga. El buque no liberará el Muelle 19 según lo previsto."
+      "to": "MAHON"
     },
     {
       "id": "A202600459",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9322578",
       "name": "DREAM",
       "gt": 7852,
@@ -36,11 +34,13 @@
       "eta": "2026-07-02T08:00",
       "etd": "2026-07-02T23:00",
       "from": "ARRECIFE",
-      "to": "LAS PALMAS"
+      "to": "LAS PALMAS",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
     },
     {
       "id": "A202600446",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9398773",
       "name": "ELBWINTER",
       "gt": 10585,
@@ -55,7 +55,7 @@
     },
     {
       "id": "A202600476",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "8816352",
       "name": "SIRIOS CEMENT V",
       "gt": 2453,
@@ -66,9 +66,7 @@
       "eta": "2026-07-02T08:00",
       "etd": "2026-07-03T08:00",
       "from": "ALMERIA",
-      "to": "GANDIA",
-      "affectedBy": "A202600474",
-      "affectRisk": "ALTO"
+      "to": "GANDIA"
     },
     {
       "id": "A202600464",
@@ -158,7 +156,9 @@
       "eta": "2026-07-06T08:00",
       "etd": "2026-07-06T20:00",
       "from": "ALGECIRAS",
-      "to": "DERINCE"
+      "to": "DERINCE",
+      "affectedBy": "A202600459",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600467",
@@ -192,7 +192,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600474",
+    "callId": "A202600459",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -219,18 +219,18 @@
     }
   },
   "milestones": {
-    "A202600474": [
+    "A202600459": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "01/07 · 09:25",
+        "time": "02/07 · 08:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "01/07 · 10:30",
-        "by": "Agente: OCEAN PORTS & SHIPPING SL"
+        "time": "02/07 · 09:30",
+        "by": "Agente: MILLER Y COMPAÑIA S.A"
       },
       {
         "label": "Fin de operaciones",

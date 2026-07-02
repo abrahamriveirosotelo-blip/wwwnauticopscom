@@ -297,5 +297,23 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-01T17:58:42Z"
+  },
+  "ROSALIA::BILBAO": {
+    "resolved": true,
+    "imo": "9696826",
+    "mmsi": "255916597",
+    "detailId": "9696826",
+    "gt": 25546,
+    "dwt": 39907,
+    "len": 180,
+    "beam": 32,
+    "flag": "Portugal (Madeira)",
+    "vesselType": "Bulk Carrier",
+    "built": 2016,
+    "callsign": "CQ2846",
+    "destination": "Leixoes, Portugal",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-02T10:42:49Z"
   }
 }
