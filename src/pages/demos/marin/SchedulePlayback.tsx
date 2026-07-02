@@ -244,8 +244,10 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
 
   const pct = Math.min(1, Math.max(0, (t - tStart) / span));
   const docked = ships.filter(s => shipStateAt(s, t).phase === "dock").length;
+  // Avisos con sus timestamps precalculados (evita new Date(...) por aviso en cada frame).
+  const avisoBands = useMemo(() => avisos.map(a => ({ ...a, d0: new Date(a.desde).getTime(), d1: new Date(a.hasta).getTime() })), [avisos]);
   // Aviso AEMET vigente en el instante del playhead (para indicarlo junto al reloj).
-  const activeAviso = avisos.find(a => t >= new Date(a.desde).getTime() && t < new Date(a.hasta).getTime());
+  const activeAviso = avisoBands.find(a => t >= a.d0 && t < a.d1);
 
   // Día/noche: la opacidad de la capa oscura sigue la oscuridad del cielo en Marín para el
   // instante virtual. El efecto solo se dispara cuando `darkness` cambia (constante de día/noche
@@ -337,13 +339,13 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
           onPointerCancel={() => { draggingRef.current = false; }}
           style={{ flex: 1, minWidth: 0, position: "relative", height: 28, cursor: "pointer", touchAction: "none" }}>
           {/* Franjas de avisos AEMET sobre su ventana temporal (color por nivel). Van detrás. */}
-          {avisos.map((a, i) => {
-            const s = Math.max(0, Math.min(1, (new Date(a.desde).getTime() - tStart) / span));
-            const e = Math.max(0, Math.min(1, (new Date(a.hasta).getTime() - tStart) / span));
+          {avisoBands.map(a => {
+            const s = Math.max(0, Math.min(1, (a.d0 - tStart) / span));
+            const e = Math.max(0, Math.min(1, (a.d1 - tStart) / span));
             if (e <= s) return null;
             const col = nivelColor(a.nivel);
             return (
-              <div key={i} aria-hidden="true" title={`${a.fenomeno} (${a.nivel})`}
+              <div key={`${a.desde}-${a.fenomeno}`} aria-hidden="true" title={`${a.fenomeno} (${a.nivel})`}
                 style={{ position: "absolute", top: 0, bottom: 0, left: `${s * 100}%`, width: `${(e - s) * 100}%`, pointerEvents: "none" }}>
                 <div style={{ position: "absolute", inset: 0, background: col, opacity: 0.22 }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 3, background: col, borderRadius: 2 }} />

@@ -79,7 +79,8 @@ async function fetchAvisos() {
   if (!r.ok) throw new Error(`AEMET HTTP ${r.status}`);
   const xml = await r.text();
   const entries = xml.match(/<entry>[\s\S]*?<\/entry>/g) || [];
-  const avisos = [];
+  const iso = (h, mi, d, mo, y) => `${y}-${mo}-${d}T${h}:${mi}`;
+  const matches = [];
   for (const e of entries) {
     const href = (e.match(/href="([^"]+)"/) || [])[1] || "";
     const zona = (href.match(/AFAZ(\d+C?)[A-Z]{2}/) || [])[1]; // código de zona del nombre del CAP
@@ -90,18 +91,18 @@ async function fetchAvisos() {
     // "de 13:00 03-07-2026 CEST (UTC+2) a 20:59 03-07-2026 CEST". CES?T → acepta CEST (verano) y CET (invierno).
     const wm = summ.match(/de (\d{2}):(\d{2}) (\d{2})-(\d{2})-(\d{4}) CES?T[\s\S]*? a (\d{2}):(\d{2}) (\d{2})-(\d{2})-(\d{4}) CES?T/);
     if (!tm || !wm) continue;
-    const iso = (h, mi, d, mo, y) => `${y}-${mo}-${d}T${h}:${mi}`;
-    const det = await capDetail(href); // descripción/motivo + instrucción + web del CAP
-    avisos.push({
+    matches.push({ href, base: {
       nivel: tm[1].toLowerCase(),                 // amarillo | naranja | rojo
       fenomeno: tm[2].trim(),                     // Costeros | Viento | Temperaturas máximas | …
       zona: tm[3].trim(),                         // Rias Baixas | Rias Baixas - Costa
       costa: zona.endsWith("C"),
       desde: iso(wm[1], wm[2], wm[3], wm[4], wm[5]),
       hasta: iso(wm[6], wm[7], wm[8], wm[9], wm[10]),
-      ...det,
-    });
+    } });
   }
+  // Detalle del CAP de cada aviso EN PARALELO (evita N round-trips en serie).
+  const dets = await Promise.all(matches.map(m => capDetail(m.href)));
+  const avisos = matches.map((m, i) => ({ ...m.base, ...dets[i] }));
   avisos.sort((a, b) => a.desde.localeCompare(b.desde));
   return avisos;
 }

@@ -27,9 +27,11 @@ const METEO  = META.meteo || null;
 const AVISOS = METEO?.avisos || [];
 /** Cardinal (16 rumbos) a partir de los grados de dirección del viento. */
 const cardinal = deg => ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSO","SO","OSO","O","ONO","NO","NNO"][Math.round(((deg % 360) / 22.5)) % 16];
-/** Avisos que solapan el día [dayStart, dayStart+24h). */
+/** Avisos que solapan el día [dayStart, inicio del día siguiente). Fin de día en hora LOCAL
+ *  (robusto a DST: los días de cambio de hora duran 23/25h), igual que occupancyOnDay. */
 const avisosOnDay = dayStartMs => {
-  const dayEnd = dayStartMs + 24*3600*1000;
+  const d = new Date(dayStartMs);
+  const dayEnd = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1).getTime();
   return AVISOS.filter(a => new Date(a.desde).getTime() < dayEnd && new Date(a.hasta).getTime() > dayStartMs);
 };
 
@@ -650,9 +652,10 @@ function Timeline({ calls, onSelect, selectedId, isMobile, onAvisoClick }) {
       {groups.map(g => {
         const occ = occupancyOnDay(g.dayStart);
         const peak = occ>0 && occ===PORT_PEAK_OCC; // pico y escala contra el máximo GLOBAL (sin filtro)
+        const dayAvisos = avisosOnDay(g.dayStart); // calculado una sola vez por grupo
         return (
           <div key={g.dayStart}>
-            <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:avisosOnDay(g.dayStart).length?4:8,flexWrap:"wrap"}}>
+            <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:dayAvisos.length?4:8,flexWrap:"wrap"}}>
               <div style={{fontSize:12,fontWeight:900,color:B.navy,letterSpacing:"0.04em"}}>{fmtDayLabel(g.dayStart)}</div>
               <div style={{display:"flex",alignItems:"center",gap:6,flex:isMobile?"1 1 100%":"none"}}>
                 <div style={{position:"relative",height:7,borderRadius:4,background:B.grayLight,overflow:"hidden",
@@ -665,10 +668,12 @@ function Timeline({ calls, onSelect, selectedId, isMobile, onAvisoClick }) {
                 </span>
               </div>
             </div>
-            {/* Avisos AEMET (costa) que afectan a este día: motivo en una línea (clic → detalle). */}
-            {avisosOnDay(g.dayStart).map((a,i)=>(
-              <div key={i} role="button" tabIndex={0} onClick={()=>onAvisoClick(a)}
-                onKeyDown={ev=>{ if(ev.key==="Enter"||ev.code==="Space"){ ev.preventDefault(); onAvisoClick(a); } }}
+            {/* Avisos AEMET (costa) que afectan a este día: motivo en una línea (clic → detalle).
+                Patrón de teclado igual que TimelineEvent (Enter en keydown, Espacio en keyup). */}
+            {dayAvisos.map(a=>(
+              <div key={`${a.desde}-${a.fenomeno}`} role="button" tabIndex={0} onClick={()=>onAvisoClick(a)}
+                onKeyDown={ev=>{ if(ev.key==="Enter" && !ev.repeat){ ev.preventDefault(); onAvisoClick(a); } else if(ev.code==="Space"){ ev.preventDefault(); } }}
+                onKeyUp={ev=>{ if(ev.code==="Space"){ ev.preventDefault(); onAvisoClick(a); } }}
                 aria-label={`Aviso ${a.fenomeno} nivel ${a.nivel}`}
                 style={{cursor:"pointer",display:"flex",alignItems:"baseline",gap:6,flexWrap:"wrap",marginBottom:8,
                   borderLeft:`3px solid ${nivelColor(a.nivel)}`,paddingLeft:8}}>
@@ -707,7 +712,7 @@ function AvisoModal({ aviso, onClose }) {
             <div style={{fontSize:11,fontWeight:800,letterSpacing:"0.06em",opacity:0.9}}>AVISO AEMET · NIVEL {aviso.nivel.toUpperCase()}</div>
             <div style={{fontSize:17,fontWeight:900,marginTop:2}}>{aviso.fenomeno}</div>
           </div>
-          <button onClick={onClose} aria-label="Cerrar"
+          <button type="button" onClick={onClose} aria-label="Cerrar"
             style={{flexShrink:0,background:"rgba(255,255,255,0.25)",border:"none",color:txt,width:30,height:30,
               borderRadius:8,cursor:"pointer",fontSize:16,fontFamily:"inherit"}}>×</button>
         </div>
@@ -881,7 +886,7 @@ export default function DemoMarin() {
                   <div style={{display:"flex",flexWrap:"wrap",gap:6,alignItems:"center",marginTop:counts.alerta>0?7:0}}>
                     <span style={{fontSize:10,fontWeight:800,color:"#FCD34D",letterSpacing:"0.04em"}}>AVISOS AEMET · COSTA</span>
                     {AVISOS.map((a,i)=>(
-                      <button key={i} type="button" onClick={()=>setAvisoDetail(a)} title={`Ver detalle · nivel ${a.nivel}`}
+                      <button key={`${a.desde}-${a.fenomeno}`} type="button" onClick={()=>setAvisoDetail(a)} title={`Ver detalle · nivel ${a.nivel}`}
                         style={{fontSize:10,fontWeight:700,padding:"2px 8px",borderRadius:6,whiteSpace:"nowrap",border:"none",
                           cursor:"pointer",fontFamily:"inherit",background:nivelColor(a.nivel),color:a.nivel==="amarillo"?"#3a2e00":"#fff"}}>
                         {nivelDot(a.nivel)} {a.fenomeno} ({a.nivel}) · {fmt(a.desde)} → {fmt(a.hasta)} ⓘ
