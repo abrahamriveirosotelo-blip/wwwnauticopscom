@@ -59,6 +59,15 @@ const fmtDur = ms => {
 /** ¿La escala tiene alguna alerta operativa? (alerta AP, salida demorada, ya zarpó
  *  según AIS con AP desfasada, o desvío de ETA). */
 const hasAlert = c => c.status === "Alerta" || isDelayedDeparture(c) || departedPerAis(c) || etaDiscrepancy(c) != null;
+/** Etiqueta corta del motivo de alerta de una escala (o '' si no tiene). */
+const alertReason = c => {
+  if (c.status === "Alerta") return "alerta operativa";
+  if (isDelayedDeparture(c)) return "salida demorada";
+  if (departedPerAis(c)) return "ya zarpó (AIS)";
+  const d = etaDiscrepancy(c);
+  if (d) return d.dir === "retrasado" ? `retraso +${fmtDur(d.ms)}` : `adelanto −${fmtDur(d.ms)}`;
+  return "";
+};
 
 function fmt(iso) {
   if (!iso) return "—";
@@ -525,7 +534,7 @@ export default function DemoMarin() {
             <span style={{background:"rgba(239,68,68,0.15)",color:"#FCA5A5",padding:"3px 10px",
               borderRadius:99,fontSize:9,fontWeight:800,letterSpacing:"0.06em",
               border:"1px solid rgba(239,68,68,0.3)"}}>
-              ⚠ {counts.alerta} ALERTA ACTIVA
+              ⚠ {counts.alerta} ALERTA{counts.alerta>1?"S":""} ACTIVA{counts.alerta>1?"S":""}
             </span>
           )}
           <div style={{display:"flex",alignItems:"center",gap:6}}>
@@ -587,27 +596,28 @@ export default function DemoMarin() {
 
       {/* MAIN */}
       <div style={{padding:PAD}}>
-        {/* Alert banner */}
+        {/* Banner de alertas operativas: se deriva de las escalas con incidencia
+            real (salida demorada, ya zarpó según AIS, desvío de ETA AP vs AIS).
+            Sin datos inventados: si counts.alerta es 0, no se renderiza. */}
         {counts.alerta>0&&(()=>{
-          const alertCall = CALLS.find(c=>c.status==="Alerta");
-          const affected  = CALLS.filter(c=>c.affectedBy===alertCall?.id);
-          const affectedNames = affected.map(c=>c.name).join(" y ");
+          const alerted = CALLS.filter(hasAlert);
           return (
             <div style={{background:"rgba(127,29,29,0.95)",border:`1px solid ${B.danger}`,borderRadius:10,
-              padding:"10px 18px",marginBottom:16,display:"flex",alignItems:"center",gap:12}}>
+              padding:"10px 18px",marginBottom:16,display:"flex",alignItems:"center",gap:12,flexWrap:"wrap"}}>
               <span style={{fontSize:18}}>⚠</span>
-              <div>
-                <div style={{fontSize:12,fontWeight:800,color:"#FCA5A5",letterSpacing:"0.04em"}}>ALERTA OPERATIVA ACTIVA</div>
-                <div style={{fontSize:11,color:"rgba(252,165,165,0.8)",marginTop:2}}>
-                  {alertCall?.name} · Muelle {alertCall?.berth} · {alertCall?.delay}
-                  {affectedNames && ` · ${affectedNames} potencialmente afectada${affected.length>1?"s":""}`}
+              <div style={{minWidth:0,flex:"1 1 240px"}}>
+                <div style={{fontSize:12,fontWeight:800,color:"#FCA5A5",letterSpacing:"0.04em"}}>
+                  {alerted.length} ALERTA{alerted.length>1?"S":""} OPERATIVA{alerted.length>1?"S":""}
+                </div>
+                <div style={{fontSize:11,color:"rgba(252,165,165,0.85)",marginTop:2}}>
+                  {alerted.map(c=>`${c.name} · ${alertReason(c)}`).join("   ·   ")}
                 </div>
               </div>
-              <button onClick={()=>setSelected(alertCall)}
+              <button onClick={()=>setFilter("Alerta")}
                 style={{marginLeft:"auto",background:"rgba(239,68,68,0.2)",border:`1px solid ${B.danger}`,
                   color:"#FCA5A5",borderRadius:7,padding:"5px 14px",cursor:"pointer",
-                  fontSize:11,fontWeight:800,fontFamily:"inherit"}}>
-                Ver detalle →
+                  fontSize:11,fontWeight:800,fontFamily:"inherit",whiteSpace:"nowrap"}}>
+                Ver alertas →
               </button>
             </div>
           );
