@@ -83,11 +83,18 @@ function Detail({ call, onClose }) {
   const dialogRef = useRef(null);
   const closeBtnRef = useRef(null);
 
-  // Diálogo accesible: al abrir mueve el foco dentro (botón cerrar), Escape cierra,
-  // atrapa el foco (Tab cicla dentro) y al cerrar lo devuelve al elemento que lo abrió.
+  // Foco: entra al abrir (botón cerrar) y VUELVE al elemento previo al cerrar. Solo
+  // mount/unmount ([]): así un re-render del padre (p. ej. useIsMobile al rotar) no
+  // dispara la restauración de foco con el diálogo aún montado.
   useEffect(() => {
     const prev = document.activeElement;
     closeBtnRef.current?.focus();
+    return () => { if (prev && prev.focus) prev.focus(); };
+  }, []);
+
+  // Escape cierra + trampa de foco (Tab cicla dentro del diálogo). Efecto aparte
+  // dependiente de onClose: solo re-suscribe el listener, sin tocar el foco.
+  useEffect(() => {
     const onKey = e => {
       if (e.key === "Escape") { onClose(); return; }
       if (e.key === "Tab" && dialogRef.current) {
@@ -101,10 +108,7 @@ function Detail({ call, onClose }) {
       }
     };
     document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      if (prev && prev.focus) prev.focus();
-    };
+    return () => document.removeEventListener("keydown", onKey);
   }, [onClose]);
 
   return (
