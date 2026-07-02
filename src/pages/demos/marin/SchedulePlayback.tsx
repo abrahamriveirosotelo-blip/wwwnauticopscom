@@ -63,7 +63,8 @@ function playIcon(color, deg, highlighted, label) {
   const halo = highlighted
     ? `<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;background:${C.cyan}22;border:2.5px solid ${C.cyan};box-shadow:0 0 12px ${C.cyan};z-index:0"></div>`
     : "";
-  // Nombre a la derecha del barco (halo blanco para legibilidad sobre el mapa; no rota con el barco).
+  // Nombre a la derecha del barco: texto blanco con halo oscuro → legible sobre tiles claros
+  // y oscuros (día/noche). No rota con el barco.
   const name = label
     ? `<div style="position:absolute;left:100%;top:50%;transform:translateY(-50%);margin-left:5px;white-space:nowrap;font-size:10px;font-weight:800;color:${C.white};text-shadow:0 0 3px rgba(0,0,0,.95),0 0 3px rgba(0,0,0,.95),0 0 4px rgba(0,0,0,.95),0 1px 2px rgba(0,0,0,.95);pointer-events:none">${escapeHtml(label)}</div>`
     : "";
