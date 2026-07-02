@@ -31,6 +31,32 @@ const fmtClock = ms => {
 const escapeHtml = s => String(s).replace(/[&<>"']/g, c =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
+/* Día/noche: altitud del sol (radianes) para una fecha (ms) en lat/lon.
+ * Portado de SunCalc (https://github.com/mourner/suncalc), © 2014 Vladimir Agafonkin,
+ * licencia BSD 2-Clause. Aviso completo en THIRD_PARTY_NOTICES.md (raíz del proyecto).
+ * Se inlinea para no añadir una dependencia (y frente a una API de efemérides como
+ * sunrise-sunset.org, evita también depender de la red). SunCalc en sí no hace red. */
+const RAD = Math.PI / 180;
+function sunAltitude(dateMs, lat, lon) {
+  const d = dateMs / 86400000 - 0.5 + 2440588 - 2451545;                    // días desde J2000
+  const M = RAD * (357.5291 + 0.98560028 * d);                             // anomalía media solar
+  const L = M + RAD * (1.9148 * Math.sin(M) + 0.02 * Math.sin(2 * M) + 0.0003 * Math.sin(3 * M)) + RAD * 102.9372 + Math.PI; // long. eclíptica
+  const e = RAD * 23.4397;                                                  // oblicuidad
+  const dec = Math.asin(Math.sin(e) * Math.sin(L));                         // declinación
+  const ra = Math.atan2(Math.sin(L) * Math.cos(e), Math.cos(L));            // ascensión recta
+  // ángulo horario. En SunCalc: siderealTime(d) − lw − ra con lw = RAD·(−lon); como −lw = +RAD·lon,
+  // queda "+ RAD * lon" (equivalente y sin doble negación).
+  const H = RAD * (280.16 + 360.9856235 * d) + RAD * lon - ra;
+  const phi = RAD * lat;
+  return Math.asin(Math.sin(phi) * Math.sin(dec) + Math.cos(phi) * Math.cos(dec) * Math.cos(H));
+}
+/** Oscuridad 0..1 en Marín para una fecha: 0 con el sol sobre el horizonte, 1 por debajo de
+ *  −8° (crepúsculo), con transición lineal para simular el amanecer/atardecer. */
+const nightFactor = dateMs => {
+  const altDeg = sunAltitude(dateMs, MARIN.lat, MARIN.lon) / RAD;
+  return Math.min(1, Math.max(0, -altDeg / 8));
+};
+
 /** Marcador de buque: silueta de barco (vista cenital) orientada al rumbo (proa hacia `deg`).
  *  Coloreada por fase: verde atracado, cian entrando, naranja saliendo. */
 function playIcon(color, deg, highlighted, label) {
@@ -42,9 +68,10 @@ function playIcon(color, deg, highlighted, label) {
   const halo = highlighted
     ? `<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;background:${C.cyan}22;border:2.5px solid ${C.cyan};box-shadow:0 0 12px ${C.cyan};z-index:0"></div>`
     : "";
-  // Nombre a la derecha del barco (halo blanco para legibilidad sobre el mapa; no rota con el barco).
+  // Nombre a la derecha del barco: texto blanco con halo oscuro → legible sobre tiles claros
+  // y oscuros (día/noche). No rota con el barco.
   const name = label
-    ? `<div style="position:absolute;left:100%;top:50%;transform:translateY(-50%);margin-left:5px;white-space:nowrap;font-size:10px;font-weight:800;color:${C.navy};text-shadow:0 0 3px ${C.white},0 0 3px ${C.white},0 0 3px ${C.white},0 1px 2px ${C.white};pointer-events:none">${escapeHtml(label)}</div>`
+    ? `<div style="position:absolute;left:100%;top:50%;transform:translateY(-50%);margin-left:5px;white-space:nowrap;font-size:10px;font-weight:800;color:${C.white};text-shadow:0 0 3px rgba(0,0,0,.95),0 0 3px rgba(0,0,0,.95),0 0 4px rgba(0,0,0,.95),0 1px 2px rgba(0,0,0,.95);pointer-events:none">${escapeHtml(label)}</div>`
     : "";
   const size = highlighted ? 40 : 24;
   return L.divIcon({
@@ -64,6 +91,8 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
   const containerRef = useRef(null);
   const mapRef = useRef(null);
   const layerRef = useRef(null);
+  const darkLayerRef = useRef(null); // capa de tiles oscura (opacidad = oscuridad del cielo)
+  const darknessRef = useRef(0);     // última oscuridad calculada, para fijar la opacidad inicial
   const markersRef = useRef(new Map()); // id -> { marker, phaseKey }
   const [playing, setPlaying] = useState(false);
 
@@ -129,9 +158,15 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
   useEffect(() => {
     if (mapRef.current || !containerRef.current) return;
     const map = L.map(containerRef.current, { scrollWheelZoom: false }).setView([MARIN.lat, MARIN.lon], 12);
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    }).addTo(map);
+    // Par claro/oscuro coherente (CARTO): Positron de día, Dark Matter de noche. La capa
+    // oscura va encima con opacidad = oscuridad del cielo → crossfade en amanecer/atardecer.
+    const cartoAttr = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png", { attribution: cartoAttr, subdomains: "abcd" }).addTo(map);
+    // La capa oscura se crea con la opacidad del instante actual (darknessRef, fijado en el
+    // render previo) pero SOLO se añade al mapa si arranca de noche → así, empezando de noche
+    // sale oscuro sin depender del efecto, y empezando de día no descarga tiles dark_all.
+    darkLayerRef.current = L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png", { attribution: cartoAttr, subdomains: "abcd", opacity: darknessRef.current });
+    if (darknessRef.current > 0) darkLayerRef.current.addTo(map);
     // Encuadre centrado EN Marín: caja simétrica (aproximación al O + su reflejo al E) →
     // el puerto queda en el centro y el corredor de entrada/salida se ve a la izquierda.
     const mirror = [2 * MARIN.lat - APPROACH.lat, 2 * MARIN.lon - APPROACH.lon];
@@ -202,6 +237,28 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
 
   const pct = Math.min(1, Math.max(0, (t - tStart) / span));
   const docked = ships.filter(s => shipStateAt(s, t).phase === "dock").length;
+
+  // Día/noche: la opacidad de la capa oscura sigue la oscuridad del cielo en Marín para el
+  // instante virtual. El efecto solo se dispara cuando `darkness` cambia (constante de día/noche
+  // plenos → sin trabajo; suave en el crepúsculo). Redondeo para no re-pintar cada frame.
+  // Cuantizo el instante del sol a 5 min y memoizo: el sol se mueve despacio, así que evita
+  // recalcular las trigonométricas de nightFactor en cada frame de la reproducción (y con la
+  // pausa, en cada render), sin perder la suavidad del crepúsculo.
+  const sunT = Math.floor(t / 300000) * 300000; // hacia ABAJO: nunca "mira al futuro" (no anticipa el crepúsculo)
+  // Sin escalas, t se queda en 0 (epoch 1970) y nightFactor(0) daría un día/noche arbitrario
+  // bajo el overlay "Sin escalas…": en ese caso forzamos día (darkness 0).
+  const darkness = useMemo(() => ships.length ? Math.round(nightFactor(sunT) * 100) / 100 : 0, [sunT, ships.length]);
+  darknessRef.current = darkness; // para que el init de la capa oscura use la opacidad correcta
+  // Solo mantiene la capa oscura montada cuando hace falta (darkness > 0): de día NO se
+  // descargan tiles dark_all (ahorra tráfico/latencia, sobre todo en móvil). El primer
+  // atardecer la añade y sincroniza su opacidad; al volver el día pleno se retira.
+  useEffect(() => {
+    const map = mapRef.current, layer = darkLayerRef.current;
+    if (!map || !layer) return;
+    if (darkness > 0) { if (!map.hasLayer(layer)) layer.addTo(map); layer.setOpacity(darkness); }
+    else if (map.hasLayer(layer)) map.removeLayer(layer);
+  }, [darkness]);
+  const isNight = darkness >= 0.5;
 
   // Seek al pinchar/arrastrar en la barra. Uso una bandera de arrastre (no `e.buttons`),
   // porque en eventos de puntero táctiles `buttons` suele ser 0 y bloquearía el scrub.
@@ -288,7 +345,9 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
         </div>
       </div>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: 6, flexWrap: "wrap" }}>
-        <span style={{ fontSize: 12, fontWeight: 800, color: C.navy, fontFamily: "'Courier New',monospace" }}>{fmtClock(t)}</span>
+        <span style={{ fontSize: 12, fontWeight: 800, color: C.navy, fontFamily: "'Courier New',monospace" }}>
+          <span aria-hidden="true" style={{ marginRight: 5 }}>{isNight ? "🌙" : "☀️"}</span>{fmtClock(t)}
+        </span>
         <span style={{ fontSize: 11, fontWeight: 700, color: docked ? C.success : C.gray }}>⚓ {docked} en puerto</span>
       </div>
       </>)}
