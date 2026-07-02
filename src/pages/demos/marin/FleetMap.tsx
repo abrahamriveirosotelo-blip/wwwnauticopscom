@@ -109,8 +109,11 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
 
   const aisItems = useMemo(() => items.filter(i => i.kind === "ais"), [items]);
   const berthItems = useMemo(() => items.filter(i => i.kind === "berth"), [items]);
-  // Agrupar atracados en la boya cuando hay >1 y el zoom no los separa.
-  const clusterBerth = berthItems.length > 1 && zoom < CLUSTER_MIN_ZOOM;
+  // Agrupar atracados en la boya cuando el zoom no los separa. Incluye el caso de
+  // 1 SOLO atracado: sin insignia su marcador (a ~550 m del puerto) queda oculto
+  // BAJO la boya (zIndexOffset alto) en vista alejada y parece no pintado —p. ej.
+  // Anna al filtrar por "Alertas". Con insignia "1" se ve, y al clicar se despliega.
+  const clusterBerth = berthItems.length >= 1 && zoom < CLUSTER_MIN_ZOOM;
 
   // Inicializa el mapa una vez.
   useEffect(() => {
@@ -215,7 +218,7 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
                 {clusterBerth && (
                   <>
                     <div style={{ fontSize: 11, color: C.success, fontWeight: 700, marginTop: 2 }}>
-                      {berthItems.length} buques atracados
+                      {berthItems.length} buque{berthItems.length === 1 ? "" : "s"} atracado{berthItems.length === 1 ? "" : "s"}
                     </div>
                     {berthItems.slice(0, 6).map(b => (
                       <div key={b.call.id} style={{ fontSize: 10, color: C.gray }}>• {b.call.name}</div>
