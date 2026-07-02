@@ -101,13 +101,15 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
     if (dep != null && T > dep + GLIDE_MS) return { visible: false };
     const lerp = (a, b, f) => a + (b - a) * f;
     const bearing = (from, to) => Math.atan2((to.lon - from.lon) * Math.cos(MARIN.lat * Math.PI / 180), to.lat - from.lat) * 180 / Math.PI;
-    if (arr != null && T < arr) { // entrando (bocana → atraque)
-      const f = Math.min(1, Math.max(0, (T - (arr - GLIDE_MS)) / GLIDE_MS));
-      return { visible: true, lat: lerp(APPROACH.lat, berth.lat, f), lon: lerp(APPROACH.lon, berth.lon, f), phase: "in", deg: bearing(APPROACH, berth), color: C.cyan };
+    const easeOut = f => 1 - Math.pow(1 - f, 3); // desacelera al final (atracar)
+    const easeIn = f => f * f * f;                // acelera despacio al principio (zarpar)
+    if (arr != null && T < arr) { // entrando (bocana → atraque): desacelera al llegar
+      const e = easeOut(Math.min(1, Math.max(0, (T - (arr - GLIDE_MS)) / GLIDE_MS)));
+      return { visible: true, lat: lerp(APPROACH.lat, berth.lat, e), lon: lerp(APPROACH.lon, berth.lon, e), phase: "in", deg: bearing(APPROACH, berth), color: C.cyan };
     }
-    if (dep != null && T > dep) { // saliendo (atraque → bocana)
-      const f = Math.min(1, Math.max(0, (T - dep) / GLIDE_MS));
-      return { visible: true, lat: lerp(berth.lat, APPROACH.lat, f), lon: lerp(berth.lon, APPROACH.lon, f), phase: "out", deg: bearing(berth, APPROACH), color: C.warning };
+    if (dep != null && T > dep) { // saliendo (atraque → bocana): arranca lento y acelera
+      const e = easeIn(Math.min(1, Math.max(0, (T - dep) / GLIDE_MS)));
+      return { visible: true, lat: lerp(berth.lat, APPROACH.lat, e), lon: lerp(berth.lon, APPROACH.lon, e), phase: "out", deg: bearing(berth, APPROACH), color: C.warning };
     }
     return { visible: true, lat: berth.lat, lon: berth.lon, phase: "dock", deg: bearing(berth, MARIN), color: C.success }; // atracado (proa hacia el puerto)
   };
