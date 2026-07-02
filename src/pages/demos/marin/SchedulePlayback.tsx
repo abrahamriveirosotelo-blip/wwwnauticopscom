@@ -224,15 +224,10 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
     setT(Math.min(tEnd, Math.max(tStart, next)));
   };
 
-  if (!ships.length) {
-    return (
-      <div style={{ marginBottom: 16, padding: 40, textAlign: "center", color: C.gray, background: C.white,
-        borderRadius: 12, border: `1px solid ${C.grayLight}` }}>
-        Sin escalas con ETA o ETD que simular con el filtro actual.
-      </div>
-    );
-  }
-
+  // Nota: NO se hace early-return con 0 escalas. El contenedor del mapa debe permanecer
+  // siempre montado para que el useEffect de inicialización (deps []) pueda enlazar Leaflet
+  // de forma estable; si se desmontara al filtrar a 0 y luego volvieran escalas, el mapa
+  // quedaría sin inicializar. Con 0 escalas se muestra un overlay y se ocultan los controles.
   return (
     <div style={{ marginBottom: 16 }}>
       <style>{`.marin-slider:focus-visible{outline:3px solid ${C.cyan};outline-offset:3px;border-radius:4px}`}</style>
@@ -241,10 +236,18 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
         <div style={{ fontSize: 11, color: C.gray }}>entrada / salida según ETA · ETD · movimiento esquemático</div>
       </div>
 
-      <div style={{ borderRadius: 12, overflow: "hidden", border: `1px solid ${C.gray}22` }}>
+      <div style={{ position: "relative", borderRadius: 12, overflow: "hidden", border: `1px solid ${C.gray}22` }}>
         <div ref={containerRef} style={{ height: isMobile ? 300 : 420, width: "100%" }} />
+        {!ships.length && (
+          <div style={{ position: "absolute", inset: 0, zIndex: 500, display: "flex", alignItems: "center",
+            justifyContent: "center", textAlign: "center", padding: 24, color: C.gray, fontSize: 12,
+            fontWeight: 600, background: "rgba(247,250,253,0.82)" }}>
+            Sin escalas con ETA o ETD que simular con el filtro actual.
+          </div>
+        )}
       </div>
 
+      {ships.length > 0 && (<>
       {/* Controles tipo reproductor */}
       <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 10 }}>
         <button type="button" onClick={() => setPlaying(p => !p)} aria-label={playing ? "Pausar" : "Reproducir"}
@@ -284,6 +287,7 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
         <span style={{ fontSize: 12, fontWeight: 800, color: C.navy, fontFamily: "'Courier New',monospace" }}>{fmtClock(t)}</span>
         <span style={{ fontSize: 11, fontWeight: 700, color: docked ? C.success : C.gray }}>⚓ {docked} en puerto</span>
       </div>
+      </>)}
     </div>
   );
 }
