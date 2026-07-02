@@ -3,12 +3,14 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 /* Mapa global de la flota. Cada buque de la lista (ya filtrada) se pinta según:
- *  - AIS reciente (posición ≤ 1 h respecto a la más nueva del snapshot) → en su lat/lon,
- *    flecha orientada al rumbo, coloreada por estado.
- *  - Atracado en Marín (en puerto según la AP) sin AIS reciente → EN EL PUERTO (dato AP),
- *    disperso en un anillo. En vista alejada, los atracados se agrupan en la boya del
- *    puerto con una insignia (nº de barcos); al clicar, el mapa hace zoom y se separan.
- *  - Sin posición fiable → no se pinta.
+ *  - En puerto según la AP (Iniciado/Alerta) → EN EL PUERTO de Marín. La AP MANDA para
+ *    los atracados: van al puerto aunque tengan AIS (a menudo obsoleto/contradictorio).
+ *    Es una ubicación APROXIMADA (la AP no da lat/lon): se dispersan en un anillo; en
+ *    vista alejada se agrupan en la boya con una insignia (nº de barcos) y, al clicar,
+ *    el mapa hace zoom y se separan.
+ *  - Prevista con AIS reciente (posición ≤ 1 h respecto a la más nueva) → en su lat/lon,
+ *    flecha orientada al rumbo, coloreada por estado (muestra "ya en Marín" vs la AP).
+ *  - Resto (Prevista sin AIS fiable) → no se pinta.
  * Posiciones AIS obsoletas (> 1 h) se descartan (podrían mostrar ubicaciones erróneas). */
 
 // Puerto de Marín (Ría de Pontevedra).
@@ -230,7 +232,7 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
                   <>
                     <div style={{ fontSize: 11, color: C.success, fontWeight: 700, marginTop: 2 }}>En puerto (Marín)</div>
                     {c.berth && c.berth !== "—" && <div style={{ fontSize: 10, color: C.gray }}>Muelle {c.berth}</div>}
-                    <div style={{ fontSize: 10, color: C.gray, marginTop: 2 }}>posición según la AP (muelle)</div>
+                    <div style={{ fontSize: 10, color: C.gray, marginTop: 2 }}>ubicación aproximada · en puerto por dato de la AP</div>
                   </>
                 ) : (
                   <>
