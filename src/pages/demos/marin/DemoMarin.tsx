@@ -1,21 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import data from "./data.json";
 import FleetMap from "./FleetMap";
-
-/** true cuando el viewport es de móvil (≤ bp px). Reacciona a rotaciones/resize. */
-function useIsMobile(bp = 768) {
-  const [m, setM] = useState(
-    typeof window !== "undefined" && window.matchMedia(`(max-width:${bp}px)`).matches
-  );
-  useEffect(() => {
-    const mq = window.matchMedia(`(max-width:${bp}px)`);
-    const h = e => setM(e.matches);
-    mq.addEventListener("change", h);
-    setM(mq.matches);
-    return () => mq.removeEventListener("change", h);
-  }, [bp]);
-  return m;
-}
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const B = {
   navyDeep:"#010B24", navy:"#0A1F3D", navyMid:"#0F3460",
@@ -313,6 +299,73 @@ function Detail({ call, onClose }) {
   );
 }
 
+/** Caja compacta ETA/ETD dentro de la tarjeta de escala. */
+function TimeBox({ label, value, empty }) {
+  return (
+    <div style={{background:B.offWhite,borderRadius:8,padding:"7px 10px",border:`1px solid ${B.grayLight}`}}>
+      <div style={{fontSize:9,fontWeight:800,color:B.gray,letterSpacing:"0.06em"}}>{label}</div>
+      <div style={{fontSize:13,fontWeight:empty?500:700,color:empty?B.grayLight:B.navy,
+        fontFamily:empty?"inherit":"'Courier New',monospace",marginTop:2}}>{value}</div>
+    </div>
+  );
+}
+
+/** Tarjeta de una escala (móvil y escritorio). Clic → abre el drawer de detalle. */
+function CallCard({ call: c, isSel, onSelect }) {
+  const isAl = c.status === "Alerta";
+  const isAffected = !!c.affectedBy;
+  const affectRisk = c.affectRisk === "ALTO"  ? { label:"Impacto ALTO",  color:"#DC2626", bg:"#FEE2E2" }
+                   : c.affectRisk === "MEDIO" ? { label:"Impacto MEDIO", color:"#D97706", bg:"#FEF3C7" }
+                   : null;
+  const arrived = c.status === "Prevista" && c.aisArrivedMarin;
+  const bound   = c.status === "Prevista" && c.aisAtMarin && !c.aisArrivedMarin;
+  return (
+    <div onClick={()=>onSelect(isSel?null:c)}
+      style={{
+        background:isSel?B.cyanPale:isAl?"#FFF1F1":isAffected?"#FFFBEB":B.white,
+        border:`1px solid ${isSel?B.cyan:B.grayLight}`,
+        borderLeft:isAl?`3px solid ${B.danger}`:isAffected?`3px solid ${B.warning}`:`1px solid ${isSel?B.cyan:B.grayLight}`,
+        borderRadius:12,padding:"14px 16px",cursor:"pointer",display:"flex",flexDirection:"column",gap:11,
+        boxShadow:"0 1px 6px rgba(1,11,36,0.05)",transition:"background 0.1s, border-color 0.1s"}}>
+      {/* Buque + estado */}
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:8}}>
+        <div style={{minWidth:0}}>
+          <div style={{fontWeight:800,fontSize:15,color:isAl?B.danger:B.navy,lineHeight:1.2}}>
+            {c.name}
+            {(arrived||bound) && <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,
+              verticalAlign:"middle",background:arrived?"#FEF3C7":"#E1F5FE",color:arrived?B.warning:B.cyan,whiteSpace:"nowrap"}}>
+              {arrived?"⚓ ya en Marín (AIS)":"▸ rumbo a Marín"}</span>}
+          </div>
+          <div style={{fontSize:10,color:B.gray,marginTop:2}}>
+            {c.imo && c.imo!=='—' ? `IMO ${c.imo} · ` : ''}<span style={{fontFamily:"'Courier New',monospace"}}>{c.id}</span>
+          </div>
+        </div>
+        <Badge status={c.status}/>
+      </div>
+      {/* Muelle + operación + GT (+ impacto si lo hubiera) */}
+      <div style={{display:"flex",flexWrap:"wrap",gap:8,alignItems:"center"}}>
+        <span style={{padding:"4px 10px",borderRadius:6,fontSize:12,fontWeight:800,
+          background:isAffected?"#FEF3C7":B.grayLight,color:isAffected?B.warning:B.navy}}>{c.berth}</span>
+        <OpTag op={c.op}/>
+        {c.gt ? <span style={{fontSize:11,color:B.gray,fontWeight:600}}>{c.gt.toLocaleString()} GT</span> : null}
+        {isAffected && affectRisk && (
+          <span style={{padding:"1px 6px",borderRadius:4,fontSize:9,fontWeight:800,
+            background:affectRisk.bg,color:affectRisk.color,letterSpacing:"0.04em"}}>⚠ {affectRisk.label}</span>
+        )}
+      </div>
+      {/* ETA / ETD (lo importante) */}
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
+        <TimeBox label="ETA · Llegada" value={fmt(c.eta)} empty={!c.eta}/>
+        <TimeBox label="ETD · Salida"  value={fmt(c.etd)} empty={!c.etd}/>
+      </div>
+      {c.aisAtMarin && c.aisEta && (
+        <div style={{fontSize:11,color:B.cyan,fontWeight:600}}>AIS · en vivo: {fmt(c.aisEta)}</div>
+      )}
+      {c.agent && c.agent!=='—' && <div style={{fontSize:10,color:B.gray}}>{c.agent}</div>}
+    </div>
+  );
+}
+
 export default function DemoMarin() {
   const [filter, setFilter] = useState("Todas");
   const [selected, setSelected] = useState(null);
@@ -451,82 +504,20 @@ export default function DemoMarin() {
             Clic en un buque → abre su escala (mismo drawer que la tabla). */}
         <FleetMap calls={CALLS} fmt={fmt} onSelect={setSelected} height={isMobile?300:440}/>
 
-        <div style={{background:B.white,borderRadius:12,border:`1px solid ${B.grayLight}`,
-          overflow:"hidden",boxShadow:"0 1px 6px rgba(1,11,36,0.06)"}}>
-          <div style={{overflowX:"auto",WebkitOverflowScrolling:"touch"}}>
-          <table style={{width:"100%",borderCollapse:"collapse"}}>
-            <thead>
-              <tr style={{background:B.navyDeep}}>
-                {["ESCALA","ESTADO","BUQUE","GT","MUELLE","OPERACIÓN","ETA","ETD","AGENTE"]
-                  .filter(h=>!isMobile||["ESTADO","BUQUE","MUELLE"].includes(h)).map(h=>(
-                  <th key={h} style={{padding:"11px 14px",textAlign:"left",fontSize:9,fontWeight:800,
-                    color:"rgba(255,255,255,0.45)",letterSpacing:"0.08em",whiteSpace:"nowrap"}}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map((c,i)=>{
-                const isSel=selected?.id===c.id;
-                const isAl=c.status==="Alerta";
-                const isAffected = !!c.affectedBy;
-                const affectRisk = c.affectRisk==="ALTO"  ? { label:"Impacto ALTO",  color:"#DC2626", bg:"#FEE2E2" }
-                                 : c.affectRisk==="MEDIO" ? { label:"Impacto MEDIO", color:"#D97706", bg:"#FEF3C7" }
-                                 : null;
-                return (
-                  <tr key={c.id}
-                    onClick={()=>setSelected(isSel?null:c)}
-                    style={{
-                      borderBottom:i<filtered.length-1?`1px solid ${B.grayLight}`:"none",
-                      background:isSel?B.cyanPale:isAl?"#FFF1F1":isAffected?"#FFFBEB":i%2===0?B.white:B.offWhite,
-                      cursor:"pointer",transition:"background 0.1s",
-                      borderLeft:isAl?`3px solid ${B.danger}`:isAffected?`3px solid ${B.warning}`:"3px solid transparent"}}
-                    onMouseEnter={e=>{if(!isSel)e.currentTarget.style.background=B.cyanPale}}
-                    onMouseLeave={e=>{if(!isSel)e.currentTarget.style.background=isAl?"#FFF1F1":isAffected?"#FFFBEB":i%2===0?B.white:B.offWhite}}>
-                    {!isMobile && <td style={{padding:"11px 14px",fontSize:11,fontFamily:"'Courier New',monospace",color:B.gray,fontWeight:600}}>{c.id}</td>}
-                    <td style={{padding:"11px 14px"}}><Badge status={c.status}/></td>
-                    <td style={{padding:"11px 14px"}}>
-                      <div style={{fontWeight:800,fontSize:13,color:isAl?B.danger:B.navy}}>{c.name}{c.aisStatus && (() => {
-                        const arrived = c.status==="Prevista" && c.aisArrivedMarin;
-                        const bound = c.status==="Prevista" && c.aisAtMarin && !c.aisArrivedMarin;
-                        if (!arrived && !bound) return null;
-                        return <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,verticalAlign:"middle",background:arrived?"#FEF3C7":"#E1F5FE",color:arrived?B.warning:B.cyan}}>{arrived?"⚓ ya en Marín (AIS)":"▸ rumbo a Marín"}</span>;
-                      })()}</div>
-                      <div style={{fontSize:10,color:B.gray,marginTop:1,display:"flex",alignItems:"center",gap:5}}>
-                        {c.imo && c.imo !== '—' && <span>IMO {c.imo}</span>}
-                        {isAffected && affectRisk && (
-                          <span style={{padding:"1px 6px",borderRadius:4,fontSize:9,fontWeight:800,
-                            background:affectRisk.bg,color:affectRisk.color,letterSpacing:"0.04em"}}>
-                            ⚠ {affectRisk.label}
-                          </span>
-                        )}
-                      </div>
-                    </td>
-                    {!isMobile && <td style={{padding:"11px 14px",fontSize:12,color:B.gray,fontWeight:600}}>{c.gt ? c.gt.toLocaleString() : '—'}</td>}
-                    <td style={{padding:"11px 14px"}}>
-                      <span style={{padding:"4px 10px",borderRadius:6,
-                        background:isAffected?(isSel?B.white:"#FEF3C7"):isSel?B.white:B.grayLight,
-                        fontSize:12,fontWeight:800,
-                        color:isAffected?B.warning:B.navy}}>{c.berth}</span>
-                    </td>
-                    {!isMobile && <td style={{padding:"11px 14px"}}><OpTag op={c.op}/></td>}
-                    {!isMobile && <td style={{padding:"11px 14px",fontSize:11,color:B.gray,whiteSpace:"nowrap"}}>{fmt(c.eta)}</td>}
-                    {!isMobile && <td style={{padding:"11px 14px",fontSize:11,color:B.gray,whiteSpace:"nowrap"}}>{fmt(c.etd)}</td>}
-                    {!isMobile && <td style={{padding:"11px 14px",fontSize:10,color:B.gray,maxWidth:160}}>
-                      <div style={{overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{c.agent}</div>
-                    </td>}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-          </div>
-          {filtered.length===0&&(
-            <div style={{padding:48,textAlign:"center",color:B.gray}}>
-              <div style={{fontSize:28,marginBottom:8}}>🔍</div>
-              <div style={{fontSize:13,fontWeight:600}}>Sin resultados</div>
-            </div>
-          )}
+        {/* Escalas en tarjetas (móvil y escritorio): 1 columna en móvil, varias en pantallas anchas */}
+        <div style={{display:"grid",gap:12,
+          gridTemplateColumns:"repeat(auto-fill, minmax(min(100%, 340px), 1fr))"}}>
+          {filtered.map(c=>(
+            <CallCard key={c.id} call={c} isSel={selected?.id===c.id} onSelect={setSelected}/>
+          ))}
         </div>
+        {filtered.length===0&&(
+          <div style={{padding:48,textAlign:"center",color:B.gray,background:B.white,
+            borderRadius:12,border:`1px solid ${B.grayLight}`}}>
+            <div style={{fontSize:28,marginBottom:8}}>🔍</div>
+            <div style={{fontSize:13,fontWeight:600}}>Sin resultados</div>
+          </div>
+        )}
 
         {/* Footer */}
         <div style={{marginTop:12,display:"flex",flexWrap:"wrap",gap:8,justifyContent:"space-between",alignItems:"center"}}>
