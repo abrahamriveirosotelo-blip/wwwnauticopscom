@@ -13,32 +13,34 @@ import "leaflet/dist/leaflet.css";
 const MARIN = { lat: 42.4053, lon: -8.7020, label: "Puerto de Marín" };
 const APPROACH = { lat: 42.400, lon: -8.752 };  // aproximación por la ría (O): por aquí entran/salen
 const BERTH_RADIUS = 0.0045;                     // anillo de atraque alrededor del puerto
-const GLIDE_MS = 90 * 60 * 1000;                 // ventana de deslizamiento entrada/salida (90 min)
-const LOOP_SECONDS = 22;                          // duración de un bucle completo (a velocidad 1)
+const GLIDE_MS = 4 * 60 * 60 * 1000;             // maniobra de entrada/salida (4 h de deslizamiento)
+const LOOP_SECONDS = 44;                          // duración de un bucle completo
 
 const C = {
   navy: "#0A1F3D", cyan: "#079FE6", success: "#00C896", warning: "#F59E0B",
   gray: "#64748B", grayLight: "#E2EBF4", white: "#FFFFFF", offWhite: "#F7FAFD",
 };
 
-const shipKey = c => c.mmsi || c.name;
 const fmtClock = ms => {
   const d = new Date(ms);
   return d.toLocaleDateString("es-ES", { weekday: "short", day: "2-digit", month: "short" }).replace(/\./g, "")
     + " · " + d.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" });
 };
 
-/** Marcador de buque: flecha orientada al rumbo (si se mueve) o círculo (atracado). */
+/** Marcador de buque: silueta de barco (vista cenital) orientada al rumbo (proa hacia `deg`).
+ *  Coloreada por fase: verde atracado, cian entrando, naranja saliendo. */
 function playIcon(color, deg, highlighted) {
-  const marker = deg == null
-    ? `<div style="width:13px;height:13px;border-radius:50%;background:${color};border:2px solid ${C.white};box-shadow:0 0 0 1px rgba(0,0,0,.25)"></div>`
-    : `<svg width="24" height="24" viewBox="0 0 26 26" style="transform:rotate(${deg}deg);filter:drop-shadow(0 1px 1px rgba(0,0,0,.35))"><path d="M13 2 L20 22 L13 17 L6 22 Z" fill="${color}" stroke="${C.white}" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
+  const boat = `<svg width="22" height="22" viewBox="0 0 24 24" style="transform:rotate(${deg || 0}deg);filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.4))">
+      <path d="M12 1.5 C 14.6 4, 15.6 7.5, 15.6 11.5 L 15.6 18 C 15.6 20.6, 13.9 21.8, 12 21.8 C 10.1 21.8, 8.4 20.6, 8.4 18 L 8.4 11.5 C 8.4 7.5, 9.4 4, 12 1.5 Z"
+        fill="${color}" stroke="${C.white}" stroke-width="1.5" stroke-linejoin="round"/>
+      <rect x="10.2" y="10" width="3.6" height="5.5" rx="1" fill="${C.white}" opacity="0.85"/>
+    </svg>`;
   const halo = highlighted
     ? `<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;background:${C.cyan}22;border:2.5px solid ${C.cyan};box-shadow:0 0 12px ${C.cyan};z-index:0"></div>`
     : "";
   const size = highlighted ? 40 : 24;
   return L.divIcon({
-    html: `<div style="position:relative;display:flex;align-items:center;justify-content:center;width:${size}px;height:${size}px">${halo}<div style="position:relative;z-index:1;display:flex;align-items:center;justify-content:center">${marker}</div></div>`,
+    html: `<div style="position:relative;display:flex;align-items:center;justify-content:center;width:${size}px;height:${size}px">${halo}<div style="position:relative;z-index:1;display:flex;align-items:center;justify-content:center">${boat}</div></div>`,
     className: "", iconSize: [size, size], iconAnchor: [size / 2, size / 2],
   });
 }
@@ -50,7 +52,7 @@ function marinDot() {
   });
 }
 
-export default function SchedulePlayback({ calls, onSelect, selectedKey = null, isMobile = false, dateRef = NaN }) {
+export default function SchedulePlayback({ calls, onSelect, selectedId = null, isMobile = false, dateRef = NaN }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
   const layerRef = useRef(null);
@@ -107,7 +109,7 @@ export default function SchedulePlayback({ calls, onSelect, selectedKey = null, 
       const f = Math.min(1, Math.max(0, (T - dep) / GLIDE_MS));
       return { visible: true, lat: lerp(berth.lat, APPROACH.lat, f), lon: lerp(berth.lon, APPROACH.lon, f), phase: "out", deg: bearing(berth, APPROACH), color: C.warning };
     }
-    return { visible: true, lat: berth.lat, lon: berth.lon, phase: "dock", deg: null, color: C.success }; // atracado
+    return { visible: true, lat: berth.lat, lon: berth.lon, phase: "dock", deg: bearing(berth, MARIN), color: C.success }; // atracado (proa hacia el puerto)
   };
 
   // Inicializa el mapa una vez, centrado en Marín + bocana (para ver entrar/salir).
@@ -153,7 +155,10 @@ export default function SchedulePlayback({ calls, onSelect, selectedKey = null, 
       if (!st.visible) { entry.marker.setOpacity(0); continue; }
       entry.marker.setLatLng([st.lat, st.lon]);
       entry.marker.setOpacity(1);
-      const isSel = selectedKey != null && shipKey(s.call) === selectedKey;
+      // Aquí cada marcador es UNA escala (no se deduplica por buque como en FleetMap), así
+      // que el destacado se compara por id de escala → 1:1 con la escala seleccionada
+      // (un buque con varias escalas no resalta todas a la vez).
+      const isSel = selectedId != null && s.call.id === selectedId;
       // El rumbo es constante durante cada deslizamiento (recta), así que solo re-creo el
       // icono cuando cambia la fase, el rumbo o el estado de selección (no en cada frame).
       const key = `${st.phase}|${Math.round(st.deg ?? 0)}|${isSel}`;
@@ -163,7 +168,7 @@ export default function SchedulePlayback({ calls, onSelect, selectedKey = null, 
         entry.phaseKey = key;
       }
     }
-  }, [t, ships, selectedKey]);
+  }, [t, ships, selectedId]);
 
   // Bucle de reproducción (requestAnimationFrame → suave, independiente del framerate).
   useEffect(() => {
@@ -185,8 +190,10 @@ export default function SchedulePlayback({ calls, onSelect, selectedKey = null, 
   const pct = Math.min(1, Math.max(0, (t - tStart) / span));
   const docked = ships.filter(s => shipStateAt(s, t).phase === "dock").length;
 
-  // Seek al pinchar/arrastrar en la barra.
+  // Seek al pinchar/arrastrar en la barra. Uso una bandera de arrastre (no `e.buttons`),
+  // porque en eventos de puntero táctiles `buttons` suele ser 0 y bloquearía el scrub.
   const trackRef = useRef(null);
+  const draggingRef = useRef(false);
   const seekFromEvent = e => {
     const el = trackRef.current;
     if (!el) return;
@@ -222,8 +229,10 @@ export default function SchedulePlayback({ calls, onSelect, selectedKey = null, 
           {playing ? "⏸" : "▶"}
         </button>
         <div ref={trackRef}
-          onPointerDown={e => { e.currentTarget.setPointerCapture(e.pointerId); seekFromEvent(e); }}
-          onPointerMove={e => { if (e.buttons) seekFromEvent(e); }}
+          onPointerDown={e => { e.currentTarget.setPointerCapture(e.pointerId); draggingRef.current = true; seekFromEvent(e); }}
+          onPointerMove={e => { if (draggingRef.current) seekFromEvent(e); }}
+          onPointerUp={() => { draggingRef.current = false; }}
+          onPointerCancel={() => { draggingRef.current = false; }}
           style={{ flex: 1, minWidth: 0, position: "relative", height: 28, cursor: "pointer", touchAction: "none" }}>
           <div style={{ position: "absolute", top: 13, left: 0, right: 0, height: 5, borderRadius: 3, background: C.grayLight }} />
           <div style={{ position: "absolute", top: 13, left: 0, width: `${pct * 100}%`, height: 5, borderRadius: 3, background: C.cyan }} />
