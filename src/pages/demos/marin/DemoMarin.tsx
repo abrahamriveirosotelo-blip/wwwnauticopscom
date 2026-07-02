@@ -504,7 +504,7 @@ export default function DemoMarin() {
         })()}
 
         {/* Mapa global de la flota: posición AIS en vivo (aisstream).
-            Clic en un buque → abre su escala (mismo drawer que la tabla). */}
+            Clic en un buque → abre su escala (mismo drawer que las tarjetas). */}
         <FleetMap calls={CALLS} fmt={fmt} onSelect={setSelected} height={isMobile?300:440}/>
 
         {/* Escalas en tarjetas (móvil y escritorio): 1 columna en móvil, varias en pantallas anchas */}
