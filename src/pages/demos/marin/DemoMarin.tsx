@@ -25,6 +25,18 @@ const isBoundToMarin = c => c.aisAtMarin && !c.aisArrivedMarin;
  *  El mapa descarta posiciones > 1 h más viejas que esta (ver FleetMap). */
 const aisRef = Math.max(0, ...CALLS.map(c => (c.aisPosAt ? new Date(c.aisPosAt).getTime() : NaN)).filter(t => !Number.isNaN(t)));
 
+/** "Hoy" del snapshot: meta.date (DD/MM/YYYY) a las 00:00. Referencia estable (no el reloj)
+ *  para juzgar coherencia sin depender de cuándo se vea la demo. */
+const DATE_REF = (() => {
+  const m = /^(\d{2})\/(\d{2})\/(\d{4})/.exec(META.date || "");
+  return m ? new Date(`${m[3]}-${m[2]}-${m[1]}T00:00`).getTime() : NaN;
+})();
+/** Buque "En puerto" (Iniciado/Alerta) cuya salida prevista (ETD) ya venció → salida demorada:
+ *  la AP lo sigue listando en puerto pero debería haber salido. */
+const isDelayedDeparture = c =>
+  (c.status === "Iniciado" || c.status === "Alerta") && c.etd &&
+  Number.isFinite(DATE_REF) && new Date(c.etd).getTime() < DATE_REF;
+
 function fmt(iso) {
   if (!iso) return "—";
   const d = new Date(iso);
@@ -227,6 +239,7 @@ function Detail({ call, onClose }) {
                 <div style={{padding:"14px 16px",borderRight:`1px solid ${B.grayLight}`}}>
                   <TimeField label="ETD · Salida prevista"
                     value={fmt(call.etd)} isReal={false} isEmpty={!call.etd}/>
+                  {isDelayedDeparture(call) && (<div style={{fontSize:11,color:B.danger,fontWeight:700,marginTop:6}}>⚠ salida demorada · sigue en puerto según la AP</div>)}
                 </div>
                 <div style={{padding:"14px 16px"}}>
                   <TimeField label="ATD · Salida real"
@@ -395,6 +408,8 @@ function CallCard({ call: c, isSel, onSelect }) {
             {c.aisStatus && (arrived||bound) && <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,
               verticalAlign:"middle",background:arrived?"#FEF3C7":"#E1F5FE",color:arrived?B.warning:B.cyan,whiteSpace:"nowrap"}}>
               {arrived?"⚓ ya en Marín (AIS)":"▸ rumbo a Marín"}</span>}
+            {isDelayedDeparture(c) && <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,
+              verticalAlign:"middle",background:"#FEE2E2",color:B.danger,whiteSpace:"nowrap"}}>⚠ salida demorada</span>}
           </div>
           <div style={{fontSize:10,color:B.gray,marginTop:2}}>
             {c.imo && c.imo!=='—' ? `IMO ${c.imo} · ` : ''}<span style={{fontFamily:"'Courier New',monospace"}}>{c.id}</span>
