@@ -5,17 +5,17 @@ import "leaflet/dist/leaflet.css";
 /* Mapa global de la flota. Cada buque de la lista (ya filtrada) se pinta según:
  *  - AIS reciente (posición ≤ 1 h respecto a la más nueva del snapshot) → en su lat/lon,
  *    flecha orientada al rumbo, coloreada por estado.
- *  - Atracado en Marín (en puerto según la AP) sin AIS reciente → se coloca EN EL PUERTO
- *    (dato de la AP, no AIS), disperso en un anillo para no solaparse.
+ *  - Atracado en Marín (en puerto según la AP) sin AIS reciente → EN EL PUERTO (dato AP),
+ *    disperso en un anillo. En vista alejada, los atracados se agrupan en la boya del
+ *    puerto con una insignia (nº de barcos); al clicar, el mapa hace zoom y se separan.
  *  - Sin posición fiable → no se pinta.
- * Posiciones AIS obsoletas (> 1 h) se descartan: podrían mostrar ubicaciones erróneas.
- * Leaflet a pelo (BSD-2-Clause), sin react-leaflet. La tarjeta de hover se renderiza
- * FUERA del contenedor Leaflet (overflow:hidden) para que no se corte en los bordes. */
+ * Posiciones AIS obsoletas (> 1 h) se descartan (podrían mostrar ubicaciones erróneas). */
 
 // Puerto de Marín (Ría de Pontevedra).
 const MARIN = { lat: 42.4053, lon: -8.7020, label: "Puerto de Marín" };
 const AIS_FRESH_MS = 60 * 60 * 1000; // 1 h: descarta posiciones AIS más viejas
-const BERTH_RADIUS = 0.0035;         // ~350 m: dispersa los atracados alrededor del puerto
+const BERTH_RADIUS = 0.005;          // ~500 m: anillo de atracados alrededor del puerto
+const CLUSTER_MIN_ZOOM = 13;         // a partir de este zoom los atracados se ven separados
 
 const C = {
   navy: "#0A1F3D", cyan: "#079FE6", success: "#00C896",
@@ -34,7 +34,6 @@ function statusColor(aisStatus) {
 /** Icono de buque: flecha orientada al rumbo (heading/COG) o círculo si no hay rumbo. */
 function vesselIcon(deg, color) {
   const html = deg == null
-    // Punto centrado en un contenedor 26×26 para que cuadre con iconAnchor [13,13].
     ? `<div style="display:flex;align-items:center;justify-content:center;width:26px;height:26px">
          <div style="width:14px;height:14px;border-radius:50%;background:${color};border:2px solid ${C.white};box-shadow:0 0 0 1px rgba(0,0,0,0.25)"></div>
        </div>`
@@ -44,17 +43,26 @@ function vesselIcon(deg, color) {
   return L.divIcon({ html, className: "", iconSize: [26, 26], iconAnchor: [13, 13] });
 }
 
-/** Icono del puerto de Marín. */
-const marinIcon = L.divIcon({
-  html: `<div style="display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:${C.navy};color:${C.white};font-size:14px;border:2px solid ${C.white};box-shadow:0 1px 3px rgba(0,0,0,0.4)">⚓</div>`,
-  className: "", iconSize: [26, 26], iconAnchor: [13, 13],
-});
+/** Boya del puerto de Marín. Con `n>0` añade una insignia verde con el nº de atracados. */
+function marinIcon(n = 0) {
+  const badge = n > 0
+    ? `<div style="position:absolute;top:-7px;right:-7px;min-width:17px;height:17px;padding:0 3px;border-radius:9px;background:${C.success};color:${C.white};font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;border:2px solid ${C.white};box-sizing:border-box">${n}</div>`
+    : "";
+  return L.divIcon({
+    html: `<div style="position:relative;width:26px;height:26px">
+      <div style="display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:${C.navy};color:${C.white};font-size:14px;border:2px solid ${C.white};box-shadow:0 1px 3px rgba(0,0,0,0.4)">⚓</div>
+      ${badge}
+    </div>`,
+    className: "", iconSize: [26, 26], iconAnchor: [13, 13],
+  });
+}
 
 export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 0 }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
   // Tarjeta de hover: { x, y, item? , marin? } en píxeles del contenedor del mapa.
   const [hover, setHover] = useState(null);
+  const [zoom, setZoom] = useState(8);
 
   // Ítems del mapa: { call, lat, lon, kind }. Dedupe por MMSI (o nombre).
   const items = useMemo(() => {
@@ -66,10 +74,8 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
       const t = c.aisPosAt ? new Date(c.aisPosAt).getTime() : NaN;
       const freshAis = c.aisLat != null && c.aisLon != null && !Number.isNaN(t) && aisRef - t <= AIS_FRESH_MS;
       if (freshAis) out.push({ call: c, lat: c.aisLat, lon: c.aisLon, kind: "ais" });
-      else if (c.status === "Iniciado" || c.aisArrivedMarin) berth.push(c); // atracado en Marín, sin AIS reciente
-      // resto → sin posición fiable, no se pinta
+      else if (c.status === "Iniciado" || c.aisArrivedMarin) berth.push(c);
     }
-    // Atracados: en un anillo alrededor del puerto (dato AP), para que no se solapen.
     const n = berth.length;
     berth.forEach((c, i) => {
       const ang = (i / Math.max(n, 1)) * 2 * Math.PI;
@@ -80,6 +86,11 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
     return out;
   }, [calls, aisRef]);
 
+  const aisItems = useMemo(() => items.filter(i => i.kind === "ais"), [items]);
+  const berthItems = useMemo(() => items.filter(i => i.kind === "berth"), [items]);
+  // Agrupar atracados en la boya cuando hay >1 y el zoom no los separa.
+  const clusterBerth = berthItems.length > 1 && zoom < CLUSTER_MIN_ZOOM;
+
   // Inicializa el mapa una vez.
   useEffect(() => {
     if (mapRef.current || !containerRef.current) return;
@@ -87,48 +98,66 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
-    map.on("movestart", () => setHover(null)); // el hover en píxeles deja de ser válido al mover
+    map.on("movestart", () => setHover(null));
+    map.on("zoomend", () => setZoom(map.getZoom()));
     mapRef.current = map;
+    setZoom(map.getZoom());
     return () => { map.remove(); mapRef.current = null; };
   }, []);
 
   // Reajusta Leaflet cuando cambia la altura del contenedor (p. ej. 440→300 en móvil).
   useEffect(() => { mapRef.current?.invalidateSize(); }, [height]);
 
-  // (Re)pinta marcadores cuando cambian los ítems.
+  // Encuadre: solo cuando cambian los ítems (NO con el zoom → evita bucle con zoomend).
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const pts = [[MARIN.lat, MARIN.lon], ...aisItems.map(i => [i.lat, i.lon]), ...berthItems.map(i => [i.lat, i.lon])];
+    if (pts.length <= 1) map.setView([MARIN.lat, MARIN.lon], 8);
+    else map.fitBounds(L.latLngBounds(pts), { padding: [40, 40], maxZoom: 12 });
+  }, [aisItems, berthItems]);
+
+  // (Re)pinta marcadores cuando cambian los ítems o el modo clúster (zoom).
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
     const layer = L.layerGroup().addTo(map);
     const pt = ll => map.latLngToContainerPoint(ll);
 
-    const marin = L.marker([MARIN.lat, MARIN.lon], { icon: marinIcon }).addTo(layer);
-    marin.on("mouseover", () => { const p = pt([MARIN.lat, MARIN.lon]); setHover({ x: p.x, y: p.y, marin: true }); });
-    marin.on("mouseout", () => setHover(null));
+    // Boya del puerto (con insignia si se agrupan los atracados).
+    const port = L.marker([MARIN.lat, MARIN.lon],
+      { icon: marinIcon(clusterBerth ? berthItems.length : 0), zIndexOffset: 1000 }).addTo(layer);
+    port.on("mouseover", () => { const p = pt([MARIN.lat, MARIN.lon]); setHover({ x: p.x, y: p.y, marin: true }); });
+    port.on("mouseout", () => setHover(null));
+    if (clusterBerth) port.on("click", () => { setHover(null); map.flyTo([MARIN.lat, MARIN.lon], CLUSTER_MIN_ZOOM, { duration: 0.8 }); });
 
-    const pts = [[MARIN.lat, MARIN.lon]];
-    for (const it of items) {
+    // Buques con AIS (siempre individuales).
+    for (const it of aisItems) {
       const c = it.call;
       const ll = [it.lat, it.lon];
-      const icon = it.kind === "berth"
-        ? vesselIcon(null, C.success)                                          // atracado: punto verde en el puerto
-        : vesselIcon(c.aisHeading ?? c.aisCog ?? null, statusColor(c.aisStatus));
-      const m = L.marker(ll, { icon }).addTo(layer);
+      const m = L.marker(ll, { icon: vesselIcon(c.aisHeading ?? c.aisCog ?? null, statusColor(c.aisStatus)) }).addTo(layer);
       m.on("mouseover", () => { const p = pt(ll); setHover({ x: p.x, y: p.y, item: it }); });
       m.on("mouseout", () => setHover(null));
       if (onSelect) m.on("click", () => { setHover(null); onSelect(c); });
-      pts.push(ll);
     }
 
-    if (pts.length <= 1) map.setView([MARIN.lat, MARIN.lon], 8);
-    else map.fitBounds(L.latLngBounds(pts), { padding: [40, 40], maxZoom: 12 });
+    // Atracados individuales solo si NO se agrupan (zoom suficiente o solo 1).
+    if (!clusterBerth) {
+      for (const it of berthItems) {
+        const c = it.call;
+        const ll = [it.lat, it.lon];
+        const m = L.marker(ll, { icon: vesselIcon(null, C.success) }).addTo(layer);
+        m.on("mouseover", () => { const p = pt(ll); setHover({ x: p.x, y: p.y, item: it }); });
+        m.on("mouseout", () => setHover(null));
+        if (onSelect) m.on("click", () => { setHover(null); onSelect(c); });
+      }
+    }
 
     return () => { layer.remove(); };
-  }, [items, onSelect]);
+  }, [aisItems, berthItems, clusterBerth, onSelect]);
 
   const it = hover?.item;
   const c = it?.call;
-  // Si el hover está cerca del borde superior, la tarjeta se abre HACIA ABAJO.
   const below = hover ? hover.y < 96 : false;
 
   return (
@@ -159,7 +188,21 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
             padding: "6px 10px", boxShadow: "0 2px 12px rgba(1,11,36,0.2)", whiteSpace: "nowrap",
           }}>
             {hover.marin ? (
-              <div style={{ fontWeight: 800, color: C.navy, fontSize: 12 }}>{MARIN.label}</div>
+              <>
+                <div style={{ fontWeight: 800, color: C.navy, fontSize: 12 }}>{MARIN.label}</div>
+                {clusterBerth && (
+                  <>
+                    <div style={{ fontSize: 11, color: C.success, fontWeight: 700, marginTop: 2 }}>
+                      {berthItems.length} buques atracados
+                    </div>
+                    {berthItems.slice(0, 6).map(b => (
+                      <div key={b.call.id} style={{ fontSize: 10, color: C.gray }}>• {b.call.name}</div>
+                    ))}
+                    {berthItems.length > 6 && <div style={{ fontSize: 10, color: C.gray }}>… y {berthItems.length - 6} más</div>}
+                    <div style={{ fontSize: 10, color: C.cyan, fontWeight: 700, marginTop: 3 }}>clic para desplegar →</div>
+                  </>
+                )}
+              </>
             ) : (
               <>
                 <div style={{ fontWeight: 800, color: C.navy, fontSize: 12 }}>{c.name}</div>
