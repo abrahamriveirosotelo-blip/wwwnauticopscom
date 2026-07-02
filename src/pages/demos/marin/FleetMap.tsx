@@ -66,8 +66,17 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
 
   // Ítems del mapa: { call, lat, lon, kind }. Dedupe por MMSI (o nombre).
   const items = useMemo(() => {
+    // Dedupe por MMSI (o nombre): un buque puede tener varias escalas; se queda con la
+    // MÁS relevante para el mapa de forma determinista (en puerto > con posición > resto),
+    // no la primera que aparezca en el array.
+    const score = c => (c.status === "Iniciado" || c.status === "Alerta") ? 3
+      : (c.aisLat != null && c.aisLon != null && c.aisPosAt) ? 2 : 1;
     const byKey = new Map();
-    for (const c of calls) { const k = c.mmsi || c.name; if (!byKey.has(k)) byKey.set(k, c); }
+    for (const c of calls) {
+      const k = c.mmsi || c.name;
+      const prev = byKey.get(k);
+      if (!prev || score(c) > score(prev)) byKey.set(k, c);
+    }
     const out = [];
     const berth = [];
     for (const c of byKey.values()) {
