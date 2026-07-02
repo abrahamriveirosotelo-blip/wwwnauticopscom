@@ -811,7 +811,7 @@ export default function DemoMarin() {
             Clic en un buque → abre su escala (mismo drawer que la lista). */}
         {view==="cards"
           ? <FleetMap calls={filtered} fmt={fmt} onSelect={setSelected} height={isMobile?300:440} aisRef={aisRef} selectedKey={selected ? (selected.mmsi || selected.name) : null}/>
-          : <SchedulePlayback calls={filtered} onSelect={setSelected} selectedId={selected?.id} isMobile={isMobile} dateRef={DATE_REF}/>}
+          : <SchedulePlayback calls={filtered} onSelect={setSelected} selectedId={selected?.id} isMobile={isMobile}/>}
 
         {/* Conmutador de vista: Tarjetas (estado actual) ↔ Cronología (planificación entrada/salida). */}
         <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:8,margin:"2px 0 12px",flexWrap:"wrap"}}>

@@ -14,7 +14,8 @@ const MARIN = { lat: 42.4053, lon: -8.7020, label: "Puerto de Marín" };
 const APPROACH = { lat: 42.400, lon: -8.752 };  // aproximación por la ría (O): por aquí entran/salen
 const BERTH_RADIUS = 0.0045;                     // anillo de atraque alrededor del puerto
 const GLIDE_MS = 4 * 60 * 60 * 1000;             // maniobra de entrada/salida (4 h de deslizamiento)
-const LOOP_SECONDS = 44;                          // duración de un bucle completo
+const SEC_PER_SIM_DAY = 6.3;                     // ritmo del reloj: ~6.3 s reales por día simulado
+                                                 // (independiente del tamaño del horizonte)
 
 const C = {
   navy: "#0A1F3D", cyan: "#079FE6", success: "#00C896", warning: "#F59E0B",
@@ -87,7 +88,7 @@ function marinDot() {
   });
 }
 
-export default function SchedulePlayback({ calls, onSelect, selectedId = null, isMobile = false, dateRef = NaN }) {
+export default function SchedulePlayback({ calls, onSelect, selectedId = null, isMobile = false }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
   const layerRef = useRef(null);
@@ -95,6 +96,7 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
   const darknessRef = useRef(0);     // última oscuridad calculada, para fijar la opacidad inicial
   const markersRef = useRef(new Map()); // id -> { marker, phaseKey }
   const [playing, setPlaying] = useState(false);
+  const [nowMs] = useState(() => Date.now()); // "ahora" real, capturado al abrir la vista
 
   // Horizonte y buques (deterministas). Cada buque: arr (ETA), dep (ETD), atraque en anillo.
   const { tStart, tEnd, ships, dayTicks } = useMemo(() => {
@@ -110,8 +112,7 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
     for (const s of withT) { if (s.arr != null) times.push(s.arr); if (s.dep != null) times.push(s.dep); }
     if (!times.length) return { tStart: 0, tEnd: 0, ships: [], dayTicks: [] };
     const tEnd = Math.max(...times);
-    // Empieza en la fecha de referencia (hoy) o, si no hay, en el primer evento.
-    const tStart = Number.isFinite(dateRef) ? Math.min(dateRef, tEnd) : Math.min(...times);
+    const tStart = Math.min(...times); // desde el primer evento → se puede retroceder al pasado
     // Atraque en anillo, determinista por índice.
     const n = withT.length;
     withT.forEach((s, i) => {
@@ -127,12 +128,17 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
     if (d.getTime() < tStart) d = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
     while (d.getTime() <= tEnd) { ticks.push(d.getTime()); d = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1); }
     return { tStart, tEnd, ships: withT, dayTicks: ticks };
-  }, [calls, dateRef]);
+  }, [calls]);
 
   const span = Math.max(1, tEnd - tStart);
-  const [t, setT] = useState(tStart);
-  // Reinicia el reloj (y pausa) si cambia el horizonte, p. ej. al filtrar.
-  useEffect(() => { setT(tStart); setPlaying(false); }, [tStart, tEnd]);
+  // Por defecto el reloj se sitúa en el AHORA (real, acotado al horizonte): el usuario ve el
+  // estado actual y puede RETROCEDER para lo ya ocurrido o avanzar para lo planificado.
+  const t0 = Math.min(tEnd, Math.max(tStart, nowMs));
+  const [t, setT] = useState(t0);
+  // Reinicia al "ahora" (y pausa) siempre que cambie el horizonte (p. ej. al filtrar). Se
+  // incluyen tStart/tEnd además de t0: si el horizonte cambia pero sigue conteniendo nowMs,
+  // t0 no varía, pero span/wrap sí → hay que recolocar/pausar igualmente.
+  useEffect(() => { setT(t0); setPlaying(false); }, [t0, tStart, tEnd]);
 
   // Estado de un buque en el instante T: visibilidad, posición, fase (in/dock/out) y rumbo.
   const shipStateAt = (s, T) => {
@@ -226,7 +232,7 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
       if (last == null) last = ts;
       const dReal = ts - last; last = ts;
       setT(prev => {
-        const next = prev + dReal * (span / (LOOP_SECONDS * 1000));
+        const next = prev + dReal * (86400000 / (SEC_PER_SIM_DAY * 1000)); // ritmo constante (h/s)
         return next >= tEnd ? tStart + ((next - tStart) % span) : next; // bucle
       });
       raf = requestAnimationFrame(step);
@@ -329,17 +335,24 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
           style={{ flex: 1, minWidth: 0, position: "relative", height: 28, cursor: "pointer", touchAction: "none" }}>
           <div style={{ position: "absolute", top: 13, left: 0, right: 0, height: 5, borderRadius: 3, background: C.grayLight }} />
           <div style={{ position: "absolute", top: 13, left: 0, width: `${pct * 100}%`, height: 5, borderRadius: 3, background: C.cyan }} />
+          {/* Adornos visuales del slider (hitos de día, "ahora", playhead): aria-hidden para no
+              ensuciar la lectura del control; su valor ya lo expone aria-valuetext. */}
           {dayTicks.map(tk => {
             const p = (tk - tStart) / span * 100;
             return (
-              <div key={tk} style={{ position: "absolute", top: 6, left: `${p}%`, transform: "translateX(-50%)",
+              <div key={tk} aria-hidden="true" style={{ position: "absolute", top: 6, left: `${p}%`, transform: "translateX(-50%)",
                 display: "flex", flexDirection: "column", alignItems: "center", pointerEvents: "none" }}>
                 <div style={{ width: 1, height: 9, background: C.gray, opacity: 0.55 }} />
                 <span style={{ fontSize: 9, color: C.gray, marginTop: 1 }}>{new Date(tk).getDate()}</span>
               </div>
             );
           })}
-          <div style={{ position: "absolute", top: 8, left: `${pct * 100}%`, transform: "translateX(-50%)",
+          {/* Marcador "ahora": referencia fija; el playhead arranca aquí y puede retroceder. */}
+          <div aria-hidden="true" style={{ position: "absolute", top: 9, bottom: 3, left: `${(t0 - tStart) / span * 100}%`,
+            width: 2, transform: "translateX(-1px)", background: C.warning, borderRadius: 1, pointerEvents: "none" }} />
+          <span aria-hidden="true" style={{ position: "absolute", top: -4, left: `${(t0 - tStart) / span * 100}%`, transform: "translateX(-50%)",
+            fontSize: 8, fontWeight: 800, color: C.warning, whiteSpace: "nowrap", pointerEvents: "none" }}>ahora</span>
+          <div aria-hidden="true" style={{ position: "absolute", top: 8, left: `${pct * 100}%`, transform: "translateX(-50%)",
             width: 15, height: 15, borderRadius: 999, background: C.white, border: `3px solid ${C.cyan}`,
             boxShadow: "0 1px 4px rgba(0,0,0,.3)", pointerEvents: "none" }} />
         </div>
