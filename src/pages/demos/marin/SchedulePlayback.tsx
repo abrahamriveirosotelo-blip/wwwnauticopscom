@@ -135,8 +135,10 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
   // estado actual y puede RETROCEDER para lo ya ocurrido o avanzar para lo planificado.
   const t0 = Math.min(tEnd, Math.max(tStart, nowMs));
   const [t, setT] = useState(t0);
-  // Reinicia al "ahora" (y pausa) si cambia el horizonte, p. ej. al filtrar.
-  useEffect(() => { setT(t0); setPlaying(false); }, [t0]);
+  // Reinicia al "ahora" (y pausa) siempre que cambie el horizonte (p. ej. al filtrar). Se
+  // incluyen tStart/tEnd además de t0: si el horizonte cambia pero sigue conteniendo nowMs,
+  // t0 no varía, pero span/wrap sí → hay que recolocar/pausar igualmente.
+  useEffect(() => { setT(t0); setPlaying(false); }, [t0, tStart, tEnd]);
 
   // Estado de un buque en el instante T: visibilidad, posición, fase (in/dock/out) y rumbo.
   const shipStateAt = (s, T) => {
