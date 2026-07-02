@@ -29,7 +29,7 @@ const fmtClock = ms => {
 
 /** Marcador de buque: silueta de barco (vista cenital) orientada al rumbo (proa hacia `deg`).
  *  Coloreada por fase: verde atracado, cian entrando, naranja saliendo. */
-function playIcon(color, deg, highlighted) {
+function playIcon(color, deg, highlighted, label) {
   const boat = `<svg width="22" height="22" viewBox="0 0 24 24" style="transform:rotate(${deg || 0}deg);filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.4))">
       <path d="M12 1.5 C 14.6 4, 15.6 7.5, 15.6 11.5 L 15.6 18 C 15.6 20.6, 13.9 21.8, 12 21.8 C 10.1 21.8, 8.4 20.6, 8.4 18 L 8.4 11.5 C 8.4 7.5, 9.4 4, 12 1.5 Z"
         fill="${color}" stroke="${C.white}" stroke-width="1.5" stroke-linejoin="round"/>
@@ -38,9 +38,13 @@ function playIcon(color, deg, highlighted) {
   const halo = highlighted
     ? `<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;background:${C.cyan}22;border:2.5px solid ${C.cyan};box-shadow:0 0 12px ${C.cyan};z-index:0"></div>`
     : "";
+  // Nombre a la derecha del barco (halo blanco para legibilidad sobre el mapa; no rota con el barco).
+  const name = label
+    ? `<div style="position:absolute;left:100%;top:50%;transform:translateY(-50%);margin-left:5px;white-space:nowrap;font-size:10px;font-weight:800;color:${C.navy};text-shadow:0 0 3px ${C.white},0 0 3px ${C.white},0 0 3px ${C.white},0 1px 2px ${C.white};pointer-events:none">${label}</div>`
+    : "";
   const size = highlighted ? 40 : 24;
   return L.divIcon({
-    html: `<div style="position:relative;display:flex;align-items:center;justify-content:center;width:${size}px;height:${size}px">${halo}<div style="position:relative;z-index:1;display:flex;align-items:center;justify-content:center">${boat}</div></div>`,
+    html: `<div style="position:relative;display:flex;align-items:center;justify-content:center;width:${size}px;height:${size}px">${halo}<div style="position:relative;z-index:1;display:flex;align-items:center;justify-content:center">${boat}</div>${name}</div>`,
     className: "", iconSize: [size, size], iconAnchor: [size / 2, size / 2],
   });
 }
@@ -144,7 +148,7 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
     layerRef.current = layer;
     markersRef.current.clear();
     for (const s of ships) {
-      const m = L.marker([s.berth.lat, s.berth.lon], { icon: playIcon(C.success, null, false), opacity: 0 }).addTo(layer);
+      const m = L.marker([s.berth.lat, s.berth.lon], { icon: playIcon(C.success, null, false, s.call.name), opacity: 0 }).addTo(layer);
       if (onSelect) m.on("click", () => onSelect(s.call));
       markersRef.current.set(s.call.id, { marker: m, phaseKey: null });
     }
@@ -168,7 +172,7 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
       // icono cuando cambia la fase, el rumbo o el estado de selección (no en cada frame).
       const key = `${st.phase}|${Math.round(st.deg ?? 0)}|${isSel}`;
       if (entry.phaseKey !== key) {
-        entry.marker.setIcon(playIcon(st.color, st.deg, isSel));
+        entry.marker.setIcon(playIcon(st.color, st.deg, isSel, s.call.name));
         entry.marker.setZIndexOffset(isSel ? 2000 : 0);
         entry.phaseKey = key;
       }
