@@ -26,6 +26,10 @@ const fmtClock = ms => {
   return d.toLocaleDateString("es-ES", { weekday: "short", day: "2-digit", month: "short" }).replace(/\./g, "")
     + " · " + d.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" });
 };
+/** Escapa texto antes de interpolarlo en el innerHTML de un divIcon: los nombres vienen de
+ *  datos scrapeados de la AP, así que caracteres HTML romperían el markup (o serían XSS). */
+const escapeHtml = s => String(s).replace(/[&<>"']/g, c =>
+  ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 /** Marcador de buque: silueta de barco (vista cenital) orientada al rumbo (proa hacia `deg`).
  *  Coloreada por fase: verde atracado, cian entrando, naranja saliendo. */
@@ -40,7 +44,7 @@ function playIcon(color, deg, highlighted, label) {
     : "";
   // Nombre a la derecha del barco (halo blanco para legibilidad sobre el mapa; no rota con el barco).
   const name = label
-    ? `<div style="position:absolute;left:100%;top:50%;transform:translateY(-50%);margin-left:5px;white-space:nowrap;font-size:10px;font-weight:800;color:${C.navy};text-shadow:0 0 3px ${C.white},0 0 3px ${C.white},0 0 3px ${C.white},0 1px 2px ${C.white};pointer-events:none">${label}</div>`
+    ? `<div style="position:absolute;left:100%;top:50%;transform:translateY(-50%);margin-left:5px;white-space:nowrap;font-size:10px;font-weight:800;color:${C.navy};text-shadow:0 0 3px ${C.white},0 0 3px ${C.white},0 0 3px ${C.white},0 1px 2px ${C.white};pointer-events:none">${escapeHtml(label)}</div>`
     : "";
   const size = highlighted ? 40 : 24;
   return L.divIcon({
