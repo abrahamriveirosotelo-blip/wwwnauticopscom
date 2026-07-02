@@ -806,7 +806,7 @@ export default function DemoMarin() {
 
         {/* Mapa global de la flota: posición AIS en vivo (aisstream).
             Clic en un buque → abre su escala (mismo drawer que las tarjetas). */}
-        <FleetMap calls={filtered} fmt={fmt} onSelect={setSelected} height={isMobile?300:440} aisRef={aisRef}/>
+        <FleetMap calls={filtered} fmt={fmt} onSelect={setSelected} height={isMobile?300:440} aisRef={aisRef} selectedId={selected?.id}/>
 
         {/* Conmutador de vista: Tarjetas (estado actual) ↔ Cronología (planificación entrada/salida). */}
         <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:8,margin:"2px 0 12px",flexWrap:"wrap"}}>
