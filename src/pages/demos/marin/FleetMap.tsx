@@ -24,6 +24,12 @@ const C = {
   warning: "#F59E0B", gray: "#64748B", white: "#FFFFFF",
 };
 
+/** Clave de buque para identificar la escala en el mapa. Igual que la dedupe de `items`
+ *  (por MMSI o, si falta, por nombre): un buque puede tener varias escalas y el mapa pinta
+ *  una sola representativa; comparar por esta clave (no por id de escala) hace que resalte
+ *  aunque se seleccione OTRA escala del mismo buque desde las tarjetas/cronología. */
+const shipKey = c => c.mmsi || c.name;
+
 /** Color del marcador según el estado AIS (o gris si desconocido). */
 function statusColor(aisStatus) {
   const s = (aisStatus || "").toLowerCase();
@@ -33,33 +39,45 @@ function statusColor(aisStatus) {
   return C.gray;
 }
 
-/** Icono de buque: flecha orientada al rumbo (heading/COG) o círculo si no hay rumbo. */
-function vesselIcon(deg, color) {
-  const html = deg == null
-    ? `<div style="display:flex;align-items:center;justify-content:center;width:26px;height:26px">
-         <div style="width:14px;height:14px;border-radius:50%;background:${color};border:2px solid ${C.white};box-shadow:0 0 0 1px rgba(0,0,0,0.25)"></div>
-       </div>`
+/** Icono de buque: flecha orientada al rumbo (heading/COG) o círculo si no hay rumbo.
+ *  Con `highlighted` añade un halo de marca alrededor (buque seleccionado). */
+function vesselIcon(deg, color, highlighted = false) {
+  const marker = deg == null
+    ? `<div style="width:14px;height:14px;border-radius:50%;background:${color};border:2px solid ${C.white};box-shadow:0 0 0 1px rgba(0,0,0,0.25)"></div>`
     : `<svg width="26" height="26" viewBox="0 0 26 26" style="transform:rotate(${deg}deg);filter:drop-shadow(0 1px 1px rgba(0,0,0,0.35))">
          <path d="M13 2 L20 22 L13 17 L6 22 Z" fill="${color}" stroke="${C.white}" stroke-width="1.5" stroke-linejoin="round"/>
        </svg>`;
-  return L.divIcon({ html, className: "", iconSize: [26, 26], iconAnchor: [13, 13] });
+  const halo = highlighted
+    ? `<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:${C.cyan}22;border:2.5px solid ${C.cyan};box-shadow:0 0 12px ${C.cyan};z-index:0"></div>`
+    : "";
+  const size = highlighted ? 44 : 26;
+  const html = `<div style="position:relative;display:flex;align-items:center;justify-content:center;width:${size}px;height:${size}px">
+      ${halo}
+      <div style="position:relative;z-index:1;display:flex;align-items:center;justify-content:center">${marker}</div>
+    </div>`;
+  return L.divIcon({ html, className: "", iconSize: [size, size], iconAnchor: [size / 2, size / 2] });
 }
 
-/** Boya del puerto de Marín. Con `n>0` añade una insignia verde con el nº de atracados. */
-function marinIcon(n = 0) {
+/** Boya del puerto de Marín. Con `n>0` añade una insignia verde con el nº de atracados.
+ *  Con `highlighted` añade un halo (el buque seleccionado es un atracado dentro del clúster). */
+function marinIcon(n = 0, highlighted = false) {
   const badge = n > 0
-    ? `<div style="position:absolute;top:-7px;right:-7px;min-width:17px;height:17px;padding:0 3px;border-radius:9px;background:${C.success};color:${C.white};font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;border:2px solid ${C.white};box-sizing:border-box">${n}</div>`
+    ? `<div style="position:absolute;top:-7px;right:-7px;min-width:17px;height:17px;padding:0 3px;border-radius:9px;background:${C.success};color:${C.white};font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;border:2px solid ${C.white};box-sizing:border-box;z-index:2">${n}</div>`
+    : "";
+  const halo = highlighted
+    ? `<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;border:2.5px solid ${C.cyan};box-shadow:0 0 12px ${C.cyan};z-index:0"></div>`
     : "";
   return L.divIcon({
-    html: `<div style="position:relative;width:26px;height:26px">
-      <div style="display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:${C.navy};color:${C.white};font-size:14px;border:2px solid ${C.white};box-shadow:0 1px 3px rgba(0,0,0,0.4)">⚓</div>
+    html: `<div style="position:relative;width:26px;height:26px;display:flex;align-items:center;justify-content:center">
+      ${halo}
+      <div style="position:relative;z-index:1;display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:${C.navy};color:${C.white};font-size:14px;border:2px solid ${C.white};box-shadow:0 1px 3px rgba(0,0,0,0.4)">⚓</div>
       ${badge}
     </div>`,
     className: "", iconSize: [26, 26], iconAnchor: [13, 13],
   });
 }
 
-export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 0 }) {
+export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 0, selectedKey = null }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
   // Tarjeta de hover: { x, y, item? , marin? } en píxeles del contenedor del mapa.
@@ -142,25 +160,34 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
     else map.fitBounds(L.latLngBounds(pts), { padding: [40, 40], maxZoom: 12 });
   }, [aisItems, berthItems]);
 
-  // (Re)pinta marcadores cuando cambian los ítems o el modo clúster (zoom).
+  // (Re)pinta marcadores cuando cambian los ítems, el modo clúster (zoom) o la selección.
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
+    // Al recrear la capa se eliminan los marcadores viejos SIN disparar su mouseout, así que
+    // una tarjeta de hover activa quedaría "pegada" (p. ej. al seleccionar una escala desde
+    // las tarjetas/cronología con el ratón sobre un marcador, o al cambiar el filtro). Limpia.
+    setHover(null);
     const layer = L.layerGroup().addTo(map);
     const pt = ll => map.latLngToContainerPoint(ll);
 
+    // El buque seleccionado, si es un atracado agrupado, resalta la propia boya.
+    const selInCluster = clusterBerth && selectedKey != null && berthItems.some(b => shipKey(b.call) === selectedKey);
+
     // Boya del puerto (con insignia si se agrupan los atracados).
     const port = L.marker([MARIN.lat, MARIN.lon],
-      { icon: marinIcon(clusterBerth ? berthItems.length : 0), zIndexOffset: 1000 }).addTo(layer);
+      { icon: marinIcon(clusterBerth ? berthItems.length : 0, selInCluster), zIndexOffset: selInCluster ? 2000 : 1000 }).addTo(layer);
     port.on("mouseover", () => { const p = pt([MARIN.lat, MARIN.lon]); setHover({ x: p.x, y: p.y, marin: true }); });
     port.on("mouseout", () => setHover(null));
     if (clusterBerth) port.on("click", () => { setHover(null); map.flyTo([MARIN.lat, MARIN.lon], CLUSTER_MIN_ZOOM, { duration: 0.8 }); });
 
-    // Buques con AIS (siempre individuales).
+    // Buques con AIS (siempre individuales). El seleccionado va destacado y por encima.
     for (const it of aisItems) {
       const c = it.call;
       const ll = [it.lat, it.lon];
-      const m = L.marker(ll, { icon: vesselIcon(c.aisHeading ?? c.aisCog ?? null, statusColor(c.aisStatus)) }).addTo(layer);
+      const sel = selectedKey != null && shipKey(c) === selectedKey;
+      const m = L.marker(ll, { icon: vesselIcon(c.aisHeading ?? c.aisCog ?? null, statusColor(c.aisStatus), sel),
+        zIndexOffset: sel ? 2000 : 0 }).addTo(layer);
       m.on("mouseover", () => { const p = pt(ll); setHover({ x: p.x, y: p.y, item: it }); });
       m.on("mouseout", () => setHover(null));
       if (onSelect) m.on("click", () => { setHover(null); onSelect(c); });
@@ -172,7 +199,8 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
       for (const it of berthItems) {
         const c = it.call;
         const ll = [it.lat, it.lon];
-        const m = L.marker(ll, { icon: vesselIcon(null, C.success) }).addTo(layer);
+        const sel = selectedKey != null && shipKey(c) === selectedKey;
+        const m = L.marker(ll, { icon: vesselIcon(null, C.success, sel), zIndexOffset: sel ? 2000 : 0 }).addTo(layer);
         m.on("mouseover", () => { const p = pt(ll); setHover({ x: p.x, y: p.y, item: it }); });
         m.on("mouseout", () => setHover(null));
         if (onSelect) m.on("click", () => { setHover(null); onSelect(c); });
@@ -180,7 +208,29 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
     }
 
     return () => { layer.remove(); };
-  }, [aisItems, berthItems, clusterBerth, onSelect]);
+  }, [aisItems, berthItems, clusterBerth, onSelect, selectedKey]);
+
+  // Centra suavemente el buque seleccionado UNA vez por selección, si está pintado y no está
+  // claramente a la vista (sin cambiar el zoom). Incluye las deps reales (aisItems/berthItems/
+  // clusterBerth): si el objetivo aún no estaba pintado al seleccionar, se centrará cuando
+  // aparezca. `lastCenteredRef` evita re-centrar en cada actualización de ítems (no pelea con
+  // el encuadre por filtro ni persigue al buque cuando se mueve).
+  const lastCenteredRef = useRef(null);
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || selectedKey == null) { lastCenteredRef.current = null; return; }
+    if (lastCenteredRef.current === selectedKey) return; // ya centrado para esta selección
+    const ais = aisItems.find(i => shipKey(i.call) === selectedKey);
+    const berth = berthItems.find(i => shipKey(i.call) === selectedKey);
+    const target = ais ? L.latLng(ais.lat, ais.lon)
+      : berth ? (clusterBerth ? L.latLng(MARIN.lat, MARIN.lon) : L.latLng(berth.lat, berth.lon))
+      : null;
+    if (!target) return; // el buque aún no está pintado; se reintenta cuando cambien los ítems
+    lastCenteredRef.current = selectedKey;
+    if (!map.getBounds().pad(-0.2).contains(target)) {
+      map.panTo(target, { animate: true, duration: 0.6 });
+    }
+  }, [selectedKey, aisItems, berthItems, clusterBerth]);
 
   const it = hover?.item;
   const c = it?.call;
