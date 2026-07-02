@@ -34,7 +34,8 @@ const escapeHtml = s => String(s).replace(/[&<>"']/g, c =>
 /* Día/noche: altitud del sol (radianes) para una fecha (ms) en lat/lon.
  * Portado de SunCalc (https://github.com/mourner/suncalc), © 2014 Vladimir Agafonkin,
  * licencia BSD 2-Clause. Aviso completo en THIRD_PARTY_NOTICES.md (raíz del proyecto).
- * Se inlinea para no añadir dependencia ni llamadas de red por día. */
+ * Se inlinea para no añadir una dependencia (y frente a una API de efemérides como
+ * sunrise-sunset.org, evita también depender de la red). SunCalc en sí no hace red. */
 const RAD = Math.PI / 180;
 function sunAltitude(dateMs, lat, lon) {
   const d = dateMs / 86400000 - 0.5 + 2440588 - 2451545;                    // días desde J2000
@@ -243,7 +244,7 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
   // Cuantizo el instante del sol a 5 min y memoizo: el sol se mueve despacio, así que evita
   // recalcular las trigonométricas de nightFactor en cada frame de la reproducción (y con la
   // pausa, en cada render), sin perder la suavidad del crepúsculo.
-  const sunT = Math.round(t / 300000) * 300000;
+  const sunT = Math.floor(t / 300000) * 300000; // hacia ABAJO: nunca "mira al futuro" (no anticipa el crepúsculo)
   // Sin escalas, t se queda en 0 (epoch 1970) y nightFactor(0) daría un día/noche arbitrario
   // bajo el overlay "Sin escalas…": en ese caso forzamos día (darkness 0).
   const darkness = useMemo(() => ships.length ? Math.round(nightFactor(sunT) * 100) / 100 : 0, [sunT, ships.length]);
