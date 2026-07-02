@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import data from "./data.json";
 import FleetMap from "./FleetMap";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const B = {
   navyDeep:"#010B24", navy:"#0A1F3D", navyMid:"#0F3460",
@@ -74,12 +75,45 @@ function TimeField({ label, value, isReal, isEmpty }) {
   );
 }
 
+const TABS = [["operacion","Operación"],["ruta","Ruta"]];
+
 function Detail({ call, onClose }) {
   const isAlert = call.status === "Alerta";
   const [tab, setTab] = useState("operacion");
+  const dialogRef = useRef(null);
+  const closeBtnRef = useRef(null);
+
+  // Foco: entra al abrir (botón cerrar) y VUELVE al elemento previo al cerrar. Solo
+  // mount/unmount ([]): así un re-render del padre (p. ej. useIsMobile al rotar) no
+  // dispara la restauración de foco con el diálogo aún montado.
+  useEffect(() => {
+    const prev = document.activeElement;
+    closeBtnRef.current?.focus();
+    return () => { if (prev && prev.focus) prev.focus(); };
+  }, []);
+
+  // Escape cierra + trampa de foco (Tab cicla dentro del diálogo). Efecto aparte
+  // dependiente de onClose: solo re-suscribe el listener, sin tocar el foco.
+  useEffect(() => {
+    const onKey = e => {
+      if (e.key === "Escape") { onClose(); return; }
+      if (e.key === "Tab" && dialogRef.current) {
+        const f = dialogRef.current.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (!f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
 
   return (
-    <div style={{position:"fixed",right:0,top:0,bottom:0,width:490,
+    <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="marin-drawer-title"
+      style={{position:"fixed",right:0,top:0,bottom:0,width:"min(490px, 100vw)",maxWidth:"100vw",
       background:B.white,boxShadow:`-4px 0 40px rgba(1,11,36,0.2)`,
       display:"flex",flexDirection:"column",zIndex:1001,
       fontFamily:"'Nunito',system-ui,sans-serif",overflowY:"auto"}}>
@@ -106,12 +140,13 @@ function Detail({ call, onClose }) {
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
           <div>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",letterSpacing:"0.1em",fontWeight:700}}>{call.id}</div>
-            <div style={{fontSize:22,fontWeight:800,marginTop:3,letterSpacing:"-0.01em"}}>{call.name}</div>
+            <div id="marin-drawer-title" style={{fontSize:22,fontWeight:800,marginTop:3,letterSpacing:"-0.01em"}}>{call.name}</div>
             <div style={{fontSize:12,color:"rgba(255,255,255,0.6)",marginTop:4}}>
               {[call.imo && call.imo !== '—' ? `IMO ${call.imo}` : '', call.flag, call.vesselType].filter(Boolean).join(' · ') || 'Datos de buque no publicados por la AP'}
             </div>
           </div>
-          <button onClick={onClose} style={{background:"rgba(255,255,255,0.12)",border:"none",
+          <button ref={closeBtnRef} onClick={onClose} aria-label="Cerrar detalle"
+            style={{background:"rgba(255,255,255,0.12)",border:"none",
             color:B.white,borderRadius:8,padding:"6px 14px",cursor:"pointer",
             fontSize:13,fontFamily:"inherit",fontWeight:700}}>✕</button>
         </div>
@@ -125,10 +160,22 @@ function Detail({ call, onClose }) {
         </div>
       </div>
 
-      {/* Tabs */}
-      <div style={{display:"flex",borderBottom:`2px solid ${B.grayLight}`,background:B.offWhite,flexShrink:0}}>
-        {[["operacion","Operación"],["ruta","Ruta"]].map(([k,l])=>(
-          <button key={k} onClick={()=>setTab(k)} style={{
+      {/* Tabs (patrón WAI-ARIA tablist: activación automática, foco rotatorio, flechas/Home/End) */}
+      <div role="tablist" aria-label="Secciones de la escala"
+        style={{display:"flex",borderBottom:`2px solid ${B.grayLight}`,background:B.offWhite,flexShrink:0}}>
+        {TABS.map(([k,l])=>(
+          <button key={k} id={`tab-${k}`} role="tab" aria-selected={tab===k}
+            aria-controls={`panel-${k}`} tabIndex={tab===k?0:-1}
+            onClick={()=>setTab(k)}
+            onKeyDown={e=>{
+              const keys=TABS.map(t=>t[0]); const i=keys.indexOf(tab); let ni=null;
+              if(e.key==="ArrowRight"||e.key==="ArrowDown") ni=(i+1)%keys.length;
+              else if(e.key==="ArrowLeft"||e.key==="ArrowUp") ni=(i-1+keys.length)%keys.length;
+              else if(e.key==="Home") ni=0; else if(e.key==="End") ni=keys.length-1;
+              if(ni===null) return;
+              e.preventDefault(); const nk=keys[ni]; setTab(nk); document.getElementById(`tab-${nk}`)?.focus();
+            }}
+            style={{
             flex:1,padding:"12px 0",border:"none",background:"transparent",
             fontSize:11,fontWeight:800,cursor:"pointer",letterSpacing:"0.05em",fontFamily:"inherit",
             color:tab===k?B.cyan:B.gray,
@@ -139,7 +186,7 @@ function Detail({ call, onClose }) {
       </div>
 
       <div style={{padding:24,flex:1}}>
-        {tab==="operacion"&&<>
+        {tab==="operacion"&&<div role="tabpanel" id="panel-operacion" aria-labelledby="tab-operacion" tabIndex={0}>
           {/* Escala */}
           <div style={{display:"flex",gap:12,background:B.offWhite,borderRadius:12,padding:"14px 18px",marginBottom:20,border:`1px solid ${B.grayLight}`}}>
             <div style={{flex:1}}>
@@ -247,9 +294,9 @@ function Detail({ call, onClose }) {
               ))}
             </div>
           </div>
-        </>}
+        </div>}
 
-        {tab==="ruta"&&<>
+        {tab==="ruta"&&<div role="tabpanel" id="panel-ruta" aria-labelledby="tab-ruta" tabIndex={0}>
           <div style={{marginBottom:14}}>
             <div style={{fontSize:10,fontWeight:800,color:B.gray,letterSpacing:"0.08em",marginBottom:4}}>RUTA DEL BUQUE</div>
             <div style={{fontSize:11,color:B.gray}}>Travesía conocida, con los tiempos de la escala en Marín. Otras escalas se mostrarán cuando haya datos.</div>
@@ -292,8 +339,83 @@ function Detail({ call, onClose }) {
           {!call.aisAtMarin && call.aisDestination && (
             <div style={{fontSize:11,color:B.gray,marginTop:14,padding:"10px 12px",background:B.offWhite,borderRadius:10,border:`1px solid ${B.grayLight}`}}>🛰 Rumbo actual (AIS): {call.aisStatus==="Navegando"?"navegando hacia":"en"} {call.aisDestination}{call.aisEta?` · ETA ${fmt(call.aisEta)}`:""}.</div>
           )}
-        </>}
+        </div>}
       </div>
+    </div>
+  );
+}
+
+/** Caja compacta ETA/ETD dentro de la tarjeta de escala. */
+function TimeBox({ label, value, empty }) {
+  return (
+    <div style={{background:B.offWhite,borderRadius:8,padding:"7px 10px",border:`1px solid ${B.grayLight}`}}>
+      <div style={{fontSize:9,fontWeight:800,color:B.gray,letterSpacing:"0.06em"}}>{label}</div>
+      <div style={{fontSize:13,fontWeight:empty?500:700,color:empty?B.grayLight:B.navy,
+        fontFamily:empty?"inherit":"'Courier New',monospace",marginTop:2}}>{value}</div>
+    </div>
+  );
+}
+
+/** Tarjeta de una escala (móvil y escritorio). Clic → abre el drawer de detalle. */
+function CallCard({ call: c, isSel, onSelect }) {
+  const isAl = c.status === "Alerta";
+  const isAffected = !!c.affectedBy;
+  const affectRisk = c.affectRisk === "ALTO"  ? { label:"Impacto ALTO",  color:"#DC2626", bg:"#FEE2E2" }
+                   : c.affectRisk === "MEDIO" ? { label:"Impacto MEDIO", color:"#D97706", bg:"#FEF3C7" }
+                   : null;
+  const arrived = c.status === "Prevista" && c.aisArrivedMarin;
+  const bound   = c.status === "Prevista" && c.aisAtMarin && !c.aisArrivedMarin;
+  const open = () => onSelect(isSel?null:c);
+  return (
+    <div onClick={open} role="button" tabIndex={0} className="marin-card"
+      aria-haspopup="dialog" aria-expanded={isSel}
+      aria-label={`Escala ${c.id} · ${c.name}`}
+      onKeyDown={e=>{
+        if(e.key==="Enter" && !e.repeat){ e.preventDefault(); open(); }        // Enter: activa en keydown (como un botón nativo)
+        else if(e.code==="Space"){ e.preventDefault(); }                        // Space: evita el scroll aquí; se activa en keyup
+      }}
+      onKeyUp={e=>{ if(e.code==="Space"){ e.preventDefault(); open(); } }}
+      style={{
+        background:isSel?B.cyanPale:isAl?"#FFF1F1":isAffected?"#FFFBEB":B.white,
+        border:`1px solid ${isSel?B.cyan:B.grayLight}`,
+        borderLeft:isAl?`3px solid ${B.danger}`:isAffected?`3px solid ${B.warning}`:`1px solid ${isSel?B.cyan:B.grayLight}`,
+        borderRadius:12,padding:"14px 16px",cursor:"pointer",display:"flex",flexDirection:"column",gap:11,
+        boxShadow:"0 1px 6px rgba(1,11,36,0.05)",transition:"background 0.1s, border-color 0.1s"}}>
+      {/* Buque + estado */}
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:8}}>
+        <div style={{minWidth:0}}>
+          <div style={{fontWeight:800,fontSize:15,color:isAl?B.danger:B.navy,lineHeight:1.2}}>
+            {c.name}
+            {c.aisStatus && (arrived||bound) && <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,
+              verticalAlign:"middle",background:arrived?"#FEF3C7":"#E1F5FE",color:arrived?B.warning:B.cyan,whiteSpace:"nowrap"}}>
+              {arrived?"⚓ ya en Marín (AIS)":"▸ rumbo a Marín"}</span>}
+          </div>
+          <div style={{fontSize:10,color:B.gray,marginTop:2}}>
+            {c.imo && c.imo!=='—' ? `IMO ${c.imo} · ` : ''}<span style={{fontFamily:"'Courier New',monospace"}}>{c.id}</span>
+          </div>
+        </div>
+        <Badge status={c.status}/>
+      </div>
+      {/* Muelle + operación + GT (+ impacto si lo hubiera) */}
+      <div style={{display:"flex",flexWrap:"wrap",gap:8,alignItems:"center"}}>
+        <span style={{padding:"4px 10px",borderRadius:6,fontSize:12,fontWeight:800,
+          background:isAffected?"#FEF3C7":B.grayLight,color:isAffected?B.warning:B.navy}}>{c.berth}</span>
+        <OpTag op={c.op}/>
+        {c.gt ? <span style={{fontSize:11,color:B.gray,fontWeight:600}}>{c.gt.toLocaleString()} GT</span> : null}
+        {isAffected && affectRisk && (
+          <span style={{padding:"1px 6px",borderRadius:4,fontSize:9,fontWeight:800,
+            background:affectRisk.bg,color:affectRisk.color,letterSpacing:"0.04em"}}>⚠ {affectRisk.label}</span>
+        )}
+      </div>
+      {/* ETA / ETD (lo importante) */}
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
+        <TimeBox label="ETA · Llegada" value={fmt(c.eta)} empty={!c.eta}/>
+        <TimeBox label="ETD · Salida"  value={fmt(c.etd)} empty={!c.etd}/>
+      </div>
+      {c.aisAtMarin && c.aisEta && (
+        <div style={{fontSize:11,color:B.cyan,fontWeight:600}}>AIS · en vivo: {fmt(c.aisEta)}</div>
+      )}
+      {c.agent && c.agent!=='—' && <div style={{fontSize:10,color:B.gray}}>{c.agent}</div>}
     </div>
   );
 }
@@ -302,6 +424,8 @@ export default function DemoMarin() {
   const [filter, setFilter] = useState("Todas");
   const [selected, setSelected] = useState(null);
   const [search, setSearch] = useState("");
+  const isMobile = useIsMobile();
+  const PAD = isMobile ? "14px 12px" : "20px 24px";
 
   const counts = {
     total:    CALLS.length,
@@ -322,10 +446,12 @@ export default function DemoMarin() {
   return (
     <div style={{fontFamily:"'Nunito',system-ui,sans-serif",background:B.offWhite,minHeight:"100vh",color:B.dark}}>
       <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+      {/* Indicador de foco visible para las tarjetas (los estilos inline no pueden con :focus-visible). */}
+      <style>{`.marin-card:focus-visible{outline:3px solid ${B.cyan};outline-offset:2px}`}</style>
 
       {/* NAV */}
-      <div style={{background:B.navyDeep,height:52,display:"flex",alignItems:"center",
-        justifyContent:"space-between",padding:"0 24px",flexShrink:0,
+      <div style={{background:B.navyDeep,minHeight:52,display:"flex",alignItems:"center",flexWrap:"wrap",
+        justifyContent:"space-between",gap:8,padding:isMobile?"8px 12px":"0 24px",flexShrink:0,
         boxShadow:"0 1px 0 rgba(7,159,230,0.15)"}}>
         <div style={{display:"flex",alignItems:"center",gap:14}}>
           <div style={{display:"flex",alignItems:"center",gap:9}}>
@@ -356,28 +482,34 @@ export default function DemoMarin() {
 
       {/* STATS */}
       <div style={{background:B.white,borderBottom:`1px solid ${B.grayLight}`,
-        padding:"14px 24px",display:"flex",alignItems:"center",
-        boxShadow:"0 1px 6px rgba(1,11,36,0.05)"}}>
-        {[
-          {label:"ESCALAS TOTALES", value:counts.total,    color:B.navy   },
-          {label:"EN PUERTO",       value:counts.iniciado+counts.alerta, color:B.success },
-          {label:"CON ALERTA",      value:counts.alerta,   color:B.danger  },
-          {label:"PREVISTAS",       value:counts.prevista, color:B.cyan    },
-        ].map((s,i)=>(
-          <div key={s.label} style={{paddingRight:28,marginRight:28,
-            borderRight:i<3?`1px solid ${B.grayLight}`:"none"}}>
-            <div style={{fontSize:9,fontWeight:800,color:B.gray,letterSpacing:"0.08em",marginBottom:2}}>{s.label}</div>
-            <div style={{fontSize:28,fontWeight:900,color:s.color,lineHeight:1}}>{s.value}</div>
-          </div>
-        ))}
-        <div style={{marginLeft:"auto",display:"flex",gap:10,alignItems:"center"}}>
-          <div style={{position:"relative"}}>
+        padding:isMobile?"12px 12px":"14px 24px",display:"flex",flexWrap:"wrap",
+        flexDirection:isMobile?"column":"row",alignItems:isMobile?"stretch":"center",
+        gap:isMobile?12:0,boxShadow:"0 1px 6px rgba(1,11,36,0.05)"}}>
+        <div style={{display:isMobile?"grid":"flex",
+          gridTemplateColumns:isMobile?"1fr 1fr":undefined,gap:isMobile?8:0,
+          flexWrap:"wrap",alignItems:"center"}}>
+          {[
+            {label:"ESCALAS TOTALES", value:counts.total,    color:B.navy   },
+            {label:"EN PUERTO",       value:counts.iniciado+counts.alerta, color:B.success },
+            {label:"CON ALERTA",      value:counts.alerta,   color:B.danger  },
+            {label:"PREVISTAS",       value:counts.prevista, color:B.cyan    },
+          ].map((s,i)=>(
+            <div key={s.label} style={isMobile
+              ? {background:B.offWhite,border:`1px solid ${B.grayLight}`,borderRadius:10,padding:"9px 12px"}
+              : {paddingRight:28,marginRight:28,borderRight:i<3?`1px solid ${B.grayLight}`:"none"}}>
+              <div style={{fontSize:9,fontWeight:800,color:B.gray,letterSpacing:"0.08em",marginBottom:2}}>{s.label}</div>
+              <div style={{fontSize:isMobile?22:28,fontWeight:900,color:s.color,lineHeight:1}}>{s.value}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{marginLeft:isMobile?0:"auto",display:"flex",flexWrap:"wrap",gap:8,alignItems:"center"}}>
+          <div style={{position:"relative",flex:isMobile?"1 1 100%":"none"}}>
             <span style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)",fontSize:12,color:B.gray}}>🔍</span>
             <input value={search} onChange={e=>setSearch(e.target.value)}
               placeholder="Buque, IMO, agente…"
-              style={{paddingLeft:32,paddingRight:12,paddingTop:7,paddingBottom:7,
+              style={{paddingLeft:32,paddingRight:12,paddingTop:7,paddingBottom:7,boxSizing:"border-box",
                 borderRadius:8,border:`1px solid ${B.grayLight}`,fontSize:12,
-                outline:"none",width:200,background:B.offWhite,fontFamily:"inherit",color:B.dark}}/>
+                outline:"none",width:isMobile?"100%":200,background:B.offWhite,fontFamily:"inherit",color:B.dark}}/>
           </div>
           {[{k:"Todas",l:"Todas",n:counts.total},
             {k:"Iniciado",l:"En puerto",n:counts.iniciado+counts.alerta},
@@ -387,6 +519,7 @@ export default function DemoMarin() {
             <button key={f.k} onClick={()=>setFilter(f.k)} style={{
               padding:"6px 14px",borderRadius:8,border:"none",cursor:"pointer",
               fontSize:11,fontWeight:800,fontFamily:"inherit",letterSpacing:"0.02em",
+              flex:isMobile?"1 1 auto":"none",whiteSpace:"nowrap",
               background:filter===f.k?(f.k==="Alerta"?B.danger:B.navy):B.offWhite,
               color:filter===f.k?B.white:B.gray}}>
               {f.l} <span style={{opacity:0.6,fontWeight:600}}>({f.n})</span>
@@ -396,7 +529,7 @@ export default function DemoMarin() {
       </div>
 
       {/* MAIN */}
-      <div style={{padding:"20px 24px"}}>
+      <div style={{padding:PAD}}>
         {/* Alert banner */}
         {counts.alerta>0&&(()=>{
           const alertCall = CALLS.find(c=>c.status==="Alerta");
@@ -424,85 +557,26 @@ export default function DemoMarin() {
         })()}
 
         {/* Mapa global de la flota: posición AIS en vivo (aisstream).
-            Clic en un buque → abre su escala (mismo drawer que la tabla). */}
-        <FleetMap calls={CALLS} fmt={fmt} onSelect={setSelected}/>
+            Clic en un buque → abre su escala (mismo drawer que las tarjetas). */}
+        <FleetMap calls={CALLS} fmt={fmt} onSelect={setSelected} height={isMobile?300:440}/>
 
-        <div style={{background:B.white,borderRadius:12,border:`1px solid ${B.grayLight}`,
-          overflow:"hidden",boxShadow:"0 1px 6px rgba(1,11,36,0.06)"}}>
-          <table style={{width:"100%",borderCollapse:"collapse"}}>
-            <thead>
-              <tr style={{background:B.navyDeep}}>
-                {["ESCALA","ESTADO","BUQUE","GT","MUELLE","OPERACIÓN","ETA","ETD","AGENTE"].map(h=>(
-                  <th key={h} style={{padding:"11px 14px",textAlign:"left",fontSize:9,fontWeight:800,
-                    color:"rgba(255,255,255,0.45)",letterSpacing:"0.08em",whiteSpace:"nowrap"}}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map((c,i)=>{
-                const isSel=selected?.id===c.id;
-                const isAl=c.status==="Alerta";
-                const isAffected = !!c.affectedBy;
-                const affectRisk = c.affectRisk==="ALTO"  ? { label:"Impacto ALTO",  color:"#DC2626", bg:"#FEE2E2" }
-                                 : c.affectRisk==="MEDIO" ? { label:"Impacto MEDIO", color:"#D97706", bg:"#FEF3C7" }
-                                 : null;
-                return (
-                  <tr key={c.id}
-                    onClick={()=>setSelected(isSel?null:c)}
-                    style={{
-                      borderBottom:i<filtered.length-1?`1px solid ${B.grayLight}`:"none",
-                      background:isSel?B.cyanPale:isAl?"#FFF1F1":isAffected?"#FFFBEB":i%2===0?B.white:B.offWhite,
-                      cursor:"pointer",transition:"background 0.1s",
-                      borderLeft:isAl?`3px solid ${B.danger}`:isAffected?`3px solid ${B.warning}`:"3px solid transparent"}}
-                    onMouseEnter={e=>{if(!isSel)e.currentTarget.style.background=B.cyanPale}}
-                    onMouseLeave={e=>{if(!isSel)e.currentTarget.style.background=isAl?"#FFF1F1":isAffected?"#FFFBEB":i%2===0?B.white:B.offWhite}}>
-                    <td style={{padding:"11px 14px",fontSize:11,fontFamily:"'Courier New',monospace",color:B.gray,fontWeight:600}}>{c.id}</td>
-                    <td style={{padding:"11px 14px"}}><Badge status={c.status}/></td>
-                    <td style={{padding:"11px 14px"}}>
-                      <div style={{fontWeight:800,fontSize:13,color:isAl?B.danger:B.navy}}>{c.name}{c.aisStatus && (() => {
-                        const arrived = c.status==="Prevista" && c.aisArrivedMarin;
-                        const bound = c.status==="Prevista" && c.aisAtMarin && !c.aisArrivedMarin;
-                        if (!arrived && !bound) return null;
-                        return <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,verticalAlign:"middle",background:arrived?"#FEF3C7":"#E1F5FE",color:arrived?B.warning:B.cyan}}>{arrived?"⚓ ya en Marín (AIS)":"▸ rumbo a Marín"}</span>;
-                      })()}</div>
-                      <div style={{fontSize:10,color:B.gray,marginTop:1,display:"flex",alignItems:"center",gap:5}}>
-                        {c.imo && c.imo !== '—' && <span>IMO {c.imo}</span>}
-                        {isAffected && affectRisk && (
-                          <span style={{padding:"1px 6px",borderRadius:4,fontSize:9,fontWeight:800,
-                            background:affectRisk.bg,color:affectRisk.color,letterSpacing:"0.04em"}}>
-                            ⚠ {affectRisk.label}
-                          </span>
-                        )}
-                      </div>
-                    </td>
-                    <td style={{padding:"11px 14px",fontSize:12,color:B.gray,fontWeight:600}}>{c.gt ? c.gt.toLocaleString() : '—'}</td>
-                    <td style={{padding:"11px 14px"}}>
-                      <span style={{padding:"4px 10px",borderRadius:6,
-                        background:isAffected?(isSel?B.white:"#FEF3C7"):isSel?B.white:B.grayLight,
-                        fontSize:12,fontWeight:800,
-                        color:isAffected?B.warning:B.navy}}>{c.berth}</span>
-                    </td>
-                    <td style={{padding:"11px 14px"}}><OpTag op={c.op}/></td>
-                    <td style={{padding:"11px 14px",fontSize:11,color:B.gray,whiteSpace:"nowrap"}}>{fmt(c.eta)}</td>
-                    <td style={{padding:"11px 14px",fontSize:11,color:B.gray,whiteSpace:"nowrap"}}>{fmt(c.etd)}</td>
-                    <td style={{padding:"11px 14px",fontSize:10,color:B.gray,maxWidth:160}}>
-                      <div style={{overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{c.agent}</div>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-          {filtered.length===0&&(
-            <div style={{padding:48,textAlign:"center",color:B.gray}}>
-              <div style={{fontSize:28,marginBottom:8}}>🔍</div>
-              <div style={{fontSize:13,fontWeight:600}}>Sin resultados</div>
-            </div>
-          )}
+        {/* Escalas en tarjetas (móvil y escritorio): 1 columna en móvil, varias en pantallas anchas */}
+        <div style={{display:"grid",gap:12,
+          gridTemplateColumns:"repeat(auto-fill, minmax(min(100%, 340px), 1fr))"}}>
+          {filtered.map(c=>(
+            <CallCard key={c.id} call={c} isSel={selected?.id===c.id} onSelect={setSelected}/>
+          ))}
         </div>
+        {filtered.length===0&&(
+          <div style={{padding:48,textAlign:"center",color:B.gray,background:B.white,
+            borderRadius:12,border:`1px solid ${B.grayLight}`}}>
+            <div style={{fontSize:28,marginBottom:8}}>🔍</div>
+            <div style={{fontSize:13,fontWeight:600}}>Sin resultados</div>
+          </div>
+        )}
 
         {/* Footer */}
-        <div style={{marginTop:12,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+        <div style={{marginTop:12,display:"flex",flexWrap:"wrap",gap:8,justifyContent:"space-between",alignItems:"center"}}>
           <div style={{display:"flex",alignItems:"center",gap:10}}>
             <Logo size={22}/>
             <span style={{fontSize:9,color:B.gray,fontWeight:700,letterSpacing:"0.03em"}}>×</span>
