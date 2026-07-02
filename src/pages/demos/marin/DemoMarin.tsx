@@ -31,11 +31,15 @@ const DATE_REF = (() => {
   const m = /^(\d{2})\/(\d{2})\/(\d{4})/.exec(META.date || "");
   return m ? new Date(`${m[3]}-${m[2]}-${m[1]}T00:00`).getTime() : NaN;
 })();
-/** Buque "En puerto" (Iniciado/Alerta) cuya salida prevista (ETD) ya venció → salida demorada:
- *  la AP lo sigue listando en puerto pero debería haber salido. */
+/** El AIS sitúa al buque NAVEGANDO con destino distinto de Marín aunque la AP lo siga
+ *  listando en puerto → ya zarpó (rumbo a otro puerto), la AP va desfasada. */
+const departedPerAis = c =>
+  (c.status === "Iniciado" || c.status === "Alerta") && c.aisStatus === "Navegando" && !c.aisAtMarin;
+/** Buque "En puerto" (Iniciado/Alerta) con ETD ya vencida Y que el AIS NO sitúa ya
+ *  navegando fuera → salida demorada: la AP lo lista en puerto pero debería haber salido. */
 const isDelayedDeparture = c =>
   (c.status === "Iniciado" || c.status === "Alerta") && c.etd &&
-  Number.isFinite(DATE_REF) && new Date(c.etd).getTime() < DATE_REF;
+  Number.isFinite(DATE_REF) && new Date(c.etd).getTime() < DATE_REF && !departedPerAis(c);
 
 /** Desvío de ETA: > 1 h entre la ETA de la AP (`eta`) y la reportada por AIS (`aisEta`).
  *  Devuelve { dir:'retrasado'|'adelantado', ms } o null. AIS más tarde → retraso. */
@@ -51,8 +55,9 @@ const fmtDur = ms => {
   const total = Math.round(ms / 60000), h = Math.floor(total / 60), m = total % 60;
   return h ? `${h} h${m ? ` ${m} min` : ""}` : `${m} min`;
 };
-/** ¿La escala tiene alguna alerta operativa? (alerta AP, salida demorada o desvío de ETA). */
-const hasAlert = c => c.status === "Alerta" || isDelayedDeparture(c) || etaDiscrepancy(c) != null;
+/** ¿La escala tiene alguna alerta operativa? (alerta AP, salida demorada, ya zarpó
+ *  según AIS con AP desfasada, o desvío de ETA). */
+const hasAlert = c => c.status === "Alerta" || isDelayedDeparture(c) || departedPerAis(c) || etaDiscrepancy(c) != null;
 
 function fmt(iso) {
   if (!iso) return "—";
@@ -258,6 +263,7 @@ function Detail({ call, onClose }) {
                   <TimeField label="ETD · Salida prevista"
                     value={fmt(call.etd)} isReal={false} isEmpty={!call.etd}/>
                   {isDelayedDeparture(call) && (<div style={{fontSize:11,color:B.danger,fontWeight:700,marginTop:6}}>⚠ salida demorada · sigue en puerto según la AP</div>)}
+                  {departedPerAis(call) && (<div style={{fontSize:11,color:B.danger,fontWeight:700,marginTop:6}}>⚠ ya zarpó (AIS){call.aisDestination?` · rumbo a ${call.aisDestination}`:""} · la AP aún lo lista en puerto</div>)}
                 </div>
                 <div style={{padding:"14px 16px"}}>
                   <TimeField label="ATD · Salida real"
@@ -403,6 +409,7 @@ function CallCard({ call: c, isSel, onSelect }) {
   const arrived = c.status === "Prevista" && c.aisArrivedMarin;
   const bound   = c.status === "Prevista" && c.aisAtMarin && !c.aisArrivedMarin;
   const etaDelta = etaDiscrepancy(c);
+  const departed = departedPerAis(c);
   const open = () => onSelect(isSel?null:c);
   return (
     <div onClick={open} role="button" tabIndex={0} className="marin-card"
@@ -429,6 +436,8 @@ function CallCard({ call: c, isSel, onSelect }) {
               {arrived?"⚓ ya en Marín (AIS)":"▸ rumbo a Marín"}</span>}
             {isDelayedDeparture(c) && <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,
               verticalAlign:"middle",background:"#FEE2E2",color:B.danger,whiteSpace:"nowrap"}}>⚠ salida demorada</span>}
+            {departed && <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,
+              verticalAlign:"middle",background:"#FEE2E2",color:B.danger,whiteSpace:"nowrap"}}>⚠ ya zarpó (AIS)</span>}
             {etaDelta && <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,
               verticalAlign:"middle",background:"#FEE2E2",color:B.danger,whiteSpace:"nowrap"}}>⚠ {etaDelta.dir} {etaDelta.dir==="retrasado"?"+":"−"}{fmtDur(etaDelta.ms)}</span>}
           </div>
