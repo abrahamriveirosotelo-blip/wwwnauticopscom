@@ -166,7 +166,8 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
       if (onSelect) m.on("click", () => { setHover(null); onSelect(c); });
     }
 
-    // Atracados individuales solo si NO se agrupan (zoom suficiente o solo 1).
+    // Atracados individuales solo si NO se agrupan, es decir con zoom >= CLUSTER_MIN_ZOOM
+    // (que ya los separa de la boya). En vista alejada se agrupan siempre, incluso con 1.
     if (!clusterBerth) {
       for (const it of berthItems) {
         const c = it.call;
