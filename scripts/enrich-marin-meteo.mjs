@@ -55,6 +55,20 @@ async function fetchObs() {
 }
 
 /** Avisos AEMET de la zona de Marín (Rías Baixas comarca + costa). */
+/** Detalle del CAP (bloque <info> en español): descripción/motivo, instrucción, probabilidad, web. */
+async function capDetail(url) {
+  try {
+    const r = await fetch(url);
+    if (!r.ok) return {};
+    const xml = await r.text();
+    const infos = xml.match(/<info>[\s\S]*?<\/info>/g) || [];
+    const es = infos.find(i => i.includes("es-ES")) || infos[0] || "";
+    const tag = t => { const m = es.match(new RegExp(`<${t}>([\\s\\S]*?)</${t}>`)); return m ? m[1].trim() : ""; };
+    const param = n => { const m = es.match(new RegExp(`AEMET-Meteoalerta ${n}</valueName>\\s*<value>([\\s\\S]*?)</value>`)); return m ? m[1].trim() : ""; };
+    return { descripcion: tag("description"), instruccion: tag("instruction"), probabilidad: param("probabilidad"), web: tag("web") };
+  } catch { return {}; }
+}
+
 async function fetchAvisos() {
   const r = await fetch(AEMET_URL);
   if (!r.ok) throw new Error(`AEMET HTTP ${r.status}`);
@@ -72,6 +86,7 @@ async function fetchAvisos() {
     const wm = summ.match(/de (\d{2}):(\d{2}) (\d{2})-(\d{2})-(\d{4}) CEST[\s\S]*? a (\d{2}):(\d{2}) (\d{2})-(\d{2})-(\d{4}) CEST/);
     if (!tm || !wm) continue;
     const iso = (h, mi, d, mo, y) => `${y}-${mo}-${d}T${h}:${mi}`;
+    const det = await capDetail(href); // descripción/motivo + instrucción + web del CAP
     avisos.push({
       nivel: tm[1].toLowerCase(),                 // amarillo | naranja | rojo
       fenomeno: tm[2].trim(),                     // Costeros | Viento | Temperaturas máximas | …
@@ -79,6 +94,7 @@ async function fetchAvisos() {
       costa: zona.endsWith("C"),
       desde: iso(wm[1], wm[2], wm[3], wm[4], wm[5]),
       hasta: iso(wm[6], wm[7], wm[8], wm[9], wm[10]),
+      ...det,
     });
   }
   avisos.sort((a, b) => a.desde.localeCompare(b.desde));

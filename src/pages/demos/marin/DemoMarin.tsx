@@ -601,7 +601,7 @@ function TimelineEvent({ e, onSelect, selectedId, overdue=false }) {
 
 /** Cronología vertical de la flota filtrada. Agrupa los eventos futuros por día con su
  *  ocupación, y pone arriba los atrasados (salidas demoradas). */
-function Timeline({ calls, onSelect, selectedId, isMobile }) {
+function Timeline({ calls, onSelect, selectedId, isMobile, onAvisoClick }) {
   const { overdue, groups } = useMemo(() => {
     const evts = [];
     for (const c of calls) {
@@ -654,7 +654,7 @@ function Timeline({ calls, onSelect, selectedId, isMobile }) {
         const peak = occ>0 && occ===PORT_PEAK_OCC; // pico y escala contra el máximo GLOBAL (sin filtro)
         return (
           <div key={g.dayStart}>
-            <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:8,flexWrap:"wrap"}}>
+            <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:avisosOnDay(g.dayStart).length?4:8,flexWrap:"wrap"}}>
               <div style={{fontSize:12,fontWeight:900,color:B.navy,letterSpacing:"0.04em"}}>{fmtDayLabel(g.dayStart)}</div>
               <div style={{display:"flex",alignItems:"center",gap:6,flex:isMobile?"1 1 100%":"none"}}>
                 <div style={{position:"relative",height:7,borderRadius:4,background:B.grayLight,overflow:"hidden",
@@ -666,15 +666,19 @@ function Timeline({ calls, onSelect, selectedId, isMobile }) {
                   {occ} en puerto{peak?" · pico":""}
                 </span>
               </div>
-              {/* Avisos AEMET (costa) que afectan a este día. */}
-              {avisosOnDay(g.dayStart).map((a,i)=>(
-                <span key={i} title={`${a.fenomeno} (${a.nivel}) · ${fmt(a.desde)} → ${fmt(a.hasta)}`}
-                  style={{fontSize:9,fontWeight:800,padding:"2px 7px",borderRadius:5,whiteSpace:"nowrap",
-                    background:nivelColor(a.nivel),color:a.nivel==="amarillo"?"#3a2e00":"#fff"}}>
-                  ⚠ {a.fenomeno}
-                </span>
-              ))}
             </div>
+            {/* Avisos AEMET (costa) que afectan a este día: motivo en una línea (clic → detalle). */}
+            {avisosOnDay(g.dayStart).map((a,i)=>(
+              <div key={i} role="button" tabIndex={0} onClick={()=>onAvisoClick(a)}
+                onKeyDown={ev=>{ if(ev.key==="Enter"||ev.code==="Space"){ ev.preventDefault(); onAvisoClick(a); } }}
+                aria-label={`Aviso ${a.fenomeno} nivel ${a.nivel}`}
+                style={{cursor:"pointer",display:"flex",alignItems:"baseline",gap:6,flexWrap:"wrap",marginBottom:8,
+                  borderLeft:`3px solid ${nivelColor(a.nivel)}`,paddingLeft:8}}>
+                <span style={{fontSize:11,fontWeight:800,color:nivelColor(a.nivel),whiteSpace:"nowrap"}}>⚠ {a.fenomeno} · {a.nivel}</span>
+                {a.descripcion && <span style={{fontSize:11,color:B.dark,fontWeight:600}}>{a.descripcion}</span>}
+                <span style={{fontSize:10,color:B.gray,fontWeight:600}}>· {fmtHour(a.desde)}→{fmtHour(a.hasta)}</span>
+              </div>
+            ))}
             <div style={{display:"flex",flexDirection:"column",gap:8}}>
               {g.events.map(e => <TimelineEvent key={e.key} e={e} onSelect={onSelect} selectedId={selectedId}/>)}
             </div>
@@ -685,11 +689,50 @@ function Timeline({ calls, onSelect, selectedId, isMobile }) {
   );
 }
 
+/** Modal con el detalle de un aviso AEMET (motivo, ventana, instrucción, enlace oficial). */
+function AvisoModal({ aviso, onClose }) {
+  useEffect(() => {
+    const onKey = e => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
+  const col = nivelColor(aviso.nivel);
+  const txt = aviso.nivel === "amarillo" ? "#3a2e00" : "#fff";
+  return (
+    <>
+      <div onClick={onClose} style={{position:"fixed",inset:0,background:"rgba(1,11,36,0.45)",zIndex:1000}}/>
+      <div role="dialog" aria-modal="true" aria-label={`Aviso AEMET ${aviso.fenomeno}`}
+        style={{position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",zIndex:1001,width:"min(92vw,440px)",
+          background:B.white,borderRadius:14,boxShadow:"0 10px 40px rgba(1,11,36,0.35)",overflow:"hidden"}}>
+        <div style={{background:col,padding:"14px 18px",display:"flex",alignItems:"center",justifyContent:"space-between",gap:10}}>
+          <div style={{color:txt}}>
+            <div style={{fontSize:11,fontWeight:800,letterSpacing:"0.06em",opacity:0.9}}>AVISO AEMET · NIVEL {aviso.nivel.toUpperCase()}</div>
+            <div style={{fontSize:17,fontWeight:900,marginTop:2}}>{aviso.fenomeno}</div>
+          </div>
+          <button onClick={onClose} aria-label="Cerrar"
+            style={{flexShrink:0,background:"rgba(255,255,255,0.25)",border:"none",color:txt,width:30,height:30,
+              borderRadius:8,cursor:"pointer",fontSize:16,fontFamily:"inherit"}}>×</button>
+        </div>
+        <div style={{padding:"16px 18px",display:"flex",flexDirection:"column",gap:10}}>
+          <div style={{fontSize:12,color:B.gray}}>{aviso.zona}</div>
+          <div style={{fontSize:13,fontWeight:800,color:B.navy}}>{fmt(aviso.desde)} → {fmt(aviso.hasta)}</div>
+          {aviso.descripcion && <div style={{fontSize:14,fontWeight:800,color:B.navy}}>{aviso.descripcion}</div>}
+          {aviso.probabilidad && <div style={{fontSize:12,color:B.gray}}>Probabilidad: {aviso.probabilidad}</div>}
+          {aviso.instruccion && <div style={{fontSize:12,color:B.dark,lineHeight:1.5,background:B.offWhite,borderRadius:8,padding:"8px 12px"}}>{aviso.instruccion}</div>}
+          {aviso.web && <a href={aviso.web} target="_blank" rel="noopener noreferrer"
+            style={{fontSize:12,fontWeight:800,color:B.cyan}}>Ver en AEMET →</a>}
+        </div>
+      </div>
+    </>
+  );
+}
+
 export default function DemoMarin() {
   const [filter, setFilter] = useState("Todas");
   const [selected, setSelected] = useState(null);
   const [search, setSearch] = useState("");
   const [view, setView] = useState("cards"); // "cards" (estado actual) | "timeline" (planificación)
+  const [avisoDetail, setAvisoDetail] = useState(null); // aviso AEMET abierto en el modal de detalle
   const isMobile = useIsMobile();
   const PAD = isMobile ? "14px 12px" : "20px 24px";
 
@@ -840,10 +883,11 @@ export default function DemoMarin() {
                   <div style={{display:"flex",flexWrap:"wrap",gap:6,alignItems:"center",marginTop:counts.alerta>0?7:0}}>
                     <span style={{fontSize:10,fontWeight:800,color:"#FCD34D",letterSpacing:"0.04em"}}>AVISOS AEMET · COSTA</span>
                     {AVISOS.map((a,i)=>(
-                      <span key={i} style={{fontSize:10,fontWeight:700,padding:"2px 8px",borderRadius:6,whiteSpace:"nowrap",
-                        background:nivelColor(a.nivel),color:a.nivel==="amarillo"?"#3a2e00":"#fff"}}>
-                        {a.fenomeno} · {fmt(a.desde)} → {fmt(a.hasta)}
-                      </span>
+                      <button key={i} type="button" onClick={()=>setAvisoDetail(a)} title="Ver detalle del aviso"
+                        style={{fontSize:10,fontWeight:700,padding:"2px 8px",borderRadius:6,whiteSpace:"nowrap",border:"none",
+                          cursor:"pointer",fontFamily:"inherit",background:nivelColor(a.nivel),color:a.nivel==="amarillo"?"#3a2e00":"#fff"}}>
+                        {a.fenomeno} · {fmt(a.desde)} → {fmt(a.hasta)} ⓘ
+                      </button>
                     ))}
                   </div>
                 )}
@@ -904,7 +948,7 @@ export default function DemoMarin() {
             )}
           </>
         ) : (
-          <Timeline calls={filtered} onSelect={setSelected} selectedId={selected?.id} isMobile={isMobile}/>
+          <Timeline calls={filtered} onSelect={setSelected} selectedId={selected?.id} isMobile={isMobile} onAvisoClick={setAvisoDetail}/>
         )}
 
         {/* Footer */}
@@ -923,6 +967,8 @@ export default function DemoMarin() {
           style={{position:"fixed",inset:0,background:"rgba(1,11,36,0.45)",zIndex:1000}}/>
         <Detail call={selected} onClose={()=>setSelected(null)}/>
       </>}
+
+      {avisoDetail && <AvisoModal aviso={avisoDetail} onClose={()=>setAvisoDetail(null)}/>}
     </div>
   );
 }
