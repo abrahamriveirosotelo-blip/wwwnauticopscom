@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import data from "./data.json";
 import FleetMap from "./FleetMap";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -78,9 +78,36 @@ function TimeField({ label, value, isReal, isEmpty }) {
 function Detail({ call, onClose }) {
   const isAlert = call.status === "Alerta";
   const [tab, setTab] = useState("operacion");
+  const dialogRef = useRef(null);
+  const closeBtnRef = useRef(null);
+
+  // Diálogo accesible: al abrir mueve el foco dentro (botón cerrar), Escape cierra,
+  // atrapa el foco (Tab cicla dentro) y al cerrar lo devuelve al elemento que lo abrió.
+  useEffect(() => {
+    const prev = document.activeElement;
+    closeBtnRef.current?.focus();
+    const onKey = e => {
+      if (e.key === "Escape") { onClose(); return; }
+      if (e.key === "Tab" && dialogRef.current) {
+        const f = dialogRef.current.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (!f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      if (prev && prev.focus) prev.focus();
+    };
+  }, [onClose]);
 
   return (
-    <div style={{position:"fixed",right:0,top:0,bottom:0,width:"min(490px, 100vw)",maxWidth:"100vw",
+    <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="marin-drawer-title"
+      style={{position:"fixed",right:0,top:0,bottom:0,width:"min(490px, 100vw)",maxWidth:"100vw",
       background:B.white,boxShadow:`-4px 0 40px rgba(1,11,36,0.2)`,
       display:"flex",flexDirection:"column",zIndex:1001,
       fontFamily:"'Nunito',system-ui,sans-serif",overflowY:"auto"}}>
@@ -107,12 +134,13 @@ function Detail({ call, onClose }) {
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
           <div>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",letterSpacing:"0.1em",fontWeight:700}}>{call.id}</div>
-            <div style={{fontSize:22,fontWeight:800,marginTop:3,letterSpacing:"-0.01em"}}>{call.name}</div>
+            <div id="marin-drawer-title" style={{fontSize:22,fontWeight:800,marginTop:3,letterSpacing:"-0.01em"}}>{call.name}</div>
             <div style={{fontSize:12,color:"rgba(255,255,255,0.6)",marginTop:4}}>
               {[call.imo && call.imo !== '—' ? `IMO ${call.imo}` : '', call.flag, call.vesselType].filter(Boolean).join(' · ') || 'Datos de buque no publicados por la AP'}
             </div>
           </div>
-          <button onClick={onClose} style={{background:"rgba(255,255,255,0.12)",border:"none",
+          <button ref={closeBtnRef} onClick={onClose} aria-label="Cerrar detalle"
+            style={{background:"rgba(255,255,255,0.12)",border:"none",
             color:B.white,borderRadius:8,padding:"6px 14px",cursor:"pointer",
             fontSize:13,fontFamily:"inherit",fontWeight:700}}>✕</button>
         </div>
@@ -321,7 +349,8 @@ function CallCard({ call: c, isSel, onSelect }) {
   const bound   = c.status === "Prevista" && c.aisAtMarin && !c.aisArrivedMarin;
   const open = () => onSelect(isSel?null:c);
   return (
-    <div onClick={open} role="button" tabIndex={0} aria-pressed={isSel}
+    <div onClick={open} role="button" tabIndex={0} className="marin-card"
+      aria-haspopup="dialog" aria-expanded={isSel}
       aria-label={`Escala ${c.id} · ${c.name}`}
       onKeyDown={e=>{
         if(e.key==="Enter" && !e.repeat){ e.preventDefault(); open(); }        // Enter: activa en keydown (como un botón nativo)
@@ -399,6 +428,8 @@ export default function DemoMarin() {
   return (
     <div style={{fontFamily:"'Nunito',system-ui,sans-serif",background:B.offWhite,minHeight:"100vh",color:B.dark}}>
       <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+      {/* Indicador de foco visible para las tarjetas (los estilos inline no pueden con :focus-visible). */}
+      <style>{`.marin-card:focus-visible{outline:3px solid ${B.cyan};outline-offset:2px}`}</style>
 
       {/* NAV */}
       <div style={{background:B.navyDeep,minHeight:52,display:"flex",alignItems:"center",flexWrap:"wrap",
