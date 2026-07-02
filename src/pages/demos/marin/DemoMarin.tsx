@@ -481,10 +481,191 @@ function CallCard({ call: c, isSel, onSelect }) {
   );
 }
 
+/* ── Vista Cronología ─────────────────────────────────────────────────────
+   Eje de tiempo vertical con scroll: cada escala se sitúa por su ETA (entra)
+   y su ETD (sale). Muestra la planificación de entradas/salidas y, por día,
+   un medidor de ocupación (buques con estancia confirmada) que resalta el pico. */
+
+/** HH:mm local de una fecha ISO o de un timestamp en ms. */
+const fmtHour = t => new Date(t).toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"});
+/** Día corto ("1 jul") de una fecha ISO o ms. Para eventos atrasados (día distinto de hoy). */
+const fmtDayShort = t => new Date(t).toLocaleDateString("es-ES",{day:"numeric",month:"short"}).replace(/\./g,"");
+/** Etiqueta de día ("MIÉ 2 JUL") a partir del ms de inicio de día. */
+const fmtDayLabel = ms => new Date(ms).toLocaleDateString("es-ES",{weekday:"short",day:"numeric",month:"short"})
+  .toUpperCase().replace(/[.,]/g,"");
+/** Ocupación del día [dayStart, +24h): buques con estancia CONFIRMADA (ETA y ETD conocidos)
+ *  que solapan el día. Sobre TODAS las escalas (estado real del puerto, ajeno al filtro).
+ *  Las Previstas sin ETD no cuentan aquí (no hay salida programada): aparecen como evento ▼. */
+const _occByDay = new Map(); // memo: la ocupación de un día es estable (CALLS es constante) →
+                             // evita re-filtrar CALLS en cada render (p. ej. al abrir el drawer).
+const occupancyOnDay = dayStartMs => {
+  const cached = _occByDay.get(dayStartMs);
+  if (cached !== undefined) return cached;
+  const d = new Date(dayStartMs);
+  // Fin de día = inicio del día siguiente en HORA LOCAL (robusto a DST: los días de
+  // cambio de hora duran 23/25 h, así que sumar 24h en ms desalinearía el solape).
+  const dayEnd = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1).getTime();
+  const n = CALLS.filter(c => c.eta && c.etd &&
+    new Date(c.eta).getTime() < dayEnd && new Date(c.etd).getTime() > dayStartMs).length;
+  _occByDay.set(dayStartMs, n);
+  return n;
+};
+/** Pico de ocupación del puerto en el horizonte de la cronología (de la fecha de referencia
+ *  al último evento). Referencia FIJA del medidor: la escala de la barra y el "pico" se
+ *  calculan siempre contra este valor global, NUNCA contra los días que deja ver el filtro.
+ *  Así, filtrar (Alertas, Previstas…) no distorsiona la ocupación ni marca picos falsos. */
+const PORT_PEAK_OCC = (() => {
+  const times = [];
+  for (const c of CALLS) { if (c.eta) times.push(new Date(c.eta).getTime()); if (c.etd) times.push(new Date(c.etd).getTime()); }
+  if (!times.length) return 1;
+  const startMs = Number.isFinite(DATE_REF) ? DATE_REF : Math.min(...times);
+  const end = Math.max(...times);
+  // Recorre día natural a día natural en hora local (robusto a DST: no avanza en saltos de 24h ms).
+  let cur = new Date(startMs);
+  cur = new Date(cur.getFullYear(), cur.getMonth(), cur.getDate());
+  let peak = 1;
+  while (cur.getTime() <= end) {
+    peak = Math.max(peak, occupancyOnDay(cur.getTime()));
+    cur = new Date(cur.getFullYear(), cur.getMonth(), cur.getDate() + 1);
+  }
+  return peak;
+})();
+
+/** Un evento de la cronología (entrada ▼ / salida ▲). Clic → abre la escala (mismo drawer). */
+function TimelineEvent({ e, onSelect, selectedId, overdue=false }) {
+  const c = e.call;
+  const isSel = selectedId === c.id;
+  const isIn = e.kind === "in";
+  const mk = isIn ? { sym:"▼", color:B.success, bg:"#D1FAE5", verb:"entra" }
+                  : { sym:"▲", color:B.warning, bg:"#FEF3C7", verb:"sale" };
+  const accent = overdue ? B.danger : mk.color;
+  const etaDelta = isIn ? etaDiscrepancy(c) : null;
+  const bound = isIn && isBoundToMarin(c);
+  const open = () => onSelect(isSel?null:c);
+  return (
+    <div onClick={open} role="button" tabIndex={0} className="marin-ev"
+      aria-haspopup="dialog" aria-expanded={isSel}
+      aria-label={`${overdue?`Salida demorada ${fmtDayShort(e.t)} ${fmtHour(e.t)}`:`${isIn?"Entrada":"Salida"} ${fmtHour(e.t)}`} · ${c.name}`}
+      onKeyDown={ev=>{
+        if(ev.key==="Enter" && !ev.repeat){ ev.preventDefault(); open(); }
+        else if(ev.code==="Space"){ ev.preventDefault(); }
+      }}
+      onKeyUp={ev=>{ if(ev.code==="Space"){ ev.preventDefault(); open(); } }}
+      style={{display:"flex",alignItems:"stretch",background:isSel?B.cyanPale:B.white,
+        border:`1px solid ${isSel?B.cyan:B.grayLight}`,borderLeft:`3px solid ${accent}`,
+        borderRadius:10,cursor:"pointer",overflow:"hidden",boxShadow:"0 1px 6px rgba(1,11,36,0.05)"}}>
+      {/* Columna de hora. Para los atrasados (día distinto de hoy) muestra también la fecha. */}
+      <div style={{flexShrink:0,width:58,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:1,
+        background:B.offWhite,borderRight:`1px solid ${B.grayLight}`,padding:"6px 2px"}}>
+        {overdue && <span style={{fontSize:9,fontWeight:800,color:B.danger,textTransform:"uppercase",letterSpacing:"0.02em"}}>{fmtDayShort(e.t)}</span>}
+        <span style={{fontSize:13,fontWeight:800,color:B.navy,fontFamily:"'Courier New',monospace"}}>{fmtHour(e.t)}</span>
+      </div>
+      {/* Marcador + contenido */}
+      <div style={{display:"flex",alignItems:"center",gap:10,padding:"9px 12px",minWidth:0,flex:1}}>
+        <span aria-hidden="true" style={{flexShrink:0,width:24,height:24,borderRadius:6,
+          background:overdue?"#FEE2E2":mk.bg,color:accent,display:"flex",alignItems:"center",
+          justifyContent:"center",fontSize:11,fontWeight:900}}>{mk.sym}</span>
+        <div style={{minWidth:0,flex:1}}>
+          <div style={{display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>
+            <span style={{fontWeight:800,fontSize:14,color:B.navy}}>{c.name}</span>
+            <span style={{fontSize:10,fontWeight:700,color:accent}}>{overdue?"salida demorada":mk.verb}</span>
+            {bound && <span style={{fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,
+              background:"#E1F5FE",color:B.cyan,whiteSpace:"nowrap"}}>▸ rumbo a Marín</span>}
+            {etaDelta && <span style={{fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,
+              background:"#FEE2E2",color:B.danger,whiteSpace:"nowrap"}}>⚠ {etaDelta.dir} {etaDelta.dir==="retrasado"?"+":"−"}{fmtDur(etaDelta.ms)}</span>}
+          </div>
+          <div style={{fontSize:11,color:B.gray,marginTop:2,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
+            {c.berth && c.berth!=="—" ? c.berth : "—"}{c.gt ? ` · ${c.gt.toLocaleString()} GT` : ""}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** Cronología vertical de la flota filtrada. Agrupa los eventos futuros por día con su
+ *  ocupación, y pone arriba los atrasados (salidas demoradas). */
+function Timeline({ calls, onSelect, selectedId, isMobile }) {
+  const { overdue, groups } = useMemo(() => {
+    const evts = [];
+    for (const c of calls) {
+      // Entrada: solo Previstas aún no atracadas (para las Iniciado la llegada ya es pasado).
+      if (c.status === "Prevista" && c.eta) evts.push({ key:`${c.id}-in`,  t:new Date(c.eta).getTime(), kind:"in",  call:c });
+      // Salida: cuando hay ETD.
+      if (c.etd)                            evts.push({ key:`${c.id}-out`, t:new Date(c.etd).getTime(), kind:"out", call:c });
+    }
+    const valid = evts.filter(e => Number.isFinite(e.t));
+    const overdue = valid.filter(e => e.kind==="out" && isDelayedDeparture(e.call)).sort((a,b)=>a.t-b.t);
+    const overdueSet = new Set(overdue.map(e=>e.key));
+    // Próximos: descarta atrasados y salidas ya cumplidas (en el pasado y no demoradas → ya zarpó).
+    const upcoming = valid.filter(e => {
+      if (overdueSet.has(e.key)) return false;
+      if (e.kind==="out" && Number.isFinite(DATE_REF) && e.t < DATE_REF) return false;
+      return true;
+    }).sort((a,b)=>a.t-b.t);
+    const groups = [];
+    for (const e of upcoming) {
+      const d = new Date(e.t);
+      const start = new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
+      let g = groups[groups.length-1];
+      if (!g || g.dayStart !== start) { g = { dayStart:start, events:[] }; groups.push(g); }
+      g.events.push(e);
+    }
+    return { overdue, groups };
+  }, [calls]);
+
+  if (!overdue.length && !groups.length) {
+    return (
+      <div style={{padding:48,textAlign:"center",color:B.gray,background:B.white,
+        borderRadius:12,border:`1px solid ${B.grayLight}`}}>
+        <div style={{fontSize:28,marginBottom:8}}>🗓️</div>
+        <div style={{fontSize:13,fontWeight:600}}>Sin entradas ni salidas que planificar</div>
+      </div>
+    );
+  }
+  return (
+    <div style={{display:"flex",flexDirection:"column",gap:18}}>
+      {overdue.length>0 && (
+        <div>
+          <div style={{fontSize:11,fontWeight:800,color:B.danger,letterSpacing:"0.06em",marginBottom:8}}>⚠ ATRASADO</div>
+          <div style={{display:"flex",flexDirection:"column",gap:8}}>
+            {overdue.map(e => <TimelineEvent key={e.key} e={e} onSelect={onSelect} selectedId={selectedId} overdue/>)}
+          </div>
+        </div>
+      )}
+      {groups.map(g => {
+        const occ = occupancyOnDay(g.dayStart);
+        const peak = occ>0 && occ===PORT_PEAK_OCC; // pico y escala contra el máximo GLOBAL (sin filtro)
+        return (
+          <div key={g.dayStart}>
+            <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:8,flexWrap:"wrap"}}>
+              <div style={{fontSize:12,fontWeight:900,color:B.navy,letterSpacing:"0.04em"}}>{fmtDayLabel(g.dayStart)}</div>
+              <div style={{display:"flex",alignItems:"center",gap:6,flex:isMobile?"1 1 100%":"none"}}>
+                <div style={{position:"relative",height:7,borderRadius:4,background:B.grayLight,overflow:"hidden",
+                  width:isMobile?"100%":130,maxWidth:170,minWidth:70}}>
+                  <div style={{position:"absolute",top:0,left:0,bottom:0,width:`${Math.round(occ/PORT_PEAK_OCC*100)}%`,
+                    background:peak?B.danger:B.cyan,borderRadius:4}}/>
+                </div>
+                <span style={{fontSize:10,fontWeight:700,color:peak?B.danger:B.gray,whiteSpace:"nowrap"}}>
+                  {occ} en puerto{peak?" · pico":""}
+                </span>
+              </div>
+            </div>
+            <div style={{display:"flex",flexDirection:"column",gap:8}}>
+              {g.events.map(e => <TimelineEvent key={e.key} e={e} onSelect={onSelect} selectedId={selectedId}/>)}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function DemoMarin() {
   const [filter, setFilter] = useState("Todas");
   const [selected, setSelected] = useState(null);
   const [search, setSearch] = useState("");
+  const [view, setView] = useState("cards"); // "cards" (estado actual) | "timeline" (planificación)
   const isMobile = useIsMobile();
   const PAD = isMobile ? "14px 12px" : "20px 24px";
 
@@ -512,7 +693,7 @@ export default function DemoMarin() {
     <div style={{fontFamily:"'Nunito',system-ui,sans-serif",background:B.offWhite,minHeight:"100vh",color:B.dark}}>
       <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
       {/* Indicador de foco visible para las tarjetas (los estilos inline no pueden con :focus-visible). */}
-      <style>{`.marin-card:focus-visible{outline:3px solid ${B.cyan};outline-offset:2px}`}</style>
+      <style>{`.marin-card:focus-visible,.marin-ev:focus-visible{outline:3px solid ${B.cyan};outline-offset:2px}`}</style>
 
       {/* NAV */}
       <div style={{background:B.navyDeep,minHeight:52,display:"flex",alignItems:"center",flexWrap:"wrap",
@@ -627,19 +808,43 @@ export default function DemoMarin() {
             Clic en un buque → abre su escala (mismo drawer que las tarjetas). */}
         <FleetMap calls={filtered} fmt={fmt} onSelect={setSelected} height={isMobile?300:440} aisRef={aisRef}/>
 
-        {/* Escalas en tarjetas (móvil y escritorio): 1 columna en móvil, varias en pantallas anchas */}
-        <div style={{display:"grid",gap:12,
-          gridTemplateColumns:"repeat(auto-fill, minmax(min(100%, 340px), 1fr))"}}>
-          {filtered.map(c=>(
-            <CallCard key={c.id} call={c} isSel={selected?.id===c.id} onSelect={setSelected}/>
-          ))}
-        </div>
-        {filtered.length===0&&(
-          <div style={{padding:48,textAlign:"center",color:B.gray,background:B.white,
-            borderRadius:12,border:`1px solid ${B.grayLight}`}}>
-            <div style={{fontSize:28,marginBottom:8}}>🔍</div>
-            <div style={{fontSize:13,fontWeight:600}}>Sin resultados</div>
+        {/* Conmutador de vista: Tarjetas (estado actual) ↔ Cronología (planificación entrada/salida). */}
+        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:8,margin:"2px 0 12px",flexWrap:"wrap"}}>
+          <div style={{fontSize:11,fontWeight:800,color:B.gray,letterSpacing:"0.06em"}}>
+            {view==="cards" ? "ESCALAS" : "PLANIFICACIÓN · ENTRADA / SALIDA"}
           </div>
+          <div role="group" aria-label="Cambiar vista de escalas"
+            style={{display:"flex",background:B.offWhite,border:`1px solid ${B.grayLight}`,borderRadius:9,padding:2}}>
+            {[{k:"cards",l:"▦ Tarjetas"},{k:"timeline",l:"▤ Cronología"}].map(v=>(
+              <button key={v.k} type="button" onClick={()=>setView(v.k)} aria-pressed={view===v.k}
+                style={{padding:"6px 14px",borderRadius:7,border:"none",cursor:"pointer",
+                  fontSize:11,fontWeight:800,fontFamily:"inherit",whiteSpace:"nowrap",
+                  background:view===v.k?B.navy:"transparent",color:view===v.k?B.white:B.gray}}>
+                {v.l}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {view==="cards" ? (
+          <>
+            {/* Escalas en tarjetas (móvil y escritorio): 1 columna en móvil, varias en pantallas anchas */}
+            <div style={{display:"grid",gap:12,
+              gridTemplateColumns:"repeat(auto-fill, minmax(min(100%, 340px), 1fr))"}}>
+              {filtered.map(c=>(
+                <CallCard key={c.id} call={c} isSel={selected?.id===c.id} onSelect={setSelected}/>
+              ))}
+            </div>
+            {filtered.length===0&&(
+              <div style={{padding:48,textAlign:"center",color:B.gray,background:B.white,
+                borderRadius:12,border:`1px solid ${B.grayLight}`}}>
+                <div style={{fontSize:28,marginBottom:8}}>🔍</div>
+                <div style={{fontSize:13,fontWeight:600}}>Sin resultados</div>
+              </div>
+            )}
+          </>
+        ) : (
+          <Timeline calls={filtered} onSelect={setSelected} selectedId={selected?.id} isMobile={isMobile}/>
         )}
 
         {/* Footer */}
