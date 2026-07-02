@@ -335,10 +335,12 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
           style={{ flex: 1, minWidth: 0, position: "relative", height: 28, cursor: "pointer", touchAction: "none" }}>
           <div style={{ position: "absolute", top: 13, left: 0, right: 0, height: 5, borderRadius: 3, background: C.grayLight }} />
           <div style={{ position: "absolute", top: 13, left: 0, width: `${pct * 100}%`, height: 5, borderRadius: 3, background: C.cyan }} />
+          {/* Adornos visuales del slider (hitos de día, "ahora", playhead): aria-hidden para no
+              ensuciar la lectura del control; su valor ya lo expone aria-valuetext. */}
           {dayTicks.map(tk => {
             const p = (tk - tStart) / span * 100;
             return (
-              <div key={tk} style={{ position: "absolute", top: 6, left: `${p}%`, transform: "translateX(-50%)",
+              <div key={tk} aria-hidden="true" style={{ position: "absolute", top: 6, left: `${p}%`, transform: "translateX(-50%)",
                 display: "flex", flexDirection: "column", alignItems: "center", pointerEvents: "none" }}>
                 <div style={{ width: 1, height: 9, background: C.gray, opacity: 0.55 }} />
                 <span style={{ fontSize: 9, color: C.gray, marginTop: 1 }}>{new Date(tk).getDate()}</span>
@@ -346,11 +348,11 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
             );
           })}
           {/* Marcador "ahora": referencia fija; el playhead arranca aquí y puede retroceder. */}
-          <div style={{ position: "absolute", top: 9, bottom: 3, left: `${(t0 - tStart) / span * 100}%`,
+          <div aria-hidden="true" style={{ position: "absolute", top: 9, bottom: 3, left: `${(t0 - tStart) / span * 100}%`,
             width: 2, transform: "translateX(-1px)", background: C.warning, borderRadius: 1, pointerEvents: "none" }} />
-          <span style={{ position: "absolute", top: -4, left: `${(t0 - tStart) / span * 100}%`, transform: "translateX(-50%)",
+          <span aria-hidden="true" style={{ position: "absolute", top: -4, left: `${(t0 - tStart) / span * 100}%`, transform: "translateX(-50%)",
             fontSize: 8, fontWeight: 800, color: C.warning, whiteSpace: "nowrap", pointerEvents: "none" }}>ahora</span>
-          <div style={{ position: "absolute", top: 8, left: `${pct * 100}%`, transform: "translateX(-50%)",
+          <div aria-hidden="true" style={{ position: "absolute", top: 8, left: `${pct * 100}%`, transform: "translateX(-50%)",
             width: 15, height: 15, borderRadius: 999, background: C.white, border: `3px solid ${C.cyan}`,
             boxShadow: "0 1px 4px rgba(0,0,0,.3)", pointerEvents: "none" }} />
         </div>
