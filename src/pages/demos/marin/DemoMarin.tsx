@@ -75,6 +75,8 @@ function TimeField({ label, value, isReal, isEmpty }) {
   );
 }
 
+const TABS = [["operacion","Operación"],["ruta","Ruta"]];
+
 function Detail({ call, onClose }) {
   const isAlert = call.status === "Alerta";
   const [tab, setTab] = useState("operacion");
@@ -154,10 +156,22 @@ function Detail({ call, onClose }) {
         </div>
       </div>
 
-      {/* Tabs */}
-      <div style={{display:"flex",borderBottom:`2px solid ${B.grayLight}`,background:B.offWhite,flexShrink:0}}>
-        {[["operacion","Operación"],["ruta","Ruta"]].map(([k,l])=>(
-          <button key={k} onClick={()=>setTab(k)} style={{
+      {/* Tabs (patrón WAI-ARIA tablist: activación automática, foco rotatorio, flechas/Home/End) */}
+      <div role="tablist" aria-label="Secciones de la escala"
+        style={{display:"flex",borderBottom:`2px solid ${B.grayLight}`,background:B.offWhite,flexShrink:0}}>
+        {TABS.map(([k,l])=>(
+          <button key={k} id={`tab-${k}`} role="tab" aria-selected={tab===k}
+            aria-controls={`panel-${k}`} tabIndex={tab===k?0:-1}
+            onClick={()=>setTab(k)}
+            onKeyDown={e=>{
+              const keys=TABS.map(t=>t[0]); const i=keys.indexOf(tab); let ni=null;
+              if(e.key==="ArrowRight"||e.key==="ArrowDown") ni=(i+1)%keys.length;
+              else if(e.key==="ArrowLeft"||e.key==="ArrowUp") ni=(i-1+keys.length)%keys.length;
+              else if(e.key==="Home") ni=0; else if(e.key==="End") ni=keys.length-1;
+              if(ni===null) return;
+              e.preventDefault(); const nk=keys[ni]; setTab(nk); document.getElementById(`tab-${nk}`)?.focus();
+            }}
+            style={{
             flex:1,padding:"12px 0",border:"none",background:"transparent",
             fontSize:11,fontWeight:800,cursor:"pointer",letterSpacing:"0.05em",fontFamily:"inherit",
             color:tab===k?B.cyan:B.gray,
@@ -168,7 +182,7 @@ function Detail({ call, onClose }) {
       </div>
 
       <div style={{padding:24,flex:1}}>
-        {tab==="operacion"&&<>
+        {tab==="operacion"&&<div role="tabpanel" id="panel-operacion" aria-labelledby="tab-operacion" tabIndex={0}>
           {/* Escala */}
           <div style={{display:"flex",gap:12,background:B.offWhite,borderRadius:12,padding:"14px 18px",marginBottom:20,border:`1px solid ${B.grayLight}`}}>
             <div style={{flex:1}}>
@@ -276,9 +290,9 @@ function Detail({ call, onClose }) {
               ))}
             </div>
           </div>
-        </>}
+        </div>}
 
-        {tab==="ruta"&&<>
+        {tab==="ruta"&&<div role="tabpanel" id="panel-ruta" aria-labelledby="tab-ruta" tabIndex={0}>
           <div style={{marginBottom:14}}>
             <div style={{fontSize:10,fontWeight:800,color:B.gray,letterSpacing:"0.08em",marginBottom:4}}>RUTA DEL BUQUE</div>
             <div style={{fontSize:11,color:B.gray}}>Travesía conocida, con los tiempos de la escala en Marín. Otras escalas se mostrarán cuando haya datos.</div>
@@ -321,7 +335,7 @@ function Detail({ call, onClose }) {
           {!call.aisAtMarin && call.aisDestination && (
             <div style={{fontSize:11,color:B.gray,marginTop:14,padding:"10px 12px",background:B.offWhite,borderRadius:10,border:`1px solid ${B.grayLight}`}}>🛰 Rumbo actual (AIS): {call.aisStatus==="Navegando"?"navegando hacia":"en"} {call.aisDestination}{call.aisEta?` · ETA ${fmt(call.aisEta)}`:""}.</div>
           )}
-        </>}
+        </div>}
       </div>
     </div>
   );
