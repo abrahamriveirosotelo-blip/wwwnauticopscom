@@ -37,6 +37,23 @@ const isDelayedDeparture = c =>
   (c.status === "Iniciado" || c.status === "Alerta") && c.etd &&
   Number.isFinite(DATE_REF) && new Date(c.etd).getTime() < DATE_REF;
 
+/** Desvío de ETA: > 1 h entre la ETA de la AP (`eta`) y la reportada por AIS (`aisEta`).
+ *  Devuelve { dir:'retrasado'|'adelantado', ms } o null. AIS más tarde → retraso. */
+const ETA_TOL_MS = 60 * 60 * 1000;
+const etaDiscrepancy = c => {
+  if (!c.eta || !c.aisEta) return null;
+  const ms = new Date(c.aisEta).getTime() - new Date(c.eta).getTime();
+  if (!Number.isFinite(ms) || Math.abs(ms) <= ETA_TOL_MS) return null;
+  return { dir: ms > 0 ? "retrasado" : "adelantado", ms: Math.abs(ms) };
+};
+/** "2 h 15 min" / "45 min" a partir de milisegundos. */
+const fmtDur = ms => {
+  const total = Math.round(ms / 60000), h = Math.floor(total / 60), m = total % 60;
+  return h ? `${h} h${m ? ` ${m} min` : ""}` : `${m} min`;
+};
+/** ¿La escala tiene alguna alerta operativa? (alerta AP, salida demorada o desvío de ETA). */
+const hasAlert = c => c.status === "Alerta" || isDelayedDeparture(c) || etaDiscrepancy(c) != null;
+
 function fmt(iso) {
   if (!iso) return "—";
   const d = new Date(iso);
@@ -228,6 +245,7 @@ function Detail({ call, onClose }) {
                   <TimeField label="ETA · Llegada prevista"
                     value={fmt(call.eta)} isReal={false} isEmpty={!call.eta}/>
                   {call.aisAtMarin && call.aisEta && (<div style={{fontSize:11,color:B.cyan,fontWeight:600,marginTop:6}}>AIS · en vivo: {fmt(call.aisEta)}</div>)}
+                  {(() => { const d = etaDiscrepancy(call); return d && (<div style={{fontSize:11,color:B.danger,fontWeight:700,marginTop:4}}>⚠ {d.dir==="retrasado"?"Retraso":"Adelanto"} de {fmtDur(d.ms)} (ETA AP vs AIS)</div>); })()}
                 </div>
                 <div style={{padding:"14px 16px"}}>
                   <TimeField label="ATA · Llegada real"
@@ -384,6 +402,7 @@ function CallCard({ call: c, isSel, onSelect }) {
                    : null;
   const arrived = c.status === "Prevista" && c.aisArrivedMarin;
   const bound   = c.status === "Prevista" && c.aisAtMarin && !c.aisArrivedMarin;
+  const etaDelta = etaDiscrepancy(c);
   const open = () => onSelect(isSel?null:c);
   return (
     <div onClick={open} role="button" tabIndex={0} className="marin-card"
@@ -410,6 +429,8 @@ function CallCard({ call: c, isSel, onSelect }) {
               {arrived?"⚓ ya en Marín (AIS)":"▸ rumbo a Marín"}</span>}
             {isDelayedDeparture(c) && <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,
               verticalAlign:"middle",background:"#FEE2E2",color:B.danger,whiteSpace:"nowrap"}}>⚠ salida demorada</span>}
+            {etaDelta && <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,
+              verticalAlign:"middle",background:"#FEE2E2",color:B.danger,whiteSpace:"nowrap"}}>⚠ {etaDelta.dir} {etaDelta.dir==="retrasado"?"+":"−"}{fmtDur(etaDelta.ms)}</span>}
           </div>
           <div style={{fontSize:10,color:B.gray,marginTop:2}}>
             {c.imo && c.imo!=='—' ? `IMO ${c.imo} · ` : ''}<span style={{fontFamily:"'Courier New',monospace"}}>{c.id}</span>
@@ -450,10 +471,10 @@ export default function DemoMarin() {
 
   const counts = {
     total:    CALLS.length,
-    iniciado: CALLS.filter(c=>c.status==="Iniciado").length,
+    enPuerto: CALLS.filter(c=>c.status==="Iniciado"||c.status==="Alerta").length, // en puerto por la AP
     prevista: CALLS.filter(c=>c.status==="Prevista").length,
-    alerta:   CALLS.filter(c=>c.status==="Alerta").length,
     rumbo:    CALLS.filter(isBoundToMarin).length,
+    alerta:   CALLS.filter(hasAlert).length, // alerta AP + salida demorada + desvío ETA
   };
 
   // Memoizados: filtered se pasa al mapa; si cambiara de referencia en cada render (p. ej.
@@ -464,7 +485,7 @@ export default function DemoMarin() {
       c.id.toLowerCase().includes(q)||c.agent.toLowerCase().includes(q);
     const mf=filter==="Todas"||(filter==="Iniciado"&&(c.status==="Iniciado"||c.status==="Alerta"))||
       (filter==="Rumbo"&&isBoundToMarin(c))||
-      (filter==="Alerta"&&c.status==="Alerta")||(filter==="Prevista"&&c.status==="Prevista");
+      (filter==="Alerta"&&hasAlert(c))||(filter==="Prevista"&&c.status==="Prevista");
     return ms&&mf;
   }), [filter, search]);
 
@@ -515,7 +536,7 @@ export default function DemoMarin() {
           flexWrap:"wrap",alignItems:"center"}}>
           {[
             {label:"ESCALAS TOTALES", value:counts.total,    color:B.navy   },
-            {label:"EN PUERTO",       value:counts.iniciado+counts.alerta, color:B.success },
+            {label:"EN PUERTO",       value:counts.enPuerto, color:B.success },
             {label:"CON ALERTA",      value:counts.alerta,   color:B.danger  },
             {label:"PREVISTAS",       value:counts.prevista, color:B.cyan    },
           ].map((s,i)=>(
@@ -537,7 +558,7 @@ export default function DemoMarin() {
                 outline:"none",width:isMobile?"100%":200,background:B.offWhite,fontFamily:"inherit",color:B.dark}}/>
           </div>
           {[{k:"Todas",l:"Todas",n:counts.total},
-            {k:"Iniciado",l:"En puerto",n:counts.iniciado+counts.alerta},
+            {k:"Iniciado",l:"En puerto",n:counts.enPuerto},
             {k:"Rumbo",l:"▸ Rumbo a Marín",n:counts.rumbo},
             {k:"Prevista",l:"Previstas",n:counts.prevista},
             {k:"Alerta",l:"⚠ Alertas",n:counts.alerta}
