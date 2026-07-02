@@ -21,6 +21,8 @@ const C = {
   navy: "#0A1F3D", cyan: "#079FE6", success: "#00C896", warning: "#F59E0B",
   gray: "#64748B", grayLight: "#E2EBF4", white: "#FFFFFF", offWhite: "#F7FAFD",
 };
+/** Color por nivel de aviso AEMET (amarillo/naranja/rojo). */
+const nivelColor = n => n === "rojo" ? "#DC2626" : n === "naranja" ? "#F97316" : "#EAB308";
 
 const fmtClock = ms => {
   const d = new Date(ms);
@@ -88,7 +90,7 @@ function marinDot() {
   });
 }
 
-export default function SchedulePlayback({ calls, onSelect, selectedId = null, isMobile = false }) {
+export default function SchedulePlayback({ calls, onSelect, selectedId = null, isMobile = false, avisos = [] }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
   const layerRef = useRef(null);
@@ -243,6 +245,8 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
 
   const pct = Math.min(1, Math.max(0, (t - tStart) / span));
   const docked = ships.filter(s => shipStateAt(s, t).phase === "dock").length;
+  // Aviso AEMET vigente en el instante del playhead (para indicarlo junto al reloj).
+  const activeAviso = avisos.find(a => t >= new Date(a.desde).getTime() && t < new Date(a.hasta).getTime());
 
   // Día/noche: la opacidad de la capa oscura sigue la oscuridad del cielo en Marín para el
   // instante virtual. El efecto solo se dispara cuando `darkness` cambia (constante de día/noche
@@ -333,6 +337,20 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
           onPointerUp={() => { draggingRef.current = false; }}
           onPointerCancel={() => { draggingRef.current = false; }}
           style={{ flex: 1, minWidth: 0, position: "relative", height: 28, cursor: "pointer", touchAction: "none" }}>
+          {/* Franjas de avisos AEMET sobre su ventana temporal (color por nivel). Van detrás. */}
+          {avisos.map((a, i) => {
+            const s = Math.max(0, Math.min(1, (new Date(a.desde).getTime() - tStart) / span));
+            const e = Math.max(0, Math.min(1, (new Date(a.hasta).getTime() - tStart) / span));
+            if (e <= s) return null;
+            const col = nivelColor(a.nivel);
+            return (
+              <div key={i} aria-hidden="true" title={`${a.fenomeno} (${a.nivel})`}
+                style={{ position: "absolute", top: 0, bottom: 0, left: `${s * 100}%`, width: `${(e - s) * 100}%`, pointerEvents: "none" }}>
+                <div style={{ position: "absolute", inset: 0, background: col, opacity: 0.22 }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 3, background: col, borderRadius: 2 }} />
+              </div>
+            );
+          })}
           <div style={{ position: "absolute", top: 13, left: 0, right: 0, height: 5, borderRadius: 3, background: C.grayLight }} />
           <div style={{ position: "absolute", top: 13, left: 0, width: `${pct * 100}%`, height: 5, borderRadius: 3, background: C.cyan }} />
           {/* Adornos visuales del slider (hitos de día, "ahora", playhead): aria-hidden para no
@@ -361,7 +379,15 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
         <span style={{ fontSize: 12, fontWeight: 800, color: C.navy, fontFamily: "'Courier New',monospace" }}>
           <span aria-hidden="true" style={{ marginRight: 5 }}>{isNight ? "🌙" : "☀️"}</span>{fmtClock(t)}
         </span>
-        <span style={{ fontSize: 11, fontWeight: 700, color: docked ? C.success : C.gray }}>⚓ {docked} en puerto</span>
+        <span style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+          {activeAviso && (
+            <span style={{ fontSize: 10, fontWeight: 800, padding: "2px 8px", borderRadius: 6, whiteSpace: "nowrap",
+              background: nivelColor(activeAviso.nivel), color: activeAviso.nivel === "amarillo" ? "#3a2e00" : "#fff" }}>
+              ⚠ {activeAviso.fenomeno}
+            </span>
+          )}
+          <span style={{ fontSize: 11, fontWeight: 700, color: docked ? C.success : C.gray }}>⚓ {docked} en puerto</span>
+        </span>
       </div>
       </>)}
     </div>
