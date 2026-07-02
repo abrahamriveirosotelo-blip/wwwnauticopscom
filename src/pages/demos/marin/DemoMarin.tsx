@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import data from "./data.json";
 import FleetMap from "./FleetMap";
+import SchedulePlayback from "./SchedulePlayback";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const B = {
@@ -804,9 +805,13 @@ export default function DemoMarin() {
           );
         })()}
 
-        {/* Mapa global de la flota: posición AIS en vivo (aisstream).
-            Clic en un buque → abre su escala (mismo drawer que las tarjetas). */}
-        <FleetMap calls={filtered} fmt={fmt} onSelect={setSelected} height={isMobile?300:440} aisRef={aisRef} selectedKey={selected ? (selected.mmsi || selected.name) : null}/>
+        {/* Mapa según la vista:
+            · Tarjetas   → posición AIS en vivo + atracados (aisstream).
+            · Cronología → simulación de la planificación (entrada/salida animada).
+            Clic en un buque → abre su escala (mismo drawer que la lista). */}
+        {view==="cards"
+          ? <FleetMap calls={filtered} fmt={fmt} onSelect={setSelected} height={isMobile?300:440} aisRef={aisRef} selectedKey={selected ? (selected.mmsi || selected.name) : null}/>
+          : <SchedulePlayback calls={filtered} onSelect={setSelected} selectedId={selected?.id} isMobile={isMobile} dateRef={DATE_REF}/>}
 
         {/* Conmutador de vista: Tarjetas (estado actual) ↔ Cronología (planificación entrada/salida). */}
         <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:8,margin:"2px 0 12px",flexWrap:"wrap"}}>
