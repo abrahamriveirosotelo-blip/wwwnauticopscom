@@ -488,6 +488,8 @@ function CallCard({ call: c, isSel, onSelect }) {
 
 /** HH:mm local de una fecha ISO o de un timestamp en ms. */
 const fmtHour = t => new Date(t).toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"});
+/** Día corto ("1 jul") de una fecha ISO o ms. Para eventos atrasados (día distinto de hoy). */
+const fmtDayShort = t => new Date(t).toLocaleDateString("es-ES",{day:"numeric",month:"short"}).replace(/\./g,"");
 /** Etiqueta de día ("MIÉ 2 JUL") a partir del ms de inicio de día. */
 const fmtDayLabel = ms => new Date(ms).toLocaleDateString("es-ES",{weekday:"short",day:"numeric",month:"short"})
   .toUpperCase().replace(/[.,]/g,"");
@@ -495,10 +497,33 @@ const fmtDayLabel = ms => new Date(ms).toLocaleDateString("es-ES",{weekday:"shor
  *  que solapan el día. Sobre TODAS las escalas (estado real del puerto, ajeno al filtro).
  *  Las Previstas sin ETD no cuentan aquí (no hay salida programada): aparecen como evento ▼. */
 const occupancyOnDay = dayStartMs => {
-  const dayEnd = dayStartMs + 24*3600*1000;
+  const d = new Date(dayStartMs);
+  // Fin de día = inicio del día siguiente en HORA LOCAL (robusto a DST: los días de
+  // cambio de hora duran 23/25 h, así que sumar 24h en ms desalinearía el solape).
+  const dayEnd = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1).getTime();
   return CALLS.filter(c => c.eta && c.etd &&
     new Date(c.eta).getTime() < dayEnd && new Date(c.etd).getTime() > dayStartMs).length;
 };
+/** Pico de ocupación del puerto en el horizonte de la cronología (de la fecha de referencia
+ *  al último evento). Referencia FIJA del medidor: la escala de la barra y el "pico" se
+ *  calculan siempre contra este valor global, NUNCA contra los días que deja ver el filtro.
+ *  Así, filtrar (Alertas, Previstas…) no distorsiona la ocupación ni marca picos falsos. */
+const PORT_PEAK_OCC = (() => {
+  const times = [];
+  for (const c of CALLS) { if (c.eta) times.push(new Date(c.eta).getTime()); if (c.etd) times.push(new Date(c.etd).getTime()); }
+  if (!times.length) return 1;
+  const startMs = Number.isFinite(DATE_REF) ? DATE_REF : Math.min(...times);
+  const end = Math.max(...times);
+  // Recorre día natural a día natural en hora local (robusto a DST: no avanza en saltos de 24h ms).
+  let cur = new Date(startMs);
+  cur = new Date(cur.getFullYear(), cur.getMonth(), cur.getDate());
+  let peak = 1;
+  while (cur.getTime() <= end) {
+    peak = Math.max(peak, occupancyOnDay(cur.getTime()));
+    cur = new Date(cur.getFullYear(), cur.getMonth(), cur.getDate() + 1);
+  }
+  return peak;
+})();
 
 /** Un evento de la cronología (entrada ▼ / salida ▲). Clic → abre la escala (mismo drawer). */
 function TimelineEvent({ e, onSelect, selectedId, overdue=false }) {
@@ -514,7 +539,7 @@ function TimelineEvent({ e, onSelect, selectedId, overdue=false }) {
   return (
     <div onClick={open} role="button" tabIndex={0} className="marin-ev"
       aria-haspopup="dialog" aria-expanded={isSel}
-      aria-label={`${overdue?"Salida demorada":isIn?"Entrada":"Salida"} ${fmtHour(e.t)} · ${c.name}`}
+      aria-label={`${overdue?`Salida demorada ${fmtDayShort(e.t)} ${fmtHour(e.t)}`:`${isIn?"Entrada":"Salida"} ${fmtHour(e.t)}`} · ${c.name}`}
       onKeyDown={ev=>{
         if(ev.key==="Enter" && !ev.repeat){ ev.preventDefault(); open(); }
         else if(ev.code==="Space"){ ev.preventDefault(); }
@@ -523,9 +548,10 @@ function TimelineEvent({ e, onSelect, selectedId, overdue=false }) {
       style={{display:"flex",alignItems:"stretch",background:isSel?B.cyanPale:B.white,
         border:`1px solid ${isSel?B.cyan:B.grayLight}`,borderLeft:`3px solid ${accent}`,
         borderRadius:10,cursor:"pointer",overflow:"hidden",boxShadow:"0 1px 6px rgba(1,11,36,0.05)"}}>
-      {/* Columna de hora */}
-      <div style={{flexShrink:0,width:54,display:"flex",alignItems:"center",justifyContent:"center",
-        background:B.offWhite,borderRight:`1px solid ${B.grayLight}`}}>
+      {/* Columna de hora. Para los atrasados (día distinto de hoy) muestra también la fecha. */}
+      <div style={{flexShrink:0,width:58,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:1,
+        background:B.offWhite,borderRight:`1px solid ${B.grayLight}`,padding:"6px 2px"}}>
+        {overdue && <span style={{fontSize:9,fontWeight:800,color:B.danger,textTransform:"uppercase",letterSpacing:"0.02em"}}>{fmtDayShort(e.t)}</span>}
         <span style={{fontSize:13,fontWeight:800,color:B.navy,fontFamily:"'Courier New',monospace"}}>{fmtHour(e.t)}</span>
       </div>
       {/* Marcador + contenido */}
@@ -554,7 +580,7 @@ function TimelineEvent({ e, onSelect, selectedId, overdue=false }) {
 /** Cronología vertical de la flota filtrada. Agrupa los eventos futuros por día con su
  *  ocupación, y pone arriba los atrasados (salidas demoradas). */
 function Timeline({ calls, onSelect, selectedId, isMobile }) {
-  const { overdue, groups, maxOcc } = useMemo(() => {
+  const { overdue, groups } = useMemo(() => {
     const evts = [];
     for (const c of calls) {
       // Entrada: solo Previstas aún no atracadas (para las Iniciado la llegada ya es pasado).
@@ -579,8 +605,7 @@ function Timeline({ calls, onSelect, selectedId, isMobile }) {
       if (!g || g.dayStart !== start) { g = { dayStart:start, events:[] }; groups.push(g); }
       g.events.push(e);
     }
-    const maxOcc = Math.max(1, ...groups.map(g => occupancyOnDay(g.dayStart)));
-    return { overdue, groups, maxOcc };
+    return { overdue, groups };
   }, [calls]);
 
   if (!overdue.length && !groups.length) {
@@ -604,7 +629,7 @@ function Timeline({ calls, onSelect, selectedId, isMobile }) {
       )}
       {groups.map(g => {
         const occ = occupancyOnDay(g.dayStart);
-        const peak = occ>0 && occ===maxOcc;
+        const peak = occ>0 && occ===PORT_PEAK_OCC; // pico y escala contra el máximo GLOBAL (sin filtro)
         return (
           <div key={g.dayStart}>
             <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:8,flexWrap:"wrap"}}>
@@ -612,7 +637,7 @@ function Timeline({ calls, onSelect, selectedId, isMobile }) {
               <div style={{display:"flex",alignItems:"center",gap:6,flex:isMobile?"1 1 100%":"none"}}>
                 <div style={{position:"relative",height:7,borderRadius:4,background:B.grayLight,overflow:"hidden",
                   width:isMobile?"100%":130,maxWidth:170,minWidth:70}}>
-                  <div style={{position:"absolute",top:0,left:0,bottom:0,width:`${Math.round(occ/maxOcc*100)}%`,
+                  <div style={{position:"absolute",top:0,left:0,bottom:0,width:`${Math.round(occ/PORT_PEAK_OCC*100)}%`,
                     background:peak?B.danger:B.cyan,borderRadius:4}}/>
                 </div>
                 <span style={{fontSize:10,fontWeight:700,color:peak?B.danger:B.gray,whiteSpace:"nowrap"}}>
@@ -785,7 +810,7 @@ export default function DemoMarin() {
           <div role="group" aria-label="Cambiar vista de escalas"
             style={{display:"flex",background:B.offWhite,border:`1px solid ${B.grayLight}`,borderRadius:9,padding:2}}>
             {[{k:"cards",l:"▦ Tarjetas"},{k:"timeline",l:"▤ Cronología"}].map(v=>(
-              <button key={v.k} onClick={()=>setView(v.k)} aria-pressed={view===v.k}
+              <button key={v.k} type="button" onClick={()=>setView(v.k)} aria-pressed={view===v.k}
                 style={{padding:"6px 14px",borderRadius:7,border:"none",cursor:"pointer",
                   fontSize:11,fontWeight:800,fontFamily:"inherit",whiteSpace:"nowrap",
                   background:view===v.k?B.navy:"transparent",color:view===v.k?B.white:B.gray}}>
