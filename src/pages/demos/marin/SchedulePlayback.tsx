@@ -244,7 +244,9 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
   // recalcular las trigonométricas de nightFactor en cada frame de la reproducción (y con la
   // pausa, en cada render), sin perder la suavidad del crepúsculo.
   const sunT = Math.round(t / 300000) * 300000;
-  const darkness = useMemo(() => Math.round(nightFactor(sunT) * 100) / 100, [sunT]);
+  // Sin escalas, t se queda en 0 (epoch 1970) y nightFactor(0) daría un día/noche arbitrario
+  // bajo el overlay "Sin escalas…": en ese caso forzamos día (darkness 0).
+  const darkness = useMemo(() => ships.length ? Math.round(nightFactor(sunT) * 100) / 100 : 0, [sunT, ships.length]);
   darknessRef.current = darkness; // para que el init de la capa oscura use la opacidad correcta
   // Solo mantiene la capa oscura montada cuando hace falta (darkness > 0): de día NO se
   // descargan tiles dark_all (ahorra tráfico/latencia, sobre todo en móvil). El primer
