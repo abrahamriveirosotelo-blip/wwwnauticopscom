@@ -160,10 +160,14 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
     else map.fitBounds(L.latLngBounds(pts), { padding: [40, 40], maxZoom: 12 });
   }, [aisItems, berthItems]);
 
-  // (Re)pinta marcadores cuando cambian los ítems o el modo clúster (zoom).
+  // (Re)pinta marcadores cuando cambian los ítems, el modo clúster (zoom) o la selección.
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
+    // Al recrear la capa se eliminan los marcadores viejos SIN disparar su mouseout, así que
+    // una tarjeta de hover activa quedaría "pegada" (p. ej. al seleccionar una escala desde
+    // las tarjetas/cronología con el ratón sobre un marcador, o al cambiar el filtro). Limpia.
+    setHover(null);
     const layer = L.layerGroup().addTo(map);
     const pt = ll => map.latLngToContainerPoint(ll);
 
