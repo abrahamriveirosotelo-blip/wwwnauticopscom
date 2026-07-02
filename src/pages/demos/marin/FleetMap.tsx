@@ -26,6 +26,7 @@ const CLUSTER_MIN_ZOOM = 13;         // a partir de este zoom los atracados se v
 const WAVE_LAYER = "IBI_ANALYSISFORECAST_WAV_005_005/cmems_mod_ibi_wav_anfc_0.027deg_PT1H-i_202411/VHM0";
 const WAVE_URL = `https://wmts.marine.copernicus.eu/teroWmts/?service=WMTS&request=GetTile&version=1.0.0&layer=${WAVE_LAYER}&style=cmap:amp&tilematrixset=EPSG:3857&tilematrix={z}&tilerow={y}&tilecol={x}&format=image/png`;
 const WAVE_ATTR = 'Oleaje &copy; <a href="https://marine.copernicus.eu">E.U. Copernicus Marine Service</a>';
+const WAVE_MAX_ZOOM = 10; // por encima se oculta (el dato ~3 km se pixela a escala de puerto)
 
 const C = {
   navy: "#0A1F3D", cyan: "#079FE6", success: "#00C896",
@@ -164,7 +165,11 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
     const map = mapRef.current;
     if (!map) return;
     if (showWave) {
-      if (!waveRef.current) waveRef.current = L.tileLayer(WAVE_URL, { opacity: 0.6, zIndex: 250, attribution: WAVE_ATTR });
+      // maxZoom 10: el dato es de ~3 km, así que a escala de puerto se ve pixelado y lava la
+      // costa. Se muestra solo a escala regional/aproximaciones (donde tiene sentido) y se
+      // oculta al acercar al puerto. Opacidad baja para no desaturar el mapa base.
+      if (!waveRef.current) waveRef.current = L.tileLayer(WAVE_URL, {
+        opacity: 0.5, zIndex: 250, maxZoom: WAVE_MAX_ZOOM, maxNativeZoom: WAVE_MAX_ZOOM - 1, attribution: WAVE_ATTR });
       if (!map.hasLayer(waveRef.current)) waveRef.current.addTo(map);
     } else if (waveRef.current && map.hasLayer(waveRef.current)) {
       map.removeLayer(waveRef.current);
@@ -289,8 +294,8 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
           🌊 Oleaje
         </button>
 
-        {/* Leyenda del oleaje: colormap CMEMS "amp" (claro = mar tendido, rojo = más altura). */}
-        {showWave && (
+        {/* Leyenda del oleaje (solo cuando la capa se ve, es decir a escala regional). */}
+        {showWave && zoom <= WAVE_MAX_ZOOM && (
           <div style={{ position: "absolute", bottom: 8, left: 8, zIndex: 20, background: "rgba(255,255,255,0.94)",
             border: `1px solid ${C.gray}33`, borderRadius: 8, padding: "6px 8px", boxShadow: "0 1px 4px rgba(1,11,36,0.2)" }}>
             <div style={{ fontSize: 9, fontWeight: 800, color: C.navy, marginBottom: 3 }}>ALTURA DE OLA</div>
@@ -298,6 +303,14 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
             <div style={{ display: "flex", justifyContent: "space-between", fontSize: 8, color: C.gray, marginTop: 2 }}>
               <span>menos</span><span>más</span>
             </div>
+          </div>
+        )}
+        {/* Con la capa activa pero demasiado zoom, avisa (el dato solo tiene sentido regional). */}
+        {showWave && zoom > WAVE_MAX_ZOOM && (
+          <div style={{ position: "absolute", top: 44, right: 8, zIndex: 20, maxWidth: 170, background: "rgba(255,255,255,0.94)",
+            border: `1px solid ${C.gray}33`, borderRadius: 8, padding: "5px 8px", boxShadow: "0 1px 4px rgba(1,11,36,0.2)",
+            fontSize: 10, color: C.gray, fontWeight: 600, textAlign: "right" }}>
+            🔍 Aleja para ver el oleaje (dato regional, ~3 km)
           </div>
         )}
 
