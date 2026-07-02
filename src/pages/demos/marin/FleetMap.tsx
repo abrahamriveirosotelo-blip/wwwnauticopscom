@@ -19,6 +19,14 @@ const AIS_FRESH_MS = 60 * 60 * 1000; // 1 h: descarta posiciones AIS más viejas
 const BERTH_RADIUS = 0.005;          // 0.005° ≈ 550 m: anillo de atracados alrededor del puerto
 const CLUSTER_MIN_ZOOM = 13;         // a partir de este zoom los atracados se ven separados
 
+/* Capa de oleaje (altura significativa de ola, VHM0) del servicio Copernicus Marine (CMEMS),
+ * producto IBI (Iberia-Biscay-Ireland). WMTS PÚBLICO (sin clave ni proxy), EPSG:3857 → entra
+ * directo como tile XYZ en Leaflet. El sufijo del dataset (…202411) es la VERSIÓN del producto
+ * en CMEMS; si algún día las tiles dan 404, hay que actualizarlo (nuevo GetCapabilities). */
+const WAVE_LAYER = "IBI_ANALYSISFORECAST_WAV_005_005/cmems_mod_ibi_wav_anfc_0.027deg_PT1H-i_202411/VHM0";
+const WAVE_URL = `https://wmts.marine.copernicus.eu/teroWmts/?service=WMTS&request=GetTile&version=1.0.0&layer=${WAVE_LAYER}&style=cmap:amp&tilematrixset=EPSG:3857&tilematrix={z}&tilerow={y}&tilecol={x}&format=image/png`;
+const WAVE_ATTR = 'Oleaje &copy; <a href="https://marine.copernicus.eu">E.U. Copernicus Marine Service</a>';
+
 const C = {
   navy: "#0A1F3D", cyan: "#079FE6", success: "#00C896",
   warning: "#F59E0B", gray: "#64748B", white: "#FFFFFF",
@@ -80,9 +88,11 @@ function marinIcon(n = 0, highlighted = false) {
 export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 0, selectedKey = null }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
+  const waveRef = useRef(null); // capa de oleaje (CMEMS), se añade/quita según el toggle
   // Tarjeta de hover: { x, y, item? , marin? } en píxeles del contenedor del mapa.
   const [hover, setHover] = useState(null);
   const [zoom, setZoom] = useState(8);
+  const [showWave, setShowWave] = useState(false); // toggle capa de oleaje
 
   // Ítems del mapa: { call, lat, lon, kind }. Dedupe por MMSI (o nombre).
   const items = useMemo(() => {
@@ -147,6 +157,19 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
     setZoom(map.getZoom());
     return () => { map.remove(); mapRef.current = null; };
   }, []);
+
+  // Capa de oleaje (CMEMS): se monta solo cuando el toggle está activo → de base no descarga
+  // tiles del WMTS. Semitransparente para ver la costa/puerto debajo; bajo los marcadores.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    if (showWave) {
+      if (!waveRef.current) waveRef.current = L.tileLayer(WAVE_URL, { opacity: 0.6, zIndex: 250, attribution: WAVE_ATTR });
+      if (!map.hasLayer(waveRef.current)) waveRef.current.addTo(map);
+    } else if (waveRef.current && map.hasLayer(waveRef.current)) {
+      map.removeLayer(waveRef.current);
+    }
+  }, [showWave]);
 
   // Reajusta Leaflet cuando cambia la altura del contenedor (p. ej. 440→300 en móvil).
   useEffect(() => { mapRef.current?.invalidateSize(); }, [height]);
@@ -255,6 +278,28 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
         <div style={{ isolation: "isolate", borderRadius: 12, overflow: "hidden", border: `1px solid ${C.gray}22` }}>
           <div ref={containerRef} style={{ height, width: "100%" }} />
         </div>
+
+        {/* Toggle de la capa de oleaje (arriba a la derecha, sobre el mapa). */}
+        <button type="button" onClick={() => setShowWave(v => !v)} aria-pressed={showWave}
+          title="Altura de ola (Copernicus Marine)"
+          style={{ position: "absolute", top: 8, right: 8, zIndex: 20, display: "flex", alignItems: "center", gap: 6,
+            padding: "6px 10px", borderRadius: 8, border: `1px solid ${showWave ? C.cyan : C.gray + "44"}`, cursor: "pointer",
+            background: showWave ? C.cyan : "rgba(255,255,255,0.94)", color: showWave ? C.white : C.navy,
+            fontSize: 11, fontWeight: 800, fontFamily: "inherit", boxShadow: "0 1px 4px rgba(1,11,36,0.2)" }}>
+          🌊 Oleaje
+        </button>
+
+        {/* Leyenda del oleaje: colormap CMEMS "amp" (claro = mar tendido, rojo = más altura). */}
+        {showWave && (
+          <div style={{ position: "absolute", bottom: 8, left: 8, zIndex: 20, background: "rgba(255,255,255,0.94)",
+            border: `1px solid ${C.gray}33`, borderRadius: 8, padding: "6px 8px", boxShadow: "0 1px 4px rgba(1,11,36,0.2)" }}>
+            <div style={{ fontSize: 9, fontWeight: 800, color: C.navy, marginBottom: 3 }}>ALTURA DE OLA</div>
+            <div style={{ width: 120, height: 8, borderRadius: 3, background: "linear-gradient(to right,#fff5f0,#fcae91,#fb6a4a,#cb181d,#67000d)" }} />
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 8, color: C.gray, marginTop: 2 }}>
+              <span>menos</span><span>más</span>
+            </div>
+          </div>
+        )}
 
         {hover && (
           <div style={{
