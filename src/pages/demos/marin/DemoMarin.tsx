@@ -319,8 +319,11 @@ function CallCard({ call: c, isSel, onSelect }) {
                    : null;
   const arrived = c.status === "Prevista" && c.aisArrivedMarin;
   const bound   = c.status === "Prevista" && c.aisAtMarin && !c.aisArrivedMarin;
+  const open = () => onSelect(isSel?null:c);
   return (
-    <div onClick={()=>onSelect(isSel?null:c)}
+    <div onClick={open} role="button" tabIndex={0} aria-pressed={isSel}
+      aria-label={`Escala ${c.id} · ${c.name}`}
+      onKeyDown={e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); open(); } }}
       style={{
         background:isSel?B.cyanPale:isAl?"#FFF1F1":isAffected?"#FFFBEB":B.white,
         border:`1px solid ${isSel?B.cyan:B.grayLight}`,
@@ -332,7 +335,7 @@ function CallCard({ call: c, isSel, onSelect }) {
         <div style={{minWidth:0}}>
           <div style={{fontWeight:800,fontSize:15,color:isAl?B.danger:B.navy,lineHeight:1.2}}>
             {c.name}
-            {(arrived||bound) && <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,
+            {c.aisStatus && (arrived||bound) && <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,
               verticalAlign:"middle",background:arrived?"#FEF3C7":"#E1F5FE",color:arrived?B.warning:B.cyan,whiteSpace:"nowrap"}}>
               {arrived?"⚓ ya en Marín (AIS)":"▸ rumbo a Marín"}</span>}
           </div>

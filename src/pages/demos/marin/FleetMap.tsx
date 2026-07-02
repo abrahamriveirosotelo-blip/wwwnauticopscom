@@ -77,6 +77,10 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440 }) {
     return () => { map.remove(); mapRef.current = null; };
   }, []);
 
+  // Reajusta Leaflet cuando cambia la altura del contenedor (p. ej. 440→300 en móvil):
+  // sin esto el mapa conserva el tamaño viejo y tiles/marcadores quedan desalineados.
+  useEffect(() => { mapRef.current?.invalidateSize(); }, [height]);
+
   // (Re)pinta marcadores cuando cambian los buques.
   useEffect(() => {
     const map = mapRef.current;
