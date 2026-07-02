@@ -397,7 +397,7 @@ export default function DemoMarin() {
       <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 
       {/* NAV */}
-      <div style={{background:B.navyDeep,minHeight:52,display:"flex",alignItems:"center",
+      <div style={{background:B.navyDeep,minHeight:52,display:"flex",alignItems:"center",flexWrap:"wrap",
         justifyContent:"space-between",gap:8,padding:isMobile?"8px 12px":"0 24px",flexShrink:0,
         boxShadow:"0 1px 0 rgba(7,159,230,0.15)"}}>
         <div style={{display:"flex",alignItems:"center",gap:14}}>
@@ -429,7 +429,7 @@ export default function DemoMarin() {
 
       {/* STATS */}
       <div style={{background:B.white,borderBottom:`1px solid ${B.grayLight}`,
-        padding:isMobile?"12px 12px":"14px 24px",display:"flex",
+        padding:isMobile?"12px 12px":"14px 24px",display:"flex",flexWrap:"wrap",
         flexDirection:isMobile?"column":"row",alignItems:isMobile?"stretch":"center",
         gap:isMobile?12:0,boxShadow:"0 1px 6px rgba(1,11,36,0.05)"}}>
         <div style={{display:isMobile?"grid":"flex",
