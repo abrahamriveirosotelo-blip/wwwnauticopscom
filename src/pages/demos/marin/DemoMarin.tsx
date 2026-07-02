@@ -1,6 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import data from "./data.json";
 import FleetMap from "./FleetMap";
+
+/** true cuando el viewport es de móvil (≤ bp px). Reacciona a rotaciones/resize. */
+function useIsMobile(bp = 768) {
+  const [m, setM] = useState(
+    typeof window !== "undefined" && window.matchMedia(`(max-width:${bp}px)`).matches
+  );
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width:${bp}px)`);
+    const h = e => setM(e.matches);
+    mq.addEventListener("change", h);
+    setM(mq.matches);
+    return () => mq.removeEventListener("change", h);
+  }, [bp]);
+  return m;
+}
 
 const B = {
   navyDeep:"#010B24", navy:"#0A1F3D", navyMid:"#0F3460",
@@ -79,7 +94,7 @@ function Detail({ call, onClose }) {
   const [tab, setTab] = useState("operacion");
 
   return (
-    <div style={{position:"fixed",right:0,top:0,bottom:0,width:490,
+    <div style={{position:"fixed",right:0,top:0,bottom:0,width:"min(490px, 100vw)",maxWidth:"100vw",
       background:B.white,boxShadow:`-4px 0 40px rgba(1,11,36,0.2)`,
       display:"flex",flexDirection:"column",zIndex:1001,
       fontFamily:"'Nunito',system-ui,sans-serif",overflowY:"auto"}}>
@@ -302,6 +317,8 @@ export default function DemoMarin() {
   const [filter, setFilter] = useState("Todas");
   const [selected, setSelected] = useState(null);
   const [search, setSearch] = useState("");
+  const isMobile = useIsMobile();
+  const PAD = isMobile ? "14px 12px" : "20px 24px";
 
   const counts = {
     total:    CALLS.length,
@@ -324,8 +341,8 @@ export default function DemoMarin() {
       <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 
       {/* NAV */}
-      <div style={{background:B.navyDeep,height:52,display:"flex",alignItems:"center",
-        justifyContent:"space-between",padding:"0 24px",flexShrink:0,
+      <div style={{background:B.navyDeep,minHeight:52,display:"flex",alignItems:"center",
+        justifyContent:"space-between",gap:8,padding:isMobile?"8px 12px":"0 24px",flexShrink:0,
         boxShadow:"0 1px 0 rgba(7,159,230,0.15)"}}>
         <div style={{display:"flex",alignItems:"center",gap:14}}>
           <div style={{display:"flex",alignItems:"center",gap:9}}>
@@ -356,28 +373,31 @@ export default function DemoMarin() {
 
       {/* STATS */}
       <div style={{background:B.white,borderBottom:`1px solid ${B.grayLight}`,
-        padding:"14px 24px",display:"flex",alignItems:"center",
-        boxShadow:"0 1px 6px rgba(1,11,36,0.05)"}}>
-        {[
-          {label:"ESCALAS TOTALES", value:counts.total,    color:B.navy   },
-          {label:"EN PUERTO",       value:counts.iniciado+counts.alerta, color:B.success },
-          {label:"CON ALERTA",      value:counts.alerta,   color:B.danger  },
-          {label:"PREVISTAS",       value:counts.prevista, color:B.cyan    },
-        ].map((s,i)=>(
-          <div key={s.label} style={{paddingRight:28,marginRight:28,
-            borderRight:i<3?`1px solid ${B.grayLight}`:"none"}}>
-            <div style={{fontSize:9,fontWeight:800,color:B.gray,letterSpacing:"0.08em",marginBottom:2}}>{s.label}</div>
-            <div style={{fontSize:28,fontWeight:900,color:s.color,lineHeight:1}}>{s.value}</div>
-          </div>
-        ))}
-        <div style={{marginLeft:"auto",display:"flex",gap:10,alignItems:"center"}}>
-          <div style={{position:"relative"}}>
+        padding:isMobile?"12px 12px":"14px 24px",display:"flex",
+        flexDirection:isMobile?"column":"row",alignItems:isMobile?"stretch":"center",
+        gap:isMobile?12:0,boxShadow:"0 1px 6px rgba(1,11,36,0.05)"}}>
+        <div style={{display:"flex",flexWrap:"wrap",alignItems:"center",rowGap:8}}>
+          {[
+            {label:"ESCALAS TOTALES", value:counts.total,    color:B.navy   },
+            {label:"EN PUERTO",       value:counts.iniciado+counts.alerta, color:B.success },
+            {label:"CON ALERTA",      value:counts.alerta,   color:B.danger  },
+            {label:"PREVISTAS",       value:counts.prevista, color:B.cyan    },
+          ].map((s,i)=>(
+            <div key={s.label} style={{paddingRight:isMobile?16:28,marginRight:isMobile?16:28,
+              borderRight:i<3?`1px solid ${B.grayLight}`:"none"}}>
+              <div style={{fontSize:9,fontWeight:800,color:B.gray,letterSpacing:"0.08em",marginBottom:2}}>{s.label}</div>
+              <div style={{fontSize:isMobile?24:28,fontWeight:900,color:s.color,lineHeight:1}}>{s.value}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{marginLeft:isMobile?0:"auto",display:"flex",flexWrap:"wrap",gap:8,alignItems:"center"}}>
+          <div style={{position:"relative",flex:isMobile?"1 1 100%":"none"}}>
             <span style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)",fontSize:12,color:B.gray}}>🔍</span>
             <input value={search} onChange={e=>setSearch(e.target.value)}
               placeholder="Buque, IMO, agente…"
-              style={{paddingLeft:32,paddingRight:12,paddingTop:7,paddingBottom:7,
+              style={{paddingLeft:32,paddingRight:12,paddingTop:7,paddingBottom:7,boxSizing:"border-box",
                 borderRadius:8,border:`1px solid ${B.grayLight}`,fontSize:12,
-                outline:"none",width:200,background:B.offWhite,fontFamily:"inherit",color:B.dark}}/>
+                outline:"none",width:isMobile?"100%":200,background:B.offWhite,fontFamily:"inherit",color:B.dark}}/>
           </div>
           {[{k:"Todas",l:"Todas",n:counts.total},
             {k:"Iniciado",l:"En puerto",n:counts.iniciado+counts.alerta},
@@ -387,6 +407,7 @@ export default function DemoMarin() {
             <button key={f.k} onClick={()=>setFilter(f.k)} style={{
               padding:"6px 14px",borderRadius:8,border:"none",cursor:"pointer",
               fontSize:11,fontWeight:800,fontFamily:"inherit",letterSpacing:"0.02em",
+              flex:isMobile?"1 1 auto":"none",whiteSpace:"nowrap",
               background:filter===f.k?(f.k==="Alerta"?B.danger:B.navy):B.offWhite,
               color:filter===f.k?B.white:B.gray}}>
               {f.l} <span style={{opacity:0.6,fontWeight:600}}>({f.n})</span>
@@ -396,7 +417,7 @@ export default function DemoMarin() {
       </div>
 
       {/* MAIN */}
-      <div style={{padding:"20px 24px"}}>
+      <div style={{padding:PAD}}>
         {/* Alert banner */}
         {counts.alerta>0&&(()=>{
           const alertCall = CALLS.find(c=>c.status==="Alerta");
@@ -425,14 +446,16 @@ export default function DemoMarin() {
 
         {/* Mapa global de la flota: posición AIS en vivo (aisstream).
             Clic en un buque → abre su escala (mismo drawer que la tabla). */}
-        <FleetMap calls={CALLS} fmt={fmt} onSelect={setSelected}/>
+        <FleetMap calls={CALLS} fmt={fmt} onSelect={setSelected} height={isMobile?300:440}/>
 
         <div style={{background:B.white,borderRadius:12,border:`1px solid ${B.grayLight}`,
           overflow:"hidden",boxShadow:"0 1px 6px rgba(1,11,36,0.06)"}}>
+          <div style={{overflowX:"auto",WebkitOverflowScrolling:"touch"}}>
           <table style={{width:"100%",borderCollapse:"collapse"}}>
             <thead>
               <tr style={{background:B.navyDeep}}>
-                {["ESCALA","ESTADO","BUQUE","GT","MUELLE","OPERACIÓN","ETA","ETD","AGENTE"].map(h=>(
+                {["ESCALA","ESTADO","BUQUE","GT","MUELLE","OPERACIÓN","ETA","ETD","AGENTE"]
+                  .filter(h=>!isMobile||["ESTADO","BUQUE","MUELLE"].includes(h)).map(h=>(
                   <th key={h} style={{padding:"11px 14px",textAlign:"left",fontSize:9,fontWeight:800,
                     color:"rgba(255,255,255,0.45)",letterSpacing:"0.08em",whiteSpace:"nowrap"}}>{h}</th>
                 ))}
@@ -456,7 +479,7 @@ export default function DemoMarin() {
                       borderLeft:isAl?`3px solid ${B.danger}`:isAffected?`3px solid ${B.warning}`:"3px solid transparent"}}
                     onMouseEnter={e=>{if(!isSel)e.currentTarget.style.background=B.cyanPale}}
                     onMouseLeave={e=>{if(!isSel)e.currentTarget.style.background=isAl?"#FFF1F1":isAffected?"#FFFBEB":i%2===0?B.white:B.offWhite}}>
-                    <td style={{padding:"11px 14px",fontSize:11,fontFamily:"'Courier New',monospace",color:B.gray,fontWeight:600}}>{c.id}</td>
+                    {!isMobile && <td style={{padding:"11px 14px",fontSize:11,fontFamily:"'Courier New',monospace",color:B.gray,fontWeight:600}}>{c.id}</td>}
                     <td style={{padding:"11px 14px"}}><Badge status={c.status}/></td>
                     <td style={{padding:"11px 14px"}}>
                       <div style={{fontWeight:800,fontSize:13,color:isAl?B.danger:B.navy}}>{c.name}{c.aisStatus && (() => {
@@ -475,24 +498,25 @@ export default function DemoMarin() {
                         )}
                       </div>
                     </td>
-                    <td style={{padding:"11px 14px",fontSize:12,color:B.gray,fontWeight:600}}>{c.gt ? c.gt.toLocaleString() : '—'}</td>
+                    {!isMobile && <td style={{padding:"11px 14px",fontSize:12,color:B.gray,fontWeight:600}}>{c.gt ? c.gt.toLocaleString() : '—'}</td>}
                     <td style={{padding:"11px 14px"}}>
                       <span style={{padding:"4px 10px",borderRadius:6,
                         background:isAffected?(isSel?B.white:"#FEF3C7"):isSel?B.white:B.grayLight,
                         fontSize:12,fontWeight:800,
                         color:isAffected?B.warning:B.navy}}>{c.berth}</span>
                     </td>
-                    <td style={{padding:"11px 14px"}}><OpTag op={c.op}/></td>
-                    <td style={{padding:"11px 14px",fontSize:11,color:B.gray,whiteSpace:"nowrap"}}>{fmt(c.eta)}</td>
-                    <td style={{padding:"11px 14px",fontSize:11,color:B.gray,whiteSpace:"nowrap"}}>{fmt(c.etd)}</td>
-                    <td style={{padding:"11px 14px",fontSize:10,color:B.gray,maxWidth:160}}>
+                    {!isMobile && <td style={{padding:"11px 14px"}}><OpTag op={c.op}/></td>}
+                    {!isMobile && <td style={{padding:"11px 14px",fontSize:11,color:B.gray,whiteSpace:"nowrap"}}>{fmt(c.eta)}</td>}
+                    {!isMobile && <td style={{padding:"11px 14px",fontSize:11,color:B.gray,whiteSpace:"nowrap"}}>{fmt(c.etd)}</td>}
+                    {!isMobile && <td style={{padding:"11px 14px",fontSize:10,color:B.gray,maxWidth:160}}>
                       <div style={{overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{c.agent}</div>
-                    </td>
+                    </td>}
                   </tr>
                 );
               })}
             </tbody>
           </table>
+          </div>
           {filtered.length===0&&(
             <div style={{padding:48,textAlign:"center",color:B.gray}}>
               <div style={{fontSize:28,marginBottom:8}}>🔍</div>
@@ -502,7 +526,7 @@ export default function DemoMarin() {
         </div>
 
         {/* Footer */}
-        <div style={{marginTop:12,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+        <div style={{marginTop:12,display:"flex",flexWrap:"wrap",gap:8,justifyContent:"space-between",alignItems:"center"}}>
           <div style={{display:"flex",alignItems:"center",gap:10}}>
             <Logo size={22}/>
             <span style={{fontSize:9,color:B.gray,fontWeight:700,letterSpacing:"0.03em"}}>×</span>

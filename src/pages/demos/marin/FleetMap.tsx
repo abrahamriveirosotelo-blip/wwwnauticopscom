@@ -47,7 +47,7 @@ const marinIcon = L.divIcon({
   className: "", iconSize: [26, 26], iconAnchor: [13, 13],
 });
 
-export default function FleetMap({ calls, fmt, onSelect }) {
+export default function FleetMap({ calls, fmt, onSelect, height = 440 }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
   // Tarjeta de hover: { x, y, vessel? , marin? } en píxeles del contenedor del mapa.
@@ -131,7 +131,7 @@ export default function FleetMap({ calls, fmt, onSelect }) {
             quedan CONTENIDOS aquí y no tapan la tarjeta de hover ni la nota (que son
             hermanas de este div, con z-index por encima). */}
         <div style={{ isolation: "isolate", borderRadius: 12, overflow: "hidden", border: `1px solid ${C.gray}22` }}>
-          <div ref={containerRef} style={{ height: 440, width: "100%" }} />
+          <div ref={containerRef} style={{ height, width: "100%" }} />
         </div>
 
         {hover && (
