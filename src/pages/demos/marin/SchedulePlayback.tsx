@@ -43,7 +43,9 @@ function sunAltitude(dateMs, lat, lon) {
   const e = RAD * 23.4397;                                                  // oblicuidad
   const dec = Math.asin(Math.sin(e) * Math.sin(L));                         // declinación
   const ra = Math.atan2(Math.sin(L) * Math.cos(e), Math.cos(L));            // ascensión recta
-  const H = RAD * (280.16 + 360.9856235 * d) + RAD * lon - ra;              // ángulo horario
+  // ángulo horario. En SunCalc: siderealTime(d) − lw − ra con lw = RAD·(−lon); como −lw = +RAD·lon,
+  // queda "+ RAD * lon" (equivalente y sin doble negación).
+  const H = RAD * (280.16 + 360.9856235 * d) + RAD * lon - ra;
   const phi = RAD * lat;
   return Math.asin(Math.sin(phi) * Math.sin(dec) + Math.cos(phi) * Math.cos(dec) * Math.cos(H));
 }
@@ -159,10 +161,11 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
     // oscura va encima con opacidad = oscuridad del cielo → crossfade en amanecer/atardecer.
     const cartoAttr = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
     L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png", { attribution: cartoAttr, subdomains: "abcd" }).addTo(map);
-    // Opacidad inicial ya según la oscuridad del instante actual (darknessRef, fijado en el
-    // render previo): así, si la sim arranca de noche y en pausa, el mapa ya sale oscuro sin
-    // depender de que el efecto de sincronía se dispare después.
-    darkLayerRef.current = L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png", { attribution: cartoAttr, subdomains: "abcd", opacity: darknessRef.current }).addTo(map);
+    // La capa oscura se crea con la opacidad del instante actual (darknessRef, fijado en el
+    // render previo) pero SOLO se añade al mapa si arranca de noche → así, empezando de noche
+    // sale oscuro sin depender del efecto, y empezando de día no descarga tiles dark_all.
+    darkLayerRef.current = L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png", { attribution: cartoAttr, subdomains: "abcd", opacity: darknessRef.current });
+    if (darknessRef.current > 0) darkLayerRef.current.addTo(map);
     // Encuadre centrado EN Marín: caja simétrica (aproximación al O + su reflejo al E) →
     // el puerto queda en el centro y el corredor de entrada/salida se ve a la izquierda.
     const mirror = [2 * MARIN.lat - APPROACH.lat, 2 * MARIN.lon - APPROACH.lon];
@@ -237,9 +240,21 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
   // Día/noche: la opacidad de la capa oscura sigue la oscuridad del cielo en Marín para el
   // instante virtual. El efecto solo se dispara cuando `darkness` cambia (constante de día/noche
   // plenos → sin trabajo; suave en el crepúsculo). Redondeo para no re-pintar cada frame.
-  const darkness = Math.round(nightFactor(t) * 100) / 100;
+  // Cuantizo el instante del sol a 5 min y memoizo: el sol se mueve despacio, así que evita
+  // recalcular las trigonométricas de nightFactor en cada frame de la reproducción (y con la
+  // pausa, en cada render), sin perder la suavidad del crepúsculo.
+  const sunT = Math.round(t / 300000) * 300000;
+  const darkness = useMemo(() => Math.round(nightFactor(sunT) * 100) / 100, [sunT]);
   darknessRef.current = darkness; // para que el init de la capa oscura use la opacidad correcta
-  useEffect(() => { darkLayerRef.current?.setOpacity(darkness); }, [darkness]);
+  // Solo mantiene la capa oscura montada cuando hace falta (darkness > 0): de día NO se
+  // descargan tiles dark_all (ahorra tráfico/latencia, sobre todo en móvil). El primer
+  // atardecer la añade y sincroniza su opacidad; al volver el día pleno se retira.
+  useEffect(() => {
+    const map = mapRef.current, layer = darkLayerRef.current;
+    if (!map || !layer) return;
+    if (darkness > 0) { if (!map.hasLayer(layer)) layer.addTo(map); layer.setOpacity(darkness); }
+    else if (map.hasLayer(layer)) map.removeLayer(layer);
+  }, [darkness]);
   const isNight = darkness >= 0.5;
 
   // Seek al pinchar/arrastrar en la barra. Uso una bandera de arrastre (no `e.buttons`),
