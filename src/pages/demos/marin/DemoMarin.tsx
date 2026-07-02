@@ -496,13 +496,19 @@ const fmtDayLabel = ms => new Date(ms).toLocaleDateString("es-ES",{weekday:"shor
 /** Ocupación del día [dayStart, +24h): buques con estancia CONFIRMADA (ETA y ETD conocidos)
  *  que solapan el día. Sobre TODAS las escalas (estado real del puerto, ajeno al filtro).
  *  Las Previstas sin ETD no cuentan aquí (no hay salida programada): aparecen como evento ▼. */
+const _occByDay = new Map(); // memo: la ocupación de un día es estable (CALLS es constante) →
+                             // evita re-filtrar CALLS en cada render (p. ej. al abrir el drawer).
 const occupancyOnDay = dayStartMs => {
+  const cached = _occByDay.get(dayStartMs);
+  if (cached !== undefined) return cached;
   const d = new Date(dayStartMs);
   // Fin de día = inicio del día siguiente en HORA LOCAL (robusto a DST: los días de
   // cambio de hora duran 23/25 h, así que sumar 24h en ms desalinearía el solape).
   const dayEnd = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1).getTime();
-  return CALLS.filter(c => c.eta && c.etd &&
+  const n = CALLS.filter(c => c.eta && c.etd &&
     new Date(c.eta).getTime() < dayEnd && new Date(c.etd).getTime() > dayStartMs).length;
+  _occByDay.set(dayStartMs, n);
+  return n;
 };
 /** Pico de ocupación del puerto en el horizonte de la cronología (de la fecha de referencia
  *  al último evento). Referencia FIJA del medidor: la escala de la barra y el "pico" se
