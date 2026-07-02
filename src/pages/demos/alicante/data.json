@@ -7,21 +7,6 @@
   },
   "calls": [
     {
-      "id": "A202600474",
-      "status": "Iniciado",
-      "imo": "8911841",
-      "name": "MALTA CEMENT",
-      "gt": 2429,
-      "len": 88,
-      "berth": "19",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "C/ CEMENTO INST. ESP.",
-      "eta": "2026-07-01T09:00",
-      "etd": "2026-07-02T14:00",
-      "from": "ALMERIA",
-      "to": "MAHON"
-    },
-    {
       "id": "A202600459",
       "status": "Alerta",
       "imo": "9322578",
@@ -37,21 +22,6 @@
       "to": "LAS PALMAS",
       "delay": "+4h 30min",
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
-    },
-    {
-      "id": "A202600446",
-      "status": "Iniciado",
-      "imo": "9398773",
-      "name": "ELBWINTER",
-      "gt": 10585,
-      "len": 151,
-      "berth": "23",
-      "agent": "MAGHREB CONTAINER INTERNATIONAL SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-02T08:00",
-      "etd": "2026-07-02T14:00",
-      "from": "CASTELLON",
-      "to": "ALMERIA"
     },
     {
       "id": "A202600476",
