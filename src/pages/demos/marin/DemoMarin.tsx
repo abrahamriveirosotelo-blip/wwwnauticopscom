@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import data from "./data.json";
 import FleetMap from "./FleetMap";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -18,6 +18,12 @@ const LOGO_NO  = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5
 
 const CALLS     = data.calls;
 const META      = data.meta;
+
+/** "Rumbo a Marín": estado derivado del AIS (destino Marín y aún sin llegar). */
+const isBoundToMarin = c => c.aisAtMarin && !c.aisArrivedMarin;
+/** Frescura AIS: instante de la posición más reciente del conjunto ("hora del snapshot").
+ *  El mapa descarta posiciones > 1 h más viejas que esta (ver FleetMap). */
+const aisRef = Math.max(0, ...CALLS.map(c => (c.aisPosAt ? new Date(c.aisPosAt).getTime() : NaN)).filter(t => !Number.isNaN(t)));
 
 function fmt(iso) {
   if (!iso) return "—";
@@ -432,16 +438,20 @@ export default function DemoMarin() {
     iniciado: CALLS.filter(c=>c.status==="Iniciado").length,
     prevista: CALLS.filter(c=>c.status==="Prevista").length,
     alerta:   CALLS.filter(c=>c.status==="Alerta").length,
+    rumbo:    CALLS.filter(isBoundToMarin).length,
   };
 
-  const filtered = CALLS.filter(c=>{
+  // Memoizados: filtered se pasa al mapa; si cambiara de referencia en cada render (p. ej.
+  // al abrir el drawer) el mapa re-encuadraría y perdería el pan/zoom del usuario.
+  const filtered = useMemo(() => CALLS.filter(c=>{
     const q=search.toLowerCase();
     const ms=!search||c.name.toLowerCase().includes(q)||c.imo.includes(q)||
       c.id.toLowerCase().includes(q)||c.agent.toLowerCase().includes(q);
     const mf=filter==="Todas"||(filter==="Iniciado"&&(c.status==="Iniciado"||c.status==="Alerta"))||
+      (filter==="Rumbo"&&isBoundToMarin(c))||
       (filter==="Alerta"&&c.status==="Alerta")||(filter==="Prevista"&&c.status==="Prevista");
     return ms&&mf;
-  });
+  }), [filter, search]);
 
   return (
     <div style={{fontFamily:"'Nunito',system-ui,sans-serif",background:B.offWhite,minHeight:"100vh",color:B.dark}}>
@@ -513,8 +523,9 @@ export default function DemoMarin() {
           </div>
           {[{k:"Todas",l:"Todas",n:counts.total},
             {k:"Iniciado",l:"En puerto",n:counts.iniciado+counts.alerta},
-            {k:"Alerta",l:"⚠ Alertas",n:counts.alerta},
-            {k:"Prevista",l:"Previstas",n:counts.prevista}
+            {k:"Rumbo",l:"▸ Rumbo a Marín",n:counts.rumbo},
+            {k:"Prevista",l:"Previstas",n:counts.prevista},
+            {k:"Alerta",l:"⚠ Alertas",n:counts.alerta}
           ].map(f=>(
             <button key={f.k} onClick={()=>setFilter(f.k)} style={{
               padding:"6px 14px",borderRadius:8,border:"none",cursor:"pointer",
@@ -558,7 +569,7 @@ export default function DemoMarin() {
 
         {/* Mapa global de la flota: posición AIS en vivo (aisstream).
             Clic en un buque → abre su escala (mismo drawer que las tarjetas). */}
-        <FleetMap calls={CALLS} fmt={fmt} onSelect={setSelected} height={isMobile?300:440}/>
+        <FleetMap calls={filtered} fmt={fmt} onSelect={setSelected} height={isMobile?300:440} aisRef={aisRef}/>
 
         {/* Escalas en tarjetas (móvil y escritorio): 1 columna en móvil, varias en pantallas anchas */}
         <div style={{display:"grid",gap:12,
