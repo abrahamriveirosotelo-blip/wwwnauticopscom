@@ -19,8 +19,9 @@ const LOGO_NO  = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5
 const CALLS     = data.calls;
 const META      = data.meta;
 
-/** "Rumbo a Marín": estado derivado del AIS (destino Marín y aún sin llegar). */
-const isBoundToMarin = c => c.aisAtMarin && !c.aisArrivedMarin;
+/** "Rumbo a Marín": escala Prevista cuyo AIS tiene destino Marín y aún no ha llegado.
+ *  Definición ÚNICA usada por el contador, el filtro y el chip de la tarjeta. */
+const isBoundToMarin = c => c.status === "Prevista" && c.aisAtMarin && !c.aisArrivedMarin;
 /** Frescura AIS: instante de la posición más reciente del conjunto ("hora del snapshot").
  *  El mapa descarta posiciones > 1 h más viejas que esta (ver FleetMap). */
 const aisRef = Math.max(0, ...CALLS.map(c => (c.aisPosAt ? new Date(c.aisPosAt).getTime() : NaN)).filter(t => !Number.isNaN(t)));
@@ -407,7 +408,7 @@ function CallCard({ call: c, isSel, onSelect }) {
                    : c.affectRisk === "MEDIO" ? { label:"Impacto MEDIO", color:"#D97706", bg:"#FEF3C7" }
                    : null;
   const arrived = c.status === "Prevista" && c.aisArrivedMarin;
-  const bound   = c.status === "Prevista" && c.aisAtMarin && !c.aisArrivedMarin;
+  const bound   = isBoundToMarin(c);
   const etaDelta = etaDiscrepancy(c);
   const departed = departedPerAis(c);
   const open = () => onSelect(isSel?null:c);
