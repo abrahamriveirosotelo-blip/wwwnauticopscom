@@ -2,7 +2,7 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "01/07/2026",
+    "date": "02/07/2026",
     "refreshHours": 2
   },
   "calls": [
@@ -22,21 +22,6 @@
       "to": "MAHON",
       "delay": "+4h 30min",
       "alertNote": "Incidencia en carga. El buque no liberará el Muelle 19 según lo previsto."
-    },
-    {
-      "id": "A202600463",
-      "status": "Iniciado",
-      "imo": "9083043",
-      "name": "NANTO",
-      "gt": 7550,
-      "len": 151.14,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-01T10:00",
-      "etd": "2026-07-01T21:00",
-      "from": "DERINCE",
-      "to": "BARCELONA"
     },
     {
       "id": "A202600459",
@@ -98,7 +83,7 @@
       "eta": "2026-07-03T01:00",
       "etd": "2026-07-03T15:00",
       "from": "TENERIFE",
-      "to": "DERINCE"
+      "to": "HUELVA"
     },
     {
       "id": "A202600465",
@@ -113,7 +98,7 @@
       "eta": "2026-07-04T07:00",
       "etd": "2026-07-04T15:00",
       "from": "BARCELONA",
-      "to": "PALMA"
+      "to": "ALMERIA"
     },
     {
       "id": "A202600466",
@@ -128,7 +113,7 @@
       "eta": "2026-07-05T07:00",
       "etd": "2026-07-05T21:00",
       "from": "ARRECIFE",
-      "to": "HUELVA"
+      "to": "BARCELONA"
     },
     {
       "id": "A202600460",
@@ -143,7 +128,7 @@
       "eta": "2026-07-05T12:00",
       "etd": "2026-07-07T22:00",
       "from": "PORTO VESME",
-      "to": "TENERIFE"
+      "to": "ALMERIA"
     },
     {
       "id": "A202600473",
@@ -158,7 +143,7 @@
       "eta": "2026-07-06T06:00",
       "etd": "2026-07-07T14:00",
       "from": "HOLMSUND",
-      "to": "ALMERIA"
+      "to": "GANDIA"
     },
     {
       "id": "A202600469",
@@ -173,7 +158,37 @@
       "eta": "2026-07-06T08:00",
       "etd": "2026-07-06T20:00",
       "from": "ALGECIRAS",
-      "to": "ALGER"
+      "to": "DERINCE"
+    },
+    {
+      "id": "A202600467",
+      "status": "Prevista",
+      "imo": "9312200",
+      "name": "ENDURANCE",
+      "gt": 7642,
+      "len": 134.58,
+      "berth": "11",
+      "agent": "EUROPEAN FORWARDING SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-07-08T07:00",
+      "etd": "2026-07-08T21:00",
+      "from": "DERINCE",
+      "to": "BARCELONA"
+    },
+    {
+      "id": "A202600478",
+      "status": "Prevista",
+      "imo": "9483683",
+      "name": "NIEVES B",
+      "gt": 10318,
+      "len": 151.72,
+      "berth": "23",
+      "agent": "MILLER Y COMPAÑIA S.A",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-07-08T08:00",
+      "etd": "2026-07-08T12:00",
+      "from": "STA. CRUZ",
+      "to": "LAS PALMAS"
     }
   ],
   "tugService": {
