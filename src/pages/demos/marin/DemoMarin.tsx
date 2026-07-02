@@ -376,17 +376,20 @@ export default function DemoMarin() {
         padding:isMobile?"12px 12px":"14px 24px",display:"flex",
         flexDirection:isMobile?"column":"row",alignItems:isMobile?"stretch":"center",
         gap:isMobile?12:0,boxShadow:"0 1px 6px rgba(1,11,36,0.05)"}}>
-        <div style={{display:"flex",flexWrap:"wrap",alignItems:"center",rowGap:8}}>
+        <div style={{display:isMobile?"grid":"flex",
+          gridTemplateColumns:isMobile?"1fr 1fr":undefined,gap:isMobile?8:0,
+          flexWrap:"wrap",alignItems:"center"}}>
           {[
             {label:"ESCALAS TOTALES", value:counts.total,    color:B.navy   },
             {label:"EN PUERTO",       value:counts.iniciado+counts.alerta, color:B.success },
             {label:"CON ALERTA",      value:counts.alerta,   color:B.danger  },
             {label:"PREVISTAS",       value:counts.prevista, color:B.cyan    },
           ].map((s,i)=>(
-            <div key={s.label} style={{paddingRight:isMobile?16:28,marginRight:isMobile?16:28,
-              borderRight:i<3?`1px solid ${B.grayLight}`:"none"}}>
+            <div key={s.label} style={isMobile
+              ? {background:B.offWhite,border:`1px solid ${B.grayLight}`,borderRadius:10,padding:"9px 12px"}
+              : {paddingRight:28,marginRight:28,borderRight:i<3?`1px solid ${B.grayLight}`:"none"}}>
               <div style={{fontSize:9,fontWeight:800,color:B.gray,letterSpacing:"0.08em",marginBottom:2}}>{s.label}</div>
-              <div style={{fontSize:isMobile?24:28,fontWeight:900,color:s.color,lineHeight:1}}>{s.value}</div>
+              <div style={{fontSize:isMobile?22:28,fontWeight:900,color:s.color,lineHeight:1}}>{s.value}</div>
             </div>
           ))}
         </div>
