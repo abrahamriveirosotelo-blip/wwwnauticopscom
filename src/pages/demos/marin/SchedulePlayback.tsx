@@ -63,7 +63,10 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
   const { tStart, tEnd, ships, dayTicks } = useMemo(() => {
     const withT = calls.filter(c => c.eta || c.etd).map(c => ({
       call: c,
-      arr: c.eta ? new Date(c.eta).getTime() : (c.etd ? new Date(c.etd).getTime() : null),
+      // Sin ETA (p. ej. escalas "en puerto" en arranque en frío, con eta:'') NO se anima la
+      // entrada: arr = null → ya atracada desde el inicio del horizonte; solo se anima su
+      // salida en el ETD. Usar el ETD como llegada haría que "entre" justo antes de zarpar.
+      arr: c.eta ? new Date(c.eta).getTime() : null,
       dep: c.etd ? new Date(c.etd).getTime() : null,
     }));
     const times = [];
@@ -202,18 +205,33 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
     const r = el.getBoundingClientRect();
     setT(tStart + Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)) * span);
   };
+  // Seek por teclado (patrón APG slider): flechas ±1 h, Re/Av Pág ±1 día, Inicio/Fin extremos.
+  const HOUR = 60 * 60 * 1000;
+  const onSliderKey = e => {
+    let next;
+    if (e.key === "ArrowLeft" || e.key === "ArrowDown") next = t - HOUR;
+    else if (e.key === "ArrowRight" || e.key === "ArrowUp") next = t + HOUR;
+    else if (e.key === "PageDown") next = t - 24 * HOUR;
+    else if (e.key === "PageUp") next = t + 24 * HOUR;
+    else if (e.key === "Home") next = tStart;
+    else if (e.key === "End") next = tEnd;
+    else return;
+    e.preventDefault();
+    setT(Math.min(tEnd, Math.max(tStart, next)));
+  };
 
   if (!ships.length) {
     return (
       <div style={{ marginBottom: 16, padding: 40, textAlign: "center", color: C.gray, background: C.white,
         borderRadius: 12, border: `1px solid ${C.grayLight}` }}>
-        Sin escalas con ETA/ETD que simular con el filtro actual.
+        Sin escalas con ETA o ETD que simular con el filtro actual.
       </div>
     );
   }
 
   return (
     <div style={{ marginBottom: 16 }}>
+      <style>{`.marin-slider:focus-visible{outline:3px solid ${C.cyan};outline-offset:3px;border-radius:4px}`}</style>
       <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 8, flexWrap: "wrap" }}>
         <div style={{ fontSize: 13, fontWeight: 800, color: C.navy, letterSpacing: "0.02em" }}>SIMULACIÓN DE PLANIFICACIÓN</div>
         <div style={{ fontSize: 11, color: C.gray }}>entrada / salida según ETA · ETD · movimiento esquemático</div>
@@ -230,7 +248,12 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
             background: C.navy, color: C.white, fontSize: 14, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "inherit" }}>
           {playing ? "⏸" : "▶"}
         </button>
-        <div ref={trackRef}
+        <div ref={trackRef} className="marin-slider"
+          role="slider" tabIndex={0}
+          aria-label="Línea de tiempo de la simulación"
+          aria-valuemin={Math.round(tStart)} aria-valuemax={Math.round(tEnd)}
+          aria-valuenow={Math.round(t)} aria-valuetext={fmtClock(t)}
+          onKeyDown={onSliderKey}
           onPointerDown={e => { e.currentTarget.setPointerCapture(e.pointerId); draggingRef.current = true; seekFromEvent(e); }}
           onPointerMove={e => { if (draggingRef.current) seekFromEvent(e); }}
           onPointerUp={() => { draggingRef.current = false; }}
