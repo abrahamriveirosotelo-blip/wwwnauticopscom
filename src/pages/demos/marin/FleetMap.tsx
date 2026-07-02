@@ -14,7 +14,7 @@ import "leaflet/dist/leaflet.css";
 // Puerto de Marín (Ría de Pontevedra).
 const MARIN = { lat: 42.4053, lon: -8.7020, label: "Puerto de Marín" };
 const AIS_FRESH_MS = 60 * 60 * 1000; // 1 h: descarta posiciones AIS más viejas
-const BERTH_RADIUS = 0.005;          // ~500 m: anillo de atracados alrededor del puerto
+const BERTH_RADIUS = 0.005;          // 0.005° ≈ 550 m: anillo de atracados alrededor del puerto
 const CLUSTER_MIN_ZOOM = 13;         // a partir de este zoom los atracados se ven separados
 
 const C = {
@@ -109,6 +109,7 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
     map.on("movestart", () => setHover(null));
+    map.on("zoomstart", () => setHover(null)); // el hover en píxeles deja de ser válido al hacer zoom
     map.on("zoomend", () => setZoom(map.getZoom()));
     mapRef.current = map;
     setZoom(map.getZoom());
@@ -218,9 +219,9 @@ export default function FleetMap({ calls, fmt, onSelect, height = 440, aisRef = 
                 <div style={{ fontWeight: 800, color: C.navy, fontSize: 12 }}>{c.name}</div>
                 {it.kind === "berth" ? (
                   <>
-                    <div style={{ fontSize: 11, color: C.success, fontWeight: 700, marginTop: 2 }}>Atracado en Marín</div>
+                    <div style={{ fontSize: 11, color: C.success, fontWeight: 700, marginTop: 2 }}>En puerto (Marín)</div>
                     {c.berth && c.berth !== "—" && <div style={{ fontSize: 10, color: C.gray }}>Muelle {c.berth}</div>}
-                    <div style={{ fontSize: 10, color: C.gray, marginTop: 2 }}>ubicación por dato AP (sin AIS reciente)</div>
+                    <div style={{ fontSize: 10, color: C.gray, marginTop: 2 }}>posición según la AP (muelle)</div>
                   </>
                 ) : (
                   <>
