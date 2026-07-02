@@ -43,7 +43,7 @@ function sunAltitude(dateMs, lat, lon) {
   const e = RAD * 23.4397;                                                  // oblicuidad
   const dec = Math.asin(Math.sin(e) * Math.sin(L));                         // declinación
   const ra = Math.atan2(Math.sin(L) * Math.cos(e), Math.cos(L));            // ascensión recta
-  const H = RAD * (280.16 + 360.9856235 * d) - RAD * -lon - ra;             // ángulo horario
+  const H = RAD * (280.16 + 360.9856235 * d) + RAD * lon - ra;              // ángulo horario
   const phi = RAD * lat;
   return Math.asin(Math.sin(phi) * Math.sin(dec) + Math.cos(phi) * Math.cos(dec) * Math.cos(H));
 }
@@ -89,6 +89,7 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
   const mapRef = useRef(null);
   const layerRef = useRef(null);
   const darkLayerRef = useRef(null); // capa de tiles oscura (opacidad = oscuridad del cielo)
+  const darknessRef = useRef(0);     // última oscuridad calculada, para fijar la opacidad inicial
   const markersRef = useRef(new Map()); // id -> { marker, phaseKey }
   const [playing, setPlaying] = useState(false);
 
@@ -158,7 +159,10 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
     // oscura va encima con opacidad = oscuridad del cielo → crossfade en amanecer/atardecer.
     const cartoAttr = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
     L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png", { attribution: cartoAttr, subdomains: "abcd" }).addTo(map);
-    darkLayerRef.current = L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png", { attribution: cartoAttr, subdomains: "abcd", opacity: 0 }).addTo(map);
+    // Opacidad inicial ya según la oscuridad del instante actual (darknessRef, fijado en el
+    // render previo): así, si la sim arranca de noche y en pausa, el mapa ya sale oscuro sin
+    // depender de que el efecto de sincronía se dispare después.
+    darkLayerRef.current = L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png", { attribution: cartoAttr, subdomains: "abcd", opacity: darknessRef.current }).addTo(map);
     // Encuadre centrado EN Marín: caja simétrica (aproximación al O + su reflejo al E) →
     // el puerto queda en el centro y el corredor de entrada/salida se ve a la izquierda.
     const mirror = [2 * MARIN.lat - APPROACH.lat, 2 * MARIN.lon - APPROACH.lon];
@@ -234,6 +238,7 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
   // instante virtual. El efecto solo se dispara cuando `darkness` cambia (constante de día/noche
   // plenos → sin trabajo; suave en el crepúsculo). Redondeo para no re-pintar cada frame.
   const darkness = Math.round(nightFactor(t) * 100) / 100;
+  darknessRef.current = darkness; // para que el init de la capa oscura use la opacidad correcta
   useEffect(() => { darkLayerRef.current?.setOpacity(darkness); }, [darkness]);
   const isNight = darkness >= 0.5;
 
