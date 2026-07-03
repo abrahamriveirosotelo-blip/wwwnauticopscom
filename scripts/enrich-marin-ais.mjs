@@ -212,15 +212,24 @@ async function main() {
 
   // Aplica las posiciones captadas y (salvo dry-run) escribe data.json. Se usa tanto
   // en los volcados progresivos como en el resumen final.
+  //
+  // En runs largos (ventanas de una hora, volcando cada N s) el data.json puede cambiar en
+  // disco DURANTE la ventana: el cron / otros pasos (update-marin, enrich-marin-meteo) o una
+  // edición manual pueden actualizar meta (avisos, frescura), escalas nuevas, etc. Este
+  // proceso solo es dueño de las POSICIONES en calls[], así que en cada volcado parte del
+  // data.json ACTUAL en disco (no del snapshot de arranque) y le re-aplica las posiciones
+  // acumuladas. Así no pisa esos cambios externos. Si la relectura falla, cae al snapshot.
   const write = (pos, label) => {
     const scrapedAt = toSpainIso(new Date());
+    let disk = data;
+    if (!isDryRun) { try { disk = JSON.parse(readFileSync(DATA_PATH, 'utf-8')); } catch { disk = data; } }
     let located = 0;
-    for (const call of data.calls) {
+    for (const call of disk.calls) {
       const p = call.mmsi ? pos.get(String(call.mmsi)) : null;
       if (p) { applyPosition(call, p, scrapedAt); located++; }
     }
-    if (!isDryRun) writeFileSync(DATA_PATH, JSON.stringify(data, null, 2) + '\n', 'utf-8');
-    console.log(`${label}: ${located}/${data.calls.length} escalas con posición · ${pos.size}/${queried.length} MMSI · ${scrapedAt}${isDryRun ? ' · DRY RUN (no escrito)' : ' · data.json escrito'}`);
+    if (!isDryRun) writeFileSync(DATA_PATH, JSON.stringify(disk, null, 2) + '\n', 'utf-8');
+    console.log(`${label}: ${located}/${disk.calls.length} escalas con posición · ${pos.size}/${queried.length} MMSI · ${scrapedAt}${isDryRun ? ' · DRY RUN (no escrito)' : ' · data.json escrito'}`);
   };
 
   const positions = await collectPositions(WS, key, queried, seconds, {
