@@ -34,6 +34,20 @@ const avisosOnDay = dayStartMs => {
   const dayEnd = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1).getTime();
   return AVISOS.filter(a => new Date(a.desde).getTime() < dayEnd && new Date(a.hasta).getTime() > dayStartMs);
 };
+/** Avisos AEMET que solapan la estancia/operación de una escala: su ventana [desde,hasta]
+ *  cruza el intervalo [eta, etd] de la escala (o el único instante conocido si solo trae uno).
+ *  Con esto una tarjeta puede avisar de que el buque opera bajo un aviso de costa. */
+const avisosForCall = c => {
+  const ts = [c.eta, c.etd].filter(Boolean).map(x => new Date(x).getTime()).filter(Number.isFinite);
+  if (!ts.length || !AVISOS.length) return [];
+  const s = Math.min(...ts), e = Math.max(...ts);
+  return AVISOS.filter(a => new Date(a.desde).getTime() <= e && new Date(a.hasta).getTime() >= s);
+};
+/** Aviso más severo de una lista (rojo > naranja > amarillo); null si la lista está vacía. */
+const NIVEL_RANK = { amarillo: 1, naranja: 2, rojo: 3 };
+const worstAviso = list => list && list.length
+  ? list.reduce((a, b) => ((NIVEL_RANK[b.nivel] || 0) > (NIVEL_RANK[a.nivel] || 0) ? b : a))
+  : null;
 
 /** "Rumbo a Marín": escala Prevista cuyo AIS tiene destino Marín y aún no ha llegado.
  *  Definición ÚNICA usada por el contador, el filtro y el chip de la tarjeta. */
@@ -439,6 +453,7 @@ function CallCard({ call: c, isSel, onSelect }) {
   const bound   = isBoundToMarin(c);
   const etaDelta = etaDiscrepancy(c);
   const departed = departedPerAis(c);
+  const weatherAviso = worstAviso(avisosForCall(c));
   const open = () => onSelect(isSel?null:c);
   return (
     <div onClick={open} role="button" tabIndex={0} className="marin-card"
@@ -450,9 +465,9 @@ function CallCard({ call: c, isSel, onSelect }) {
       }}
       onKeyUp={e=>{ if(e.code==="Space"){ e.preventDefault(); open(); } }}
       style={{
-        background:isSel?B.cyanPale:isAl?"#FFF1F1":isAffected?"#FFFBEB":B.white,
+        background:isSel?B.cyanPale:isAl?"#FFF1F1":isAffected?"#FFFBEB":weatherAviso?`${nivelColor(weatherAviso.nivel)}1A`:B.white,
         border:`1px solid ${isSel?B.cyan:B.grayLight}`,
-        borderLeft:isAl?`3px solid ${B.danger}`:isAffected?`3px solid ${B.warning}`:`1px solid ${isSel?B.cyan:B.grayLight}`,
+        borderLeft:isAl?`3px solid ${B.danger}`:isAffected?`3px solid ${B.warning}`:weatherAviso?`3px solid ${nivelColor(weatherAviso.nivel)}`:`1px solid ${isSel?B.cyan:B.grayLight}`,
         borderRadius:12,padding:"14px 16px",cursor:"pointer",display:"flex",flexDirection:"column",gap:11,
         boxShadow:"0 1px 6px rgba(1,11,36,0.05)",transition:"background 0.1s, border-color 0.1s"}}>
       {/* Buque + estado */}
@@ -469,6 +484,10 @@ function CallCard({ call: c, isSel, onSelect }) {
               verticalAlign:"middle",background:"#FEE2E2",color:B.danger,whiteSpace:"nowrap"}}>⚠ ya zarpó (AIS)</span>}
             {etaDelta && <span style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,
               verticalAlign:"middle",background:"#FEE2E2",color:B.danger,whiteSpace:"nowrap"}}>⚠ {etaDelta.dir} {etaDelta.dir==="retrasado"?"+":"−"}{fmtDur(etaDelta.ms)}</span>}
+            {weatherAviso && <span title={`Aviso AEMET · ${weatherAviso.fenomeno} (${weatherAviso.nivel})`}
+              style={{marginLeft:6,fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:5,verticalAlign:"middle",
+              background:nivelColor(weatherAviso.nivel),color:weatherAviso.nivel==="amarillo"?"#3a2e00":"#fff",whiteSpace:"nowrap"}}>
+              {nivelDot(weatherAviso.nivel)} aviso {weatherAviso.fenomeno}</span>}
           </div>
           <div style={{fontSize:10,color:B.gray,marginTop:2}}>
             {c.imo && c.imo!=='—' ? `IMO ${c.imo} · ` : ''}<span style={{fontFamily:"'Courier New',monospace"}}>{c.id}</span>
@@ -936,7 +955,7 @@ export default function DemoMarin() {
             Clic en un buque → abre su escala (mismo drawer que la lista). */}
         {view==="cards"
           ? <FleetMap calls={filtered} fmt={fmt} onSelect={setSelected} height={isMobile?300:440} aisRef={aisRef} selectedKey={selected ? (selected.mmsi || selected.name) : null}/>
-          : <SchedulePlayback calls={filtered} onSelect={setSelected} selectedId={selected?.id} isMobile={isMobile} avisos={AVISOS}/>}
+          : <SchedulePlayback calls={filtered} onSelect={setSelected} selectedId={selected?.id} isMobile={isMobile} avisos={AVISOS} onAvisoClick={setAvisoDetail}/>}
 
         {/* Conmutador de vista: Tarjetas (estado actual) ↔ Cronología (planificación entrada/salida). */}
         <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:8,margin:"2px 0 12px",flexWrap:"wrap"}}>
