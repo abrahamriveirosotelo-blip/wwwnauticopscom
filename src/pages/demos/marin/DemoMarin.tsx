@@ -26,7 +26,7 @@ const META      = data.meta;
 const METEO  = META.meteo || null;
 const AVISOS = METEO?.avisos || [];
 /** Cardinal (16 rumbos) a partir de los grados de dirección del viento. */
-const cardinal = deg => ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSO","SO","OSO","O","ONO","NO","NNO"][Math.round(((deg % 360) / 22.5)) % 16];
+const cardinal = deg => ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSO","SO","OSO","O","ONO","NO","NNO"][Math.round((((deg % 360) + 360) % 360) / 22.5) % 16];
 /** Avisos que solapan el día [dayStart, inicio del día siguiente). Fin de día en hora LOCAL
  *  (robusto a DST: los días de cambio de hora duran 23/25h), igual que occupancyOnDay. */
 const avisosOnDay = dayStartMs => {
@@ -674,6 +674,7 @@ function Timeline({ calls, onSelect, selectedId, isMobile, onAvisoClick }) {
               <div key={`${a.desde}-${a.hasta}-${a.nivel}-${a.fenomeno}`} role="button" tabIndex={0} onClick={()=>onAvisoClick(a)}
                 onKeyDown={ev=>{ if(ev.key==="Enter" && !ev.repeat){ ev.preventDefault(); onAvisoClick(a); } else if(ev.code==="Space"){ ev.preventDefault(); } }}
                 onKeyUp={ev=>{ if(ev.code==="Space"){ ev.preventDefault(); onAvisoClick(a); } }}
+                aria-haspopup="dialog"
                 aria-label={`Aviso ${a.fenomeno} nivel ${a.nivel}`}
                 style={{cursor:"pointer",display:"flex",alignItems:"baseline",gap:6,flexWrap:"wrap",marginBottom:8,
                   borderLeft:`3px solid ${nivelColor(a.nivel)}`,paddingLeft:8}}>
@@ -720,7 +721,7 @@ function AvisoModal({ aviso, onClose }) {
   const txt = aviso.nivel === "amarillo" ? "#3a2e00" : "#fff";
   return (
     <>
-      <div onClick={onClose} style={{position:"fixed",inset:0,background:"rgba(1,11,36,0.45)",zIndex:1000}}/>
+      <div onClick={onClose} aria-hidden="true" style={{position:"fixed",inset:0,background:"rgba(1,11,36,0.45)",zIndex:1000}}/>
       <div ref={cardRef} tabIndex={-1} role="dialog" aria-modal="true" aria-label={`Aviso AEMET ${aviso.fenomeno}`}
         style={{position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",zIndex:1001,width:"min(92vw,440px)",outline:"none",
           background:B.white,borderRadius:14,boxShadow:"0 10px 40px rgba(1,11,36,0.35)",overflow:"hidden"}}>
@@ -885,7 +886,9 @@ export default function DemoMarin() {
         {/* Banner superior: alertas operativas (derivadas de las escalas) + avisos meteorológicos
             de AEMET (costa de Rías Baixas). Sin datos inventados: solo si hay algo que mostrar. */}
         {(counts.alerta>0 || AVISOS.length>0)&&(()=>{
-          const alerted = CALLS.filter(hasAlert);
+          // Solo se lista cuando hay alertas operativas; si el banner sale solo por avisos
+          // AEMET (counts.alerta===0), evitamos el filtro sobre toda la flota en cada render.
+          const alerted = counts.alerta>0 ? CALLS.filter(hasAlert) : [];
           return (
             <div style={{background:"rgba(127,29,29,0.95)",border:`1px solid ${B.danger}`,borderRadius:10,
               padding:"10px 18px",marginBottom:16,display:"flex",alignItems:"center",gap:12,flexWrap:"wrap"}}>
