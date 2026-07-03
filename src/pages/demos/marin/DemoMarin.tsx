@@ -59,10 +59,13 @@ const isDelayedDeparture = c =>
   Number.isFinite(DATE_REF) && new Date(c.etd).getTime() < DATE_REF && !departedPerAis(c);
 
 /** Desvío de ETA: > 1 h entre la ETA de la AP (`eta`) y la reportada por AIS (`aisEta`).
- *  Devuelve { dir:'retrasado'|'adelantado', ms } o null. AIS más tarde → retraso. */
+ *  Devuelve { dir:'retrasado'|'adelantado', ms } o null. AIS más tarde → retraso.
+ *  Solo comparable si la ETA del AIS es realmente a Marín (`aisAtMarin`): si el buque
+ *  va a un puerto posterior (`aisToFinal`), su `aisEta` es la del destino final, no la
+ *  de Marín, y restarla contra la ETA de la AP daría un "retraso" ficticio de días. */
 const ETA_TOL_MS = 60 * 60 * 1000;
 const etaDiscrepancy = c => {
-  if (!c.eta || !c.aisEta) return null;
+  if (!c.eta || !c.aisEta || !c.aisAtMarin) return null;
   const ms = new Date(c.aisEta).getTime() - new Date(c.eta).getTime();
   if (!Number.isFinite(ms) || Math.abs(ms) <= ETA_TOL_MS) return null;
   return { dir: ms > 0 ? "retrasado" : "adelantado", ms: Math.abs(ms) };
