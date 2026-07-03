@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import data from "./data.json";
 import FleetMap from "./FleetMap";
 import SchedulePlayback from "./SchedulePlayback";
+import { nivelColor, nivelDot, safeHttpUrl } from "./meteo";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const B = {
@@ -19,6 +20,20 @@ const LOGO_NO  = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5
 
 const CALLS     = data.calls;
 const META      = data.meta;
+
+/* Meteo operativa (MeteoGalicia estación "Porto de Marín" + avisos AEMET de costa), añadida
+ * por scripts/enrich-marin-meteo.mjs en meta.meteo. Puede no existir (dato aún no traído). */
+const METEO  = META.meteo || null;
+const AVISOS = METEO?.avisos || [];
+/** Cardinal (16 rumbos) a partir de los grados de dirección del viento. */
+const cardinal = deg => ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSO","SO","OSO","O","ONO","NO","NNO"][Math.round((((deg % 360) + 360) % 360) / 22.5) % 16];
+/** Avisos que solapan el día [dayStart, inicio del día siguiente). Fin de día en hora LOCAL
+ *  (robusto a DST: los días de cambio de hora duran 23/25h), igual que occupancyOnDay. */
+const avisosOnDay = dayStartMs => {
+  const d = new Date(dayStartMs);
+  const dayEnd = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1).getTime();
+  return AVISOS.filter(a => new Date(a.desde).getTime() < dayEnd && new Date(a.hasta).getTime() > dayStartMs);
+};
 
 /** "Rumbo a Marín": escala Prevista cuyo AIS tiene destino Marín y aún no ha llegado.
  *  Definición ÚNICA usada por el contador, el filtro y el chip de la tarjeta. */
@@ -586,7 +601,7 @@ function TimelineEvent({ e, onSelect, selectedId, overdue=false }) {
 
 /** Cronología vertical de la flota filtrada. Agrupa los eventos futuros por día con su
  *  ocupación, y pone arriba los atrasados (salidas demoradas). */
-function Timeline({ calls, onSelect, selectedId, isMobile }) {
+function Timeline({ calls, onSelect, selectedId, isMobile, onAvisoClick }) {
   const { overdue, groups } = useMemo(() => {
     const evts = [];
     for (const c of calls) {
@@ -637,9 +652,10 @@ function Timeline({ calls, onSelect, selectedId, isMobile }) {
       {groups.map(g => {
         const occ = occupancyOnDay(g.dayStart);
         const peak = occ>0 && occ===PORT_PEAK_OCC; // pico y escala contra el máximo GLOBAL (sin filtro)
+        const dayAvisos = avisosOnDay(g.dayStart); // calculado una sola vez por grupo
         return (
           <div key={g.dayStart}>
-            <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:8,flexWrap:"wrap"}}>
+            <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:dayAvisos.length?4:8,flexWrap:"wrap"}}>
               <div style={{fontSize:12,fontWeight:900,color:B.navy,letterSpacing:"0.04em"}}>{fmtDayLabel(g.dayStart)}</div>
               <div style={{display:"flex",alignItems:"center",gap:6,flex:isMobile?"1 1 100%":"none"}}>
                 <div style={{position:"relative",height:7,borderRadius:4,background:B.grayLight,overflow:"hidden",
@@ -652,6 +668,21 @@ function Timeline({ calls, onSelect, selectedId, isMobile }) {
                 </span>
               </div>
             </div>
+            {/* Avisos AEMET (costa) que afectan a este día: motivo en una línea (clic → detalle).
+                Patrón de teclado igual que TimelineEvent (Enter en keydown, Espacio en keyup). */}
+            {dayAvisos.map(a=>(
+              <div key={`${a.desde}-${a.hasta}-${a.nivel}-${a.fenomeno}`} role="button" tabIndex={0} onClick={()=>onAvisoClick(a)}
+                onKeyDown={ev=>{ if(ev.key==="Enter" && !ev.repeat){ ev.preventDefault(); onAvisoClick(a); } else if(ev.code==="Space"){ ev.preventDefault(); } }}
+                onKeyUp={ev=>{ if(ev.code==="Space"){ ev.preventDefault(); onAvisoClick(a); } }}
+                aria-haspopup="dialog"
+                aria-label={`Aviso ${a.fenomeno} nivel ${a.nivel}`}
+                style={{cursor:"pointer",display:"flex",alignItems:"baseline",gap:6,flexWrap:"wrap",marginBottom:8,
+                  borderLeft:`3px solid ${nivelColor(a.nivel)}`,paddingLeft:8}}>
+                <span style={{fontSize:11,fontWeight:800,color:nivelColor(a.nivel),whiteSpace:"nowrap"}}>{nivelDot(a.nivel)} {a.fenomeno} · {a.nivel}</span>
+                {a.descripcion && <span style={{fontSize:11,color:B.dark,fontWeight:600}}>{a.descripcion}</span>}
+                <span style={{fontSize:10,color:B.gray,fontWeight:600}}>· {fmtHour(a.desde)}→{fmtHour(a.hasta)}</span>
+              </div>
+            ))}
             <div style={{display:"flex",flexDirection:"column",gap:8}}>
               {g.events.map(e => <TimelineEvent key={e.key} e={e} onSelect={onSelect} selectedId={selectedId}/>)}
             </div>
@@ -662,11 +693,67 @@ function Timeline({ calls, onSelect, selectedId, isMobile }) {
   );
 }
 
+/** Modal con el detalle de un aviso AEMET (motivo, ventana, instrucción, enlace oficial). */
+function AvisoModal({ aviso, onClose }) {
+  const cardRef = useRef(null);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose; // siempre el último onClose, sin re-ejecutar el efecto de foco
+  // Mueve el foco al modal al abrir y lo devuelve al elemento previo al cerrar; Escape cierra;
+  // Tab queda atrapado dentro del diálogo. Solo al montar/desmontar (deps []) → no re-enfoca en
+  // cada render del padre aunque cambie la identidad de onClose.
+  useEffect(() => {
+    const prev = document.activeElement;
+    cardRef.current?.focus();
+    const onKey = e => {
+      if (e.key === "Escape") { onCloseRef.current(); return; }
+      if (e.key === "Tab") {
+        const f = cardRef.current?.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');
+        if (!f || !f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => { document.removeEventListener("keydown", onKey); if (prev && prev.focus) prev.focus(); };
+  }, []);
+  const col = nivelColor(aviso.nivel);
+  const txt = aviso.nivel === "amarillo" ? "#3a2e00" : "#fff";
+  return (
+    <>
+      <div onClick={onClose} aria-hidden="true" style={{position:"fixed",inset:0,background:"rgba(1,11,36,0.45)",zIndex:1000}}/>
+      <div ref={cardRef} tabIndex={-1} role="dialog" aria-modal="true" aria-label={`Aviso AEMET ${aviso.fenomeno}`}
+        style={{position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",zIndex:1001,width:"min(92vw,440px)",outline:"none",
+          background:B.white,borderRadius:14,boxShadow:"0 10px 40px rgba(1,11,36,0.35)",overflow:"hidden"}}>
+        <div style={{background:col,padding:"14px 18px",display:"flex",alignItems:"center",justifyContent:"space-between",gap:10}}>
+          <div style={{color:txt}}>
+            <div style={{fontSize:11,fontWeight:800,letterSpacing:"0.06em",opacity:0.9}}>AVISO AEMET · NIVEL {aviso.nivel.toUpperCase()}</div>
+            <div style={{fontSize:17,fontWeight:900,marginTop:2}}>{aviso.fenomeno}</div>
+          </div>
+          <button type="button" onClick={onClose} aria-label="Cerrar"
+            style={{flexShrink:0,background:"rgba(255,255,255,0.25)",border:"none",color:txt,width:30,height:30,
+              borderRadius:8,cursor:"pointer",fontSize:16,fontFamily:"inherit"}}>×</button>
+        </div>
+        <div style={{padding:"16px 18px",display:"flex",flexDirection:"column",gap:10}}>
+          <div style={{fontSize:12,color:B.gray}}>{aviso.zona}</div>
+          <div style={{fontSize:13,fontWeight:800,color:B.navy}}>{fmt(aviso.desde)} → {fmt(aviso.hasta)}</div>
+          {aviso.descripcion && <div style={{fontSize:14,fontWeight:800,color:B.navy}}>{aviso.descripcion}</div>}
+          {aviso.probabilidad && <div style={{fontSize:12,color:B.gray}}>Probabilidad: {aviso.probabilidad}</div>}
+          {aviso.instruccion && <div style={{fontSize:12,color:B.dark,lineHeight:1.5,background:B.offWhite,borderRadius:8,padding:"8px 12px"}}>{aviso.instruccion}</div>}
+          {(() => { const webUrl = safeHttpUrl(aviso.web); return webUrl && <a href={webUrl} target="_blank" rel="noopener noreferrer"
+            style={{fontSize:12,fontWeight:800,color:B.cyan}}>Ver en AEMET →</a>; })()}
+        </div>
+      </div>
+    </>
+  );
+}
+
 export default function DemoMarin() {
   const [filter, setFilter] = useState("Todas");
   const [selected, setSelected] = useState(null);
   const [search, setSearch] = useState("");
   const [view, setView] = useState("cards"); // "cards" (estado actual) | "timeline" (planificación)
+  const [avisoDetail, setAvisoDetail] = useState(null); // aviso AEMET abierto en el modal de detalle
   const isMobile = useIsMobile();
   const PAD = isMobile ? "14px 12px" : "20px 24px";
 
@@ -778,29 +865,64 @@ export default function DemoMarin() {
 
       {/* MAIN */}
       <div style={{padding:PAD}}>
-        {/* Banner de alertas operativas: se deriva de las escalas con incidencia
-            real (salida demorada, ya zarpó según AIS, desvío de ETA AP vs AIS).
-            Sin datos inventados: si counts.alerta es 0, no se renderiza. */}
-        {counts.alerta>0&&(()=>{
-          const alerted = CALLS.filter(hasAlert);
+        {/* Condiciones en el puerto (MeteoGalicia · estación "Porto de Marín"). Solo si hay dato. */}
+        {METEO?.obs && (
+          <div style={{display:"flex",flexWrap:"wrap",alignItems:"center",gap:isMobile?10:18,
+            background:B.white,border:`1px solid ${B.grayLight}`,borderRadius:10,padding:"10px 16px",
+            marginBottom:16,boxShadow:"0 1px 6px rgba(1,11,36,0.05)"}}>
+            <span style={{fontSize:11,fontWeight:800,color:B.gray,letterSpacing:"0.06em"}}>CONDICIONES EN EL PUERTO</span>
+            {METEO.obs.vientoRachaKn!=null && (
+              <span style={{fontSize:13,fontWeight:800,color:B.navy}}>🌬 {METEO.obs.vientoRachaKn} kn
+                <span style={{fontSize:9,fontWeight:600,color:B.gray}}> racha</span>
+                {METEO.obs.vientoDirDeg!=null && <span style={{fontSize:11,fontWeight:700,color:B.gray}}> · del {cardinal(METEO.obs.vientoDirDeg)}</span>}
+              </span>
+            )}
+            {METEO.obs.tempC!=null && <span style={{fontSize:13,fontWeight:700,color:B.navy}}>🌡 {Math.round(METEO.obs.tempC)} °C</span>}
+            {METEO.obs.lluviaMm!=null && <span style={{fontSize:13,fontWeight:700,color:B.navy}}>🌧 {METEO.obs.lluviaMm} mm</span>}
+            {METEO.obs.presionHpa!=null && <span style={{fontSize:13,fontWeight:700,color:B.navy}}>{Math.round(METEO.obs.presionHpa)} hPa</span>}
+            <span style={{marginLeft:isMobile?0:"auto",fontSize:10,color:B.gray}}>MeteoGalicia · {METEO.obs.estacion} · {fmt(METEO.obs.instante)}</span>
+          </div>
+        )}
+        {/* Banner superior: alertas operativas (derivadas de las escalas) + avisos meteorológicos
+            de AEMET (costa de Rías Baixas). Sin datos inventados: solo si hay algo que mostrar. */}
+        {(counts.alerta>0 || AVISOS.length>0)&&(()=>{
+          // Solo se lista cuando hay alertas operativas; si el banner sale solo por avisos
+          // AEMET (counts.alerta===0), evitamos el filtro sobre toda la flota en cada render.
+          const alerted = counts.alerta>0 ? CALLS.filter(hasAlert) : [];
           return (
             <div style={{background:"rgba(127,29,29,0.95)",border:`1px solid ${B.danger}`,borderRadius:10,
               padding:"10px 18px",marginBottom:16,display:"flex",alignItems:"center",gap:12,flexWrap:"wrap"}}>
               <span style={{fontSize:18}}>⚠</span>
               <div style={{minWidth:0,flex:"1 1 240px"}}>
-                <div style={{fontSize:12,fontWeight:800,color:"#FCA5A5",letterSpacing:"0.04em"}}>
-                  {alerted.length} ALERTA{alerted.length>1?"S":""} OPERATIVA{alerted.length>1?"S":""}
-                </div>
-                <div style={{fontSize:11,color:"rgba(252,165,165,0.85)",marginTop:2}}>
-                  {alerted.map(c=>`${c.name} · ${alertReason(c)}`).join("   ·   ")}
-                </div>
+                {counts.alerta>0 && <>
+                  <div style={{fontSize:12,fontWeight:800,color:"#FCA5A5",letterSpacing:"0.04em"}}>
+                    {alerted.length} ALERTA{alerted.length>1?"S":""} OPERATIVA{alerted.length>1?"S":""}
+                  </div>
+                  <div style={{fontSize:11,color:"rgba(252,165,165,0.85)",marginTop:2}}>
+                    {alerted.map(c=>`${c.name} · ${alertReason(c)}`).join("   ·   ")}
+                  </div>
+                </>}
+                {AVISOS.length>0 && (
+                  <div style={{display:"flex",flexWrap:"wrap",gap:6,alignItems:"center",marginTop:counts.alerta>0?7:0}}>
+                    <span style={{fontSize:10,fontWeight:800,color:"#FCD34D",letterSpacing:"0.04em"}}>AVISOS AEMET · COSTA</span>
+                    {AVISOS.map(a=>(
+                      <button key={`${a.desde}-${a.hasta}-${a.nivel}-${a.fenomeno}`} type="button" onClick={()=>setAvisoDetail(a)} title={`Ver detalle · nivel ${a.nivel}`}
+                        style={{fontSize:10,fontWeight:700,padding:"2px 8px",borderRadius:6,whiteSpace:"nowrap",border:"none",
+                          cursor:"pointer",fontFamily:"inherit",background:nivelColor(a.nivel),color:a.nivel==="amarillo"?"#3a2e00":"#fff"}}>
+                        {nivelDot(a.nivel)} {a.fenomeno} ({a.nivel}) · {fmt(a.desde)} → {fmt(a.hasta)} ⓘ
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
-              <button onClick={()=>setFilter("Alerta")}
-                style={{marginLeft:"auto",background:"rgba(239,68,68,0.2)",border:`1px solid ${B.danger}`,
-                  color:"#FCA5A5",borderRadius:7,padding:"5px 14px",cursor:"pointer",
-                  fontSize:11,fontWeight:800,fontFamily:"inherit",whiteSpace:"nowrap"}}>
-                Ver alertas →
-              </button>
+              {counts.alerta>0 && (
+                <button onClick={()=>setFilter("Alerta")}
+                  style={{marginLeft:"auto",background:"rgba(239,68,68,0.2)",border:`1px solid ${B.danger}`,
+                    color:"#FCA5A5",borderRadius:7,padding:"5px 14px",cursor:"pointer",
+                    fontSize:11,fontWeight:800,fontFamily:"inherit",whiteSpace:"nowrap"}}>
+                  Ver alertas →
+                </button>
+              )}
             </div>
           );
         })()}
@@ -811,7 +933,7 @@ export default function DemoMarin() {
             Clic en un buque → abre su escala (mismo drawer que la lista). */}
         {view==="cards"
           ? <FleetMap calls={filtered} fmt={fmt} onSelect={setSelected} height={isMobile?300:440} aisRef={aisRef} selectedKey={selected ? (selected.mmsi || selected.name) : null}/>
-          : <SchedulePlayback calls={filtered} onSelect={setSelected} selectedId={selected?.id} isMobile={isMobile}/>}
+          : <SchedulePlayback calls={filtered} onSelect={setSelected} selectedId={selected?.id} isMobile={isMobile} avisos={AVISOS}/>}
 
         {/* Conmutador de vista: Tarjetas (estado actual) ↔ Cronología (planificación entrada/salida). */}
         <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:8,margin:"2px 0 12px",flexWrap:"wrap"}}>
@@ -849,7 +971,7 @@ export default function DemoMarin() {
             )}
           </>
         ) : (
-          <Timeline calls={filtered} onSelect={setSelected} selectedId={selected?.id} isMobile={isMobile}/>
+          <Timeline calls={filtered} onSelect={setSelected} selectedId={selected?.id} isMobile={isMobile} onAvisoClick={setAvisoDetail}/>
         )}
 
         {/* Footer */}
@@ -868,6 +990,8 @@ export default function DemoMarin() {
           style={{position:"fixed",inset:0,background:"rgba(1,11,36,0.45)",zIndex:1000}}/>
         <Detail call={selected} onClose={()=>setSelected(null)}/>
       </>}
+
+      {avisoDetail && <AvisoModal aviso={avisoDetail} onClose={()=>setAvisoDetail(null)}/>}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { nivelColor } from "./meteo";
 
 /* Simulación de planificación (vista Cronología). El mapa se centra en Marín y anima la
  * entrada/salida de buques según su ETA/ETD: cada buque ENTRA deslizándose desde la bocana
@@ -21,6 +22,7 @@ const C = {
   navy: "#0A1F3D", cyan: "#079FE6", success: "#00C896", warning: "#F59E0B",
   gray: "#64748B", grayLight: "#E2EBF4", white: "#FFFFFF", offWhite: "#F7FAFD",
 };
+const EMPTY_AVISOS = []; // referencia estable para el default de `avisos` (no romper useMemo)
 
 const fmtClock = ms => {
   const d = new Date(ms);
@@ -88,7 +90,7 @@ function marinDot() {
   });
 }
 
-export default function SchedulePlayback({ calls, onSelect, selectedId = null, isMobile = false }) {
+export default function SchedulePlayback({ calls, onSelect, selectedId = null, isMobile = false, avisos = EMPTY_AVISOS }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
   const layerRef = useRef(null);
@@ -243,6 +245,10 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
 
   const pct = Math.min(1, Math.max(0, (t - tStart) / span));
   const docked = ships.filter(s => shipStateAt(s, t).phase === "dock").length;
+  // Avisos con sus timestamps precalculados (evita new Date(...) por aviso en cada frame).
+  const avisoBands = useMemo(() => avisos.map(a => ({ ...a, d0: new Date(a.desde).getTime(), d1: new Date(a.hasta).getTime() })), [avisos]);
+  // Aviso AEMET vigente en el instante del playhead (para indicarlo junto al reloj).
+  const activeAviso = avisoBands.find(a => t >= a.d0 && t < a.d1);
 
   // Día/noche: la opacidad de la capa oscura sigue la oscuridad del cielo en Marín para el
   // instante virtual. El efecto solo se dispara cuando `darkness` cambia (constante de día/noche
@@ -333,6 +339,20 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
           onPointerUp={() => { draggingRef.current = false; }}
           onPointerCancel={() => { draggingRef.current = false; }}
           style={{ flex: 1, minWidth: 0, position: "relative", height: 28, cursor: "pointer", touchAction: "none" }}>
+          {/* Franjas de avisos AEMET sobre su ventana temporal (color por nivel). Van detrás. */}
+          {avisoBands.map(a => {
+            const s = Math.max(0, Math.min(1, (a.d0 - tStart) / span));
+            const e = Math.max(0, Math.min(1, (a.d1 - tStart) / span));
+            if (e <= s) return null;
+            const col = nivelColor(a.nivel);
+            return (
+              <div key={`${a.desde}-${a.hasta}-${a.nivel}-${a.fenomeno}`} aria-hidden="true"
+                style={{ position: "absolute", top: 0, bottom: 0, left: `${s * 100}%`, width: `${(e - s) * 100}%`, pointerEvents: "none" }}>
+                <div style={{ position: "absolute", inset: 0, background: col, opacity: 0.22 }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 3, background: col, borderRadius: 2 }} />
+              </div>
+            );
+          })}
           <div style={{ position: "absolute", top: 13, left: 0, right: 0, height: 5, borderRadius: 3, background: C.grayLight }} />
           <div style={{ position: "absolute", top: 13, left: 0, width: `${pct * 100}%`, height: 5, borderRadius: 3, background: C.cyan }} />
           {/* Adornos visuales del slider (hitos de día, "ahora", playhead): aria-hidden para no
@@ -361,7 +381,16 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
         <span style={{ fontSize: 12, fontWeight: 800, color: C.navy, fontFamily: "'Courier New',monospace" }}>
           <span aria-hidden="true" style={{ marginRight: 5 }}>{isNight ? "🌙" : "☀️"}</span>{fmtClock(t)}
         </span>
-        <span style={{ fontSize: 11, fontWeight: 700, color: docked ? C.success : C.gray }}>⚓ {docked} en puerto</span>
+        <span style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+          {activeAviso && (
+            <span title={`Aviso AEMET · nivel ${activeAviso.nivel}${activeAviso.descripcion ? " · " + activeAviso.descripcion : ""}`}
+              style={{ fontSize: 10, fontWeight: 800, padding: "2px 8px", borderRadius: 6, whiteSpace: "nowrap",
+              background: nivelColor(activeAviso.nivel), color: activeAviso.nivel === "amarillo" ? "#3a2e00" : "#fff" }}>
+              ⚠ {activeAviso.fenomeno} ({activeAviso.nivel})
+            </span>
+          )}
+          <span style={{ fontSize: 11, fontWeight: 700, color: docked ? C.success : C.gray }}>⚓ {docked} en puerto</span>
+        </span>
       </div>
       </>)}
     </div>

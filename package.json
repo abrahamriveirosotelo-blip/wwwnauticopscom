@@ -31,7 +31,9 @@
     "enrich-demo:marin:ais": "node scripts/enrich-marin-ais.mjs",
     "enrich-demo:marin:ais:dry": "node scripts/enrich-marin-ais.mjs --dry-run",
     "enrich-demo:marin:ais:long": "node scripts/enrich-marin-ais.mjs --seconds 3600",
-    "preview:fresh": "npm run update-demo && npm run build && npm run preview"
+    "preview:fresh": "npm run update-demo && npm run build && npm run preview",
+    "enrich-demo:marin:meteo": "node scripts/enrich-marin-meteo.mjs",
+    "enrich-demo:marin:meteo:dry": "node scripts/enrich-marin-meteo.mjs --dry-run"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
