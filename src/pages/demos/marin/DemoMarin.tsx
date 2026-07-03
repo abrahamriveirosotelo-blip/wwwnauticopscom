@@ -695,13 +695,16 @@ function Timeline({ calls, onSelect, selectedId, isMobile, onAvisoClick }) {
 /** Modal con el detalle de un aviso AEMET (motivo, ventana, instrucción, enlace oficial). */
 function AvisoModal({ aviso, onClose }) {
   const cardRef = useRef(null);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose; // siempre el último onClose, sin re-ejecutar el efecto de foco
   // Mueve el foco al modal al abrir y lo devuelve al elemento previo al cerrar; Escape cierra;
-  // Tab queda atrapado dentro del diálogo (accesibilidad de modal).
+  // Tab queda atrapado dentro del diálogo. Solo al montar/desmontar (deps []) → no re-enfoca en
+  // cada render del padre aunque cambie la identidad de onClose.
   useEffect(() => {
     const prev = document.activeElement;
     cardRef.current?.focus();
     const onKey = e => {
-      if (e.key === "Escape") { onClose(); return; }
+      if (e.key === "Escape") { onCloseRef.current(); return; }
       if (e.key === "Tab") {
         const f = cardRef.current?.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');
         if (!f || !f.length) return;
@@ -712,7 +715,7 @@ function AvisoModal({ aviso, onClose }) {
     };
     document.addEventListener("keydown", onKey);
     return () => { document.removeEventListener("keydown", onKey); if (prev && prev.focus) prev.focus(); };
-  }, [onClose]);
+  }, []);
   const col = nivelColor(aviso.nivel);
   const txt = aviso.nivel === "amarillo" ? "#3a2e00" : "#fff";
   return (
