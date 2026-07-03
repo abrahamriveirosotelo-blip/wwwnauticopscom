@@ -32,7 +32,7 @@
  *   (Ctrl-C en cualquier momento: guarda lo captado y sale)
  */
 
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync, renameSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -222,13 +222,30 @@ async function main() {
   const write = (pos, label) => {
     const scrapedAt = toSpainIso(new Date());
     let disk = data;
-    if (!isDryRun) { try { disk = JSON.parse(readFileSync(DATA_PATH, 'utf-8')); } catch { disk = data; } }
+    if (!isDryRun) {
+      // Si el data.json actual no se puede parsear (p. ej. se lee justo mientras otro proceso
+      // lo está escribiendo), NO se vuelca en este flush: las posiciones siguen acumuladas en
+      // memoria y se aplican en el siguiente, cuando el fichero vuelva a ser legible. Caer al
+      // snapshot de arranque volvería a pisar los cambios externos que se quieren respetar.
+      try {
+        disk = JSON.parse(readFileSync(DATA_PATH, 'utf-8'));
+      } catch (e) {
+        console.warn(`${label}: data.json no legible ahora (${e.message}); se pospone el volcado, las posiciones quedan en memoria.`);
+        return;
+      }
+    }
     let located = 0;
     for (const call of disk.calls) {
       const p = call.mmsi ? pos.get(String(call.mmsi)) : null;
       if (p) { applyPosition(call, p, scrapedAt); located++; }
     }
-    if (!isDryRun) writeFileSync(DATA_PATH, JSON.stringify(disk, null, 2) + '\n', 'utf-8');
+    if (!isDryRun) {
+      // Escritura atómica: se escribe a un temporal y se renombra (rename es atómico en POSIX).
+      // Así un lector concurrente nunca ve el fichero a medias ni a 0 bytes.
+      const tmp = DATA_PATH + '.tmp';
+      writeFileSync(tmp, JSON.stringify(disk, null, 2) + '\n', 'utf-8');
+      renameSync(tmp, DATA_PATH);
+    }
     console.log(`${label}: ${located}/${disk.calls.length} escalas con posición · ${pos.size}/${queried.length} MMSI · ${scrapedAt}${isDryRun ? ' · DRY RUN (no escrito)' : ' · data.json escrito'}`);
   };
 
