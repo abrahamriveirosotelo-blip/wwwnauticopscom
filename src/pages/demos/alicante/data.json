@@ -2,45 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "02/07/2026",
+    "date": "03/07/2026",
     "refreshHours": 2
   },
   "calls": [
     {
-      "id": "A202600459",
-      "status": "Alerta",
-      "imo": "9322578",
-      "name": "DREAM",
-      "gt": 7852,
-      "len": 140,
-      "berth": "23",
-      "agent": "MILLER Y COMPAÑIA S.A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-02T08:00",
-      "etd": "2026-07-02T23:00",
-      "from": "ARRECIFE",
-      "to": "LAS PALMAS",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
-    },
-    {
-      "id": "A202600476",
-      "status": "Iniciado",
-      "imo": "8816352",
-      "name": "SIRIOS CEMENT V",
-      "gt": 2453,
-      "len": 86,
-      "berth": "19",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "C/ CEMENTO INST. ESP.",
-      "eta": "2026-07-02T08:00",
-      "etd": "2026-07-03T08:00",
-      "from": "ALMERIA",
-      "to": "GANDIA"
-    },
-    {
       "id": "A202600464",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9349227",
       "name": "NJORD",
       "gt": 7720,
@@ -51,7 +19,9 @@
       "eta": "2026-07-03T01:00",
       "etd": "2026-07-03T15:00",
       "from": "TENERIFE",
-      "to": "HUELVA"
+      "to": "LAS PALMAS",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
       "id": "A202600465",
@@ -66,7 +36,9 @@
       "eta": "2026-07-04T07:00",
       "etd": "2026-07-04T15:00",
       "from": "BARCELONA",
-      "to": "ALMERIA"
+      "to": "DERINCE",
+      "affectedBy": "A202600464",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600466",
@@ -81,7 +53,7 @@
       "eta": "2026-07-05T07:00",
       "etd": "2026-07-05T21:00",
       "from": "ARRECIFE",
-      "to": "BARCELONA"
+      "to": "TENERIFE"
     },
     {
       "id": "A202600460",
@@ -94,9 +66,9 @@
       "agent": "ROMEU Y CIA. S A",
       "op": "C/ BIOMASA",
       "eta": "2026-07-05T12:00",
-      "etd": "2026-07-07T22:00",
+      "etd": "2026-07-08T22:00",
       "from": "PORTO VESME",
-      "to": "ALMERIA"
+      "to": "CAGLIARI"
     },
     {
       "id": "A202600473",
@@ -126,9 +98,22 @@
       "eta": "2026-07-06T08:00",
       "etd": "2026-07-06T20:00",
       "from": "ALGECIRAS",
-      "to": "DERINCE",
-      "affectedBy": "A202600459",
-      "affectRisk": "ALTO"
+      "to": "ALMERIA"
+    },
+    {
+      "id": "A202600481",
+      "status": "Prevista",
+      "imo": "9237242",
+      "name": "CRACOVIA",
+      "gt": 25028,
+      "len": 180,
+      "berth": "25",
+      "agent": "OCEAN PORTS & SHIPPING SL",
+      "op": "PASAJE Y VEHICULOS",
+      "eta": "2026-07-06T08:00",
+      "etd": "2026-07-06T19:00",
+      "from": "ALGER",
+      "to": "ORAN"
     },
     {
       "id": "A202600467",
@@ -158,11 +143,26 @@
       "eta": "2026-07-08T08:00",
       "etd": "2026-07-08T12:00",
       "from": "STA. CRUZ",
-      "to": "LAS PALMAS"
+      "to": "BARCELONA"
+    },
+    {
+      "id": "A202600468",
+      "status": "Prevista",
+      "imo": "9349227",
+      "name": "NJORD",
+      "gt": 7720,
+      "len": 141.58,
+      "berth": "11",
+      "agent": "EUROPEAN FORWARDING SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-07-09T20:00",
+      "etd": "2026-07-10T15:00",
+      "from": "TENERIFE",
+      "to": "DERINCE"
     }
   ],
   "tugService": {
-    "callId": "A202600459",
+    "callId": "A202600464",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -189,18 +189,18 @@
     }
   },
   "milestones": {
-    "A202600459": [
+    "A202600464": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "02/07 · 08:25",
+        "time": "03/07 · 01:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "02/07 · 09:30",
-        "by": "Agente: MILLER Y COMPAÑIA S.A"
+        "time": "03/07 · 02:30",
+        "by": "Agente: EUROPEAN FORWARDING SL"
       },
       {
         "label": "Fin de operaciones",
