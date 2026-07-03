@@ -21,6 +21,8 @@ const DRY = process.argv.includes("--dry-run");
 
 const MG_URL = "https://servizos.meteogalicia.gal/mgrss/observacion/ultimosHorariosEstacions.action?idEst=14005";
 const AEMET_URL = "https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAC71_ATOM.xml";
+const UA = "NauticOps-DemoUpdater/1.0"; // User-Agent explícito, como el resto de scripts (evita 403/rate-limit)
+const get = url => fetch(url, { headers: { "User-Agent": UA } });
 const MARIN_ZONES = new Set(["713601C"]); // Rías Baixas - Costa (solo avisos costeros por ahora)
 
 /** Cualquier Date → ISO naive en hora de España (Europe/Madrid, con DST). Igual que en los
@@ -37,7 +39,7 @@ const utcToLocal = isoUtc => toSpainIso(new Date(isoUtc + (isoUtc.endsWith("Z") 
 
 /** Observación de MeteoGalicia (último instante válido). */
 async function fetchObs() {
-  const r = await fetch(MG_URL);
+  const r = await get(MG_URL);
   if (!r.ok) throw new Error(`MeteoGalicia HTTP ${r.status}`);
   const j = await r.json();
   const est = j.listHorarios?.[0];
@@ -63,7 +65,7 @@ async function fetchObs() {
 /** Detalle del CAP (bloque <info> en español): descripción/motivo, instrucción, probabilidad, web. */
 async function capDetail(url) {
   try {
-    const r = await fetch(url);
+    const r = await get(url);
     if (!r.ok) return {};
     const xml = await r.text();
     const infos = xml.match(/<info>[\s\S]*?<\/info>/g) || [];
@@ -75,7 +77,7 @@ async function capDetail(url) {
 }
 
 async function fetchAvisos() {
-  const r = await fetch(AEMET_URL);
+  const r = await get(AEMET_URL);
   if (!r.ok) throw new Error(`AEMET HTTP ${r.status}`);
   const xml = await r.text();
   const entries = xml.match(/<entry>[\s\S]*?<\/entry>/g) || [];
