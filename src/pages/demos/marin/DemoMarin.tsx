@@ -671,7 +671,7 @@ function Timeline({ calls, onSelect, selectedId, isMobile, onAvisoClick }) {
             {/* Avisos AEMET (costa) que afectan a este día: motivo en una línea (clic → detalle).
                 Patrón de teclado igual que TimelineEvent (Enter en keydown, Espacio en keyup). */}
             {dayAvisos.map(a=>(
-              <div key={`${a.desde}-${a.fenomeno}`} role="button" tabIndex={0} onClick={()=>onAvisoClick(a)}
+              <div key={`${a.desde}-${a.hasta}-${a.nivel}-${a.fenomeno}`} role="button" tabIndex={0} onClick={()=>onAvisoClick(a)}
                 onKeyDown={ev=>{ if(ev.key==="Enter" && !ev.repeat){ ev.preventDefault(); onAvisoClick(a); } else if(ev.code==="Space"){ ev.preventDefault(); } }}
                 onKeyUp={ev=>{ if(ev.code==="Space"){ ev.preventDefault(); onAvisoClick(a); } }}
                 aria-label={`Aviso ${a.fenomeno} nivel ${a.nivel}`}
@@ -876,7 +876,7 @@ export default function DemoMarin() {
                 {METEO.obs.vientoDirDeg!=null && <span style={{fontSize:11,fontWeight:700,color:B.gray}}> · del {cardinal(METEO.obs.vientoDirDeg)}</span>}
               </span>
             )}
-            {METEO.obs.tempC!=null && <span style={{fontSize:13,fontWeight:700,color:B.navy}}>🌡 {Math.round(METEO.obs.tempC)}°C</span>}
+            {METEO.obs.tempC!=null && <span style={{fontSize:13,fontWeight:700,color:B.navy}}>🌡 {Math.round(METEO.obs.tempC)} °C</span>}
             {METEO.obs.lluviaMm!=null && <span style={{fontSize:13,fontWeight:700,color:B.navy}}>🌧 {METEO.obs.lluviaMm} mm</span>}
             {METEO.obs.presionHpa!=null && <span style={{fontSize:13,fontWeight:700,color:B.navy}}>{Math.round(METEO.obs.presionHpa)} hPa</span>}
             <span style={{marginLeft:isMobile?0:"auto",fontSize:10,color:B.gray}}>MeteoGalicia · {METEO.obs.estacion} · {fmt(METEO.obs.instante)}</span>
@@ -903,7 +903,7 @@ export default function DemoMarin() {
                   <div style={{display:"flex",flexWrap:"wrap",gap:6,alignItems:"center",marginTop:counts.alerta>0?7:0}}>
                     <span style={{fontSize:10,fontWeight:800,color:"#FCD34D",letterSpacing:"0.04em"}}>AVISOS AEMET · COSTA</span>
                     {AVISOS.map((a,i)=>(
-                      <button key={`${a.desde}-${a.fenomeno}`} type="button" onClick={()=>setAvisoDetail(a)} title={`Ver detalle · nivel ${a.nivel}`}
+                      <button key={`${a.desde}-${a.hasta}-${a.nivel}-${a.fenomeno}`} type="button" onClick={()=>setAvisoDetail(a)} title={`Ver detalle · nivel ${a.nivel}`}
                         style={{fontSize:10,fontWeight:700,padding:"2px 8px",borderRadius:6,whiteSpace:"nowrap",border:"none",
                           cursor:"pointer",fontFamily:"inherit",background:nivelColor(a.nivel),color:a.nivel==="amarillo"?"#3a2e00":"#fff"}}>
                         {nivelDot(a.nivel)} {a.fenomeno} ({a.nivel}) · {fmt(a.desde)} → {fmt(a.hasta)} ⓘ

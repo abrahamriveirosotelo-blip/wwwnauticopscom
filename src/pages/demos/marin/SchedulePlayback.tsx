@@ -345,7 +345,7 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
             if (e <= s) return null;
             const col = nivelColor(a.nivel);
             return (
-              <div key={`${a.desde}-${a.fenomeno}`} aria-hidden="true"
+              <div key={`${a.desde}-${a.hasta}-${a.nivel}-${a.fenomeno}`} aria-hidden="true"
                 style={{ position: "absolute", top: 0, bottom: 0, left: `${s * 100}%`, width: `${(e - s) * 100}%`, pointerEvents: "none" }}>
                 <div style={{ position: "absolute", inset: 0, background: col, opacity: 0.22 }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 3, background: col, borderRadius: 2 }} />
