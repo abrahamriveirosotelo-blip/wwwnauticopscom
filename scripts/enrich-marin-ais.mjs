@@ -218,7 +218,8 @@ async function main() {
   // edición manual pueden actualizar meta (avisos, frescura), escalas nuevas, etc. Este
   // proceso solo es dueño de las POSICIONES en calls[], así que en cada volcado parte del
   // data.json ACTUAL en disco (no del snapshot de arranque) y le re-aplica las posiciones
-  // acumuladas. Así no pisa esos cambios externos. Si la relectura falla, cae al snapshot.
+  // acumuladas. Así no pisa esos cambios externos. Si la relectura falla (fichero a medias por
+  // un write concurrente), pospone ESE volcado en vez de escribir un snapshot viejo (ver dentro).
   const write = (pos, label) => {
     const scrapedAt = toSpainIso(new Date());
     let disk = data;
