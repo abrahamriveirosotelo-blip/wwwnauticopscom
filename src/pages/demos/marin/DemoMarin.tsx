@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import data from "./data.json";
 import FleetMap from "./FleetMap";
 import SchedulePlayback from "./SchedulePlayback";
-import { nivelColor, nivelDot, safeHttpUrl } from "./meteo";
+import { nivelColor, nivelDot, safeHttpUrl, worstAviso } from "./meteo";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const B = {
@@ -43,11 +43,6 @@ const avisosForCall = c => {
   const s = Math.min(...ts), e = Math.max(...ts);
   return AVISOS.filter(a => new Date(a.desde).getTime() <= e && new Date(a.hasta).getTime() >= s);
 };
-/** Aviso más severo de una lista (rojo > naranja > amarillo); null si la lista está vacía. */
-const NIVEL_RANK = { amarillo: 1, naranja: 2, rojo: 3 };
-const worstAviso = list => list && list.length
-  ? list.reduce((a, b) => ((NIVEL_RANK[b.nivel] || 0) > (NIVEL_RANK[a.nivel] || 0) ? b : a))
-  : null;
 
 /** "Rumbo a Marín": escala Prevista cuyo AIS tiene destino Marín y aún no ha llegado.
  *  Definición ÚNICA usada por el contador, el filtro y el chip de la tarjeta. */

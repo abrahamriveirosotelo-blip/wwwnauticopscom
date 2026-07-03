@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { nivelColor } from "./meteo";
+import { nivelColor, worstAviso } from "./meteo";
 
 /* Simulación de planificación (vista Cronología). El mapa se centra en Marín y anima la
  * entrada/salida de buques según su ETA/ETD: cada buque ENTRA deslizándose desde la bocana
@@ -247,8 +247,9 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
   const docked = ships.filter(s => shipStateAt(s, t).phase === "dock").length;
   // Avisos con sus timestamps precalculados (evita new Date(...) por aviso en cada frame).
   const avisoBands = useMemo(() => avisos.map(a => ({ ...a, d0: new Date(a.desde).getTime(), d1: new Date(a.hasta).getTime() })), [avisos]);
-  // Aviso AEMET vigente en el instante del playhead (para indicarlo junto al reloj).
-  const activeAviso = avisoBands.find(a => t >= a.d0 && t < a.d1);
+  // Aviso AEMET vigente en el instante del playhead (para indicarlo junto al reloj). Si varios
+  // solapan en el mismo instante, se muestra el de mayor nivel (rojo > naranja > amarillo).
+  const activeAviso = worstAviso(avisoBands.filter(a => t >= a.d0 && t < a.d1));
 
   // Día/noche: la opacidad de la capa oscura sigue la oscuridad del cielo en Marín para el
   // instante virtual. El efecto solo se dispara cuando `darkness` cambia (constante de día/noche
