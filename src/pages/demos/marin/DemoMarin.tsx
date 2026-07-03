@@ -463,7 +463,7 @@ function CallCard({ call: c, isSel, onSelect }) {
       }}
       onKeyUp={e=>{ if(e.code==="Space"){ e.preventDefault(); open(); } }}
       style={{
-        background:isSel?B.cyanPale:isAl?"#FFF1F1":isAffected?"#FFFBEB":weatherAviso?"#FFFBEB":B.white,
+        background:isSel?B.cyanPale:isAl?"#FFF1F1":isAffected?"#FFFBEB":weatherAviso?`${nivelColor(weatherAviso.nivel)}1A`:B.white,
         border:`1px solid ${isSel?B.cyan:B.grayLight}`,
         borderLeft:isAl?`3px solid ${B.danger}`:isAffected?`3px solid ${B.warning}`:weatherAviso?`3px solid ${nivelColor(weatherAviso.nivel)}`:`1px solid ${isSel?B.cyan:B.grayLight}`,
         borderRadius:12,padding:"14px 16px",cursor:"pointer",display:"flex",flexDirection:"column",gap:11,

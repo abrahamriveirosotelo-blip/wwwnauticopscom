@@ -382,15 +382,18 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
           <span aria-hidden="true" style={{ marginRight: 5 }}>{isNight ? "🌙" : "☀️"}</span>{fmtClock(t)}
         </span>
         <span style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-          {activeAviso && (
-            <button type="button" onClick={() => onAvisoClick && onAvisoClick(activeAviso)} aria-haspopup="dialog"
-              title={`Aviso AEMET · nivel ${activeAviso.nivel}${activeAviso.descripcion ? " · " + activeAviso.descripcion : ""} · ver detalle`}
-              style={{ fontSize: 10, fontWeight: 800, padding: "2px 8px", borderRadius: 6, whiteSpace: "nowrap", border: "none",
-              cursor: onAvisoClick ? "pointer" : "default", fontFamily: "inherit",
-              background: nivelColor(activeAviso.nivel), color: activeAviso.nivel === "amarillo" ? "#3a2e00" : "#fff" }}>
-              ⚠ {activeAviso.fenomeno} ({activeAviso.nivel})
-            </button>
-          )}
+          {activeAviso && (() => {
+            const base = { fontSize: 10, fontWeight: 800, padding: "2px 8px", borderRadius: 6, whiteSpace: "nowrap",
+              background: nivelColor(activeAviso.nivel), color: activeAviso.nivel === "amarillo" ? "#3a2e00" : "#fff" };
+            const desc = activeAviso.descripcion ? " · " + activeAviso.descripcion : "";
+            const label = <>⚠ {activeAviso.fenomeno} ({activeAviso.nivel})</>;
+            // Solo es un botón (enfocable, abre diálogo) cuando hay handler; si no, texto informativo.
+            return onAvisoClick
+              ? <button type="button" onClick={() => onAvisoClick(activeAviso)} aria-haspopup="dialog"
+                  title={`Aviso AEMET · nivel ${activeAviso.nivel}${desc} · ver detalle`}
+                  style={{ ...base, border: "none", cursor: "pointer", fontFamily: "inherit" }}>{label}</button>
+              : <span title={`Aviso AEMET · nivel ${activeAviso.nivel}${desc}`} style={base}>{label}</span>;
+          })()}
           <span style={{ fontSize: 11, fontWeight: 700, color: docked ? C.success : C.gray }}>⚓ {docked} en puerto</span>
         </span>
       </div>
