@@ -90,7 +90,7 @@ function marinDot() {
   });
 }
 
-export default function SchedulePlayback({ calls, onSelect, selectedId = null, isMobile = false, avisos = EMPTY_AVISOS }) {
+export default function SchedulePlayback({ calls, onSelect, selectedId = null, isMobile = false, avisos = EMPTY_AVISOS, onAvisoClick }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
   const layerRef = useRef(null);
@@ -383,11 +383,13 @@ export default function SchedulePlayback({ calls, onSelect, selectedId = null, i
         </span>
         <span style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
           {activeAviso && (
-            <span title={`Aviso AEMET · nivel ${activeAviso.nivel}${activeAviso.descripcion ? " · " + activeAviso.descripcion : ""}`}
-              style={{ fontSize: 10, fontWeight: 800, padding: "2px 8px", borderRadius: 6, whiteSpace: "nowrap",
+            <button type="button" onClick={() => onAvisoClick && onAvisoClick(activeAviso)} aria-haspopup="dialog"
+              title={`Aviso AEMET · nivel ${activeAviso.nivel}${activeAviso.descripcion ? " · " + activeAviso.descripcion : ""} · ver detalle`}
+              style={{ fontSize: 10, fontWeight: 800, padding: "2px 8px", borderRadius: 6, whiteSpace: "nowrap", border: "none",
+              cursor: onAvisoClick ? "pointer" : "default", fontFamily: "inherit",
               background: nivelColor(activeAviso.nivel), color: activeAviso.nivel === "amarillo" ? "#3a2e00" : "#fff" }}>
               ⚠ {activeAviso.fenomeno} ({activeAviso.nivel})
-            </span>
+            </button>
           )}
           <span style={{ fontSize: 11, fontWeight: 700, color: docked ? C.success : C.gray }}>⚓ {docked} en puerto</span>
         </span>
