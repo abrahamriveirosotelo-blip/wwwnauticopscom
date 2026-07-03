@@ -984,7 +984,10 @@ export default function DemoMarin() {
             <span style={{fontSize:9,color:B.gray,fontWeight:700,letterSpacing:"0.03em"}}>×</span>
             <LogoPort height={16}/>
           </div>
-          <span style={{fontSize:10,color:B.gray}}>{`${META.source} · Actualización cada ${META.refreshHours}h`}</span>
+          <span style={{fontSize:10,color:B.gray}}>
+            {`${META.source} · Actualización cada ${META.refreshHours}h`}
+            {META.sourceUpdatedAt ? ` · datos AP a ${fmt(META.sourceUpdatedAt)}` : ""}
+          </span>
         </div>
       </div>
 

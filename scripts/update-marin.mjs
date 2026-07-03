@@ -122,12 +122,20 @@ async function main() {
   }
 
   const base = existing.meta ? existing : SEED;
+  // Frescura que publica la propia AP (h4 sobre cada tabla, hora local). Puede diferir entre
+  // páginas → nos quedamos con la más reciente. Si el h4 no aparece (estructura cambiada), se
+  // conserva la frescura anterior en vez de borrarla.
+  const sourceUpdatedAt =
+    [esperados.freshness, puerto.freshness].filter(Boolean).sort().pop()
+    || base.meta?.sourceUpdatedAt || null;
+
   const updated = {
     meta: {
       ...base.meta,
       port: 'Puerto de Marín',
       source: 'apmarin.com · buques esperados + en puerto',
       date: todayStr(),
+      sourceUpdatedAt, // frescura declarada por la AP (h4), hora local España
       refreshHours: REFRESH_HOURS, // se sobrescribe siempre para reflejar la cadencia real del cron
     },
     calls,
@@ -135,7 +143,7 @@ async function main() {
 
   if (isDryRun) {
     console.log('\n--- DRY RUN: data.json no modificado ---');
-    console.log(`Escalas: ${calls.length}  |  Fecha: ${updated.meta.date}`);
+    console.log(`Escalas: ${calls.length}  |  Fecha: ${updated.meta.date}  |  Frescura AP: ${updated.meta.sourceUpdatedAt || '—'}`);
     calls.slice(0, 8).forEach(c =>
       console.log(`  ${c.id} | ${c.name} | ${c.status} | ETA ${c.eta || '—'} | ETD ${c.etd || '—'} | ${c.berth}`)
     );
