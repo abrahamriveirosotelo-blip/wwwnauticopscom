@@ -315,5 +315,23 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-02T10:42:49Z"
+  },
+  "DANZIGERGRACHT::AVILES": {
+    "resolved": true,
+    "imo": "9420796",
+    "mmsi": "244149000",
+    "detailId": "9420796",
+    "gt": 13558,
+    "dwt": 18143,
+    "len": 157,
+    "beam": 23,
+    "flag": "Netherlands",
+    "vesselType": "General Cargo Ship",
+    "built": 2009,
+    "callsign": "PBLJ",
+    "destination": "Marin, Pontevedra, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-03T10:38:09Z"
   }
 }
