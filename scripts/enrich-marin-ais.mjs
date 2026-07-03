@@ -231,7 +231,7 @@ async function main() {
       try {
         disk = JSON.parse(readFileSync(DATA_PATH, 'utf-8'));
       } catch (e) {
-        console.warn(`${label}: data.json no legible ahora (${e.message}); se pospone el volcado, las posiciones quedan en memoria.`);
+        console.warn(`${label}: data.json no legible ahora (${e?.message ?? e}); se pospone el volcado, las posiciones quedan en memoria.`);
         return;
       }
     }
