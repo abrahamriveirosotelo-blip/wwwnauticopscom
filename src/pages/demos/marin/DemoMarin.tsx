@@ -38,14 +38,16 @@ const avisosOnDay = dayStartMs => {
  *  cruza el intervalo [eta, etd] de la escala (o el único instante conocido si solo trae uno).
  *  Con esto una tarjeta puede avisar de que el buque opera bajo un aviso de costa. */
 const avisosForCall = c => {
-  const ts = [c.eta, c.etd].filter(Boolean).map(x => new Date(x).getTime());
+  const ts = [c.eta, c.etd].filter(Boolean).map(x => new Date(x).getTime()).filter(Number.isFinite);
   if (!ts.length || !AVISOS.length) return [];
   const s = Math.min(...ts), e = Math.max(...ts);
   return AVISOS.filter(a => new Date(a.desde).getTime() <= e && new Date(a.hasta).getTime() >= s);
 };
-/** Aviso más severo de una lista (rojo > naranja > amarillo). */
+/** Aviso más severo de una lista (rojo > naranja > amarillo); null si la lista está vacía. */
 const NIVEL_RANK = { amarillo: 1, naranja: 2, rojo: 3 };
-const worstAviso = list => list.reduce((a, b) => ((NIVEL_RANK[b.nivel] || 0) > (NIVEL_RANK[a.nivel] || 0) ? b : a));
+const worstAviso = list => list && list.length
+  ? list.reduce((a, b) => ((NIVEL_RANK[b.nivel] || 0) > (NIVEL_RANK[a.nivel] || 0) ? b : a))
+  : null;
 
 /** "Rumbo a Marín": escala Prevista cuyo AIS tiene destino Marín y aún no ha llegado.
  *  Definición ÚNICA usada por el contador, el filtro y el chip de la tarjeta. */
@@ -451,7 +453,7 @@ function CallCard({ call: c, isSel, onSelect }) {
   const bound   = isBoundToMarin(c);
   const etaDelta = etaDiscrepancy(c);
   const departed = departedPerAis(c);
-  const weatherAviso = (() => { const l = avisosForCall(c); return l.length ? worstAviso(l) : null; })();
+  const weatherAviso = worstAviso(avisosForCall(c));
   const open = () => onSelect(isSel?null:c);
   return (
     <div onClick={open} role="button" tabIndex={0} className="marin-card"
