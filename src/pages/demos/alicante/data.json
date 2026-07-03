@@ -7,23 +7,6 @@
   },
   "calls": [
     {
-      "id": "A202600464",
-      "status": "Alerta",
-      "imo": "9349227",
-      "name": "NJORD",
-      "gt": 7720,
-      "len": 141.58,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-03T01:00",
-      "etd": "2026-07-03T15:00",
-      "from": "TENERIFE",
-      "to": "LAS PALMAS",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
-    },
-    {
       "id": "A202600465",
       "status": "Prevista",
       "imo": "9083043",
@@ -36,9 +19,7 @@
       "eta": "2026-07-04T07:00",
       "etd": "2026-07-04T15:00",
       "from": "BARCELONA",
-      "to": "DERINCE",
-      "affectedBy": "A202600464",
-      "affectRisk": "ALTO"
+      "to": "DERINCE"
     },
     {
       "id": "A202600460",
