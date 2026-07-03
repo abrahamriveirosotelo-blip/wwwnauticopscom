@@ -108,7 +108,18 @@ async function fetchAvisos() {
 }
 
 async function main() {
-  const [obs, avisos] = await Promise.all([fetchObs(), fetchAvisos()]);
+  const data = DRY ? null : JSON.parse(fs.readFileSync(DATA, "utf8"));
+  // La observación (MeteoGalicia) es lo esencial. Los avisos (AEMET) se degradan: si AEMET
+  // falla, se conservan los avisos anteriores (o []) y se sigue escribiendo la observación,
+  // en vez de abortar toda la actualización (la UI tolera meta.meteo sin avisos).
+  const obs = await fetchObs();
+  let avisos;
+  try {
+    avisos = await fetchAvisos();
+  } catch (e) {
+    avisos = data?.meta?.meteo?.avisos || [];
+    console.warn(`⚠ AEMET no disponible (${e.message}); se conservan los avisos previos (${avisos.length}).`);
+  }
   const meteo = { updatedAt: toSpainIso(new Date()), obs, avisos };
 
   console.log("Observación (Porto de Marín):", JSON.stringify(obs));
@@ -116,7 +127,6 @@ async function main() {
   for (const a of avisos) console.log(`  ${a.nivel.padEnd(8)} ${a.fenomeno.padEnd(24)} ${a.desde} → ${a.hasta}${a.costa ? " (costa)" : ""}`);
 
   if (DRY) { console.log("\n--dry-run: no se escribe data.json"); return; }
-  const data = JSON.parse(fs.readFileSync(DATA, "utf8"));
   data.meta = data.meta || {};
   data.meta.meteo = meteo;
   fs.writeFileSync(DATA, JSON.stringify(data, null, 2) + "\n");

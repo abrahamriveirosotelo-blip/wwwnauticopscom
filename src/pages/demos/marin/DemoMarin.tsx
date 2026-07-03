@@ -902,7 +902,7 @@ export default function DemoMarin() {
                 {AVISOS.length>0 && (
                   <div style={{display:"flex",flexWrap:"wrap",gap:6,alignItems:"center",marginTop:counts.alerta>0?7:0}}>
                     <span style={{fontSize:10,fontWeight:800,color:"#FCD34D",letterSpacing:"0.04em"}}>AVISOS AEMET · COSTA</span>
-                    {AVISOS.map((a,i)=>(
+                    {AVISOS.map(a=>(
                       <button key={`${a.desde}-${a.hasta}-${a.nivel}-${a.fenomeno}`} type="button" onClick={()=>setAvisoDetail(a)} title={`Ver detalle · nivel ${a.nivel}`}
                         style={{fontSize:10,fontWeight:700,padding:"2px 8px",borderRadius:6,whiteSpace:"nowrap",border:"none",
                           cursor:"pointer",fontFamily:"inherit",background:nivelColor(a.nivel),color:a.nivel==="amarillo"?"#3a2e00":"#fff"}}>

@@ -22,6 +22,7 @@ const C = {
   navy: "#0A1F3D", cyan: "#079FE6", success: "#00C896", warning: "#F59E0B",
   gray: "#64748B", grayLight: "#E2EBF4", white: "#FFFFFF", offWhite: "#F7FAFD",
 };
+const EMPTY_AVISOS = []; // referencia estable para el default de `avisos` (no romper useMemo)
 
 const fmtClock = ms => {
   const d = new Date(ms);
@@ -89,7 +90,7 @@ function marinDot() {
   });
 }
 
-export default function SchedulePlayback({ calls, onSelect, selectedId = null, isMobile = false, avisos = [] }) {
+export default function SchedulePlayback({ calls, onSelect, selectedId = null, isMobile = false, avisos = EMPTY_AVISOS }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
   const layerRef = useRef(null);
