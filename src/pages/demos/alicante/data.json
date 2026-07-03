@@ -41,6 +41,21 @@
       "affectRisk": "ALTO"
     },
     {
+      "id": "A202600460",
+      "status": "Prevista",
+      "imo": "9432505",
+      "name": "SIDER SONJA",
+      "gt": 5629,
+      "len": 108,
+      "berth": "15",
+      "agent": "ROMEU Y CIA. S A",
+      "op": "C/ BIOMASA",
+      "eta": "2026-07-04T12:00",
+      "etd": "2026-07-08T22:00",
+      "from": "PORTO VESME",
+      "to": "CAGLIARI"
+    },
+    {
       "id": "A202600466",
       "status": "Prevista",
       "imo": "9430193",
@@ -54,21 +69,6 @@
       "etd": "2026-07-05T21:00",
       "from": "ARRECIFE",
       "to": "TENERIFE"
-    },
-    {
-      "id": "A202600460",
-      "status": "Prevista",
-      "imo": "9432505",
-      "name": "SIDER SONJA",
-      "gt": 5629,
-      "len": 108,
-      "berth": "15",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "C/ BIOMASA",
-      "eta": "2026-07-05T12:00",
-      "etd": "2026-07-08T22:00",
-      "from": "PORTO VESME",
-      "to": "CAGLIARI"
     },
     {
       "id": "A202600473",
