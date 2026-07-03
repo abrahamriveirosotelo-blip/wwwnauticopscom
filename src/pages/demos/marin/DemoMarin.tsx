@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import data from "./data.json";
 import FleetMap from "./FleetMap";
 import SchedulePlayback from "./SchedulePlayback";
-import { nivelColor, nivelDot } from "./meteo";
+import { nivelColor, nivelDot, safeHttpUrl } from "./meteo";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const B = {
@@ -739,8 +739,8 @@ function AvisoModal({ aviso, onClose }) {
           {aviso.descripcion && <div style={{fontSize:14,fontWeight:800,color:B.navy}}>{aviso.descripcion}</div>}
           {aviso.probabilidad && <div style={{fontSize:12,color:B.gray}}>Probabilidad: {aviso.probabilidad}</div>}
           {aviso.instruccion && <div style={{fontSize:12,color:B.dark,lineHeight:1.5,background:B.offWhite,borderRadius:8,padding:"8px 12px"}}>{aviso.instruccion}</div>}
-          {aviso.web && <a href={aviso.web} target="_blank" rel="noopener noreferrer"
-            style={{fontSize:12,fontWeight:800,color:B.cyan}}>Ver en AEMET →</a>}
+          {(() => { const webUrl = safeHttpUrl(aviso.web); return webUrl && <a href={webUrl} target="_blank" rel="noopener noreferrer"
+            style={{fontSize:12,fontWeight:800,color:B.cyan}}>Ver en AEMET →</a>; })()}
         </div>
       </div>
     </>
