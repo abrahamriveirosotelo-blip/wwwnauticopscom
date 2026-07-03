@@ -4,7 +4,7 @@
     "source": "apmarin.com · buques esperados + en puerto",
     "date": "03/07/2026",
     "refreshHours": 2,
-    "sourceUpdatedAt": "2026-07-03T21:10"
+    "sourceUpdatedAt": "2026-07-03T22:10"
   },
   "calls": [
     {
@@ -34,7 +34,7 @@
       "aisSpeed": 0,
       "aisDraught": 13,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-03T21:25",
+      "aisAt": "2026-07-03T23:09",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -66,7 +66,7 @@
       "aisSpeed": 0,
       "aisDraught": 10.8,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-03T21:25",
+      "aisAt": "2026-07-03T23:09",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -98,7 +98,7 @@
       "aisSpeed": 0,
       "aisDraught": 7,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-03T21:25",
+      "aisAt": "2026-07-03T23:09",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -130,7 +130,7 @@
       "aisSpeed": 0,
       "aisDraught": 7.9,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-03T21:25",
+      "aisAt": "2026-07-03T23:09",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true,
@@ -165,10 +165,10 @@
       "callsign": "V2DE2",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-05T08:00",
-      "aisSpeed": 7.3,
+      "aisSpeed": 7.8,
       "aisDraught": 5,
       "aisDestination": "ESMAR",
-      "aisAt": "2026-07-03T21:25",
+      "aisAt": "2026-07-03T23:09",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -200,7 +200,7 @@
       "aisSpeed": 0,
       "aisDraught": 9.8,
       "aisDestination": "Leixoes, Portugal",
-      "aisAt": "2026-07-03T21:25",
+      "aisAt": "2026-07-03T23:09",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -229,10 +229,10 @@
       "callsign": "PBVY",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-06T00:00",
-      "aisSpeed": 7.2,
+      "aisSpeed": 7.6,
       "aisDraught": 5.5,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-03T21:25",
+      "aisAt": "2026-07-03T23:09",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false,
@@ -267,10 +267,10 @@
       "callsign": "LAMY8",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-06T14:00",
-      "aisSpeed": 10.6,
+      "aisSpeed": 10.3,
       "aisDraught": 7.5,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-03T21:25",
+      "aisAt": "2026-07-03T23:09",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -302,7 +302,7 @@
       "aisSpeed": 0,
       "aisDraught": 7.9,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-03T21:25",
+      "aisAt": "2026-07-03T23:09",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
