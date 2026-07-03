@@ -61,7 +61,6 @@ async function fetchObs() {
   };
 }
 
-/** Avisos AEMET de la zona de Marín (Rías Baixas comarca + costa). */
 /** Detalle del CAP (bloque <info> en español): descripción/motivo, instrucción, probabilidad, web. */
 async function capDetail(url) {
   try {
@@ -76,6 +75,8 @@ async function capDetail(url) {
   } catch { return {}; }
 }
 
+/** Avisos AEMET del feed de Galicia, filtrados a la zona COSTERA de Marín (Rías Baixas -
+ *  Costa, 713601C — ver MARIN_ZONES; solo avisos de costa por ahora). */
 async function fetchAvisos() {
   const r = await get(AEMET_URL);
   if (!r.ok) throw new Error(`AEMET HTTP ${r.status}`);
