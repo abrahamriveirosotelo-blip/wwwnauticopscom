@@ -52,8 +52,21 @@ export function parseMarinDate(ddmmHHmm, year) {
 }
 
 /**
+ * Frescura de los datos que publica apmarin: un `<h4>DD/MM/YYYY HH:MM</h4>` (hora local
+ * de España) sobre cada tabla, indicando cuándo actualizó la AP su listado. La demo lo
+ * muestra para dar contexto ("datos de la AP a las HH:MM"). Devuelve ISO local
+ * "YYYY-MM-DDTHH:MM" o null si el h4 no aparece (estructura cambiada).
+ */
+export function parseMarinFreshness(html) {
+  const m = html.match(/<h4[^>]*>\s*(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2})\s*<\/h4>/i);
+  if (!m) return null;
+  const [, d, mo, y, h, mi] = m;
+  return `${y}-${mo.padStart(2, '0')}-${d.padStart(2, '0')}T${h.padStart(2, '0')}:${mi}`;
+}
+
+/**
  * Extrae las filas de datos de la tabla `class="estilo1"` de una página.
- * Devuelve { kind: 'eta'|'etd', rows: [{name, from, to, escala, agent, berth, norays, op, when}] }
+ * Devuelve { kind: 'eta'|'etd', rows: [...], freshness: ISO local | null }
  */
 export function parseMarinPage(html) {
   const table = html.match(/<table[^>]*class="estilo1"[\s\S]*?<\/table>/i);
@@ -88,7 +101,7 @@ export function parseMarinPage(html) {
     });
   }
 
-  return { kind, rows };
+  return { kind, rows, freshness: parseMarinFreshness(html) };
 }
 
 /* ------------------------------------------------------------------ *
