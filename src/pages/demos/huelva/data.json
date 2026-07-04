@@ -7,40 +7,8 @@
   },
   "calls": [
     {
-      "id": "H20260630001",
+      "id": "H20260703001",
       "status": "Alerta",
-      "imo": "—",
-      "name": "KRITI.SAILOR",
-      "gt": 23656,
-      "len": 184,
-      "berth": "PET",
-      "agent": "CON",
-      "op": "Fondo",
-      "eta": "2026-06-30T18:00",
-      "etd": "",
-      "from": "—",
-      "to": "—",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle PET según lo previsto."
-    },
-    {
-      "id": "H20260703002",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "FT QUINTO",
-      "gt": 5112,
-      "len": 120,
-      "berth": "RSF",
-      "agent": "E.CIA",
-      "op": "Fondo",
-      "eta": "2026-07-03T21:30",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260703003",
-      "status": "Iniciado",
       "imo": "—",
       "name": "LADY SPERANZA",
       "gt": 9994,
@@ -51,10 +19,12 @@
       "eta": "2026-07-03T23:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle JGV según lo previsto."
     },
     {
-      "id": "H20260704004",
+      "id": "H20260704002",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ VICTORIA",
@@ -69,7 +39,7 @@
       "to": "—"
     },
     {
-      "id": "H20260704005",
+      "id": "H20260704003",
       "status": "Prevista",
       "imo": "—",
       "name": "SSI.FORMIDABLE",
@@ -84,22 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705006",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "ATHENIAN.HARMONY",
-      "gt": 11865,
-      "len": 149,
-      "berth": "DEC",
-      "agent": "E.CIA",
-      "op": "Entrada",
-      "eta": "2026-07-05T02:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260705007",
+      "id": "H20260705004",
       "status": "Prevista",
       "imo": "—",
       "name": "ZAHRA",
@@ -114,22 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705008",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "MEDI.VAIANO",
-      "gt": 24859,
-      "len": 200,
-      "berth": "JGV",
-      "agent": "LAI",
-      "op": "Entrada",
-      "eta": "2026-07-05T05:30",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260705009",
+      "id": "H20260705005",
       "status": "Prevista",
       "imo": "—",
       "name": "OZDEN THERESA",
@@ -144,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705010",
+      "id": "H20260705006",
       "status": "Prevista",
       "imo": "—",
       "name": "AFRICAN.ROADRUNNER",
@@ -159,7 +99,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705011",
+      "id": "H20260705007",
       "status": "Prevista",
       "imo": "—",
       "name": "ATROTOS",
@@ -174,7 +114,24 @@
       "to": "—"
     },
     {
-      "id": "H20260705012",
+      "id": "H20260705008",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "MEDI.VAIANO",
+      "gt": 24859,
+      "len": 200,
+      "berth": "JGV",
+      "agent": "LAI",
+      "op": "Entrada",
+      "eta": "2026-07-05T09:30",
+      "etd": "",
+      "from": "—",
+      "to": "—",
+      "affectedBy": "H20260703001",
+      "affectRisk": "ALTO"
+    },
+    {
+      "id": "H20260705009",
       "status": "Prevista",
       "imo": "—",
       "name": "SNP.STAR",
@@ -189,7 +146,22 @@
       "to": "—"
     },
     {
-      "id": "H20260705013",
+      "id": "H20260705010",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "ATHENIAN.HARMONY",
+      "gt": 11865,
+      "len": 149,
+      "berth": "DEC",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-05T12:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260705011",
       "status": "Prevista",
       "imo": "—",
       "name": "CS CAPRICE",
@@ -204,7 +176,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705014",
+      "id": "H20260705012",
       "status": "Prevista",
       "imo": "—",
       "name": "CONTSHIP.ZEN",
@@ -219,7 +191,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705015",
+      "id": "H20260705013",
       "status": "Prevista",
       "imo": "—",
       "name": "CATALINA",
@@ -234,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705016",
+      "id": "H20260705014",
       "status": "Prevista",
       "imo": "—",
       "name": "VENTURI",
@@ -246,12 +218,10 @@
       "eta": "2026-07-05T16:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260630001",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
-      "id": "H20260706017",
+      "id": "H20260706015",
       "status": "Prevista",
       "imo": "—",
       "name": "CASTILLO DE PAMBRE",
@@ -266,11 +236,11 @@
       "to": "—"
     },
     {
-      "id": "H20260706018",
+      "id": "H20260706016",
       "status": "Prevista",
       "imo": "—",
-      "name": "VIOLETE.THERESA",
-      "gt": 8817,
+      "name": "VIOLETA.THERESA",
+      "gt": 5303,
       "len": 115,
       "berth": "ATC",
       "agent": "ERS",
@@ -281,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260706019",
+      "id": "H20260706017",
       "status": "Prevista",
       "imo": "—",
       "name": "HAFNIA ANE",
@@ -296,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260706020",
+      "id": "H20260706018",
       "status": "Prevista",
       "imo": "—",
       "name": "HISTRIA DIONE",
@@ -311,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260706021",
+      "id": "H20260706019",
       "status": "Prevista",
       "imo": "—",
       "name": "LILA.GELA",
@@ -326,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260706022",
+      "id": "H20260706020",
       "status": "Prevista",
       "imo": "—",
       "name": "MANISA KATE",
@@ -341,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260707023",
+      "id": "H20260707021",
       "status": "Prevista",
       "imo": "—",
       "name": "KING ARTHUR",
@@ -356,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260708024",
+      "id": "H20260708022",
       "status": "Prevista",
       "imo": "—",
       "name": "FIRST.SKY",
@@ -371,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709025",
+      "id": "H20260709023",
       "status": "Prevista",
       "imo": "—",
       "name": "YENISEI RIVER",
@@ -387,7 +357,7 @@
     }
   ],
   "tugService": {
-    "callId": "H20260630001",
+    "callId": "H20260703001",
     "reportNumber": "031245",
     "tugboat": "REMOLCADOR ODIEL",
     "powerPct": 70,
@@ -414,17 +384,17 @@
     }
   },
   "milestones": {
-    "H20260630001": [
+    "H20260703001": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "30/06 · 18:25",
+        "time": "03/07 · 23:25",
         "by": "Práctico (Huelva)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "30/06 · 19:30",
+        "time": "04/07 · 00:30",
         "by": "Agente: CON"
       },
       {
