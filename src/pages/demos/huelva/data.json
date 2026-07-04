@@ -24,22 +24,7 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle JGV según lo previsto."
     },
     {
-      "id": "H20260704002",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "SSI.FORMIDABLE",
-      "gt": 24992,
-      "len": 182,
-      "berth": "CPA",
-      "agent": "PAM",
-      "op": "Entrada",
-      "eta": "2026-07-04T22:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260705003",
+      "id": "H20260705002",
       "status": "Prevista",
       "imo": "—",
       "name": "ZAHRA",
@@ -54,7 +39,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705004",
+      "id": "H20260705003",
       "status": "Prevista",
       "imo": "—",
       "name": "OZDEN THERESA",
@@ -69,7 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705005",
+      "id": "H20260705004",
       "status": "Prevista",
       "imo": "—",
       "name": "AFRICAN.ROADRUNNER",
@@ -84,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705006",
+      "id": "H20260705005",
       "status": "Prevista",
       "imo": "—",
       "name": "ATROTOS",
@@ -99,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705007",
+      "id": "H20260705006",
       "status": "Prevista",
       "imo": "—",
       "name": "MEDI.VAIANO",
@@ -116,7 +101,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260705008",
+      "id": "H20260705007",
       "status": "Prevista",
       "imo": "—",
       "name": "SNP.STAR",
@@ -131,7 +116,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705009",
+      "id": "H20260705008",
       "status": "Prevista",
       "imo": "—",
       "name": "ATHENIAN.HARMONY",
@@ -146,7 +131,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705010",
+      "id": "H20260705009",
       "status": "Prevista",
       "imo": "—",
       "name": "CS CAPRICE",
@@ -161,7 +146,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705011",
+      "id": "H20260705010",
       "status": "Prevista",
       "imo": "—",
       "name": "CONTSHIP.ZEN",
@@ -176,7 +161,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705012",
+      "id": "H20260705011",
       "status": "Prevista",
       "imo": "—",
       "name": "CATALINA",
@@ -191,7 +176,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705013",
+      "id": "H20260705012",
       "status": "Prevista",
       "imo": "—",
       "name": "VENTURI",
@@ -206,7 +191,7 @@
       "to": "—"
     },
     {
-      "id": "H20260706014",
+      "id": "H20260706013",
       "status": "Prevista",
       "imo": "—",
       "name": "CASTILLO DE PAMBRE",
@@ -221,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260706015",
+      "id": "H20260706014",
       "status": "Prevista",
       "imo": "—",
       "name": "VIOLETA.THERESA",
@@ -236,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260706016",
+      "id": "H20260706015",
       "status": "Prevista",
       "imo": "—",
       "name": "HAFNIA ANE",
@@ -251,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260706017",
+      "id": "H20260706016",
       "status": "Prevista",
       "imo": "—",
       "name": "HISTRIA DIONE",
@@ -266,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260706018",
+      "id": "H20260706017",
       "status": "Prevista",
       "imo": "—",
       "name": "LILA.GELA",
@@ -281,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260706019",
+      "id": "H20260706018",
       "status": "Prevista",
       "imo": "—",
       "name": "MANISA KATE",
@@ -296,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260707020",
+      "id": "H20260707019",
       "status": "Prevista",
       "imo": "—",
       "name": "KING ARTHUR",
@@ -311,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260708021",
+      "id": "H20260708020",
       "status": "Prevista",
       "imo": "—",
       "name": "FIRST.SKY",
@@ -326,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709022",
+      "id": "H20260709021",
       "status": "Prevista",
       "imo": "—",
       "name": "YENISEI RIVER",
