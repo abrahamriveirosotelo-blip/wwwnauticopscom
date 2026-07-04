@@ -25,15 +25,15 @@
     },
     {
       "id": "H20260704002",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "NQ VICTORIA",
       "gt": 5303,
       "len": 115,
       "berth": "RSS",
       "agent": "IBM",
-      "op": "Entrada",
-      "eta": "2026-07-04T17:00",
+      "op": "Fondo",
+      "eta": "2026-07-04T16:00",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -321,7 +321,7 @@
       "agent": "E.CIA",
       "op": "Entrada",
       "eta": "2026-07-07T12:15",
-      "etd": "2026-07-04T17:00",
+      "etd": "",
       "from": "—",
       "to": "—"
     },
