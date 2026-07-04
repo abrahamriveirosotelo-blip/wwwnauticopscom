@@ -333,5 +333,23 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-03T10:38:09Z"
+  },
+  "ANTJE K::SZCZECIN": {
+    "resolved": true,
+    "imo": "9198630",
+    "mmsi": "245472000",
+    "detailId": "9198630",
+    "gt": 3037,
+    "dwt": 4247,
+    "len": 90,
+    "beam": 15,
+    "flag": "Netherlands",
+    "vesselType": "General Cargo Ship",
+    "built": 2002,
+    "callsign": "PBHS",
+    "destination": "Marin, Pontevedra, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-04T10:12:13Z"
   }
 }

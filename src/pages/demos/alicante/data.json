@@ -8,7 +8,7 @@
   "calls": [
     {
       "id": "A202600465",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9083043",
       "name": "NANTO",
       "gt": 7550,
@@ -19,7 +19,9 @@
       "eta": "2026-07-04T07:00",
       "etd": "2026-07-04T15:00",
       "from": "BARCELONA",
-      "to": "DERINCE"
+      "to": "DERINCE",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
       "id": "A202600460",
@@ -49,7 +51,9 @@
       "eta": "2026-07-05T07:00",
       "etd": "2026-07-05T21:00",
       "from": "ARRECIFE",
-      "to": "TENERIFE"
+      "to": "TENERIFE",
+      "affectedBy": "A202600465",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600473",
@@ -143,7 +147,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600464",
+    "callId": "A202600465",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -170,17 +174,17 @@
     }
   },
   "milestones": {
-    "A202600464": [
+    "A202600465": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "03/07 · 01:25",
+        "time": "04/07 · 07:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "03/07 · 02:30",
+        "time": "04/07 · 08:30",
         "by": "Agente: EUROPEAN FORWARDING SL"
       },
       {
