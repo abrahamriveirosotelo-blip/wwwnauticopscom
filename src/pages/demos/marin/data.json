@@ -4,7 +4,7 @@
     "source": "apmarin.com · buques esperados + en puerto",
     "date": "05/07/2026",
     "refreshHours": 2,
-    "sourceUpdatedAt": "2026-07-05T15:10"
+    "sourceUpdatedAt": "2026-07-05T19:10"
   },
   "calls": [
     {
@@ -34,7 +34,7 @@
       "aisSpeed": 0,
       "aisDraught": 13,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-05T15:43",
+      "aisAt": "2026-07-05T19:13",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -66,7 +66,7 @@
       "aisSpeed": 0,
       "aisDraught": 10.8,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-05T15:43",
+      "aisAt": "2026-07-05T19:13",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -98,7 +98,7 @@
       "aisSpeed": 0,
       "aisDraught": 4.1,
       "aisDestination": "Marin, Pontevedra Anch., Spain",
-      "aisAt": "2026-07-05T15:43",
+      "aisAt": "2026-07-05T19:13",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -130,7 +130,7 @@
       "aisSpeed": 0,
       "aisDraught": 5,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-05T15:43",
+      "aisAt": "2026-07-05T19:13",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -162,7 +162,7 @@
       "aisSpeed": 0,
       "aisDraught": 9.8,
       "aisDestination": "ES MAR",
-      "aisAt": "2026-07-05T15:43",
+      "aisAt": "2026-07-05T19:13",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -194,7 +194,7 @@
       "aisSpeed": 0,
       "aisDraught": 0,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-05T15:43",
+      "aisAt": "2026-07-05T19:13",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true,
@@ -229,10 +229,10 @@
       "callsign": "LAMY8",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-06T14:00",
-      "aisSpeed": 10.5,
+      "aisSpeed": 9.8,
       "aisDraught": 7.5,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-05T15:43",
+      "aisAt": "2026-07-05T19:13",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -261,10 +261,10 @@
       "callsign": "CQUZ",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-06T12:00",
-      "aisSpeed": 10.7,
+      "aisSpeed": 10.4,
       "aisDraught": 8.3,
       "aisDestination": "Algeciras, Spain",
-      "aisAt": "2026-07-05T15:43",
+      "aisAt": "2026-07-05T19:13",
       "aisAtMarin": false,
       "aisToFinal": true,
       "aisArrivedMarin": false
