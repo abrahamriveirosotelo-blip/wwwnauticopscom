@@ -7,25 +7,8 @@
   },
   "calls": [
     {
-      "id": "H20260703001",
+      "id": "H20260705001",
       "status": "Alerta",
-      "imo": "—",
-      "name": "LADY SPERANZA",
-      "gt": 9994,
-      "len": 141,
-      "berth": "JGV",
-      "agent": "CON",
-      "op": "Fondo",
-      "eta": "2026-07-03T23:00",
-      "etd": "",
-      "from": "—",
-      "to": "—",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle JGV según lo previsto."
-    },
-    {
-      "id": "H20260705002",
-      "status": "Iniciado",
       "imo": "—",
       "name": "ATHENIAN.HARMONY",
       "gt": 11865,
@@ -36,16 +19,18 @@
       "eta": "2026-07-05T05:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle DEC según lo previsto."
     },
     {
-      "id": "H20260705003",
+      "id": "H20260705002",
       "status": "Iniciado",
       "imo": "—",
       "name": "ZAHRA",
       "gt": 33817,
       "len": 183,
-      "berth": "DEC",
+      "berth": "DCS",
       "agent": "NEX",
       "op": "Fondo",
       "eta": "2026-07-05T05:00",
@@ -54,7 +39,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705004",
+      "id": "H20260705003",
       "status": "Iniciado",
       "imo": "—",
       "name": "CATALINA",
@@ -69,13 +54,13 @@
       "to": "—"
     },
     {
-      "id": "H20260705005",
+      "id": "H20260705004",
       "status": "Iniciado",
       "imo": "—",
       "name": "OZDEN THERESA",
       "gt": 3753,
       "len": 106,
-      "berth": "DEC",
+      "berth": "DCS",
       "agent": "NEX",
       "op": "Fondo",
       "eta": "2026-07-05T07:00",
@@ -84,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705006",
+      "id": "H20260705005",
       "status": "Prevista",
       "imo": "—",
       "name": "MEDI.VAIANO",
@@ -96,12 +81,10 @@
       "eta": "2026-07-05T11:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260703001",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
-      "id": "H20260705007",
+      "id": "H20260705006",
       "status": "Prevista",
       "imo": "—",
       "name": "ATROTOS",
@@ -113,10 +96,12 @@
       "eta": "2026-07-05T12:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "affectedBy": "H20260705001",
+      "affectRisk": "ALTO"
     },
     {
-      "id": "H20260705008",
+      "id": "H20260705007",
       "status": "Prevista",
       "imo": "—",
       "name": "CONTSHIP.ZEN",
@@ -131,7 +116,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705009",
+      "id": "H20260705008",
       "status": "Prevista",
       "imo": "—",
       "name": "SNP.STAR",
@@ -146,37 +131,22 @@
       "to": "—"
     },
     {
-      "id": "H20260705010",
+      "id": "H20260705009",
       "status": "Prevista",
       "imo": "—",
       "name": "VENTURI",
       "gt": 3430,
       "len": 89,
-      "berth": "PET",
+      "berth": "PES",
       "agent": "E.CIA",
       "op": "Entrada",
-      "eta": "2026-07-05T16:00",
+      "eta": "2026-07-05T22:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260706011",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "CASTILLO DE PAMBRE",
-      "gt": 6388,
-      "len": 110,
-      "berth": "RS4",
-      "agent": "E.CIA",
-      "op": "Entrada",
-      "eta": "2026-07-06T03:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260706012",
+      "id": "H20260706010",
       "status": "Prevista",
       "imo": "—",
       "name": "VIOLETA.THERESA",
@@ -191,37 +161,7 @@
       "to": "—"
     },
     {
-      "id": "H20260706013",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "HAFNIA ANE",
-      "gt": 29658,
-      "len": 183,
-      "berth": "PET",
-      "agent": "E.CIA",
-      "op": "Entrada",
-      "eta": "2026-07-06T08:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260706014",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "HISTRIA DIONE",
-      "gt": 26310,
-      "len": 180,
-      "berth": "PET",
-      "agent": "E.CIA",
-      "op": "Entrada",
-      "eta": "2026-07-06T10:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260706015",
+      "id": "H20260706011",
       "status": "Prevista",
       "imo": "—",
       "name": "CS CAPRICE",
@@ -236,7 +176,37 @@
       "to": "—"
     },
     {
-      "id": "H20260706016",
+      "id": "H20260706012",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "HAFNIA ANE",
+      "gt": 29658,
+      "len": 183,
+      "berth": "PET",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-06T12:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260706013",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "CASTILLO DE PAMBRE",
+      "gt": 6388,
+      "len": 110,
+      "berth": "RS4",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-06T15:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260706014",
       "status": "Prevista",
       "imo": "—",
       "name": "LILA.GELA",
@@ -251,7 +221,22 @@
       "to": "—"
     },
     {
-      "id": "H20260706017",
+      "id": "H20260706015",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "HISTRIA DIONE",
+      "gt": 26310,
+      "len": 180,
+      "berth": "PES",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-06T18:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260707016",
       "status": "Prevista",
       "imo": "—",
       "name": "MANISA KATE",
@@ -260,13 +245,13 @@
       "berth": "JGV",
       "agent": "ERS",
       "op": "Entrada",
-      "eta": "2026-07-06T19:45",
+      "eta": "2026-07-07T11:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260707018",
+      "id": "H20260707017",
       "status": "Prevista",
       "imo": "—",
       "name": "KING ARTHUR",
@@ -281,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260708019",
+      "id": "H20260708018",
       "status": "Prevista",
       "imo": "—",
       "name": "FIRST.SKY",
@@ -296,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709020",
+      "id": "H20260709019",
       "status": "Prevista",
       "imo": "—",
       "name": "YENISEI RIVER",
@@ -312,7 +297,7 @@
     }
   ],
   "tugService": {
-    "callId": "H20260703001",
+    "callId": "H20260705001",
     "reportNumber": "031245",
     "tugboat": "REMOLCADOR ODIEL",
     "powerPct": 70,
@@ -339,18 +324,18 @@
     }
   },
   "milestones": {
-    "H20260703001": [
+    "H20260705001": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "03/07 · 23:25",
+        "time": "05/07 · 05:25",
         "by": "Práctico (Huelva)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "04/07 · 00:30",
-        "by": "Agente: CON"
+        "time": "05/07 · 06:30",
+        "by": "Agente: E.CIA"
       },
       {
         "label": "Fin de operaciones",
