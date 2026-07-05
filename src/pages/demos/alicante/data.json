@@ -2,13 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "04/07/2026",
+    "date": "05/07/2026",
     "refreshHours": 2
   },
   "calls": [
     {
       "id": "A202600460",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "9432505",
       "name": "SIDER SONJA",
       "gt": 5629,
@@ -19,13 +19,11 @@
       "eta": "2026-07-04T12:00",
       "etd": "2026-07-08T22:00",
       "from": "PORTO VESME",
-      "to": "CAGLIARI",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en carga. El buque no liberará el Muelle 15 según lo previsto."
+      "to": "CAGLIARI"
     },
     {
       "id": "A202600466",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9430193",
       "name": "HERCULES J",
       "gt": 10585,
@@ -36,7 +34,9 @@
       "eta": "2026-07-05T07:00",
       "etd": "2026-07-05T21:00",
       "from": "ARRECIFE",
-      "to": "TENERIFE"
+      "to": "TENERIFE",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
       "id": "A202600473",
@@ -96,7 +96,9 @@
       "eta": "2026-07-08T07:00",
       "etd": "2026-07-08T21:00",
       "from": "DERINCE",
-      "to": "BARCELONA"
+      "to": "BARCELONA",
+      "affectedBy": "A202600466",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600478",
@@ -130,7 +132,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600460",
+    "callId": "A202600466",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -157,18 +159,18 @@
     }
   },
   "milestones": {
-    "A202600460": [
+    "A202600466": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "04/07 · 12:25",
+        "time": "05/07 · 07:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "04/07 · 13:30",
-        "by": "Agente: ROMEU Y CIA. S A"
+        "time": "05/07 · 08:30",
+        "by": "Agente: EUROPEAN FORWARDING SL"
       },
       {
         "label": "Fin de operaciones",
