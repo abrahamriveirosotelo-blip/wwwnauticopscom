@@ -8,7 +8,7 @@
   "calls": [
     {
       "id": "A202600460",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9432505",
       "name": "SIDER SONJA",
       "gt": 5629,
@@ -19,7 +19,9 @@
       "eta": "2026-07-04T12:00",
       "etd": "2026-07-07T22:00",
       "from": "PORTO VESME",
-      "to": "ALMERIA"
+      "to": "ALMERIA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en carga. El buque no liberará el Muelle 15 según lo previsto."
     },
     {
       "id": "A202600473",
@@ -37,53 +39,6 @@
       "to": "ORAN"
     },
     {
-      "id": "A202600486",
-      "status": "Iniciado",
-      "imo": "9751456",
-      "name": "ROXANE Z",
-      "gt": 499,
-      "len": 34,
-      "berth": "7",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "AVITUALLAMIENTO",
-      "eta": "2026-07-06T08:00",
-      "etd": "2026-07-06T20:00",
-      "from": "FOS-SUR-MER",
-      "to": "DERINCE"
-    },
-    {
-      "id": "A202600481",
-      "status": "Alerta",
-      "imo": "9237242",
-      "name": "CRACOVIA",
-      "gt": 25028,
-      "len": 180,
-      "berth": "25",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-07-06T08:00",
-      "etd": "2026-07-06T19:00",
-      "from": "ALGER",
-      "to": "BARCELONA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 25 según lo previsto."
-    },
-    {
-      "id": "A202600469",
-      "status": "Iniciado",
-      "imo": "9108063",
-      "name": "PIRITA",
-      "gt": 6326,
-      "len": 132,
-      "berth": "23",
-      "agent": "A. PEREZ Y CIA. S.L.",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-06T08:00",
-      "etd": "2026-07-06T20:00",
-      "from": "ALGECIRAS",
-      "to": "BARCELONA"
-    },
-    {
       "id": "A202600491",
       "status": "Prevista",
       "imo": "9265419",
@@ -96,9 +51,7 @@
       "eta": "2026-07-07T08:00",
       "etd": "2026-07-07T20:00",
       "from": "ORAN",
-      "to": "LAS PALMAS",
-      "affectedBy": "A202600481",
-      "affectRisk": "ALTO"
+      "to": "LAS PALMAS"
     },
     {
       "id": "A202600467",
@@ -192,7 +145,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600481",
+    "callId": "A202600460",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -219,18 +172,18 @@
     }
   },
   "milestones": {
-    "A202600481": [
+    "A202600460": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "06/07 · 08:25",
+        "time": "04/07 · 12:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "06/07 · 09:30",
-        "by": "Agente: OCEAN PORTS & SHIPPING SL"
+        "time": "04/07 · 13:30",
+        "by": "Agente: ROMEU Y CIA. S A"
       },
       {
         "label": "Fin de operaciones",

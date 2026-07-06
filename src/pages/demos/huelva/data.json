@@ -27,36 +27,6 @@
       "id": "H20260705002",
       "status": "Iniciado",
       "imo": "—",
-      "name": "ZAHRA",
-      "gt": 33817,
-      "len": 183,
-      "berth": "DCS",
-      "agent": "NEX",
-      "op": "Fondo",
-      "eta": "2026-07-05T05:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260705003",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "ATROTOS",
-      "gt": 29565,
-      "len": 183,
-      "berth": "DC2",
-      "agent": "E.CIA",
-      "op": "Fondo",
-      "eta": "2026-07-05T13:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260705004",
-      "status": "Iniciado",
-      "imo": "—",
       "name": "KRITI.SAILOR",
       "gt": 23656,
       "len": 184,
@@ -69,7 +39,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705005",
+      "id": "H20260705003",
       "status": "Iniciado",
       "imo": "—",
       "name": "SNP.STAR",
@@ -84,7 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705006",
+      "id": "H20260705004",
       "status": "Iniciado",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -99,8 +69,8 @@
       "to": "—"
     },
     {
-      "id": "H20260706007",
-      "status": "Prevista",
+      "id": "H20260706005",
+      "status": "Iniciado",
       "imo": "—",
       "name": "YM URANUS",
       "gt": 4829,
@@ -111,12 +81,10 @@
       "eta": "2026-07-06T20:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260705001",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
-      "id": "H20260707008",
+      "id": "H20260707006",
       "status": "Prevista",
       "imo": "—",
       "name": "BWEK.BEACON",
@@ -131,7 +99,7 @@
       "to": "—"
     },
     {
-      "id": "H20260707009",
+      "id": "H20260707007",
       "status": "Prevista",
       "imo": "—",
       "name": "HISTRIA DIONE",
@@ -146,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260707010",
+      "id": "H20260707008",
       "status": "Prevista",
       "imo": "—",
       "name": "MARIE CURIE",
@@ -161,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260707011",
+      "id": "H20260707009",
       "status": "Prevista",
       "imo": "—",
       "name": "MANISA KATE",
@@ -176,7 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260707012",
+      "id": "H20260707010",
       "status": "Prevista",
       "imo": "—",
       "name": "LILA.GELA",
@@ -191,7 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260707013",
+      "id": "H20260707011",
       "status": "Prevista",
       "imo": "—",
       "name": "BUENAVISTA.EXPRESS",
@@ -206,7 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260707014",
+      "id": "H20260707012",
       "status": "Prevista",
       "imo": "—",
       "name": "FT QUINTO",
@@ -221,7 +189,7 @@
       "to": "—"
     },
     {
-      "id": "H20260708015",
+      "id": "H20260708013",
       "status": "Prevista",
       "imo": "—",
       "name": "VENTURI",
@@ -236,7 +204,7 @@
       "to": "—"
     },
     {
-      "id": "H20260708016",
+      "id": "H20260708014",
       "status": "Prevista",
       "imo": "—",
       "name": "OZDEN THERESA",
@@ -251,7 +219,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709017",
+      "id": "H20260709015",
       "status": "Prevista",
       "imo": "—",
       "name": "YENISEI RIVER",
@@ -266,7 +234,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709018",
+      "id": "H20260709016",
       "status": "Prevista",
       "imo": "—",
       "name": "FIRST.SKY",
@@ -281,7 +249,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709019",
+      "id": "H20260709017",
       "status": "Prevista",
       "imo": "—",
       "name": "KING ARTHUR",
@@ -296,7 +264,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709020",
+      "id": "H20260709018",
       "status": "Prevista",
       "imo": "—",
       "name": "HITRA",
@@ -311,7 +279,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709021",
+      "id": "H20260709019",
       "status": "Prevista",
       "imo": "—",
       "name": "DH BLOSSOMING",
@@ -326,7 +294,7 @@
       "to": "—"
     },
     {
-      "id": "H20260715022",
+      "id": "H20260715020",
       "status": "Prevista",
       "imo": "—",
       "name": "CS CAPRICE",
