@@ -393,5 +393,23 @@
     "resolved": false,
     "reason": "11 resultados pero ninguno aceptable (nombre/tipo comercial/IMO)",
     "checkedAt": "2026-07-06T13:47:47Z"
+  },
+  "EEMS SUN::AMSTERDAM": {
+    "resolved": true,
+    "imo": "9431587",
+    "mmsi": "245070000",
+    "detailId": "9431587",
+    "gt": 1862,
+    "dwt": 2600,
+    "len": 87,
+    "beam": 11,
+    "flag": "Netherlands",
+    "vesselType": "General Cargo Ship",
+    "built": 2009,
+    "callsign": "PHMO",
+    "destination": "ES MAR",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-06T16:53:12Z"
   }
 }

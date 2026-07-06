@@ -246,7 +246,7 @@
       "agent": "IBM",
       "op": "Entrada",
       "eta": "2026-07-08T17:30",
-      "etd": "2026-07-06T15:00",
+      "etd": "",
       "from": "—",
       "to": "—"
     },
@@ -311,7 +311,22 @@
       "to": "—"
     },
     {
-      "id": "H20260715021",
+      "id": "H20260709021",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "DH BLOSSOMING",
+      "gt": 6052,
+      "len": 120,
+      "berth": "RSF",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-09T23:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260715022",
       "status": "Prevista",
       "imo": "—",
       "name": "CS CAPRICE",
