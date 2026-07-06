@@ -2,13 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "05/07/2026",
+    "date": "06/07/2026",
     "refreshHours": 2
   },
   "calls": [
     {
       "id": "A202600460",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "9432505",
       "name": "SIDER SONJA",
       "gt": 5629,
@@ -17,15 +17,30 @@
       "agent": "ROMEU Y CIA. S A",
       "op": "C/ BIOMASA",
       "eta": "2026-07-04T12:00",
-      "etd": "2026-07-08T22:00",
+      "etd": "2026-07-07T22:00",
       "from": "PORTO VESME",
-      "to": "CAGLIARI",
+      "to": "ALMERIA"
+    },
+    {
+      "id": "A202600482",
+      "status": "Alerta",
+      "imo": "8911841",
+      "name": "MALTA CEMENT",
+      "gt": 2429,
+      "len": 88,
+      "berth": "19",
+      "agent": "OCEAN PORTS & SHIPPING SL",
+      "op": "C/ CEMENTO INST. ESP.",
+      "eta": "2026-07-05T08:00",
+      "etd": "2026-07-06T12:00",
+      "from": "ALMERIA",
+      "to": "DERINCE",
       "delay": "+4h 30min",
-      "alertNote": "Incidencia en carga. El buque no liberará el Muelle 15 según lo previsto."
+      "alertNote": "Incidencia en carga. El buque no liberará el Muelle 19 según lo previsto."
     },
     {
       "id": "A202600473",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9505560",
       "name": "WISLABORG",
       "gt": 6668,
@@ -36,26 +51,26 @@
       "eta": "2026-07-06T06:00",
       "etd": "2026-07-07T14:00",
       "from": "HOLMSUND",
-      "to": "GANDIA"
+      "to": "ORAN"
     },
     {
-      "id": "A202600469",
-      "status": "Prevista",
-      "imo": "9108063",
-      "name": "PIRITA",
-      "gt": 6326,
-      "len": 132,
-      "berth": "23",
-      "agent": "A. PEREZ Y CIA. S.L.",
-      "op": "PORTACONTENEDORES",
+      "id": "A202600486",
+      "status": "Iniciado",
+      "imo": "9751456",
+      "name": "ROXANE Z",
+      "gt": 499,
+      "len": 34,
+      "berth": "7",
+      "agent": "ROMEU Y CIA. S A",
+      "op": "AVITUALLAMIENTO",
       "eta": "2026-07-06T08:00",
       "etd": "2026-07-06T20:00",
-      "from": "ALGECIRAS",
-      "to": "ALMERIA"
+      "from": "FOS-SUR-MER",
+      "to": "DERINCE"
     },
     {
       "id": "A202600481",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9237242",
       "name": "CRACOVIA",
       "gt": 25028,
@@ -66,7 +81,37 @@
       "eta": "2026-07-06T08:00",
       "etd": "2026-07-06T19:00",
       "from": "ALGER",
-      "to": "ORAN"
+      "to": "BARCELONA"
+    },
+    {
+      "id": "A202600469",
+      "status": "Iniciado",
+      "imo": "9108063",
+      "name": "PIRITA",
+      "gt": 6326,
+      "len": 132,
+      "berth": "23",
+      "agent": "A. PEREZ Y CIA. S.L.",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-07-06T08:00",
+      "etd": "2026-07-06T20:00",
+      "from": "ALGECIRAS",
+      "to": "BARCELONA"
+    },
+    {
+      "id": "A202600491",
+      "status": "Prevista",
+      "imo": "9265419",
+      "name": "TASSILI 2",
+      "gt": 20024,
+      "len": 142.92,
+      "berth": "25",
+      "agent": "ROMEU Y CIA. S A",
+      "op": "PASAJE Y VEHICULOS",
+      "eta": "2026-07-07T08:00",
+      "etd": "2026-07-07T20:00",
+      "from": "ORAN",
+      "to": "LAS PALMAS"
     },
     {
       "id": "A202600467",
@@ -96,7 +141,7 @@
       "eta": "2026-07-08T08:00",
       "etd": "2026-07-08T12:00",
       "from": "STA. CRUZ",
-      "to": "BARCELONA"
+      "to": "COSTENDE"
     },
     {
       "id": "A202600468",
@@ -111,11 +156,58 @@
       "eta": "2026-07-09T20:00",
       "etd": "2026-07-10T15:00",
       "from": "TENERIFE",
-      "to": "DERINCE"
+      "to": "ORAN"
+    },
+    {
+      "id": "A202600480",
+      "status": "Prevista",
+      "imo": "9175494",
+      "name": "RAHAF 1",
+      "gt": 29303,
+      "len": 195.1,
+      "berth": "19",
+      "agent": "ROMEU Y CIA. S A",
+      "op": "C/ COCHES  ",
+      "eta": "2026-07-10T07:00",
+      "etd": "2026-07-11T14:00",
+      "from": "MISURATA",
+      "to": "GANDIA",
+      "affectedBy": "A202600482",
+      "affectRisk": "ALTO"
+    },
+    {
+      "id": "A202600476",
+      "status": "Prevista",
+      "imo": "8816352",
+      "name": "SIRIOS CEMENT V",
+      "gt": 2453,
+      "len": 86,
+      "berth": "19",
+      "agent": "OCEAN PORTS & SHIPPING SL",
+      "op": "C/ CEMENTO INST. ESP.",
+      "eta": "2026-07-10T08:00",
+      "etd": "2026-07-10T23:00",
+      "from": "ALMERIA",
+      "to": "PALMA"
+    },
+    {
+      "id": "A202600492",
+      "status": "Prevista",
+      "imo": "9106297",
+      "name": "MARELLA EXPLORER",
+      "gt": 76998,
+      "len": 262,
+      "berth": "14",
+      "agent": "A. PEREZ Y CIA. S.L.",
+      "op": "CRUCERISTAS",
+      "eta": "2026-07-10T08:00",
+      "etd": "2026-07-10T16:00",
+      "from": "CARTAGENA",
+      "to": "ORAN"
     }
   ],
   "tugService": {
-    "callId": "A202600460",
+    "callId": "A202600482",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -142,18 +234,18 @@
     }
   },
   "milestones": {
-    "A202600460": [
+    "A202600482": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "04/07 · 12:25",
+        "time": "05/07 · 08:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "04/07 · 13:30",
-        "by": "Agente: ROMEU Y CIA. S A"
+        "time": "05/07 · 09:30",
+        "by": "Agente: OCEAN PORTS & SHIPPING SL"
       },
       {
         "label": "Fin de operaciones",

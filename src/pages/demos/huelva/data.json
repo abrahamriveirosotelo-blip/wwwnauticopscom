@@ -2,7 +2,7 @@
   "meta": {
     "port": "Puerto de Huelva",
     "source": "huelvapilots.com · previsiones",
-    "date": "05/07/2026",
+    "date": "06/07/2026",
     "refreshHours": 24
   },
   "calls": [
@@ -42,21 +42,6 @@
       "id": "H20260705003",
       "status": "Iniciado",
       "imo": "—",
-      "name": "CATALINA",
-      "gt": 6479,
-      "len": 123,
-      "berth": "MUL",
-      "agent": "MM",
-      "op": "Fondo",
-      "eta": "2026-07-05T07:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260705004",
-      "status": "Iniciado",
-      "imo": "—",
       "name": "ATROTOS",
       "gt": 29565,
       "len": 183,
@@ -69,7 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705005",
+      "id": "H20260705004",
       "status": "Iniciado",
       "imo": "—",
       "name": "SNP.STAR",
@@ -84,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705006",
+      "id": "H20260705005",
       "status": "Iniciado",
       "imo": "—",
       "name": "KRITI.SAILOR",
@@ -99,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705007",
+      "id": "H20260705006",
       "status": "Iniciado",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -114,22 +99,7 @@
       "to": "—"
     },
     {
-      "id": "H20260706008",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "VIOLETA.THERESA",
-      "gt": 5303,
-      "len": 115,
-      "berth": "ATC",
-      "agent": "ERS",
-      "op": "Entrada",
-      "eta": "2026-07-06T07:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260706009",
+      "id": "H20260706007",
       "status": "Prevista",
       "imo": "—",
       "name": "VENTURI",
@@ -144,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260706010",
+      "id": "H20260706008",
       "status": "Prevista",
       "imo": "—",
       "name": "CS CAPRICE",
@@ -159,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260706011",
+      "id": "H20260706009",
       "status": "Prevista",
       "imo": "—",
       "name": "HAFNIA ANE",
@@ -174,7 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260706012",
+      "id": "H20260706010",
       "status": "Prevista",
       "imo": "—",
       "name": "CASTILLO DE PAMBRE",
@@ -189,7 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260706013",
+      "id": "H20260706011",
       "status": "Prevista",
       "imo": "—",
       "name": "LILA.GELA",
@@ -204,7 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260706014",
+      "id": "H20260706012",
       "status": "Prevista",
       "imo": "—",
       "name": "HISTRIA DIONE",
@@ -219,7 +189,22 @@
       "to": "—"
     },
     {
-      "id": "H20260707015",
+      "id": "H20260707013",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "MARIE CURIE",
+      "gt": 28657,
+      "len": 186,
+      "berth": "MUL",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-07-07T08:15",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260707014",
       "status": "Prevista",
       "imo": "—",
       "name": "MANISA KATE",
@@ -234,7 +219,7 @@
       "to": "—"
     },
     {
-      "id": "H20260707016",
+      "id": "H20260707015",
       "status": "Prevista",
       "imo": "—",
       "name": "KING ARTHUR",
@@ -249,7 +234,7 @@
       "to": "—"
     },
     {
-      "id": "H20260708017",
+      "id": "H20260708016",
       "status": "Prevista",
       "imo": "—",
       "name": "FIRST.SKY",
@@ -264,7 +249,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709018",
+      "id": "H20260709017",
       "status": "Prevista",
       "imo": "—",
       "name": "YENISEI RIVER",
@@ -274,6 +259,21 @@
       "agent": "NEX",
       "op": "Entrada",
       "eta": "2026-07-09T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260709018",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "HITRA",
+      "gt": 3997,
+      "len": 108,
+      "berth": "RSF",
+      "agent": "IBM",
+      "op": "Entrada",
+      "eta": "2026-07-09T13:00",
       "etd": "",
       "from": "—",
       "to": "—"
