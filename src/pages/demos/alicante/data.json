@@ -24,21 +24,6 @@
       "alertNote": "Incidencia en carga. El buque no liberará el Muelle 15 según lo previsto."
     },
     {
-      "id": "A202600491",
-      "status": "Iniciado",
-      "imo": "9265419",
-      "name": "TASSILI 2",
-      "gt": 20024,
-      "len": 142.92,
-      "berth": "25",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-07-07T08:00",
-      "etd": "2026-07-07T20:00",
-      "from": "ORAN",
-      "to": "LAS PALMAS"
-    },
-    {
       "id": "A202600467",
       "status": "Prevista",
       "imo": "9312200",
