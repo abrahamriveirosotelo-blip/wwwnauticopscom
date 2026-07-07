@@ -2,13 +2,13 @@
   "meta": {
     "port": "Puerto de Huelva",
     "source": "huelvapilots.com · previsiones",
-    "date": "06/07/2026",
+    "date": "07/07/2026",
     "refreshHours": 24
   },
   "calls": [
     {
       "id": "H20260705001",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "—",
       "name": "ATHENIAN.HARMONY",
       "gt": 11865,
@@ -19,9 +19,7 @@
       "eta": "2026-07-05T05:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle DEC según lo previsto."
+      "to": "—"
     },
     {
       "id": "H20260705002",
@@ -42,21 +40,6 @@
       "id": "H20260705003",
       "status": "Iniciado",
       "imo": "—",
-      "name": "SNP.STAR",
-      "gt": 2474,
-      "len": 82,
-      "berth": "TI",
-      "agent": "BER",
-      "op": "Fondo",
-      "eta": "2026-07-05T15:30",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260705004",
-      "status": "Iniciado",
-      "imo": "—",
       "name": "NQ LAELIA",
       "gt": 5744,
       "len": 116,
@@ -69,7 +52,7 @@
       "to": "—"
     },
     {
-      "id": "H20260706005",
+      "id": "H20260706004",
       "status": "Iniciado",
       "imo": "—",
       "name": "YM URANUS",
@@ -77,59 +60,46 @@
       "len": 120,
       "berth": "DEC",
       "agent": "E.CIA",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-07-06T20:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260707006",
-      "status": "Prevista",
+      "id": "H20260707005",
+      "status": "Iniciado",
       "imo": "—",
       "name": "BWEK.BEACON",
       "gt": 6081,
       "len": 118,
       "berth": "PEN",
       "agent": "E.CIA",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-07-07T02:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260707007",
-      "status": "Prevista",
+      "id": "H20260707006",
+      "status": "Alerta",
       "imo": "—",
-      "name": "HISTRIA DIONE",
-      "gt": 26310,
-      "len": 180,
-      "berth": "PES",
+      "name": "POESTELLA",
+      "gt": 7293,
+      "len": 109,
+      "berth": "RSF",
       "agent": "E.CIA",
-      "op": "Entrada",
-      "eta": "2026-07-07T07:00",
+      "op": "Fondo",
+      "eta": "2026-07-07T08:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle RSF según lo previsto."
     },
     {
-      "id": "H20260707008",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "MARIE CURIE",
-      "gt": 28657,
-      "len": 186,
-      "berth": "MUL",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-07-07T08:15",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260707009",
+      "id": "H20260707007",
       "status": "Prevista",
       "imo": "—",
       "name": "MANISA KATE",
@@ -138,28 +108,28 @@
       "berth": "JGV",
       "agent": "ERS",
       "op": "Entrada",
-      "eta": "2026-07-07T10:30",
+      "eta": "2026-07-07T10:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260707010",
+      "id": "H20260707008",
       "status": "Prevista",
       "imo": "—",
-      "name": "LILA.GELA",
-      "gt": 11628,
-      "len": 145,
-      "berth": "ATC",
-      "agent": "ERS",
+      "name": "HISTRIA DIONE",
+      "gt": 26310,
+      "len": 180,
+      "berth": "PES",
+      "agent": "E.CIA",
       "op": "Entrada",
-      "eta": "2026-07-07T15:15",
+      "eta": "2026-07-07T10:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260707011",
+      "id": "H20260707009",
       "status": "Prevista",
       "imo": "—",
       "name": "BUENAVISTA.EXPRESS",
@@ -169,6 +139,36 @@
       "agent": "TER",
       "op": "Entrada",
       "eta": "2026-07-07T18:30",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260707010",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "CANNETO M",
+      "gt": 13671,
+      "len": 161,
+      "berth": "PET",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-07T18:30",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260707011",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "LILA.GELA",
+      "gt": 11628,
+      "len": 145,
+      "berth": "ATC",
+      "agent": "ERS",
+      "op": "Entrada",
+      "eta": "2026-07-07T20:00",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -186,25 +186,12 @@
       "eta": "2026-07-07T20:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "affectedBy": "H20260707006",
+      "affectRisk": "ALTO"
     },
     {
       "id": "H20260708013",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "VENTURI",
-      "gt": 3430,
-      "len": 89,
-      "berth": "PES",
-      "agent": "E.CIA",
-      "op": "Entrada",
-      "eta": "2026-07-08T10:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260708014",
       "status": "Prevista",
       "imo": "—",
       "name": "OZDEN THERESA",
@@ -214,6 +201,21 @@
       "agent": "IBM",
       "op": "Entrada",
       "eta": "2026-07-08T17:30",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260708014",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "CONTSHIP.SKY",
+      "gt": 9957,
+      "len": 148,
+      "berth": "MUL",
+      "agent": "MM",
+      "op": "Entrada",
+      "eta": "2026-07-08T18:00",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -243,7 +245,7 @@
       "berth": "JGV",
       "agent": "ERS",
       "op": "Entrada",
-      "eta": "2026-07-09T07:00",
+      "eta": "2026-07-09T06:00",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -310,7 +312,7 @@
     }
   ],
   "tugService": {
-    "callId": "H20260705001",
+    "callId": "H20260707006",
     "reportNumber": "031245",
     "tugboat": "REMOLCADOR ODIEL",
     "powerPct": 70,
@@ -337,17 +339,17 @@
     }
   },
   "milestones": {
-    "H20260705001": [
+    "H20260707006": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "05/07 · 05:25",
+        "time": "07/07 · 08:25",
         "by": "Práctico (Huelva)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "05/07 · 06:30",
+        "time": "07/07 · 09:30",
         "by": "Agente: E.CIA"
       },
       {

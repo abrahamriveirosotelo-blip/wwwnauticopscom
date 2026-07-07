@@ -2,9 +2,9 @@
   "meta": {
     "port": "Puerto de Marín",
     "source": "apmarin.com · buques esperados + en puerto",
-    "date": "06/07/2026",
+    "date": "07/07/2026",
     "refreshHours": 2,
-    "sourceUpdatedAt": "2026-07-06T21:10"
+    "sourceUpdatedAt": "2026-07-07T09:10"
   },
   "calls": [
     {
@@ -34,7 +34,7 @@
       "aisSpeed": 0,
       "aisDraught": 13,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-06T22:00",
+      "aisAt": "2026-07-07T09:41",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -61,15 +61,15 @@
       "vesselType": "Bulk Carrier",
       "built": 2019,
       "callsign": "V7A2319",
-      "aisStatus": "Atracado",
+      "aisStatus": "-",
       "aisEta": "",
       "aisSpeed": 0,
       "aisDraught": 10.8,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-06T22:00",
+      "aisAt": "2026-07-07T09:41",
       "aisAtMarin": true,
       "aisToFinal": false,
-      "aisArrivedMarin": true
+      "aisArrivedMarin": false
     },
     {
       "id": "M202600440",
@@ -98,7 +98,7 @@
       "aisSpeed": 0,
       "aisDraught": 4.1,
       "aisDestination": "Marin, Pontevedra Anch., Spain",
-      "aisAt": "2026-07-06T22:00",
+      "aisAt": "2026-07-07T09:41",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -130,14 +130,14 @@
       "aisSpeed": 0,
       "aisDraught": 9.8,
       "aisDestination": "ES MAR",
-      "aisAt": "2026-07-06T22:00",
+      "aisAt": "2026-07-07T09:41",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
     },
     {
       "id": "M202600434",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9430959",
       "name": "Wilson Nice",
       "gt": 6118,
@@ -146,7 +146,7 @@
       "agent": "Ceferino Nogueira, S.A.",
       "op": "D. Cereales y su harina",
       "eta": "2026-07-06T12:00",
-      "etd": "",
+      "etd": "2026-07-08T18:00",
       "from": "Aarhus",
       "to": "A Órdenes",
       "mmsi": "259020000",
@@ -157,15 +157,15 @@
       "vesselType": "General Cargo Ship",
       "built": 2010,
       "callsign": "LAMY8",
-      "aisStatus": "Navegando",
-      "aisEta": "2026-07-06T14:00",
-      "aisSpeed": 11.3,
+      "aisStatus": "Fondeado",
+      "aisEta": "",
+      "aisSpeed": 0,
       "aisDraught": 7.5,
-      "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-06T22:00",
+      "aisDestination": "Marin, Pontevedra Anch., Spain",
+      "aisAt": "2026-07-07T09:41",
       "aisAtMarin": true,
       "aisToFinal": false,
-      "aisArrivedMarin": false
+      "aisArrivedMarin": true
     },
     {
       "id": "M202600441",
@@ -194,7 +194,7 @@
       "aisSpeed": 0,
       "aisDraught": 2.9,
       "aisDestination": "ES MAR",
-      "aisAt": "2026-07-06T22:00",
+      "aisAt": "2026-07-07T09:41",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -221,14 +221,14 @@
       "vesselType": "Container Ship",
       "built": 2006,
       "callsign": "CQUZ",
-      "aisStatus": "Atracado",
-      "aisEta": "",
-      "aisSpeed": 0,
-      "aisDraught": 8.3,
-      "aisDestination": "Algeciras, Spain",
-      "aisAt": "2026-07-06T22:00",
+      "aisStatus": "Navegando",
+      "aisEta": "2026-07-08T20:00",
+      "aisSpeed": 15,
+      "aisDraught": 8.5,
+      "aisDestination": "Vigo, Spain",
+      "aisAt": "2026-07-07T09:41",
       "aisAtMarin": false,
-      "aisToFinal": true,
+      "aisToFinal": false,
       "aisArrivedMarin": false
     },
     {
@@ -253,11 +253,11 @@
       "built": 2006,
       "callsign": "V2HV8",
       "aisStatus": "Atracado",
-      "aisEta": "2026-07-13T12:00",
+      "aisEta": "2026-07-12T21:00",
       "aisSpeed": 0,
       "aisDraught": 6.5,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-06T22:00",
+      "aisAt": "2026-07-07T09:41",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -289,7 +289,7 @@
       "aisSpeed": 0,
       "aisDraught": 5.1,
       "aisDestination": "Moerdijk, Netherlands",
-      "aisAt": "2026-07-06T22:00",
+      "aisAt": "2026-07-07T09:41",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
