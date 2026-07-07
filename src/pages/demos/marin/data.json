@@ -4,7 +4,7 @@
     "source": "apmarin.com · buques esperados + en puerto",
     "date": "07/07/2026",
     "refreshHours": 2,
-    "sourceUpdatedAt": "2026-07-07T12:10"
+    "sourceUpdatedAt": "2026-07-07T16:10"
   },
   "calls": [
     {
@@ -34,7 +34,7 @@
       "aisSpeed": 0,
       "aisDraught": 13,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-07T13:09",
+      "aisAt": "2026-07-07T16:39",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -66,7 +66,7 @@
       "aisSpeed": 0,
       "aisDraught": 10.8,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-07T13:09",
+      "aisAt": "2026-07-07T16:39",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -93,15 +93,15 @@
       "vesselType": "General Cargo Ship",
       "built": 2002,
       "callsign": "PBHS",
-      "aisStatus": "Fondeado",
+      "aisStatus": "Navegando",
       "aisEta": "",
       "aisSpeed": 0,
       "aisDraught": 4.1,
       "aisDestination": "Marin, Pontevedra Anch., Spain",
-      "aisAt": "2026-07-07T13:09",
+      "aisAt": "2026-07-07T16:39",
       "aisAtMarin": true,
       "aisToFinal": false,
-      "aisArrivedMarin": true
+      "aisArrivedMarin": false
     },
     {
       "id": "M202600435",
@@ -130,14 +130,14 @@
       "aisSpeed": 0,
       "aisDraught": 9.8,
       "aisDestination": "ES MAR",
-      "aisAt": "2026-07-07T13:09",
+      "aisAt": "2026-07-07T16:39",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
     },
     {
       "id": "M202600434",
-      "status": "Iniciado",
+      "status": "Prevista",
       "imo": "9430959",
       "name": "Wilson Nice",
       "gt": 6118,
@@ -162,7 +162,7 @@
       "aisSpeed": 0,
       "aisDraught": 7.5,
       "aisDestination": "Marin, Pontevedra Anch., Spain",
-      "aisAt": "2026-07-07T13:09",
+      "aisAt": "2026-07-07T16:39",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -174,9 +174,9 @@
       "name": "Eems Sun",
       "gt": 1862,
       "len": 87,
-      "berth": "Fondeo Zona Ii",
+      "berth": "Ceferino Nogueira Atraque 2",
       "agent": "Ceferino Nogueira, S.A.",
-      "op": "—",
+      "op": "C. Papel y pasta",
       "eta": "",
       "etd": "2026-07-07T19:00",
       "from": "A Coruña",
@@ -190,13 +190,13 @@
       "built": 2009,
       "callsign": "PHMO",
       "aisStatus": "Navegando",
-      "aisEta": "2026-07-06T18:00",
+      "aisEta": "2026-07-12T09:00",
       "aisSpeed": 0,
-      "aisDraught": 2.9,
-      "aisDestination": "ES MAR",
-      "aisAt": "2026-07-07T13:09",
-      "aisAtMarin": true,
-      "aisToFinal": false,
+      "aisDraught": 4.1,
+      "aisDestination": "Amsterdam, Netherlands",
+      "aisAt": "2026-07-07T16:39",
+      "aisAtMarin": false,
+      "aisToFinal": true,
       "aisArrivedMarin": false
     },
     {
@@ -222,11 +222,11 @@
       "built": 2006,
       "callsign": "CQUZ",
       "aisStatus": "Navegando",
-      "aisEta": "2026-07-08T20:00",
-      "aisSpeed": 11.3,
+      "aisEta": "2026-07-09T06:00",
+      "aisSpeed": 10.5,
       "aisDraught": 8.5,
       "aisDestination": "Vigo, Spain",
-      "aisAt": "2026-07-07T13:09",
+      "aisAt": "2026-07-07T16:39",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -257,7 +257,7 @@
       "aisSpeed": 0,
       "aisDraught": 6.5,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-07T13:09",
+      "aisAt": "2026-07-07T16:39",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -289,7 +289,7 @@
       "aisSpeed": 0,
       "aisDraught": 5.1,
       "aisDestination": "Moerdijk, Netherlands",
-      "aisAt": "2026-07-07T13:09",
+      "aisAt": "2026-07-07T16:39",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -297,17 +297,34 @@
     {
       "id": "M202600445",
       "status": "Prevista",
-      "imo": "—",
-      "name": "Beza",
-      "gt": 0,
-      "len": 0,
+      "imo": "9184421",
+      "name": "Elenora",
+      "gt": 2469,
+      "len": 86,
       "berth": "Nuevo Comercial Marin Atraque 1",
       "agent": "Perez Torres Maritima, S.L.",
       "op": "D. Productos siderúrgicos",
       "eta": "2026-07-16T10:30",
       "etd": "",
       "from": "Bermeo",
-      "to": "A Órdenes"
+      "to": "A Órdenes",
+      "mmsi": "255924000",
+      "detailId": "9184421",
+      "dwt": 4023,
+      "beam": 13,
+      "flag": "Portugal (Madeira)",
+      "vesselType": "General Cargo Ship",
+      "built": 2000,
+      "callsign": "CQWD",
+      "aisStatus": "Atracado",
+      "aisEta": "2026-07-07T07:00",
+      "aisSpeed": 0,
+      "aisDraught": 3.8,
+      "aisDestination": "DKFVK",
+      "aisAt": "2026-07-07T16:39",
+      "aisAtMarin": false,
+      "aisToFinal": false,
+      "aisArrivedMarin": false
     }
   ]
 }
