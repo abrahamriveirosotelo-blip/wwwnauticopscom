@@ -2,27 +2,10 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "07/07/2026",
+    "date": "08/07/2026",
     "refreshHours": 2
   },
   "calls": [
-    {
-      "id": "A202600460",
-      "status": "Alerta",
-      "imo": "9432505",
-      "name": "SIDER SONJA",
-      "gt": 5629,
-      "len": 108,
-      "berth": "15",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "C/ BIOMASA",
-      "eta": "2026-07-04T12:00",
-      "etd": "2026-07-07T22:00",
-      "from": "PORTO VESME",
-      "to": "ALMERIA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en carga. El buque no liberará el Muelle 15 según lo previsto."
-    },
     {
       "id": "A202600467",
       "status": "Prevista",
