@@ -22,37 +22,7 @@
       "to": "—"
     },
     {
-      "id": "H20260705002",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "KRITI.SAILOR",
-      "gt": 23656,
-      "len": 184,
-      "berth": "DCS",
-      "agent": "E.CIA",
-      "op": "Fondo",
-      "eta": "2026-07-05T14:30",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260706003",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "YM URANUS",
-      "gt": 4829,
-      "len": 120,
-      "berth": "DCN",
-      "agent": "E.CIA",
-      "op": "Fondo",
-      "eta": "2026-07-06T20:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260707004",
+      "id": "H20260707002",
       "status": "Iniciado",
       "imo": "—",
       "name": "BWEK.BEACON",
@@ -67,7 +37,7 @@
       "to": "—"
     },
     {
-      "id": "H20260707005",
+      "id": "H20260707003",
       "status": "Alerta",
       "imo": "—",
       "name": "POESTELLA",
@@ -84,22 +54,7 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle RS4 según lo previsto."
     },
     {
-      "id": "H20260707006",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "HISTRIA DIONE",
-      "gt": 26310,
-      "len": 180,
-      "berth": "PES",
-      "agent": "E.CIA",
-      "op": "Fondo",
-      "eta": "2026-07-07T10:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260707007",
+      "id": "H20260707004",
       "status": "Iniciado",
       "imo": "—",
       "name": "CANNETO M",
@@ -114,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260708008",
+      "id": "H20260708005",
       "status": "Iniciado",
       "imo": "—",
       "name": "MED PAKIZE",
@@ -129,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260708009",
+      "id": "H20260708006",
       "status": "Iniciado",
       "imo": "—",
       "name": "CB ADRIATIC",
@@ -144,8 +99,8 @@
       "to": "—"
     },
     {
-      "id": "H20260708010",
-      "status": "Prevista",
+      "id": "H20260708007",
+      "status": "Iniciado",
       "imo": "—",
       "name": "YENISEI RIVER",
       "gt": 100236,
@@ -159,8 +114,8 @@
       "to": "—"
     },
     {
-      "id": "H20260708011",
-      "status": "Prevista",
+      "id": "H20260708008",
+      "status": "Iniciado",
       "imo": "—",
       "name": "OZDEN THERESA",
       "gt": 3753,
@@ -174,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709012",
+      "id": "H20260709009",
       "status": "Prevista",
       "imo": "—",
       "name": "HAFNIA AZOTIC",
@@ -189,7 +144,22 @@
       "to": "—"
     },
     {
-      "id": "H20260709013",
+      "id": "H20260709010",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "VESLETS",
+      "gt": 24167,
+      "len": 189,
+      "berth": "JGV",
+      "agent": "PAM",
+      "op": "Entrada",
+      "eta": "2026-07-09T06:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260709011",
       "status": "Prevista",
       "imo": "—",
       "name": "DH BLOSSOMING",
@@ -198,28 +168,43 @@
       "berth": "RSN",
       "agent": "E.CIA",
       "op": "Entrada",
-      "eta": "2026-07-09T08:00",
+      "eta": "2026-07-09T09:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260709012",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "DING.HENG.23",
+      "gt": 6205,
+      "len": 120,
+      "berth": "RSN",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-09T09:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260709013",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "FIRST.SKY",
+      "gt": 35832,
+      "len": 199,
+      "berth": "CPA",
+      "agent": "ERS",
+      "op": "Entrada",
+      "eta": "2026-07-09T09:30",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
       "id": "H20260709014",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "FIRST.SKY",
-      "gt": 35832,
-      "len": 199,
-      "berth": "JGV",
-      "agent": "ERS",
-      "op": "Entrada",
-      "eta": "2026-07-09T08:30",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260709015",
       "status": "Prevista",
       "imo": "—",
       "name": "MINERVA.LEO",
@@ -234,22 +219,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709016",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "DING.HENG.23",
-      "gt": 6205,
-      "len": 120,
-      "berth": "RSN",
-      "agent": "E.CIA",
-      "op": "Entrada",
-      "eta": "2026-07-09T10:30",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260709017",
+      "id": "H20260709015",
       "status": "Prevista",
       "imo": "—",
       "name": "HITRA",
@@ -262,11 +232,11 @@
       "etd": "",
       "from": "—",
       "to": "—",
-      "affectedBy": "H20260707005",
+      "affectedBy": "H20260707003",
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260709018",
+      "id": "H20260709016",
       "status": "Prevista",
       "imo": "—",
       "name": "GAS AEGEAN",
@@ -281,7 +251,22 @@
       "to": "—"
     },
     {
-      "id": "H20260710019",
+      "id": "H20260710017",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "EPIC BORINQUEN",
+      "gt": 6220,
+      "len": 113,
+      "berth": "PET",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-10T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260710018",
       "status": "Prevista",
       "imo": "—",
       "name": "PORT KYOTO",
@@ -296,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260710020",
+      "id": "H20260710019",
       "status": "Prevista",
       "imo": "—",
       "name": "KING ARTHUR",
@@ -311,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260710021",
+      "id": "H20260710020",
       "status": "Prevista",
       "imo": "—",
       "name": "LUDOGORETS",
@@ -326,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260710022",
+      "id": "H20260710021",
       "status": "Prevista",
       "imo": "—",
       "name": "CAROLINE ESSBERGER",
@@ -341,7 +326,37 @@
       "to": "—"
     },
     {
-      "id": "H20260715023",
+      "id": "H20260713022",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "ISLAS.TRES",
+      "gt": 4075,
+      "len": 97,
+      "berth": "JGV",
+      "agent": "ERS",
+      "op": "Entrada",
+      "eta": "2026-07-13T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260713023",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "GREAT EPSILON",
+      "gt": 30237,
+      "len": 183,
+      "berth": "DEC",
+      "agent": "IBM",
+      "op": "Entrada",
+      "eta": "2026-07-13T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260715024",
       "status": "Prevista",
       "imo": "—",
       "name": "CS CAPRICE",
@@ -354,10 +369,25 @@
       "etd": "",
       "from": "—",
       "to": "—"
+    },
+    {
+      "id": "H20260718025",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "NEW FRONTIER1",
+      "gt": 9816,
+      "len": 120,
+      "berth": "ENA",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-18T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
     }
   ],
   "tugService": {
-    "callId": "H20260707005",
+    "callId": "H20260707003",
     "reportNumber": "031245",
     "tugboat": "REMOLCADOR ODIEL",
     "powerPct": 70,
@@ -384,7 +414,7 @@
     }
   },
   "milestones": {
-    "H20260707005": [
+    "H20260707003": [
       {
         "label": "Atracado",
         "status": "done",

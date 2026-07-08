@@ -434,5 +434,23 @@
     "resolved": false,
     "reason": "1 resultado pero ninguno aceptable (nombre/tipo comercial/IMO)",
     "checkedAt": "2026-07-08T10:20:44Z"
+  },
+  "GLORIOUS::AGADIR": {
+    "resolved": true,
+    "imo": "9729831",
+    "mmsi": "538005907",
+    "detailId": "9729831",
+    "gt": 36313,
+    "dwt": 63339,
+    "len": 200,
+    "beam": 32,
+    "flag": "Marshall Islands",
+    "vesselType": "Bulk Carrier",
+    "built": 2014,
+    "callsign": "V7IA7",
+    "destination": "Marin, Pontevedra, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-08T17:38:57Z"
   }
 }
