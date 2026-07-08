@@ -24,21 +24,6 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
-      "id": "A202600478",
-      "status": "Iniciado",
-      "imo": "9483683",
-      "name": "NIEVES B",
-      "gt": 10318,
-      "len": 151.72,
-      "berth": "23",
-      "agent": "MILLER Y COMPAÑIA S.A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-08T08:00",
-      "etd": "2026-07-08T12:00",
-      "from": "STA. CRUZ",
-      "to": "COSTENDE"
-    },
-    {
       "id": "A202600468",
       "status": "Prevista",
       "imo": "9349227",

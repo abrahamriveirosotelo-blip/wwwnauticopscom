@@ -147,21 +147,6 @@
       "id": "H20260708010",
       "status": "Prevista",
       "imo": "—",
-      "name": "CONTSHIP.SKY",
-      "gt": 9957,
-      "len": 148,
-      "berth": "MUL",
-      "agent": "MM",
-      "op": "Entrada",
-      "eta": "2026-07-08T12:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260708011",
-      "status": "Prevista",
-      "imo": "—",
       "name": "YENISEI RIVER",
       "gt": 100236,
       "len": 288,
@@ -174,7 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260708012",
+      "id": "H20260708011",
       "status": "Prevista",
       "imo": "—",
       "name": "OZDEN THERESA",
@@ -189,7 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709013",
+      "id": "H20260709012",
       "status": "Prevista",
       "imo": "—",
       "name": "HAFNIA AZOTIC",
@@ -204,7 +189,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709014",
+      "id": "H20260709013",
       "status": "Prevista",
       "imo": "—",
       "name": "DH BLOSSOMING",
@@ -219,7 +204,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709015",
+      "id": "H20260709014",
       "status": "Prevista",
       "imo": "—",
       "name": "FIRST.SKY",
@@ -234,7 +219,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709016",
+      "id": "H20260709015",
       "status": "Prevista",
       "imo": "—",
       "name": "MINERVA.LEO",
@@ -249,7 +234,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709017",
+      "id": "H20260709016",
       "status": "Prevista",
       "imo": "—",
       "name": "DING.HENG.23",
@@ -264,7 +249,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709018",
+      "id": "H20260709017",
       "status": "Prevista",
       "imo": "—",
       "name": "HITRA",
@@ -281,7 +266,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260709019",
+      "id": "H20260709018",
       "status": "Prevista",
       "imo": "—",
       "name": "GAS AEGEAN",
@@ -296,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260710020",
+      "id": "H20260710019",
       "status": "Prevista",
       "imo": "—",
       "name": "PORT KYOTO",
@@ -311,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260710021",
+      "id": "H20260710020",
       "status": "Prevista",
       "imo": "—",
       "name": "KING ARTHUR",
@@ -326,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260710022",
+      "id": "H20260710021",
       "status": "Prevista",
       "imo": "—",
       "name": "LUDOGORETS",
@@ -341,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260710023",
+      "id": "H20260710022",
       "status": "Prevista",
       "imo": "—",
       "name": "CAROLINE ESSBERGER",
@@ -356,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260715024",
+      "id": "H20260715023",
       "status": "Prevista",
       "imo": "—",
       "name": "CS CAPRICE",
