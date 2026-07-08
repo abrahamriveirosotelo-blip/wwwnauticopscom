@@ -429,5 +429,10 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-07T14:39:37Z"
+  },
+  "PATRICIA NORES::A ORDENES": {
+    "resolved": false,
+    "reason": "1 resultado pero ninguno aceptable (nombre/tipo comercial/IMO)",
+    "checkedAt": "2026-07-08T10:20:44Z"
   }
 }
