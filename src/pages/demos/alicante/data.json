@@ -7,23 +7,6 @@
   },
   "calls": [
     {
-      "id": "A202600467",
-      "status": "Alerta",
-      "imo": "9312200",
-      "name": "ENDURANCE",
-      "gt": 7642,
-      "len": 134.58,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-08T07:00",
-      "etd": "2026-07-08T21:00",
-      "from": "DERINCE",
-      "to": "BARCELONA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
-    },
-    {
       "id": "A202600468",
       "status": "Prevista",
       "imo": "9349227",
@@ -36,9 +19,7 @@
       "eta": "2026-07-09T20:00",
       "etd": "2026-07-10T15:00",
       "from": "TENERIFE",
-      "to": "ORAN",
-      "affectedBy": "A202600467",
-      "affectRisk": "ALTO"
+      "to": "ORAN"
     },
     {
       "id": "A202600480",
