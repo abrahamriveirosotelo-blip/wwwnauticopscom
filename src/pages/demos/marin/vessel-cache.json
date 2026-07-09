@@ -529,5 +529,10 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-09T10:56:35Z"
+  },
+  "C RIGEL::CONSTANTA": {
+    "resolved": false,
+    "reason": "sin resultados en VesselFinder",
+    "checkedAt": "2026-07-09T15:14:08Z"
   }
 }
