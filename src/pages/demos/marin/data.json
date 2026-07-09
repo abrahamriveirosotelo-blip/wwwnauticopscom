@@ -4,7 +4,7 @@
     "source": "apmarin.com · buques esperados + en puerto",
     "date": "09/07/2026",
     "refreshHours": 2,
-    "sourceUpdatedAt": "2026-07-09T21:10"
+    "sourceUpdatedAt": "2026-07-09T23:10"
   },
   "calls": [
     {
@@ -34,14 +34,14 @@
       "aisSpeed": 0,
       "aisDraught": 7.5,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-09T21:58",
+      "aisAt": "2026-07-09T23:36",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
     },
     {
       "id": "M202600432",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9354399",
       "name": "Dagmar",
       "gt": 9962,
@@ -50,7 +50,7 @@
       "agent": "Perez Torres Maritima, S.L.",
       "op": "D/C. Contenedores llenos",
       "eta": "2026-07-09T21:00",
-      "etd": "",
+      "etd": "2026-07-11T20:00",
       "from": "Vigo",
       "to": "Algeciras",
       "mmsi": "255826000",
@@ -66,7 +66,7 @@
       "aisSpeed": 0,
       "aisDraught": 8,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-09T21:58",
+      "aisAt": "2026-07-09T23:36",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -95,10 +95,10 @@
       "callsign": "PHPL",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-11T21:00",
-      "aisSpeed": 8.2,
+      "aisSpeed": 8.8,
       "aisDraught": 4.4,
       "aisDestination": "ESMAR",
-      "aisAt": "2026-07-09T21:58",
+      "aisAt": "2026-07-09T23:36",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -141,10 +141,10 @@
       "callsign": "V2HV8",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-12T17:00",
-      "aisSpeed": 10.7,
+      "aisSpeed": 9.9,
       "aisDraught": 6.9,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-09T21:58",
+      "aisAt": "2026-07-09T23:36",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -176,7 +176,7 @@
       "aisSpeed": 0,
       "aisDraught": 4.4,
       "aisDestination": "Ghent, Belgium",
-      "aisAt": "2026-07-09T21:58",
+      "aisAt": "2026-07-09T23:36",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -205,10 +205,10 @@
       "callsign": "PCNH",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-14T08:00",
-      "aisSpeed": 11.1,
+      "aisSpeed": 11,
       "aisDraught": 7.1,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-09T21:58",
+      "aisAt": "2026-07-09T23:36",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -237,10 +237,10 @@
       "callsign": "V2FN5",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-12T11:00",
-      "aisSpeed": 11.6,
+      "aisSpeed": 11.5,
       "aisDraught": 6,
       "aisDestination": "Pasajes, Spain",
-      "aisAt": "2026-07-09T21:58",
+      "aisAt": "2026-07-09T23:36",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -272,7 +272,7 @@
       "aisSpeed": 0,
       "aisDraught": 8,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-09T21:58",
+      "aisAt": "2026-07-09T23:36",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -319,7 +319,7 @@
       "aisSpeed": 0,
       "aisDraught": 5.2,
       "aisDestination": "Bermeo, Spain",
-      "aisAt": "2026-07-09T21:58",
+      "aisAt": "2026-07-09T23:36",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -348,10 +348,10 @@
       "callsign": "PHJI",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-11T10:00",
-      "aisSpeed": 11.4,
+      "aisSpeed": 11.2,
       "aisDraught": 4.9,
       "aisDestination": "Drogheda, Ireland",
-      "aisAt": "2026-07-09T21:58",
+      "aisAt": "2026-07-09T23:36",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -383,7 +383,7 @@
       "aisSpeed": 0,
       "aisDraught": 5.6,
       "aisDestination": "Erith, United Kingdom (UK)",
-      "aisAt": "2026-07-09T21:58",
+      "aisAt": "2026-07-09T23:36",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false

@@ -8,7 +8,7 @@
   "calls": [
     {
       "id": "A202600468",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9349227",
       "name": "NJORD",
       "gt": 7720,
@@ -19,7 +19,9 @@
       "eta": "2026-07-09T20:00",
       "etd": "2026-07-10T15:00",
       "from": "TENERIFE",
-      "to": "ORAN"
+      "to": "ORAN",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
       "id": "A202600480",
@@ -68,7 +70,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600467",
+    "callId": "A202600468",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -95,17 +97,17 @@
     }
   },
   "milestones": {
-    "A202600467": [
+    "A202600468": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "08/07 · 07:25",
+        "time": "09/07 · 20:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "08/07 · 08:30",
+        "time": "09/07 · 21:30",
         "by": "Agente: EUROPEAN FORWARDING SL"
       },
       {
