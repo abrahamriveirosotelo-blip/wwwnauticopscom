@@ -534,5 +534,23 @@
     "resolved": false,
     "reason": "sin resultados en VesselFinder",
     "checkedAt": "2026-07-09T15:14:08Z"
+  },
+  "EEMS SPRING::AVEIRO": {
+    "resolved": true,
+    "imo": "9503524",
+    "mmsi": "245465000",
+    "detailId": "9503524",
+    "gt": 2153,
+    "dwt": 3410,
+    "len": 99,
+    "beam": 11,
+    "flag": "Netherlands",
+    "vesselType": "General Cargo Ship",
+    "built": 2009,
+    "callsign": "PHPL",
+    "destination": "ESMAR",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-09T19:57:57Z"
   }
 }
