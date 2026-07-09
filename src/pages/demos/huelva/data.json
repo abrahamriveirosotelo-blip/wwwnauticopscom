@@ -137,7 +137,7 @@
       "len": 120,
       "berth": "FER",
       "agent": "BER",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-07-09T14:30",
       "etd": "",
       "from": "—",
@@ -145,30 +145,30 @@
     },
     {
       "id": "H20260709010",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "HITRA",
       "gt": 3997,
       "len": 108,
       "berth": "RSS",
       "agent": "IBM",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-07-09T19:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260710011",
+      "id": "H20260709011",
       "status": "Prevista",
       "imo": "—",
-      "name": "EPIC BORINQUEN",
-      "gt": 6220,
-      "len": 113,
+      "name": "HAFNIA AZOTIC",
+      "gt": 23676,
+      "len": 184,
       "berth": "PET",
       "agent": "E.CIA",
       "op": "Entrada",
-      "eta": "2026-07-10T00:00",
+      "eta": "2026-07-09T22:00",
       "etd": "",
       "from": "—",
       "to": "—",
@@ -185,7 +185,7 @@
       "berth": "PET",
       "agent": "E.CIA",
       "op": "Entrada",
-      "eta": "2026-07-10T00:00",
+      "eta": "2026-07-10T03:00",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -194,25 +194,10 @@
       "id": "H20260710013",
       "status": "Prevista",
       "imo": "—",
-      "name": "HAFNIA AZOTIC",
-      "gt": 23676,
-      "len": 184,
-      "berth": "PET",
-      "agent": "E.CIA",
-      "op": "Entrada",
-      "eta": "2026-07-10T00:01",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260710014",
-      "status": "Prevista",
-      "imo": "—",
       "name": "PORT KYOTO",
       "gt": 35825,
       "len": 200,
-      "berth": "JGV",
+      "berth": "MIN",
       "agent": "PAM",
       "op": "Entrada",
       "eta": "2026-07-10T08:00",
@@ -221,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260710015",
+      "id": "H20260710014",
       "status": "Prevista",
       "imo": "—",
       "name": "ARCTIC SUNRISE",
@@ -236,22 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260710016",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "KING ARTHUR",
-      "gt": 4761,
-      "len": 104,
-      "berth": "RSN",
-      "agent": "E.CIA",
-      "op": "Entrada",
-      "eta": "2026-07-10T15:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260710017",
+      "id": "H20260710015",
       "status": "Prevista",
       "imo": "—",
       "name": "MARIE CURIE",
@@ -266,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260710018",
+      "id": "H20260710016",
       "status": "Prevista",
       "imo": "—",
       "name": "LUDOGORETS",
@@ -281,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260710019",
+      "id": "H20260710017",
       "status": "Prevista",
       "imo": "—",
       "name": "CAROLINE ESSBERGER",
@@ -296,7 +266,52 @@
       "to": "—"
     },
     {
+      "id": "H20260711018",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "KING ARTHUR",
+      "gt": 4761,
+      "len": 104,
+      "berth": "RSN",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-11T02:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260711019",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "EINSTEIN",
+      "gt": 10585,
+      "len": 151,
+      "berth": "MUL",
+      "agent": "TER",
+      "op": "Entrada",
+      "eta": "2026-07-11T07:30",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
       "id": "H20260711020",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "MANISA SOLE",
+      "gt": 5581,
+      "len": 110,
+      "berth": "JGV",
+      "agent": "CON",
+      "op": "Entrada",
+      "eta": "2026-07-11T12:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260711021",
       "status": "Prevista",
       "imo": "—",
       "name": "OZDEN THERESA",
@@ -311,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260712021",
+      "id": "H20260712022",
       "status": "Prevista",
       "imo": "—",
       "name": "TIAN ZHEN",
@@ -326,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260712022",
+      "id": "H20260712023",
       "status": "Prevista",
       "imo": "—",
       "name": "BISCAY",
@@ -341,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260713023",
+      "id": "H20260713024",
       "status": "Prevista",
       "imo": "—",
       "name": "ISLAS.TRES",
@@ -356,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260713024",
+      "id": "H20260713025",
       "status": "Prevista",
       "imo": "—",
       "name": "GREAT EPSILON",
@@ -371,7 +386,22 @@
       "to": "—"
     },
     {
-      "id": "H20260713025",
+      "id": "H20260713026",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "EPIC BORINQUEN",
+      "gt": 6220,
+      "len": 113,
+      "berth": "PET",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-13T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260713027",
       "status": "Prevista",
       "imo": "—",
       "name": "KARRUCA",
@@ -386,7 +416,7 @@
       "to": "—"
     },
     {
-      "id": "H20260715026",
+      "id": "H20260715028",
       "status": "Prevista",
       "imo": "—",
       "name": "CS CAPRICE",
@@ -401,7 +431,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716027",
+      "id": "H20260716029",
       "status": "Prevista",
       "imo": "—",
       "name": "INFINITY K",
@@ -416,7 +446,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718028",
+      "id": "H20260718030",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
