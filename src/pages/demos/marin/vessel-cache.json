@@ -552,5 +552,23 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-09T19:57:57Z"
+  },
+  "WILSON NICE::SANTANDER": {
+    "resolved": true,
+    "imo": "9430959",
+    "mmsi": "259020000",
+    "detailId": "9430959",
+    "gt": 6118,
+    "dwt": 8689,
+    "len": 123,
+    "beam": 16,
+    "flag": "Norway",
+    "vesselType": "General Cargo Ship",
+    "built": 2010,
+    "callsign": "LAMY8",
+    "destination": "Marin, Pontevedra, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-10T07:37:53Z"
   }
 }
