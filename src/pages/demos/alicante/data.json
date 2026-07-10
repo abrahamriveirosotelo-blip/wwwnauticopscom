@@ -146,6 +146,21 @@
       "affectRisk": "ALTO"
     },
     {
+      "id": "A202600506",
+      "status": "Prevista",
+      "imo": "1020045",
+      "name": "UM KANDA",
+      "gt": 44740,
+      "len": 229,
+      "berth": "17",
+      "agent": "OCEAN PORTS & SHIPPING SL",
+      "op": "C/ CALIZA ",
+      "eta": "2026-07-12T16:00",
+      "etd": "2026-07-15T22:00",
+      "from": "BELFAST",
+      "to": "CARTAGENA"
+    },
+    {
       "id": "A202600505",
       "status": "Prevista",
       "imo": "9237242",
@@ -174,6 +189,21 @@
       "etd": "2026-07-13T20:00",
       "from": "MOSTAGANEM",
       "to": "MISURATA"
+    },
+    {
+      "id": "A202600505",
+      "status": "Prevista",
+      "imo": "9237242",
+      "name": "CRACOVIA",
+      "gt": 25028,
+      "len": 180,
+      "berth": "25",
+      "agent": "OCEAN PORTS & SHIPPING SL",
+      "op": "PASAJE Y VEHICULOS",
+      "eta": "2026-07-13T08:00",
+      "etd": "2026-07-13T20:00",
+      "from": "ALGER",
+      "to": "ORAN"
     }
   ],
   "tugService": {
