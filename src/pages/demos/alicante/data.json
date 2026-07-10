@@ -24,36 +24,6 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
     },
     {
-      "id": "A202600492",
-      "status": "Iniciado",
-      "imo": "9106297",
-      "name": "MARELLA EXPLORER",
-      "gt": 76998,
-      "len": 262,
-      "berth": "14",
-      "agent": "A. PEREZ Y CIA. S.L.",
-      "op": "CRUCERISTAS",
-      "eta": "2026-07-10T08:00",
-      "etd": "2026-07-10T16:00",
-      "from": "CARTAGENA",
-      "to": "PALMA"
-    },
-    {
-      "id": "A202600468",
-      "status": "Prevista",
-      "imo": "9349227",
-      "name": "NJORD",
-      "gt": 7720,
-      "len": 141.58,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-10T20:00",
-      "etd": "2026-07-10T15:00",
-      "from": "TENERIFE",
-      "to": "ORAN"
-    },
-    {
       "id": "A202600470",
       "status": "Prevista",
       "imo": "9312200",
