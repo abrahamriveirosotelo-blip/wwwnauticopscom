@@ -45,8 +45,8 @@
       "name": "CB ADRIATIC",
       "gt": 26400,
       "len": 183,
-      "berth": "DEC",
-      "agent": "—",
+      "berth": "DCS",
+      "agent": "E.CIA",
       "op": "Fondo",
       "eta": "2026-07-08T08:00",
       "etd": "",
@@ -55,21 +55,6 @@
     },
     {
       "id": "H20260709004",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "MINERVA.LEO",
-      "gt": 24090,
-      "len": 184,
-      "berth": "PES",
-      "agent": "E.CIA",
-      "op": "Fondo",
-      "eta": "2026-07-09T10:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260709005",
       "status": "Iniciado",
       "imo": "—",
       "name": "GAS AEGEAN",
@@ -84,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709006",
+      "id": "H20260709005",
       "status": "Iniciado",
       "imo": "—",
       "name": "HITRA",
@@ -99,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260709007",
+      "id": "H20260709006",
       "status": "Iniciado",
       "imo": "—",
       "name": "HAFNIA AZOTIC",
@@ -114,7 +99,7 @@
       "to": "—"
     },
     {
-      "id": "H20260710008",
+      "id": "H20260710007",
       "status": "Iniciado",
       "imo": "—",
       "name": "BWEK.BEAUTY",
@@ -129,22 +114,22 @@
       "to": "—"
     },
     {
-      "id": "H20260710009",
+      "id": "H20260710008",
       "status": "Iniciado",
       "imo": "—",
-      "name": "ZUGA",
-      "gt": 4002,
-      "len": 100,
-      "berth": "DEC",
-      "agent": "IBM",
+      "name": "MINERVA.LEO",
+      "gt": 24090,
+      "len": 184,
+      "berth": "PET",
+      "agent": "E.CIA",
       "op": "Fondo",
-      "eta": "2026-07-10T09:00",
-      "etd": "",
+      "eta": "2026-07-10T21:30",
+      "etd": "2026-07-10T22:00",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260711010",
+      "id": "H20260711009",
       "status": "Prevista",
       "imo": "—",
       "name": "DH BLOSSOMING",
@@ -154,12 +139,12 @@
       "agent": "E.CIA",
       "op": "Entrada",
       "eta": "2026-07-11T03:00",
-      "etd": "2026-07-11T00:00",
+      "etd": "2026-07-10T21:30",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260711011",
+      "id": "H20260711010",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -174,7 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260711012",
+      "id": "H20260711011",
       "status": "Prevista",
       "imo": "—",
       "name": "KING ARTHUR",
@@ -189,7 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260711013",
+      "id": "H20260711012",
       "status": "Prevista",
       "imo": "—",
       "name": "BUENAVISTA.EXPRESS",
@@ -204,7 +189,7 @@
       "to": "—"
     },
     {
-      "id": "H20260711014",
+      "id": "H20260711013",
       "status": "Prevista",
       "imo": "—",
       "name": "EINSTEIN",
@@ -219,7 +204,7 @@
       "to": "—"
     },
     {
-      "id": "H20260711015",
+      "id": "H20260711014",
       "status": "Prevista",
       "imo": "—",
       "name": "WILSON HAWK",
@@ -229,6 +214,21 @@
       "agent": "BER",
       "op": "Entrada",
       "eta": "2026-07-11T08:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260711015",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "ZUGA",
+      "gt": 4002,
+      "len": 100,
+      "berth": "DEC",
+      "agent": "IBM",
+      "op": "Entrada",
+      "eta": "2026-07-11T18:00",
       "etd": "",
       "from": "—",
       "to": "—"
