@@ -798,7 +798,9 @@ export default function DemoMarin() {
     <div style={{fontFamily:"'Nunito',system-ui,sans-serif",background:B.offWhite,minHeight:"100vh",color:B.dark}}>
       <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
       {/* Indicador de foco visible para las tarjetas (los estilos inline no pueden con :focus-visible). */}
-      <style>{`.marin-card:focus-visible,.marin-ev:focus-visible{outline:3px solid ${B.cyan};outline-offset:2px}`}</style>
+      <style>{`.marin-card:focus-visible,.marin-ev:focus-visible{outline:3px solid ${B.cyan};outline-offset:2px}
+        .marin-search:focus{outline:2px solid ${B.cyan};outline-offset:1px}
+        .marin-search:focus:not(:focus-visible){outline:none}`}</style>
 
       {/* NAV */}
       <div style={{background:B.navyDeep,minHeight:52,display:"flex",alignItems:"center",flexWrap:"wrap",
@@ -855,12 +857,14 @@ export default function DemoMarin() {
         </div>
         <div style={{marginLeft:isMobile?0:"auto",display:"flex",flexWrap:"wrap",gap:8,alignItems:"center"}}>
           <div style={{position:"relative",flex:isMobile?"1 1 100%":"none"}}>
-            <span style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)",fontSize:12,color:B.gray}}>🔍</span>
+            <span aria-hidden="true" style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)",fontSize:12,color:B.gray}}>🔍</span>
             <input value={search} onChange={e=>setSearch(e.target.value)}
-              placeholder="Buque, IMO, agente…"
+              type="search" name="buscar-escala" aria-label="Buscar escala por buque, IMO o agente"
+              autoComplete="off" spellCheck={false}
+              placeholder="Buque, IMO, agente…" className="marin-search"
               style={{paddingLeft:32,paddingRight:12,paddingTop:7,paddingBottom:7,boxSizing:"border-box",
                 borderRadius:8,border:`1px solid ${B.grayLight}`,fontSize:12,
-                outline:"none",width:isMobile?"100%":200,background:B.offWhite,fontFamily:"inherit",color:B.dark}}/>
+                width:isMobile?"100%":200,background:B.offWhite,fontFamily:"inherit",color:B.dark}}/>
           </div>
           {[{k:"Todas",l:"Todas",n:counts.total},
             {k:"Iniciado",l:"En puerto",n:counts.enPuerto},
@@ -944,6 +948,11 @@ export default function DemoMarin() {
           );
         })()}
 
+        {/* Región viva (oculta): anuncia a lectores de pantalla cuántas escalas quedan al filtrar/buscar. */}
+        <div role="status" aria-live="polite" aria-atomic="true" style={{position:"absolute",width:1,height:1,padding:0,margin:-1,overflow:"hidden",clip:"rect(0 0 0 0)",whiteSpace:"nowrap",border:0}}>
+          {filtered.length} {filtered.length===1?"escala":"escalas"}
+        </div>
+
         {/* Mapa según la vista:
             · Tarjetas   → posición AIS en vivo + atracados (aisstream).
             · Cronología → simulación de la planificación (entrada/salida animada).
@@ -1006,7 +1015,7 @@ export default function DemoMarin() {
       </div>
 
       {selected&&<>
-        <div onClick={()=>setSelected(null)}
+        <div onClick={()=>setSelected(null)} aria-hidden="true"
           style={{position:"fixed",inset:0,background:"rgba(1,11,36,0.45)",zIndex:1000}}/>
         <Detail call={selected} onClose={()=>setSelected(null)}/>
       </>}
