@@ -57,21 +57,6 @@
       "id": "H20260709004",
       "status": "Iniciado",
       "imo": "—",
-      "name": "HITRA",
-      "gt": 3997,
-      "len": 108,
-      "berth": "RSS",
-      "agent": "IBM",
-      "op": "Fondo",
-      "eta": "2026-07-09T19:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260709005",
-      "status": "Iniciado",
-      "imo": "—",
       "name": "HAFNIA AZOTIC",
       "gt": 23676,
       "len": 184,
@@ -84,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260710006",
+      "id": "H20260710005",
       "status": "Iniciado",
       "imo": "—",
       "name": "BWEK.BEAUTY",
@@ -99,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260710007",
+      "id": "H20260710006",
       "status": "Iniciado",
       "imo": "—",
       "name": "DH BLOSSOMING",
@@ -114,7 +99,7 @@
       "to": "—"
     },
     {
-      "id": "H20260711008",
+      "id": "H20260711007",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -129,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260711009",
+      "id": "H20260711008",
       "status": "Prevista",
       "imo": "—",
       "name": "ZUGA",
@@ -144,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260711010",
+      "id": "H20260711009",
       "status": "Prevista",
       "imo": "—",
       "name": "MANISA.BIANCANEVE",
@@ -159,7 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260711011",
+      "id": "H20260711010",
       "status": "Prevista",
       "imo": "—",
       "name": "OZDEN THERESA",
@@ -174,7 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260712012",
+      "id": "H20260712011",
       "status": "Prevista",
       "imo": "—",
       "name": "GREAT EPSILON",
@@ -189,7 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260712013",
+      "id": "H20260712012",
       "status": "Prevista",
       "imo": "—",
       "name": "BISCAY",
@@ -204,7 +189,7 @@
       "to": "—"
     },
     {
-      "id": "H20260712014",
+      "id": "H20260712013",
       "status": "Prevista",
       "imo": "—",
       "name": "TIAN ZHEN",
@@ -219,7 +204,7 @@
       "to": "—"
     },
     {
-      "id": "H20260712015",
+      "id": "H20260712014",
       "status": "Prevista",
       "imo": "—",
       "name": "MINERVA JOHANA",
@@ -234,7 +219,7 @@
       "to": "—"
     },
     {
-      "id": "H20260713016",
+      "id": "H20260713015",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -251,7 +236,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260713017",
+      "id": "H20260713016",
       "status": "Prevista",
       "imo": "—",
       "name": "ALISIOS.LNG",
@@ -266,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260714018",
+      "id": "H20260714017",
       "status": "Prevista",
       "imo": "—",
       "name": "ISLAS.TRES",
@@ -281,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260714019",
+      "id": "H20260714018",
       "status": "Prevista",
       "imo": "—",
       "name": "KARRUCA",
@@ -296,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260714020",
+      "id": "H20260714019",
       "status": "Prevista",
       "imo": "—",
       "name": "ALICE.COSULICH",
@@ -311,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260715021",
+      "id": "H20260715020",
       "status": "Prevista",
       "imo": "—",
       "name": "CS CAPRICE",
@@ -326,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716022",
+      "id": "H20260716021",
       "status": "Prevista",
       "imo": "—",
       "name": "INFINITY K",
@@ -341,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718023",
+      "id": "H20260718022",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -356,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718024",
+      "id": "H20260718023",
       "status": "Prevista",
       "imo": "—",
       "name": "TOXOTIS",
