@@ -20,8 +20,8 @@ const LOGO_NO  = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5
 
 /* Tipos del data.json. El schema tiene muchos campos opcionales según el estado de la escala y
  * qué pasos de enriquecimiento han corrido; la inferencia del JSON genera uniones que rompen
- * accesos legítimos (p. ej. `aisPosAt`, o `meta.meteo` cuando aún no se ha traído), así que se
- * tipa explícito el import. Los datos siguen en el JSON; esto solo describe su forma. */
+ * accesos legítimos (p. ej. `aisPosAt`, o `meta.meteo` cuando aún no se ha traído), así que el
+ * import se tipa explícitamente. Los datos siguen en el JSON; esto solo describe su forma. */
 type Aviso = { nivel: string; fenomeno: string; zona?: string; costa?: boolean; desde: string; hasta: string; descripcion?: string; instruccion?: string; probabilidad?: string; web?: string };
 type Obs = { estacion?: string; instante?: string; vientoRachaKn?: number | null; vientoMediaKn?: number | null; vientoDirDeg?: number | null; tempC?: number | null; presionHpa?: number | null; lluviaMm?: number | null; humedadPct?: number | null };
 type Meteo = { updatedAt?: string; obs?: Obs | null; avisos?: Aviso[] };
