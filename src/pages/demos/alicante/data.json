@@ -7,23 +7,6 @@
   },
   "calls": [
     {
-      "id": "A202600501",
-      "status": "Alerta",
-      "imo": "9265419",
-      "name": "TASSILI 2",
-      "gt": 20024,
-      "len": 142.92,
-      "berth": "25",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-07-11T08:00",
-      "etd": "2026-07-11T20:00",
-      "from": "ORAN",
-      "to": "ORAN",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 25 según lo previsto."
-    },
-    {
       "id": "A202600499",
       "status": "Prevista",
       "imo": "9335379",
@@ -111,9 +94,7 @@
       "eta": "2026-07-13T08:00",
       "etd": "2026-07-13T20:00",
       "from": "ALGER",
-      "to": "ORAN",
-      "affectedBy": "A202600501",
-      "affectRisk": "ALTO"
+      "to": "ORAN"
     },
     {
       "id": "A202600504",
