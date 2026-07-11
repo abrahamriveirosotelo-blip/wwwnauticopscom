@@ -2,27 +2,10 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "10/07/2026",
+    "date": "11/07/2026",
     "refreshHours": 2
   },
   "calls": [
-    {
-      "id": "A202600479",
-      "status": "Alerta",
-      "imo": "9404065",
-      "name": "CARLOTA B",
-      "gt": 7852,
-      "len": 140.64,
-      "berth": "23",
-      "agent": "MILLER Y COMPAÑIA S.A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-10T08:00",
-      "etd": "2026-07-10T23:00",
-      "from": "LAS PALMAS",
-      "to": "LAS PALMAS",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
-    },
     {
       "id": "A202600470",
       "status": "Prevista",
@@ -111,9 +94,7 @@
       "eta": "2026-07-12T08:00",
       "etd": "2026-07-12T14:00",
       "from": "BARCELONA",
-      "to": "HUELVA",
-      "affectedBy": "A202600479",
-      "affectRisk": "ALTO"
+      "to": "HUELVA"
     },
     {
       "id": "A202600506",

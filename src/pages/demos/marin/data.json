@@ -2,9 +2,9 @@
   "meta": {
     "port": "Puerto de Marín",
     "source": "apmarin.com · buques esperados + en puerto",
-    "date": "10/07/2026",
+    "date": "11/07/2026",
     "refreshHours": 2,
-    "sourceUpdatedAt": "2026-07-10T22:10"
+    "sourceUpdatedAt": "2026-07-11T08:10"
   },
   "calls": [
     {
@@ -31,10 +31,10 @@
       "callsign": "PHPL",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-11T21:00",
-      "aisSpeed": 8.5,
+      "aisSpeed": 9.1,
       "aisDraught": 4.4,
       "aisDestination": "ESMAR",
-      "aisAt": "2026-07-10T23:07",
+      "aisAt": "2026-07-11T08:15",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -77,10 +77,10 @@
       "callsign": "V2HV8",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-12T15:00",
-      "aisSpeed": 11.1,
+      "aisSpeed": 9.6,
       "aisDraught": 6.9,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-10T23:07",
+      "aisAt": "2026-07-11T08:15",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -109,10 +109,10 @@
       "callsign": "PCNH",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-14T08:00",
-      "aisSpeed": 10.9,
+      "aisSpeed": 11.9,
       "aisDraught": 7.1,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-10T23:07",
+      "aisAt": "2026-07-11T08:15",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -141,10 +141,10 @@
       "callsign": "V2FN5",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-12T11:00",
-      "aisSpeed": 8.7,
+      "aisSpeed": 9.4,
       "aisDraught": 6,
       "aisDestination": "Pasajes, Spain",
-      "aisAt": "2026-07-10T23:07",
+      "aisAt": "2026-07-11T08:15",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -174,9 +174,9 @@
       "aisStatus": "Atracado",
       "aisEta": "",
       "aisSpeed": 0,
-      "aisDraught": 4.4,
+      "aisDraught": 2.8,
       "aisDestination": "Ghent, Belgium",
-      "aisAt": "2026-07-10T23:07",
+      "aisAt": "2026-07-11T08:15",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -208,7 +208,7 @@
       "aisSpeed": 12.9,
       "aisDraught": 7.7,
       "aisDestination": "Algeciras, Spain",
-      "aisAt": "2026-07-10T23:07",
+      "aisAt": "2026-07-11T08:15",
       "aisAtMarin": false,
       "aisToFinal": true,
       "aisArrivedMarin": false
@@ -252,10 +252,10 @@
       "callsign": "CQWD",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-14T18:00",
-      "aisSpeed": 10.5,
+      "aisSpeed": 10.7,
       "aisDraught": 5.2,
       "aisDestination": "Bermeo, Spain",
-      "aisAt": "2026-07-10T23:07",
+      "aisAt": "2026-07-11T08:15",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -284,10 +284,10 @@
       "callsign": "PHJI",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-11T10:00",
-      "aisSpeed": 7,
+      "aisSpeed": 9.6,
       "aisDraught": 4.9,
       "aisDestination": "Drogheda, Ireland",
-      "aisAt": "2026-07-10T23:07",
+      "aisAt": "2026-07-11T08:15",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -316,10 +316,10 @@
       "callsign": "PBTL",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-11T07:00",
-      "aisSpeed": 10.6,
+      "aisSpeed": 2.4,
       "aisDraught": 3.4,
       "aisDestination": "IJmuiden, Netherlands",
-      "aisAt": "2026-07-10T23:07",
+      "aisAt": "2026-07-11T08:15",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
