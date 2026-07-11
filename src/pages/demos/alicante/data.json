@@ -8,7 +8,7 @@
   "calls": [
     {
       "id": "A202600470",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9312200",
       "name": "ENDURANCE",
       "gt": 7642,
@@ -19,11 +19,13 @@
       "eta": "2026-07-11T07:00",
       "etd": "2026-07-11T15:00",
       "from": "BARCELONA",
-      "to": "LAS PALMAS"
+      "to": "LAS PALMAS",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
       "id": "A202600501",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9265419",
       "name": "TASSILI 2",
       "gt": 20024,
@@ -64,7 +66,9 @@
       "eta": "2026-07-12T07:00",
       "etd": "2026-07-12T21:00",
       "from": "ARRECIFE",
-      "to": "TENERIFE"
+      "to": "TENERIFE",
+      "affectedBy": "A202600470",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600476",
@@ -158,7 +162,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600479",
+    "callId": "A202600470",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -185,18 +189,18 @@
     }
   },
   "milestones": {
-    "A202600479": [
+    "A202600470": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "10/07 · 08:25",
+        "time": "11/07 · 07:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "10/07 · 09:30",
-        "by": "Agente: MILLER Y COMPAÑIA S.A"
+        "time": "11/07 · 08:30",
+        "by": "Agente: EUROPEAN FORWARDING SL"
       },
       {
         "label": "Fin de operaciones",
