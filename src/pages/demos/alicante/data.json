@@ -7,25 +7,8 @@
   },
   "calls": [
     {
-      "id": "A202600470",
-      "status": "Alerta",
-      "imo": "9312200",
-      "name": "ENDURANCE",
-      "gt": 7642,
-      "len": 134.58,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-11T07:00",
-      "etd": "2026-07-11T15:00",
-      "from": "BARCELONA",
-      "to": "LAS PALMAS",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
-    },
-    {
       "id": "A202600501",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9265419",
       "name": "TASSILI 2",
       "gt": 20024,
@@ -36,7 +19,9 @@
       "eta": "2026-07-11T08:00",
       "etd": "2026-07-11T20:00",
       "from": "ORAN",
-      "to": "ORAN"
+      "to": "ORAN",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 25 según lo previsto."
     },
     {
       "id": "A202600499",
@@ -66,9 +51,7 @@
       "eta": "2026-07-12T07:00",
       "etd": "2026-07-12T21:00",
       "from": "ARRECIFE",
-      "to": "TENERIFE",
-      "affectedBy": "A202600470",
-      "affectRisk": "ALTO"
+      "to": "TENERIFE"
     },
     {
       "id": "A202600476",
@@ -128,7 +111,9 @@
       "eta": "2026-07-13T08:00",
       "etd": "2026-07-13T20:00",
       "from": "ALGER",
-      "to": "ORAN"
+      "to": "ORAN",
+      "affectedBy": "A202600501",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600504",
@@ -162,7 +147,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600470",
+    "callId": "A202600501",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -189,18 +174,18 @@
     }
   },
   "milestones": {
-    "A202600470": [
+    "A202600501": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "11/07 · 07:25",
+        "time": "11/07 · 08:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "11/07 · 08:30",
-        "by": "Agente: EUROPEAN FORWARDING SL"
+        "time": "11/07 · 09:30",
+        "by": "Agente: ROMEU Y CIA. S A"
       },
       {
         "label": "Fin de operaciones",
