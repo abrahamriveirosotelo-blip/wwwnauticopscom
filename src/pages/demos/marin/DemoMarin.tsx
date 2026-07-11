@@ -799,8 +799,8 @@ export default function DemoMarin() {
       <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
       {/* Indicador de foco visible para las tarjetas (los estilos inline no pueden con :focus-visible). */}
       <style>{`.marin-card:focus-visible,.marin-ev:focus-visible{outline:3px solid ${B.cyan};outline-offset:2px}
-        .marin-search:focus{outline:none}
-        .marin-search:focus-visible{outline:2px solid ${B.cyan};outline-offset:1px}`}</style>
+        .marin-search:focus{outline:2px solid ${B.cyan};outline-offset:1px}
+        .marin-search:focus:not(:focus-visible){outline:none}`}</style>
 
       {/* NAV */}
       <div style={{background:B.navyDeep,minHeight:52,display:"flex",alignItems:"center",flexWrap:"wrap",
@@ -949,7 +949,7 @@ export default function DemoMarin() {
         })()}
 
         {/* Región viva (oculta): anuncia a lectores de pantalla cuántas escalas quedan al filtrar/buscar. */}
-        <div role="status" aria-live="polite" style={{position:"absolute",width:1,height:1,padding:0,margin:-1,overflow:"hidden",clip:"rect(0 0 0 0)",whiteSpace:"nowrap",border:0}}>
+        <div role="status" aria-live="polite" aria-atomic="true" style={{position:"absolute",width:1,height:1,padding:0,margin:-1,overflow:"hidden",clip:"rect(0 0 0 0)",whiteSpace:"nowrap",border:0}}>
           {filtered.length} {filtered.length===1?"escala":"escalas"}
         </div>
 
