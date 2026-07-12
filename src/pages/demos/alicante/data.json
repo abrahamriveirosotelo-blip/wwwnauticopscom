@@ -2,13 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "11/07/2026",
+    "date": "12/07/2026",
     "refreshHours": 2
   },
   "calls": [
     {
       "id": "A202600499",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9335379",
       "name": "EMMA BARDAN",
       "gt": 200,
@@ -19,7 +19,9 @@
       "eta": "2026-07-11T21:00",
       "etd": "2026-07-13T16:00",
       "from": "VIGO",
-      "to": "A ORDENES"
+      "to": "A ORDENES",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 7 según lo previsto."
     },
     {
       "id": "A202600471",
@@ -128,7 +130,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600501",
+    "callId": "A202600499",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -155,18 +157,18 @@
     }
   },
   "milestones": {
-    "A202600501": [
+    "A202600499": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "11/07 · 08:25",
+        "time": "11/07 · 21:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "11/07 · 09:30",
-        "by": "Agente: ROMEU Y CIA. S A"
+        "time": "11/07 · 22:30",
+        "by": "Agente: TECNOLOGIAS Y SERVICIOS AGRARIOS"
       },
       {
         "label": "Fin de operaciones",
