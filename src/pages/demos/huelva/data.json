@@ -100,21 +100,6 @@
     },
     {
       "id": "H20260712007",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "BISCAY",
-      "gt": 7244,
-      "len": 130,
-      "berth": "DCN",
-      "agent": "IBM",
-      "op": "Fondo",
-      "eta": "2026-07-12T12:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260712008",
       "status": "Prevista",
       "imo": "—",
       "name": "MINERVA JOHANA",
@@ -129,39 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260712009",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "MURRAY STAR",
-      "gt": 8537,
-      "len": 128,
-      "berth": "DEC",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-07-12T22:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260713010",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "EPIC BORINQUEN",
-      "gt": 6220,
-      "len": 113,
-      "berth": "PET",
-      "agent": "E.CIA",
-      "op": "Entrada",
-      "eta": "2026-07-13T00:00",
-      "etd": "",
-      "from": "—",
-      "to": "—",
-      "affectedBy": "H20260707001",
-      "affectRisk": "ALTO"
-    },
-    {
-      "id": "H20260713011",
+      "id": "H20260713008",
       "status": "Prevista",
       "imo": "—",
       "name": "ALISIOS.LNG",
@@ -170,13 +123,13 @@
       "berth": "ENA",
       "agent": "E.CIA",
       "op": "Entrada",
-      "eta": "2026-07-13T10:00",
+      "eta": "2026-07-13T08:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260713012",
+      "id": "H20260713009",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -191,7 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260713013",
+      "id": "H20260713010",
       "status": "Prevista",
       "imo": "—",
       "name": "ISLAS.TRES",
@@ -206,7 +159,39 @@
       "to": "—"
     },
     {
-      "id": "H20260714014",
+      "id": "H20260713011",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "MURRAY STAR",
+      "gt": 8537,
+      "len": 128,
+      "berth": "DEC",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-07-13T22:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260714012",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "EPIC BORINQUEN",
+      "gt": 6220,
+      "len": 113,
+      "berth": "PET",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-14T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—",
+      "affectedBy": "H20260707001",
+      "affectRisk": "ALTO"
+    },
+    {
+      "id": "H20260714013",
       "status": "Prevista",
       "imo": "—",
       "name": "KARRUCA",
@@ -221,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260714015",
+      "id": "H20260714014",
       "status": "Prevista",
       "imo": "—",
       "name": "ALICE.COSULICH",
@@ -236,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260715016",
+      "id": "H20260715015",
       "status": "Prevista",
       "imo": "—",
       "name": "CS CAPRICE",
@@ -251,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716017",
+      "id": "H20260716016",
       "status": "Prevista",
       "imo": "—",
       "name": "INFINITY K",
@@ -266,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718018",
+      "id": "H20260718017",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -281,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718019",
+      "id": "H20260718018",
       "status": "Prevista",
       "imo": "—",
       "name": "TOXOTIS",
