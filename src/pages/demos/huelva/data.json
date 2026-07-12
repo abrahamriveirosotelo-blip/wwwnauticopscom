@@ -24,22 +24,7 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle PET según lo previsto."
     },
     {
-      "id": "H20260708002",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "MED PAKIZE",
-      "gt": 5665,
-      "len": 124,
-      "berth": "RS4",
-      "agent": "IBM",
-      "op": "Fondo",
-      "eta": "2026-07-08T06:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260709003",
+      "id": "H20260709002",
       "status": "Iniciado",
       "imo": "—",
       "name": "HAFNIA AZOTIC",
@@ -54,7 +39,7 @@
       "to": "—"
     },
     {
-      "id": "H20260710004",
+      "id": "H20260710003",
       "status": "Iniciado",
       "imo": "—",
       "name": "BWEK.BEAUTY",
@@ -69,7 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260710005",
+      "id": "H20260710004",
       "status": "Iniciado",
       "imo": "—",
       "name": "DH BLOSSOMING",
@@ -84,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260711006",
+      "id": "H20260711005",
       "status": "Iniciado",
       "imo": "—",
       "name": "ZUGA",
@@ -99,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260711007",
+      "id": "H20260711006",
       "status": "Iniciado",
       "imo": "—",
       "name": "OZDEN THERESA",
@@ -114,7 +99,7 @@
       "to": "—"
     },
     {
-      "id": "H20260712008",
+      "id": "H20260712007",
       "status": "Prevista",
       "imo": "—",
       "name": "BISCAY",
@@ -129,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260712009",
+      "id": "H20260712008",
       "status": "Prevista",
       "imo": "—",
       "name": "TIAN ZHEN",
@@ -144,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260712010",
+      "id": "H20260712009",
       "status": "Prevista",
       "imo": "—",
       "name": "MINERVA JOHANA",
@@ -159,7 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260713011",
+      "id": "H20260713010",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -176,7 +161,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260713012",
+      "id": "H20260713011",
       "status": "Prevista",
       "imo": "—",
       "name": "ALISIOS.LNG",
@@ -191,7 +176,7 @@
       "to": "—"
     },
     {
-      "id": "H20260713013",
+      "id": "H20260713012",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -206,7 +191,7 @@
       "to": "—"
     },
     {
-      "id": "H20260713014",
+      "id": "H20260713013",
       "status": "Prevista",
       "imo": "—",
       "name": "ISLAS.TRES",
@@ -221,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260714015",
+      "id": "H20260714014",
       "status": "Prevista",
       "imo": "—",
       "name": "KARRUCA",
@@ -236,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260714016",
+      "id": "H20260714015",
       "status": "Prevista",
       "imo": "—",
       "name": "ALICE.COSULICH",
@@ -251,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260715017",
+      "id": "H20260715016",
       "status": "Prevista",
       "imo": "—",
       "name": "CS CAPRICE",
@@ -266,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716018",
+      "id": "H20260716017",
       "status": "Prevista",
       "imo": "—",
       "name": "INFINITY K",
@@ -281,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718019",
+      "id": "H20260718018",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -296,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718020",
+      "id": "H20260718019",
       "status": "Prevista",
       "imo": "—",
       "name": "TOXOTIS",

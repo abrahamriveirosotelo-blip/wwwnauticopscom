@@ -8,7 +8,7 @@
   "calls": [
     {
       "id": "A202600499",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "9335379",
       "name": "EMMA BARDAN",
       "gt": 200,
@@ -19,13 +19,11 @@
       "eta": "2026-07-11T21:00",
       "etd": "2026-07-13T16:00",
       "from": "VIGO",
-      "to": "A ORDENES",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 7 según lo previsto."
+      "to": "A ORDENES"
     },
     {
       "id": "A202600471",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9430193",
       "name": "HERCULES J",
       "gt": 10585,
@@ -40,7 +38,7 @@
     },
     {
       "id": "A202600476",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "8816352",
       "name": "SIRIOS CEMENT V",
       "gt": 2453,
@@ -51,11 +49,13 @@
       "eta": "2026-07-12T08:00",
       "etd": "2026-07-12T23:00",
       "from": "ALMERIA",
-      "to": "PALMA"
+      "to": "PALMA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en carga. El buque no liberará el Muelle 19 según lo previsto."
     },
     {
       "id": "A202600472",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9398773",
       "name": "ELBWINTER",
       "gt": 10585,
@@ -111,7 +111,9 @@
       "eta": "2026-07-13T08:00",
       "etd": "2026-07-13T20:00",
       "from": "MOSTAGANEM",
-      "to": "MISURATA"
+      "to": "MISURATA",
+      "affectedBy": "A202600476",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600505",
@@ -130,7 +132,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600499",
+    "callId": "A202600476",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -157,18 +159,18 @@
     }
   },
   "milestones": {
-    "A202600499": [
+    "A202600476": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "11/07 · 21:25",
+        "time": "12/07 · 08:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "11/07 · 22:30",
-        "by": "Agente: TECNOLOGIAS Y SERVICIOS AGRARIOS"
+        "time": "12/07 · 09:30",
+        "by": "Agente: OCEAN PORTS & SHIPPING SL"
       },
       {
         "label": "Fin de operaciones",
