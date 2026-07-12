@@ -570,5 +570,28 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-10T07:37:53Z"
+  },
+  "BARCELONA EXPRESS::CADIZ": {
+    "resolved": true,
+    "imo": "9626053",
+    "mmsi": "636093335",
+    "detailId": "9626053",
+    "gt": 41286,
+    "dwt": 51950,
+    "len": 228,
+    "beam": 37,
+    "flag": "Liberia",
+    "vesselType": "Container Ship",
+    "built": 2014,
+    "callsign": "5LTO7",
+    "destination": "PTM-MAR",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-12T13:23:47Z"
+  },
+  "DE TIAN::CADIZ": {
+    "resolved": false,
+    "reason": "3 resultados pero ninguno aceptable (nombre/tipo comercial/IMO)",
+    "checkedAt": "2026-07-12T13:23:48Z"
   }
 }
