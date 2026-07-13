@@ -2,13 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "12/07/2026",
+    "date": "13/07/2026",
     "refreshHours": 2
   },
   "calls": [
     {
       "id": "A202600499",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9335379",
       "name": "EMMA BARDAN",
       "gt": 200,
@@ -19,39 +19,9 @@
       "eta": "2026-07-11T21:00",
       "etd": "2026-07-13T16:00",
       "from": "VIGO",
-      "to": "A ORDENES"
-    },
-    {
-      "id": "A202600471",
-      "status": "Iniciado",
-      "imo": "9430193",
-      "name": "HERCULES J",
-      "gt": 10585,
-      "len": 151.72,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-12T07:00",
-      "etd": "2026-07-12T21:00",
-      "from": "ARRECIFE",
-      "to": "TENERIFE"
-    },
-    {
-      "id": "A202600476",
-      "status": "Alerta",
-      "imo": "8816352",
-      "name": "SIRIOS CEMENT V",
-      "gt": 2453,
-      "len": 86,
-      "berth": "19",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "C/ CEMENTO INST. ESP.",
-      "eta": "2026-07-12T08:00",
-      "etd": "2026-07-12T23:00",
-      "from": "ALMERIA",
-      "to": "PALMA",
+      "to": "A ORDENES",
       "delay": "+4h 30min",
-      "alertNote": "Incidencia en carga. El buque no liberará el Muelle 19 según lo previsto."
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 7 según lo previsto."
     },
     {
       "id": "A202600506",
@@ -96,9 +66,7 @@
       "eta": "2026-07-13T08:00",
       "etd": "2026-07-13T20:00",
       "from": "MOSTAGANEM",
-      "to": "MISURATA",
-      "affectedBy": "A202600476",
-      "affectRisk": "ALTO"
+      "to": "MISURATA"
     },
     {
       "id": "A202600505",
@@ -117,7 +85,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600476",
+    "callId": "A202600499",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -144,18 +112,18 @@
     }
   },
   "milestones": {
-    "A202600476": [
+    "A202600499": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "12/07 · 08:25",
+        "time": "11/07 · 21:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "12/07 · 09:30",
-        "by": "Agente: OCEAN PORTS & SHIPPING SL"
+        "time": "11/07 · 22:30",
+        "by": "Agente: TECNOLOGIAS Y SERVICIOS AGRARIOS"
       },
       {
         "label": "Fin de operaciones",

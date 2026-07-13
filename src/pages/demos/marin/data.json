@@ -2,9 +2,9 @@
   "meta": {
     "port": "Puerto de Marín",
     "source": "apmarin.com · buques esperados + en puerto",
-    "date": "12/07/2026",
+    "date": "13/07/2026",
     "refreshHours": 2,
-    "sourceUpdatedAt": "2026-07-12T22:10"
+    "sourceUpdatedAt": "2026-07-13T08:10"
   },
   "calls": [
     {
@@ -34,7 +34,7 @@
       "aisSpeed": 0,
       "aisDraught": 4.4,
       "aisDestination": "ESMAR",
-      "aisAt": "2026-07-12T22:52",
+      "aisAt": "2026-07-13T08:55",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -61,13 +61,13 @@
       "built": 2006,
       "callsign": "V2HV8",
       "aisStatus": "Atracado",
-      "aisEta": "",
+      "aisEta": "2026-07-15T23:00",
       "aisSpeed": 0,
       "aisDraught": 5,
-      "aisDestination": "Destination not available",
-      "aisAt": "2026-07-12T22:52",
+      "aisDestination": "Pasajes, Spain",
+      "aisAt": "2026-07-13T08:55",
       "aisAtMarin": false,
-      "aisToFinal": false,
+      "aisToFinal": true,
       "aisArrivedMarin": false
     },
     {
@@ -94,10 +94,10 @@
       "callsign": "5LTO7",
       "aisStatus": "Drifting",
       "aisEta": "2026-07-12T12:00",
-      "aisSpeed": 3.7,
+      "aisSpeed": 2.9,
       "aisDraught": 11.5,
       "aisDestination": "PTM-MAR",
-      "aisAt": "2026-07-12T22:52",
+      "aisAt": "2026-07-13T08:55",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -141,10 +141,10 @@
       "callsign": "PCNH",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-14T06:00",
-      "aisSpeed": 11.1,
+      "aisSpeed": 10.8,
       "aisDraught": 7.1,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-12T22:52",
+      "aisAt": "2026-07-13T08:55",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -176,7 +176,7 @@
       "aisSpeed": 0,
       "aisDraught": 6,
       "aisDestination": "Pasajes, Spain",
-      "aisAt": "2026-07-12T22:52",
+      "aisAt": "2026-07-13T08:55",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -208,7 +208,7 @@
       "aisSpeed": 0,
       "aisDraught": 2.8,
       "aisDestination": "Ghent, Belgium",
-      "aisAt": "2026-07-12T22:52",
+      "aisAt": "2026-07-13T08:55",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -235,14 +235,14 @@
       "vesselType": "Container Ship",
       "built": 2006,
       "callsign": "CQUZ",
-      "aisStatus": "Atracado",
-      "aisEta": "",
-      "aisSpeed": 0,
-      "aisDraught": 7.7,
-      "aisDestination": "Algeciras, Spain",
-      "aisAt": "2026-07-12T22:52",
+      "aisStatus": "Navegando",
+      "aisEta": "2026-07-15T00:00",
+      "aisSpeed": 11.6,
+      "aisDraught": 8.4,
+      "aisDestination": "Vigo, Spain",
+      "aisAt": "2026-07-13T08:55",
       "aisAtMarin": false,
-      "aisToFinal": true,
+      "aisToFinal": false,
       "aisArrivedMarin": false
     },
     {
@@ -287,7 +287,7 @@
       "aisSpeed": 10.2,
       "aisDraught": 5.2,
       "aisDestination": "Bermeo, Spain",
-      "aisAt": "2026-07-12T22:52",
+      "aisAt": "2026-07-13T08:55",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -314,12 +314,12 @@
       "vesselType": "General Cargo Ship",
       "built": 2007,
       "callsign": "PHJI",
-      "aisStatus": "Navegando",
+      "aisStatus": "-",
       "aisEta": "",
-      "aisSpeed": 1.2,
+      "aisSpeed": 0,
       "aisDraught": 4.9,
-      "aisDestination": "Destination not available",
-      "aisAt": "2026-07-12T22:52",
+      "aisDestination": "Drogheda, Ireland",
+      "aisAt": "2026-07-13T08:55",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -351,7 +351,7 @@
       "aisSpeed": 0,
       "aisDraught": 3.4,
       "aisDestination": "IJmuiden, Netherlands",
-      "aisAt": "2026-07-12T22:52",
+      "aisAt": "2026-07-13T08:55",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
