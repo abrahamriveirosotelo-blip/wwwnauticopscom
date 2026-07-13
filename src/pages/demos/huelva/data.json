@@ -115,14 +115,14 @@
     },
     {
       "id": "H20260713008",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "ISABELLA",
       "gt": 57301,
       "len": 244,
       "berth": "MON",
       "agent": "—",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-07-13T15:00",
       "etd": "",
       "from": "—",
@@ -130,14 +130,14 @@
     },
     {
       "id": "H20260713009",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "MT ANTARCTIC",
       "gt": 85421,
       "len": 274,
       "berth": "MON",
       "agent": "E.CIA",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-07-13T15:00",
       "etd": "",
       "from": "—",
@@ -174,7 +174,24 @@
       "to": "—"
     },
     {
-      "id": "H20260714012",
+      "id": "H20260713012",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "ATLANTIC.SUNFLOWER",
+      "gt": 29665,
+      "len": 183,
+      "berth": "PET",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-07-13T22:00",
+      "etd": "",
+      "from": "—",
+      "to": "—",
+      "affectedBy": "H20260707001",
+      "affectRisk": "ALTO"
+    },
+    {
+      "id": "H20260713013",
       "status": "Prevista",
       "imo": "—",
       "name": "ISLAS.TRES",
@@ -183,13 +200,13 @@
       "berth": "JGV",
       "agent": "ERS",
       "op": "Entrada",
-      "eta": "2026-07-14T00:30",
+      "eta": "2026-07-13T23:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260714013",
+      "id": "H20260714014",
       "status": "Prevista",
       "imo": "—",
       "name": "ALICE.COSULICH",
@@ -204,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260714014",
+      "id": "H20260714015",
       "status": "Prevista",
       "imo": "—",
       "name": "MARIE CURIE",
@@ -219,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260715015",
+      "id": "H20260715016",
       "status": "Prevista",
       "imo": "—",
       "name": "ALBUFERA.TMA",
@@ -234,7 +251,22 @@
       "to": "—"
     },
     {
-      "id": "H20260715016",
+      "id": "H20260715017",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "ELBWINTER",
+      "gt": 10585,
+      "len": 151,
+      "berth": "MUL",
+      "agent": "TER",
+      "op": "Entrada",
+      "eta": "2026-07-15T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260715018",
       "status": "Prevista",
       "imo": "—",
       "name": "CS CAPRICE",
@@ -249,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716017",
+      "id": "H20260716019",
       "status": "Prevista",
       "imo": "—",
       "name": "TURGUT.SHHIN",
@@ -264,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716018",
+      "id": "H20260716020",
       "status": "Prevista",
       "imo": "—",
       "name": "CAPE.DUCATO",
@@ -279,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716019",
+      "id": "H20260716021",
       "status": "Prevista",
       "imo": "—",
       "name": "INFINITY K",
@@ -294,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716020",
+      "id": "H20260716022",
       "status": "Prevista",
       "imo": "—",
       "name": "SIGRID THERESA",
@@ -309,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717021",
+      "id": "H20260717023",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -321,12 +353,10 @@
       "eta": "2026-07-17T00:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260707001",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
-      "id": "H20260717022",
+      "id": "H20260717024",
       "status": "Prevista",
       "imo": "—",
       "name": "MED BLUE JAY",
@@ -341,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718023",
+      "id": "H20260718025",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -356,7 +386,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718024",
+      "id": "H20260718026",
       "status": "Prevista",
       "imo": "—",
       "name": "TOXOTIS",
@@ -371,7 +401,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718025",
+      "id": "H20260718027",
       "status": "Prevista",
       "imo": "—",
       "name": "RIZIK.BEY",
