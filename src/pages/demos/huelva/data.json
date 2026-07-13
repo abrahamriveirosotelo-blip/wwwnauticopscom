@@ -14,7 +14,7 @@
       "gt": 13671,
       "len": 161,
       "berth": "PET",
-      "agent": "E.CIA",
+      "agent": "—",
       "op": "Fondo",
       "eta": "2026-07-07T18:30",
       "etd": "",
@@ -31,7 +31,7 @@
       "gt": 23676,
       "len": 184,
       "berth": "PES",
-      "agent": "E.CIA",
+      "agent": "—",
       "op": "Fondo",
       "eta": "2026-07-09T22:00",
       "etd": "",
@@ -46,7 +46,7 @@
       "gt": 6052,
       "len": 120,
       "berth": "DEC",
-      "agent": "E.CIA",
+      "agent": "—",
       "op": "Fondo",
       "eta": "2026-07-10T22:00",
       "etd": "",
@@ -69,22 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260711005",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "OZDEN THERESA",
-      "gt": 3753,
-      "len": 106,
-      "berth": "RS4",
-      "agent": "IBM",
-      "op": "Fondo",
-      "eta": "2026-07-11T23:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260712006",
+      "id": "H20260712005",
       "status": "Iniciado",
       "imo": "—",
       "name": "KRITI.SAILOR",
@@ -99,14 +84,14 @@
       "to": "—"
     },
     {
-      "id": "H20260712007",
+      "id": "H20260712006",
       "status": "Iniciado",
       "imo": "—",
       "name": "MINERVA JOHANA",
       "gt": 29295,
       "len": 184,
       "berth": "RS4",
-      "agent": "E.CIA",
+      "agent": "—",
       "op": "Fondo",
       "eta": "2026-07-12T21:00",
       "etd": "",
@@ -114,22 +99,22 @@
       "to": "—"
     },
     {
-      "id": "H20260713008",
-      "status": "Prevista",
+      "id": "H20260713007",
+      "status": "Iniciado",
       "imo": "—",
       "name": "HELENE.JULIE",
       "gt": 8938,
       "len": 136,
       "berth": "JGV",
       "agent": "CON",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-07-13T12:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260713009",
+      "id": "H20260713008",
       "status": "Prevista",
       "imo": "—",
       "name": "ISABELLA",
@@ -144,22 +129,22 @@
       "to": "—"
     },
     {
-      "id": "H20260713010",
+      "id": "H20260713009",
       "status": "Prevista",
       "imo": "—",
-      "name": "KARRUCA",
-      "gt": 5214,
-      "len": 112,
-      "berth": "FOR",
-      "agent": "BER",
+      "name": "MT ANTARCTIC",
+      "gt": 85421,
+      "len": 274,
+      "berth": "MON",
+      "agent": "E.CIA",
       "op": "Entrada",
-      "eta": "2026-07-13T17:00",
+      "eta": "2026-07-13T15:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260713011",
+      "id": "H20260713010",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -174,7 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260713012",
+      "id": "H20260713011",
       "status": "Prevista",
       "imo": "—",
       "name": "MURRAY STAR",
@@ -189,7 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260714013",
+      "id": "H20260714012",
       "status": "Prevista",
       "imo": "—",
       "name": "ISLAS.TRES",
@@ -204,7 +189,7 @@
       "to": "—"
     },
     {
-      "id": "H20260714014",
+      "id": "H20260714013",
       "status": "Prevista",
       "imo": "—",
       "name": "ALICE.COSULICH",
@@ -219,7 +204,7 @@
       "to": "—"
     },
     {
-      "id": "H20260714015",
+      "id": "H20260714014",
       "status": "Prevista",
       "imo": "—",
       "name": "MARIE CURIE",
@@ -234,7 +219,7 @@
       "to": "—"
     },
     {
-      "id": "H20260715016",
+      "id": "H20260715015",
       "status": "Prevista",
       "imo": "—",
       "name": "ALBUFERA.TMA",
@@ -249,7 +234,7 @@
       "to": "—"
     },
     {
-      "id": "H20260715017",
+      "id": "H20260715016",
       "status": "Prevista",
       "imo": "—",
       "name": "CS CAPRICE",
@@ -264,7 +249,37 @@
       "to": "—"
     },
     {
+      "id": "H20260716017",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "TURGUT.SHHIN",
+      "gt": 2909,
+      "len": 91,
+      "berth": "JGV",
+      "agent": "CON",
+      "op": "Entrada",
+      "eta": "2026-07-16T05:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
       "id": "H20260716018",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "CAPE.DUCATO",
+      "gt": 17027,
+      "len": 169,
+      "berth": "JGV",
+      "agent": "PAM",
+      "op": "Entrada",
+      "eta": "2026-07-16T06:30",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260716019",
       "status": "Prevista",
       "imo": "—",
       "name": "INFINITY K",
@@ -279,7 +294,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716019",
+      "id": "H20260716020",
       "status": "Prevista",
       "imo": "—",
       "name": "SIGRID THERESA",
@@ -294,14 +309,14 @@
       "to": "—"
     },
     {
-      "id": "H20260717020",
+      "id": "H20260717021",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
       "gt": 6220,
       "len": 113,
       "berth": "PET",
-      "agent": "E.CIA",
+      "agent": "—",
       "op": "Entrada",
       "eta": "2026-07-17T00:00",
       "etd": "",
@@ -311,14 +326,29 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260718021",
+      "id": "H20260717022",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "MED BLUE JAY",
+      "gt": 5633,
+      "len": 120,
+      "berth": "DEC",
+      "agent": "NEX",
+      "op": "Entrada",
+      "eta": "2026-07-17T16:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260718023",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
       "gt": 9816,
       "len": 120,
       "berth": "ENA",
-      "agent": "E.CIA",
+      "agent": "—",
       "op": "Entrada",
       "eta": "2026-07-18T00:00",
       "etd": "",
@@ -326,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718022",
+      "id": "H20260718024",
       "status": "Prevista",
       "imo": "—",
       "name": "TOXOTIS",
@@ -341,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718023",
+      "id": "H20260718025",
       "status": "Prevista",
       "imo": "—",
       "name": "RIZIK.BEY",
@@ -395,7 +425,7 @@
         "label": "Inicio de operaciones",
         "status": "done",
         "time": "07/07 · 20:00",
-        "by": "Agente: E.CIA"
+        "by": "Agente: —"
       },
       {
         "label": "Fin de operaciones",

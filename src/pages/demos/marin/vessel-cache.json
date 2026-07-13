@@ -593,5 +593,10 @@
     "resolved": false,
     "reason": "3 resultados pero ninguno aceptable (nombre/tipo comercial/IMO)",
     "checkedAt": "2026-07-12T13:23:48Z"
+  },
+  "OLUPALE::A ORDENES": {
+    "resolved": false,
+    "reason": "sin resultados en VesselFinder",
+    "checkedAt": "2026-07-13T14:38:16Z"
   }
 }
