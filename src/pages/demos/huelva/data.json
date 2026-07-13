@@ -30,7 +30,7 @@
       "name": "HAFNIA AZOTIC",
       "gt": 23676,
       "len": 184,
-      "berth": "PES",
+      "berth": "PET",
       "agent": "—",
       "op": "Fondo",
       "eta": "2026-07-09T22:00",
@@ -136,7 +136,7 @@
       "gt": 85421,
       "len": 274,
       "berth": "MON",
-      "agent": "E.CIA",
+      "agent": "—",
       "op": "Fondo",
       "eta": "2026-07-13T15:00",
       "etd": "",
@@ -145,14 +145,14 @@
     },
     {
       "id": "H20260713010",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "NQ LAELIA",
       "gt": 5744,
       "len": 116,
       "berth": "RSN",
       "agent": "IBM",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-07-13T18:00",
       "etd": "",
       "from": "—",
@@ -213,7 +213,7 @@
       "gt": 8847,
       "len": 113,
       "berth": "ENA",
-      "agent": "E.CIA",
+      "agent": "—",
       "op": "Entrada",
       "eta": "2026-07-14T06:00",
       "etd": "",
@@ -222,6 +222,21 @@
     },
     {
       "id": "H20260714015",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "SIGAIA THERESA",
+      "gt": 7280,
+      "len": 127,
+      "berth": "RSF",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-07-14T07:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260714016",
       "status": "Prevista",
       "imo": "—",
       "name": "MARIE CURIE",
@@ -236,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260715016",
+      "id": "H20260715017",
       "status": "Prevista",
       "imo": "—",
       "name": "ALBUFERA.TMA",
@@ -251,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260715017",
+      "id": "H20260715018",
       "status": "Prevista",
       "imo": "—",
       "name": "ELBWINTER",
@@ -266,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260715018",
+      "id": "H20260715019",
       "status": "Prevista",
       "imo": "—",
       "name": "CS CAPRICE",
@@ -281,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716019",
+      "id": "H20260716020",
       "status": "Prevista",
       "imo": "—",
       "name": "TURGUT.SHHIN",
@@ -296,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716020",
+      "id": "H20260716021",
       "status": "Prevista",
       "imo": "—",
       "name": "CAPE.DUCATO",
@@ -311,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716021",
+      "id": "H20260716022",
       "status": "Prevista",
       "imo": "—",
       "name": "INFINITY K",
@@ -326,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716022",
+      "id": "H20260716023",
       "status": "Prevista",
       "imo": "—",
       "name": "SIGRID THERESA",
@@ -341,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717023",
+      "id": "H20260717024",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -356,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717024",
+      "id": "H20260717025",
       "status": "Prevista",
       "imo": "—",
       "name": "MED BLUE JAY",
@@ -371,7 +386,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718025",
+      "id": "H20260718026",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -386,7 +401,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718026",
+      "id": "H20260718027",
       "status": "Prevista",
       "imo": "—",
       "name": "TOXOTIS",
@@ -401,7 +416,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718027",
+      "id": "H20260718028",
       "status": "Prevista",
       "imo": "—",
       "name": "RIZIK.BEY",
