@@ -2,7 +2,7 @@
   "meta": {
     "port": "Puerto de Huelva",
     "source": "huelvapilots.com · previsiones",
-    "date": "13/07/2026",
+    "date": "14/07/2026",
     "refreshHours": 24
   },
   "calls": [
@@ -24,22 +24,7 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle PET según lo previsto."
     },
     {
-      "id": "H20260709002",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "HAFNIA AZOTIC",
-      "gt": 23676,
-      "len": 184,
-      "berth": "PET",
-      "agent": "—",
-      "op": "Fondo",
-      "eta": "2026-07-09T22:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260710003",
+      "id": "H20260710002",
       "status": "Iniciado",
       "imo": "—",
       "name": "DH BLOSSOMING",
@@ -54,7 +39,7 @@
       "to": "—"
     },
     {
-      "id": "H20260711004",
+      "id": "H20260711003",
       "status": "Iniciado",
       "imo": "—",
       "name": "ZUGA",
@@ -69,7 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260712005",
+      "id": "H20260712004",
       "status": "Iniciado",
       "imo": "—",
       "name": "KRITI.SAILOR",
@@ -84,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260712006",
+      "id": "H20260712005",
       "status": "Iniciado",
       "imo": "—",
       "name": "MINERVA JOHANA",
@@ -99,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260713007",
+      "id": "H20260713006",
       "status": "Iniciado",
       "imo": "—",
       "name": "ISABELLA",
@@ -114,7 +99,7 @@
       "to": "—"
     },
     {
-      "id": "H20260713008",
+      "id": "H20260713007",
       "status": "Iniciado",
       "imo": "—",
       "name": "MT ANTARCTIC",
@@ -129,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260713009",
+      "id": "H20260713008",
       "status": "Iniciado",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -144,8 +129,8 @@
       "to": "—"
     },
     {
-      "id": "H20260713010",
-      "status": "Prevista",
+      "id": "H20260713009",
+      "status": "Iniciado",
       "imo": "—",
       "name": "MURRAY STAR",
       "gt": 8537,
@@ -159,8 +144,8 @@
       "to": "—"
     },
     {
-      "id": "H20260713011",
-      "status": "Prevista",
+      "id": "H20260713010",
+      "status": "Iniciado",
       "imo": "—",
       "name": "ATLANTIC.SUNFLOWER",
       "gt": 29665,
@@ -171,28 +156,11 @@
       "eta": "2026-07-13T22:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260707001",
-      "affectRisk": "ALTO"
-    },
-    {
-      "id": "H20260713012",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "ISLAS.TRES",
-      "gt": 4075,
-      "len": 97,
-      "berth": "JGV",
-      "agent": "ERS",
-      "op": "Entrada",
-      "eta": "2026-07-13T23:00",
-      "etd": "",
-      "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260714013",
-      "status": "Prevista",
+      "id": "H20260714011",
+      "status": "Iniciado",
       "imo": "—",
       "name": "ALICE.COSULICH",
       "gt": 8847,
@@ -206,7 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260714014",
+      "id": "H20260714012",
       "status": "Prevista",
       "imo": "—",
       "name": "SIGAIA THERESA",
@@ -221,22 +189,7 @@
       "to": "—"
     },
     {
-      "id": "H20260714015",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "MARIE CURIE",
-      "gt": 28657,
-      "len": 186,
-      "berth": "MUL",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-07-14T08:15",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260715016",
+      "id": "H20260715013",
       "status": "Prevista",
       "imo": "—",
       "name": "ALBUFERA.TMA",
@@ -251,7 +204,7 @@
       "to": "—"
     },
     {
-      "id": "H20260715017",
+      "id": "H20260715014",
       "status": "Prevista",
       "imo": "—",
       "name": "ELBWINTER",
@@ -266,7 +219,7 @@
       "to": "—"
     },
     {
-      "id": "H20260715018",
+      "id": "H20260715015",
       "status": "Prevista",
       "imo": "—",
       "name": "CS CAPRICE",
@@ -281,7 +234,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716019",
+      "id": "H20260716016",
       "status": "Prevista",
       "imo": "—",
       "name": "TURGUT.SHHIN",
@@ -296,7 +249,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716020",
+      "id": "H20260716017",
       "status": "Prevista",
       "imo": "—",
       "name": "CAPE.DUCATO",
@@ -311,7 +264,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716021",
+      "id": "H20260716018",
       "status": "Prevista",
       "imo": "—",
       "name": "INFINITY K",
@@ -320,13 +273,13 @@
       "berth": "JGV",
       "agent": "ERS",
       "op": "Entrada",
-      "eta": "2026-07-16T12:00",
+      "eta": "2026-07-16T10:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260716022",
+      "id": "H20260716019",
       "status": "Prevista",
       "imo": "—",
       "name": "SIGRID THERESA",
@@ -341,7 +294,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717023",
+      "id": "H20260717020",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -353,10 +306,12 @@
       "eta": "2026-07-17T00:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "affectedBy": "H20260707001",
+      "affectRisk": "ALTO"
     },
     {
-      "id": "H20260717024",
+      "id": "H20260717021",
       "status": "Prevista",
       "imo": "—",
       "name": "MED BLUE JAY",
@@ -371,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718025",
+      "id": "H20260718022",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -386,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718026",
+      "id": "H20260718023",
       "status": "Prevista",
       "imo": "—",
       "name": "TOXOTIS",
@@ -401,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718027",
+      "id": "H20260718024",
       "status": "Prevista",
       "imo": "—",
       "name": "RIZIK.BEY",
