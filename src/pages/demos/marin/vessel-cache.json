@@ -598,5 +598,41 @@
     "resolved": false,
     "reason": "sin resultados en VesselFinder",
     "checkedAt": "2026-07-13T14:38:16Z"
+  },
+  "ELENORA::ANTWERPEN": {
+    "resolved": true,
+    "imo": "9184421",
+    "mmsi": "255924000",
+    "detailId": "9184421",
+    "gt": 2469,
+    "dwt": 4023,
+    "len": 86,
+    "beam": 13,
+    "flag": "Portugal (Madeira)",
+    "vesselType": "General Cargo Ship",
+    "built": 2000,
+    "callsign": "CQWD",
+    "destination": "Bermeo, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-14T13:48:03Z"
+  },
+  "NORTHERN ROCK::CUXHAVEN": {
+    "resolved": true,
+    "imo": "9728887",
+    "mmsi": "244850087",
+    "detailId": "9728887",
+    "gt": 2989,
+    "dwt": 3285,
+    "len": 92,
+    "beam": 14,
+    "flag": "Netherlands",
+    "vesselType": "General Cargo Ship",
+    "built": 2015,
+    "callsign": "PCZQ",
+    "destination": "Wick, United Kingdom (UK)",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-14T13:48:07Z"
   }
 }

@@ -39,22 +39,7 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle DEC según lo previsto."
     },
     {
-      "id": "H20260711003",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "ZUGA",
-      "gt": 4002,
-      "len": 100,
-      "berth": "DCS",
-      "agent": "IBM",
-      "op": "Fondo",
-      "eta": "2026-07-11T21:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260712004",
+      "id": "H20260712003",
       "status": "Iniciado",
       "imo": "—",
       "name": "KRITI.SAILOR",
@@ -69,7 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260713005",
+      "id": "H20260713004",
       "status": "Iniciado",
       "imo": "—",
       "name": "ISABELLA",
@@ -84,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260713006",
+      "id": "H20260713005",
       "status": "Iniciado",
       "imo": "—",
       "name": "MT ANTARCTIC",
@@ -99,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260713007",
+      "id": "H20260713006",
       "status": "Iniciado",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -114,22 +99,7 @@
       "to": "—"
     },
     {
-      "id": "H20260713008",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "MURRAY STAR",
-      "gt": 8537,
-      "len": 128,
-      "berth": "DC2",
-      "agent": "—",
-      "op": "Fondo",
-      "eta": "2026-07-13T22:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260713009",
+      "id": "H20260713007",
       "status": "Iniciado",
       "imo": "—",
       "name": "ATLANTIC.SUNFLOWER",
@@ -144,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260714010",
+      "id": "H20260714008",
       "status": "Prevista",
       "imo": "—",
       "name": "BUENAVISTA.EXPRESS",
@@ -159,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260714011",
+      "id": "H20260714009",
       "status": "Prevista",
       "imo": "—",
       "name": "SEN ARCHE",
@@ -174,7 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260714012",
+      "id": "H20260714010",
       "status": "Prevista",
       "imo": "—",
       "name": "XT.HOPE",
@@ -189,7 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260715013",
+      "id": "H20260715011",
       "status": "Prevista",
       "imo": "—",
       "name": "ELBWINTER",
@@ -204,7 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260715014",
+      "id": "H20260715012",
       "status": "Prevista",
       "imo": "—",
       "name": "CHEM.SILICOM",
@@ -221,7 +191,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260715015",
+      "id": "H20260715013",
       "status": "Prevista",
       "imo": "—",
       "name": "CS CAPRICE",
@@ -236,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716016",
+      "id": "H20260716014",
       "status": "Prevista",
       "imo": "—",
       "name": "CAPE.DUCATO",
@@ -251,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716017",
+      "id": "H20260716015",
       "status": "Prevista",
       "imo": "—",
       "name": "TURGUT.SHHIN",
@@ -266,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716018",
+      "id": "H20260716016",
       "status": "Prevista",
       "imo": "—",
       "name": "INFINITY K",
@@ -281,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716019",
+      "id": "H20260716017",
       "status": "Prevista",
       "imo": "—",
       "name": "ALBUFERA.TMA",
@@ -296,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716020",
+      "id": "H20260716018",
       "status": "Prevista",
       "imo": "—",
       "name": "SIGRID THERESA",
@@ -311,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717021",
+      "id": "H20260717019",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -326,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717022",
+      "id": "H20260717020",
       "status": "Prevista",
       "imo": "—",
       "name": "AA-D",
@@ -341,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717023",
+      "id": "H20260717021",
       "status": "Prevista",
       "imo": "—",
       "name": "MED BLUE JAY",
@@ -356,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718025",
+      "id": "H20260718023",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -371,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718026",
+      "id": "H20260718024",
       "status": "Prevista",
       "imo": "—",
       "name": "TOXOTIS",
@@ -386,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718027",
+      "id": "H20260718025",
       "status": "Prevista",
       "imo": "—",
       "name": "RIZIK.BEY",
@@ -401,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260721028",
+      "id": "H20260721026",
       "status": "Prevista",
       "imo": "—",
       "name": "LNG.IMO",
