@@ -652,5 +652,41 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-15T10:04:39Z"
+  },
+  "SANTA MARTA EXPRESS::MONTREAL": {
+    "resolved": true,
+    "imo": "9446104",
+    "mmsi": "636024484",
+    "detailId": "9446104",
+    "gt": 26836,
+    "dwt": 33456,
+    "len": 210,
+    "beam": 30,
+    "flag": "Liberia",
+    "vesselType": "Container Ship",
+    "built": 2010,
+    "callsign": "5LSV4",
+    "destination": "Fredericia, Denmark",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-15T15:27:26Z"
+  },
+  "MOMBASA EXPRESS::TANGER MED": {
+    "resolved": true,
+    "imo": "9495777",
+    "mmsi": "636092500",
+    "detailId": "9495777",
+    "gt": 48799,
+    "dwt": 58014,
+    "len": 260,
+    "beam": 37,
+    "flag": "Liberia",
+    "vesselType": "Container Ship",
+    "built": 2013,
+    "callsign": "D5EJ9",
+    "destination": "Livorno, Italy",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-15T15:27:29Z"
   }
 }

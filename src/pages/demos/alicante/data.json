@@ -7,23 +7,6 @@
   },
   "calls": [
     {
-      "id": "A202600472",
-      "status": "Alerta",
-      "imo": "9398773",
-      "name": "ELBWINTER",
-      "gt": 10585,
-      "len": 151,
-      "berth": "23",
-      "agent": "MAGHREB CONTAINER INTERNATIONAL SL",
-      "op": "RETENIDO",
-      "eta": "2026-07-14T08:00",
-      "etd": "2026-07-15T14:00",
-      "from": "CASTELLON",
-      "to": "HUELVA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
-    },
-    {
       "id": "A202600509",
       "status": "Iniciado",
       "imo": "1114901",
@@ -40,7 +23,7 @@
     },
     {
       "id": "A202600484",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9849693",
       "name": "ARVIA",
       "gt": 185581,
@@ -51,7 +34,9 @@
       "eta": "2026-07-15T06:45",
       "etd": "2026-07-15T17:00",
       "from": "MALAGA",
-      "to": "LA SEYNE-SUR-MER"
+      "to": "LA SEYNE-SUR-MER",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 14 según lo previsto."
     },
     {
       "id": "A202600517",
@@ -126,9 +111,7 @@
       "eta": "2026-07-17T08:00",
       "etd": "2026-07-17T23:00",
       "from": "LAS PALMAS",
-      "to": "LAS PALMAS",
-      "affectedBy": "A202600472",
-      "affectRisk": "ALTO"
+      "to": "LAS PALMAS"
     },
     {
       "id": "A202600485",
@@ -203,11 +186,13 @@
       "eta": "2026-07-19T07:45",
       "etd": "2026-07-19T17:00",
       "from": "LISBOA",
-      "to": "MAHON,"
+      "to": "MAHON,",
+      "affectedBy": "A202600484",
+      "affectRisk": "ALTO"
     }
   ],
   "tugService": {
-    "callId": "A202600472",
+    "callId": "A202600484",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -234,18 +219,18 @@
     }
   },
   "milestones": {
-    "A202600472": [
+    "A202600484": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "14/07 · 08:25",
+        "time": "15/07 · 07:10",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "14/07 · 09:30",
-        "by": "Agente: MAGHREB CONTAINER INTERNATIONAL SL"
+        "time": "15/07 · 08:15",
+        "by": "Agente: NOATUM MARITIME SPAIN SA"
       },
       {
         "label": "Fin de operaciones",

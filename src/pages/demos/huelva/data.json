@@ -23,7 +23,7 @@
     },
     {
       "id": "H20260710002",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "—",
       "name": "DH BLOSSOMING",
       "gt": 6052,
@@ -34,9 +34,7 @@
       "eta": "2026-07-10T22:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle DCS según lo previsto."
+      "to": "—"
     },
     {
       "id": "H20260713003",
@@ -57,21 +55,6 @@
       "id": "H20260713004",
       "status": "Iniciado",
       "imo": "—",
-      "name": "NQ LAELIA",
-      "gt": 5744,
-      "len": 116,
-      "berth": "RSN",
-      "agent": "IBM",
-      "op": "Fondo",
-      "eta": "2026-07-13T18:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260713005",
-      "status": "Iniciado",
-      "imo": "—",
       "name": "ATLANTIC.SUNFLOWER",
       "gt": 29665,
       "len": 183,
@@ -84,8 +67,8 @@
       "to": "—"
     },
     {
-      "id": "H20260714006",
-      "status": "Iniciado",
+      "id": "H20260714005",
+      "status": "Alerta",
       "imo": "—",
       "name": "SEN ARCHE",
       "gt": 5284,
@@ -96,10 +79,12 @@
       "eta": "2026-07-14T12:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle RSS según lo previsto."
     },
     {
-      "id": "H20260714007",
+      "id": "H20260714006",
       "status": "Iniciado",
       "imo": "—",
       "name": "XT.HOPE",
@@ -114,8 +99,8 @@
       "to": "—"
     },
     {
-      "id": "H20260715008",
-      "status": "Prevista",
+      "id": "H20260715007",
+      "status": "Iniciado",
       "imo": "—",
       "name": "STENA.CONQUEST",
       "gt": 27512,
@@ -126,12 +111,10 @@
       "eta": "2026-07-15T15:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260710002",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
-      "id": "H20260715009",
+      "id": "H20260715008",
       "status": "Prevista",
       "imo": "—",
       "name": "CHEM.SILICOM",
@@ -146,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716010",
+      "id": "H20260716009",
       "status": "Prevista",
       "imo": "—",
       "name": "CAPE.DUCATO",
@@ -161,7 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716011",
+      "id": "H20260716010",
       "status": "Prevista",
       "imo": "—",
       "name": "ELBWINTER",
@@ -176,7 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716012",
+      "id": "H20260716011",
       "status": "Prevista",
       "imo": "—",
       "name": "INFINITY K",
@@ -191,7 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716013",
+      "id": "H20260716012",
       "status": "Prevista",
       "imo": "—",
       "name": "TURGUT.SHHIN",
@@ -206,7 +189,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716014",
+      "id": "H20260716013",
       "status": "Prevista",
       "imo": "—",
       "name": "ALBUFERA.TMA",
@@ -221,7 +204,7 @@
       "to": "—"
     },
     {
-      "id": "H20260716015",
+      "id": "H20260716014",
       "status": "Prevista",
       "imo": "—",
       "name": "SIGRID THERESA",
@@ -236,7 +219,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717016",
+      "id": "H20260717015",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -251,7 +234,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717017",
+      "id": "H20260717016",
       "status": "Prevista",
       "imo": "—",
       "name": "IVER BEST",
@@ -263,10 +246,12 @@
       "eta": "2026-07-17T01:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "affectedBy": "H20260714005",
+      "affectRisk": "ALTO"
     },
     {
-      "id": "H20260717018",
+      "id": "H20260717017",
       "status": "Prevista",
       "imo": "—",
       "name": "MED BLUE JAY",
@@ -281,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717020",
+      "id": "H20260717019",
       "status": "Prevista",
       "imo": "—",
       "name": "RUBYLAND",
@@ -296,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717021",
+      "id": "H20260717020",
       "status": "Prevista",
       "imo": "—",
       "name": "AA-D",
@@ -311,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718022",
+      "id": "H20260718021",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -326,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718023",
+      "id": "H20260718022",
       "status": "Prevista",
       "imo": "—",
       "name": "TOXOTIS",
@@ -341,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718024",
+      "id": "H20260718023",
       "status": "Prevista",
       "imo": "—",
       "name": "RIZIK.BEY",
@@ -356,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260721025",
+      "id": "H20260721024",
       "status": "Prevista",
       "imo": "—",
       "name": "LNG.IMO",
@@ -371,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260724026",
+      "id": "H20260724025",
       "status": "Prevista",
       "imo": "—",
       "name": "TORM CORRIDO",
@@ -387,7 +372,7 @@
     }
   ],
   "tugService": {
-    "callId": "H20260710002",
+    "callId": "H20260714005",
     "reportNumber": "031245",
     "tugboat": "REMOLCADOR ODIEL",
     "powerPct": 70,
@@ -414,17 +399,17 @@
     }
   },
   "milestones": {
-    "H20260710002": [
+    "H20260714005": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "10/07 · 22:25",
+        "time": "14/07 · 12:25",
         "by": "Práctico (Huelva)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "10/07 · 23:30",
+        "time": "14/07 · 13:30",
         "by": "Agente: —"
       },
       {
