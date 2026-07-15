@@ -8,7 +8,7 @@
   "calls": [
     {
       "id": "A202600509",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "1114901",
       "name": "BLACKSEA STAR",
       "gt": 6641,
@@ -19,24 +19,9 @@
       "eta": "2026-07-14T10:00",
       "etd": "2026-07-15T23:00",
       "from": "SEVILLA",
-      "to": "ALGER"
-    },
-    {
-      "id": "A202600517",
-      "status": "Alerta",
-      "imo": "9237242",
-      "name": "CRACOVIA",
-      "gt": 25028,
-      "len": 180,
-      "berth": "25",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-07-15T08:00",
-      "etd": "2026-07-15T20:00",
-      "from": "ORAN",
       "to": "ALGER",
       "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 25 según lo previsto."
+      "alertNote": "Incidencia en carga. El buque no liberará el Muelle 15 según lo previsto."
     },
     {
       "id": "A202600510",
@@ -66,9 +51,7 @@
       "eta": "2026-07-16T08:00",
       "etd": "2026-07-16T20:00",
       "from": "ORAN",
-      "to": "ORAN",
-      "affectedBy": "A202600517",
-      "affectRisk": "ALTO"
+      "to": "ORAN"
     },
     {
       "id": "A202600487",
@@ -177,7 +160,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600517",
+    "callId": "A202600509",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -204,18 +187,18 @@
     }
   },
   "milestones": {
-    "A202600517": [
+    "A202600509": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "15/07 · 08:25",
+        "time": "14/07 · 10:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "15/07 · 09:30",
-        "by": "Agente: OCEAN PORTS & SHIPPING SL"
+        "time": "14/07 · 11:30",
+        "by": "Agente: ROMEU Y CIA. S A"
       },
       {
         "label": "Fin de operaciones",
