@@ -2,7 +2,7 @@
   "meta": {
     "port": "Puerto de Huelva",
     "source": "huelvapilots.com · previsiones",
-    "date": "14/07/2026",
+    "date": "15/07/2026",
     "refreshHours": 24
   },
   "calls": [
@@ -130,14 +130,14 @@
     },
     {
       "id": "H20260714009",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "XT.HOPE",
       "gt": 5490,
       "len": 119,
       "berth": "RSS",
       "agent": "—",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-07-14T22:00",
       "etd": "",
       "from": "—",
