@@ -38,7 +38,7 @@
     },
     {
       "id": "H20260713003",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "—",
       "name": "MT ANTARCTIC",
       "gt": 85421,
@@ -49,7 +49,9 @@
       "eta": "2026-07-13T15:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle MON según lo previsto."
     },
     {
       "id": "H20260713004",
@@ -68,7 +70,7 @@
     },
     {
       "id": "H20260714005",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "—",
       "name": "SEN ARCHE",
       "gt": 5284,
@@ -79,9 +81,7 @@
       "eta": "2026-07-14T12:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle RSS según lo previsto."
+      "to": "—"
     },
     {
       "id": "H20260714006",
@@ -107,7 +107,7 @@
       "len": 180,
       "berth": "DCS",
       "agent": "—",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-07-15T15:00",
       "etd": "",
       "from": "—",
@@ -115,12 +115,12 @@
     },
     {
       "id": "H20260715008",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "CHEM.SILICOM",
       "gt": 11918,
       "len": 146,
-      "berth": "DEC",
+      "berth": "DC2",
       "agent": "IBM",
       "op": "Entrada",
       "eta": "2026-07-15T17:00",
@@ -246,9 +246,7 @@
       "eta": "2026-07-17T01:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260714005",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
       "id": "H20260717017",
@@ -266,7 +264,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717019",
+      "id": "H20260717020",
       "status": "Prevista",
       "imo": "—",
       "name": "RUBYLAND",
@@ -281,7 +279,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717020",
+      "id": "H20260717021",
       "status": "Prevista",
       "imo": "—",
       "name": "AA-D",
@@ -296,7 +294,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718021",
+      "id": "H20260718022",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -311,7 +309,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718022",
+      "id": "H20260718024",
       "status": "Prevista",
       "imo": "—",
       "name": "TOXOTIS",
@@ -326,7 +324,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718023",
+      "id": "H20260718025",
       "status": "Prevista",
       "imo": "—",
       "name": "RIZIK.BEY",
@@ -341,7 +339,22 @@
       "to": "—"
     },
     {
-      "id": "H20260721024",
+      "id": "H20260720026",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "BASAT",
+      "gt": 7260,
+      "len": 132,
+      "berth": "DEC",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-20T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260721027",
       "status": "Prevista",
       "imo": "—",
       "name": "LNG.IMO",
@@ -356,23 +369,55 @@
       "to": "—"
     },
     {
-      "id": "H20260724025",
+      "id": "H20260722028",
       "status": "Prevista",
       "imo": "—",
-      "name": "TORM CORRIDO",
-      "gt": 27095,
-      "len": 182,
-      "berth": "DEC",
+      "name": "DA QING",
+      "gt": 21992,
+      "len": 180,
+      "berth": "TI",
       "agent": "E.CIA",
       "op": "Entrada",
-      "eta": "2026-07-24T23:00",
+      "eta": "2026-07-22T10:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260722029",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "FRONT SPARTA",
+      "gt": 82305,
+      "len": 275,
+      "berth": "MON",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-22T11:00",
+      "etd": "",
+      "from": "—",
+      "to": "—",
+      "affectedBy": "H20260713003",
+      "affectRisk": "ALTO"
+    },
+    {
+      "id": "H20260722030",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "DREPANOS",
+      "gt": 60379,
+      "len": 244,
+      "berth": "MON",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-22T13:00",
       "etd": "",
       "from": "—",
       "to": "—"
     }
   ],
   "tugService": {
-    "callId": "H20260714005",
+    "callId": "H20260713003",
     "reportNumber": "031245",
     "tugboat": "REMOLCADOR ODIEL",
     "powerPct": 70,
@@ -399,17 +444,17 @@
     }
   },
   "milestones": {
-    "H20260714005": [
+    "H20260713003": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "14/07 · 12:25",
+        "time": "13/07 · 15:25",
         "by": "Práctico (Huelva)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "14/07 · 13:30",
+        "time": "13/07 · 16:30",
         "by": "Agente: —"
       },
       {

@@ -22,25 +22,8 @@
       "to": "ALGER"
     },
     {
-      "id": "A202600484",
-      "status": "Alerta",
-      "imo": "9849693",
-      "name": "ARVIA",
-      "gt": 185581,
-      "len": 344.5,
-      "berth": "14",
-      "agent": "NOATUM MARITIME SPAIN SA",
-      "op": "CRUCERISTAS",
-      "eta": "2026-07-15T06:45",
-      "etd": "2026-07-15T17:00",
-      "from": "MALAGA",
-      "to": "LA SEYNE-SUR-MER",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 14 según lo previsto."
-    },
-    {
       "id": "A202600517",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9237242",
       "name": "CRACOVIA",
       "gt": 25028,
@@ -51,11 +34,13 @@
       "eta": "2026-07-15T08:00",
       "etd": "2026-07-15T20:00",
       "from": "ORAN",
-      "to": "ALGER"
+      "to": "ALGER",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 25 según lo previsto."
     },
     {
       "id": "A202600510",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "1092828",
       "name": "MANISA BIANCANEVE",
       "gt": 6321,
@@ -81,7 +66,9 @@
       "eta": "2026-07-16T08:00",
       "etd": "2026-07-16T20:00",
       "from": "ORAN",
-      "to": "ORAN"
+      "to": "ORAN",
+      "affectedBy": "A202600517",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600487",
@@ -186,13 +173,11 @@
       "eta": "2026-07-19T07:45",
       "etd": "2026-07-19T17:00",
       "from": "LISBOA",
-      "to": "MAHON,",
-      "affectedBy": "A202600484",
-      "affectRisk": "ALTO"
+      "to": "MAHON,"
     }
   ],
   "tugService": {
-    "callId": "A202600484",
+    "callId": "A202600517",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -219,18 +204,18 @@
     }
   },
   "milestones": {
-    "A202600484": [
+    "A202600517": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "15/07 · 07:10",
+        "time": "15/07 · 08:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "15/07 · 08:15",
-        "by": "Agente: NOATUM MARITIME SPAIN SA"
+        "time": "15/07 · 09:30",
+        "by": "Agente: OCEAN PORTS & SHIPPING SL"
       },
       {
         "label": "Fin de operaciones",
