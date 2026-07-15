@@ -634,5 +634,23 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-14T13:48:07Z"
+  },
+  "MARFAAM::LEIXOES": {
+    "resolved": true,
+    "imo": "9526100",
+    "mmsi": "246843000",
+    "detailId": "9526100",
+    "gt": 5422,
+    "dwt": 8429,
+    "len": 118,
+    "beam": 16,
+    "flag": "Netherlands",
+    "vesselType": "General Cargo Ship",
+    "built": 2011,
+    "callsign": "PCNH",
+    "destination": "Leixoes, Portugal",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-15T10:04:39Z"
   }
 }

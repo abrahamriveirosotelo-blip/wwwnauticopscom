@@ -39,37 +39,7 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle DCS según lo previsto."
     },
     {
-      "id": "H20260712003",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "KRITI.SAILOR",
-      "gt": 23656,
-      "len": 184,
-      "berth": "PES",
-      "agent": "—",
-      "op": "Fondo",
-      "eta": "2026-07-12T00:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260713004",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "ISABELLA",
-      "gt": 57301,
-      "len": 244,
-      "berth": "MON",
-      "agent": "—",
-      "op": "Fondo",
-      "eta": "2026-07-13T15:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260713005",
+      "id": "H20260713003",
       "status": "Iniciado",
       "imo": "—",
       "name": "MT ANTARCTIC",
@@ -84,7 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260713006",
+      "id": "H20260713004",
       "status": "Iniciado",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -99,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260713007",
+      "id": "H20260713005",
       "status": "Iniciado",
       "imo": "—",
       "name": "ATLANTIC.SUNFLOWER",
@@ -114,13 +84,13 @@
       "to": "—"
     },
     {
-      "id": "H20260714008",
+      "id": "H20260714006",
       "status": "Iniciado",
       "imo": "—",
       "name": "SEN ARCHE",
       "gt": 5284,
       "len": 110,
-      "berth": "RS4",
+      "berth": "RSS",
       "agent": "—",
       "op": "Fondo",
       "eta": "2026-07-14T12:00",
@@ -129,13 +99,13 @@
       "to": "—"
     },
     {
-      "id": "H20260714009",
+      "id": "H20260714007",
       "status": "Iniciado",
       "imo": "—",
       "name": "XT.HOPE",
       "gt": 5490,
       "len": 119,
-      "berth": "RSS",
+      "berth": "RS4",
       "agent": "—",
       "op": "Fondo",
       "eta": "2026-07-14T22:00",
@@ -144,10 +114,10 @@
       "to": "—"
     },
     {
-      "id": "H20260715010",
+      "id": "H20260715008",
       "status": "Prevista",
       "imo": "—",
-      "name": "STENA CONCERT",
+      "name": "STENA.CONQUEST",
       "gt": 27512,
       "len": 180,
       "berth": "DCS",
@@ -161,7 +131,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260715011",
+      "id": "H20260715009",
       "status": "Prevista",
       "imo": "—",
       "name": "CHEM.SILICOM",
@@ -176,37 +146,7 @@
       "to": "—"
     },
     {
-      "id": "H20260715012",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "CS CAPRICE",
-      "gt": 20659,
-      "len": 179,
-      "berth": "CPA",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-07-15T19:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260715013",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "ELBWINTER",
-      "gt": 10585,
-      "len": 151,
-      "berth": "MUL",
-      "agent": "TER",
-      "op": "Entrada",
-      "eta": "2026-07-15T20:30",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260716014",
+      "id": "H20260716010",
       "status": "Prevista",
       "imo": "—",
       "name": "CAPE.DUCATO",
@@ -221,22 +161,22 @@
       "to": "—"
     },
     {
-      "id": "H20260716015",
+      "id": "H20260716011",
       "status": "Prevista",
       "imo": "—",
-      "name": "TURGUT.SHHIN",
-      "gt": 2909,
-      "len": 91,
-      "berth": "JGV",
-      "agent": "CON",
+      "name": "ELBWINTER",
+      "gt": 10585,
+      "len": 151,
+      "berth": "MUL",
+      "agent": "TER",
       "op": "Entrada",
-      "eta": "2026-07-16T05:00",
+      "eta": "2026-07-16T03:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260716016",
+      "id": "H20260716012",
       "status": "Prevista",
       "imo": "—",
       "name": "INFINITY K",
@@ -251,7 +191,22 @@
       "to": "—"
     },
     {
-      "id": "H20260716017",
+      "id": "H20260716013",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "TURGUT.SHHIN",
+      "gt": 2909,
+      "len": 91,
+      "berth": "JGV",
+      "agent": "CON",
+      "op": "Entrada",
+      "eta": "2026-07-16T12:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260716014",
       "status": "Prevista",
       "imo": "—",
       "name": "ALBUFERA.TMA",
@@ -260,13 +215,13 @@
       "berth": "TI",
       "agent": "BER",
       "op": "Entrada",
-      "eta": "2026-07-16T15:00",
+      "eta": "2026-07-16T18:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260716018",
+      "id": "H20260716015",
       "status": "Prevista",
       "imo": "—",
       "name": "SIGRID THERESA",
@@ -275,13 +230,13 @@
       "berth": "ATC",
       "agent": "ERS",
       "op": "Entrada",
-      "eta": "2026-07-16T18:00",
+      "eta": "2026-07-16T22:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260717019",
+      "id": "H20260717016",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -296,22 +251,22 @@
       "to": "—"
     },
     {
-      "id": "H20260717020",
+      "id": "H20260717017",
       "status": "Prevista",
       "imo": "—",
-      "name": "AA-D",
-      "gt": 4812,
+      "name": "IVER BEST",
+      "gt": 5948,
       "len": 110,
-      "berth": "RS4",
+      "berth": "RSS",
       "agent": "—",
       "op": "Entrada",
-      "eta": "2026-07-17T00:00",
+      "eta": "2026-07-17T01:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260717021",
+      "id": "H20260717018",
       "status": "Prevista",
       "imo": "—",
       "name": "MED BLUE JAY",
@@ -326,7 +281,37 @@
       "to": "—"
     },
     {
-      "id": "H20260718023",
+      "id": "H20260717020",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "RUBYLAND",
+      "gt": 4220,
+      "len": 106,
+      "berth": "JGV",
+      "agent": "BER",
+      "op": "Entrada",
+      "eta": "2026-07-17T19:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260717021",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "AA-D",
+      "gt": 4812,
+      "len": 110,
+      "berth": "RSF",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-07-17T20:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260718022",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -341,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718024",
+      "id": "H20260718023",
       "status": "Prevista",
       "imo": "—",
       "name": "TOXOTIS",
@@ -356,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718025",
+      "id": "H20260718024",
       "status": "Prevista",
       "imo": "—",
       "name": "RIZIK.BEY",
@@ -371,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260721026",
+      "id": "H20260721025",
       "status": "Prevista",
       "imo": "—",
       "name": "LNG.IMO",
@@ -381,6 +366,21 @@
       "agent": "MM",
       "op": "Entrada",
       "eta": "2026-07-21T22:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260724026",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "TORM CORRIDO",
+      "gt": 27095,
+      "len": 182,
+      "berth": "DEC",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-24T23:00",
       "etd": "",
       "from": "—",
       "to": "—"
