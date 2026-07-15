@@ -4,7 +4,7 @@
     "source": "apmarin.com · buques esperados + en puerto",
     "date": "15/07/2026",
     "refreshHours": 2,
-    "sourceUpdatedAt": "2026-07-15T11:10"
+    "sourceUpdatedAt": "2026-07-15T15:10"
   },
   "calls": [
     {
@@ -31,10 +31,10 @@
       "callsign": "5LTO7",
       "aisStatus": "Atracado",
       "aisEta": "2026-07-14T11:00",
-      "aisSpeed": 0.1,
+      "aisSpeed": 0,
       "aisDraught": 11.5,
       "aisDestination": "PTM-MAR",
-      "aisAt": "2026-07-15T12:04",
+      "aisAt": "2026-07-15T15:47",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -66,7 +66,7 @@
       "aisSpeed": 0,
       "aisDraught": 5.1,
       "aisDestination": "Leixoes, Portugal",
-      "aisAt": "2026-07-15T12:04",
+      "aisAt": "2026-07-15T15:47",
       "aisAtMarin": false,
       "aisToFinal": true,
       "aisArrivedMarin": false
@@ -98,7 +98,7 @@
       "aisSpeed": 0,
       "aisDraught": 5.8,
       "aisDestination": "Marin, Pontevedra Anch., Spain",
-      "aisAt": "2026-07-15T12:04",
+      "aisAt": "2026-07-15T15:47",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -130,14 +130,14 @@
       "aisSpeed": 0,
       "aisDraught": 8.4,
       "aisDestination": "Vigo, Spain",
-      "aisAt": "2026-07-15T12:04",
+      "aisAt": "2026-07-15T15:47",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
     },
     {
       "id": "M202600461",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "C. Rigel",
       "gt": 0,
@@ -146,7 +146,7 @@
       "agent": "Ceferino Nogueira, S.A.",
       "op": "C. Papel y pasta",
       "eta": "2026-07-15T14:00",
-      "etd": "",
+      "etd": "2026-07-17T20:00",
       "from": "Figueira Da Foz",
       "to": "Constanta"
     },
@@ -189,10 +189,10 @@
       "callsign": "PHJI",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-16T22:00",
-      "aisSpeed": 10.1,
+      "aisSpeed": 10.6,
       "aisDraught": 3.9,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-15T12:04",
+      "aisAt": "2026-07-15T15:47",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -224,7 +224,7 @@
       "aisSpeed": 0,
       "aisDraught": 5.2,
       "aisDestination": "Bermeo, Spain",
-      "aisAt": "2026-07-15T12:04",
+      "aisAt": "2026-07-15T15:47",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -256,7 +256,7 @@
       "aisSpeed": 0,
       "aisDraught": 3.4,
       "aisDestination": "IJmuiden, Netherlands",
-      "aisAt": "2026-07-15T12:04",
+      "aisAt": "2026-07-15T15:47",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -285,10 +285,10 @@
       "callsign": "PCZQ",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-19T20:00",
-      "aisSpeed": 9.5,
+      "aisSpeed": 11,
       "aisDraught": 4,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-15T12:04",
+      "aisAt": "2026-07-15T15:47",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -317,10 +317,10 @@
       "callsign": "C6UL3",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-15T12:00",
-      "aisSpeed": 7.1,
+      "aisSpeed": 8.5,
       "aisDraught": 4.5,
       "aisDestination": "Rye, United Kingdom (UK)",
-      "aisAt": "2026-07-15T12:04",
+      "aisAt": "2026-07-15T15:47",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -352,7 +352,7 @@
       "aisSpeed": 0,
       "aisDraught": 8.4,
       "aisDestination": "Vigo, Spain",
-      "aisAt": "2026-07-15T12:04",
+      "aisAt": "2026-07-15T15:47",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false

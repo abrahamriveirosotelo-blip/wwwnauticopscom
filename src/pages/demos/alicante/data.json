@@ -7,36 +7,21 @@
   },
   "calls": [
     {
-      "id": "A202600506",
-      "status": "Alerta",
-      "imo": "1020045",
-      "name": "UM KANDA",
-      "gt": 44740,
-      "len": 229,
-      "berth": "17",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "C/ CALIZA ",
-      "eta": "2026-07-12T16:00",
-      "etd": "2026-07-15T22:00",
-      "from": "BELFAST",
-      "to": "CARTAGENA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en carga. El buque no liberará el Muelle 17 según lo previsto."
-    },
-    {
       "id": "A202600472",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9398773",
       "name": "ELBWINTER",
       "gt": 10585,
       "len": 151,
       "berth": "23",
       "agent": "MAGHREB CONTAINER INTERNATIONAL SL",
-      "op": "PORTACONTENEDORES",
+      "op": "RETENIDO",
       "eta": "2026-07-14T08:00",
       "etd": "2026-07-15T14:00",
       "from": "CASTELLON",
-      "to": "HUELVA"
+      "to": "HUELVA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
     },
     {
       "id": "A202600509",
@@ -69,21 +54,6 @@
       "to": "LA SEYNE-SUR-MER"
     },
     {
-      "id": "A202600502",
-      "status": "Iniciado",
-      "imo": "9483358",
-      "name": "ISABELLA B",
-      "gt": 10585,
-      "len": 151,
-      "berth": "23",
-      "agent": "MILLER Y COMPAÑIA S.A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-15T08:00",
-      "etd": "2026-07-15T12:00",
-      "from": "STA. CRUZ",
-      "to": "BARCELONA"
-    },
-    {
       "id": "A202600517",
       "status": "Iniciado",
       "imo": "9237242",
@@ -111,9 +81,7 @@
       "eta": "2026-07-15T16:00",
       "etd": "2026-07-17T12:00",
       "from": "HUELVA",
-      "to": "A ORDENES",
-      "affectedBy": "A202600506",
-      "affectRisk": "ALTO"
+      "to": "A ORDENES"
     },
     {
       "id": "A202600520",
@@ -158,7 +126,9 @@
       "eta": "2026-07-17T08:00",
       "etd": "2026-07-17T23:00",
       "from": "LAS PALMAS",
-      "to": "LAS PALMAS"
+      "to": "LAS PALMAS",
+      "affectedBy": "A202600472",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600485",
@@ -191,6 +161,21 @@
       "to": "CARTAGENA"
     },
     {
+      "id": "A202600521",
+      "status": "Prevista",
+      "imo": "9501710",
+      "name": "FLUVIUS TAVY",
+      "gt": 2876,
+      "len": 89,
+      "berth": "19",
+      "agent": "TERMINALES MARTM. SURESTE S.A.",
+      "op": "D/ CEMENTO INST. ESP",
+      "eta": "2026-07-18T18:00",
+      "etd": "2026-07-21T03:00",
+      "from": "GABES",
+      "to": "A ORDENES"
+    },
+    {
       "id": "A202600489",
       "status": "Prevista",
       "imo": "9430193",
@@ -204,10 +189,25 @@
       "etd": "2026-07-19T21:00",
       "from": "ARRECIFE",
       "to": "TENERIFE"
+    },
+    {
+      "id": "A202600522",
+      "status": "Prevista",
+      "imo": "9250464",
+      "name": "MSC OPERA",
+      "gt": 65591,
+      "len": 274,
+      "berth": "14",
+      "agent": "LANTIMAR S.L.",
+      "op": "CRUCERISTAS",
+      "eta": "2026-07-19T07:45",
+      "etd": "2026-07-19T17:00",
+      "from": "LISBOA",
+      "to": "MAHON,"
     }
   ],
   "tugService": {
-    "callId": "A202600506",
+    "callId": "A202600472",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -234,18 +234,18 @@
     }
   },
   "milestones": {
-    "A202600506": [
+    "A202600472": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "12/07 · 16:25",
+        "time": "14/07 · 08:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "12/07 · 17:30",
-        "by": "Agente: OCEAN PORTS & SHIPPING SL"
+        "time": "14/07 · 09:30",
+        "by": "Agente: MAGHREB CONTAINER INTERNATIONAL SL"
       },
       {
         "label": "Fin de operaciones",
