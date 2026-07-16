@@ -24,21 +24,6 @@
       "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 17 según lo previsto."
     },
     {
-      "id": "A202600520",
-      "status": "Iniciado",
-      "imo": "9265419",
-      "name": "TASSILI 2",
-      "gt": 20024,
-      "len": 142.92,
-      "berth": "25",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-07-16T08:00",
-      "etd": "2026-07-16T20:00",
-      "from": "ORAN",
-      "to": "ORAN"
-    },
-    {
       "id": "A202600487",
       "status": "Prevista",
       "imo": "9349227",
