@@ -70,14 +70,14 @@
     },
     {
       "id": "H20260716005",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "SIGRID THERESA",
       "gt": 5744,
       "len": 115,
       "berth": "ATC",
       "agent": "ERS",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-07-16T16:00",
       "etd": "",
       "from": "—",
@@ -93,28 +93,13 @@
       "berth": "TI",
       "agent": "BER",
       "op": "Entrada",
-      "eta": "2026-07-16T18:00",
+      "eta": "2026-07-16T19:30",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
       "id": "H20260717007",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "EPIC BORINQUEN",
-      "gt": 6220,
-      "len": 113,
-      "berth": "PET",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-07-17T00:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260717008",
       "status": "Prevista",
       "imo": "—",
       "name": "IVER BEST",
@@ -129,22 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717009",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "ELBWINTER",
-      "gt": 10585,
-      "len": 151,
-      "berth": "MUL",
-      "agent": "TER",
-      "op": "Entrada",
-      "eta": "2026-07-17T12:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260717010",
+      "id": "H20260717008",
       "status": "Prevista",
       "imo": "—",
       "name": "MED BLUE JAY",
@@ -159,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717012",
+      "id": "H20260717010",
       "status": "Prevista",
       "imo": "—",
       "name": "MARIE CURIE",
@@ -174,7 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717014",
+      "id": "H20260717012",
       "status": "Prevista",
       "imo": "—",
       "name": "RUBYLAND",
@@ -189,7 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718015",
+      "id": "H20260718013",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -204,7 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718017",
+      "id": "H20260718015",
       "status": "Prevista",
       "imo": "—",
       "name": "TOXOTIS",
@@ -219,7 +189,22 @@
       "to": "—"
     },
     {
-      "id": "H20260718018",
+      "id": "H20260718016",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "ELBWINTER",
+      "gt": 10585,
+      "len": 151,
+      "berth": "MUL",
+      "agent": "TER",
+      "op": "Entrada",
+      "eta": "2026-07-18T12:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260718017",
       "status": "Prevista",
       "imo": "—",
       "name": "RIZIK.BEY",
@@ -234,7 +219,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718019",
+      "id": "H20260718018",
       "status": "Prevista",
       "imo": "—",
       "name": "AA-D",
@@ -244,6 +229,21 @@
       "agent": "—",
       "op": "Entrada",
       "eta": "2026-07-18T14:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260720019",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "EPIC BORINQUEN",
+      "gt": 6220,
+      "len": 113,
+      "berth": "PET",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-07-20T00:00",
       "etd": "",
       "from": "—",
       "to": "—"
