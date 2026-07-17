@@ -70,14 +70,14 @@
     },
     {
       "id": "H20260717005",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "RS.ONZA",
       "gt": 4900,
       "len": 104,
       "berth": "AST",
       "agent": "—",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-07-17T09:00",
       "etd": "",
       "from": "—",
@@ -102,21 +102,6 @@
       "id": "H20260717007",
       "status": "Prevista",
       "imo": "—",
-      "name": "MED BLUE JAY",
-      "gt": 5633,
-      "len": 120,
-      "berth": "DEC",
-      "agent": "NEX",
-      "op": "Entrada",
-      "eta": "2026-07-17T16:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260717008",
-      "status": "Prevista",
-      "imo": "—",
       "name": "MARIE CURIE",
       "gt": 28658,
       "len": 187,
@@ -129,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717009",
+      "id": "H20260717008",
       "status": "Prevista",
       "imo": "—",
       "name": "SANTA.VALENTINA",
@@ -144,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717010",
+      "id": "H20260717009",
       "status": "Prevista",
       "imo": "—",
       "name": "RUBYLAND",
@@ -159,7 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717011",
+      "id": "H20260717010",
       "status": "Prevista",
       "imo": "—",
       "name": "ELBWINTER",
@@ -174,7 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717012",
+      "id": "H20260718011",
       "status": "Prevista",
       "imo": "—",
       "name": "PETREL",
@@ -183,19 +168,19 @@
       "berth": "ATC",
       "agent": "IBM",
       "op": "Entrada",
-      "eta": "2026-07-17T23:00",
+      "eta": "2026-07-18T00:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260718013",
+      "id": "H20260718012",
       "status": "Prevista",
       "imo": "—",
-      "name": "NEW FRONTIER1",
-      "gt": 9816,
-      "len": 120,
-      "berth": "ENA",
+      "name": "BUENAVISTA.EXPRESS",
+      "gt": 26916,
+      "len": 157,
+      "berth": "MUL",
       "agent": "—",
       "op": "Entrada",
       "eta": "2026-07-18T00:00",
@@ -204,7 +189,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718014",
+      "id": "H20260718013",
       "status": "Prevista",
       "imo": "—",
       "name": "TOXOTIS",
@@ -213,7 +198,22 @@
       "berth": "JGV",
       "agent": "—",
       "op": "Entrada",
-      "eta": "2026-07-18T07:45",
+      "eta": "2026-07-18T06:30",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260718014",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "MED BLUE JAY",
+      "gt": 5633,
+      "len": 120,
+      "berth": "DEC",
+      "agent": "NEX",
+      "op": "Entrada",
+      "eta": "2026-07-18T09:00",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -228,13 +228,43 @@
       "berth": "MIN",
       "agent": "PAM",
       "op": "Entrada",
-      "eta": "2026-07-18T13:00",
+      "eta": "2026-07-18T14:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260718016",
+      "id": "H20260719016",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "TRANS EMERALD",
+      "gt": 5816,
+      "len": 115,
+      "berth": "RSF",
+      "agent": "IBM",
+      "op": "Entrada",
+      "eta": "2026-07-19T00:30",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260719017",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "MED SERHAT",
+      "gt": 5646,
+      "len": 120,
+      "berth": "DEC",
+      "agent": "IBM",
+      "op": "Entrada",
+      "eta": "2026-07-19T01:15",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260719018",
       "status": "Prevista",
       "imo": "—",
       "name": "AA-D",
@@ -243,13 +273,43 @@
       "berth": "RSF",
       "agent": "—",
       "op": "Entrada",
-      "eta": "2026-07-18T14:00",
+      "eta": "2026-07-19T06:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260720017",
+      "id": "H20260719019",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "GAS AEGEAN",
+      "gt": 9134,
+      "len": 120,
+      "berth": "FER",
+      "agent": "BER",
+      "op": "Entrada",
+      "eta": "2026-07-19T10:15",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260720020",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "NEW FRONTIER1",
+      "gt": 9816,
+      "len": 120,
+      "berth": "ENA",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-07-20T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260720021",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -264,7 +324,7 @@
       "to": "—"
     },
     {
-      "id": "H20260720018",
+      "id": "H20260720022",
       "status": "Prevista",
       "imo": "—",
       "name": "BASAT",
@@ -279,7 +339,22 @@
       "to": "—"
     },
     {
-      "id": "H20260721019",
+      "id": "H20260721024",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "NQ LAELIA",
+      "gt": 5744,
+      "len": 116,
+      "berth": "ATC",
+      "agent": "ERS",
+      "op": "Entrada",
+      "eta": "2026-07-21T00:00",
+      "etd": "2026-07-17T20:00",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260721025",
       "status": "Prevista",
       "imo": "—",
       "name": "LNG.IMO",
@@ -294,7 +369,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722020",
+      "id": "H20260722026",
       "status": "Prevista",
       "imo": "—",
       "name": "DA QING",
@@ -309,7 +384,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722021",
+      "id": "H20260722027",
       "status": "Prevista",
       "imo": "—",
       "name": "FRONT SPARTA",
@@ -324,7 +399,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722022",
+      "id": "H20260722028",
       "status": "Prevista",
       "imo": "—",
       "name": "DREPANOS",
@@ -334,6 +409,21 @@
       "agent": "E.CIA",
       "op": "Entrada",
       "eta": "2026-07-22T13:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260726029",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "TORM CORRIDO",
+      "gt": 27095,
+      "len": 182,
+      "berth": "DEC",
+      "agent": "E.CIA",
+      "op": "Entrada",
+      "eta": "2026-07-26T08:00",
       "etd": "",
       "from": "—",
       "to": "—"

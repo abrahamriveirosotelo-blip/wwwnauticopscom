@@ -688,5 +688,23 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-15T15:27:29Z"
+  },
+  "WILSON BREMEN::LIVORNO": {
+    "resolved": true,
+    "imo": "9014717",
+    "mmsi": "311001795",
+    "detailId": "9014717",
+    "gt": 2446,
+    "dwt": 3932,
+    "len": 88,
+    "beam": 13,
+    "flag": "Bahamas",
+    "vesselType": "General Cargo Ship",
+    "built": 1992,
+    "callsign": "C6IW8",
+    "destination": "ESMAR",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-17T09:59:19Z"
   }
 }
