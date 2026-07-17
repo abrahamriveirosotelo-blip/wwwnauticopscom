@@ -2,13 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "16/07/2026",
+    "date": "17/07/2026",
     "refreshHours": 2
   },
   "calls": [
     {
       "id": "A202600510",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "1092828",
       "name": "MANISA BIANCANEVE",
       "gt": 6321,
@@ -19,13 +19,11 @@
       "eta": "2026-07-15T16:00",
       "etd": "2026-07-17T12:00",
       "from": "HUELVA",
-      "to": "A ORDENES",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 17 según lo previsto."
+      "to": "A ORDENES"
     },
     {
       "id": "A202600487",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9349227",
       "name": "NJORD",
       "gt": 7720,
@@ -36,7 +34,9 @@
       "eta": "2026-07-17T01:00",
       "etd": "2026-07-17T15:00",
       "from": "TENERIFE",
-      "to": "LAS PALMAS"
+      "to": "LAS PALMAS",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
       "id": "A202600503",
@@ -66,7 +66,9 @@
       "eta": "2026-07-18T06:00",
       "etd": "2026-07-18T21:00",
       "from": "DERINCE, KOCAELI",
-      "to": "BARCELONA"
+      "to": "BARCELONA",
+      "affectedBy": "A202600487",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600507",
@@ -130,7 +132,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600510",
+    "callId": "A202600487",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -157,18 +159,18 @@
     }
   },
   "milestones": {
-    "A202600510": [
+    "A202600487": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "15/07 · 16:25",
+        "time": "17/07 · 01:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "15/07 · 17:30",
-        "by": "Agente: OCEAN PORTS & SHIPPING SL"
+        "time": "17/07 · 02:30",
+        "by": "Agente: EUROPEAN FORWARDING SL"
       },
       {
         "label": "Fin de operaciones",
