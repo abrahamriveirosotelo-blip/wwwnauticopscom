@@ -4,7 +4,7 @@
     "source": "apmarin.com · buques esperados + en puerto",
     "date": "17/07/2026",
     "refreshHours": 2,
-    "sourceUpdatedAt": "2026-07-17T21:10"
+    "sourceUpdatedAt": "2026-07-17T22:10"
   },
   "calls": [
     {
@@ -49,7 +49,7 @@
       "aisSpeed": 0,
       "aisDraught": 11.5,
       "aisDestination": "PTM-MAR",
-      "aisAt": "2026-07-17T21:13",
+      "aisAt": "2026-07-17T22:58",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -96,7 +96,7 @@
       "aisSpeed": 0,
       "aisDraught": 3.9,
       "aisDestination": "Marin, Pontevedra Anch., Spain",
-      "aisAt": "2026-07-17T21:13",
+      "aisAt": "2026-07-17T22:58",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -125,10 +125,10 @@
       "callsign": "CQWD",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-18T16:00",
-      "aisSpeed": 10.3,
+      "aisSpeed": 10.6,
       "aisDraught": 4.4,
       "aisDestination": "ES MAR",
-      "aisAt": "2026-07-17T21:13",
+      "aisAt": "2026-07-17T22:58",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -160,7 +160,7 @@
       "aisSpeed": 7.7,
       "aisDraught": 4.5,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-17T21:13",
+      "aisAt": "2026-07-17T22:58",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -192,7 +192,7 @@
       "aisSpeed": 9.9,
       "aisDraught": 4,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-17T21:13",
+      "aisAt": "2026-07-17T22:58",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -220,11 +220,11 @@
       "built": 1992,
       "callsign": "C6IW8",
       "aisStatus": "Navegando",
-      "aisEta": "2026-07-20T14:00",
-      "aisSpeed": 8.6,
+      "aisEta": "2026-07-20T12:00",
+      "aisSpeed": 9.7,
       "aisDraught": 3.4,
       "aisDestination": "ESMAR",
-      "aisAt": "2026-07-17T21:13",
+      "aisAt": "2026-07-17T22:58",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -253,10 +253,10 @@
       "callsign": "CQUZ",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-18T23:00",
-      "aisSpeed": 11.8,
+      "aisSpeed": 12.3,
       "aisDraught": 7.5,
       "aisDestination": "Algeciras, Spain",
-      "aisAt": "2026-07-17T21:13",
+      "aisAt": "2026-07-17T22:58",
       "aisAtMarin": false,
       "aisToFinal": true,
       "aisArrivedMarin": false
@@ -283,12 +283,12 @@
       "vesselType": "Container Ship",
       "built": 2010,
       "callsign": "5LSV4",
-      "aisStatus": "Atracado",
-      "aisEta": "",
-      "aisSpeed": 0,
-      "aisDraught": 9,
-      "aisDestination": "Bremerhaven, Germany",
-      "aisAt": "2026-07-17T21:13",
+      "aisStatus": "Navegando",
+      "aisEta": "2026-07-18T14:00",
+      "aisSpeed": 16.7,
+      "aisDraught": 7.1,
+      "aisDestination": "Vlissingen, Netherlands",
+      "aisAt": "2026-07-17T22:58",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -320,7 +320,7 @@
       "aisSpeed": 0,
       "aisDraught": 3.4,
       "aisDestination": "IJmuiden, Netherlands",
-      "aisAt": "2026-07-17T21:13",
+      "aisAt": "2026-07-17T22:58",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -352,7 +352,7 @@
       "aisSpeed": 0,
       "aisDraught": 8.6,
       "aisDestination": "Genova, Italy",
-      "aisAt": "2026-07-17T21:13",
+      "aisAt": "2026-07-17T22:58",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -384,7 +384,7 @@
       "aisSpeed": 10.1,
       "aisDraught": 4.3,
       "aisDestination": "Goole, United Kingdom (UK)",
-      "aisAt": "2026-07-17T21:13",
+      "aisAt": "2026-07-17T22:58",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
