@@ -706,5 +706,23 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-17T09:59:19Z"
+  },
+  "BALTIC DREAM::A ORDENES": {
+    "resolved": true,
+    "imo": "9969522",
+    "mmsi": "245246000",
+    "detailId": "9969522",
+    "gt": 2728,
+    "dwt": 3718,
+    "len": 88,
+    "beam": 13,
+    "flag": "Netherlands",
+    "vesselType": "General Cargo Ship",
+    "built": 2025,
+    "callsign": "PDLB",
+    "destination": "Goole, United Kingdom (UK)",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-17T15:15:09Z"
   }
 }
