@@ -7,21 +7,6 @@
   },
   "calls": [
     {
-      "id": "A202600510",
-      "status": "Iniciado",
-      "imo": "1092828",
-      "name": "MANISA BIANCANEVE",
-      "gt": 6321,
-      "len": 119,
-      "berth": "17",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "D/ GRANEL ",
-      "eta": "2026-07-15T16:00",
-      "etd": "2026-07-17T12:00",
-      "from": "HUELVA",
-      "to": "A ORDENES"
-    },
-    {
       "id": "A202600487",
       "status": "Alerta",
       "imo": "9349227",

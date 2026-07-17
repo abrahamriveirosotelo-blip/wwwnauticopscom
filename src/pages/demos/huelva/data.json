@@ -39,22 +39,7 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle RS4 según lo previsto."
     },
     {
-      "id": "H20260715003",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "STENA.CONQUEST",
-      "gt": 27512,
-      "len": 180,
-      "berth": "DCS",
-      "agent": "—",
-      "op": "Fondo",
-      "eta": "2026-07-15T15:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260717004",
+      "id": "H20260717003",
       "status": "Iniciado",
       "imo": "—",
       "name": "IVER BEST",
@@ -69,7 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717005",
+      "id": "H20260717004",
       "status": "Iniciado",
       "imo": "—",
       "name": "MED BLUE JAY",
@@ -84,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717006",
+      "id": "H20260717005",
       "status": "Iniciado",
       "imo": "—",
       "name": "RS.ONZA",
@@ -99,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717007",
+      "id": "H20260717006",
       "status": "Prevista",
       "imo": "—",
       "name": "EINSTEIN",
@@ -114,7 +99,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717008",
+      "id": "H20260717007",
       "status": "Prevista",
       "imo": "—",
       "name": "MARIE CURIE",
@@ -129,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717009",
+      "id": "H20260717008",
       "status": "Prevista",
       "imo": "—",
       "name": "RUBYLAND",
@@ -144,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717010",
+      "id": "H20260717009",
       "status": "Prevista",
       "imo": "—",
       "name": "ELBWINTER",
@@ -159,7 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717011",
+      "id": "H20260717010",
       "status": "Prevista",
       "imo": "—",
       "name": "SANTA.VALENTINA",
@@ -174,7 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260717012",
+      "id": "H20260717011",
       "status": "Prevista",
       "imo": "—",
       "name": "KING ARTHUR",
@@ -189,7 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718013",
+      "id": "H20260718012",
       "status": "Prevista",
       "imo": "—",
       "name": "PETREL",
@@ -204,7 +189,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718014",
+      "id": "H20260718013",
       "status": "Prevista",
       "imo": "—",
       "name": "BUENAVISTA.EXPRESS",
@@ -219,7 +204,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718015",
+      "id": "H20260718014",
       "status": "Prevista",
       "imo": "—",
       "name": "TOXOTIS",
@@ -234,7 +219,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718016",
+      "id": "H20260718015",
       "status": "Prevista",
       "imo": "—",
       "name": "RIZIK.BEY",
@@ -249,7 +234,7 @@
       "to": "—"
     },
     {
-      "id": "H20260719017",
+      "id": "H20260719016",
       "status": "Prevista",
       "imo": "—",
       "name": "TRANS EMERALD",
@@ -264,7 +249,7 @@
       "to": "—"
     },
     {
-      "id": "H20260719018",
+      "id": "H20260719017",
       "status": "Prevista",
       "imo": "—",
       "name": "MED SERHAT",
@@ -279,7 +264,7 @@
       "to": "—"
     },
     {
-      "id": "H20260719019",
+      "id": "H20260719018",
       "status": "Prevista",
       "imo": "—",
       "name": "AA-D",
@@ -296,7 +281,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260719020",
+      "id": "H20260719019",
       "status": "Prevista",
       "imo": "—",
       "name": "GAS AEGEAN",
@@ -311,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260720021",
+      "id": "H20260720020",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -326,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260720022",
+      "id": "H20260720021",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -341,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260720023",
+      "id": "H20260720022",
       "status": "Prevista",
       "imo": "—",
       "name": "BASAT",
@@ -356,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260720024",
+      "id": "H20260720023",
       "status": "Prevista",
       "imo": "—",
       "name": "FT QUINTO",
@@ -371,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260721025",
+      "id": "H20260721024",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -386,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260721026",
+      "id": "H20260721025",
       "status": "Prevista",
       "imo": "—",
       "name": "LNG.IMO",
@@ -401,7 +386,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722027",
+      "id": "H20260722026",
       "status": "Prevista",
       "imo": "—",
       "name": "DA QING",
@@ -416,7 +401,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722028",
+      "id": "H20260722027",
       "status": "Prevista",
       "imo": "—",
       "name": "FRONT SPARTA",
@@ -431,7 +416,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722029",
+      "id": "H20260722028",
       "status": "Prevista",
       "imo": "—",
       "name": "DREPANOS",
@@ -446,7 +431,7 @@
       "to": "—"
     },
     {
-      "id": "H20260723030",
+      "id": "H20260723029",
       "status": "Prevista",
       "imo": "—",
       "name": "CONTSHIP.ZEN",
@@ -461,7 +446,7 @@
       "to": "—"
     },
     {
-      "id": "H20260726031",
+      "id": "H20260726030",
       "status": "Prevista",
       "imo": "—",
       "name": "TORM CORRIDO",
