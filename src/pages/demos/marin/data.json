@@ -4,7 +4,7 @@
     "source": "apmarin.com · buques esperados + en puerto",
     "date": "18/07/2026",
     "refreshHours": 2,
-    "sourceUpdatedAt": "2026-07-18T11:10"
+    "sourceUpdatedAt": "2026-07-18T12:10"
   },
   "calls": [
     {
@@ -46,28 +46,13 @@
       "callsign": "5LTO7",
       "aisStatus": "Atracado",
       "aisEta": "2026-07-14T11:00",
-      "aisSpeed": 0.1,
+      "aisSpeed": 0,
       "aisDraught": 11.5,
       "aisDestination": "PTM-MAR",
-      "aisAt": "2026-07-18T11:27",
+      "aisAt": "2026-07-18T13:05",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
-    },
-    {
-      "id": "M202600461",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "C. Rigel",
-      "gt": 0,
-      "len": 0,
-      "berth": "Ceferino Nogueira Atraque 2",
-      "agent": "Ceferino Nogueira, S.A.",
-      "op": "C. Papel y pasta",
-      "eta": "2026-07-15T14:00",
-      "etd": "2026-07-17T20:00",
-      "from": "Figueira Da Foz",
-      "to": "Constanta"
     },
     {
       "id": "M202600460",
@@ -96,7 +81,7 @@
       "aisSpeed": 0,
       "aisDraught": 3.9,
       "aisDestination": "Marin, Pontevedra Anch., Spain",
-      "aisAt": "2026-07-18T11:27",
+      "aisAt": "2026-07-18T13:05",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -125,10 +110,10 @@
       "callsign": "CQWD",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-18T16:00",
-      "aisSpeed": 10.1,
+      "aisSpeed": 9.7,
       "aisDraught": 4.4,
       "aisDestination": "ES MAR",
-      "aisAt": "2026-07-18T11:27",
+      "aisAt": "2026-07-18T13:05",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -160,7 +145,7 @@
       "aisSpeed": 7.7,
       "aisDraught": 4.5,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-18T11:27",
+      "aisAt": "2026-07-18T13:05",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -192,7 +177,7 @@
       "aisSpeed": 9.4,
       "aisDraught": 4,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-18T11:27",
+      "aisAt": "2026-07-18T13:05",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -221,10 +206,10 @@
       "callsign": "C6IW8",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-20T12:00",
-      "aisSpeed": 9.6,
+      "aisSpeed": 9.2,
       "aisDraught": 3.4,
       "aisDestination": "ESMAR",
-      "aisAt": "2026-07-18T11:27",
+      "aisAt": "2026-07-18T13:05",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -253,10 +238,10 @@
       "callsign": "CQUZ",
       "aisStatus": "Fondeado",
       "aisEta": "2026-07-18T22:00",
-      "aisSpeed": 0,
+      "aisSpeed": 0.1,
       "aisDraught": 7.5,
       "aisDestination": "Algeciras, Spain",
-      "aisAt": "2026-07-18T11:27",
+      "aisAt": "2026-07-18T13:05",
       "aisAtMarin": false,
       "aisToFinal": true,
       "aisArrivedMarin": false
@@ -285,10 +270,10 @@
       "callsign": "5LSV4",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-18T16:55",
-      "aisSpeed": 12.3,
+      "aisSpeed": 11.6,
       "aisDraught": 7.1,
       "aisDestination": "Vlissingen, Netherlands",
-      "aisAt": "2026-07-18T11:27",
+      "aisAt": "2026-07-18T13:05",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -320,7 +305,7 @@
       "aisSpeed": 0,
       "aisDraught": 3.4,
       "aisDestination": "IJmuiden, Netherlands",
-      "aisAt": "2026-07-18T11:27",
+      "aisAt": "2026-07-18T13:05",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -352,7 +337,7 @@
       "aisSpeed": 0,
       "aisDraught": 8.6,
       "aisDestination": "Genova, Italy",
-      "aisAt": "2026-07-18T11:27",
+      "aisAt": "2026-07-18T13:05",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -384,7 +369,7 @@
       "aisSpeed": 9.1,
       "aisDraught": 4.3,
       "aisDestination": "Goole, United Kingdom (UK)",
-      "aisAt": "2026-07-18T11:27",
+      "aisAt": "2026-07-18T13:05",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
