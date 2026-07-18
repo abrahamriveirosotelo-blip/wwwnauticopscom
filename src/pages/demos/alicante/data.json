@@ -2,30 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "17/07/2026",
+    "date": "18/07/2026",
     "refreshHours": 2
   },
   "calls": [
     {
-      "id": "A202600503",
-      "status": "Alerta",
-      "imo": "9322578",
-      "name": "DREAM",
-      "gt": 7852,
-      "len": 140,
-      "berth": "23",
-      "agent": "MILLER Y COMPAÑIA S.A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-17T08:00",
-      "etd": "2026-07-17T23:00",
-      "from": "LAS PALMAS",
-      "to": "LAS PALMAS",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
-    },
-    {
       "id": "A202600485",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9083043",
       "name": "NANTO",
       "gt": 7550,
@@ -36,7 +19,9 @@
       "eta": "2026-07-18T06:00",
       "etd": "2026-07-18T21:00",
       "from": "DERINCE, KOCAELI",
-      "to": "BARCELONA"
+      "to": "BARCELONA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
       "id": "A202600507",
@@ -51,9 +36,7 @@
       "eta": "2026-07-18T08:00",
       "etd": "2026-07-18T14:00",
       "from": "VALENCIA",
-      "to": "CARTAGENA",
-      "affectedBy": "A202600503",
-      "affectRisk": "ALTO"
+      "to": "CARTAGENA"
     },
     {
       "id": "A202600521",
@@ -83,7 +66,9 @@
       "eta": "2026-07-19T07:00",
       "etd": "2026-07-19T21:00",
       "from": "ARRECIFE",
-      "to": "TENERIFE"
+      "to": "TENERIFE",
+      "affectedBy": "A202600485",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600522",
@@ -102,7 +87,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600503",
+    "callId": "A202600485",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -129,18 +114,18 @@
     }
   },
   "milestones": {
-    "A202600503": [
+    "A202600485": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "17/07 · 08:25",
+        "time": "18/07 · 06:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "17/07 · 09:30",
-        "by": "Agente: MILLER Y COMPAÑIA S.A"
+        "time": "18/07 · 07:30",
+        "by": "Agente: EUROPEAN FORWARDING SL"
       },
       {
         "label": "Fin de operaciones",

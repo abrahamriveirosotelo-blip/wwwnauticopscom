@@ -2,9 +2,9 @@
   "meta": {
     "port": "Puerto de Marín",
     "source": "apmarin.com · buques esperados + en puerto",
-    "date": "17/07/2026",
+    "date": "18/07/2026",
     "refreshHours": 2,
-    "sourceUpdatedAt": "2026-07-17T22:10"
+    "sourceUpdatedAt": "2026-07-18T07:10"
   },
   "calls": [
     {
@@ -49,7 +49,7 @@
       "aisSpeed": 0,
       "aisDraught": 11.5,
       "aisDestination": "PTM-MAR",
-      "aisAt": "2026-07-17T22:58",
+      "aisAt": "2026-07-18T08:07",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -96,7 +96,7 @@
       "aisSpeed": 0,
       "aisDraught": 3.9,
       "aisDestination": "Marin, Pontevedra Anch., Spain",
-      "aisAt": "2026-07-17T22:58",
+      "aisAt": "2026-07-18T08:07",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -125,10 +125,10 @@
       "callsign": "CQWD",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-18T16:00",
-      "aisSpeed": 10.6,
+      "aisSpeed": 9.8,
       "aisDraught": 4.4,
       "aisDestination": "ES MAR",
-      "aisAt": "2026-07-17T22:58",
+      "aisAt": "2026-07-18T08:07",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -155,12 +155,12 @@
       "vesselType": "General Cargo Ship",
       "built": 1984,
       "callsign": "C6UL3",
-      "aisStatus": "Navegando",
+      "aisStatus": "-",
       "aisEta": "2026-07-19T14:00",
       "aisSpeed": 7.7,
       "aisDraught": 4.5,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-17T22:58",
+      "aisAt": "2026-07-18T08:07",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -189,10 +189,10 @@
       "callsign": "PCZQ",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-19T20:00",
-      "aisSpeed": 9.9,
+      "aisSpeed": 10,
       "aisDraught": 4,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-17T22:58",
+      "aisAt": "2026-07-18T08:07",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -221,10 +221,10 @@
       "callsign": "C6IW8",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-20T12:00",
-      "aisSpeed": 9.7,
+      "aisSpeed": 8.5,
       "aisDraught": 3.4,
       "aisDestination": "ESMAR",
-      "aisAt": "2026-07-17T22:58",
+      "aisAt": "2026-07-18T08:07",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -256,7 +256,7 @@
       "aisSpeed": 12.3,
       "aisDraught": 7.5,
       "aisDestination": "Algeciras, Spain",
-      "aisAt": "2026-07-17T22:58",
+      "aisAt": "2026-07-18T08:07",
       "aisAtMarin": false,
       "aisToFinal": true,
       "aisArrivedMarin": false
@@ -284,11 +284,11 @@
       "built": 2010,
       "callsign": "5LSV4",
       "aisStatus": "Navegando",
-      "aisEta": "2026-07-18T14:00",
-      "aisSpeed": 16.7,
+      "aisEta": "2026-07-18T16:55",
+      "aisSpeed": 14,
       "aisDraught": 7.1,
       "aisDestination": "Vlissingen, Netherlands",
-      "aisAt": "2026-07-17T22:58",
+      "aisAt": "2026-07-18T08:07",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -320,7 +320,7 @@
       "aisSpeed": 0,
       "aisDraught": 3.4,
       "aisDestination": "IJmuiden, Netherlands",
-      "aisAt": "2026-07-17T22:58",
+      "aisAt": "2026-07-18T08:07",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -352,7 +352,7 @@
       "aisSpeed": 0,
       "aisDraught": 8.6,
       "aisDestination": "Genova, Italy",
-      "aisAt": "2026-07-17T22:58",
+      "aisAt": "2026-07-18T08:07",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -381,10 +381,10 @@
       "callsign": "PDLB",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-19T07:00",
-      "aisSpeed": 10.1,
+      "aisSpeed": 9.9,
       "aisDraught": 4.3,
       "aisDestination": "Goole, United Kingdom (UK)",
-      "aisAt": "2026-07-17T22:58",
+      "aisAt": "2026-07-18T08:07",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
