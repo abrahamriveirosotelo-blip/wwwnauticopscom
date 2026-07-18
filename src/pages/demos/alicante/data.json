@@ -24,21 +24,6 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
-      "id": "A202600507",
-      "status": "Iniciado",
-      "imo": "9277383",
-      "name": "TINA",
-      "gt": 7519,
-      "len": 136,
-      "berth": "23",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-18T08:00",
-      "etd": "2026-07-18T14:00",
-      "from": "VALENCIA",
-      "to": "CARTAGENA"
-    },
-    {
       "id": "A202600521",
       "status": "Prevista",
       "imo": "9501710",
