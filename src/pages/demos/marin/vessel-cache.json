@@ -724,5 +724,23 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-17T15:15:09Z"
+  },
+  "KATE C::CHALKIDA": {
+    "resolved": true,
+    "imo": "9523964",
+    "mmsi": "255806309",
+    "detailId": "9523964",
+    "gt": 4151,
+    "dwt": 6794,
+    "len": 106,
+    "beam": 16,
+    "flag": "Portugal (Madeira)",
+    "vesselType": "General Cargo Ship",
+    "built": 2010,
+    "callsign": "CQAY3",
+    "destination": "ES MAR",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-18T19:07:29Z"
   }
 }
