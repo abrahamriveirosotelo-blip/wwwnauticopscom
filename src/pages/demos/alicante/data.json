@@ -37,21 +37,6 @@
       "etd": "2026-07-19T21:00",
       "from": "ARRECIFE",
       "to": "TENERIFE"
-    },
-    {
-      "id": "A202600522",
-      "status": "Iniciado",
-      "imo": "9250464",
-      "name": "MSC OPERA",
-      "gt": 65591,
-      "len": 274,
-      "berth": "14",
-      "agent": "LANTIMAR S.L.",
-      "op": "CRUCERISTAS",
-      "eta": "2026-07-19T07:45",
-      "etd": "2026-07-19T17:00",
-      "from": "LISBOA",
-      "to": "MAHON,"
     }
   ],
   "tugService": {
