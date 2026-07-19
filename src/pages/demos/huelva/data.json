@@ -24,22 +24,7 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle DEC según lo previsto."
     },
     {
-      "id": "H20260717002",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "RUBYLAND",
-      "gt": 4220,
-      "len": 106,
-      "berth": "JGV",
-      "agent": "BER",
-      "op": "Fondo",
-      "eta": "2026-07-17T19:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260718003",
+      "id": "H20260718002",
       "status": "Iniciado",
       "imo": "—",
       "name": "PETREL",
@@ -54,7 +39,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718004",
+      "id": "H20260718003",
       "status": "Iniciado",
       "imo": "—",
       "name": "RIZIK.BEY",
@@ -69,7 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718005",
+      "id": "H20260718004",
       "status": "Iniciado",
       "imo": "—",
       "name": "LARGO.CALIFORNIA",
@@ -84,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718006",
+      "id": "H20260718005",
       "status": "Iniciado",
       "imo": "—",
       "name": "TATIANA",
@@ -99,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260719007",
+      "id": "H20260719006",
       "status": "Iniciado",
       "imo": "—",
       "name": "GAS AEGEAN",
@@ -114,7 +99,7 @@
       "to": "—"
     },
     {
-      "id": "H20260720008",
+      "id": "H20260720007",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -123,28 +108,13 @@
       "berth": "ENA",
       "agent": "—",
       "op": "Entrada",
-      "eta": "2026-07-20T00:00",
+      "eta": "2026-07-20T10:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260720009",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "EPIC BORINQUEN",
-      "gt": 6220,
-      "len": 113,
-      "berth": "PET",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-07-20T00:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260720010",
+      "id": "H20260720008",
       "status": "Prevista",
       "imo": "—",
       "name": "BASAT",
@@ -161,7 +131,22 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260721011",
+      "id": "H20260721009",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "EPIC BORINQUEN",
+      "gt": 6220,
+      "len": 113,
+      "berth": "PET",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-07-21T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260721010",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -176,7 +161,7 @@
       "to": "—"
     },
     {
-      "id": "H20260721012",
+      "id": "H20260721011",
       "status": "Prevista",
       "imo": "—",
       "name": "MED SERHAT",
@@ -191,7 +176,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722013",
+      "id": "H20260722012",
       "status": "Prevista",
       "imo": "—",
       "name": "LNG.IMO",
@@ -206,7 +191,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722014",
+      "id": "H20260722013",
       "status": "Prevista",
       "imo": "—",
       "name": "DA QING",
@@ -221,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722015",
+      "id": "H20260722014",
       "status": "Prevista",
       "imo": "—",
       "name": "DREPANOS",
@@ -236,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722016",
+      "id": "H20260722015",
       "status": "Prevista",
       "imo": "—",
       "name": "FRONT SPARTA",
@@ -251,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722017",
+      "id": "H20260722016",
       "status": "Prevista",
       "imo": "—",
       "name": "IPPOCRATIS",
@@ -266,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722018",
+      "id": "H20260722017",
       "status": "Prevista",
       "imo": "—",
       "name": "FT QUINTO",
@@ -281,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260723019",
+      "id": "H20260723018",
       "status": "Prevista",
       "imo": "—",
       "name": "CONTSHIP.ZEN",
@@ -296,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260726020",
+      "id": "H20260726019",
       "status": "Prevista",
       "imo": "—",
       "name": "TORM CORRIDO",
