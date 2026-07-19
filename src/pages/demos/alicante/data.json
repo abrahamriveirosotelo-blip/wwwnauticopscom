@@ -2,30 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "18/07/2026",
+    "date": "19/07/2026",
     "refreshHours": 2
   },
   "calls": [
     {
-      "id": "A202600485",
-      "status": "Alerta",
-      "imo": "9083043",
-      "name": "NANTO",
-      "gt": 7550,
-      "len": 151.14,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-18T06:00",
-      "etd": "2026-07-18T21:00",
-      "from": "DERINCE, KOCAELI",
-      "to": "BARCELONA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
-    },
-    {
       "id": "A202600521",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9501710",
       "name": "FLUVIUS TAVY",
       "gt": 2876,
@@ -36,7 +19,9 @@
       "eta": "2026-07-18T18:00",
       "etd": "2026-07-21T03:00",
       "from": "GABES",
-      "to": "A ORDENES"
+      "to": "A ORDENES",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 19 según lo previsto."
     },
     {
       "id": "A202600489",
@@ -51,9 +36,7 @@
       "eta": "2026-07-19T07:00",
       "etd": "2026-07-19T21:00",
       "from": "ARRECIFE",
-      "to": "TENERIFE",
-      "affectedBy": "A202600485",
-      "affectRisk": "ALTO"
+      "to": "TENERIFE"
     },
     {
       "id": "A202600522",
@@ -72,7 +55,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600485",
+    "callId": "A202600521",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -99,18 +82,18 @@
     }
   },
   "milestones": {
-    "A202600485": [
+    "A202600521": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "18/07 · 06:25",
+        "time": "18/07 · 18:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "18/07 · 07:30",
-        "by": "Agente: EUROPEAN FORWARDING SL"
+        "time": "18/07 · 19:30",
+        "by": "Agente: TERMINALES MARTM. SURESTE S.A."
       },
       {
         "label": "Fin de operaciones",
