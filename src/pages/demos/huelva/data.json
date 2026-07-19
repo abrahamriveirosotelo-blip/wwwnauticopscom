@@ -102,21 +102,6 @@
       "id": "H20260720007",
       "status": "Prevista",
       "imo": "—",
-      "name": "NEW FRONTIER1",
-      "gt": 9816,
-      "len": 120,
-      "berth": "ENA",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-07-20T10:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260720008",
-      "status": "Prevista",
-      "imo": "—",
       "name": "BASAT",
       "gt": 7260,
       "len": 132,
@@ -131,7 +116,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260721009",
+      "id": "H20260721008",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -146,7 +131,7 @@
       "to": "—"
     },
     {
-      "id": "H20260721010",
+      "id": "H20260721009",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -161,7 +146,7 @@
       "to": "—"
     },
     {
-      "id": "H20260721011",
+      "id": "H20260721010",
       "status": "Prevista",
       "imo": "—",
       "name": "MED SERHAT",
@@ -171,6 +156,21 @@
       "agent": "IBM",
       "op": "Entrada",
       "eta": "2026-07-21T01:15",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260721011",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "NEW FRONTIER1",
+      "gt": 9816,
+      "len": 120,
+      "berth": "ENA",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-07-21T10:00",
       "etd": "",
       "from": "—",
       "to": "—"
