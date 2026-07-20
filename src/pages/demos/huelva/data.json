@@ -8,24 +8,22 @@
   "calls": [
     {
       "id": "H20260717001",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "—",
       "name": "MED BLUE JAY",
       "gt": 5633,
       "len": 120,
-      "berth": "DEC",
+      "berth": "DC2",
       "agent": "NEX",
       "op": "Fondo",
       "eta": "2026-07-17T09:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle DEC según lo previsto."
+      "to": "—"
     },
     {
       "id": "H20260718002",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "—",
       "name": "PETREL",
       "gt": 12065,
@@ -36,7 +34,9 @@
       "eta": "2026-07-18T00:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle ATC según lo previsto."
     },
     {
       "id": "H20260718003",
@@ -111,9 +111,7 @@
       "eta": "2026-07-20T15:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260717001",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
       "id": "H20260721008",
@@ -141,6 +139,21 @@
       "agent": "BAL",
       "op": "Entrada",
       "eta": "2026-07-21T05:40",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260721010",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "ARAMIS",
+      "gt": 1719,
+      "len": 87,
+      "berth": "JGV",
+      "agent": "PAM",
+      "op": "Entrada",
+      "eta": "2026-07-21T07:00",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -218,7 +231,9 @@
       "eta": "2026-07-21T18:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "affectedBy": "H20260718002",
+      "affectRisk": "ALTO"
     },
     {
       "id": "H20260722017",
@@ -369,10 +384,40 @@
       "etd": "",
       "from": "—",
       "to": "—"
+    },
+    {
+      "id": "H20260728028",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "PERA",
+      "gt": 23264,
+      "len": 179,
+      "berth": "JGV",
+      "agent": "ERS",
+      "op": "Entrada",
+      "eta": "2026-07-28T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260729029",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "STOLT.ARGON",
+      "gt": 17139,
+      "len": 165,
+      "berth": "DEC",
+      "agent": "MM",
+      "op": "Entrada",
+      "eta": "2026-07-29T08:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
     }
   ],
   "tugService": {
-    "callId": "H20260717001",
+    "callId": "H20260718002",
     "reportNumber": "031245",
     "tugboat": "REMOLCADOR ODIEL",
     "powerPct": 70,
@@ -399,18 +444,18 @@
     }
   },
   "milestones": {
-    "H20260717001": [
+    "H20260718002": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "17/07 · 09:25",
+        "time": "18/07 · 00:25",
         "by": "Práctico (Huelva)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "17/07 · 10:30",
-        "by": "Agente: NEX"
+        "time": "18/07 · 01:30",
+        "by": "Agente: IBM"
       },
       {
         "label": "Fin de operaciones",
