@@ -7,22 +7,7 @@
   },
   "calls": [
     {
-      "id": "H20260717001",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "MED BLUE JAY",
-      "gt": 5633,
-      "len": 120,
-      "berth": "DC2",
-      "agent": "NEX",
-      "op": "Fondo",
-      "eta": "2026-07-17T09:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260718002",
+      "id": "H20260718001",
       "status": "Alerta",
       "imo": "—",
       "name": "PETREL",
@@ -39,7 +24,7 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle ATC según lo previsto."
     },
     {
-      "id": "H20260718003",
+      "id": "H20260718002",
       "status": "Iniciado",
       "imo": "—",
       "name": "RIZIK.BEY",
@@ -54,7 +39,7 @@
       "to": "—"
     },
     {
-      "id": "H20260718004",
+      "id": "H20260718003",
       "status": "Iniciado",
       "imo": "—",
       "name": "LARGO.CALIFORNIA",
@@ -69,7 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260719005",
+      "id": "H20260719004",
       "status": "Iniciado",
       "imo": "—",
       "name": "GAS AEGEAN",
@@ -84,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260720006",
+      "id": "H20260720005",
       "status": "Iniciado",
       "imo": "—",
       "name": "WIDOR",
@@ -99,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260720007",
+      "id": "H20260720006",
       "status": "Iniciado",
       "imo": "—",
       "name": "BASAT",
@@ -109,6 +94,21 @@
       "agent": "—",
       "op": "Entrada",
       "eta": "2026-07-20T15:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260721007",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "FT QUINTO",
+      "gt": 5112,
+      "len": 120,
+      "berth": "RSF",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-07-21T00:00",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -174,7 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260721013",
+      "id": "H20260721014",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -189,7 +189,7 @@
       "to": "—"
     },
     {
-      "id": "H20260721014",
+      "id": "H20260721015",
       "status": "Prevista",
       "imo": "—",
       "name": "BC.MIKLAGARD",
@@ -204,7 +204,7 @@
       "to": "—"
     },
     {
-      "id": "H20260721015",
+      "id": "H20260721016",
       "status": "Prevista",
       "imo": "—",
       "name": "MAESTRO",
@@ -219,7 +219,7 @@
       "to": "—"
     },
     {
-      "id": "H20260721016",
+      "id": "H20260721017",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -232,11 +232,11 @@
       "etd": "",
       "from": "—",
       "to": "—",
-      "affectedBy": "H20260718002",
+      "affectedBy": "H20260718001",
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260722017",
+      "id": "H20260722018",
       "status": "Prevista",
       "imo": "—",
       "name": "LNG.IMO",
@@ -251,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722018",
+      "id": "H20260722019",
       "status": "Prevista",
       "imo": "—",
       "name": "KARRUCA",
@@ -266,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722019",
+      "id": "H20260722020",
       "status": "Prevista",
       "imo": "—",
       "name": "FRONT SPARTA",
@@ -281,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722020",
+      "id": "H20260722021",
       "status": "Prevista",
       "imo": "—",
       "name": "DREPANOS",
@@ -291,21 +291,6 @@
       "agent": "E.CIA",
       "op": "Entrada",
       "eta": "2026-07-22T12:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260722021",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "FT QUINTO",
-      "gt": 5112,
-      "len": 120,
-      "berth": "RSF",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-07-22T20:00",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -417,7 +402,7 @@
     }
   ],
   "tugService": {
-    "callId": "H20260718002",
+    "callId": "H20260718001",
     "reportNumber": "031245",
     "tugboat": "REMOLCADOR ODIEL",
     "powerPct": 70,
@@ -444,7 +429,7 @@
     }
   },
   "milestones": {
-    "H20260718002": [
+    "H20260718001": [
       {
         "label": "Atracado",
         "status": "done",
