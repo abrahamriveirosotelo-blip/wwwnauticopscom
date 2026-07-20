@@ -2,7 +2,7 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "19/07/2026",
+    "date": "20/07/2026",
     "refreshHours": 2
   },
   "calls": [
@@ -22,21 +22,6 @@
       "to": "A ORDENES",
       "delay": "+4h 30min",
       "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 19 según lo previsto."
-    },
-    {
-      "id": "A202600489",
-      "status": "Iniciado",
-      "imo": "9430193",
-      "name": "HERCULES J",
-      "gt": 10585,
-      "len": 151.72,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-19T07:00",
-      "etd": "2026-07-19T21:00",
-      "from": "ARRECIFE",
-      "to": "TENERIFE"
     }
   ],
   "tugService": {
