@@ -2,25 +2,10 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "20/07/2026",
+    "date": "21/07/2026",
     "refreshHours": 2
   },
   "calls": [
-    {
-      "id": "A202600521",
-      "status": "Iniciado",
-      "imo": "9501710",
-      "name": "FLUVIUS TAVY",
-      "gt": 2876,
-      "len": 89,
-      "berth": "19",
-      "agent": "TERMINALES MARTM. SURESTE S.A.",
-      "op": "D/ CEMENTO INST. ESP",
-      "eta": "2026-07-18T18:00",
-      "etd": "2026-07-21T03:00",
-      "from": "GABES",
-      "to": "A ORDENES"
-    },
     {
       "id": "A202600489",
       "status": "Alerta",
