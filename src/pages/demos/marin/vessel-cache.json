@@ -801,5 +801,41 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-20T14:09:32Z"
+  },
+  "BALTIC TIMBER::AVEIRO": {
+    "resolved": true,
+    "imo": "1029091",
+    "mmsi": "255916098",
+    "detailId": "1029091",
+    "gt": 2518,
+    "dwt": 3850,
+    "len": 89,
+    "beam": 12,
+    "flag": "Portugal (Madeira)",
+    "vesselType": "General Cargo Ship",
+    "built": 2026,
+    "callsign": "CQ2527",
+    "destination": "IJmuiden, Netherlands",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-21T13:55:04Z"
+  },
+  "EIKBORG::A ORDENES": {
+    "resolved": true,
+    "imo": "9356490",
+    "mmsi": "244557000",
+    "detailId": "9356490",
+    "gt": 2281,
+    "dwt": 3592,
+    "len": 89,
+    "beam": 12,
+    "flag": "Netherlands",
+    "vesselType": "General Cargo Ship",
+    "built": 2008,
+    "callsign": "PHNX",
+    "destination": "Antwerpen, Belgium",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-21T13:55:07Z"
   }
 }
