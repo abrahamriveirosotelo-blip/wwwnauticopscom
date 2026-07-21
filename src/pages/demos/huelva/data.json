@@ -85,21 +85,6 @@
     },
     {
       "id": "H20260721006",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "MARKO.MARULIC",
-      "gt": 6515,
-      "len": 116,
-      "berth": "PES",
-      "agent": "—",
-      "op": "Fondo",
-      "eta": "2026-07-21T10:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260721007",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -116,7 +101,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260721008",
+      "id": "H20260721007",
       "status": "Prevista",
       "imo": "—",
       "name": "BC.MIKLAGARD",
@@ -131,7 +116,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722009",
+      "id": "H20260722008",
       "status": "Prevista",
       "imo": "—",
       "name": "LNG.IMO",
@@ -146,7 +131,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722010",
+      "id": "H20260722009",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -161,7 +146,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722011",
+      "id": "H20260722010",
       "status": "Prevista",
       "imo": "—",
       "name": "FRONT SPARTA",
@@ -176,7 +161,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722012",
+      "id": "H20260722011",
       "status": "Prevista",
       "imo": "—",
       "name": "KARRUCA",
@@ -191,7 +176,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722013",
+      "id": "H20260722012",
       "status": "Prevista",
       "imo": "—",
       "name": "DREPANOS",
@@ -206,7 +191,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722014",
+      "id": "H20260722013",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -221,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260722015",
+      "id": "H20260722014",
       "status": "Prevista",
       "imo": "—",
       "name": "IPPOCRATIS",
@@ -236,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260723017",
+      "id": "H20260723016",
       "status": "Prevista",
       "imo": "—",
       "name": "ALTAY",
@@ -251,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260723019",
+      "id": "H20260723018",
       "status": "Prevista",
       "imo": "—",
       "name": "HISTRIA DIONE",
@@ -266,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260724021",
+      "id": "H20260724020",
       "status": "Prevista",
       "imo": "—",
       "name": "CATALINA",
@@ -281,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260725022",
+      "id": "H20260725021",
       "status": "Prevista",
       "imo": "—",
       "name": "CONTSHIP.ZEN",
@@ -296,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260725023",
+      "id": "H20260725022",
       "status": "Prevista",
       "imo": "—",
       "name": "FRONT LEOPARD",
@@ -311,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260725024",
+      "id": "H20260725023",
       "status": "Prevista",
       "imo": "—",
       "name": "KING ARTHUR",
@@ -326,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260726025",
+      "id": "H20260726024",
       "status": "Prevista",
       "imo": "—",
       "name": "TORM CORRIDO",
@@ -341,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260728026",
+      "id": "H20260728025",
       "status": "Prevista",
       "imo": "—",
       "name": "PERA",
@@ -356,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260729027",
+      "id": "H20260729026",
       "status": "Prevista",
       "imo": "—",
       "name": "STOLT.ARGON",
