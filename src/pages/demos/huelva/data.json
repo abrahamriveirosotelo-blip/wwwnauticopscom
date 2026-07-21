@@ -8,7 +8,7 @@
   "calls": [
     {
       "id": "H20260718001",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "—",
       "name": "PETREL",
       "gt": 12065,
@@ -19,13 +19,11 @@
       "eta": "2026-07-18T00:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle ATC según lo previsto."
+      "to": "—"
     },
     {
       "id": "H20260718002",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "—",
       "name": "RIZIK.BEY",
       "gt": 22072,
@@ -36,7 +34,9 @@
       "eta": "2026-07-18T16:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle JGV según lo previsto."
     },
     {
       "id": "H20260719003",
@@ -85,7 +85,7 @@
     },
     {
       "id": "H20260721006",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "NQ LAELIA",
       "gt": 5744,
@@ -96,13 +96,11 @@
       "eta": "2026-07-21T20:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260718001",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
       "id": "H20260721007",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "BC.MIKLAGARD",
       "gt": 3981,
@@ -218,7 +216,9 @@
       "eta": "2026-07-22T21:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "affectedBy": "H20260718002",
+      "affectRisk": "ALTO"
     },
     {
       "id": "H20260723016",
@@ -357,7 +357,7 @@
     }
   ],
   "tugService": {
-    "callId": "H20260718001",
+    "callId": "H20260718002",
     "reportNumber": "031245",
     "tugboat": "REMOLCADOR ODIEL",
     "powerPct": 70,
@@ -384,18 +384,18 @@
     }
   },
   "milestones": {
-    "H20260718001": [
+    "H20260718002": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "18/07 · 00:25",
+        "time": "18/07 · 16:25",
         "by": "Práctico (Huelva)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "18/07 · 01:30",
-        "by": "Agente: IBM"
+        "time": "18/07 · 17:30",
+        "by": "Agente: PAM"
       },
       {
         "label": "Fin de operaciones",
