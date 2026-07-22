@@ -837,5 +837,28 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-21T13:55:07Z"
+  },
+  "PARKGRACHT::CUXHAVEN": {
+    "resolved": true,
+    "imo": "9424546",
+    "mmsi": "244160000",
+    "detailId": "9424546",
+    "gt": 17628,
+    "dwt": 20170,
+    "len": 169,
+    "beam": 25,
+    "flag": "Netherlands",
+    "vesselType": "General Cargo Ship",
+    "built": 2009,
+    "callsign": "PCOW",
+    "destination": "Aviles, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-22T10:26:43Z"
+  },
+  "H S HONESTY::AVEIRO": {
+    "resolved": false,
+    "reason": "1 resultado pero ninguno aceptable (nombre/tipo comercial/IMO)",
+    "checkedAt": "2026-07-22T10:26:45Z"
   }
 }

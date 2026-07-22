@@ -8,7 +8,7 @@
   "calls": [
     {
       "id": "A202600490",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9312200",
       "name": "ENDURANCE",
       "gt": 7642,
@@ -19,11 +19,13 @@
       "eta": "2026-07-22T07:00",
       "etd": "2026-07-22T21:00",
       "from": "DERINCE, KOCAELI",
-      "to": "BARCELONA"
+      "to": "BARCELONA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
       "id": "A202600523",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9483683",
       "name": "NIEVES B",
       "gt": 10318,
@@ -94,7 +96,9 @@
       "eta": "2026-07-23T19:00",
       "etd": "2026-07-24T15:00",
       "from": "TENERIFE",
-      "to": "LAS PALMAS"
+      "to": "LAS PALMAS",
+      "affectedBy": "A202600490",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600524",
@@ -173,7 +177,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600489",
+    "callId": "A202600490",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -200,17 +204,17 @@
     }
   },
   "milestones": {
-    "A202600489": [
+    "A202600490": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "20/07 · 07:25",
+        "time": "22/07 · 07:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "20/07 · 08:30",
+        "time": "22/07 · 08:30",
         "by": "Agente: EUROPEAN FORWARDING SL"
       },
       {
