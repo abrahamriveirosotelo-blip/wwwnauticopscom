@@ -860,5 +860,23 @@
     "resolved": false,
     "reason": "1 resultado pero ninguno aceptable (nombre/tipo comercial/IMO)",
     "checkedAt": "2026-07-22T10:26:45Z"
+  },
+  "HERBEIRA::RADICATEL": {
+    "resolved": true,
+    "imo": "9439216",
+    "mmsi": "255872000",
+    "detailId": "9439216",
+    "gt": 4990,
+    "dwt": 7796,
+    "len": 119,
+    "beam": 15,
+    "flag": "Portugal (Madeira)",
+    "vesselType": "General Cargo Ship",
+    "built": 2008,
+    "callsign": "CQWL",
+    "destination": "ES SEU",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-22T13:59:44Z"
   }
 }
