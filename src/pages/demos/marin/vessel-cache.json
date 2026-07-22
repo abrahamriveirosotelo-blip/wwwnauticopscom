@@ -878,5 +878,10 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-22T13:59:44Z"
+  },
+  "DE TIAN::DUNKERQUE": {
+    "resolved": false,
+    "reason": "3 resultados pero ninguno aceptable (nombre/tipo comercial/IMO)",
+    "checkedAt": "2026-07-22T19:23:04Z"
   }
 }
