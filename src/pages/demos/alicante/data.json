@@ -7,21 +7,6 @@
   },
   "calls": [
     {
-      "id": "A202600536",
-      "status": "Iniciado",
-      "imo": "9335379",
-      "name": "EMMA BARDAN",
-      "gt": 200,
-      "len": 29,
-      "berth": "14",
-      "agent": "BERGE MARITIMA, S.L.",
-      "op": "AVITUALLAMIENTO",
-      "eta": "2026-07-22T20:00",
-      "etd": "2026-07-23T16:00",
-      "from": "ALICANTE",
-      "to": "ALICANTE"
-    },
-    {
       "id": "A202600539",
       "status": "Iniciado",
       "imo": "9701920",
