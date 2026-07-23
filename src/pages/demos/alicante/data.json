@@ -8,7 +8,7 @@
   "calls": [
     {
       "id": "A202600539",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9701920",
       "name": "SPAR ARIES",
       "gt": 36311,
@@ -19,7 +19,9 @@
       "eta": "2026-07-23T03:00",
       "etd": "2026-07-26T00:00",
       "from": "MONTOIR DE BRETAGNE",
-      "to": "PONTA DO UBU"
+      "to": "PONTA DO UBU",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en carga. El buque no liberará el Muelle 17 según lo previsto."
     },
     {
       "id": "A202600535",
@@ -35,38 +37,6 @@
       "etd": "2026-07-28T15:00",
       "from": "GIJON",
       "to": "CARTAGENA"
-    },
-    {
-      "id": "A202600490",
-      "status": "Alerta",
-      "imo": "9312200",
-      "name": "ENDURANCE",
-      "gt": 7642,
-      "len": 134.58,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-23T07:00",
-      "etd": "2026-07-23T21:00",
-      "from": "DERINCE, KOCAELI",
-      "to": "BARCELONA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
-    },
-    {
-      "id": "A202600530",
-      "status": "Iniciado",
-      "imo": "9265419",
-      "name": "TASSILI 2",
-      "gt": 20024,
-      "len": 142.92,
-      "berth": "25",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-07-23T08:00",
-      "etd": "2026-07-23T20:00",
-      "from": "ORAN",
-      "to": "ALGER"
     },
     {
       "id": "A202600524",
@@ -126,9 +96,7 @@
       "eta": "2026-07-25T07:00",
       "etd": "2026-07-25T21:00",
       "from": "BARCELONA",
-      "to": "DERINCE",
-      "affectedBy": "A202600490",
-      "affectRisk": "ALTO"
+      "to": "DERINCE"
     },
     {
       "id": "A202600543",
@@ -207,7 +175,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600490",
+    "callId": "A202600539",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -234,18 +202,18 @@
     }
   },
   "milestones": {
-    "A202600490": [
+    "A202600539": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "23/07 · 07:25",
+        "time": "23/07 · 03:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "23/07 · 08:30",
-        "by": "Agente: EUROPEAN FORWARDING SL"
+        "time": "23/07 · 04:30",
+        "by": "Agente: M.H.BLAND, S.L."
       },
       {
         "label": "Fin de operaciones",
