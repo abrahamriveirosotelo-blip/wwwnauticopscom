@@ -64,7 +64,7 @@ const Navbar = () => {
           
           <div className="hidden lg:flex items-center gap-3">
             <LanguageSwitcher variant="dark" />
-            <a href="https://app.nauticops.com/" target="_blank" rel="noopener noreferrer" onClick={() => trackPlatformClick('navbar')}>
+            <a href="https://www.nauticops.com/demo/marin" target="_blank" rel="noopener noreferrer" onClick={() => trackPlatformClick('navbar')}>
               <Button variant="ghost" size="sm" className="text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10">
                 {t.nav.viewPlatform}
               </Button>
@@ -121,7 +121,7 @@ const Navbar = () => {
                 {saT.nav.link} →
               </Link>
               <div className="flex flex-col gap-2 pt-4 border-t border-primary-foreground/10">
-                <a href="https://app.nauticops.com/" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.nauticops.com/demo/marin" target="_blank" rel="noopener noreferrer">
                   <Button variant="ghost" size="sm" className="w-full text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10">
                     {t.nav.viewPlatform}
                   </Button>
