@@ -8,7 +8,7 @@
   "calls": [
     {
       "id": "A202600539",
-      "status": "Alerta",
+      "status": "Iniciado",
       "imo": "9701920",
       "name": "SPAR ARIES",
       "gt": 36311,
@@ -19,9 +19,7 @@
       "eta": "2026-07-23T03:00",
       "etd": "2026-07-26T00:00",
       "from": "MONTOIR DE BRETAGNE",
-      "to": "PONTA DO UBU",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en carga. El buque no liberará el Muelle 17 según lo previsto."
+      "to": "PONTA DO UBU"
     },
     {
       "id": "A202600535",
@@ -40,7 +38,7 @@
     },
     {
       "id": "A202600524",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9404065",
       "name": "CARLOTA B",
       "gt": 7852,
@@ -51,7 +49,9 @@
       "eta": "2026-07-24T08:00",
       "etd": "2026-07-24T23:00",
       "from": "LAS PALMAS",
-      "to": "LAS PALMAS"
+      "to": "LAS PALMAS",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
     },
     {
       "id": "A202600515",
@@ -156,7 +156,9 @@
       "eta": "2026-07-26T08:00",
       "etd": "2026-07-26T14:00",
       "from": "BARCELONA",
-      "to": "HUELVA"
+      "to": "HUELVA",
+      "affectedBy": "A202600524",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600544",
@@ -175,7 +177,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600539",
+    "callId": "A202600524",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -202,18 +204,18 @@
     }
   },
   "milestones": {
-    "A202600539": [
+    "A202600524": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "23/07 · 03:25",
+        "time": "24/07 · 08:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "23/07 · 04:30",
-        "by": "Agente: M.H.BLAND, S.L."
+        "time": "24/07 · 09:30",
+        "by": "Agente: MILLER Y COMPAÑIA S.A"
       },
       {
         "label": "Fin de operaciones",
