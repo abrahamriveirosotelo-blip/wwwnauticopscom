@@ -60,7 +60,7 @@
       "name": "FT QUINTO",
       "gt": 5112,
       "len": 120,
-      "berth": "RSS",
+      "berth": "RSN",
       "agent": "—",
       "op": "Fondo",
       "eta": "2026-07-21T00:00",
@@ -115,7 +115,7 @@
     },
     {
       "id": "H20260724008",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "AA-D",
       "gt": 4812,
@@ -123,14 +123,29 @@
       "berth": "RS4",
       "agent": "—",
       "op": "Entrada",
-      "eta": "2026-07-24T13:00",
+      "eta": "2026-07-24T13:30",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
       "id": "H20260724009",
-      "status": "Prevista",
+      "status": "Iniciado",
+      "imo": "—",
+      "name": "AQUA.ESMERALDA",
+      "gt": 29725,
+      "len": 182,
+      "berth": "RS4",
+      "agent": "—",
+      "op": "Fondo",
+      "eta": "2026-07-24T13:30",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260724010",
+      "status": "Iniciado",
       "imo": "—",
       "name": "KRITI.SAILOR",
       "gt": 23656,
@@ -144,7 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260724010",
+      "id": "H20260724011",
       "status": "Prevista",
       "imo": "—",
       "name": "BWEK.BEAUTY",
@@ -159,7 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260724011",
+      "id": "H20260724012",
       "status": "Prevista",
       "imo": "—",
       "name": "MARIE CURIE",
@@ -174,13 +189,13 @@
       "to": "—"
     },
     {
-      "id": "H20260724012",
+      "id": "H20260724013",
       "status": "Prevista",
       "imo": "—",
       "name": "TORM CORRIDO",
       "gt": 27095,
       "len": 182,
-      "berth": "DEC",
+      "berth": "DCS",
       "agent": "—",
       "op": "Entrada",
       "eta": "2026-07-24T18:00",
@@ -189,7 +204,7 @@
       "to": "—"
     },
     {
-      "id": "H20260724013",
+      "id": "H20260724014",
       "status": "Prevista",
       "imo": "—",
       "name": "EINSTEIN",
@@ -199,21 +214,6 @@
       "agent": "TER",
       "op": "Entrada",
       "eta": "2026-07-24T21:30",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260725014",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "AQUA.ESMERALDA",
-      "gt": 29725,
-      "len": 182,
-      "berth": "RS4",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-07-25T00:00",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -314,21 +314,6 @@
       "id": "H20260725021",
       "status": "Prevista",
       "imo": "—",
-      "name": "HISTRIA DIONE",
-      "gt": 26310,
-      "len": 180,
-      "berth": "PES",
-      "agent": "CON",
-      "op": "Entrada",
-      "eta": "2026-07-25T12:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260725022",
-      "status": "Prevista",
-      "imo": "—",
       "name": "EPIC BORINQUEN",
       "gt": 6220,
       "len": 113,
@@ -341,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260725023",
+      "id": "H20260725022",
       "status": "Prevista",
       "imo": "—",
       "name": "SONGA EAGLE",
@@ -356,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260726025",
+      "id": "H20260726024",
       "status": "Prevista",
       "imo": "—",
       "name": "MED PAKIZE",
@@ -365,7 +350,22 @@
       "berth": "RSF",
       "agent": "IBM",
       "op": "Entrada",
-      "eta": "2026-07-26T00:00",
+      "eta": "2026-07-26T06:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260726025",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "TAI HUA WAN",
+      "gt": 7414,
+      "len": 115,
+      "berth": "RSF",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-07-26T10:00",
       "etd": "",
       "from": "—",
       "to": "—"
