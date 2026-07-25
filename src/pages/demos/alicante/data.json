@@ -2,7 +2,7 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "24/07/2026",
+    "date": "25/07/2026",
     "refreshHours": 2
   },
   "calls": [
@@ -37,23 +37,6 @@
       "to": "CARTAGENA"
     },
     {
-      "id": "A202600524",
-      "status": "Alerta",
-      "imo": "9404065",
-      "name": "CARLOTA B",
-      "gt": 7852,
-      "len": 140.64,
-      "berth": "23",
-      "agent": "MILLER Y COMPAÑIA S.A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-24T08:00",
-      "etd": "2026-07-24T23:00",
-      "from": "LAS PALMAS",
-      "to": "LAS PALMAS",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
-    },
-    {
       "id": "A202600515",
       "status": "Iniciado",
       "imo": "9528706",
@@ -70,7 +53,7 @@
     },
     {
       "id": "A202600533",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "1114901",
       "name": "BLACKSEA STAR",
       "gt": 6641,
@@ -81,7 +64,9 @@
       "eta": "2026-07-24T16:00",
       "etd": "2026-07-28T23:00",
       "from": "SEVILLA",
-      "to": "ALGER"
+      "to": "ALGER",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 13 según lo previsto."
     },
     {
       "id": "A202600528",
@@ -111,7 +96,9 @@
       "eta": "2026-07-25T08:00",
       "etd": "2026-07-28T23:00",
       "from": "CAGLIARI",
-      "to": "ISKENDERUN, HATAY"
+      "to": "ISKENDERUN, HATAY",
+      "affectedBy": "A202600533",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600531",
@@ -156,9 +143,7 @@
       "eta": "2026-07-26T08:00",
       "etd": "2026-07-26T14:00",
       "from": "BARCELONA",
-      "to": "HUELVA",
-      "affectedBy": "A202600524",
-      "affectRisk": "ALTO"
+      "to": "HUELVA"
     },
     {
       "id": "A202600544",
@@ -177,7 +162,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600524",
+    "callId": "A202600533",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -204,18 +189,18 @@
     }
   },
   "milestones": {
-    "A202600524": [
+    "A202600533": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "24/07 · 08:25",
+        "time": "24/07 · 16:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "24/07 · 09:30",
-        "by": "Agente: MILLER Y COMPAÑIA S.A"
+        "time": "24/07 · 17:30",
+        "by": "Agente: ROMEU Y CIA. S A"
       },
       {
         "label": "Fin de operaciones",
