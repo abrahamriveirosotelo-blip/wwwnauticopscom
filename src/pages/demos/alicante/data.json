@@ -99,21 +99,6 @@
       "to": "ORAN"
     },
     {
-      "id": "A202600495",
-      "status": "Prevista",
-      "imo": "9349227",
-      "name": "NJORD",
-      "gt": 7720,
-      "len": 141.58,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-25T19:00",
-      "etd": "2026-07-25T15:00",
-      "from": "TENERIFE",
-      "to": "LAS PALMAS"
-    },
-    {
       "id": "A202600494",
       "status": "Prevista",
       "imo": "9398773",
