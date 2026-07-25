@@ -117,21 +117,6 @@
       "id": "H20260724008",
       "status": "Iniciado",
       "imo": "—",
-      "name": "AQUA.ESMERALDA",
-      "gt": 29725,
-      "len": 182,
-      "berth": "RS4",
-      "agent": "—",
-      "op": "Fondo",
-      "eta": "2026-07-24T13:30",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260724009",
-      "status": "Iniciado",
-      "imo": "—",
       "name": "KRITI.SAILOR",
       "gt": 23656,
       "len": 184,
@@ -144,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260725010",
+      "id": "H20260725009",
       "status": "Iniciado",
       "imo": "—",
       "name": "DA QING",
@@ -159,7 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260725011",
+      "id": "H20260725010",
       "status": "Iniciado",
       "imo": "—",
       "name": "CONTSHIP.ZEN",
@@ -174,24 +159,22 @@
       "to": "—"
     },
     {
-      "id": "H20260725012",
+      "id": "H20260726011",
       "status": "Prevista",
       "imo": "—",
-      "name": "SDS RED",
-      "gt": 5629,
-      "len": 108,
-      "berth": "JGV",
-      "agent": "CON",
+      "name": "BOMAR CERES",
+      "gt": 3997,
+      "len": 107,
+      "berth": "RSN",
+      "agent": "IBM",
       "op": "Entrada",
-      "eta": "2026-07-25T18:00",
+      "eta": "2026-07-26T06:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260718002",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
-      "id": "H20260726013",
+      "id": "H20260726012",
       "status": "Prevista",
       "imo": "—",
       "name": "SONGA EAGLE",
@@ -206,7 +189,7 @@
       "to": "—"
     },
     {
-      "id": "H20260726014",
+      "id": "H20260726013",
       "status": "Prevista",
       "imo": "—",
       "name": "TAI HUA WAN",
@@ -221,22 +204,7 @@
       "to": "—"
     },
     {
-      "id": "H20260726015",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "MED PAKIZE",
-      "gt": 5665,
-      "len": 124,
-      "berth": "RSS",
-      "agent": "IBM",
-      "op": "Entrada",
-      "eta": "2026-07-26T12:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260726016",
+      "id": "H20260726014",
       "status": "Prevista",
       "imo": "—",
       "name": "ELBEBORG",
@@ -251,7 +219,7 @@
       "to": "—"
     },
     {
-      "id": "H20260726017",
+      "id": "H20260726015",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -266,7 +234,7 @@
       "to": "—"
     },
     {
-      "id": "H20260726018",
+      "id": "H20260726016",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -281,7 +249,7 @@
       "to": "—"
     },
     {
-      "id": "H20260726019",
+      "id": "H20260726017",
       "status": "Prevista",
       "imo": "—",
       "name": "BUMIN",
@@ -296,7 +264,7 @@
       "to": "—"
     },
     {
-      "id": "H20260727020",
+      "id": "H20260727018",
       "status": "Prevista",
       "imo": "—",
       "name": "HERBANIA",
@@ -311,7 +279,7 @@
       "to": "—"
     },
     {
-      "id": "H20260727021",
+      "id": "H20260727019",
       "status": "Prevista",
       "imo": "—",
       "name": "BLUE BIRD",
@@ -326,7 +294,7 @@
       "to": "—"
     },
     {
-      "id": "H20260727022",
+      "id": "H20260727020",
       "status": "Prevista",
       "imo": "—",
       "name": "ADAPEARL",
@@ -338,10 +306,12 @@
       "eta": "2026-07-27T00:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "affectedBy": "H20260718002",
+      "affectRisk": "ALTO"
     },
     {
-      "id": "H20260727023",
+      "id": "H20260727021",
       "status": "Prevista",
       "imo": "—",
       "name": "SONGA.TAURUS",
@@ -356,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260727024",
+      "id": "H20260727022",
       "status": "Prevista",
       "imo": "—",
       "name": "NCC.SAMA",
@@ -371,7 +341,22 @@
       "to": "—"
     },
     {
-      "id": "H20260727025",
+      "id": "H20260727023",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "MED PAKIZE",
+      "gt": 5665,
+      "len": 124,
+      "berth": "RSS",
+      "agent": "IBM",
+      "op": "Entrada",
+      "eta": "2026-07-27T15:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260727024",
       "status": "Prevista",
       "imo": "—",
       "name": "GREEN HELSINKI",
@@ -386,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260727026",
+      "id": "H20260727025",
       "status": "Prevista",
       "imo": "—",
       "name": "MED BLUE JAY",
@@ -401,7 +386,7 @@
       "to": "—"
     },
     {
-      "id": "H20260728027",
+      "id": "H20260728026",
       "status": "Prevista",
       "imo": "—",
       "name": "PERA",
@@ -416,7 +401,7 @@
       "to": "—"
     },
     {
-      "id": "H20260728028",
+      "id": "H20260728027",
       "status": "Prevista",
       "imo": "—",
       "name": "METIS.MARU",
@@ -431,7 +416,7 @@
       "to": "—"
     },
     {
-      "id": "H20260728029",
+      "id": "H20260728028",
       "status": "Prevista",
       "imo": "—",
       "name": "CORAL ESSBERGER",
@@ -446,7 +431,7 @@
       "to": "—"
     },
     {
-      "id": "H20260729030",
+      "id": "H20260729029",
       "status": "Prevista",
       "imo": "—",
       "name": "STOLT.ARGON",
@@ -461,7 +446,7 @@
       "to": "—"
     },
     {
-      "id": "H20260731031",
+      "id": "H20260731030",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -476,7 +461,7 @@
       "to": "—"
     },
     {
-      "id": "H20260801032",
+      "id": "H20260801031",
       "status": "Prevista",
       "imo": "—",
       "name": "NORDIC HAWK",
