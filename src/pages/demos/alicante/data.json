@@ -37,21 +37,6 @@
       "to": "CARTAGENA"
     },
     {
-      "id": "A202600515",
-      "status": "Iniciado",
-      "imo": "9528706",
-      "name": "SIDER LONDON",
-      "gt": 9177,
-      "len": 136.43,
-      "berth": "21",
-      "agent": "TERMINALES MARTM. SURESTE S.A.",
-      "op": "D/ CEMENTO INST. ESP",
-      "eta": "2026-07-24T12:00",
-      "etd": "2026-07-25T12:00",
-      "from": "RADES/TUNIS",
-      "to": "BARCELONA"
-    },
-    {
       "id": "A202600533",
       "status": "Alerta",
       "imo": "1114901",

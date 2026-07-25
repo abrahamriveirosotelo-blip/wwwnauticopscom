@@ -206,7 +206,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260726015",
+      "id": "H20260726014",
       "status": "Prevista",
       "imo": "—",
       "name": "SONGA EAGLE",
@@ -221,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260726016",
+      "id": "H20260726015",
       "status": "Prevista",
       "imo": "—",
       "name": "MED PAKIZE",
@@ -236,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260726017",
+      "id": "H20260726016",
       "status": "Prevista",
       "imo": "—",
       "name": "TAI HUA WAN",
@@ -251,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260726018",
+      "id": "H20260726017",
       "status": "Prevista",
       "imo": "—",
       "name": "ELBEBORG",
@@ -266,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260726019",
+      "id": "H20260726018",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -281,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260726020",
+      "id": "H20260726019",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -296,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260726021",
+      "id": "H20260726020",
       "status": "Prevista",
       "imo": "—",
       "name": "BUMIN",
@@ -311,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260727022",
+      "id": "H20260727021",
       "status": "Prevista",
       "imo": "—",
       "name": "HERBANIA",
@@ -326,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260727023",
+      "id": "H20260727022",
       "status": "Prevista",
       "imo": "—",
       "name": "BLUE BIRD",
@@ -341,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260727024",
+      "id": "H20260727023",
       "status": "Prevista",
       "imo": "—",
       "name": "ADAPEARL",
@@ -351,6 +351,21 @@
       "agent": "BER",
       "op": "Entrada",
       "eta": "2026-07-27T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260727024",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "SONGA.TAURUS",
+      "gt": 11935,
+      "len": 144,
+      "berth": "PET",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-07-27T10:00",
       "etd": "",
       "from": "—",
       "to": "—"
