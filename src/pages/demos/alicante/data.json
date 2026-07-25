@@ -70,7 +70,7 @@
     },
     {
       "id": "A202600528",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9312200",
       "name": "ENDURANCE",
       "gt": 7642,
@@ -85,7 +85,7 @@
     },
     {
       "id": "A202600543",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9437816",
       "name": "RIZE",
       "gt": 4109,
@@ -96,13 +96,11 @@
       "eta": "2026-07-25T08:00",
       "etd": "2026-07-28T23:00",
       "from": "CAGLIARI",
-      "to": "ISKENDERUN, HATAY",
-      "affectedBy": "A202600533",
-      "affectRisk": "ALTO"
+      "to": "ISKENDERUN, HATAY"
     },
     {
       "id": "A202600531",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9265419",
       "name": "TASSILI 2",
       "gt": 20024,
@@ -158,7 +156,9 @@
       "eta": "2026-07-27T16:00",
       "etd": "2026-07-28T23:00",
       "from": "HARAHOLMEN",
-      "to": "TARRAGONA"
+      "to": "TARRAGONA",
+      "affectedBy": "A202600533",
+      "affectRisk": "ALTO"
     }
   ],
   "tugService": {
