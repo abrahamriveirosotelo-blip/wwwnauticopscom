@@ -24,22 +24,7 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle JGV según lo previsto."
     },
     {
-      "id": "H20260719002",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "GAS AEGEAN",
-      "gt": 9134,
-      "len": 120,
-      "berth": "FER",
-      "agent": "BER",
-      "op": "Fondo",
-      "eta": "2026-07-19T10:15",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260721003",
+      "id": "H20260721002",
       "status": "Iniciado",
       "imo": "—",
       "name": "FT QUINTO",
@@ -54,7 +39,7 @@
       "to": "—"
     },
     {
-      "id": "H20260723004",
+      "id": "H20260723003",
       "status": "Iniciado",
       "imo": "—",
       "name": "SOLAR.CATIE",
@@ -69,7 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260723005",
+      "id": "H20260723004",
       "status": "Iniciado",
       "imo": "—",
       "name": "KOKOLIGHT",
@@ -84,22 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260724006",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "SELANDIA SWAN",
-      "gt": 3994,
-      "len": 100,
-      "berth": "DEC",
-      "agent": "—",
-      "op": "Fondo",
-      "eta": "2026-07-24T08:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260724007",
+      "id": "H20260724005",
       "status": "Iniciado",
       "imo": "—",
       "name": "KRITI.SAILOR",
@@ -114,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260725008",
+      "id": "H20260725006",
       "status": "Iniciado",
       "imo": "—",
       "name": "DA QING",
@@ -129,8 +99,8 @@
       "to": "—"
     },
     {
-      "id": "H20260726009",
-      "status": "Prevista",
+      "id": "H20260726007",
+      "status": "Iniciado",
       "imo": "—",
       "name": "MED BLUE JAY",
       "gt": 5633,
@@ -144,28 +114,13 @@
       "to": "—"
     },
     {
-      "id": "H20260726010",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "SONGA EAGLE",
-      "gt": 17822,
-      "len": 171,
-      "berth": "PEN",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-07-26T10:30",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260726011",
+      "id": "H20260726008",
       "status": "Prevista",
       "imo": "—",
       "name": "BUMIN",
       "gt": 9958,
       "len": 150,
-      "berth": "DEC",
+      "berth": "DC2",
       "agent": "—",
       "op": "Entrada",
       "eta": "2026-07-26T18:00",
@@ -174,7 +129,22 @@
       "to": "—"
     },
     {
-      "id": "H20260727012",
+      "id": "H20260726009",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "ELBEBORG",
+      "gt": 7680,
+      "len": 144,
+      "berth": "TI",
+      "agent": "BER",
+      "op": "Entrada",
+      "eta": "2026-07-26T23:30",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260727010",
       "status": "Prevista",
       "imo": "—",
       "name": "BLUE BIRD",
@@ -183,13 +153,13 @@
       "berth": "RSF",
       "agent": "IBM",
       "op": "Entrada",
-      "eta": "2026-07-27T08:00",
+      "eta": "2026-07-27T05:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260727013",
+      "id": "H20260727011",
       "status": "Prevista",
       "imo": "—",
       "name": "TAI HUA WAN",
@@ -204,22 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260727014",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "ELBEBORG",
-      "gt": 7680,
-      "len": 144,
-      "berth": "TI",
-      "agent": "BER",
-      "op": "Entrada",
-      "eta": "2026-07-27T12:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260727015",
+      "id": "H20260727012",
       "status": "Prevista",
       "imo": "—",
       "name": "ADAPEARL",
@@ -236,7 +191,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260727016",
+      "id": "H20260727013",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -251,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260727017",
+      "id": "H20260727014",
       "status": "Prevista",
       "imo": "—",
       "name": "NCC.SAMA",
@@ -266,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260727018",
+      "id": "H20260727015",
       "status": "Prevista",
       "imo": "—",
       "name": "MED PAKIZE",
@@ -281,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260727019",
+      "id": "H20260727016",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -296,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260727020",
+      "id": "H20260727017",
       "status": "Prevista",
       "imo": "—",
       "name": "GREEN HELSINKI",
@@ -311,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260728021",
+      "id": "H20260728018",
       "status": "Prevista",
       "imo": "—",
       "name": "PERA",
@@ -326,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260728022",
+      "id": "H20260728019",
       "status": "Prevista",
       "imo": "—",
       "name": "HERBANIA",
@@ -341,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260728023",
+      "id": "H20260728020",
       "status": "Prevista",
       "imo": "—",
       "name": "METIS.MARU",
@@ -356,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260728024",
+      "id": "H20260728021",
       "status": "Prevista",
       "imo": "—",
       "name": "FU.ZHOU.WAN",
@@ -371,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260728025",
+      "id": "H20260728022",
       "status": "Prevista",
       "imo": "—",
       "name": "SONGA.TAURUS",
@@ -386,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260728026",
+      "id": "H20260728023",
       "status": "Prevista",
       "imo": "—",
       "name": "CORAL ESSBERGER",
@@ -401,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260729027",
+      "id": "H20260729024",
       "status": "Prevista",
       "imo": "—",
       "name": "STOLT.ARGON",
@@ -416,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260731028",
+      "id": "H20260731025",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -431,7 +386,7 @@
       "to": "—"
     },
     {
-      "id": "H20260801029",
+      "id": "H20260801026",
       "status": "Prevista",
       "imo": "—",
       "name": "NORDIC HAWK",
