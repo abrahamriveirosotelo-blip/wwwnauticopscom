@@ -2,25 +2,10 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "25/07/2026",
+    "date": "26/07/2026",
     "refreshHours": 2
   },
   "calls": [
-    {
-      "id": "A202600539",
-      "status": "Iniciado",
-      "imo": "9701920",
-      "name": "SPAR ARIES",
-      "gt": 36311,
-      "len": 199,
-      "berth": "17",
-      "agent": "M.H.BLAND, S.L.",
-      "op": "C/ CALIZA NAVE",
-      "eta": "2026-07-23T03:00",
-      "etd": "2026-07-26T00:00",
-      "from": "MONTOIR DE BRETAGNE",
-      "to": "PONTA DO UBU"
-    },
     {
       "id": "A202600535",
       "status": "Iniciado",
@@ -52,21 +37,6 @@
       "to": "ALGER",
       "delay": "+4h 30min",
       "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 13 según lo previsto."
-    },
-    {
-      "id": "A202600528",
-      "status": "Iniciado",
-      "imo": "9312200",
-      "name": "ENDURANCE",
-      "gt": 7642,
-      "len": 134.58,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-25T07:00",
-      "etd": "2026-07-25T21:00",
-      "from": "BARCELONA",
-      "to": "DERINCE"
     },
     {
       "id": "A202600543",
