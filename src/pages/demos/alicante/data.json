@@ -54,21 +54,6 @@
       "to": "ISKENDERUN, HATAY"
     },
     {
-      "id": "A202600494",
-      "status": "Iniciado",
-      "imo": "9398773",
-      "name": "ELBWINTER",
-      "gt": 10585,
-      "len": 151,
-      "berth": "23",
-      "agent": "MAGHREB CONTAINER INTERNATIONAL SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-26T08:00",
-      "etd": "2026-07-26T14:00",
-      "from": "BARCELONA",
-      "to": "HUELVA"
-    },
-    {
       "id": "A202600544",
       "status": "Prevista",
       "imo": "9568328",
