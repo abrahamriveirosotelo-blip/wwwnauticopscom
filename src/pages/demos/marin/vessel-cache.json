@@ -942,5 +942,23 @@
     "resolved": false,
     "reason": "1 resultado pero ninguno aceptable (nombre/tipo comercial/IMO)",
     "checkedAt": "2026-07-24T10:20:25Z"
+  },
+  "MOMBASA EXPRESS::VIGO": {
+    "resolved": true,
+    "imo": "9495777",
+    "mmsi": "636092500",
+    "detailId": "9495777",
+    "gt": 48799,
+    "dwt": 58014,
+    "len": 260,
+    "beam": 37,
+    "flag": "Liberia",
+    "vesselType": "Container Ship",
+    "built": 2013,
+    "callsign": "D5EJ9",
+    "destination": "Marin, Pontevedra, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-27T11:25:15Z"
   }
 }
