@@ -100,22 +100,7 @@
     },
     {
       "id": "H20260727007",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "GREEN HELSINKI",
-      "gt": 30263,
-      "len": 227,
-      "berth": "MUL",
-      "agent": "PCIA",
-      "op": "Entrada",
-      "eta": "2026-07-27T16:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260727008",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "TAI HUA WAN",
       "gt": 7414,
@@ -129,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260727009",
+      "id": "H20260727008",
       "status": "Prevista",
       "imo": "—",
       "name": "FU.ZHOU.WAN",
@@ -144,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260728010",
+      "id": "H20260728009",
       "status": "Prevista",
       "imo": "—",
       "name": "NQ LAELIA",
@@ -159,7 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260728011",
+      "id": "H20260728010",
       "status": "Prevista",
       "imo": "—",
       "name": "DOUWE-S",
@@ -176,7 +161,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260728012",
+      "id": "H20260728011",
       "status": "Prevista",
       "imo": "—",
       "name": "MARIE CURIE",
@@ -191,7 +176,7 @@
       "to": "—"
     },
     {
-      "id": "H20260728013",
+      "id": "H20260728012",
       "status": "Prevista",
       "imo": "—",
       "name": "SONGA.TAURUS",
@@ -206,7 +191,7 @@
       "to": "—"
     },
     {
-      "id": "H20260728014",
+      "id": "H20260728013",
       "status": "Prevista",
       "imo": "—",
       "name": "METIS.MARU",
@@ -221,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260728015",
+      "id": "H20260728014",
       "status": "Prevista",
       "imo": "—",
       "name": "ADAPEARL",
@@ -236,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260728016",
+      "id": "H20260728015",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -251,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260728017",
+      "id": "H20260728016",
       "status": "Prevista",
       "imo": "—",
       "name": "CORAL ESSBERGER",
@@ -266,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260729019",
+      "id": "H20260729018",
       "status": "Prevista",
       "imo": "—",
       "name": "STOLT.ARGON",
@@ -281,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260730020",
+      "id": "H20260730019",
       "status": "Prevista",
       "imo": "—",
       "name": "HERBANIA",
@@ -296,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260730021",
+      "id": "H20260730020",
       "status": "Prevista",
       "imo": "—",
       "name": "IMERA",
@@ -311,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260731022",
+      "id": "H20260731021",
       "status": "Prevista",
       "imo": "—",
       "name": "KING ARTHUR",
@@ -326,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260731023",
+      "id": "H20260731022",
       "status": "Prevista",
       "imo": "—",
       "name": "NEW FRONTIER1",
@@ -341,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260801024",
+      "id": "H20260801023",
       "status": "Prevista",
       "imo": "—",
       "name": "NORDIC HAWK",
@@ -356,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260802025",
+      "id": "H20260802024",
       "status": "Prevista",
       "imo": "—",
       "name": "PERA",
@@ -371,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260803026",
+      "id": "H20260803025",
       "status": "Prevista",
       "imo": "—",
       "name": "BELLIS.THERESA",
