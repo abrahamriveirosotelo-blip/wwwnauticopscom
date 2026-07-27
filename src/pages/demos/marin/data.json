@@ -4,7 +4,7 @@
     "source": "apmarin.com · buques esperados + en puerto",
     "date": "27/07/2026",
     "refreshHours": 2,
-    "sourceUpdatedAt": "2026-07-27T13:10"
+    "sourceUpdatedAt": "2026-07-27T16:10"
   },
   "calls": [
     {
@@ -34,7 +34,7 @@
       "aisSpeed": 0,
       "aisDraught": 4.4,
       "aisDestination": "ES MAR",
-      "aisAt": "2026-07-27T13:25",
+      "aisAt": "2026-07-27T16:39",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -66,7 +66,7 @@
       "aisSpeed": 0,
       "aisDraught": 4.6,
       "aisDestination": "Marin, Pontevedra Anch., Spain",
-      "aisAt": "2026-07-27T13:25",
+      "aisAt": "2026-07-27T16:39",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -113,7 +113,7 @@
       "aisSpeed": 0,
       "aisDraught": 10.6,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-27T13:25",
+      "aisAt": "2026-07-27T16:39",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -145,23 +145,23 @@
       "aisSpeed": 0,
       "aisDraught": 4.2,
       "aisDestination": "Marin, Pontevedra Anch., Spain",
-      "aisAt": "2026-07-27T13:25",
+      "aisAt": "2026-07-27T16:39",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
     },
     {
       "id": "M202600491",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9409534",
       "name": "Elar Trader",
       "gt": 24099,
       "len": 190,
-      "berth": "Leiros Atraque 2",
+      "berth": "Fondeo Zona Ii",
       "agent": "Ceferino Nogueira, S.A.",
-      "op": "D. Cereales y su harina",
+      "op": "—",
       "eta": "2026-07-27T13:00",
-      "etd": "",
+      "etd": "2026-08-05T21:00",
       "from": "Rouen",
       "to": "A Órdenes",
       "mmsi": "311037100",
@@ -174,10 +174,10 @@
       "callsign": "C6YK9",
       "aisStatus": "Fondeado",
       "aisEta": "2026-07-27T14:00",
-      "aisSpeed": 0.5,
+      "aisSpeed": 0,
       "aisDraught": 9.7,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-27T13:25",
+      "aisAt": "2026-07-27T16:39",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -209,7 +209,7 @@
       "aisSpeed": 0,
       "aisDraught": 5.5,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-27T13:25",
+      "aisAt": "2026-07-27T16:39",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -238,10 +238,10 @@
       "callsign": "D5EJ9",
       "aisStatus": "Navegando",
       "aisEta": "2026-07-27T10:00",
-      "aisSpeed": 1.1,
+      "aisSpeed": 3.7,
       "aisDraught": 10.8,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-27T13:25",
+      "aisAt": "2026-07-27T16:39",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -273,7 +273,7 @@
       "aisSpeed": 0,
       "aisDraught": 4.1,
       "aisDestination": "Bermeo, Spain",
-      "aisAt": "2026-07-27T13:25",
+      "aisAt": "2026-07-27T16:39",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -302,10 +302,10 @@
       "callsign": "CQUZ",
       "aisStatus": "Fondeado",
       "aisEta": "2026-07-29T07:00",
-      "aisSpeed": 0.3,
+      "aisSpeed": 0.1,
       "aisDraught": 8.2,
       "aisDestination": "Algeciras, Spain",
-      "aisAt": "2026-07-27T13:25",
+      "aisAt": "2026-07-27T16:39",
       "aisAtMarin": false,
       "aisToFinal": true,
       "aisArrivedMarin": false
@@ -337,7 +337,7 @@
       "aisSpeed": 8.9,
       "aisDraught": 5.6,
       "aisDestination": "ESMAR",
-      "aisAt": "2026-07-27T13:25",
+      "aisAt": "2026-07-27T16:39",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -380,12 +380,12 @@
       "built": 2000,
       "callsign": "PCGM",
       "aisStatus": "Atracado",
-      "aisEta": "",
+      "aisEta": "2026-07-30T00:00",
       "aisSpeed": 0,
-      "aisDraught": 10.7,
-      "aisDestination": "Vlissingen, Netherlands",
-      "aisAt": "2026-07-27T13:25",
-      "aisAtMarin": false,
+      "aisDraught": 7.2,
+      "aisDestination": "Marin, Pontevedra, Spain",
+      "aisAt": "2026-07-27T16:39",
+      "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
     }
