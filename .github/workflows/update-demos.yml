@@ -101,6 +101,15 @@ jobs:
         continue-on-error: true
         run: node scripts/enrich-marin-live.mjs
 
+      # Meteo operativa: observación de MeteoGalicia (estación "Porto de Marín") + avisos de
+      # costa de AEMET (Rías Baixas - Costa). Fetch REST rápido server-side (sin CORS, sin key),
+      # apto para el cron. Best-effort y no fatal: si MeteoGalicia/AEMET fallan o limitan, no
+      # debe tumbar el job; el script degrada los avisos y update-marin conserva el meta.meteo
+      # previo del data.json.
+      - name: Enriquecer meteo Marín
+        continue-on-error: true
+        run: node scripts/enrich-marin-meteo.mjs
+
       # NOTA: la posición AIS (scripts/enrich-marin-ais.mjs, aisstream) NO corre en el
       # cron. Los buques emiten posición cada varios minutos, así que una ventana de
       # Actions es demasiado corta para captar la flota. Se ejecuta EN LOCAL con ventana
