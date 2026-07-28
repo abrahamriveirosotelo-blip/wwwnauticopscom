@@ -195,9 +195,7 @@ Fixtures de referencia: [`scripts/fixtures/marin-esperados.html`](../../../../sc
 
 ## Actualización automática (CI)
 
-El workflow [`.github/workflows/update-demos.yml`](../../../../.github/workflows/update-demos.yml) ejecuta el job `update-marin` cada 2 horas (06:00–22:00 hora España) junto a Alicante y Huelva: corre `update-marin.mjs`, luego `enrich-marin.mjs` (estático) y `enrich-marin-live.mjs` (AIS en vivo) — ambos `continue-on-error` — y commitea `data.json` + `vessel-cache.json` si cambiaron. **Vercel** redespliega.
-
-> El paso de **meteo** (`enrich-marin-meteo.mjs`) se está integrando al cron con el mismo patrón (`continue-on-error`); hasta que aterrice, la meteo se rellena a mano (`npm run enrich-demo:marin:meteo`) y `update-marin`/`buildCalls` conservan el `meta.meteo` ya commiteado.
+El workflow [`.github/workflows/update-demos.yml`](../../../../.github/workflows/update-demos.yml) ejecuta el job `update-marin` cada 2 horas (06:00–22:00 hora España) junto a Alicante y Huelva: corre `update-marin.mjs`, luego `enrich-marin.mjs` (estático), `enrich-marin-live.mjs` (AIS en vivo) y `enrich-marin-meteo.mjs` (meteo) — los tres enrich `continue-on-error` — y commitea `data.json` + `vessel-cache.json` si cambiaron. **Vercel** redespliega.
 
 > La **posición AIS** (`enrich-marin-ais.mjs`, aisstream) **NO** corre en el cron: necesita ventanas largas (ver sección anterior), así que se ejecuta en local y se commitea a mano. `update-marin`/`buildCalls` arrastran las posiciones ya commiteadas, así que el cron no las borra. Se reactivará en CI cuando haya un servidor con el WebSocket abierto 24/7.
 
@@ -217,7 +215,7 @@ La demo muestra datos reales: escalas de la AP + datos AIS en vivo (estado, ETA 
 - [x] Mapa en la UI que pinta la posición AIS de cada buque (`FleetMap.tsx`, Leaflet; clic abre la escala).
 - [x] Meteo operativa: observación MeteoGalicia (est. 14005) + avisos AEMET de costa (`enrich-marin-meteo.mjs`, `meta.meteo`, panel + banner + badges).
 - [x] Vista Cronología: simulación animada de la planificación de entradas/salidas (`SchedulePlayback.tsx`).
-- [ ] Integrar `enrich-marin-meteo.mjs` en el cron (para que la meteo se refresque sola, no a mano).
+- [x] `enrich-marin-meteo.mjs` corre en el cron (la meteo se refresca sola cada ciclo).
 - [ ] Servidor 24/7 para el WebSocket de aisstream (poder poblar posiciones en CI, no solo en local).
 - [ ] Contacto/prospecto concreto al que va dirigida la demo (como Esther en Alicante).
 - [ ] Aprovechar la columna `Norays` (no se vuelca al JSON; podría mostrarse en el drawer).
