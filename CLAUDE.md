@@ -1,14 +1,14 @@
 # wwwnauticopscom
 
-React + TypeScript + Vite SPA. The public marketing website for NauticOps (`nauticops.com`), deployed via Netlify.
+React + TypeScript + Vite SPA. The public marketing website for NauticOps (`nauticops.com`), deployed on Vercel.
 
 ## Stack
 
 - **React 18 + TypeScript + Vite**
 - **Tailwind CSS + shadcn/ui** (components copied into `src/components/ui/`)
-- **Bun** as package manager
+- **npm** (`package-lock.json`; a `bun.lockb` from earlier Bun use also persists)
 - **React Router** for routing
-- **Netlify** for deployment (`netlify.toml` present)
+- **Vercel** for deployment (`vercel.json` present; apex `nauticops.com` 308-redirects to `www.nauticops.com`). A legacy `netlify.toml` remains and Netlify still builds PR deploy-previews.
 - No backend, no auth.
 
 ## Pages
@@ -16,7 +16,7 @@ React + TypeScript + Vite SPA. The public marketing website for NauticOps (`naut
 | Route | Component | Purpose |
 |-------|-----------|---------|
 | `/` | `src/pages/Index.tsx` | Main landing page |
-| `/shipping-agents` | `src/pages/ShippingAgentsPage.tsx` | Targeted page for shipping agents |
+| `/for-shipping-agents` | `src/pages/ShippingAgentsPage.tsx` | Commercial landing page for shipping agents |
 | `/legal` | `src/pages/LegalPage.tsx` | Legal / privacy |
 | `/demo/alicante` | `src/pages/demos/alicante/DemoAlicante.tsx` | Interactive demo for Puerto de Alicante prospect |
 | `/demo/huelva` | `src/pages/demos/huelva/DemoHuelva.tsx` | Interactive demo for Puerto de Huelva prospect |
@@ -26,7 +26,7 @@ React + TypeScript + Vite SPA. The public marketing website for NauticOps (`naut
 
 **i18n:** `src/contexts/LanguageContext.tsx` provides `language`, `setLanguage`, and a `t` object (typed `Translations`). Translations live in `src/lib/translations.ts` and the `src/lib/translations/` directory (split by domain: `about`, `legal`, `shippingAgents`). Default language is English (`'en'`).
 
-**Analytics:** `src/lib/analytics.ts` + `src/hooks/usePageTracking.ts` handle page view tracking.
+**Analytics:** Google Analytics 4 via `src/lib/analytics.ts` (+ `src/hooks/usePageTracking.ts` for page views), GA4 property `G-LBV7LSXJDD`. Also tracks B2B conversion events (`trackCtaClick`, `trackPlatformClick`, `trackFormStart`, …).
 
 ## Demo pattern
 
@@ -57,4 +57,4 @@ To update a demo (change vessel data, statuses, alerts), only edit that port's `
 
 ## No authentication
 
-There is no login or user accounts. CTA forms submit to a third-party handler (Netlify Forms).
+There is no login or user accounts. CTA forms submit to **Formspree** (`https://formspree.io/f/…`).

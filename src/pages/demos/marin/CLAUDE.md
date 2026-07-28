@@ -16,14 +16,18 @@ NauticOps conecta la información planificada de las autoridades portuarias con 
 ## Ficheros
 
 ```
-DemoMarin.tsx   — Componente React principal (solo UI y lógica; logo en LOGO_PORT como data URI SVG)
-data.json       — Todos los datos de la demo (escalas + enriquecimiento)
+DemoMarin.tsx        — Componente React principal (UI + lógica; logo en LOGO_PORT como data URI SVG)
+FleetMap.tsx         — Mapa Leaflet "Posición de la flota" (vista Tarjetas)
+SchedulePlayback.tsx — Simulación animada de entradas/salidas (vista Cronología)
+meteo.ts             — Helpers de meteo compartidos (nivelColor, nivelDot, safeHttpUrl, worstAviso)
+data.json            — Todos los datos de la demo (escalas + enriquecimiento + meta.meteo)
+vessel-cache.json    — Caché del enriquecimiento estático (VesselFinder), ver «Enriquecimiento»
 ```
 
 **Regla principal: los datos van en el JSON, nunca en el TSX.**
-Para actualizar la demo (cambiar escalas, estados, horarios, alertas) solo hay que tocar `data.json`.
+Para actualizar la demo (cambiar escalas, estados, horarios, alertas) solo hay que tocar `data.json`. (Los tipos del schema — `Call`/`Meta`/`Aviso`/`Meteo` — se declaran en `DemoMarin.tsx`: eso es tipado, no datos.)
 
-El componente es un clon de [Huelva](../huelva/CLAUDE.md) con tres adaptaciones: logo SVG de APMARIN, etiqueta `AP Marín` y **degradado de `gt`/`len`/`imo`** (ver más abajo). El schema del JSON es idéntico al de [Alicante](../alicante/CLAUDE.md).
+Nació como clon de [Huelva](../huelva/CLAUDE.md) (logo SVG de APMARIN, etiqueta `AP Marín`, degradado de `gt`/`len`/`imo`) pero ha **divergido bastante**: añade mapa AIS (`FleetMap`), vista **Cronología** con simulación (`SchedulePlayback`), **meteo operativa + avisos AEMET** (`meteo.ts` + `meta.meteo`) y **alertas derivadas** del contraste AP↔AIS. El schema base sigue el de [Alicante](../alicante/CLAUDE.md), extendido con los campos `aisX` y `meta.meteo`.
 
 ---
 
@@ -118,6 +122,33 @@ AISSTREAM_KEY=xxxxx npm run enrich-demo:marin:ais:dry       # sin escribir
 
 En la UI: el mapa **POSICIÓN DE LA FLOTA** (`FleetMap.tsx`, Leaflet + OpenStreetMap) pinta cada buque con posición, orientado al rumbo y coloreado por estado; **clic en un buque abre su escala** (mismo drawer que la tabla). Sin posiciones, muestra solo Marín.
 
+### Meteo operativa (MeteoGalicia + avisos AEMET de costa)
+
+[`scripts/enrich-marin-meteo.mjs`](../../../../scripts/enrich-marin-meteo.mjs) rellena `data.meta.meteo` con:
+
+- **Observación** de la estación MeteoGalicia **14005 "Porto de Marín"** (en el propio puerto): racha y dirección de viento, temperatura, presión, lluvia, humedad.
+- **Avisos** de fenómenos adversos de AEMET (CAP ATOM de Galicia), filtrados a la **zona costera de Marín — Rías Baixas-Costa (`713601C`)**: nivel (amarillo/naranja/rojo), fenómeno, ventana y detalle (descripción/instrucción/probabilidad).
+
+Ninguna fuente envía CORS → se traen **server-side** en el script y se hornean en el JSON (como el AIS). Los helpers de UI compartidos viven en [`meteo.ts`](meteo.ts). La ETA/instantes se pasan a hora de España (`Europe/Madrid`, DST) con `toSpainIso`. Se **descartó** la capa de oleaje regional (Copernicus IBI ~3 km: sin detalle en el puerto).
+
+```bash
+npm run enrich-demo:marin:meteo          # rellena meta.meteo
+npm run enrich-demo:marin:meteo:dry      # sin escribir
+```
+
+En la UI: panel **"Condiciones en el puerto"** con la observación; **banner** con chips de aviso (clic → modal de detalle); en la **Cronología** los avisos se pintan en la barra de tiempo (chip del vigente = el de mayor nivel) y en los días afectados; y las **tarjetas** de escalas cuya estancia solapa un aviso lo señalan con un badge de nivel.
+
+---
+
+## Vistas de la UI
+
+Conmutador **Tarjetas ↔ Cronología** sobre la lista de escalas:
+
+- **Tarjetas** — estado actual: KPIs, buscador/filtros, lista de escalas (cada una abre su drawer) y el mapa `FleetMap` con las posiciones AIS.
+- **Cronología** — planificación: `SchedulePlayback` anima la entrada/salida de cada buque según su ETA/ETD sobre un mapa centrado en Marín, con reproductor (play/pausa), barra de tiempo con hitos por día, medidor de ocupación (pico) y los avisos meteo pintados en la barra. Arranca en el "ahora" y deja retroceder.
+
+Clic en un buque (en cualquier vista) abre su escala y lo resalta como seleccionado en el mapa.
+
 ---
 
 ## Actualización de datos
@@ -126,7 +157,15 @@ El script [`scripts/update-marin.mjs`](../../../../scripts/update-marin.mjs) des
 
 ### Alertas operativas (dirigidas por datos, ya no fabricadas)
 
-La UI muestra una **alerta operativa** cuando una escala trae los campos `status: "Alerta"` + `delay`/`alertNote` (buque en incidencia) y otra trae `affectedBy` + `affectRisk` (escala impactada). **Ya NO se generan automáticamente**: `update-marin.mjs` dejó de fabricar el escenario de demo. Estos campos solo deben marcarse cuando una **fuente real** detecte una incidencia entre lo previsto por la AP y la realidad (contraste AP vs AIS, prácticos, remolcadores…). Mientras ninguna escala los lleve, la demo no muestra alertas (el banner y la píldora del header se ocultan; el KPI "CON ALERTA" queda en 0). La maquinaria de UI se conserva para cuando exista esa detección real.
+La UI muestra una **alerta operativa** cuando una escala trae los campos `status: "Alerta"` + `delay`/`alertNote` (buque en incidencia) y otra trae `affectedBy` + `affectRisk` (escala impactada). **Ya NO se fabrican**: `update-marin.mjs` dejó de generar el escenario de demo; estos campos solo deben marcarse cuando una **fuente real** detecte una incidencia. La maquinaria de UI se conserva para cuando exista esa detección real.
+
+Además, la UI **deriva alertas del contraste AP↔AIS** (no requieren campos en el JSON), en `DemoMarin.tsx`:
+
+- `isDelayedDeparture` — la AP lo lista en puerto pero su ETD ya venció y el AIS no lo da navegando fuera → "salida demorada".
+- `departedPerAis` — el AIS lo sitúa navegando con destino distinto de Marín aunque la AP lo liste en puerto → "ya zarpó (AIS)".
+- `etaDiscrepancy` — la ETA de la AP y la del AIS **a Marín** (solo si `aisAtMarin`, no cuando el AIS va al puerto siguiente) difieren > 1 h → "retraso/adelanto".
+
+`hasAlert(c)` combina el modelo del JSON con estas derivadas; alimentan el banner, el KPI "CON ALERTA" y los chips de tarjetas/cronología. (Aparte, las escalas cuya estancia solapa un aviso AEMET se marcan con un badge de nivel — ver «Meteo operativa».)
 
 
 
@@ -156,7 +195,9 @@ Fixtures de referencia: [`scripts/fixtures/marin-esperados.html`](../../../../sc
 
 ## Actualización automática (CI)
 
-El workflow [`.github/workflows/update-demos.yml`](../../../../.github/workflows/update-demos.yml) ejecuta el job `update-marin` cada 2 horas (06:00–22:00 hora España) junto a Alicante y Huelva: corre `update-marin.mjs`, luego `enrich-marin.mjs` (estático) y `enrich-marin-live.mjs` (AIS en vivo) — ambos `continue-on-error` — y commitea `data.json` + `vessel-cache.json` si cambiaron. Netlify redespliega.
+El workflow [`.github/workflows/update-demos.yml`](../../../../.github/workflows/update-demos.yml) ejecuta el job `update-marin` cada 2 horas (06:00–22:00 hora España) junto a Alicante y Huelva: corre `update-marin.mjs`, luego `enrich-marin.mjs` (estático) y `enrich-marin-live.mjs` (AIS en vivo) — ambos `continue-on-error` — y commitea `data.json` + `vessel-cache.json` si cambiaron. **Vercel** redespliega.
+
+> El paso de **meteo** (`enrich-marin-meteo.mjs`) se está integrando al cron con el mismo patrón (`continue-on-error`); hasta que aterrice, la meteo se rellena a mano (`npm run enrich-demo:marin:meteo`) y `update-marin`/`buildCalls` conservan el `meta.meteo` ya commiteado.
 
 > La **posición AIS** (`enrich-marin-ais.mjs`, aisstream) **NO** corre en el cron: necesita ventanas largas (ver sección anterior), así que se ejecuta en local y se commitea a mano. `update-marin`/`buildCalls` arrastran las posiciones ya commiteadas, así que el cron no las borra. Se reactivará en CI cuando haya un servidor con el WebSocket abierto 24/7.
 
@@ -174,6 +215,9 @@ La demo muestra datos reales: escalas de la AP + datos AIS en vivo (estado, ETA 
 - [x] Datos en vivo de estado/velocidad/ETA (`enrich-marin-live.mjs`, VesselFinder).
 - [x] Posición en vivo (lat/lon/rumbo) desde aisstream.io (`enrich-marin-ais.mjs`).
 - [x] Mapa en la UI que pinta la posición AIS de cada buque (`FleetMap.tsx`, Leaflet; clic abre la escala).
+- [x] Meteo operativa: observación MeteoGalicia (est. 14005) + avisos AEMET de costa (`enrich-marin-meteo.mjs`, `meta.meteo`, panel + banner + badges).
+- [x] Vista Cronología: simulación animada de la planificación de entradas/salidas (`SchedulePlayback.tsx`).
+- [ ] Integrar `enrich-marin-meteo.mjs` en el cron (para que la meteo se refresque sola, no a mano).
 - [ ] Servidor 24/7 para el WebSocket de aisstream (poder poblar posiciones en CI, no solo en local).
 - [ ] Contacto/prospecto concreto al que va dirigida la demo (como Esther en Alicante).
 - [ ] Aprovechar la columna `Norays` (no se vuelca al JSON; podría mostrarse en el drawer).
