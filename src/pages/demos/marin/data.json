@@ -4,7 +4,22 @@
     "source": "apmarin.com · buques esperados + en puerto",
     "date": "28/07/2026",
     "refreshHours": 2,
-    "sourceUpdatedAt": "2026-07-28T08:10"
+    "sourceUpdatedAt": "2026-07-28T08:10",
+    "meteo": {
+      "updatedAt": "2026-07-28T12:11",
+      "obs": {
+        "estacion": "Porto de Marín",
+        "instante": "2026-07-28T09:00",
+        "vientoRachaKn": 3,
+        "vientoMediaKn": null,
+        "vientoDirDeg": 320,
+        "tempC": 23.01,
+        "presionHpa": 1013.26,
+        "lluviaMm": 0,
+        "humedadPct": 92
+      },
+      "avisos": []
+    }
   },
   "calls": [
     {
