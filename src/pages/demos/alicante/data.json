@@ -7,25 +7,8 @@
   },
   "calls": [
     {
-      "id": "A202600535",
-      "status": "Alerta",
-      "imo": "9926726",
-      "name": "GCL HAZIRA",
-      "gt": 44019,
-      "len": 228,
-      "berth": "17",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "C/ CALIZA NAVE",
-      "eta": "2026-07-23T06:00",
-      "etd": "2026-07-28T15:00",
-      "from": "GIJON",
-      "to": "CARTAGENA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en carga. El buque no liberará el Muelle 17 según lo previsto."
-    },
-    {
       "id": "A202600533",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "1114901",
       "name": "BLACKSEA STAR",
       "gt": 6641,
@@ -36,7 +19,9 @@
       "eta": "2026-07-24T16:00",
       "etd": "2026-07-28T23:00",
       "from": "SEVILLA",
-      "to": "ALGER"
+      "to": "ALGER",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 13 según lo previsto."
     },
     {
       "id": "A202600543",
@@ -70,7 +55,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600535",
+    "callId": "A202600533",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -97,18 +82,18 @@
     }
   },
   "milestones": {
-    "A202600535": [
+    "A202600533": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "23/07 · 06:25",
+        "time": "24/07 · 16:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "23/07 · 07:30",
-        "by": "Agente: OCEAN PORTS & SHIPPING SL"
+        "time": "24/07 · 17:30",
+        "by": "Agente: ROMEU Y CIA. S A"
       },
       {
         "label": "Fin de operaciones",
