@@ -1037,5 +1037,41 @@
     "confidence": "destination-confirmed",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-28T10:37:22Z"
+  },
+  "CELEBRITY::A ORDENES": {
+    "resolved": true,
+    "imo": "9368405",
+    "mmsi": "235106484",
+    "detailId": "9368405",
+    "gt": 2956,
+    "dwt": 4624,
+    "len": 90,
+    "beam": 14,
+    "flag": "United Kingdom (UK)",
+    "vesselType": "General Cargo Ship",
+    "built": 2008,
+    "callsign": "2HTI9",
+    "destination": "Ghent, Belgium",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-29T14:13:18Z"
+  },
+  "ODERBORG::A ORDENES": {
+    "resolved": true,
+    "imo": "9374703",
+    "mmsi": "244995000",
+    "detailId": "9374703",
+    "gt": 2528,
+    "dwt": 3500,
+    "len": 90,
+    "beam": 12,
+    "flag": "Netherlands",
+    "vesselType": "General Cargo Ship",
+    "built": 2007,
+    "callsign": "PHLZ",
+    "destination": "IJmuiden, Netherlands",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-29T14:13:21Z"
   }
 }
