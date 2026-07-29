@@ -1,0 +1,1156 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="NauticOps — inteligencia operativa para la red de puertos de interés general de España. Demo interactiva.">
+<link rel="icon" href="/favicon.ico">
+<title>NauticOps · Demo — Puertos de interés general</title>
+<style>
+  :root{
+    /* brand palette (Identidad Corporativa v1) */
+    --navy-deep:#010B24; --navy:#0A1F3D; --cyan:#079FE6; --cyan-light:#29B6F6;
+    --cyan-pale:#E1F5FE; --off-white:#F7FAFD; --gray-mid:#64748B; --gray-light:#E2EBF4;
+    --success:#00C896; --warning:#F59E0B; --danger:#EF4444;
+
+    /* semantic tokens — light */
+    --bg:var(--off-white); --surface:#ffffff; --surface-2:#EEF4FB; --surface-3:#F7FAFD;
+    --ink:#0A1F3D; --ink-2:#33455F; --muted:#64748B;
+    --border:#E2EBF4; --border-strong:#CFDDEC;
+    --accent:var(--cyan); --accent-strong:#046FA6; --accent-soft:var(--cyan-pale);
+    --chrome:var(--navy-deep); --chrome-ink:#EAF3FB; --chrome-muted:#8FA6C4; --chrome-border:#16233f;
+    --sea:#E6F0FA; --land:#D5E3F1; --land-2:#C3D6E8; --soft-dot:#9FB6CE;
+    --shadow-sm:0 1px 2px rgba(2,11,36,.06);
+    --shadow:0 1px 2px rgba(2,11,36,.05), 0 10px 30px rgba(2,11,36,.08);
+    --shadow-lg:0 24px 60px rgba(2,11,36,.16);
+    --r:8px; --r-lg:14px; --r-pill:999px;
+    --font-display:'Nunito','Avenir Next','Segoe UI Variable',system-ui,'Segoe UI',Roboto,sans-serif;
+    --font-body:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --maxw:1200px;
+  }
+  .dark-tokens{
+    --bg:#010B24; --surface:#0A1F3D; --surface-2:#0E2748; --surface-3:#0B2140;
+    --ink:#F1F7FD; --ink-2:#C4D5E9; --muted:#8CA2BE;
+    --border:#183256; --border-strong:#22406A;
+    --accent:var(--cyan-light); --accent-strong:#7FD3FF; --accent-soft:#0d2c4d;
+    --chrome:#010B24; --chrome-ink:#EAF3FB; --chrome-muted:#7E96B6; --chrome-border:#132444;
+    --sea:#061530; --land:#0E2949; --land-2:#143A63; --soft-dot:#37567d;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 34px rgba(0,0,0,.4);
+    --shadow-lg:0 30px 70px rgba(0,0,0,.5);
+  }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){ /* mirror .dark-tokens */
+    --bg:#010B24; --surface:#0A1F3D; --surface-2:#0E2748; --surface-3:#0B2140;
+    --ink:#F1F7FD; --ink-2:#C4D5E9; --muted:#8CA2BE;
+    --border:#183256; --border-strong:#22406A;
+    --accent:var(--cyan-light); --accent-strong:#7FD3FF; --accent-soft:#0d2c4d;
+    --chrome:#010B24; --chrome-ink:#EAF3FB; --chrome-muted:#7E96B6; --chrome-border:#132444;
+    --sea:#061530; --land:#0E2949; --land-2:#143A63; --soft-dot:#37567d;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 34px rgba(0,0,0,.4);
+    --shadow-lg:0 30px 70px rgba(0,0,0,.5);
+  }}
+  :root[data-theme="dark"]{
+    --bg:#010B24; --surface:#0A1F3D; --surface-2:#0E2748; --surface-3:#0B2140;
+    --ink:#F1F7FD; --ink-2:#C4D5E9; --muted:#8CA2BE;
+    --border:#183256; --border-strong:#22406A;
+    --accent:var(--cyan-light); --accent-strong:#7FD3FF; --accent-soft:#0d2c4d;
+    --chrome:#010B24; --chrome-ink:#EAF3FB; --chrome-muted:#7E96B6; --chrome-border:#132444;
+    --sea:#061530; --land:#0E2949; --land-2:#143A63; --soft-dot:#37567d;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 34px rgba(0,0,0,.4);
+    --shadow-lg:0 30px 70px rgba(0,0,0,.5);
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .app{
+    background:var(--bg); color:var(--ink);
+    font-family:var(--font-body); font-size:15px; line-height:1.5;
+    min-height:100vh; overflow-x:hidden;
+    transition:background .3s ease,color .3s ease;
+  }
+  h1,h2,h3,h4{font-family:var(--font-display); margin:0; line-height:1.15; text-wrap:balance;}
+  a{color:inherit}
+  .eyebrow{font-family:var(--font-display); font-weight:800; text-transform:uppercase;
+    letter-spacing:.14em; font-size:.7rem; color:var(--accent-strong);}
+  :root[data-theme="dark"] .eyebrow, .dark-tokens .eyebrow{color:var(--accent)}
+  .tnum{font-variant-numeric:tabular-nums}
+  button{font-family:inherit}
+
+  /* ===== concept ribbon ===== */
+  .ribbon{
+    background:linear-gradient(90deg,var(--cyan),var(--cyan-light));
+    color:#022038; font-family:var(--font-display); font-weight:700;
+    font-size:.78rem; text-align:center; padding:7px 16px; letter-spacing:.01em;
+  }
+  .ribbon b{font-weight:800}
+
+  /* ===== top chrome / nav ===== */
+  .nav{
+    position:sticky; top:0; z-index:40;
+    background:var(--chrome); color:var(--chrome-ink);
+    border-bottom:1px solid var(--chrome-border);
+    display:flex; align-items:center; gap:18px;
+    padding:0 22px; height:60px;
+  }
+  .brand{display:flex; align-items:center; gap:10px; margin-right:6px;}
+  .logo-mark{width:32px; height:32px; flex:none; display:block}
+  .wordmark{font-family:var(--font-display); font-weight:800; font-size:1.16rem; letter-spacing:-.01em; color:#fff}
+  .wordmark span{color:var(--cyan-light)}
+  .nav-links{display:flex; gap:4px; margin-left:6px}
+  .nav-links a{
+    font-family:var(--font-display); font-weight:700; font-size:.86rem;
+    color:var(--chrome-muted); text-decoration:none; padding:8px 12px; border-radius:var(--r);
+    display:flex; align-items:center; gap:7px;
+  }
+  .nav-links a:hover{color:#fff; background:rgba(255,255,255,.06)}
+  .nav-links a.active{color:#fff; background:rgba(7,159,230,.18)}
+  .nav-links a .ic{opacity:.85}
+  .nav-spacer{flex:1}
+  .nav-tools{display:flex; align-items:center; gap:10px}
+  .seg{display:flex; background:rgba(255,255,255,.07); border:1px solid var(--chrome-border); border-radius:var(--r-pill); padding:2px}
+  .seg button{background:none; border:0; color:var(--chrome-muted); font-family:var(--font-display); font-weight:700;
+    font-size:.76rem; padding:4px 10px; border-radius:var(--r-pill); cursor:pointer}
+  .seg button.on{background:#fff; color:var(--navy)}
+  .icon-btn{
+    width:36px; height:36px; border-radius:var(--r); border:1px solid var(--chrome-border);
+    background:rgba(255,255,255,.06); color:var(--chrome-ink); cursor:pointer;
+    display:grid; place-items:center;
+  }
+  .icon-btn:hover{background:rgba(255,255,255,.12)}
+  .icon-btn svg{width:18px;height:18px}
+  .moon{display:none}
+  :root[data-theme="dark"] .sun, .dark-tokens .sun{display:none}
+  :root[data-theme="dark"] .moon, .dark-tokens .moon{display:block}
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .sun{display:none} :root:not([data-theme="light"]) .moon{display:block} }
+
+  /* ===== view frame ===== */
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:26px 22px 40px}
+  .view[hidden]{display:none}
+
+  /* ===== MAP VIEW ===== */
+  .map-grid{display:grid; grid-template-columns:320px 1fr; gap:26px; align-items:start}
+  .map-intro h1{font-size:clamp(1.7rem,3vw,2.35rem); letter-spacing:-.02em; margin:.5rem 0 .5rem}
+  .map-intro .lead{color:var(--muted); font-size:.98rem; max-width:34ch}
+  .stat-row{display:flex; gap:10px; margin:20px 0 6px}
+  .stat{flex:1; background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:11px 12px; box-shadow:var(--shadow-sm)}
+  .stat .n{font-family:var(--font-display); font-weight:800; font-size:1.5rem; color:var(--ink); line-height:1}
+  .stat .l{font-size:.72rem; color:var(--muted); margin-top:4px; text-transform:uppercase; letter-spacing:.06em}
+  .legend{display:flex; flex-direction:column; gap:9px; margin-top:20px; font-size:.85rem}
+  .legend .row{display:flex; align-items:center; gap:10px; color:var(--ink-2)}
+  .dot{width:12px;height:12px;border-radius:50%;flex:none}
+  .dot.active{background:var(--cyan); box-shadow:0 0 0 4px var(--accent-soft)}
+  .dot.soon{background:var(--soft-dot)}
+
+  .active-list{margin-top:22px; display:flex; flex-direction:column; gap:8px}
+  .active-list .h{font-family:var(--font-display); font-weight:800; font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-bottom:2px}
+  .port-btn{
+    display:flex; align-items:center; gap:12px; width:100%; text-align:left; cursor:pointer;
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--r);
+    padding:11px 13px; color:var(--ink); box-shadow:var(--shadow-sm); transition:transform .12s ease,border-color .12s ease,box-shadow .12s ease;
+  }
+  .port-btn:hover{transform:translateY(-1px); border-color:var(--accent); box-shadow:var(--shadow)}
+  .port-btn .pin{width:30px;height:30px;border-radius:8px;background:var(--accent-soft);display:grid;place-items:center;flex:none;color:var(--accent-strong)}
+  :root[data-theme="dark"] .port-btn .pin, .dark-tokens .port-btn .pin{color:var(--accent)}
+  .port-btn .nm{font-family:var(--font-display);font-weight:800;font-size:.95rem}
+  .port-btn .ap{font-size:.76rem;color:var(--muted)}
+  .port-btn .go{margin-left:auto;color:var(--muted)}
+
+  .map-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--r-lg);
+    box-shadow:var(--shadow); padding:8px; position:relative; overflow:hidden;
+  }
+  .map-card .cap{position:absolute; left:18px; top:14px; z-index:2}
+  .map-card .cap .t{font-family:var(--font-display);font-weight:800;font-size:.95rem}
+  .map-card .cap .s{font-size:.74rem;color:var(--muted)}
+  /* map palette — high contrast, theme-aware */
+  :root{ --map-sea:#aed0ee; --map-sea2:#d0e5f8; --map-land:#ffffff; --map-land2:#dde9f5; --map-coast:#3a6ba1; --map-dot:#6b8fbd; }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){ --map-sea:#04122a; --map-sea2:#0c2138; --map-land:#244b72; --map-land2:#1a3a5b; --map-coast:#6fa2dc; --map-dot:#5e7da8; } }
+  :root[data-theme="dark"]{ --map-sea:#04122a; --map-sea2:#0c2138; --map-land:#244b72; --map-land2:#1a3a5b; --map-coast:#6fa2dc; --map-dot:#5e7da8; }
+  svg.spain{display:block;width:100%;height:auto}
+  .sea{fill:var(--map-sea)}
+  .coast{fill:var(--map-land);stroke:var(--map-coast);stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round}
+  .portugal{fill:var(--map-land2);stroke:var(--map-coast);stroke-width:.8;opacity:.9}
+  .isla{fill:var(--map-land);stroke:var(--map-coast);stroke-width:.9}
+  .inset-box{fill:var(--map-sea2);stroke:var(--map-coast);stroke-width:1;stroke-dasharray:5 4;opacity:.95}
+  .inset-label,.region-label{font-family:var(--font-body);fill:var(--muted);font-size:11px;letter-spacing:.02em}
+  .mk{cursor:default}
+  .mk.active-mk{cursor:pointer}
+  .mk .halo{fill:var(--cyan);opacity:.16}
+  .mk .core{fill:var(--map-dot);stroke:var(--map-sea);stroke-width:1.2}
+  .mk.active-mk .core{fill:var(--cyan);stroke:#fff;stroke-width:1.6}
+  :root[data-theme="dark"] .mk.active-mk .core, .dark-tokens .mk.active-mk .core{stroke:#eaf3fb}
+  .mk .lab{font-family:var(--font-display);font-weight:800;font-size:12px;fill:var(--ink)}
+  .mk .lab-bg{fill:var(--surface);opacity:.82;rx:4}
+  .mk.active-mk:focus{outline:none}
+  .mk.active-mk:focus .core{stroke:var(--accent-strong);stroke-width:2.4}
+  .mk-dim{opacity:.28;transition:opacity .12s ease}
+  .mk-hi .core{fill:var(--accent);stroke:var(--map-sea);stroke-width:1.5}
+  .ap-link{stroke:var(--accent);stroke-width:1.4;opacity:.55;stroke-dasharray:3 3;pointer-events:none}
+  .pulse{transform-box:fill-box; transform-origin:center; animation:pulse 2.6s ease-out infinite}
+  @keyframes pulse{0%{transform:scale(.6);opacity:.5}70%{transform:scale(2.4);opacity:0}100%{opacity:0}}
+
+  .tip{
+    position:fixed; z-index:60; pointer-events:none; opacity:0; transform:translateY(4px);
+    background:var(--navy-deep); color:#eaf3fb; border:1px solid var(--chrome-border);
+    padding:7px 10px; border-radius:8px; font-size:.78rem; box-shadow:var(--shadow-lg);
+    transition:opacity .12s ease, transform .12s ease; max-width:220px;
+  }
+  .tip.show{opacity:1; transform:translateY(0)}
+  .tip .nm{font-family:var(--font-display);font-weight:800}
+  .tip .ap{color:var(--chrome-muted); font-size:.72rem}
+  .tip .st{margin-top:3px;font-size:.7rem;font-weight:700}
+  .tip .st.soon{color:#9fb6ce}
+  .tip .st.active{color:var(--cyan-light)}
+
+  /* ===== PORT DASHBOARD VIEW ===== */
+  .back{display:inline-flex;align-items:center;gap:8px;background:none;border:0;color:var(--accent-strong);
+    font-family:var(--font-display);font-weight:800;cursor:pointer;font-size:.9rem;padding:6px 2px;margin-bottom:8px}
+  :root[data-theme="dark"] .back, .dark-tokens .back{color:var(--accent)}
+  .back:hover{text-decoration:underline}
+  .port-head{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 20px;margin-bottom:18px}
+  .port-head h1{font-size:clamp(1.6rem,2.6vw,2.15rem);letter-spacing:-.02em}
+  .port-head .ap{color:var(--muted);font-size:.9rem;margin-top:4px}
+  .fresh{display:inline-flex;align-items:center;gap:7px;font-size:.76rem;color:var(--muted);
+    background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-pill);padding:5px 11px}
+  .fresh .live{width:8px;height:8px;border-radius:50%;background:var(--success);box-shadow:0 0 0 3px color-mix(in srgb,var(--success) 30%,transparent)}
+  .head-spacer{flex:1}
+  .meteo-chip{display:inline-flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--r);padding:8px 12px;box-shadow:var(--shadow-sm)}
+  .meteo-chip .v{font-family:var(--font-display);font-weight:800;font-size:.95rem}
+  .meteo-chip .k{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .meteo-chip .sep{width:1px;height:24px;background:var(--border)}
+
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+  .kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:13px 15px;box-shadow:var(--shadow-sm);position:relative}
+  .kpi .n{font-family:var(--font-display);font-weight:800;font-size:1.7rem;line-height:1}
+  .kpi .l{font-size:.74rem;color:var(--muted);margin-top:5px;text-transform:uppercase;letter-spacing:.05em}
+  .kpi .strip{position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:3px}
+  .kpi.k-port .strip{background:var(--success)} .kpi.k-plan .strip{background:var(--gray-mid)}
+  .kpi.k-auth .strip{background:var(--cyan)} .kpi.k-warn .strip{background:var(--warning)}
+  .kpi.k-warn .n{color:var(--warning)}
+
+  .dash{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:start}
+
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden}
+  .panel-h{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--border)}
+  .panel-h h3{font-size:.98rem}
+  .panel-h .sub{font-size:.74rem;color:var(--muted);margin-left:auto}
+
+  .tabs{display:flex;gap:2px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-pill);padding:3px;width:max-content;margin-bottom:14px}
+  .tabs button{background:none;border:0;font-family:var(--font-display);font-weight:800;font-size:.82rem;color:var(--muted);
+    padding:7px 16px;border-radius:var(--r-pill);cursor:pointer;display:flex;align-items:center;gap:7px}
+  .tabs button.on{background:var(--surface);color:var(--ink);box-shadow:var(--shadow-sm)}
+
+  .cards{display:flex;flex-direction:column;gap:11px}
+  .escala{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:13px 14px;box-shadow:var(--shadow-sm);
+    display:flex;flex-direction:column;gap:9px;transition:border-color .12s,box-shadow .12s,transform .12s}
+  .escala:hover{border-color:var(--border-strong);box-shadow:var(--shadow);transform:translateY(-1px)}
+  .escala .head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .escala .hl{display:flex;flex-direction:column;gap:5px;min-width:0}
+  .escala .hr{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:none}
+  .escala .top{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .escala .vn{font-family:var(--font-display);font-weight:800;font-size:1.02rem;letter-spacing:-.01em}
+  .escala .meta{font-size:.8rem;color:var(--muted)}
+  .escala .meta b{color:var(--ink-2);font-weight:600}
+  .escala .eta{font-size:.78rem;color:var(--muted);text-align:right}
+  .escala .eta b{display:block;font-family:var(--font-display);font-weight:800;color:var(--ink);font-size:.92rem}
+
+  .ttn{display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;border-top:1px dashed var(--border);padding-top:9px}
+  .ttn-h{font-family:var(--font-display);font-weight:800;font-size:.6rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+  .ttn-item{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;color:var(--ink-2)}
+  .ttn-item svg{width:15px;height:15px;flex:none;color:var(--accent-strong)}
+  :root[data-theme="dark"] .ttn-item svg,.dark-tokens .ttn-item svg{color:var(--accent)}
+  .ttn-item.out svg{color:var(--muted)}
+  .ttn-item b{font-family:var(--font-display);font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums}
+  .ttn-item .u{color:var(--muted);font-weight:700;font-size:.72rem;margin-left:-2px}
+  .ttn-flag{font-family:var(--font-display);font-weight:800;font-size:.6rem;text-transform:uppercase;letter-spacing:.05em;color:#a86a00;
+    background:color-mix(in srgb,var(--warning) 15%,transparent);border:1px solid color-mix(in srgb,var(--warning) 34%,transparent);border-radius:var(--r-pill);padding:2px 8px;margin-left:auto}
+  :root[data-theme="dark"] .ttn-flag,.dark-tokens .ttn-flag{color:#ffc24d}
+  .ttn-banner{display:flex;align-items:flex-start;gap:9px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r);
+    padding:10px 12px;margin-bottom:11px;font-size:.8rem;color:var(--ink-2);line-height:1.45}
+  .ttn-banner svg{width:16px;height:16px;flex:none;color:var(--accent-strong);margin-top:1px}
+  :root[data-theme="dark"] .ttn-banner svg,.dark-tokens .ttn-banner svg{color:var(--accent)}
+  .ttn-banner b{font-family:var(--font-display);font-weight:800;color:var(--ink)}
+  .eta-row{display:flex;flex-direction:column;gap:3px;border-top:1px dashed var(--border);padding-top:9px}
+  .eta-line{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+  .eta-lab{font-family:var(--font-display);font-weight:800;font-size:.6rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+  .eta-off{font-size:.82rem;color:var(--muted);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--muted) 55%,transparent)}
+  .eta-arrow{color:var(--muted);font-weight:700}
+  .eta-ref{font-family:var(--font-display);font-weight:800;font-size:1.05rem;color:var(--ink);letter-spacing:-.01em}
+  .eta-delta{font-family:var(--font-display);font-weight:800;font-size:.64rem;border-radius:var(--r-pill);padding:2px 8px;border:1px solid transparent}
+  .eta-delta.up{color:#a86a00;background:color-mix(in srgb,var(--warning) 15%,transparent);border-color:color-mix(in srgb,var(--warning) 34%,transparent)}
+  .eta-delta.down{color:#00795c;background:color-mix(in srgb,var(--success) 15%,transparent);border-color:color-mix(in srgb,var(--success) 34%,transparent)}
+  :root[data-theme="dark"] .eta-delta.up,.dark-tokens .eta-delta.up{color:#ffc24d}
+  :root[data-theme="dark"] .eta-delta.down,.dark-tokens .eta-delta.down{color:#4ff0c6}
+  .eta-src{font-size:.68rem;color:var(--muted)}
+  .aviso-none{display:flex;align-items:center;gap:10px;margin:0 16px 16px;padding:11px 14px;border-radius:var(--r);font-size:.82rem;color:var(--ink-2);
+    background:color-mix(in srgb,var(--success) 9%,var(--surface));border:1px solid color-mix(in srgb,var(--success) 32%,transparent)}
+  .aviso-none .ok{width:26px;height:26px;border-radius:7px;background:var(--success);color:#04231a;display:grid;place-items:center;flex:none}
+  .aviso-none .ok svg{width:15px;height:15px}
+
+  .badge{font-family:var(--font-display);font-weight:800;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;
+    padding:4px 9px;border-radius:var(--r-pill);white-space:nowrap;border:1px solid transparent}
+  .badge.b-port{background:color-mix(in srgb,var(--success) 15%,transparent);color:#00795c;border-color:color-mix(in srgb,var(--success) 35%,transparent)}
+  .badge.b-auth{background:color-mix(in srgb,var(--cyan) 14%,transparent);color:var(--accent-strong);border-color:color-mix(in srgb,var(--cyan) 34%,transparent)}
+  .badge.b-plan{background:color-mix(in srgb,var(--gray-mid) 16%,transparent);color:var(--gray-mid);border-color:color-mix(in srgb,var(--gray-mid) 32%,transparent)}
+  .badge.b-init{background:color-mix(in srgb,var(--warning) 16%,transparent);color:#a86a00;border-color:color-mix(in srgb,var(--warning) 38%,transparent)}
+  .badge.b-canc{background:color-mix(in srgb,var(--danger) 14%,transparent);color:#c0362f;border-color:color-mix(in srgb,var(--danger) 34%,transparent)}
+  :root[data-theme="dark"] .badge.b-port,.dark-tokens .badge.b-port{color:#4ff0c6}
+  :root[data-theme="dark"] .badge.b-init,.dark-tokens .badge.b-init{color:#ffc24d}
+  :root[data-theme="dark"] .badge.b-canc,.dark-tokens .badge.b-canc{color:#ff8a83}
+  :root[data-theme="dark"] .badge.b-plan,.dark-tokens .badge.b-plan{color:#a7bad3}
+  .tag{font-family:var(--font-display);font-weight:700;font-size:.66rem;text-transform:uppercase;letter-spacing:.05em;
+    color:var(--muted);background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-pill);padding:3px 8px}
+  .chip-delay{font-family:var(--font-display);font-weight:800;font-size:.66rem;color:#a86a00;background:color-mix(in srgb,var(--warning) 15%,transparent);
+    border:1px solid color-mix(in srgb,var(--warning) 34%,transparent);border-radius:var(--r-pill);padding:3px 8px;display:inline-flex;align-items:center;gap:5px}
+  :root[data-theme="dark"] .chip-delay,.dark-tokens .chip-delay{color:#ffc24d}
+
+  /* fleet map */
+  .fleet{position:relative;background:linear-gradient(180deg,var(--sea),color-mix(in srgb,var(--sea) 60%,var(--surface)))}
+  svg.ria{display:block;width:100%;height:auto}
+  .water{fill:var(--sea)}
+  .shore{fill:var(--land);stroke:var(--border-strong);stroke-width:1}
+  .muelle{fill:var(--land-2);stroke:var(--border-strong);stroke-width:.8}
+  .muelle-lab{font-family:var(--font-body);fill:var(--muted);font-size:9px}
+  .vessel{cursor:pointer}
+  .vessel .hull{fill:var(--cyan);stroke:#fff;stroke-width:1}
+  .vessel.moored .hull{fill:var(--success)}
+  .vessel.slow .hull{fill:var(--warning)}
+  :root[data-theme="dark"] .vessel .hull,.dark-tokens .vessel .hull{stroke:#0a1f3d}
+  .vessel .vlab{font-family:var(--font-display);font-weight:700;font-size:9px;fill:var(--ink)}
+  .wake{stroke:var(--cyan);stroke-width:1.4;opacity:.35;stroke-dasharray:2 3;fill:none}
+
+  /* meteo + avisos */
+  .met-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 16px}
+  .met{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r);padding:11px 12px}
+  .met .k{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;gap:6px}
+  .met .v{font-family:var(--font-display);font-weight:800;font-size:1.32rem;margin-top:3px}
+  .met .v small{font-size:.7rem;color:var(--muted);font-weight:700}
+  .aviso-btn{margin:0 16px 16px;display:flex;align-items:center;gap:12px;width:calc(100% - 32px);text-align:left;cursor:pointer;
+    background:color-mix(in srgb,var(--warning) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--warning) 45%,transparent);
+    border-radius:var(--r);padding:12px 14px;color:var(--ink);transition:transform .12s,box-shadow .12s}
+  .aviso-btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+  .aviso-btn .lvl{width:34px;height:34px;border-radius:8px;background:var(--warning);color:#3a2500;display:grid;place-items:center;flex:none}
+  .aviso-btn .txt .t{font-family:var(--font-display);font-weight:800;font-size:.9rem}
+  .aviso-btn .txt .s{font-size:.76rem;color:var(--muted)}
+  .aviso-btn .go{margin-left:auto;color:var(--warning)}
+
+  /* cronologia */
+  .crono{padding:16px}
+  .crono .clock{font-family:var(--font-display);font-weight:800;font-size:1.6rem;letter-spacing:-.01em}
+  .crono .clock small{font-size:.76rem;color:var(--muted);font-weight:700;margin-left:6px}
+  .crono-controls{display:flex;align-items:center;gap:12px;margin:10px 0 16px}
+  .play{width:40px;height:40px;border-radius:50%;border:0;background:var(--accent);color:#022038;cursor:pointer;display:grid;place-items:center;flex:none;box-shadow:var(--shadow-sm)}
+  .play:hover{filter:brightness(1.05)}
+  .play svg{width:18px;height:18px}
+  input[type=range]{-webkit-appearance:none;appearance:none;flex:1;height:6px;border-radius:6px;background:var(--border);outline:none}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);border:2px solid var(--surface);box-shadow:var(--shadow-sm);cursor:pointer}
+  input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--accent);border:2px solid var(--surface);cursor:pointer}
+  .lanes{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+  .lane{display:grid;grid-template-columns:96px 1fr;align-items:center;gap:10px}
+  .lane .nm{font-family:var(--font-display);font-weight:700;font-size:.82rem;text-align:right;color:var(--ink-2)}
+  .track{position:relative;height:22px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-pill)}
+  .seg-bar{position:absolute;top:3px;bottom:3px;border-radius:var(--r-pill);opacity:.9}
+  .seg-bar.s-port{background:color-mix(in srgb,var(--success) 55%,transparent)}
+  .seg-bar.s-mov{background:color-mix(in srgb,var(--cyan) 60%,transparent)}
+  .seg-bar.s-wait{background:color-mix(in srgb,var(--gray-mid) 45%,transparent)}
+  .axis{display:grid;grid-template-columns:96px 1fr;gap:10px;margin-top:8px}
+  .axis .ticks{display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);font-variant-numeric:tabular-nums}
+  .playhead{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--danger);left:0;z-index:3}
+  .playhead::before{content:"";position:absolute;top:-4px;left:-4px;width:10px;height:10px;border-radius:50%;background:var(--danger)}
+  .lanes-wrap{position:relative}
+
+  /* ===== footer (corporate) ===== */
+  .foot{background:var(--navy-deep);color:#c9d8ec;margin-top:44px;border-top:1px solid #12294a}
+  .foot .inner{max-width:var(--maxw);margin:0 auto;padding:40px 22px 26px}
+  .foot-top{display:grid;grid-template-columns:1.4fr 2fr;gap:32px}
+  .foot-brand{max-width:44ch}
+  .foot-logo{display:flex;align-items:center;gap:9px}
+  .foot-logo .wordmark{font-family:var(--font-display);font-weight:800;font-size:1.15rem;color:#fff}
+  .foot-logo .wordmark span{color:var(--cyan-light)}
+  .foot-brand p{font-size:.85rem;line-height:1.6;color:#8fa6c4;margin:14px 0 12px}
+  .foot-mail{font-family:var(--font-display);font-weight:700;font-size:.85rem;color:var(--cyan-light);text-decoration:none}
+  .foot-mail:hover{text-decoration:underline}
+  .foot-links{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .foot-col h4{font-family:var(--font-display);font-weight:800;font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:#fff;margin:0 0 12px}
+  .foot-col a{display:block;font-size:.85rem;color:#8fa6c4;text-decoration:none;padding:4px 0}
+  .foot-col a:hover{color:#fff}
+  .foot-bar{display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:space-between;align-items:center;margin-top:32px;padding-top:18px;border-top:1px solid #12294a;font-size:.76rem;color:#6f88aa}
+  .foot-bar-r{margin-left:auto}
+  @media (max-width:640px){ .foot-top{grid-template-columns:1fr;gap:24px} .foot-links{grid-template-columns:1fr 1fr} }
+
+  /* ===== modal ===== */
+  .modal-back{position:fixed;inset:0;z-index:80;background:rgba(2,11,36,.55);backdrop-filter:blur(3px);
+    display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .18s ease}
+  .modal-back.show{opacity:1;pointer-events:auto}
+  .modal{background:var(--surface);color:var(--ink);border:1px solid var(--border);border-radius:var(--r-lg);
+    max-width:460px;width:100%;box-shadow:var(--shadow-lg);transform:translateY(8px) scale(.98);transition:transform .18s ease}
+  .modal-back.show .modal{transform:none}
+  .modal .mh{display:flex;align-items:center;gap:12px;padding:18px 20px;border-bottom:1px solid var(--border)}
+  .modal .mh .lvl{width:40px;height:40px;border-radius:9px;background:var(--warning);color:#3a2500;display:grid;place-items:center;flex:none}
+  .modal .mh h3{font-size:1.05rem}
+  .modal .mh .src{font-size:.74rem;color:var(--muted)}
+  .modal .mb{padding:18px 20px;font-size:.9rem;color:var(--ink-2);line-height:1.55}
+  .modal .mb dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:14px 0 0}
+  .modal .mb dt{font-family:var(--font-display);font-weight:700;color:var(--muted);font-size:.8rem}
+  .modal .mb dd{margin:0;font-size:.86rem}
+  .modal .mf{padding:14px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end}
+  .btn{font-family:var(--font-display);font-weight:800;font-size:.85rem;border-radius:var(--r);padding:9px 16px;cursor:pointer;border:1px solid transparent}
+  .btn.primary{background:var(--accent);color:#022038}
+  .btn.primary:hover{filter:brightness(1.05)}
+
+  .icon{width:16px;height:16px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .icon.sm{width:14px;height:14px}
+
+  @media (max-width:920px){
+    .map-grid{grid-template-columns:1fr}
+    .dash{grid-template-columns:1fr}
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .phases{grid-template-columns:1fr 1fr}
+    .nav-links{display:none}
+  }
+  @media (max-width:560px){
+    .kpis{grid-template-columns:1fr 1fr}
+    .phases{grid-template-columns:1fr}
+    .wordmark{font-size:1.02rem}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+    .pulse{display:none}
+  }
+</style>
+</head>
+<body>
+
+
+<div class="app" id="app">
+
+  <!-- ===== NAV ===== -->
+  <header class="nav">
+    <div class="brand" title="NauticOps">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 1.6c-6.3 0-11 4.6-11 11 0 7.9 11 17.8 11 17.8s11-9.9 11-17.8c0-6.4-4.7-11-11-11Z" fill="#0A1F3D" stroke="#123" stroke-width="0"/>
+        <g stroke="#29B6F6" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="16" cy="8" r="2"/>
+          <path d="M16 10v11.4"/>
+          <path d="M11 13.4h10"/>
+          <path d="M8.6 17.6c0 4 3.3 6.2 7.4 6.2s7.4-2.2 7.4-6.2"/>
+          <path d="M8.6 17.6 6.7 18.9M8.6 17.6l1.9 1.2M23.4 17.6l1.9 1.3M23.4 17.6l-1.9 1.2"/>
+        </g>
+        <g stroke="#079FE6" stroke-width="1.5" fill="none" stroke-linecap="round">
+          <path d="M22 6.2c1.7.3 3 1.5 3.4 3.2"/>
+          <path d="M23.2 3.9c2.9.4 5.2 2.6 5.8 5.5"/>
+        </g>
+      </svg>
+      <span class="wordmark">Nautic<span>Ops</span></span>
+    </div>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#" class="active" data-nav="map"><svg class="icon sm" viewBox="0 0 24 24"><path d="m9 6-6 3v12l6-3 6 3 6-3V6l-6 3-6-3Z"/><path d="M9 6v12M15 9v12"/></svg>Puertos</a>
+      <a href="#" data-nav="product"><svg class="icon sm" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/></svg>Producto</a>
+      <a href="#" data-nav="agents"><svg class="icon sm" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Agentes marítimos</a>
+    </nav>
+    <div class="nav-spacer"></div>
+    <div class="nav-tools">
+      <div class="seg" role="group" aria-label="Idioma">
+        <button class="on" data-lang="es">ES</button>
+        <button data-lang="en">EN</button>
+      </div>
+      <button class="icon-btn" id="themeBtn" aria-label="Cambiar tema">
+        <svg class="icon sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== MAP VIEW ===== -->
+  <section class="view wrap" id="view-map">
+    <div class="map-grid">
+      <div class="map-intro">
+        <div class="eyebrow">El punto de entrada</div>
+        <h1>Toda la red portuaria, un solo lugar</h1>
+        <p class="lead">Selecciona un puerto en el mapa para ver sus escalas en tiempo real, la flota, la meteo operativa y los avisos.</p>
+
+        <div class="stat-row">
+          <div class="stat"><div class="n tnum">46</div><div class="l">Puertos de interés general</div></div>
+          <div class="stat"><div class="n tnum">28</div><div class="l">Autoridades Portuarias</div></div>
+        </div>
+
+        <div class="legend">
+          <div class="row"><span class="dot active"></span> <b style="font-weight:600">Operativo</b> — datos en vivo</div>
+          <div class="row"><span class="dot soon"></span> Próximamente</div>
+        </div>
+
+        <div class="active-list" id="activeList">
+          <div class="h">Puertos operativos</div>
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+      <div class="map-card">
+        <div class="cap"><div class="t">Puertos de interés general</div><div class="s">España · titularidad estatal</div></div>
+        <svg class="spain" viewBox="0 0 680 600" role="img" aria-label="Mapa de España con los 46 puertos de interés general">
+          <rect class="sea" x="0" y="0" width="680" height="600"></rect>
+          <path class="portugal" d="M92.1,161.2L99.6,155.4L112.6,150.9L114.7,151.1L118.0,157.2L114.2,163.6L117.1,167.9L119.4,167.8L126.4,164.2L127.3,164.9L135.5,163.9L142.7,166.7L147.0,166.8L154.8,163.6L155.4,160.5L157.3,159.1L162.0,160.7L168.6,161.0L169.9,160.0L175.0,161.5L178.5,161.1L180.2,162.7L180.9,164.7L180.8,173.6L181.5,175.2L187.5,175.6L190.9,176.8L193.5,178.9L194.7,182.6L187.1,190.7L180.5,194.5L175.6,199.1L172.2,204.7L167.9,207.1L166.1,209.8L168.9,216.7L169.8,221.9L170.5,228.4L169.1,239.4L170.8,244.6L162.6,251.7L161.9,253.8L162.1,255.1L166.5,259.6L167.3,261.4L166.7,265.8L164.2,273.1L161.7,277.5L158.5,279.1L145.0,279.2L141.8,280.2L145.4,286.7L149.8,290.5L151.0,297.1L156.3,307.7L161.5,309.1L163.3,311.8L162.9,315.5L161.3,319.6L151.9,329.6L149.5,343.1L158.9,357.5L164.9,357.1L162.3,364.6L155.8,366.6L145.4,381.1L143.1,388.6L146.9,409.8L143.4,410.4L129.8,418.8L125.6,418.9L117.7,415.1L99.3,412.8L93.6,415.3L89.3,415.2L85.8,418.3L83.3,417.5L90.6,396.7L90.5,388.2L91.5,380.9L90.3,373.6L88.0,369.1L91.1,357.3L90.8,351.3L88.0,343.6L96.5,344.8L91.2,339.9L86.6,340.2L75.7,344.1L74.7,343.5L75.1,338.8L73.2,332.7L76.1,331.0L79.5,330.6L82.3,328.0L84.1,325.0L83.2,319.8L85.7,314.8L91.5,310.7L88.5,311.3L85.0,313.9L79.6,323.4L77.8,328.2L68.9,330.5L64.2,328.8L64.2,322.4L66.0,316.8L66.6,308.9L69.1,301.8L68.2,297.1L73.2,292.5L77.3,286.4L89.7,256.5L87.7,253.2L88.3,249.0L92.3,230.9L95.8,223.2L96.8,205.8L93.7,195.5L91.0,181.1L90.8,176.3L93.0,173.9L89.3,173.5L87.7,170.4L88.1,166.9L92.1,161.2Z"></path>
+          <path class="coast" d="M500.3,127.0L499.7,129.5L500.2,134.0L501.1,135.3L504.5,135.1L511.4,131.8L520.2,135.9L522.6,139.4L524.4,139.7L531.1,136.1L549.2,140.3L549.9,137.6L551.2,136.8L558.8,134.3L561.9,133.7L571.6,135.6L572.7,138.9L574.6,140.2L575.4,143.0L569.8,144.7L569.1,149.6L572.1,152.3L572.6,153.8L573.0,161.0L563.3,170.3L535.6,186.0L528.9,193.6L526.4,195.3L505.8,200.1L484.4,207.1L471.7,219.6L475.0,220.6L478.8,224.8L477.5,226.7L472.0,229.6L467.0,230.5L457.7,245.9L449.5,257.0L444.9,261.8L440.1,269.0L430.1,287.6L430.0,293.0L434.9,311.5L437.8,316.3L441.8,320.4L449.3,323.9L451.2,327.3L448.6,330.6L441.0,336.4L427.9,344.2L422.3,350.4L421.1,356.3L417.3,359.0L415.8,367.4L413.0,374.8L410.6,379.0L410.2,382.0L414.3,386.2L410.3,388.8L390.0,389.9L377.5,398.9L371.2,407.0L365.6,422.0L358.7,430.8L355.6,432.4L350.9,428.6L345.0,428.0L339.3,429.3L336.3,432.3L331.7,434.0L327.1,432.6L317.2,431.8L312.8,431.9L305.9,434.4L300.0,432.7L290.1,431.9L268.5,433.9L265.8,434.8L263.1,438.5L256.2,444.9L245.8,445.1L236.3,449.2L234.0,451.8L230.0,459.0L228.7,464.3L227.9,464.4L226.9,463.1L225.4,463.5L224.7,467.5L218.2,470.0L210.8,466.7L204.8,461.9L201.6,461.5L196.4,453.9L194.1,449.1L192.5,443.9L192.4,440.2L187.8,438.1L186.7,433.3L190.1,427.1L194.5,423.7L190.3,423.9L187.3,427.9L183.5,421.5L167.8,409.0L168.8,406.1L168.6,404.6L166.0,407.9L164.2,408.8L156.2,408.2L146.9,409.8L143.1,388.6L145.4,381.1L148.0,378.1L151.5,371.8L155.8,366.6L162.3,364.6L164.9,357.1L158.9,357.5L149.5,343.1L151.0,337.3L151.9,329.6L158.2,323.8L161.3,319.6L162.9,315.5L163.3,311.8L161.5,309.1L156.3,307.7L151.0,297.1L149.8,290.5L145.4,286.7L141.8,280.2L145.0,279.2L158.5,279.1L161.7,277.5L164.2,273.1L166.7,265.8L167.3,261.4L166.5,259.6L162.1,255.1L161.9,253.8L162.6,251.7L170.8,244.6L169.1,239.4L170.5,228.4L169.8,221.9L168.9,216.7L166.1,209.8L167.9,207.1L172.2,204.7L175.6,199.1L180.5,194.5L187.1,190.7L191.6,186.6L193.4,183.4L194.7,182.6L194.3,181.1L193.5,178.9L190.9,176.8L187.5,175.6L181.5,175.2L180.8,173.6L180.9,164.7L180.2,162.7L178.5,161.1L175.0,161.5L169.9,160.0L168.6,161.0L162.0,160.7L157.3,159.1L155.4,160.5L154.8,163.6L152.4,165.2L147.0,166.8L142.7,166.7L135.5,163.9L127.3,164.9L126.4,164.2L119.4,167.8L117.1,167.9L116.3,167.5L114.2,163.6L114.7,161.9L118.0,157.2L114.7,151.1L112.6,150.9L99.6,155.4L92.1,161.2L89.1,161.9L88.1,160.9L87.7,152.6L95.6,143.8L90.6,143.2L90.8,140.7L92.4,139.4L94.0,136.6L90.7,133.6L91.2,126.8L90.7,124.7L83.7,127.5L81.9,127.1L81.8,123.5L85.7,118.1L86.1,116.4L81.5,115.6L78.1,112.9L73.8,107.1L73.8,104.0L76.1,96.8L82.2,93.4L88.3,88.5L96.6,89.4L101.7,88.3L106.3,85.8L109.0,85.2L113.2,83.0L113.1,80.0L111.6,77.7L112.9,75.6L123.0,69.7L129.1,69.0L135.3,66.0L139.4,67.9L143.0,67.3L147.2,69.6L152.7,74.9L160.8,77.0L167.2,75.3L178.5,75.0L184.2,75.7L194.2,74.4L200.0,74.9L209.3,72.2L216.5,75.5L230.5,77.0L239.0,79.7L262.2,84.2L270.7,84.3L282.6,81.7L287.6,79.8L292.2,81.0L299.0,78.8L302.2,79.2L306.4,82.3L321.3,86.5L325.2,83.0L328.2,82.2L338.9,84.4L349.7,88.8L355.3,89.1L363.5,87.9L371.4,84.6L371.4,86.5L373.0,89.0L374.6,89.9L378.1,91.2L384.3,91.9L386.7,93.4L386.2,98.1L383.9,102.2L384.7,103.2L388.3,104.0L391.1,100.6L391.7,102.8L396.1,104.8L405.8,108.5L412.6,109.1L419.7,116.4L431.2,115.0L441.5,122.1L451.2,120.6L453.3,121.9L468.4,122.1L469.2,116.3L469.9,114.5L471.0,114.0L483.5,117.5L491.5,120.9L494.9,121.1L497.1,122.1L500.3,127.0ZM506.9,331.9L506.0,332.5L499.4,331.9L499.2,329.8L500.6,326.8L503.0,329.8L506.8,330.3L506.9,331.9ZM500.9,319.0L499.5,322.2L493.4,321.1L492.1,319.8L493.4,316.1L495.1,315.7L495.2,313.1L497.1,310.5L505.7,308.4L507.6,310.2L508.1,312.7L502.9,318.3L500.9,319.0ZM568.9,273.5L572.8,275.2L576.8,273.7L578.9,274.2L581.1,275.0L581.6,278.3L574.8,289.8L572.9,294.6L566.0,299.0L559.1,295.5L555.1,294.6L553.9,293.3L552.9,288.1L551.1,286.4L548.5,285.7L543.1,289.8L541.5,287.0L538.9,286.5L537.9,284.9L538.0,282.7L554.5,270.1L559.3,267.3L569.5,264.1L571.0,264.6L569.7,266.5L571.1,268.3L570.7,269.8L569.5,271.1L568.9,273.5ZM614.8,270.8L614.1,271.4L601.8,265.4L597.8,264.7L596.8,263.8L597.2,259.2L605.5,258.6L612.1,260.8L615.7,266.9L616.0,267.9L614.8,270.8Z"></path>
+          <text id="ptLabel" class="region-label" x="121" y="289" transform="rotate(-72 121 289)">Portugal</text>
+          <text class="region-label" x="535" y="231">Illes Balears</text>
+          <rect class="inset-box" x="400" y="500" width="258" height="92" rx="8"></rect>
+          <text class="inset-label" x="408" y="516">Islas Canarias</text>
+          <path class="coast" d="M447.6,578.8L443.8,586.0L439.1,583.3L437.9,582.4L437.0,580.9L441.5,580.6L446.1,577.0L447.6,578.8ZM544.2,564.0L544.0,567.3L544.9,570.8L544.6,576.0L542.8,578.8L538.0,581.6L534.3,581.1L532.2,579.9L528.4,575.4L528.3,570.7L531.8,567.6L533.2,563.7L542.2,564.4L542.9,563.7L543.6,563.4L544.2,564.0ZM474.9,569.5L473.3,569.8L471.4,568.8L469.4,565.3L470.8,562.7L472.0,561.5L473.7,561.7L477.0,563.6L478.0,565.6L478.1,566.8L474.9,569.5ZM507.9,553.7L504.7,563.8L501.6,567.7L499.8,569.0L495.3,570.1L490.0,563.9L487.3,557.5L485.7,555.5L488.2,553.9L491.7,554.2L499.3,552.8L500.8,552.3L508.5,545.9L516.1,545.1L516.3,547.2L507.9,553.7ZM591.0,563.0L585.7,568.0L580.4,566.8L579.5,566.0L584.8,564.7L589.6,560.9L592.7,552.5L597.5,543.3L598.5,539.3L600.4,537.8L603.0,537.7L604.2,538.0L605.3,540.0L605.3,544.7L603.9,552.4L601.4,559.3L591.0,563.0ZM449.6,548.7L448.7,549.1L447.8,545.6L443.2,537.1L446.0,533.3L451.1,533.2L453.1,535.8L453.8,538.6L452.9,540.1L453.1,543.3L452.6,545.4L449.6,548.7ZM609.6,530.3L607.0,533.2L604.1,532.2L605.5,525.9L606.8,524.0L612.2,521.2L616.7,520.1L618.0,517.1L619.5,516.0L621.0,517.7L619.8,519.8L618.9,526.1L615.9,528.2L609.6,530.3Z"></path>
+          <g id="islands"></g>
+          <g id="markers"></g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PORT DASHBOARD VIEW ===== -->
+  <section class="view wrap" id="view-port" hidden>
+    <button class="back" id="backBtn"><svg class="icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg> Volver al mapa</button>
+
+    <div class="port-head">
+      <div>
+        <div class="eyebrow">Dashboard de puerto</div>
+        <h1 id="portName">Puerto de Marín</h1>
+        <div class="ap" id="portAp">Autoridad Portuaria de Marín y Ría de Pontevedra</div>
+      </div>
+      <div class="head-spacer"></div>
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+        <span class="fresh"><span class="live"></span> <span id="freshSrc">Datos AP Marín</span> · actualizado <b id="freshTime" class="tnum" style="color:var(--ink);font-weight:700;margin-left:4px">29/07 08:40</b></span>
+        <div class="meteo-chip" id="meteoChip"></div>
+      </div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi k-port"><span class="strip"></span><div class="n tnum" id="kpiPort">7</div><div class="l">En puerto</div></div>
+      <div class="kpi k-auth"><span class="strip"></span><div class="n tnum" id="kpiAuth">3</div><div class="l">Autorizadas</div></div>
+      <div class="kpi k-plan"><span class="strip"></span><div class="n tnum" id="kpiPlan">12</div><div class="l">Previstas 48h</div></div>
+      <div class="kpi k-warn"><span class="strip"></span><div class="n tnum" id="kpiWarn">1</div><div class="l">Aviso activo</div></div>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Vista">
+      <button class="on" data-tab="cards" role="tab" aria-selected="true"><svg class="icon sm" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/></svg> Tarjetas</button>
+      <button data-tab="crono" role="tab" aria-selected="false"><svg class="icon sm" viewBox="0 0 24 24"><path d="M3 12h4l3 7 4-14 3 7h4"/></svg> Cronología</button>
+    </div>
+
+    <div class="dash">
+      <!-- LEFT: tab content -->
+      <div>
+        <!-- Cards tab -->
+        <div id="tab-cards">
+          <div class="ttn-banner" id="ttnBanner"></div>
+          <div class="cards" id="cards"></div>
+        </div>
+
+        <!-- Crono tab -->
+        <div id="tab-crono" hidden>
+          <div class="panel">
+            <div class="panel-h"><h3>Cronología de operaciones</h3><span class="sub">06:00 – 22:00 · hoy</span></div>
+            <div class="crono">
+              <div class="clock"><span id="clock" class="tnum">13:20</span><small>reproducción</small></div>
+              <div class="crono-controls">
+                <button class="play" id="playBtn" aria-label="Reproducir">
+                  <svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5v14l11-7z"/></svg>
+                  <svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+                </button>
+                <input type="range" id="scrub" min="0" max="1000" value="460" aria-label="Posición temporal">
+              </div>
+              <div class="lanes-wrap">
+                <div class="lanes" id="cronoLanes"></div>
+                <div class="playhead" id="playhead" style="left:46%"></div>
+              </div>
+              <div class="axis"><div></div><div class="ticks"><span>06</span><span>10</span><span>14</span><span>18</span><span>22</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: fleet map + meteo -->
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="panel fleet">
+          <div class="panel-h"><h3 id="fleetTitle">Flota en la ría</h3><span class="sub" id="fleetSub">AIS en vivo · 5 buques</span></div>
+          <svg class="ria" id="riaSvg" viewBox="0 0 420 260" role="img" aria-label="Flota del puerto"></svg>
+        </div>
+
+        <div class="panel">
+          <div class="panel-h"><h3>Meteo operativa</h3><span class="sub" id="meteoSrc">MeteoGalicia · est. Porto de Marín</span></div>
+          <div class="met-grid" id="metGrid"></div>
+          <div id="avisoWrap"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER / ROADMAP ===== -->
+  <footer class="foot">
+    <div class="inner">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <div class="foot-logo">
+            <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><path d="M16 1.6c-6.3 0-11 4.6-11 11 0 7.9 11 17.8 11 17.8s11-9.9 11-17.8c0-6.4-4.7-11-11-11Z" fill="#12305a"/><g stroke="#29B6F6" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="8" r="2"/><path d="M16 10v11.4"/><path d="M11 13.4h10"/><path d="M8.6 17.6c0 4 3.3 6.2 7.4 6.2s7.4-2.2 7.4-6.2"/></g></svg>
+            <span class="wordmark">Nautic<span>Ops</span></span>
+          </div>
+          <p>Inteligencia operativa para la red de puertos de interés general de España. Escalas en tiempo real, meteo operativa, predicción de ETA/ETD y servicios técnico-náuticos, en un solo lugar.</p>
+          <a class="foot-mail" href="mailto:info@nauticops.com">info@nauticops.com</a>
+        </div>
+        <div class="foot-links">
+          <div class="foot-col"><h4>Producto</h4><a href="#">Escalas en tiempo real</a><a href="#">Meteo operativa</a><a href="#">Predicción ETA/ETD</a><a href="#">Servicios técnico-náuticos</a></div>
+          <div class="foot-col"><h4>Puertos</h4><a href="#">Marín</a><a href="#">Alicante</a><a href="#">Huelva</a><a href="#">Próximamente</a></div>
+          <div class="foot-col"><h4>Empresa</h4><a href="#">Sobre NauticOps</a><a href="#">Agentes marítimos</a><a href="#">Contacto</a><a href="#">Aviso legal</a></div>
+        </div>
+      </div>
+      <div class="foot-bar">
+        <span>© 2026 NauticOps · Datos portuarios en tiempo real</span>
+        <span class="foot-bar-r">nauticops.com · info@nauticops.com</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- tooltip -->
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+
+<!-- aviso modal -->
+<div class="modal-back" id="modalBack" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="mh">
+      <span class="lvl" id="modalLvl"><svg class="icon" viewBox="0 0 24 24" style="stroke:currentColor"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg></span>
+      <div><h3 id="modalTitle">Aviso</h3><div class="src" id="modalSrc">AEMET · Agencia Estatal de Meteorología</div></div>
+    </div>
+    <div class="mb" id="modalBody"></div>
+    <div class="mf"><button class="btn primary" id="modalClose">Entendido</button></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var app = document.getElementById('app');
+
+  /* ---------- theme toggle ---------- */
+  document.getElementById('themeBtn').addEventListener('click', function(){
+    var root = document.documentElement;
+    var cur = root.getAttribute('data-theme');
+    if(!cur){ cur = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    root.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+  });
+
+  /* ---------- language (visual only) ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('.seg [data-lang]'), function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.seg [data-lang]').forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on');
+    });
+  });
+
+  /* ---------- port network data ---------- */
+  /* ---------- geographic projection ---------- */
+  // Equirectangular, calibrated to the 680×600 viewBox.
+  // Mainland, Balears and the Ceuta/Melilla enclaves share `proj`.
+  function proj(lat, lon){ return {x: 443.132 + lon * 39.9919, y: 2350.758 - lat * 52.2057}; }
+  // The Canary Islands render in the bottom-left inset with their own projection.
+  function projC(lat, lon){ return {x: 1142.539 + lon * 38.8519, y: 1802.509 - lat * 44.0025}; }
+
+  /* ---------- port network · 46 puertos de interés general · 28 AAPP (lat/lon reales) ---------- */
+  // r: 'main' península · 'island' Balears · 'canary' Canarias (inset) · 'enclave' Ceuta/Melilla
+  var PORTS = [
+    // Monopuerto — Galicia y Cantábrico
+    {n:'A Coruña', ap:'AP de A Coruña', lat:43.364, lon:-8.391, r:'main'},
+    {n:'Ferrol', ap:'AP de Ferrol-San Cibrao', lat:43.465, lon:-8.257, r:'main'},
+    {n:'San Cibrao', ap:'AP de Ferrol-San Cibrao', lat:43.705, lon:-7.472, r:'main'},
+    {n:'Vilagarcía', ap:'AP de Vilagarcía de Arousa', lat:42.601, lon:-8.769, r:'main'},
+    {n:'Marín', ap:'AP de Marín y Ría de Pontevedra', lat:42.395, lon:-8.704, r:'main', active:true, slug:'marin', apFull:'Autoridad Portuaria de Marín y Ría de Pontevedra'},
+    {n:'Vigo', ap:'AP de Vigo', lat:42.238, lon:-8.736, r:'main'},
+    {n:'Avilés', ap:'AP de Avilés', lat:43.565, lon:-5.923, r:'main'},
+    {n:'Gijón', ap:'AP de Gijón', lat:43.559, lon:-5.696, r:'main'},
+    {n:'Santander', ap:'AP de Santander', lat:43.447, lon:-3.812, r:'main'},
+    {n:'Bilbao', ap:'AP de Bilbao', lat:43.342, lon:-3.033, r:'main'},
+    {n:'Pasaia', ap:'AP de Pasaia', lat:43.327, lon:-1.928, r:'main'},
+    // Mediterráneo (Cataluña y Levante)
+    {n:'Barcelona', ap:'AP de Barcelona', lat:41.346, lon:2.168, r:'main'},
+    {n:'Tarragona', ap:'AP de Tarragona', lat:41.104, lon:1.233, r:'main'},
+    {n:'Castellón', ap:'AP de Castellón', lat:39.972, lon:0.019, r:'main'},
+    {n:'Sagunto', ap:'AP de Valencia', lat:39.654, lon:-0.211, r:'main'},
+    {n:'Valencia', ap:'AP de Valencia', lat:39.447, lon:-0.323, r:'main'},
+    {n:'Gandía', ap:'AP de Valencia', lat:38.995, lon:-0.151, r:'main'},
+    {n:'Alicante', ap:'AP de Alicante', lat:38.332, lon:-0.487, r:'main', active:true, slug:'alicante', apFull:'Autoridad Portuaria de Alicante'},
+    {n:'Cartagena', ap:'AP de Cartagena', lat:37.592, lon:-0.982, r:'main'},
+    // Sur (Andalucía)
+    {n:'Carboneras', ap:'AP de Almería', lat:36.994, lon:-1.905, r:'main'},
+    {n:'Almería', ap:'AP de Almería', lat:36.831, lon:-2.473, r:'main'},
+    {n:'Motril', ap:'AP de Motril', lat:36.721, lon:-3.521, r:'main'},
+    {n:'Málaga', ap:'AP de Málaga', lat:36.711, lon:-4.417, r:'main'},
+    {n:'Algeciras', ap:'AP de la Bahía de Algeciras', lat:36.133, lon:-5.441, r:'main'},
+    {n:'Tarifa', ap:'AP de la Bahía de Algeciras', lat:36.008, lon:-5.604, r:'main'},
+    {n:'Rota', ap:'AP de la Bahía de Cádiz', lat:36.615, lon:-6.353, r:'main'},
+    {n:'El Puerto de Santa María', ap:'AP de la Bahía de Cádiz', lat:36.592, lon:-6.234, r:'main'},
+    {n:'Cádiz', ap:'AP de la Bahía de Cádiz', lat:36.535, lon:-6.282, r:'main'},
+    {n:'Sevilla', ap:'AP de Sevilla', lat:37.345, lon:-5.998, r:'main'},
+    {n:'Huelva', ap:'AP de Huelva', lat:37.135, lon:-6.932, r:'main', active:true, slug:'huelva', apFull:'Autoridad Portuaria de Huelva'},
+    // Enclaves norteafricanos
+    {n:'Ceuta', ap:'AP de Ceuta', lat:35.894, lon:-5.318, r:'enclave'},
+    {n:'Melilla', ap:'AP de Melilla', lat:35.293, lon:-2.934, r:'enclave'},
+    // Illes Balears (AP de Baleares)
+    {n:'Palma', ap:'AP de Baleares', lat:39.560, lon:2.628, r:'island'},
+    {n:'Alcúdia', ap:'AP de Baleares', lat:39.837, lon:3.136, r:'island'},
+    {n:'Maó', ap:'AP de Baleares', lat:39.889, lon:4.272, r:'island'},
+    {n:'Eivissa', ap:'AP de Baleares', lat:38.908, lon:1.442, r:'island'},
+    {n:'La Savina', ap:'AP de Baleares', lat:38.732, lon:1.416, r:'island'},
+    // Canarias — AP de Las Palmas
+    {n:'Las Palmas', ap:'AP de Las Palmas', lat:28.140, lon:-15.416, r:'canary'},
+    {n:'Arrecife', ap:'AP de Las Palmas', lat:28.966, lon:-13.535, r:'canary'},
+    {n:'Puerto del Rosario', ap:'AP de Las Palmas', lat:28.494, lon:-13.856, r:'canary'},
+    {n:'Salinetas', ap:'AP de Las Palmas', lat:27.991, lon:-15.378, r:'canary'},
+    // Canarias — AP de Santa Cruz de Tenerife
+    {n:'S/C de Tenerife', ap:'AP de Santa Cruz de Tenerife', lat:28.476, lon:-16.244, r:'canary'},
+    {n:'Los Cristianos', ap:'AP de Santa Cruz de Tenerife', lat:28.047, lon:-16.722, r:'canary'},
+    {n:'S. Sebastián de la Gomera', ap:'AP de Santa Cruz de Tenerife', lat:28.090, lon:-17.108, r:'canary'},
+    {n:'S/C de La Palma', ap:'AP de Santa Cruz de Tenerife', lat:28.679, lon:-17.763, r:'canary'},
+    {n:'La Estaca', ap:'AP de Santa Cruz de Tenerife', lat:27.785, lon:-17.902, r:'canary'}
+  ];
+
+  /* ---------- coastline anchors (lat/lon) → Iberian silhouette + Portugal ---------- */
+
+  var STATUS = {active:'Operativo · datos en vivo', soon:'Próximamente'};
+  var ns = 'http://www.w3.org/2000/svg';
+  var g = document.getElementById('markers');
+  var tip = document.getElementById('tip');
+
+  function el(tag, attrs){
+    var e = document.createElementNS(ns, tag);
+    for(var k in attrs){ e.setAttribute(k, attrs[k]); }
+    return e;
+  }
+
+  /* ---------- project ports into the SVG (coastline is now embedded, real Natural Earth data) ---------- */
+  var islands = document.getElementById('islands');
+  PORTS.forEach(function(p){
+    var pt = (p.r === 'canary') ? projC(p.lat, p.lon) : proj(p.lat, p.lon);
+    p.x = pt.x; p.y = pt.y;
+    if(p.r === 'enclave'){ islands.appendChild(el('ellipse', {cx:p.x, cy:p.y, rx:4, ry:3, 'class':'isla'})); }
+  });
+
+  PORTS.forEach(function(p){
+    var grp = el('g', {'class':'mk' + (p.active?' active-mk':''), tabindex: p.active?'0':null, role: p.active?'button':'img',
+      'aria-label': p.n + (p.active?' — operativo, abrir dashboard':' — próximamente')});
+    if(p.active){
+      grp.appendChild(el('circle', {cx:p.x, cy:p.y, r:8, 'class':'halo pulse'}));
+      grp.appendChild(el('circle', {cx:p.x, cy:p.y, r:6, 'class':'core'}));
+      // label with bg
+      var lw = p.n.length * 7 + 12;
+      var lx = p.x + 11, ly = p.y + 4;
+      // keep active labels inside width
+      var bg = el('rect', {x:lx-5, y:p.y-8, width:lw, height:17, rx:4, 'class':'lab-bg'});
+      var t = el('text', {x:lx, y:ly, 'class':'lab'}); t.textContent = p.n;
+      grp.appendChild(bg); grp.appendChild(t);
+    } else {
+      grp.appendChild(el('circle', {cx:p.x, cy:p.y, r:3.6, 'class':'core'}));
+    }
+    // tooltip handlers
+    function showTip(ev){
+      var grpN = (apGroups[p.ap] || [p]).length;
+      tip.innerHTML = '<div class="nm">'+p.n+'</div><div class="ap">'+p.ap+(grpN>1?' · '+grpN+' puertos':'')+'</div><div class="st '+(p.active?'active':'soon')+'">'+(p.active?STATUS.active:STATUS.soon)+'</div>';
+      tip.classList.add('show');
+      highlightAP(p);
+      moveTip(ev);
+    }
+    function moveTip(ev){
+      var px = (ev.touches ? ev.touches[0].clientX : ev.clientX);
+      var py = (ev.touches ? ev.touches[0].clientY : ev.clientY);
+      if(px==null){ var r=grp.getBoundingClientRect(); px=r.left+r.width/2; py=r.top; }
+      tip.style.left = Math.min(px+14, innerWidth-230) + 'px';
+      tip.style.top = (py+16) + 'px';
+    }
+    function hideTip(){ tip.classList.remove('show'); clearAP(); }
+    grp.addEventListener('mouseenter', showTip);
+    grp.addEventListener('mousemove', moveTip);
+    grp.addEventListener('mouseleave', hideTip);
+    grp.addEventListener('focus', showTip);
+    grp.addEventListener('blur', hideTip);
+    if(p.active){
+      grp.addEventListener('click', function(){ openPort(p); });
+      grp.addEventListener('keydown', function(ev){ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); openPort(p); } });
+    }
+    p.grp = grp; g.appendChild(grp);
+  });
+
+  /* ---------- resaltado por Autoridad Portuaria (hover) ---------- */
+  var apGroups = {};
+  PORTS.forEach(function(p){ (apGroups[p.ap] = apGroups[p.ap] || []).push(p); });
+  var apLinks = el('g', {id:'apLinks'});
+  g.parentNode.insertBefore(apLinks, g);
+  function highlightAP(p){
+    var grp = apGroups[p.ap] || [p], multi = grp.length > 1;
+    PORTS.forEach(function(q){ if(!q.grp) return; var inG = grp.indexOf(q) >= 0; q.grp.classList.toggle('mk-hi', inG); q.grp.classList.toggle('mk-dim', multi && !inG); });
+    apLinks.innerHTML = '';
+    if(multi){ grp.forEach(function(q){ if(q !== p){ apLinks.appendChild(el('line', {x1:p.x, y1:p.y, x2:q.x, y2:q.y, 'class':'ap-link'})); } }); }
+  }
+  function clearAP(){ PORTS.forEach(function(q){ if(q.grp){ q.grp.classList.remove('mk-hi','mk-dim'); } }); apLinks.innerHTML = ''; }
+
+  /* ---------- active ports side list ---------- */
+  var list = document.getElementById('activeList');
+  PORTS.filter(function(p){return p.active;}).forEach(function(p){
+    var b = document.createElement('button');
+    b.className = 'port-btn';
+    b.innerHTML = '<span class="pin"><svg class="icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg></span>'+
+      '<span><span class="nm">Puerto de '+p.n+'</span><br><span class="ap">'+p.ap+'</span></span>'+
+      '<span class="go"><svg class="icon" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></span>';
+    b.addEventListener('click', function(){ openPort(p); });
+    list.appendChild(b);
+  });
+
+  /* ---------- view switching ---------- */
+  var vMap = document.getElementById('view-map');
+  var vPort = document.getElementById('view-port');
+  function openPort(p){
+    populatePort(p.slug);
+    vMap.hidden = true; vPort.hidden = false;
+    tip.classList.remove('show');
+    window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+  }
+  document.getElementById('backBtn').addEventListener('click', function(){
+    vPort.hidden = true; vMap.hidden = false;
+  });
+
+  /* ---------- dashboard tabs ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('.tabs button'), function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.tabs button').forEach(function(b){ b.classList.remove('on'); b.setAttribute('aria-selected','false'); });
+      btn.classList.add('on'); btn.setAttribute('aria-selected','true');
+      var t = btn.getAttribute('data-tab');
+      document.getElementById('tab-cards').hidden = (t!=='cards');
+      document.getElementById('tab-crono').hidden = (t!=='crono');
+    });
+  });
+
+  /* ---------- capa de inteligencia operativa por puerto (ETA prevista + técnico-náutico) ---------- */
+  function computeCtx(c){
+    var ctx = { viento:c.viento, oleaje:c.oleaje, aviso:c.aviso, enServicio:c.enServicio, capacidad:c.capacidad };
+    ctx.wx = 1 + Math.max(0,(c.viento-16))/70 + Math.max(0,(c.oleaje-1.8))/7 + (c.aviso?0.08:0);   // factor meteo
+    ctx.tf = 1 + Math.min(0.9, c.enServicio/c.capacidad) * 0.16;                                    // factor tráfico
+    ctx.cong = Math.round((ctx.tf - 1) * 60);   // demora por congestión (min)
+    ctx.wxd  = Math.round((ctx.wx - 1) * 40);   // demora por meteo (min)
+    return ctx;
+  }
+  function toMin(t){ var a = t.split(':'); return (+a[0]) * 60 + (+a[1]); }
+  function fmtMin(m){ var d = 0; while(m >= 1440){ m -= 1440; d++; } while(m < 0){ m += 1440; d--; } var h = Math.floor(m/60), mm = m % 60; return (h<10?'0':'') + h + ':' + (mm<10?'0':'') + mm + (d>0?' (+'+d+'d)':''); }
+
+  // Maniobra (min) = practicaje + remolque + amarre, escalada por eslora/GT y ajustada por meteo·tráfico del puerto.
+  function estManiobra(loa, gt, kind, ctx){
+    var practicaje = 8 + loa * 0.06, remolque = loa > 150 ? 4 + gt / 6000 : 3, amarre = kind === 'entrada' ? 8 : 6;
+    var mult = ctx.wx * ctx.tf, R = function(x){ return Math.round(x * mult); };
+    return { total:R(practicaje+remolque+amarre), practicaje:R(practicaje), remolque:R(remolque), amarre:R(amarre) };
+  }
+
+  var IC_IN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>';
+  var IC_OUT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V9M7 14l5-5 5 5M5 3h14"/></svg>';
+
+  // Esquema de dársena + flota (SVG) generado por puerto.
+  var FLEET_STATE = null;
+  function renderFleet(D){
+    var s = '<rect class="water" x="0" y="0" width="420" height="260"/>';
+    D.fleet.shores.forEach(function(d){ s += '<path class="shore" d="' + d + '"/>'; });
+    var cx = 0, cy = 0;
+    D.fleet.muelles.forEach(function(m){
+      s += '<rect class="muelle" x="' + m.x + '" y="' + m.y + '" width="' + m.w + '" height="' + m.h + '"/>' +
+        '<text class="muelle-lab" x="' + m.lx + '" y="' + m.ly + '"' + (m.anchor ? ' text-anchor="' + m.anchor + '"' : '') + '>' + m.lab + '</text>';
+      cx += m.x + m.w/2; cy += m.y + m.h/2;
+    });
+    var portAnchor = [cx / D.fleet.muelles.length, cy / D.fleet.muelles.length];
+    D.vessels.forEach(function(v, i){
+      if(v.st === 'canc') return;
+      var cls = (v.st === 'port' || v.st === 'delay') ? 'moored' : (v.st === 'auth' ? 'slow' : '');
+      v._move = v.st === 'delay' ? 'out' : ((v.st === 'auth' || v.st === 'plan') ? 'in' : 'stay');   // maniobra en la línea de tiempo
+      var end = v.mx > 300, lx = end ? -9 : 9, anchor = end ? 'end' : 'start';
+      var wake = v.wake ? '<path class="wake" d="M0,10 q10,13 5,28"/>' : '';
+      s += '<g id="vsl' + i + '" class="vessel ' + cls + '" transform="translate(' + v.mx + ',' + v.my + ') rotate(' + v.rot + ')"><path class="hull" d="M0,-8 L5,7 L-5,7 Z"/>' + wake +
+        '<text class="vlab" x="' + lx + '" y="' + (v.ly != null ? v.ly : 3) + '" text-anchor="' + anchor + '" transform="rotate(' + (-v.rot) + ')">' + v.n + '</text></g>';
+    });
+    document.getElementById('riaSvg').innerHTML = s;
+    document.getElementById('fleetSub').textContent = 'AIS en vivo · ' + D.vessels.filter(function(v){ return v.st !== 'canc'; }).length + ' buques';
+    FLEET_STATE = { vessels: D.vessels, anchor: portAnchor };
+  }
+  function _ease(t){ return t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2)/2; }
+  function _clamp01(v){ return v < 0 ? 0 : (v > 1 ? 1 : v); }
+  // Mueve los buques a lo largo de la línea de tiempo (playback de cronología). frac 0→1.
+  function animateFleet(frac){
+    if(!FLEET_STATE) return;
+    var A = FLEET_STATE.anchor;
+    FLEET_STATE.vessels.forEach(function(v, i){
+      if(v.st === 'canc') return;
+      var g = document.getElementById('vsl' + i); if(!g) return;
+      var x = v.mx, y = v.my;
+      if(v._move === 'in'){                                   // llega: se acerca a los muelles
+        var f = _ease(_clamp01(frac / 0.88));
+        x = v.mx + (A[0] - v.mx) * 0.62 * f;
+        y = v.my + (A[1] - v.my) * 0.62 * f;
+      } else if(v._move === 'out'){                            // sale: se aleja hacia bocana
+        var f2 = _ease(_clamp01((frac - 0.5) / 0.5));
+        var dx = v.mx - A[0], dy = v.my - A[1], L = Math.sqrt(dx*dx + dy*dy) || 1;
+        x = v.mx + dx / L * 74 * f2;
+        y = v.my + dy / L * 74 * f2;
+      }
+      g.setAttribute('transform', 'translate(' + x.toFixed(1) + ',' + y.toFixed(1) + ') rotate(' + v.rot + ')');
+    });
+  }
+  // Carriles de cronología por puerto (barras ilustrativas según estado).
+  function renderCrono(vessels){
+    document.getElementById('cronoLanes').innerHTML = vessels.filter(function(v){ return v.st !== 'canc'; }).slice(0,4).map(function(v){
+      var bar = (v.st === 'port' || v.st === 'delay') ? '<div class="seg-bar s-port" style="left:5%;width:80%"></div>'
+        : (v.st === 'auth') ? '<div class="seg-bar s-mov" style="left:40%;width:14%"></div><div class="seg-bar s-port" style="left:54%;width:40%"></div>'
+        : '<div class="seg-bar s-wait" style="left:64%;width:30%"></div>';
+      return '<div class="lane"><div class="nm">' + v.n + '</div><div class="track">' + bar + '</div></div>';
+    }).join('');
+  }
+
+  function renderCards(ctx, vessels){
+    var cardsEl = document.getElementById('cards');
+    cardsEl.innerHTML = '';
+    vessels.forEach(function(v){
+      var art = document.createElement('article');
+      art.className = 'escala';
+      var right = (v.st === 'delay')
+        ? '<span class="chip-delay"><svg class="icon sm" viewBox="0 0 24 24" style="width:12px;height:12px"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> ' + v.delay + '</span>'
+        : '<span class="badge ' + v.bcls + '">' + v.badge + '</span>';
+      var etaRow, ttn = '';
+      if(v.st === 'canc'){
+        etaRow = '<div class="eta-row"><div class="eta-line"><span class="eta-lab">' + v.etaL + '</span>' +
+          '<span class="eta-ref tnum" style="color:var(--muted)">' + v.etaTime + '</span></div>' +
+          '<div class="eta-src">' + v.etaDate + ' · escala cancelada</div></div>';
+      } else {
+        var rd = v.ais + ctx.cong + ctx.wxd;                          // refinado = AIS + congestión + meteo
+        var ref = fmtMin(toMin(v.etaTime) + rd);
+        var dcls = rd > 0 ? 'up' : (rd < 0 ? 'down' : '');
+        var dtxt = rd === 0 ? 'en hora' : (rd > 0 ? '+' : '−') + Math.abs(rd) + ' min';
+        etaRow = '<div class="eta-row">' +
+          '<div class="eta-line">' +
+            '<span class="eta-lab">' + v.etaL + '</span>' +
+            '<span class="eta-off tnum">' + v.etaTime + '</span>' +
+            '<span class="eta-arrow">→</span>' +
+            '<span class="eta-ref tnum">' + ref + '</span>' +
+            '<span class="eta-delta ' + dcls + '">' + dtxt + '</span>' +
+          '</div>' +
+          '<div class="eta-src">' + v.etaDate + ' · prevista por <b style="color:var(--accent-strong);font-weight:800">NauticOps</b></div>' +
+        '</div>';
+        var e = estManiobra(v.loa, v.gt, 'entrada', ctx), s = estManiobra(v.loa, v.gt, 'salida', ctx);
+        var title = 'Entrada ~' + e.total + ' min = practicaje ~' + e.practicaje + '′ · remolque ~' + e.remolque + '′ · amarre ~' + e.amarre + '′. Ajuste por meteo ×' + ctx.wx.toFixed(2) + ' y tráfico ×' + ctx.tf.toFixed(2) + '.';
+        ttn = '<div class="ttn" title="' + title + '">' +
+          '<span class="ttn-h">Servicios técnico-náuticos</span>' +
+          '<span class="ttn-item in">' + IC_IN + ' Entrada <b>' + e.total + '</b><span class="u">min</span></span>' +
+          '<span class="ttn-item out">' + IC_OUT + ' Salida <b>' + s.total + '</b><span class="u">min</span></span>' +
+          '</div>';
+      }
+      art.innerHTML =
+        '<div class="head">' +
+          '<div class="hl">' +
+            '<div class="top"><span class="vn">' + v.n + '</span> <span class="tag">' + v.tag + '</span></div>' +
+            '<div class="meta">IMO ' + v.imo + ' · <b>' + v.gt.toLocaleString('es-ES') + ' GT</b> · ' + v.loa + ' m · ' + v.flag + ' · ' + v.muelle + '</div>' +
+          '</div>' +
+          '<div class="hr">' + right + '</div>' +
+        '</div>' + etaRow + ttn;
+      cardsEl.appendChild(art);
+    });
+    var pct = Math.round((ctx.wx * ctx.tf - 1) * 100);
+    var cond = ctx.aviso ? 'aviso costero + tráfico' : 'mar en calma · tráfico moderado';
+    document.getElementById('ttnBanner').innerHTML =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>' +
+      '<span><b>Predicción operativa por escala:</b> hora <b>prevista por NauticOps</b> — nuestro motor de predicción de ETA/ETD — y duración estimada de los <b>servicios técnico-náuticos</b> (practicaje · remolque · amarre). Situación actual del puerto: maniobras <b>' + (pct>=0?'+':'') + pct + '%</b>.</span>';
+  }
+
+  /* ---------- aviso modal (contenido por puerto) ---------- */
+  var mb = document.getElementById('modalBack');
+  function closeModal(){ mb.classList.remove('show'); }
+  function openAviso(a){
+    document.getElementById('modalLvl').style.background = a.color;
+    document.getElementById('modalTitle').textContent = a.title;
+    document.getElementById('modalSrc').textContent = a.src;
+    document.getElementById('modalBody').innerHTML = a.body + '<dl>' +
+      a.dl.map(function(r){ return '<dt>' + r[0] + '</dt><dd' + (r[0]==='Vigencia'?' class="tnum"':'') + '>' + r[1] + '</dd>'; }).join('') + '</dl>';
+    mb.classList.add('show'); document.getElementById('modalClose').focus();
+  }
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  mb.addEventListener('click', function(e){ if(e.target===mb) closeModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+
+  /* ---------- contexto operativo por puerto (meteo real según fuente de cada AP) ---------- */
+  var ICO_ALERT = '<svg class="icon" viewBox="0 0 24 24" style="stroke:currentColor"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg>';
+  var ICO_CHEV  = '<svg class="icon" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg>';
+  var ICO_OK    = '<svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>';
+  function mIcon(p){ return '<svg class="icon sm" viewBox="0 0 24 24">' + p + '</svg>'; }
+  function chipHTML(c){
+    return '<div><div class="k">Viento</div><div class="v tnum">' + c.viento + ' <small>' + c.vdir + '</small></div></div>' +
+      '<div class="sep"></div><div><div class="k">Oleaje</div><div class="v tnum">' + c.oleaje + ' <small>m</small></div></div>' +
+      '<div class="sep"></div><div><div class="k">Temp</div><div class="v tnum">' + c.temp + '</div></div>';
+  }
+  function metHTML(m){
+    return '<div class="met"><div class="k">' + mIcon('<path d="M4 12h11a3 3 0 1 0-3-3M2 16h15a3 3 0 1 1-3 3"/>') + ' Viento</div><div class="v tnum">' + m.viento + ' <small>' + m.vdir + '</small></div></div>' +
+      '<div class="met"><div class="k">' + mIcon('<path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0M2 18c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/>') + ' Oleaje</div><div class="v tnum">' + m.oleaje + ' <small>m</small></div></div>' +
+      '<div class="met"><div class="k">' + mIcon('<path d="M12 3v10M9 6l3-3 3 3"/><circle cx="12" cy="17" r="4"/>') + ' Racha máx</div><div class="v tnum">' + m.racha + ' <small>kn</small></div></div>' +
+      '<div class="met"><div class="k">' + mIcon('<path d="M14 14.8V5a2 2 0 1 0-4 0v9.8a4 4 0 1 0 4 0Z"/>') + ' Temp mar</div><div class="v tnum">' + m.temp + ' <small>°C</small></div></div>';
+  }
+  function setAviso(a){
+    var w = document.getElementById('avisoWrap');
+    if(a){
+      w.innerHTML = '<button class="aviso-btn" id="avisoBtn" aria-haspopup="dialog">' +
+        '<span class="lvl" style="background:' + a.color + '">' + ICO_ALERT + '</span>' +
+        '<span class="txt"><span class="t">' + a.t + '</span><span class="s">' + a.s + '</span></span>' +
+        '<span class="go">' + ICO_CHEV + '</span></button>';
+      document.getElementById('avisoBtn').addEventListener('click', function(){ openAviso(a); });
+    } else {
+      w.innerHTML = '<div class="aviso-none"><span class="ok">' + ICO_OK + '</span> Sin avisos costeros activos</div>';
+    }
+  }
+  var FLEETS = {
+    marin: {
+      shores: ["M0,0 H420 V38 Q320,54 250,44 Q150,30 60,60 Q20,72 0,64 Z", "M0,150 Q80,132 150,150 Q240,172 300,158 Q360,146 420,168 V260 H0 Z"],
+      muelles: [{x:150,y:150,w:70,h:10,lab:'Muelle Comercial',lx:152,ly:173}, {x:250,y:44,w:60,h:9,lab:'Muelle Norte',lx:252,ly:70}]
+    },
+    alicante: {
+      shores: ["M0,206 Q90,197 180,203 Q280,211 360,203 Q396,200 420,206 V260 H0 Z", "M298,205 Q294,152 276,120 Q268,106 258,100 L250,108 Q262,116 270,132 Q288,166 286,205 Z"],
+      muelles: [{x:100,y:197,w:66,h:9,lab:'Muelle 11',lx:102,ly:220}, {x:212,y:199,w:74,h:9,lab:'Estación marítima',lx:214,ly:222}]
+    },
+    huelva: {
+      shores: ["M0,0 H108 Q130,70 112,140 Q98,205 126,260 H0 Z", "M420,0 H312 Q290,70 308,140 Q320,205 296,260 H420 Z"],
+      muelles: [{x:250,y:108,w:56,h:9,lab:'Muelle Sur',lx:244,ly:104,anchor:'end'}, {x:244,y:170,w:62,h:9,lab:'M. Reina Sofía',lx:238,ly:192,anchor:'end'}]
+    }
+  };
+  var VESSELS = {
+    marin: [
+      {n:'NADIR', tag:'Portacontenedores', imo:'9456321', gt:28140, loa:210, flag:'🇱🇷', muelle:'Muelle Norte', st:'port', badge:'En puerto', bcls:'b-port', etaL:'Salida (ETD)', etaDate:'29/07', etaTime:'18:00', ais:16, mx:272, my:52, rot:180, wake:false},
+      {n:'CLARA', tag:'Granel sólido', imo:'9302118', gt:19870, loa:180, flag:'🇪🇸', muelle:'Muelle Comercial', st:'delay', delay:'Salida demorada +2h', etaL:'Salida (ETD)', etaDate:'29/07', etaTime:'22:00', ais:1, mx:186, my:146, rot:0, wake:false},
+      {n:'MONT BLANC', tag:'Carga general', imo:'9611044', gt:12300, loa:140, flag:'🇵🇹', muelle:'Muelle Norte', st:'auth', badge:'Autorizado', bcls:'b-auth', etaL:'ETA', etaDate:'29/07', etaTime:'14:30', ais:21, mx:300, my:108, rot:150, wake:true},
+      {n:'RÍA DE VIGO', tag:'Ro-Ro', imo:'9188233', gt:9450, loa:120, flag:'🇪🇸', muelle:'Fondeadero', st:'plan', badge:'Previsto', bcls:'b-plan', etaL:'ETA', etaDate:'30/07', etaTime:'03:00', ais:-29, mx:352, my:92, rot:120, wake:true},
+      {n:'ANDROMEDA', tag:'Granel líquido', imo:'9741220', gt:15020, loa:160, flag:'🇲🇹', muelle:'—', st:'canc', badge:'Cancelado', bcls:'b-canc', etaL:'Prevista', etaDate:'29/07', etaTime:'11:00', ais:0}
+    ],
+    alicante: [
+      {n:'MARE DORADA', tag:'Portacontenedores', imo:'9601234', gt:25600, loa:200, flag:'🇵🇦', muelle:'Muelle 17', st:'port', badge:'En puerto', bcls:'b-port', etaL:'Salida (ETD)', etaDate:'29/07', etaTime:'19:30', ais:12, mx:138, my:192, rot:0, wake:false},
+      {n:'CIUDAD DE IBIZA', tag:'Pasaje', imo:'9345678', gt:18400, loa:165, flag:'🇪🇸', muelle:'Estación marítima', st:'delay', delay:'Salida demorada +1h', etaL:'Salida (ETD)', etaDate:'29/07', etaTime:'20:00', ais:4, mx:250, my:186, rot:0, wake:false},
+      {n:'SIERRA NEVADA', tag:'Granel sólido', imo:'9512345', gt:14200, loa:150, flag:'🇮🇹', muelle:'Muelle 11', st:'auth', badge:'Autorizado', bcls:'b-auth', etaL:'ETA', etaDate:'29/07', etaTime:'15:45', ais:9, mx:322, my:120, rot:205, wake:true},
+      {n:'COSTA AZUL', tag:'Crucero', imo:'9701234', gt:92000, loa:290, flag:'🇮🇹', muelle:'Fondeadero', st:'plan', badge:'Previsto', bcls:'b-plan', etaL:'ETA', etaDate:'30/07', etaTime:'08:00', ais:-12, mx:120, my:86, rot:150, wake:true},
+      {n:'LEVANTE STAR', tag:'Granel líquido', imo:'9455566', gt:16800, loa:170, flag:'🇲🇹', muelle:'—', st:'canc', badge:'Cancelado', bcls:'b-canc', etaL:'Prevista', etaDate:'29/07', etaTime:'12:00', ais:0}
+    ],
+    huelva: [
+      {n:'ODIEL', tag:'Granel líquido', imo:'9588221', gt:22300, loa:183, flag:'🇱🇷', muelle:'Muelle Reina Sofía', st:'port', badge:'En puerto', bcls:'b-port', etaL:'Salida (ETD)', etaDate:'29/07', etaTime:'17:00', ais:14, mx:236, my:112, rot:0, wake:false},
+      {n:'TINTO', tag:'Granel sólido', imo:'9366778', gt:24100, loa:190, flag:'🇬🇷', muelle:'M. Ing. Juan Gonzalo', st:'delay', delay:'Salida demorada +3h', etaL:'Salida (ETD)', etaDate:'29/07', etaTime:'21:00', ais:2, mx:230, my:174, rot:0, wake:false},
+      {n:'HUELVA STAR', tag:'Portacontenedores', imo:'9622110', gt:17600, loa:172, flag:'🇵🇹', muelle:'Muelle Sur', st:'auth', badge:'Autorizado', bcls:'b-auth', etaL:'ETA', etaDate:'29/07', etaTime:'14:00', ais:18, mx:200, my:222, rot:-25, wake:true},
+      {n:'CIUDAD DE PALOS', tag:'Carga general', imo:'9188990', gt:9900, loa:128, flag:'🇪🇸', muelle:'Fondeadero', st:'plan', badge:'Previsto', bcls:'b-plan', etaL:'ETA', etaDate:'30/07', etaTime:'02:00', ais:-8, mx:208, my:50, rot:160, wake:true},
+      {n:'RÍO GUADIANA', tag:'Granel líquido', imo:'9744221', gt:15400, loa:160, flag:'🇵🇦', muelle:'—', st:'canc', badge:'Cancelado', bcls:'b-canc', etaL:'Prevista', etaDate:'29/07', etaTime:'10:30', ais:0}
+    ]
+  };
+  var PORT_DATA = {
+    marin: {
+      name:'Puerto de Marín', ap:'Autoridad Portuaria de Marín y Ría de Pontevedra',
+      freshSrc:'Datos AP Marín', freshTime:'29/07 08:40',
+      fleetTitle:'Flota en la ría', fleetSub:'AIS en vivo · 5 buques', fleetAria:'Mapa de la ría de Pontevedra con la flota',
+      meteoSrc:'MeteoGalicia · est. Porto de Marín',
+      chip:{viento:'24', vdir:'kn NO', oleaje:'2.4', temp:'18°'},
+      met:{viento:'24', vdir:'kn · NO', oleaje:'2.4', racha:'38', temp:'16'},
+      kpis:{port:7, auth:3, plan:12, warn:1},
+      ctx:{viento:24, oleaje:2.4, aviso:true, enServicio:10, capacidad:12},
+      aviso:{ color:'#F59E0B', title:'Aviso naranja', src:'AEMET · Agencia Estatal de Meteorología',
+        t:'Aviso naranja · viento y fenómenos costeros', s:'AEMET · Rías Baixas (Costa) · vigente 12:00–22:00',
+        body:'Fenómenos costeros y viento en la zona <b>Rías Baixas (Costa)</b>. Viento del NO fuerza 8 (34–40 kn) con mar combinada de 3 a 4 m. Precaución en maniobras de atraque y entrada/salida a puerto.',
+        dl:[['Zona','713601C · Rías Baixas (Costa)'],['Nivel','Naranja (riesgo importante)'],['Fenómeno','Viento NO F8 · mar combinada 3–4 m'],['Vigencia','Hoy 12:00 – 22:00'],['Fuente','AEMET (CAP) · MeteoGalicia']] }
+    },
+    alicante: {
+      name:'Puerto de Alicante', ap:'Autoridad Portuaria de Alicante',
+      freshSrc:'Datos AP Alicante', freshTime:'29/07 09:10',
+      fleetTitle:'Flota en el puerto', fleetSub:'AIS en vivo · 5 buques', fleetAria:'Mapa del puerto de Alicante con la flota',
+      meteoSrc:'AEMET (Levante) · Puertos del Estado — Portus 16130',
+      chip:{viento:'12', vdir:'kn E', oleaje:'0.7', temp:'24°'},
+      met:{viento:'12', vdir:'kn · E', oleaje:'0.7', racha:'19', temp:'21'},
+      kpis:{port:5, auth:2, plan:9, warn:0},
+      ctx:{viento:12, oleaje:0.7, aviso:false, enServicio:6, capacidad:12},
+      aviso:null
+    },
+    huelva: {
+      name:'Puerto de Huelva', ap:'Autoridad Portuaria de Huelva',
+      freshSrc:'Datos AP Huelva', freshTime:'29/07 08:55',
+      fleetTitle:'Flota en el puerto', fleetSub:'AIS en vivo · 5 buques', fleetAria:'Mapa del puerto de Huelva con la flota',
+      meteoSrc:'AEMET (Golfo de Cádiz) · Puertos del Estado — Portus 13120',
+      chip:{viento:'18', vdir:'kn SO', oleaje:'1.6', temp:'22°'},
+      met:{viento:'18', vdir:'kn · SO', oleaje:'1.6', racha:'29', temp:'19'},
+      kpis:{port:6, auth:2, plan:10, warn:1},
+      ctx:{viento:18, oleaje:1.6, aviso:true, enServicio:8, capacidad:12},
+      aviso:{ color:'#EAB308', title:'Aviso amarillo', src:'AEMET · Agencia Estatal de Meteorología',
+        t:'Aviso amarillo · viento y mar de fondo', s:'AEMET · Golfo de Cádiz · vigente 10:00–20:00',
+        body:'Viento y mar de fondo en el <b>litoral de Huelva (Golfo de Cádiz)</b>. Viento del SO fuerza 6–7 (22–33 kn) con mar de fondo de 2 a 3 m. Vigilar las ventanas de maniobra en entrada/salida.',
+        dl:[['Zona','Litoral de Huelva · Golfo de Cádiz'],['Nivel','Amarillo (riesgo)'],['Fenómeno','Viento SO F6–7 · mar de fondo 2–3 m'],['Vigencia','Hoy 10:00 – 20:00'],['Fuente','AEMET · Puertos del Estado (Portus 13120)']] }
+    }
+  };
+  function populatePort(slug){
+    var D = PORT_DATA[slug] || PORT_DATA.marin;
+    document.getElementById('portName').textContent = D.name;
+    document.getElementById('portAp').textContent = D.ap;
+    document.getElementById('freshSrc').textContent = D.freshSrc;
+    document.getElementById('freshTime').textContent = D.freshTime;
+    document.getElementById('meteoChip').innerHTML = chipHTML(D.chip);
+    document.getElementById('kpiPort').textContent = D.kpis.port;
+    document.getElementById('kpiAuth').textContent = D.kpis.auth;
+    document.getElementById('kpiPlan').textContent = D.kpis.plan;
+    document.getElementById('kpiWarn').textContent = D.kpis.warn;
+    document.getElementById('fleetTitle').textContent = D.fleetTitle;
+    document.getElementById('fleetSub').textContent = D.fleetSub;
+    document.getElementById('riaSvg').setAttribute('aria-label', D.fleetAria);
+    document.getElementById('meteoSrc').textContent = D.meteoSrc;
+    document.getElementById('metGrid').innerHTML = metHTML(D.met);
+    setAviso(D.aviso);
+    renderFleet({fleet:FLEETS[slug], vessels:VESSELS[slug]});
+    var _sc = document.getElementById('scrub'); if(_sc){ _sc.value = 0; }
+    var _ph = document.getElementById('playhead'); if(_ph){ _ph.style.left = '0%'; }
+    var _ck = document.getElementById('clock'); if(_ck){ _ck.textContent = '06:00'; }
+    renderCrono(VESSELS[slug]);
+    renderCards(computeCtx(D.ctx), VESSELS[slug]);
+  }
+  populatePort('marin');   // estado inicial (el dashboard está oculto hasta abrir un puerto)
+
+  /* ---------- cronología playback ---------- */
+  var scrub = document.getElementById('scrub');
+  var playhead = document.getElementById('playhead');
+  var clock = document.getElementById('clock');
+  var playBtn = document.getElementById('playBtn');
+  var icPlay = playBtn.querySelector('.ic-play');
+  var icPause = playBtn.querySelector('.ic-pause');
+  var playing = false, raf = null, last = 0;
+  var START = 6*60, END = 22*60; // minutes
+
+  function fmt(mins){
+    var h = Math.floor(mins/60), m = Math.floor(mins%60);
+    return (h<10?'0':'')+h+':'+(m<10?'0':'')+m;
+  }
+  function render(){
+    var f = scrub.value/1000;
+    playhead.style.left = (f*100).toFixed(2)+'%';
+    clock.textContent = fmt(START + f*(END-START));
+    animateFleet(f);
+  }
+  scrub.addEventListener('input', function(){ render(); });
+  function tick(ts){
+    if(!last) last = ts;
+    var dt = ts - last; last = ts;
+    var v = +scrub.value + dt*(1000/14000); // ~14s full sweep
+    if(v >= 1000){ v = 1000; stop(); }
+    scrub.value = v; render();
+    if(playing) raf = requestAnimationFrame(tick);
+  }
+  function play(){
+    if(+scrub.value >= 1000) scrub.value = 0;
+    playing = true; last = 0; icPlay.style.display='none'; icPause.style.display='block';
+    playBtn.setAttribute('aria-label','Pausar');
+    raf = requestAnimationFrame(tick);
+  }
+  function stop(){
+    playing = false; if(raf) cancelAnimationFrame(raf);
+    icPlay.style.display='block'; icPause.style.display='none';
+    playBtn.setAttribute('aria-label','Reproducir');
+  }
+  playBtn.addEventListener('click', function(){ playing ? stop() : play(); });
+  render();
+})();
+</script>
+
+</body>
+</html>
