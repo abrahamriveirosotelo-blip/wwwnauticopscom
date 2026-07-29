@@ -39,21 +39,6 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 25 según lo previsto."
     },
     {
-      "id": "A202600549",
-      "status": "Iniciado",
-      "imo": "9250464",
-      "name": "MSC OPERA",
-      "gt": 65591,
-      "len": 274,
-      "berth": "14",
-      "agent": "LANTIMAR S.L.",
-      "op": "CRUCERISTAS",
-      "eta": "2026-07-29T08:00",
-      "etd": "2026-07-29T17:00",
-      "from": "LISBOA",
-      "to": "MAHON"
-    },
-    {
       "id": "A202600550",
       "status": "Prevista",
       "imo": "9265419",
