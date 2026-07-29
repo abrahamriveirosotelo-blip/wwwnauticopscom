@@ -2,58 +2,10 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "28/07/2026",
+    "date": "29/07/2026",
     "refreshHours": 2
   },
-  "calls": [
-    {
-      "id": "A202600533",
-      "status": "Alerta",
-      "imo": "1114901",
-      "name": "BLACKSEA STAR",
-      "gt": 6641,
-      "len": 141,
-      "berth": "13",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "D/ CRISTAL",
-      "eta": "2026-07-24T16:00",
-      "etd": "2026-07-28T23:00",
-      "from": "SEVILLA",
-      "to": "ALGER",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 13 según lo previsto."
-    },
-    {
-      "id": "A202600543",
-      "status": "Iniciado",
-      "imo": "9437816",
-      "name": "RIZE",
-      "gt": 4109,
-      "len": 99.89,
-      "berth": "13",
-      "agent": "BERGE MARITIMA, S.L.",
-      "op": "C/ CAUCHO ",
-      "eta": "2026-07-25T08:00",
-      "etd": "2026-07-28T23:00",
-      "from": "CAGLIARI",
-      "to": "ISKENDERUN, HATAY"
-    },
-    {
-      "id": "A202600544",
-      "status": "Iniciado",
-      "imo": "9568328",
-      "name": "EEBORG",
-      "gt": 7680,
-      "len": 144.56,
-      "berth": "13",
-      "agent": "BERGE MARITIMA, S.L.",
-      "op": "D/ BOBINAS PAPEL",
-      "eta": "2026-07-27T16:00",
-      "etd": "2026-07-28T23:00",
-      "from": "HARAHOLMEN",
-      "to": "TARRAGONA"
-    }
-  ],
+  "calls": [],
   "tugService": {
     "callId": "A202600533",
     "reportNumber": "027892",
