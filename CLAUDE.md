@@ -2,6 +2,18 @@
 
 React + TypeScript + Vite SPA. The public marketing website for NauticOps (`nauticops.com`), deployed on Vercel.
 
+## Reglas de trabajo — leer antes de tocar nada
+
+El quality gate **no está forzado**: proteger `main` y exigir checks requiere permiso de admin sobre el repo, que esta cuenta no tiene (el repo es de `abrahamriveirosotelo-blip`). Así que es una **convención que se cumple a mano, sin excepciones**:
+
+1. **Antes de cada commit**: `npm run format`. No se commitea sin formatear.
+2. **Antes de abrir o actualizar un PR**: `npm run verify` (`format:check → lint → typecheck → test → build`), y **el resultado va en el cuerpo del PR con números concretos** — "3 errores / 8 warnings, igual que el baseline", no "todo verde".
+3. **Criterio de aceptación** mientras #80 no aterrice: `format:check`, `typecheck`, `test` y `build` en verde **siempre**; `lint` no puede empeorar el baseline (**3 errores / 8 warnings**). Cuando cierre #80, el criterio pasa a lint en verde también.
+4. Si el gate falla por algo **preexistente**, se dice explícitamente en el PR. Nunca se silencia ni se da por bueno sin mencionarlo.
+5. **Merge siempre con squash**: un commit por PR, historial lineal, sin merge commits. Dentro de una rama sí puedes mergear `main` para ponerte al día.
+6. **No editar a mano** `src/pages/demos/**/data.json` ni `vessel-cache.json`: los reescribe el cron cada 2 h y se perdería el cambio.
+7. **Un reformateo masivo va en su propio PR**, sin nada más dentro, y su SHA (el de `main`, post-squash) se registra en `.git-blame-ignore-revs` en un PR posterior.
+
 ## Stack
 
 - **React 18 + TypeScript + Vite**
@@ -21,7 +33,7 @@ React + TypeScript + Vite SPA. The public marketing website for NauticOps (`naut
 - **Merge**: `main` se mergea **siempre con squash** — un commit por PR, historial lineal, sin merge commits. Dentro de una rama de PR sí puedes mergear `main` para ponerte al día; el squash lo colapsa todo igual.
 - **`git blame`**: los commits de reformateo masivo se listan en `.git-blame-ignore-revs`. GitHub lo aplica solo; en local, una vez por clon: `git config blame.ignoreRevsFile .git-blame-ignore-revs`. Ojo al squash: el SHA bueno es el que queda **en `main`** (`gh pr view <n> --json mergeCommit --jq .mergeCommit.oid`), así que un PR de reformateo se registra en un PR posterior, nunca en sí mismo.
 - **Alcance**: el gate cubre solo `wwwnauticopscom/`. La raíz del monorepo y `port-control-center/` (deprecado) quedan fuera.
-- El **quality gate en CI** (`format:check → lint → typecheck → test/coverage` + protección de `main`) se está montando en las issues **#79–#83**. Hasta que aterrice, **corre el gate en local antes de cada PR**.
+- El **quality gate** se está montando en las issues **#79–#83**. El workflow de CI (#81) se podrá añadir y dará señal visible en cada PR, pero **hacerlo bloqueante requiere admin del repo**, que esta cuenta no tiene: hasta que eso se resuelva, el gate vive en las **Reglas de trabajo** de arriba y se corre en local antes de cada PR.
 
 ## Pages
 
