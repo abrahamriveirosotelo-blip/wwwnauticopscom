@@ -1073,5 +1073,41 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-29T14:13:21Z"
+  },
+  "PAVLARA::BILBAO": {
+    "resolved": true,
+    "imo": "9741736",
+    "mmsi": "538011568",
+    "detailId": "9741736",
+    "gt": 25598,
+    "dwt": 39769,
+    "len": 180,
+    "beam": 32,
+    "flag": "Marshall Islands",
+    "vesselType": "Bulk Carrier",
+    "built": 2016,
+    "callsign": "V7A3140",
+    "destination": "Leixoes, Portugal",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-30T10:26:02Z"
+  },
+  "HUDSONGRACHT::PORTO EMPEDOCLE": {
+    "resolved": true,
+    "imo": "9433262",
+    "mmsi": "244030000",
+    "detailId": "9433262",
+    "gt": 9627,
+    "dwt": 12709,
+    "len": 138,
+    "beam": 21,
+    "flag": "Netherlands",
+    "vesselType": "General Cargo Ship",
+    "built": 2008,
+    "callsign": "PBTP",
+    "destination": "Vlaardingen, Netherlands",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-30T10:26:06Z"
   }
 }

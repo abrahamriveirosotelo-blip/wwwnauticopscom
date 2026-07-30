@@ -8,7 +8,7 @@
   "calls": [
     {
       "id": "A202600550",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9265419",
       "name": "TASSILI 2",
       "gt": 20024,
@@ -19,7 +19,9 @@
       "eta": "2026-07-30T08:00",
       "etd": "2026-07-30T14:00",
       "from": "ORAN",
-      "to": "ALGER"
+      "to": "ALGER",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 25 según lo previsto."
     },
     {
       "id": "A202600512",
@@ -67,6 +69,38 @@
       "to": "LAS PALMAS"
     },
     {
+      "id": "A202600556",
+      "status": "Prevista",
+      "imo": "9265419",
+      "name": "TASSILI 2",
+      "gt": 20024,
+      "len": 142.92,
+      "berth": "25",
+      "agent": "ROMEU Y CIA. S A",
+      "op": "PASAJE Y VEHICULOS",
+      "eta": "2026-07-31T08:00",
+      "etd": "2026-07-31T15:00",
+      "from": "ORAN",
+      "to": "ALGER",
+      "affectedBy": "A202600550",
+      "affectRisk": "ALTO"
+    },
+    {
+      "id": "A202600551",
+      "status": "Prevista",
+      "imo": "9803625",
+      "name": "MSC VIRTUOSA",
+      "gt": 181541,
+      "len": 331,
+      "berth": "14",
+      "agent": "LANTIMAR",
+      "op": "CRUCERISTAS",
+      "eta": "2026-07-31T09:00",
+      "etd": "2026-07-31T20:00",
+      "from": "MALAGA",
+      "to": "IBIZA"
+    },
+    {
       "id": "A202600519",
       "status": "Prevista",
       "imo": "9083043",
@@ -76,14 +110,14 @@
       "berth": "11",
       "agent": "EUROPEAN FORWARDING SL",
       "op": "PORTACONTENEDORES",
-      "eta": "2026-08-02T01:00",
-      "etd": "2026-08-03T15:00",
+      "eta": "2026-08-31T01:00",
+      "etd": "2026-08-31T15:00",
       "from": "BARCELONA",
       "to": "LAS PALMAS"
     }
   ],
   "tugService": {
-    "callId": "A202600533",
+    "callId": "A202600550",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -110,17 +144,17 @@
     }
   },
   "milestones": {
-    "A202600533": [
+    "A202600550": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "24/07 · 16:25",
+        "time": "30/07 · 08:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "24/07 · 17:30",
+        "time": "30/07 · 09:30",
         "by": "Agente: ROMEU Y CIA. S A"
       },
       {
