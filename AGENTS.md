@@ -17,11 +17,19 @@ The quality gate is **not enforced**: protecting `main` needs repo admin, which 
 7. **Never hand-edit** `src/pages/demos/**/data.json` or `vessel-cache.json`: the cron rewrites them every 2h and commits straight to `main`.
 8. **A repo-wide reformat gets its own PR**, with nothing else in it. Register its SHA in `.git-blame-ignore-revs` **afterwards**, in a separate PR — under squash the SHA only exists once merged (`gh pr view <n> --json mergeCommit --jq .mergeCommit.oid`).
 
-Issues, PR titles and bodies, and commit messages are written in **Spanish**, matching the existing history. These instruction files are in English.
+**Language**: commit messages and these instruction files are in **English**. Issues and PR titles and bodies stay in **Spanish**.
 
 Once per clone: `git config blame.ignoreRevsFile .git-blame-ignore-revs`. GitHub applies it by itself in its web UI.
 
-**Adding rules here**: only when an agent repeats the same mistake, or a review catches something it should have known. A file that grows unchecked ends up read worse than a short one. Anything that applies to a single folder belongs in that folder's instructions.
+**Adding rules here** — a file that grows unchecked gets read worse than a short one, so every line must earn its place:
+
+- Add a rule only when an agent repeated the same mistake, or a review caught something it should have known. Not preemptively.
+- Nothing an agent can work out by reading the code. Routes, file trees, dependency lists and colour values belong in the code, not here.
+- Descriptive documentation goes in the README. This file is only for what changes an agent's behaviour.
+- Anything that applies to a single folder goes in that folder's instructions.
+- A rule that exists because of an open issue names it, and dies with it: rule 3 goes when #80 closes, the demo exception when #28 does.
+
+`src/test/instructions.test.ts` caps the size of both files, so `npm run verify` fails when they overflow. Prune first; raise the cap only when the new content is worth more than what is already there.
 
 ## Traps
 
@@ -45,6 +53,4 @@ One folder per port under `src/pages/demos/<port>/`, with a strict split: **all 
 
 ## Misc
 
-i18n through `src/contexts/LanguageContext.tsx`; strings in `src/lib/translations.ts` plus `src/lib/translations/` split by domain. Default language is English.
-
-GA4 `G-LBV7LSXJDD` via `src/lib/analytics.ts`. No backend and no auth — CTA forms post to Formspree.
+No backend and no auth: CTA forms post to Formspree. The UI defaults to **English**, not Spanish, despite the market — i18n lives in `LanguageContext` plus `src/lib/translations/`.
