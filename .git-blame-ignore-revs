@@ -1,0 +1,10 @@
+# Revisiones que solo cambian formato — se ignoran en `git blame`.
+#
+# Uso local (una vez por clon):
+#   git config blame.ignoreRevsFile .git-blame-ignore-revs
+# GitHub lo aplica automáticamente en su vista de blame.
+#
+# Añade aquí el SHA (completo) de cualquier commit de reformateo masivo.
+
+# style: formatear todo el repo con Prettier (#79)
+6a732afece30e574f9792e63603a0294724d922e
