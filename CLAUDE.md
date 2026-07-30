@@ -1,8 +1,8 @@
 @AGENTS.md
 
-## Solo para Claude Code
+## Claude Code only
 
-Lo de arriba se importa de `AGENTS.md`, que es la fuente única y la que comparten Claude Code y Cursor. **Cualquier instrucción nueva va allí**, no en este fichero: lo que se escriba aquí es invisible para quien trabaje con Cursor.
+Everything above is imported from `AGENTS.md`, the single source shared with Cursor. **New instructions go there**, not here: whatever is written in this file is invisible to anyone working with Cursor.
 
-- **Instrucciones anidadas**: las tres demos tienen su propio `CLAUDE.md` en `src/pages/demos/<puerto>/`, que se carga al leer ficheros de esas carpetas. Son la excepción a la fuente única —Cursor no los ve— y no se han duplicado a propósito: desaparecen cuando #28 unifique las demos en una sola app.
-- **Memoria automática**: es local a cada máquina y no se comparte con el equipo. Si algo aprendido debe valer para todos, escríbelo en `AGENTS.md`.
+- **Nested instructions**: each demo has its own `CLAUDE.md` under `src/pages/demos/<port>/`, loaded when reading files in those folders. They are the exception to the single source — Cursor cannot see them — and were left unduplicated on purpose: they disappear when #28 merges the demos into one app.
+- **Auto memory** is local to each machine and is never shared with the team. Anything learned that should apply to everyone belongs in `AGENTS.md`.
