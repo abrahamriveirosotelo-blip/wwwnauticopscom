@@ -13,15 +13,15 @@ const AboutSection = () => {
   return (
     <section id="about" className="section-padding bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-secondary/10 text-secondary">
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <span className="mb-4 inline-block rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-medium text-secondary">
             {t.about.badge}
           </span>
-          <h2 className="heading-lg text-foreground mb-6 text-balance">{t.about.title}</h2>
-          <p className="body-lg text-muted-foreground text-balance">{t.about.subtitle}</p>
+          <h2 className="heading-lg mb-6 text-balance text-foreground">{t.about.title}</h2>
+          <p className="body-lg text-balance text-muted-foreground">{t.about.subtitle}</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 lg:grid-cols-2">
           {t.about.members.map((member, index) => {
             const isExpanded = expandedIndex === index;
             const Icon = memberIcons[index];
@@ -29,25 +29,25 @@ const AboutSection = () => {
             return (
               <div key={member.name} className="card-maritime p-5 sm:p-8">
                 {/* Header */}
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="icon-container w-14 h-14 flex-shrink-0">
+                <div className="mb-4 flex items-center gap-4">
+                  <div className="icon-container h-14 w-14 flex-shrink-0">
                     <Icon className="h-7 w-7 text-secondary" />
                   </div>
                   <div>
-                    <h3 className="heading-sm text-foreground leading-tight">{member.name}</h3>
+                    <h3 className="heading-sm leading-tight text-foreground">{member.name}</h3>
                     <p className="text-sm font-medium text-secondary">{member.role}</p>
                   </div>
                 </div>
 
-                <p className="text-xs text-muted-foreground mb-4 tracking-wide">{member.tags}</p>
+                <p className="mb-4 text-xs tracking-wide text-muted-foreground">{member.tags}</p>
 
                 {/* Short bio */}
-                <p className="body-md text-muted-foreground mb-4">{member.shortBio}</p>
+                <p className="body-md mb-4 text-muted-foreground">{member.shortBio}</p>
 
                 {/* Expand / collapse */}
                 <button
                   onClick={() => toggle(index)}
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-secondary hover:text-secondary/80 cursor-pointer transition-colors"
+                  className="inline-flex cursor-pointer items-center gap-1.5 text-sm font-medium text-secondary transition-colors hover:text-secondary/80"
                 >
                   {isExpanded ? t.about.readLess : t.about.readMore}
                   {isExpanded ? (
@@ -59,14 +59,14 @@ const AboutSection = () => {
 
                 {/* Extended content */}
                 {isExpanded && (
-                  <div className="mt-6 pt-6 border-t border-border animate-fade-in">
+                  <div className="animate-fade-in mt-6 border-t border-border pt-6">
                     {member.fullBio.map((paragraph, i) => (
-                      <p key={i} className="body-md text-muted-foreground mb-4">
+                      <p key={i} className="body-md mb-4 text-muted-foreground">
                         {paragraph}
                       </p>
                     ))}
 
-                    <h4 className="text-sm font-semibold text-foreground mb-3">
+                    <h4 className="mb-3 text-sm font-semibold text-foreground">
                       {t.about.roleAtNauticOps}
                     </h4>
                     <ul className="space-y-2">
@@ -75,7 +75,7 @@ const AboutSection = () => {
                           key={item}
                           className="flex items-start gap-2 text-sm text-muted-foreground"
                         >
-                          <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-secondary flex-shrink-0" />
+                          <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-secondary" />
                           {item}
                         </li>
                       ))}

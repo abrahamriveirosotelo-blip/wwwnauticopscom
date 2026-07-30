@@ -22,24 +22,24 @@ const WhoItsForSection = () => {
   return (
     <section id="who-its-for" className="section-padding bg-section-alt">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-secondary/10 text-secondary">
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <span className="mb-4 inline-block rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-medium text-secondary">
             {t.whoItsFor.badge}
           </span>
-          <h2 className="heading-lg text-foreground mb-6 text-balance">{t.whoItsFor.title}</h2>
-          <p className="body-lg text-muted-foreground text-balance">{t.whoItsFor.subtitle}</p>
+          <h2 className="heading-lg mb-6 text-balance text-foreground">{t.whoItsFor.title}</h2>
+          <p className="body-lg text-balance text-muted-foreground">{t.whoItsFor.subtitle}</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {t.whoItsFor.audiences.map((audience, index) => {
             const Icon = iconMap[index];
             return (
               <div key={audience.title} className="card-maritime p-6 text-center">
-                <div className="icon-container w-14 h-14 mx-auto mb-5">
+                <div className="icon-container mx-auto mb-5 h-14 w-14">
                   <Icon className="h-7 w-7 text-secondary" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">{audience.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <h3 className="mb-2 text-lg font-semibold text-foreground">{audience.title}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">
                   {audience.description}
                 </p>
               </div>
@@ -48,10 +48,10 @@ const WhoItsForSection = () => {
         </div>
 
         {/* CTA to shipping agents landing */}
-        <div className="text-center mt-12">
+        <div className="mt-12 text-center">
           <Link
             to="/for-shipping-agents"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-secondary hover:text-secondary/80 transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-secondary transition-colors hover:text-secondary/80"
           >
             {saT.nav.link}
             <ArrowRight className="h-4 w-4" />

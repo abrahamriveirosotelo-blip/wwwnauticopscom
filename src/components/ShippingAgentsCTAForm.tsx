@@ -84,11 +84,11 @@ const ShippingAgentsCTAForm = ({ t }: Props) => {
 
   if (isSubmitted) {
     return (
-      <div className="text-center py-8">
-        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-secondary/10 mx-auto mb-6">
+      <div className="py-8 text-center">
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-secondary/10">
           <Check className="h-8 w-8 text-secondary" />
         </div>
-        <h3 className="heading-sm text-foreground mb-3">{t.success.title}</h3>
+        <h3 className="heading-sm mb-3 text-foreground">{t.success.title}</h3>
         <p className="body-md text-muted-foreground">{t.success.message}</p>
       </div>
     );
@@ -97,7 +97,7 @@ const ShippingAgentsCTAForm = ({ t }: Props) => {
   return (
     <form onSubmit={handleSubmit} onFocus={handleFocus} className="space-y-4">
       <div>
-        <label htmlFor="sa-name" className="block text-sm font-medium text-foreground mb-2">
+        <label htmlFor="sa-name" className="mb-2 block text-sm font-medium text-foreground">
           {t.name}
         </label>
         <Input
@@ -113,7 +113,7 @@ const ShippingAgentsCTAForm = ({ t }: Props) => {
       </div>
 
       <div>
-        <label htmlFor="sa-company" className="block text-sm font-medium text-foreground mb-2">
+        <label htmlFor="sa-company" className="mb-2 block text-sm font-medium text-foreground">
           {t.company}
         </label>
         <Input
@@ -129,7 +129,7 @@ const ShippingAgentsCTAForm = ({ t }: Props) => {
       </div>
 
       <div>
-        <label htmlFor="sa-email" className="block text-sm font-medium text-foreground mb-2">
+        <label htmlFor="sa-email" className="mb-2 block text-sm font-medium text-foreground">
           {t.email}
         </label>
         <Input
@@ -145,7 +145,7 @@ const ShippingAgentsCTAForm = ({ t }: Props) => {
       </div>
 
       <div>
-        <label htmlFor="sa-role" className="block text-sm font-medium text-foreground mb-2">
+        <label htmlFor="sa-role" className="mb-2 block text-sm font-medium text-foreground">
           {t.role}
         </label>
         <select
@@ -166,7 +166,7 @@ const ShippingAgentsCTAForm = ({ t }: Props) => {
       </div>
 
       <div>
-        <label htmlFor="sa-port" className="block text-sm font-medium text-foreground mb-2">
+        <label htmlFor="sa-port" className="mb-2 block text-sm font-medium text-foreground">
           {t.port}
         </label>
         <Input
@@ -191,9 +191,9 @@ const ShippingAgentsCTAForm = ({ t }: Props) => {
         )}
       </Button>
 
-      {error && <p className="text-sm text-destructive text-center">{error}</p>}
+      {error && <p className="text-center text-sm text-destructive">{error}</p>}
 
-      <p className="text-xs text-muted-foreground text-center">{t.disclaimer}</p>
+      <p className="text-center text-xs text-muted-foreground">{t.disclaimer}</p>
     </form>
   );
 };
