@@ -1109,5 +1109,10 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-30T10:26:06Z"
+  },
+  "SAN ANDRES::MANTA": {
+    "resolved": false,
+    "reason": "15 resultados pero ninguno aceptable (nombre/tipo comercial/IMO)",
+    "checkedAt": "2026-07-30T17:36:20Z"
   }
 }
