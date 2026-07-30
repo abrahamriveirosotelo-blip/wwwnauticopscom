@@ -29,7 +29,18 @@ Once per clone: `git config blame.ignoreRevsFile .git-blame-ignore-revs`. GitHub
 - Anything that applies to a single folder goes in that folder's instructions.
 - A rule that exists because of an open issue names it, and dies with it: rule 3 goes when #80 closes, the demo exception when #28 does.
 
-`src/test/instructions.test.ts` caps the size of both files, so `npm run verify` fails when they overflow. Prune first; raise the cap only when the new content is worth more than what is already there.
+## Scaling instructions
+
+Splitting a file into `@imports` saves nothing — imported files load at launch too. What scales is **conditional loading**, so a new instruction goes to the narrowest tier that fits, and this trunk keeps only what applies to _every_ task:
+
+| Tier              | Loads                       | Claude Code                     | Cursor                           |
+| ----------------- | --------------------------- | ------------------------------- | -------------------------------- |
+| Trunk (this file) | always                      | `CLAUDE.md`                     | `AGENTS.md`                      |
+| Per path          | on touching a matching file | `.claude/rules/*.md` + `paths:` | `.cursor/rules/*.mdc` + `globs:` |
+| Per folder        | on working inside it        | nested `CLAUDE.md`              | nested `AGENTS.md`               |
+| On demand         | when the task calls for it  | skills                          | `.mdc` + `description`           |
+
+Scaling means **moving an instruction down a tier, never deleting it** — below the trunk there is no size pressure. Per-path is the one tier where both tools need separate files: keep each to three lines pointing at one shared document, so there is still a single source. A long procedure ("how to add a new port") is a skill, not a rule.
 
 ## Traps
 
