@@ -8,7 +8,7 @@
   "calls": [
     {
       "id": "A202600537",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9302255",
       "name": "SPIRIT",
       "gt": 7713,
@@ -19,7 +19,9 @@
       "eta": "2026-07-30T20:00",
       "etd": "2026-07-31T14:00",
       "from": "ALGECIRAS",
-      "to": "ALMERIA"
+      "to": "ALMERIA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
     },
     {
       "id": "A202600542",
@@ -34,7 +36,9 @@
       "eta": "2026-07-31T08:00",
       "etd": "2026-07-31T23:00",
       "from": "LAS PALMAS",
-      "to": "LAS PALMAS"
+      "to": "LAS PALMAS",
+      "affectedBy": "A202600537",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600556",
@@ -143,7 +147,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600550",
+    "callId": "A202600537",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -170,18 +174,18 @@
     }
   },
   "milestones": {
-    "A202600550": [
+    "A202600537": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "30/07 · 08:25",
+        "time": "30/07 · 20:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "30/07 · 09:30",
-        "by": "Agente: ROMEU Y CIA. S A"
+        "time": "30/07 · 21:30",
+        "by": "Agente: A. PEREZ Y CIA. S.L."
       },
       {
         "label": "Fin de operaciones",

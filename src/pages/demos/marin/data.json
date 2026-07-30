@@ -4,19 +4,19 @@
     "source": "apmarin.com · buques esperados + en puerto",
     "date": "30/07/2026",
     "refreshHours": 2,
-    "sourceUpdatedAt": "2026-07-30T21:10",
+    "sourceUpdatedAt": "2026-07-30T23:10",
     "meteo": {
-      "updatedAt": "2026-07-30T21:28",
+      "updatedAt": "2026-07-30T23:12",
       "obs": {
         "estacion": "Porto de Marín",
-        "instante": "2026-07-30T18:00",
-        "vientoRachaKn": 15,
+        "instante": "2026-07-30T20:00",
+        "vientoRachaKn": 12,
         "vientoMediaKn": null,
-        "vientoDirDeg": 223,
-        "tempC": 24.12,
-        "presionHpa": 1017.16,
+        "vientoDirDeg": 227,
+        "tempC": 24.01,
+        "presionHpa": 1016.8,
         "lluviaMm": 0,
-        "humedadPct": 51
+        "humedadPct": 48
       },
       "avisos": []
     }
@@ -49,7 +49,7 @@
       "aisSpeed": 0,
       "aisDraught": 4.6,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-30T21:28",
+      "aisAt": "2026-07-30T23:12",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -81,7 +81,7 @@
       "aisSpeed": 0,
       "aisDraught": 10.4,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-30T21:28",
+      "aisAt": "2026-07-30T23:12",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -113,7 +113,7 @@
       "aisSpeed": 0,
       "aisDraught": 4.2,
       "aisDestination": "Marin, Pontevedra Anch., Spain",
-      "aisAt": "2026-07-30T21:28",
+      "aisAt": "2026-07-30T23:12",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -145,7 +145,7 @@
       "aisSpeed": 0,
       "aisDraught": 9.7,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-30T21:28",
+      "aisAt": "2026-07-30T23:12",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -177,7 +177,7 @@
       "aisSpeed": 0,
       "aisDraught": 7.2,
       "aisDestination": "Marin, Pontevedra Anch., Spain",
-      "aisAt": "2026-07-30T21:28",
+      "aisAt": "2026-07-30T23:12",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -209,7 +209,7 @@
       "aisSpeed": 0,
       "aisDraught": 4.1,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-30T21:28",
+      "aisAt": "2026-07-30T23:12",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -256,7 +256,7 @@
       "aisSpeed": 0,
       "aisDraught": 10.2,
       "aisDestination": "Leixoes, Portugal",
-      "aisAt": "2026-07-30T21:28",
+      "aisAt": "2026-07-30T23:12",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -285,10 +285,10 @@
       "callsign": "CQUZ",
       "aisStatus": "Navegando",
       "aisEta": "2026-08-01T06:00",
-      "aisSpeed": 13.9,
+      "aisSpeed": 13.6,
       "aisDraught": 8.6,
       "aisDestination": "Vigo, Spain",
-      "aisAt": "2026-07-30T21:28",
+      "aisAt": "2026-07-30T23:12",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -320,7 +320,7 @@
       "aisSpeed": 0,
       "aisDraught": 4,
       "aisDestination": "Ghent, Belgium",
-      "aisAt": "2026-07-30T21:28",
+      "aisAt": "2026-07-30T23:12",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -349,10 +349,10 @@
       "callsign": "9HA5079",
       "aisStatus": "Navegando",
       "aisEta": "2026-08-04T04:00",
-      "aisSpeed": 11.1,
+      "aisSpeed": 11.3,
       "aisDraught": 10.3,
       "aisDestination": "ES MAR",
-      "aisAt": "2026-07-30T21:28",
+      "aisAt": "2026-07-30T23:12",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -381,10 +381,10 @@
       "callsign": "PHLZ",
       "aisStatus": "Navegando",
       "aisEta": "2026-08-03T16:00",
-      "aisSpeed": 10.2,
+      "aisSpeed": 9.9,
       "aisDraught": 5.7,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-30T21:28",
+      "aisAt": "2026-07-30T23:12",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -416,7 +416,7 @@
       "aisSpeed": 0,
       "aisDraught": 5.6,
       "aisDestination": "Dublin, Ireland",
-      "aisAt": "2026-07-30T21:28",
+      "aisAt": "2026-07-30T23:12",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -445,10 +445,10 @@
       "callsign": "CQ2179",
       "aisStatus": "Navegando",
       "aisEta": "2026-08-04T12:00",
-      "aisSpeed": 10.2,
+      "aisSpeed": 9.6,
       "aisDraught": 4.9,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-07-30T21:28",
+      "aisAt": "2026-07-30T23:12",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -480,7 +480,7 @@
       "aisSpeed": 0,
       "aisDraught": 6.1,
       "aisDestination": "Vlaardingen, Netherlands",
-      "aisAt": "2026-07-30T21:28",
+      "aisAt": "2026-07-30T23:12",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -509,10 +509,10 @@
       "callsign": "CQUZ",
       "aisStatus": "Navegando",
       "aisEta": "2026-08-01T06:00",
-      "aisSpeed": 13.9,
+      "aisSpeed": 13.6,
       "aisDraught": 8.6,
       "aisDestination": "Vigo, Spain",
-      "aisAt": "2026-07-30T21:28",
+      "aisAt": "2026-07-30T23:12",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false

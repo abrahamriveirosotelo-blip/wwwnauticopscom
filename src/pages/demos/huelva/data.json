@@ -144,24 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260730010",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "HARTURA",
-      "gt": 7988,
-      "len": 140,
-      "berth": "TI",
-      "agent": "BER",
-      "op": "Entrada",
-      "eta": "2026-07-30T21:00",
-      "etd": "",
-      "from": "—",
-      "to": "—",
-      "affectedBy": "H20260727002",
-      "affectRisk": "ALTO"
-    },
-    {
-      "id": "H20260731011",
+      "id": "H20260731010",
       "status": "Prevista",
       "imo": "—",
       "name": "SDM.BEIHAI",
@@ -170,13 +153,13 @@
       "berth": "JGV",
       "agent": "ERS",
       "op": "Entrada",
-      "eta": "2026-07-31T05:00",
+      "eta": "2026-07-31T06:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260731012",
+      "id": "H20260731011",
       "status": "Prevista",
       "imo": "—",
       "name": "KARRUCA",
@@ -191,7 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260731013",
+      "id": "H20260731012",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -206,7 +189,7 @@
       "to": "—"
     },
     {
-      "id": "H20260731014",
+      "id": "H20260731013",
       "status": "Prevista",
       "imo": "—",
       "name": "PACIFIC",
@@ -221,7 +204,7 @@
       "to": "—"
     },
     {
-      "id": "H20260731015",
+      "id": "H20260731014",
       "status": "Prevista",
       "imo": "—",
       "name": "EINSTEIN",
@@ -236,7 +219,7 @@
       "to": "—"
     },
     {
-      "id": "H20260731016",
+      "id": "H20260731015",
       "status": "Prevista",
       "imo": "—",
       "name": "MARIE CURIE",
@@ -251,7 +234,7 @@
       "to": "—"
     },
     {
-      "id": "H20260801017",
+      "id": "H20260801016",
       "status": "Prevista",
       "imo": "—",
       "name": "NORDIC HAWK",
@@ -266,7 +249,7 @@
       "to": "—"
     },
     {
-      "id": "H20260801018",
+      "id": "H20260801017",
       "status": "Prevista",
       "imo": "—",
       "name": "ASH ATLANTIC",
@@ -281,7 +264,7 @@
       "to": "—"
     },
     {
-      "id": "H20260801019",
+      "id": "H20260801018",
       "status": "Prevista",
       "imo": "—",
       "name": "SONGA.TAURUS",
@@ -296,7 +279,7 @@
       "to": "—"
     },
     {
-      "id": "H20260801020",
+      "id": "H20260801019",
       "status": "Prevista",
       "imo": "—",
       "name": "ONEGO.GLOMMA",
@@ -311,7 +294,7 @@
       "to": "—"
     },
     {
-      "id": "H20260801021",
+      "id": "H20260801020",
       "status": "Prevista",
       "imo": "—",
       "name": "ISLAS.TRES",
@@ -326,7 +309,7 @@
       "to": "—"
     },
     {
-      "id": "H20260802023",
+      "id": "H20260802022",
       "status": "Prevista",
       "imo": "—",
       "name": "ALICE.CONSULICH",
@@ -341,7 +324,7 @@
       "to": "—"
     },
     {
-      "id": "H20260802024",
+      "id": "H20260802023",
       "status": "Prevista",
       "imo": "—",
       "name": "CONTSHIP.SKY",
@@ -356,7 +339,7 @@
       "to": "—"
     },
     {
-      "id": "H20260803025",
+      "id": "H20260803024",
       "status": "Prevista",
       "imo": "—",
       "name": "PRIDE",
@@ -368,10 +351,12 @@
       "eta": "2026-08-03T00:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "affectedBy": "H20260727002",
+      "affectRisk": "ALTO"
     },
     {
-      "id": "H20260803026",
+      "id": "H20260803025",
       "status": "Prevista",
       "imo": "—",
       "name": "WILSON.ECO.IV",
@@ -386,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260803027",
+      "id": "H20260803026",
       "status": "Prevista",
       "imo": "—",
       "name": "ARION",
@@ -401,7 +386,7 @@
       "to": "—"
     },
     {
-      "id": "H20260804028",
+      "id": "H20260804027",
       "status": "Prevista",
       "imo": "—",
       "name": "PERA",
@@ -416,7 +401,7 @@
       "to": "—"
     },
     {
-      "id": "H20260804029",
+      "id": "H20260804028",
       "status": "Prevista",
       "imo": "—",
       "name": "BELLIS.THERESA",
@@ -431,7 +416,7 @@
       "to": "—"
     },
     {
-      "id": "H20260805030",
+      "id": "H20260805029",
       "status": "Prevista",
       "imo": "—",
       "name": "ADALADY",
