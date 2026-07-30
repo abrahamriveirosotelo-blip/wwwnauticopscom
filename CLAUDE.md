@@ -13,14 +13,14 @@ React + TypeScript + Vite SPA. The public marketing website for NauticOps (`naut
 
 ## Pages
 
-| Route | Component | Purpose |
-|-------|-----------|---------|
-| `/` | `src/pages/Index.tsx` | Main landing page |
-| `/for-shipping-agents` | `src/pages/ShippingAgentsPage.tsx` | Commercial landing page for shipping agents |
-| `/legal` | `src/pages/LegalPage.tsx` | Legal / privacy |
-| `/demo/alicante` | `src/pages/demos/alicante/DemoAlicante.tsx` | Interactive demo for Puerto de Alicante prospect |
-| `/demo/huelva` | `src/pages/demos/huelva/DemoHuelva.tsx` | Interactive demo for Puerto de Huelva prospect |
-| `/demo/marin` | `src/pages/demos/marin/DemoMarin.tsx` | Interactive demo for Puerto de Marín prospect |
+| Route                  | Component                                   | Purpose                                          |
+| ---------------------- | ------------------------------------------- | ------------------------------------------------ |
+| `/`                    | `src/pages/Index.tsx`                       | Main landing page                                |
+| `/for-shipping-agents` | `src/pages/ShippingAgentsPage.tsx`          | Commercial landing page for shipping agents      |
+| `/legal`               | `src/pages/LegalPage.tsx`                   | Legal / privacy                                  |
+| `/demo/alicante`       | `src/pages/demos/alicante/DemoAlicante.tsx` | Interactive demo for Puerto de Alicante prospect |
+| `/demo/huelva`         | `src/pages/demos/huelva/DemoHuelva.tsx`     | Interactive demo for Puerto de Huelva prospect   |
+| `/demo/marin`          | `src/pages/demos/marin/DemoMarin.tsx`       | Interactive demo for Puerto de Marín prospect    |
 
 ## Architecture
 
@@ -45,15 +45,15 @@ To update a demo (change vessel data, statuses, alerts), only edit that port's `
 
 ## Brand colors
 
-| Token | Hex | Use |
-|-------|-----|-----|
-| `navyDeep` | `#010B24` | Dark backgrounds, nav |
-| `navy` | `#0A1F3D` | Primary text, active buttons |
-| `cyan` | `#079FE6` | Brand primary, CTAs |
-| `cyanLight` | `#29B6F6` | Badges, highlights |
-| `success` | `#00C896` | Confirmed states |
-| `warning` | `#F59E0B` | Alerts, in-progress |
-| `danger` | `#EF4444` | Critical alerts, delays |
+| Token       | Hex       | Use                          |
+| ----------- | --------- | ---------------------------- |
+| `navyDeep`  | `#010B24` | Dark backgrounds, nav        |
+| `navy`      | `#0A1F3D` | Primary text, active buttons |
+| `cyan`      | `#079FE6` | Brand primary, CTAs          |
+| `cyanLight` | `#29B6F6` | Badges, highlights           |
+| `success`   | `#00C896` | Confirmed states             |
+| `warning`   | `#F59E0B` | Alerts, in-progress          |
+| `danger`    | `#EF4444` | Critical alerts, delays      |
 
 ## No authentication
 

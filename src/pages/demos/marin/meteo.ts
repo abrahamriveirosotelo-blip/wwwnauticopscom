@@ -26,6 +26,4 @@ const rank = (n?: string): number => (n ? NIVEL_RANK[n] : undefined) ?? 0;
  *  Opera sobre cualquier objeto con `nivel`, así que sirve tanto para avisos como para las
  *  bandas del reproductor. Determinista: ante empate se queda con el primero de mayor nivel. */
 export const worstAviso = <T extends { nivel?: string }>(list?: T[]): T | null =>
-  list && list.length
-    ? list.reduce((a, b) => (rank(b.nivel) > rank(a.nivel) ? b : a))
-    : null;
+  list && list.length ? list.reduce((a, b) => (rank(b.nivel) > rank(a.nivel) ? b : a)) : null;

@@ -3,148 +3,150 @@ import { type LegalTranslations, legalEn, legalEs } from "./translations/legal";
 
 export type Language = "en" | "es";
 
-type TranslationSchema = AboutTranslations & LegalTranslations & {
-  integrationCard: {
-    title: string;
-    description: string;
-  };
-  nav: {
-    context: string;
-    solution: string;
-    howItFits: string;
-    whoItsFor: string;
-    useCases: string;
-    viewPlatform: string;
-    requestDemo: string;
-  };
-  hero: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    ctaPrimary: string;
-    ctaSecondary: string;
-    stats: {
-      portCalls: string;
-      realTime: string;
-      systemAgnostic: string;
-    };
-  };
-  context: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    items: Array<{ title: string; description: string }>;
-  };
-  solution: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    features: Array<{ title: string; description: string }>;
-    cardTitle: string;
-    cardDescription: string;
-    benefits: string[];
-  };
-  howItFits: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    steps: Array<{ title: string; description: string }>;
-  };
-  whoItsFor: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    audiences: Array<{ title: string; description: string }>;
-  };
-  useCases: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    cases: Array<{
-      category: string;
+type TranslationSchema = AboutTranslations &
+  LegalTranslations & {
+    integrationCard: {
       title: string;
       description: string;
-      stats: Array<{ label: string; value: string }>;
-    }>;
-  };
-  trust: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    points: Array<{ title: string; description: string }>;
-    ecosystemTitle: string;
-    ecosystemItems: string[];
-    backedBy: string;
-    backedByItems: Array<{ name: string; url: string }>;
-  };
-  cta: {
-    title: string;
-    subtitle: string;
-    benefits: string[];
-    formTitle: string;
-    form: {
-      name: string;
-      namePlaceholder: string;
-      email: string;
-      emailPlaceholder: string;
-      company: string;
-      companyPlaceholder: string;
-      role: string;
-      rolePlaceholder: string;
-      roles: {
-        portAuthority: string;
-        shippingAgent: string;
-        terminalOperator: string;
-        shippingLine: string;
-        serviceProvider: string;
-        systemIntegrator: string;
-        investor: string;
-        other: string;
-      };
-      submit: string;
-      disclaimer: string;
     };
-    success: {
-      title: string;
-      message: string;
-    };
-  };
-  footer: {
-    description: string;
-    product: string;
-    company: string;
-    resources: string;
-    legal: string;
-    directContact: string;
-    directContactDescription: string;
-    directContactFallback: string;
-    links: {
-      features: string;
+    nav: {
+      context: string;
+      solution: string;
+      howItFits: string;
+      whoItsFor: string;
       useCases: string;
-      integrations: string;
-      pricing: string;
-      aboutUs: string;
-      careers: string;
-      contact: string;
-      partners: string;
-      documentation: string;
-      apiReference: string;
-      blog: string;
-      caseStudies: string;
-      privacyPolicy: string;
-      termsOfService: string;
-      security: string;
+      viewPlatform: string;
+      requestDemo: string;
     };
-    copyright: string;
-    tagline: string;
+    hero: {
+      badge: string;
+      title: string;
+      subtitle: string;
+      ctaPrimary: string;
+      ctaSecondary: string;
+      stats: {
+        portCalls: string;
+        realTime: string;
+        systemAgnostic: string;
+      };
+    };
+    context: {
+      badge: string;
+      title: string;
+      subtitle: string;
+      items: Array<{ title: string; description: string }>;
+    };
+    solution: {
+      badge: string;
+      title: string;
+      subtitle: string;
+      features: Array<{ title: string; description: string }>;
+      cardTitle: string;
+      cardDescription: string;
+      benefits: string[];
+    };
+    howItFits: {
+      badge: string;
+      title: string;
+      subtitle: string;
+      steps: Array<{ title: string; description: string }>;
+    };
+    whoItsFor: {
+      badge: string;
+      title: string;
+      subtitle: string;
+      audiences: Array<{ title: string; description: string }>;
+    };
+    useCases: {
+      badge: string;
+      title: string;
+      subtitle: string;
+      cases: Array<{
+        category: string;
+        title: string;
+        description: string;
+        stats: Array<{ label: string; value: string }>;
+      }>;
+    };
+    trust: {
+      badge: string;
+      title: string;
+      subtitle: string;
+      points: Array<{ title: string; description: string }>;
+      ecosystemTitle: string;
+      ecosystemItems: string[];
+      backedBy: string;
+      backedByItems: Array<{ name: string; url: string }>;
+    };
+    cta: {
+      title: string;
+      subtitle: string;
+      benefits: string[];
+      formTitle: string;
+      form: {
+        name: string;
+        namePlaceholder: string;
+        email: string;
+        emailPlaceholder: string;
+        company: string;
+        companyPlaceholder: string;
+        role: string;
+        rolePlaceholder: string;
+        roles: {
+          portAuthority: string;
+          shippingAgent: string;
+          terminalOperator: string;
+          shippingLine: string;
+          serviceProvider: string;
+          systemIntegrator: string;
+          investor: string;
+          other: string;
+        };
+        submit: string;
+        disclaimer: string;
+      };
+      success: {
+        title: string;
+        message: string;
+      };
+    };
+    footer: {
+      description: string;
+      product: string;
+      company: string;
+      resources: string;
+      legal: string;
+      directContact: string;
+      directContactDescription: string;
+      directContactFallback: string;
+      links: {
+        features: string;
+        useCases: string;
+        integrations: string;
+        pricing: string;
+        aboutUs: string;
+        careers: string;
+        contact: string;
+        partners: string;
+        documentation: string;
+        apiReference: string;
+        blog: string;
+        caseStudies: string;
+        privacyPolicy: string;
+        termsOfService: string;
+        security: string;
+      };
+      copyright: string;
+      tagline: string;
+    };
   };
-};
 
 export const translations: Record<Language, TranslationSchema> = {
   en: {
     integrationCard: {
       title: "Works with Your Existing Systems",
-      description: "NauticOps integrates with the tools ports already use. It doesn't replace systems—it connects them to provide shared visibility across the port call.",
+      description:
+        "NauticOps integrates with the tools ports already use. It doesn't replace systems—it connects them to provide shared visibility across the port call.",
     },
     nav: {
       context: "The Port Today",
@@ -445,8 +447,10 @@ export const translations: Record<Language, TranslationSchema> = {
       resources: "Resources",
       legal: "Legal",
       directContact: "Direct Contact",
-      directContactDescription: "Direct contact for pilots, use-case validation and collaboration within the port ecosystem.",
-      directContactFallback: "If a link does not open in your browser, you can copy it and open it directly.",
+      directContactDescription:
+        "Direct contact for pilots, use-case validation and collaboration within the port ecosystem.",
+      directContactFallback:
+        "If a link does not open in your browser, you can copy it and open it directly.",
       links: {
         features: "Features",
         useCases: "Use Cases",
@@ -474,7 +478,8 @@ export const translations: Record<Language, TranslationSchema> = {
   es: {
     integrationCard: {
       title: "Funciona con sus Sistemas Actuales",
-      description: "NauticOps se integra con las herramientas que ya utiliza el puerto. No sustituye sistemas: los conecta para ofrecer una visión compartida de la escala.",
+      description:
+        "NauticOps se integra con las herramientas que ya utiliza el puerto. No sustituye sistemas: los conecta para ofrecer una visión compartida de la escala.",
     },
     nav: {
       context: "El Puerto Hoy",
@@ -775,8 +780,10 @@ export const translations: Record<Language, TranslationSchema> = {
       resources: "Recursos",
       legal: "Legal",
       directContact: "Contacto directo",
-      directContactDescription: "Contacto directo para pilotos, validación de casos de uso y colaboraciones en el ecosistema portuario.",
-      directContactFallback: "Si algún enlace no se abre en su navegador, puede copiarlo y abrirlo directamente.",
+      directContactDescription:
+        "Contacto directo para pilotos, validación de casos de uso y colaboraciones en el ecosistema portuario.",
+      directContactFallback:
+        "Si algún enlace no se abre en su navegador, puede copiarlo y abrirlo directamente.",
       links: {
         features: "Características",
         useCases: "Casos de Uso",

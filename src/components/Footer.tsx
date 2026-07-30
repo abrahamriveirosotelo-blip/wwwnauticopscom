@@ -47,7 +47,7 @@ const Footer = () => {
                     href="https://www.linkedin.com/in/abraham-riveiro-sotelo-nauticops"
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => trackContactClick('linkedin')}
+                    onClick={() => trackContactClick("linkedin")}
                     className="inline-flex items-center gap-2 text-sm text-primary-foreground/60 hover:text-primary-foreground hover:underline underline-offset-4 transition-colors cursor-pointer"
                   >
                     <Linkedin className="h-4 w-4" />
@@ -57,7 +57,7 @@ const Footer = () => {
                 <li>
                   <a
                     href="mailto:info@nauticops.com"
-                    onClick={() => trackContactClick('email')}
+                    onClick={() => trackContactClick("email")}
                     className="inline-flex items-center gap-2 text-sm text-primary-foreground/60 hover:text-primary-foreground hover:underline underline-offset-4 transition-colors cursor-pointer"
                   >
                     <Mail className="h-4 w-4" />
@@ -67,7 +67,7 @@ const Footer = () => {
                 <li>
                   <a
                     href="tel:+34673108104"
-                    onClick={() => trackContactClick('phone')}
+                    onClick={() => trackContactClick("phone")}
                     className="inline-flex items-center gap-2 text-sm text-primary-foreground/60 hover:text-primary-foreground hover:underline underline-offset-4 transition-colors cursor-pointer"
                   >
                     <Phone className="h-4 w-4" />
@@ -83,7 +83,7 @@ const Footer = () => {
               </p>
             </div>
           </div>
-          
+
           {/* Links */}
           {[
             { title: t.footer.product, links: footerLinks.product },
@@ -116,7 +116,7 @@ const Footer = () => {
             </div>
           ))}
         </div>
-        
+
         {/* Bottom */}
         <div className="border-t border-primary-foreground/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-primary-foreground/50">

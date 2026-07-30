@@ -46,10 +46,16 @@ const CTASection = () => {
 
     // Fire GA4 immediately on submit, before the Formspree fetch,
     // so the conversion is always recorded regardless of network timing.
-    try { trackFormSubmit(formData.role); } catch { /* analytics must not break UX */ }
+    try {
+      trackFormSubmit(formData.role);
+    } catch {
+      /* analytics must not break UX */
+    }
 
     const roleLabelMap: Record<string, string> = {};
-    roleOptions.forEach((opt) => { roleLabelMap[opt.value] = opt.label; });
+    roleOptions.forEach((opt) => {
+      roleLabelMap[opt.value] = opt.label;
+    });
     const roleLabel = roleLabelMap[formData.role] || formData.role;
 
     try {
@@ -76,7 +82,9 @@ const CTASection = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -90,12 +98,8 @@ const CTASection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Content */}
             <div>
-              <h2 className="heading-lg text-foreground mb-6 text-balance">
-                {t.cta.title}
-              </h2>
-              <p className="body-lg text-muted-foreground mb-8">
-                {t.cta.subtitle}
-              </p>
+              <h2 className="heading-lg text-foreground mb-6 text-balance">{t.cta.title}</h2>
+              <p className="body-lg text-muted-foreground mb-8">{t.cta.subtitle}</p>
               <ul className="space-y-4">
                 {t.cta.benefits.map((item) => (
                   <li key={item} className="flex items-center gap-3">
@@ -107,17 +111,18 @@ const CTASection = () => {
                 ))}
               </ul>
             </div>
-            
+
             {/* Form */}
             <div className="bg-card rounded-2xl p-5 sm:p-8 shadow-xl">
               {!isSubmitted ? (
                 <>
-                  <h3 className="heading-sm text-foreground mb-6 text-center">
-                    {t.cta.formTitle}
-                  </h3>
+                  <h3 className="heading-sm text-foreground mb-6 text-center">{t.cta.formTitle}</h3>
                   <form onSubmit={handleSubmit} onFocus={handleFormFocus} className="space-y-5">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-foreground mb-2"
+                      >
                         {t.cta.form.name}
                       </label>
                       <Input
@@ -132,7 +137,10 @@ const CTASection = () => {
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-foreground mb-2"
+                      >
                         {t.cta.form.email}
                       </label>
                       <Input
@@ -147,7 +155,10 @@ const CTASection = () => {
                       />
                     </div>
                     <div>
-                      <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
+                      <label
+                        htmlFor="company"
+                        className="block text-sm font-medium text-foreground mb-2"
+                      >
                         {t.cta.form.company}
                       </label>
                       <Input
@@ -162,7 +173,10 @@ const CTASection = () => {
                       />
                     </div>
                     <div>
-                      <label htmlFor="role" className="block text-sm font-medium text-foreground mb-2">
+                      <label
+                        htmlFor="role"
+                        className="block text-sm font-medium text-foreground mb-2"
+                      >
                         {t.cta.form.role}
                       </label>
                       <select
@@ -182,7 +196,10 @@ const CTASection = () => {
                       </select>
                     </div>
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                      <label
+                        htmlFor="message"
+                        className="block text-sm font-medium text-foreground mb-2"
+                      >
                         {t.cta.form.message}
                       </label>
                       <Textarea
@@ -195,7 +212,13 @@ const CTASection = () => {
                         className="resize-none"
                       />
                     </div>
-                    <Button type="submit" variant="default" size="xl" className="w-full" disabled={isSubmitting}>
+                    <Button
+                      type="submit"
+                      variant="default"
+                      size="xl"
+                      className="w-full"
+                      disabled={isSubmitting}
+                    >
                       {isSubmitting ? (
                         <Loader2 className="h-5 w-5 animate-spin" />
                       ) : (
@@ -205,9 +228,7 @@ const CTASection = () => {
                         </>
                       )}
                     </Button>
-                    {error && (
-                      <p className="text-sm text-destructive text-center">{error}</p>
-                    )}
+                    {error && <p className="text-sm text-destructive text-center">{error}</p>}
                     <p className="text-xs text-muted-foreground text-center">
                       {t.cta.form.disclaimer}
                     </p>
@@ -218,12 +239,8 @@ const CTASection = () => {
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-secondary/10 mx-auto mb-6">
                     <Check className="h-8 w-8 text-secondary" />
                   </div>
-                  <h3 className="heading-sm text-foreground mb-3">
-                    {t.cta.success.title}
-                  </h3>
-                  <p className="body-md text-muted-foreground">
-                    {t.cta.success.message}
-                  </p>
+                  <h3 className="heading-sm text-foreground mb-3">{t.cta.success.title}</h3>
+                  <p className="body-md text-muted-foreground">{t.cta.success.message}</p>
                 </div>
               )}
             </div>

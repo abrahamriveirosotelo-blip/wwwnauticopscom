@@ -13,14 +13,10 @@ const ContextSection = () => {
           <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-muted text-muted-foreground">
             {t.context.badge}
           </span>
-          <h2 className="heading-lg text-foreground mb-6 text-balance">
-            {t.context.title}
-          </h2>
-          <p className="body-lg text-muted-foreground text-balance">
-            {t.context.subtitle}
-          </p>
+          <h2 className="heading-lg text-foreground mb-6 text-balance">{t.context.title}</h2>
+          <p className="body-lg text-muted-foreground text-balance">{t.context.subtitle}</p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
           {t.context.items.map((item, index) => {
             const Icon = iconMap[index];

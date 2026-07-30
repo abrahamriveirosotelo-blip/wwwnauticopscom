@@ -44,7 +44,7 @@ https://www.apmarin.com/es/paginas/buques_puerto      → última columna ETD (e
 
 La columna **Escala** (`M2026XXXXX`) es un identificador único que aparece en **ambas** tablas y sirve de clave de unión. El año vive dentro del propio código (`M`**`2026`**`…`), de ahí se toma para fechar `eta`/`etd` sin adivinar.
 
-**Importante (un buque está en una lista *o* en la otra, nunca en ambas a la vez):** la tabla de esperados da la ETA antes de la llegada; cuando el buque atraca desaparece de esa lista y pasa a "en puerto", que da la ETD. Para que una escala muestre **ETA *y* ETD** el script conserva el dato del `data.json` anterior:
+**Importante (un buque está en una lista _o_ en la otra, nunca en ambas a la vez):** la tabla de esperados da la ETA antes de la llegada; cuando el buque atraca desaparece de esa lista y pasa a "en puerto", que da la ETD. Para que una escala muestre **ETA _y_ ETD** el script conserva el dato del `data.json` anterior:
 
 - al construir una escala "en puerto" sin ETA en la tabla actual, recupera la ETA que se guardó cuando estaba en "esperados";
 - y a la inversa para la ETD.
@@ -166,8 +166,6 @@ Además, la UI **deriva alertas del contraste AP↔AIS** (no requieren campos en
 - `etaDiscrepancy` — la ETA de la AP y la del AIS **a Marín** (solo si `aisAtMarin`, no cuando el AIS va al puerto siguiente) difieren > 1 h → "retraso/adelanto".
 
 `hasAlert(c)` combina el modelo del JSON con estas derivadas; alimentan el banner, el KPI "CON ALERTA" y los chips de tarjetas/cronología. (Aparte, las escalas cuya estancia solapa un aviso AEMET se marcan con un badge de nivel — ver «Meteo operativa».)
-
-
 
 ### Comandos locales
 

@@ -11,34 +11,53 @@
  * ------------------------------------------------------------------ */
 
 const ENTITIES = {
-  '&aacute;': 'á', '&eacute;': 'é', '&iacute;': 'í', '&oacute;': 'ó', '&uacute;': 'ú',
-  '&Aacute;': 'Á', '&Eacute;': 'É', '&Iacute;': 'Í', '&Oacute;': 'Ó', '&Uacute;': 'Ú',
-  '&ntilde;': 'ñ', '&Ntilde;': 'Ñ', '&uuml;': 'ü', '&Uuml;': 'Ü',
-  '&amp;': '&', '&quot;': '"', '&#39;': "'", '&apos;': "'", '&nbsp;': ' ',
+  "&aacute;": "á",
+  "&eacute;": "é",
+  "&iacute;": "í",
+  "&oacute;": "ó",
+  "&uacute;": "ú",
+  "&Aacute;": "Á",
+  "&Eacute;": "É",
+  "&Iacute;": "Í",
+  "&Oacute;": "Ó",
+  "&Uacute;": "Ú",
+  "&ntilde;": "ñ",
+  "&Ntilde;": "Ñ",
+  "&uuml;": "ü",
+  "&Uuml;": "Ü",
+  "&amp;": "&",
+  "&quot;": '"',
+  "&#39;": "'",
+  "&apos;": "'",
+  "&nbsp;": " ",
 };
 
 function decodeEntities(str) {
-  return str
-    .replace(/&[a-zA-Z]+;|&#\d+;/g, m => {
-      if (ENTITIES[m]) return ENTITIES[m];
-      const num = m.match(/&#(\d+);/);
-      return num ? String.fromCharCode(parseInt(num[1], 10)) : m;
-    });
+  return str.replace(/&[a-zA-Z]+;|&#\d+;/g, (m) => {
+    if (ENTITIES[m]) return ENTITIES[m];
+    const num = m.match(/&#(\d+);/);
+    return num ? String.fromCharCode(parseInt(num[1], 10)) : m;
+  });
 }
 
 function cellText(td) {
-  return decodeEntities(td.replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
+  return decodeEntities(td.replace(/<[^>]+>/g, ""))
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 /** "ceferino nogueira, s.a." → "Ceferino Nogueira, S.A." (idempotente). */
 export function titleCase(str) {
-  if (!str || !str.trim()) return '—';
-  return str.toLowerCase().replace(/\b\w/g, c => c.toUpperCase()).trim();
+  if (!str || !str.trim()) return "—";
+  return str
+    .toLowerCase()
+    .replace(/\b\w/g, (c) => c.toUpperCase())
+    .trim();
 }
 
 /** Año tomado del código de escala (M2026… → 2026); fallback al año dado. */
 export function yearFromEscala(escala, fallbackYear) {
-  const m = (escala || '').match(/^[A-Z](\d{4})/);
+  const m = (escala || "").match(/^[A-Z](\d{4})/);
   return m ? parseInt(m[1], 10) : fallbackYear;
 }
 
@@ -48,7 +67,7 @@ export function parseMarinDate(ddmmHHmm, year) {
   const m = ddmmHHmm.trim().match(/^(\d{1,2})\/(\d{1,2})\s+(\d{1,2}):(\d{2})$/);
   if (!m) return null;
   const [, d, mo, h, mi] = m;
-  return `${year}-${mo.padStart(2, '0')}-${d.padStart(2, '0')}T${h.padStart(2, '0')}:${mi}`;
+  return `${year}-${mo.padStart(2, "0")}-${d.padStart(2, "0")}T${h.padStart(2, "0")}:${mi}`;
 }
 
 /**
@@ -61,7 +80,7 @@ export function parseMarinFreshness(html) {
   const m = html.match(/<h4[^>]*>\s*(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2})\s*<\/h4>/i);
   if (!m) return null;
   const [, d, mo, y, h, mi] = m;
-  return `${y}-${mo.padStart(2, '0')}-${d.padStart(2, '0')}T${h.padStart(2, '0')}:${mi}`;
+  return `${y}-${mo.padStart(2, "0")}-${d.padStart(2, "0")}T${h.padStart(2, "0")}:${mi}`;
 }
 
 /**
@@ -73,13 +92,14 @@ export function parseMarinPage(html) {
   if (!table) throw new Error('No se encontró la tabla class="estilo1" en la página');
 
   const trs = table[0].match(/<tr[\s\S]*?<\/tr>/gi) || [];
-  if (!trs.length) throw new Error('La tabla no contiene filas');
+  if (!trs.length) throw new Error("La tabla no contiene filas");
 
   // La cabecera es la fila con <span class="label">…</span>; su última celda dice ETA o ETD.
-  const headerLabels = (trs[0].match(/<span class="label">([^<]*)<\/span>/gi) || [])
-    .map(s => cellText(s));
-  const lastLabel = (headerLabels[headerLabels.length - 1] || '').toUpperCase();
-  const kind = lastLabel.includes('ETD') ? 'etd' : 'eta';
+  const headerLabels = (trs[0].match(/<span class="label">([^<]*)<\/span>/gi) || []).map((s) =>
+    cellText(s),
+  );
+  const lastLabel = (headerLabels[headerLabels.length - 1] || "").toUpperCase();
+  const kind = lastLabel.includes("ETD") ? "etd" : "eta";
 
   const rows = [];
   for (const tr of trs) {
@@ -89,14 +109,14 @@ export function parseMarinPage(html) {
     const [name, from, to, escala, agent, berth, norays, op, when] = tds;
     if (!escala || !name) continue;
     rows.push({
-      name: name.replace(/\.+$/, '').trim(),
-      from: from || '—',
-      to: to || '—',
+      name: name.replace(/\.+$/, "").trim(),
+      from: from || "—",
+      to: to || "—",
       escala,
       agent: titleCase(agent),
-      berth: berth || '—',
-      norays: norays || '—',
-      op: op || '—',
+      berth: berth || "—",
+      norays: norays || "—",
+      op: op || "—",
       when,
     });
   }
@@ -119,44 +139,51 @@ function bumpYearIfRollover(etaIso, etdIso) {
 }
 
 export function buildCalls(esperados, puerto, prevCalls = [], fallbackYear) {
-  const prevById = new Map(prevCalls.map(c => [c.id, c]));
+  const prevById = new Map(prevCalls.map((c) => [c.id, c]));
   const byId = new Map();
 
   const ingest = (rows, kind) => {
     for (const r of rows) {
       const year = yearFromEscala(r.escala, fallbackYear);
-      const when = parseMarinDate(r.when, year) || '';
+      const when = parseMarinDate(r.when, year) || "";
       let call = byId.get(r.escala);
       if (!call) {
         call = {
           id: r.escala,
-          status: 'Prevista',
-          imo: '—',
+          status: "Prevista",
+          imo: "—",
           name: r.name,
           gt: 0,
           len: 0,
           berth: r.berth,
           agent: r.agent,
           op: r.op,
-          eta: '',
-          etd: '',
+          eta: "",
+          etd: "",
           from: r.from,
           to: r.to,
         };
         byId.set(r.escala, call);
       } else {
         // La fila de "en puerto" trae datos más actuales (muelle/norays reales).
-        call.name = r.name; call.berth = r.berth; call.agent = r.agent;
-        call.op = r.op; call.from = r.from; call.to = r.to;
+        call.name = r.name;
+        call.berth = r.berth;
+        call.agent = r.agent;
+        call.op = r.op;
+        call.from = r.from;
+        call.to = r.to;
       }
-      if (kind === 'eta') call.eta = when;
-      if (kind === 'etd') { call.etd = when; call.status = 'Iniciado'; }
+      if (kind === "eta") call.eta = when;
+      if (kind === "etd") {
+        call.etd = when;
+        call.status = "Iniciado";
+      }
     }
   };
 
   // Primero esperados (ETA), luego puerto (ETD) — puerto marca "Iniciado".
-  ingest(esperados.rows, 'eta');
-  ingest(puerto.rows, 'etd');
+  ingest(esperados.rows, "eta");
+  ingest(puerto.rows, "etd");
 
   // Campos añadidos por los scripts de enriquecimiento (no por el scrape de la AP).
   // Se conservan del JSON anterior para que NO se borren en cada run: si un paso de
@@ -164,12 +191,34 @@ export function buildCalls(esperados, puerto, prevCalls = [], fallbackYear) {
   // (los scripts de enrich lo refrescan cuando sí corren). Sin esto, update-marin
   // dejaría imo/gt/dwt y todos los aisX en blanco hasta el siguiente enrich exitoso.
   const ENRICH_FIELDS = [
-    'imo', 'mmsi', 'detailId', 'gt', 'dwt', 'len', 'beam', 'flag', 'vesselType', 'built', 'callsign',
-    'aisStatus', 'aisEta', 'aisSpeed', 'aisDraught', 'aisDestination', 'aisAt',
-    'aisAtMarin', 'aisToFinal', 'aisArrivedMarin',
+    "imo",
+    "mmsi",
+    "detailId",
+    "gt",
+    "dwt",
+    "len",
+    "beam",
+    "flag",
+    "vesselType",
+    "built",
+    "callsign",
+    "aisStatus",
+    "aisEta",
+    "aisSpeed",
+    "aisDraught",
+    "aisDestination",
+    "aisAt",
+    "aisAtMarin",
+    "aisToFinal",
+    "aisArrivedMarin",
     // Posición en vivo (aisstream, enrich-marin-ais.mjs): se arrastra para que un
     // buque que no emitió en la última ventana conserve su última posición conocida.
-    'aisLat', 'aisLon', 'aisSog', 'aisCog', 'aisHeading', 'aisPosAt',
+    "aisLat",
+    "aisLon",
+    "aisSog",
+    "aisCog",
+    "aisHeading",
+    "aisPosAt",
   ];
 
   // Persistencia: recupera del JSON anterior la ETA/ETD que ya no aparece
@@ -191,8 +240,8 @@ export function buildCalls(esperados, puerto, prevCalls = [], fallbackYear) {
 
   const calls = [...byId.values()];
   calls.sort((a, b) => {
-    const ka = a.eta || a.etd || '';
-    const kb = b.eta || b.etd || '';
+    const ka = a.eta || a.etd || "";
+    const kb = b.eta || b.etd || "";
     return new Date(ka || 0).getTime() - new Date(kb || 0).getTime();
   });
   return calls;

@@ -27,6 +27,7 @@ Para actualizar la demo (cambiar escalas, estados, horarios, alertas) solo hay q
 ## Estructura del JSON
 
 ### `meta`
+
 Metadatos del puerto y la fuente de datos.
 
 ```json
@@ -41,32 +42,34 @@ Metadatos del puerto y la fuente de datos.
 > `refreshHours` es informativo para la UI; el workflow real se ejecuta cada 2 horas (06:00–22:00 hora España).
 
 ### `calls[]`
+
 Array de escalas. Campos de cada escala:
 
-| Campo        | Tipo    | Descripción                                              |
-|--------------|---------|----------------------------------------------------------|
-| `id`         | string  | Identificador de la AP (`A202600XXX`)                    |
-| `status`     | string  | `"Iniciado"` / `"Prevista"` / `"Alerta"`                 |
-| `imo`        | string  | Número IMO del buque                                     |
-| `name`       | string  | Nombre del buque                                         |
-| `gt`         | number  | Arqueo bruto (toneladas)                                 |
-| `len`        | number  | Eslora en metros                                         |
-| `berth`      | string  | Muelle asignado                                          |
-| `agent`      | string  | Consignataria                                            |
-| `op`         | string  | Tipo de operación                                        |
-| `eta`        | string  | ISO 8601 — llegada prevista                              |
-| `etd`        | string  | ISO 8601 — salida prevista                               |
-| `from`       | string  | Puerto de origen                                         |
-| `to`         | string  | Puerto de destino                                        |
-| `delay`      | string? | Solo en `status: "Alerta"`. Ej: `"+4h 15min"`           |
-| `alertNote`  | string? | Solo en `status: "Alerta"`. Descripción del problema     |
-| `affectedBy` | string? | `id` de la escala que está causando el impacto           |
+| Campo        | Tipo    | Descripción                                                                           |
+| ------------ | ------- | ------------------------------------------------------------------------------------- |
+| `id`         | string  | Identificador de la AP (`A202600XXX`)                                                 |
+| `status`     | string  | `"Iniciado"` / `"Prevista"` / `"Alerta"`                                              |
+| `imo`        | string  | Número IMO del buque                                                                  |
+| `name`       | string  | Nombre del buque                                                                      |
+| `gt`         | number  | Arqueo bruto (toneladas)                                                              |
+| `len`        | number  | Eslora en metros                                                                      |
+| `berth`      | string  | Muelle asignado                                                                       |
+| `agent`      | string  | Consignataria                                                                         |
+| `op`         | string  | Tipo de operación                                                                     |
+| `eta`        | string  | ISO 8601 — llegada prevista                                                           |
+| `etd`        | string  | ISO 8601 — salida prevista                                                            |
+| `from`       | string  | Puerto de origen                                                                      |
+| `to`         | string  | Puerto de destino                                                                     |
+| `delay`      | string? | Solo en `status: "Alerta"`. Ej: `"+4h 15min"`                                         |
+| `alertNote`  | string? | Solo en `status: "Alerta"`. Descripción del problema                                  |
+| `affectedBy` | string? | `id` de la escala que está causando el impacto                                        |
 | `affectRisk` | string? | `"ALTO"` / `"MEDIO"`. Requiere `affectedBy`. (`"BAJO"` no está implementado en la UI) |
 
 **Para simular una alerta:** cambiar `status` a `"Alerta"` y añadir `delay` y `alertNote`.  
 **Para marcar una escala como afectada:** añadir `affectedBy` (id de la escala en alerta) y `affectRisk`.
 
 ### `tugService`
+
 Datos del parte de remolque. El campo `callId` lo vincula a su escala.
 
 ```json
@@ -84,17 +87,17 @@ Datos del parte de remolque. El campo `callId` lo vincula a su escala.
     "marinero": "P. Ruiz"
   },
   "times": {
-    "requested_at":  "06:45",
-    "ir_at_planned":  "07:00",
-    "ir_at_real":     "07:02",
+    "requested_at": "06:45",
+    "ir_at_planned": "07:00",
+    "ir_at_real": "07:02",
     "cos_at_planned": "07:18",
-    "cos_at_real":    "09:32",
-    "rc_at_planned":  "07:21",
-    "rc_at_real":     null,
-    "sc_at_planned":  "07:52",
-    "sc_at_real":     null,
-    "fr_at_planned":  "08:05",
-    "fr_at_real":     null
+    "cos_at_real": "09:32",
+    "rc_at_planned": "07:21",
+    "rc_at_real": null,
+    "sc_at_planned": "07:52",
+    "sc_at_real": null,
+    "fr_at_planned": "08:05",
+    "fr_at_real": null
   }
 }
 ```
@@ -104,15 +107,21 @@ Datos del parte de remolque. El campo `callId` lo vincula a su escala.
 > Para escalar a múltiples servicios, `tugService` deberá convertirse en un array `tugServices[]` y filtrar por `callId` en el componente.
 
 ### `milestones`
+
 Hitos operativos por `callId`. Solo es necesario incluir escalas que tengan datos reales — las que no aparezcan mostrarán un estado por defecto todo en `"pending"`.
 
 ```json
 {
   "A202600322": [
-    { "label": "Atracado",              "status": "done",        "time": "11/05 · 08:42", "by": "Práctico J. Morales" },
-    { "label": "Inicio de operaciones", "status": "in_progress", "time": "En curso",       "by": "Agente: A. Pérez"   },
-    { "label": "Fin de operaciones",    "status": "pending",     "time": null,             "by": null                 },
-    { "label": "Desatracado",           "status": "pending",     "time": null,             "by": null                 }
+    { "label": "Atracado", "status": "done", "time": "11/05 · 08:42", "by": "Práctico J. Morales" },
+    {
+      "label": "Inicio de operaciones",
+      "status": "in_progress",
+      "time": "En curso",
+      "by": "Agente: A. Pérez"
+    },
+    { "label": "Fin de operaciones", "status": "pending", "time": null, "by": null },
+    { "label": "Desatracado", "status": "pending", "time": null, "by": null }
   ]
 }
 ```
@@ -155,20 +164,20 @@ DemoAlicante()
 
 ## Paleta de colores (Brand Guide NauticOps v1.0)
 
-| Token        | Hex       | Uso                                         |
-|--------------|-----------|---------------------------------------------|
-| `navyDeep`   | `#010B24` | Fondo oscuro, nav, cabeceras de tabla        |
-| `navy`       | `#0A1F3D` | Texto principal, botones activos             |
-| `navyMid`    | `#0F3460` | Acento secundario                            |
-| `cyan`       | `#079FE6` | Color principal de marca, CTAs               |
-| `cyanLight`  | `#29B6F6` | Acento, badges, highlights                   |
-| `cyanPale`   | `#E1F5FE` | Fondos de tarjetas, filas seleccionadas      |
-| `offWhite`   | `#F7FAFD` | Fondo de página, filas alternas              |
-| `grayLight`  | `#E2EBF4` | Bordes, separadores                          |
-| `gray`       | `#64748B` | Texto secundario, labels, metadatos          |
-| `success`    | `#00C896` | Tiempos reales confirmados, hitos completados|
-| `warning`    | `#F59E0B` | Alertas, hitos en curso, escalas afectadas   |
-| `danger`     | `#EF4444` | Alertas críticas, retrasos confirmados       |
+| Token       | Hex       | Uso                                           |
+| ----------- | --------- | --------------------------------------------- |
+| `navyDeep`  | `#010B24` | Fondo oscuro, nav, cabeceras de tabla         |
+| `navy`      | `#0A1F3D` | Texto principal, botones activos              |
+| `navyMid`   | `#0F3460` | Acento secundario                             |
+| `cyan`      | `#079FE6` | Color principal de marca, CTAs                |
+| `cyanLight` | `#29B6F6` | Acento, badges, highlights                    |
+| `cyanPale`  | `#E1F5FE` | Fondos de tarjetas, filas seleccionadas       |
+| `offWhite`  | `#F7FAFD` | Fondo de página, filas alternas               |
+| `grayLight` | `#E2EBF4` | Bordes, separadores                           |
+| `gray`      | `#64748B` | Texto secundario, labels, metadatos           |
+| `success`   | `#00C896` | Tiempos reales confirmados, hitos completados |
+| `warning`   | `#F59E0B` | Alertas, hitos en curso, escalas afectadas    |
+| `danger`    | `#EF4444` | Alertas críticas, retrasos confirmados        |
 
 ---
 

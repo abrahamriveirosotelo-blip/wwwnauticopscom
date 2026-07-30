@@ -16,14 +16,10 @@ const UseCasesSection = () => {
           <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-muted text-muted-foreground">
             {t.useCases.badge}
           </span>
-          <h2 className="heading-lg text-foreground mb-6 text-balance">
-            {t.useCases.title}
-          </h2>
-          <p className="body-lg text-muted-foreground text-balance">
-            {t.useCases.subtitle}
-          </p>
+          <h2 className="heading-lg text-foreground mb-6 text-balance">{t.useCases.title}</h2>
+          <p className="body-lg text-muted-foreground text-balance">{t.useCases.subtitle}</p>
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {t.useCases.cases.map((useCase, index) => {
             const Icon = iconMap[index];
@@ -37,20 +33,18 @@ const UseCasesSection = () => {
                     <span className="text-sm font-medium text-secondary mb-1 block">
                       {useCase.category}
                     </span>
-                    <h3 className="heading-sm text-foreground">
-                      {useCase.title}
-                    </h3>
+                    <h3 className="heading-sm text-foreground">{useCase.title}</h3>
                   </div>
                 </div>
-                
-                <p className="body-md text-muted-foreground mt-4 mb-6">
-                  {useCase.description}
-                </p>
-                
+
+                <p className="body-md text-muted-foreground mt-4 mb-6">{useCase.description}</p>
+
                 <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-4 border-t border-border">
                   {useCase.stats.map((stat) => (
                     <div key={stat.label} className="min-w-0">
-                      <div className="text-lg sm:text-2xl font-bold text-secondary break-words">{stat.value}</div>
+                      <div className="text-lg sm:text-2xl font-bold text-secondary break-words">
+                        {stat.value}
+                      </div>
                       <div className="text-xs sm:text-sm text-muted-foreground">{stat.label}</div>
                     </div>
                   ))}

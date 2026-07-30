@@ -13,14 +13,10 @@ const SolutionSection = () => {
           <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-secondary/10 text-secondary">
             {t.solution.badge}
           </span>
-          <h2 className="heading-lg text-foreground mb-6 text-balance">
-            {t.solution.title}
-          </h2>
-          <p className="body-lg text-muted-foreground text-balance">
-            {t.solution.subtitle}
-          </p>
+          <h2 className="heading-lg text-foreground mb-6 text-balance">{t.solution.title}</h2>
+          <p className="body-lg text-muted-foreground text-balance">{t.solution.subtitle}</p>
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
           <div className="space-y-8">
             {t.solution.features.map((feature, index) => {
@@ -38,14 +34,10 @@ const SolutionSection = () => {
               );
             })}
           </div>
-          
+
           <div className="card-maritime p-8 lg:p-10">
-            <h3 className="heading-md text-foreground mb-6">
-              {t.solution.cardTitle}
-            </h3>
-            <p className="body-md text-muted-foreground mb-8">
-              {t.solution.cardDescription}
-            </p>
+            <h3 className="heading-md text-foreground mb-6">{t.solution.cardTitle}</h3>
+            <p className="body-md text-muted-foreground mb-8">{t.solution.cardDescription}</p>
             <ul className="space-y-4">
               {t.solution.benefits.map((benefit) => (
                 <li key={benefit} className="flex items-center gap-3">

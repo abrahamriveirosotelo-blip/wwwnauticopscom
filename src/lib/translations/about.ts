@@ -75,7 +75,7 @@ export const aboutEs: AboutTranslations["about"] = {
       role: "Fundador & CEO",
       tags: "Experiencia en buques y escalas · Producto y pilotos",
       shortBio:
-        "Marino mercante y fundador de NauticOps. Aporta visión de \"terreno\" desde la operativa real de buques y escalas, y la traduce a un producto práctico para coordinar actores portuarios con información compartida en tiempo real.",
+        'Marino mercante y fundador de NauticOps. Aporta visión de "terreno" desde la operativa real de buques y escalas, y la traduce a un producto práctico para coordinar actores portuarios con información compartida en tiempo real.',
       fullBio: [
         "Abraham ha vivido la coordinación de una escala desde dentro: cambios de ETA, ajustes de servicios, ventanas de atraque, incidencias y presión por tiempos. En NauticOps se centra en convertir esas fricciones en flujos simples: avisos claros, estado compartido y menos llamadas repetidas.",
       ],

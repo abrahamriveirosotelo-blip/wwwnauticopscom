@@ -10,17 +10,13 @@ const BottomCTASection = () => {
     <section className="section-padding bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="heading-lg text-foreground mb-6 text-balance">
-            {t.bottomCta.title}
-          </h2>
-          <p className="body-lg text-muted-foreground mb-10 text-balance">
-            {t.bottomCta.text}
-          </p>
+          <h2 className="heading-lg text-foreground mb-6 text-balance">{t.bottomCta.title}</h2>
+          <p className="body-lg text-muted-foreground mb-10 text-balance">{t.bottomCta.text}</p>
           <Button
             variant="default"
             size="xl"
             onClick={() => {
-              trackCtaClick('bottom_cta');
+              trackCtaClick("bottom_cta");
               document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" });
               setTimeout(() => document.getElementById("name")?.focus(), 800);
             }}

@@ -265,7 +265,8 @@ export const shippingAgentsEn: ShippingAgentsTranslations = {
     port: "Main port (optional)",
     portPlaceholder: "e.g. Port of Vigo",
     submit: "Request a pilot",
-    disclaimer: "We will contact you within 24 hours to talk about your port and how we can run the first call together.",
+    disclaimer:
+      "We will contact you within 24 hours to talk about your port and how we can run the first call together.",
     errorFallback: "Something went wrong. Please try again or write to us at info@nauticops.com",
     success: {
       title: "Request received",
@@ -458,7 +459,8 @@ export const shippingAgentsEs: ShippingAgentsTranslations = {
     port: "Puerto principal (opcional)",
     portPlaceholder: "Ej. Puerto de Vigo",
     submit: "Solicitar piloto",
-    disclaimer: "Nos pondremos en contacto en menos de 24 horas para hablar de tu puerto y cómo coordinar juntos la primera escala.",
+    disclaimer:
+      "Nos pondremos en contacto en menos de 24 horas para hablar de tu puerto y cómo coordinar juntos la primera escala.",
     errorFallback: "Ha ocurrido un error. Inténtalo de nuevo o escríbenos a info@nauticops.com",
     success: {
       title: "Solicitud recibida",

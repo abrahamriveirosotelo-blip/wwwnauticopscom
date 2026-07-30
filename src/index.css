@@ -7,37 +7,37 @@
     /* NauticOps Brand Color Palette — strictly navy / blue / cyan */
     --background: 210 30% 97%;
     --foreground: 215 50% 13%;
-    
+
     --card: 0 0% 100%;
     --card-foreground: 215 50% 13%;
-    
+
     --popover: 0 0% 100%;
     --popover-foreground: 215 50% 13%;
-    
+
     /* Deep navy — primary brand color */
     --primary: 215 55% 18%;
     --primary-foreground: 0 0% 100%;
-    
+
     /* Cyan-blue — secondary brand accent */
     --secondary: 200 70% 45%;
     --secondary-foreground: 0 0% 100%;
-    
+
     --muted: 210 20% 93%;
     --muted-foreground: 215 20% 45%;
-    
+
     /* Cyan-blue accent — used for highlights and icons */
     --accent: 200 70% 45%;
     --accent-foreground: 0 0% 100%;
-    
+
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    
+
     --border: 210 20% 88%;
     --input: 210 20% 88%;
     --ring: 200 70% 45%;
-    
+
     --radius: 0.5rem;
-    
+
     /* Custom brand tokens */
     --navy-deep: 215 55% 10%;
     --navy-medium: 215 55% 18%;
@@ -75,12 +75,14 @@
   * {
     @apply border-border;
   }
-  
+
   body {
     @apply bg-background text-foreground antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
-  
+
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 7rem;
@@ -90,46 +92,76 @@
 @layer components {
   /* Hero gradient — strict navy-to-dark-cyan */
   .hero-gradient {
-    background: linear-gradient(135deg, hsl(215 55% 10%) 0%, hsl(215 55% 18%) 50%, hsl(210 50% 22%) 100%);
+    background: linear-gradient(
+      135deg,
+      hsl(215 55% 10%) 0%,
+      hsl(215 55% 18%) 50%,
+      hsl(210 50% 22%) 100%
+    );
   }
-  
+
   .hero-pattern {
-    background-image: 
+    background-image:
       radial-gradient(ellipse 80% 50% at 50% -20%, hsl(200 70% 45% / 0.12) 0%, transparent 60%),
       url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
-  
+
   /* Tech grid overlay — subtle node/grid lines */
   .hero-tech-overlay {
     background-image:
-      repeating-linear-gradient(90deg, hsl(200 70% 60% / 0.05) 0px, hsl(200 70% 60% / 0.05) 1px, transparent 1px, transparent 80px),
-      repeating-linear-gradient(0deg, hsl(200 70% 60% / 0.05) 0px, hsl(200 70% 60% / 0.05) 1px, transparent 1px, transparent 80px),
+      repeating-linear-gradient(
+        90deg,
+        hsl(200 70% 60% / 0.05) 0px,
+        hsl(200 70% 60% / 0.05) 1px,
+        transparent 1px,
+        transparent 80px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        hsl(200 70% 60% / 0.05) 0px,
+        hsl(200 70% 60% / 0.05) 1px,
+        transparent 1px,
+        transparent 80px
+      ),
       radial-gradient(circle 1.5px at 0px 0px, hsl(200 70% 60% / 0.08) 1.5px, transparent 1.5px);
-    background-size: 80px 80px, 80px 80px, 80px 80px;
+    background-size:
+      80px 80px,
+      80px 80px,
+      80px 80px;
     animation: techDrift 25s linear infinite;
   }
-  
+
   @keyframes techDrift {
-    0% { background-position: 0 0, 0 0, 0 0; }
-    100% { background-position: 80px 40px, 80px 40px, 80px 40px; }
+    0% {
+      background-position:
+        0 0,
+        0 0,
+        0 0;
+    }
+    100% {
+      background-position:
+        80px 40px,
+        80px 40px,
+        80px 40px;
+    }
   }
-  
+
   /* Soft vignette for hero edges */
   .hero-vignette {
     background:
       /* Top fade — clears grid near logo */
       linear-gradient(180deg, hsl(215 55% 10% / 0.5) 0%, transparent 25%),
       /* Edge vignette */
-      radial-gradient(ellipse 70% 60% at 50% 50%, transparent 40%, hsl(215 55% 6% / 0.45) 100%);
+        radial-gradient(ellipse 70% 60% at 50% 50%, transparent 40%, hsl(215 55% 6% / 0.45) 100%);
   }
-  
+
   /* Navbar — dark navy, matches hero */
   .nav-brand {
     background: hsl(215 55% 12% / 0.95);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid hsl(215 45% 22%);
   }
-  
+
   /* Wave decoration */
   .wave-bottom {
     position: absolute;
@@ -139,99 +171,123 @@
     overflow: hidden;
     line-height: 0;
   }
-  
+
   .wave-bottom svg {
     position: relative;
     display: block;
     width: calc(100% + 1.3px);
     height: 80px;
   }
-  
+
   /* Card styles */
   .card-maritime {
     @apply bg-card rounded-xl;
-    box-shadow: 0 4px 24px -4px hsl(215 55% 18% / 0.10);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 24px -4px hsl(215 55% 18% / 0.1);
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
   }
-  
+
   .card-maritime:hover {
     box-shadow: 0 12px 40px -8px hsl(215 55% 18% / 0.16);
     transform: translateY(-4px);
   }
-  
+
   /* Section spacing */
   .section-padding {
     @apply py-14 sm:py-20 md:py-28 lg:py-32;
   }
-  
+
   .section-padding-sm {
     @apply py-12 md:py-16 lg:py-20;
   }
-  
+
   /* Text styles */
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .heading-xl {
     @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight;
   }
-  
+
   .heading-lg {
     @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight;
   }
-  
+
   .heading-md {
     @apply text-2xl md:text-3xl font-semibold tracking-tight;
   }
-  
+
   .heading-sm {
     @apply text-xl md:text-2xl font-semibold;
   }
-  
+
   .body-lg {
     @apply text-lg md:text-xl leading-relaxed;
   }
-  
+
   .body-md {
     @apply text-base md:text-lg leading-relaxed;
   }
-  
+
   /* Animation utilities */
   .animate-fade-in {
     animation: fadeIn 0.6s ease-out forwards;
   }
-  
+
   .animate-fade-in-up {
     animation: fadeInUp 0.6s ease-out forwards;
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
-  
+
   @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  
+
   /* Stagger animation delays */
-  .stagger-1 { animation-delay: 0.1s; }
-  .stagger-2 { animation-delay: 0.2s; }
-  .stagger-3 { animation-delay: 0.3s; }
-  .stagger-4 { animation-delay: 0.4s; }
-  .stagger-5 { animation-delay: 0.5s; }
-  .stagger-6 { animation-delay: 0.6s; }
-  
+  .stagger-1 {
+    animation-delay: 0.1s;
+  }
+  .stagger-2 {
+    animation-delay: 0.2s;
+  }
+  .stagger-3 {
+    animation-delay: 0.3s;
+  }
+  .stagger-4 {
+    animation-delay: 0.4s;
+  }
+  .stagger-5 {
+    animation-delay: 0.5s;
+  }
+  .stagger-6 {
+    animation-delay: 0.6s;
+  }
+
   /* Alternate section background — light blue-gray */
   .bg-section-alt {
     background: linear-gradient(180deg, hsl(210 25% 96%) 0%, hsl(210 20% 94%) 100%);
   }
-  
+
   /* Icon container — navy/cyan tones */
   .icon-container {
     @apply flex items-center justify-center rounded-xl;
-    background: linear-gradient(135deg, hsl(215 55% 18% / 0.10) 0%, hsl(200 70% 45% / 0.08) 100%);
+    background: linear-gradient(135deg, hsl(215 55% 18% / 0.1) 0%, hsl(200 70% 45% / 0.08) 100%);
   }
 }

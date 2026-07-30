@@ -138,12 +138,8 @@ const PainSection = ({ t }: { t: typeof shippingAgentsEn }) => (
         <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-muted text-muted-foreground">
           {t.pain.badge}
         </span>
-        <h2 className="heading-lg text-foreground mb-6 text-balance">
-          {t.pain.title}
-        </h2>
-        <p className="body-lg text-muted-foreground text-balance">
-          {t.pain.subtitle}
-        </p>
+        <h2 className="heading-lg text-foreground mb-6 text-balance">{t.pain.title}</h2>
+        <p className="body-lg text-muted-foreground text-balance">{t.pain.subtitle}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
@@ -175,12 +171,8 @@ const SolutionSection = ({ t }: { t: typeof shippingAgentsEn }) => (
         <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-secondary/10 text-secondary">
           {t.solution.badge}
         </span>
-        <h2 className="heading-lg text-foreground mb-6 text-balance">
-          {t.solution.title}
-        </h2>
-        <p className="body-lg text-muted-foreground text-balance">
-          {t.solution.subtitle}
-        </p>
+        <h2 className="heading-lg text-foreground mb-6 text-balance">{t.solution.title}</h2>
+        <p className="body-lg text-muted-foreground text-balance">{t.solution.subtitle}</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -222,9 +214,7 @@ const HowItWorks = ({ t }: { t: typeof shippingAgentsEn }) => {
               </span>
             ))}
           </h2>
-          <p className="body-lg text-muted-foreground text-balance">
-            {t.howItWorks.subtitle}
-          </p>
+          <p className="body-lg text-muted-foreground text-balance">{t.howItWorks.subtitle}</p>
         </div>
 
         <div className="max-w-4xl mx-auto">
@@ -295,9 +285,7 @@ const CredibilitySection = ({ t }: { t: typeof shippingAgentsEn }) => (
           <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-secondary/10 text-secondary">
             {t.credibility.badge}
           </span>
-          <h2 className="heading-lg text-foreground mb-6 text-balance">
-            {t.credibility.title}
-          </h2>
+          <h2 className="heading-lg text-foreground mb-6 text-balance">{t.credibility.title}</h2>
           <p className="body-lg text-muted-foreground text-balance max-w-2xl mx-auto">
             {t.credibility.subtitle}
           </p>
@@ -332,7 +320,10 @@ const CredibilitySection = ({ t }: { t: typeof shippingAgentsEn }) => (
             </div>
             <ul className="space-y-4">
               {t.credibility.supporters.map((s) => (
-                <li key={s} className="text-sm text-muted-foreground leading-relaxed border-l-2 border-secondary/30 pl-4">
+                <li
+                  key={s}
+                  className="text-sm text-muted-foreground leading-relaxed border-l-2 border-secondary/30 pl-4"
+                >
                   {s}
                 </li>
               ))}
@@ -353,12 +344,8 @@ const PilotPorts = ({ t }: { t: typeof shippingAgentsEn }) => (
         <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-secondary/10 text-secondary">
           {t.pilotPorts.badge}
         </span>
-        <h2 className="heading-md text-foreground mb-4 text-balance">
-          {t.pilotPorts.title}
-        </h2>
-        <p className="body-md text-muted-foreground text-balance">
-          {t.pilotPorts.subtitle}
-        </p>
+        <h2 className="heading-md text-foreground mb-4 text-balance">{t.pilotPorts.title}</h2>
+        <p className="body-md text-muted-foreground text-balance">{t.pilotPorts.subtitle}</p>
       </div>
 
       <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
@@ -389,9 +376,7 @@ const FormSection = ({ t }: { t: typeof shippingAgentsEn }) => (
             <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-secondary/10 text-secondary">
               {t.form.badge}
             </span>
-            <h2 className="heading-lg text-foreground mb-6 text-balance">
-              {t.bottomCta.title}
-            </h2>
+            <h2 className="heading-lg text-foreground mb-6 text-balance">{t.bottomCta.title}</h2>
             <p className="body-lg text-muted-foreground mb-8 text-balance">
               {t.bottomCta.subtitle}
             </p>
@@ -414,9 +399,7 @@ const FormSection = ({ t }: { t: typeof shippingAgentsEn }) => (
 
           {/* Form */}
           <div className="bg-card rounded-2xl p-5 sm:p-8 shadow-xl">
-            <h3 className="heading-sm text-foreground mb-6 text-center">
-              {t.form.title}
-            </h3>
+            <h3 className="heading-sm text-foreground mb-6 text-center">{t.form.title}</h3>
             <ShippingAgentsCTAForm t={t.form} />
           </div>
         </div>
@@ -431,12 +414,8 @@ const BottomCTA = ({ t }: { t: typeof shippingAgentsEn }) => (
   <section className="section-padding bg-section-alt">
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto text-center">
-        <h2 className="heading-lg text-foreground mb-6 text-balance">
-          {t.bottomCta.title}
-        </h2>
-        <p className="body-lg text-muted-foreground mb-10 text-balance">
-          {t.bottomCta.subtitle}
-        </p>
+        <h2 className="heading-lg text-foreground mb-6 text-balance">{t.bottomCta.title}</h2>
+        <p className="body-lg text-muted-foreground mb-10 text-balance">{t.bottomCta.subtitle}</p>
         <Button
           variant="default"
           size="xl"
