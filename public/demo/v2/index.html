@@ -329,6 +329,12 @@
   .ev-text{font-size:.85rem;color:var(--ink);line-height:1.35}
   .ev-sub{display:flex;align-items:center;gap:8px;margin-top:4px;flex-wrap:wrap}
   .ev-time{font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums}
+  .ev-kind{color:var(--muted);font-weight:600}
+  .ev-cur{font-family:var(--font-display);font-weight:800;color:var(--ink)}
+  .ev-readings{display:flex;flex-direction:column;gap:5px;margin-top:7px}
+  .ev-rd{display:flex;align-items:center;gap:8px}
+  .ev-rd .ev-time{min-width:62px}
+  .ev-val{margin-left:auto;font-family:var(--font-display);font-weight:800;color:var(--ink-2);font-variant-numeric:tabular-nums}
 
   .badge{font-family:var(--font-display);font-weight:800;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;
     padding:4px 9px;border-radius:var(--r-pill);white-space:nowrap;border:1px solid transparent}
@@ -1042,42 +1048,48 @@
     return '<svg viewBox="0 0 24 24">' + (p[type] || p.info) + '</svg>';
   }
   function evClass(type){ return { eta:'ev-eta', confirm:'ev-confirm', aviso:'ev-aviso', atraque:'ev-atraque', ops:'ev-ops', info:'ev-info', canc:'ev-canc' }[type] || 'ev-info'; }
-  function generateEvents(v, ctx){
+  // Eventos AGRUPADOS por dato: cada grupo destaca el valor más reciente y lista todas las lecturas
+  // recibidas (hora · fuente · valor), para ver de un vistazo fuentes y diferencias. Orden: más reciente primero.
+  function generateGroups(v, ctx){
     var rd = v.ais + ctx.cong + ctx.wxd, ref = fmtMin(toMin(v.etaTime) + rd);
-    var dtxt = rd > 0 ? '+' + rd + ' min' : (rd < 0 ? rd + ' min' : 'en hora'), out;
     if(v.st === 'canc'){
-      out = [ {time:'ayer 18:10',type:'info',src:'Consignatario',text:'Escala registrada · ' + v.tag},
-        {time:'ayer 19:30',type:'eta',src:'AP',text:'ETA anunciada ' + v.etaTime},
-        {time:'08:05',type:'canc',src:'AP',text:'Escala cancelada'} ];
+      return [
+        {label:'Escala', kind:'cancelada', type:'canc', val:null, readings:[{time:'08:05',src:'AP'}]},
+        {label:'ETA', kind:'anunciada', type:'eta', val:v.etaTime, readings:[{time:'ayer 19:30',src:'AP',val:v.etaTime}]},
+        {label:'Escala registrada', kind:null, type:'info', val:null, readings:[{time:'ayer 18:10',src:'Consignatario'}]}
+      ];
     } else if(v.st === 'port'){
-      out = [ {time:'ayer 17:40',type:'info',src:'Consignatario',text:'Escala registrada · ' + v.tag},
-        {time:'05:30',type:'atraque',src:'AP',text:'Atraque confirmado · ' + v.muelle},
-        {time:'05:45',type:'confirm',src:'AP',text:'Práctico a bordo'},
-        {time:'05:50',type:'confirm',src:'Consignatario',text:'Remolcadores confirmados'},
-        {time:'06:10',type:'confirm',src:'AP',text:'Amarre finalizado'},
-        {time:'06:30',type:'ops',src:'AP',text:'Inicio de operaciones'},
-        {time:'08:35',type:'eta',src:'NauticOps',text:'ETD prevista → ' + ref + ' (' + dtxt + ')'} ];
+      return [
+        {label:'ETD', kind:'prevista', type:'eta', val:ref, readings:[{time:'08:35',src:'NauticOps',val:ref},{time:'ayer 20:10',src:'AP',val:v.etaTime}]},
+        {label:'Inicio de operaciones', kind:'confirmado', type:'ops', val:null, readings:[{time:'06:30',src:'AP'}]},
+        {label:'Amarre', kind:'confirmado', type:'confirm', val:null, readings:[{time:'06:10',src:'AP'}]},
+        {label:'Remolcadores', kind:'confirmados', type:'confirm', val:null, readings:[{time:'05:50',src:'Consignatario'}]},
+        {label:'Práctico', kind:'a bordo', type:'confirm', val:null, readings:[{time:'05:45',src:'AP'}]},
+        {label:'Atraque · ' + v.muelle, kind:'confirmado', type:'atraque', val:null, readings:[{time:'05:30',src:'AP'}]},
+        {label:'Escala registrada', kind:null, type:'info', val:null, readings:[{time:'ayer 17:40',src:'Consignatario'}]}
+      ];
     } else if(v.st === 'delay'){
-      out = [ {time:'ayer 16:20',type:'info',src:'Consignatario',text:'Escala registrada · ' + v.tag},
-        {time:'05:10',type:'atraque',src:'AP',text:'Atraque confirmado · ' + v.muelle},
-        {time:'05:40',type:'confirm',src:'AP',text:'Amarre finalizado'},
-        {time:'06:00',type:'ops',src:'AP',text:'Inicio de operaciones de descarga'},
-        {time:'13:50',type:'eta',src:'AP',text:'ETD revisada → ' + v.etaTime + ' (' + v.delay.replace('Salida demorada ','') + ')'},
-        {time:'14:10',type:'eta',src:'NauticOps',text:'ETD prevista → ' + ref + ' (' + dtxt + ')'} ];
+      return [
+        {label:'ETD', kind:'prevista', type:'eta', val:ref, readings:[{time:'14:10',src:'NauticOps',val:ref},{time:'13:50',src:'AP',val:v.etaTime},{time:'ayer 16:20',src:'AP',val:'20:00'}]},
+        {label:'Inicio de operaciones de descarga', kind:'confirmado', type:'ops', val:null, readings:[{time:'06:00',src:'AP'}]},
+        {label:'Amarre', kind:'confirmado', type:'confirm', val:null, readings:[{time:'05:40',src:'AP'}]},
+        {label:'Atraque · ' + v.muelle, kind:'confirmado', type:'atraque', val:null, readings:[{time:'05:10',src:'AP'}]},
+        {label:'Escala registrada', kind:null, type:'info', val:null, readings:[{time:'ayer 16:20',src:'Consignatario'}]}
+      ];
     } else if(v.st === 'auth'){
-      out = [ {time:'ayer 21:15',type:'info',src:'Consignatario',text:'Escala registrada · ' + v.tag},
-        {time:'07:30',type:'eta',src:'AP',text:'ETA anunciada ' + v.etaTime},
-        {time:'10:20',type:'info',src:'AIS',text:'Posición AIS: 22 nm del puerto, 12 kn'},
-        {time:'11:05',type:'eta',src:'NauticOps',text:'ETA prevista → ' + ref + ' (' + dtxt + ')'},
-        {time:'11:30',type:'atraque',src:'AP',text:'Atraque autorizado · ' + v.muelle},
-        {time:'11:35',type:'confirm',src:'AP',text:'Práctico asignado'} ];
-    } else {
-      out = [ {time:'ayer 20:00',type:'info',src:'Consignatario',text:'Escala registrada · ' + v.tag},
-        {time:'22:40',type:'eta',src:'AP',text:'ETA anunciada ' + v.etaTime + ' (' + v.etaDate + ')'},
-        {time:'23:30',type:'info',src:'AIS',text:'Posición AIS: 78 nm del puerto, 15 kn'},
-        {time:'00:15',type:'eta',src:'NauticOps',text:'ETA prevista → ' + ref + ' (' + dtxt + ')'} ];
+      return [
+        {label:'Práctico', kind:'asignado', type:'confirm', val:null, readings:[{time:'11:35',src:'AP'}]},
+        {label:'Atraque · ' + v.muelle, kind:'autorizado', type:'atraque', val:null, readings:[{time:'11:30',src:'AP'}]},
+        {label:'ETA', kind:'prevista', type:'eta', val:ref, readings:[{time:'11:05',src:'NauticOps',val:ref},{time:'07:30',src:'AP',val:v.etaTime}]},
+        {label:'Posición AIS', kind:null, type:'info', val:'22 nm · 12 kn', readings:[{time:'10:20',src:'AIS',val:'22 nm · 12 kn'}]},
+        {label:'Escala registrada', kind:null, type:'info', val:null, readings:[{time:'ayer 21:15',src:'Consignatario'}]}
+      ];
     }
-    return out.reverse();   // más reciente primero
+    return [
+      {label:'ETA', kind:'prevista', type:'eta', val:ref, readings:[{time:'00:15',src:'NauticOps',val:ref},{time:'22:40',src:'AP',val:v.etaTime + ' (' + v.etaDate + ')'}]},
+      {label:'Posición AIS', kind:null, type:'info', val:'78 nm · 15 kn', readings:[{time:'23:30',src:'AIS',val:'78 nm · 15 kn'}]},
+      {label:'Escala registrada', kind:null, type:'info', val:null, readings:[{time:'ayer 20:00',src:'Consignatario'}]}
+    ];
   }
   function ttnLineHTML(v, ctx){
     var e = estManiobra(v.loa, v.gt, 'entrada', ctx), s = estManiobra(v.loa, v.gt, 'salida', ctx);
@@ -1095,10 +1107,14 @@
       etaBlock = '<div class="eta-line"><span class="eta-lab">' + v.etaL + '</span><span class="eta-off tnum">' + v.etaTime + '</span><span class="prov prov-ap">AP</span><span class="eta-arrow">→</span><span class="eta-ref tnum">' + ref + '</span><span class="eta-delta ' + dcls + '">' + dtxt + '</span><span class="prov prov-nautic">NauticOps</span></div>';
     }
     var badge = v.st === 'delay' ? '<span class="chip-delay"><svg class="icon sm" viewBox="0 0 24 24" style="width:12px;height:12px"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> ' + v.delay + '</span>' : '<span class="badge ' + v.bcls + '">' + v.badge + '</span>';
-    var evs = generateEvents(v, ctx), last = evs[0];
-    var feed = evs.map(function(e){
-      return '<div class="ev"><div class="ev-ic ' + evClass(e.type) + '">' + evIcon(e.type) + '</div>' +
-        '<div class="ev-body"><div class="ev-text">' + e.text + '</div><div class="ev-sub"><span class="ev-time">' + e.time + '</span><span class="prov ' + (PROV_CLS[e.src] || 'prov-ap') + '">' + e.src + '</span></div></div></div>';
+    var groups = generateGroups(v, ctx), last = groups[0].readings[0];
+    var feed = groups.map(function(g){
+      var head = g.label + (g.kind ? ' <span class="ev-kind">(' + g.kind + ')</span>' : '') + (g.val ? ' → <span class="ev-cur">' + g.val + '</span>' : '');
+      var reads = g.readings.map(function(r){
+        return '<div class="ev-rd"><span class="ev-time">' + r.time + '</span><span class="prov ' + (PROV_CLS[r.src] || 'prov-ap') + '">' + r.src + '</span>' + (r.val ? '<span class="ev-val">' + r.val + '</span>' : '') + '</div>';
+      }).join('');
+      return '<div class="ev"><div class="ev-ic ' + evClass(g.type) + '">' + evIcon(g.type) + '</div>' +
+        '<div class="ev-body"><div class="ev-text">' + head + '</div><div class="ev-readings">' + reads + '</div></div></div>';
     }).join('');
     document.getElementById('escalaDrawer').innerHTML =
       '<div class="dw-head">' +
