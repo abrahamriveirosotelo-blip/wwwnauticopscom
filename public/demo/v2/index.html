@@ -1062,23 +1062,23 @@
       return [
         {label:'ETD', kind:'prevista', type:'eta', val:ref, readings:[{time:'08:35',src:'NauticOps',val:ref},{time:'ayer 20:10',src:'AP',val:v.etaTime}]},
         {label:'Inicio de operaciones', kind:'confirmado', type:'ops', val:null, readings:[{time:'06:30',src:'AP'}]},
-        {label:'Amarre', kind:'confirmado', type:'confirm', val:null, readings:[{time:'06:10',src:'AP'}]},
-        {label:'Remolcadores', kind:'confirmados', type:'confirm', val:null, readings:[{time:'05:50',src:'Consignatario'}]},
-        {label:'Práctico', kind:'a bordo', type:'confirm', val:null, readings:[{time:'05:45',src:'AP'}]},
-        {label:'Atraque · ' + v.muelle, kind:'confirmado', type:'atraque', val:null, readings:[{time:'05:30',src:'AP'}]},
+        {label:'Amarre', kind:'estimado', type:'confirm', val:null, readings:[{time:'~06:10',src:'NauticOps'}]},
+        {label:'Remolque', kind:'estimado', type:'confirm', val:null, readings:[{time:'~05:50',src:'NauticOps'}]},
+        {label:'Práctico', kind:'estimado', type:'confirm', val:null, readings:[{time:'~05:45',src:'NauticOps'}]},
+        {label:'Atraque · ' + v.muelle, kind:'observado', type:'atraque', val:null, readings:[{time:'05:30',src:'AIS'}]},
         {label:'Escala registrada', kind:null, type:'info', val:null, readings:[{time:'ayer 17:40',src:'Consignatario'}]}
       ];
     } else if(v.st === 'delay'){
       return [
         {label:'ETD', kind:'prevista', type:'eta', val:ref, readings:[{time:'14:10',src:'NauticOps',val:ref},{time:'13:50',src:'AP',val:v.etaTime},{time:'ayer 16:20',src:'AP',val:'20:00'}]},
         {label:'Inicio de operaciones de descarga', kind:'confirmado', type:'ops', val:null, readings:[{time:'06:00',src:'AP'}]},
-        {label:'Amarre', kind:'confirmado', type:'confirm', val:null, readings:[{time:'05:40',src:'AP'}]},
-        {label:'Atraque · ' + v.muelle, kind:'confirmado', type:'atraque', val:null, readings:[{time:'05:10',src:'AP'}]},
+        {label:'Amarre', kind:'estimado', type:'confirm', val:null, readings:[{time:'~05:40',src:'NauticOps'}]},
+        {label:'Atraque · ' + v.muelle, kind:'observado', type:'atraque', val:null, readings:[{time:'05:10',src:'AIS'}]},
         {label:'Escala registrada', kind:null, type:'info', val:null, readings:[{time:'ayer 16:20',src:'Consignatario'}]}
       ];
     } else if(v.st === 'auth'){
       return [
-        {label:'Práctico', kind:'asignado', type:'confirm', val:null, readings:[{time:'11:35',src:'AP'}]},
+        {label:'Práctico', kind:'estimado', type:'confirm', val:null, readings:[{time:'~11:35',src:'NauticOps'}]},
         {label:'Atraque · ' + v.muelle, kind:'autorizado', type:'atraque', val:null, readings:[{time:'11:30',src:'AP'}]},
         {label:'ETA', kind:'prevista', type:'eta', val:ref, readings:[{time:'11:05',src:'NauticOps',val:ref},{time:'07:30',src:'AP',val:v.etaTime}]},
         {label:'Posición AIS', kind:null, type:'info', val:'22 nm · 12 kn', readings:[{time:'10:20',src:'AIS',val:'22 nm · 12 kn'}]},
