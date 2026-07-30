@@ -130,7 +130,7 @@
     },
     {
       "id": "H20260730009",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "MED ANTARCTIC",
       "gt": 5651,
@@ -147,21 +147,6 @@
       "id": "H20260730010",
       "status": "Prevista",
       "imo": "—",
-      "name": "FT.PORTORIA",
-      "gt": 4056,
-      "len": 107,
-      "berth": "RS4",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-07-30T19:30",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260730011",
-      "status": "Prevista",
-      "imo": "—",
       "name": "HARTURA",
       "gt": 7988,
       "len": 140,
@@ -176,22 +161,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260731012",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "KARRUCA",
-      "gt": 5214,
-      "len": 112,
-      "berth": "FNS",
-      "agent": "BER",
-      "op": "Entrada",
-      "eta": "2026-07-31T00:30",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260731013",
+      "id": "H20260731011",
       "status": "Prevista",
       "imo": "—",
       "name": "SDM.BEIHAI",
@@ -206,7 +176,22 @@
       "to": "—"
     },
     {
-      "id": "H20260731014",
+      "id": "H20260731012",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "KARRUCA",
+      "gt": 5214,
+      "len": 112,
+      "berth": "FNS",
+      "agent": "BER",
+      "op": "Entrada",
+      "eta": "2026-07-31T07:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260731013",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -221,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260731015",
+      "id": "H20260731014",
       "status": "Prevista",
       "imo": "—",
       "name": "PACIFIC",
@@ -236,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260731016",
+      "id": "H20260731015",
       "status": "Prevista",
       "imo": "—",
       "name": "EINSTEIN",
@@ -251,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260731017",
+      "id": "H20260731016",
       "status": "Prevista",
       "imo": "—",
       "name": "MARIE CURIE",
@@ -266,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260801018",
+      "id": "H20260801017",
       "status": "Prevista",
       "imo": "—",
       "name": "NORDIC HAWK",
@@ -281,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260801019",
+      "id": "H20260801018",
       "status": "Prevista",
       "imo": "—",
       "name": "ASH ATLANTIC",
@@ -296,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260801020",
+      "id": "H20260801019",
       "status": "Prevista",
       "imo": "—",
       "name": "SONGA.TAURUS",
@@ -311,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260801021",
+      "id": "H20260801020",
       "status": "Prevista",
       "imo": "—",
       "name": "ONEGO.GLOMMA",
@@ -326,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260801022",
+      "id": "H20260801021",
       "status": "Prevista",
       "imo": "—",
       "name": "ISLAS.TRES",
@@ -341,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260802024",
+      "id": "H20260802023",
       "status": "Prevista",
       "imo": "—",
       "name": "ALICE.CONSULICH",
@@ -356,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260802025",
+      "id": "H20260802024",
       "status": "Prevista",
       "imo": "—",
       "name": "CONTSHIP.SKY",
@@ -371,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260803026",
+      "id": "H20260803025",
       "status": "Prevista",
       "imo": "—",
       "name": "PRIDE",
@@ -386,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260803027",
+      "id": "H20260803026",
       "status": "Prevista",
       "imo": "—",
       "name": "WILSON.ECO.IV",
@@ -401,7 +386,7 @@
       "to": "—"
     },
     {
-      "id": "H20260803028",
+      "id": "H20260803027",
       "status": "Prevista",
       "imo": "—",
       "name": "ARION",
@@ -416,7 +401,7 @@
       "to": "—"
     },
     {
-      "id": "H20260804029",
+      "id": "H20260804028",
       "status": "Prevista",
       "imo": "—",
       "name": "PERA",
@@ -431,7 +416,7 @@
       "to": "—"
     },
     {
-      "id": "H20260804030",
+      "id": "H20260804029",
       "status": "Prevista",
       "imo": "—",
       "name": "BELLIS.THERESA",
@@ -446,7 +431,7 @@
       "to": "—"
     },
     {
-      "id": "H20260805031",
+      "id": "H20260805030",
       "status": "Prevista",
       "imo": "—",
       "name": "ADALADY",
