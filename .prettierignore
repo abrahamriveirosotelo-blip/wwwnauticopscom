@@ -15,7 +15,8 @@ src/pages/demos/**/vessel-cache.json
 # Fixtures de scrapers — HTML/PDF crudo capturado de las fuentes (no es código; Prettier no lo parsea)
 scripts/fixtures
 
-# Demo v2 autocontenida (HTML con JS/CSS inline, llega en #75) — se mantiene tal cual la sirve Vercel.
+# Demo v2 autocontenida (#75): un único HTML con JS/CSS inline que Vercel sirve tal cual.
+# Formatearlo reescribiría ~5.300 líneas y no aporta nada: no entra en el build de Vite.
 # El resto de public/ (favicon, robots.txt, sitemap.xml, _redirects, .svg) no necesita entrada:
 # Prettier no infiere parser para esas extensiones y ya las ignora.
 public/demo/v2

@@ -34,6 +34,8 @@ React + TypeScript + Vite SPA. The public marketing website for NauticOps (`naut
 | `/demo/marin`          | `src/pages/demos/marin/DemoMarin.tsx`       | Interactive demo for Puerto de Marín prospect    |
 | `*`                    | `src/pages/NotFound.tsx`                    | Catch-all 404                                    |
 
+`/demo/v2` (#75) **no** es una ruta del SPA: es `public/demo/v2/index.html`, un HTML autocontenido con JS/CSS inline que Vercel sirve mediante un `rewrite` de `vercel.json`. Queda fuera del build de Vite y fuera de Prettier.
+
 ## Architecture
 
 **i18n:** `src/contexts/LanguageContext.tsx` provides `language`, `setLanguage`, and a `t` object (typed `Translations`). Translations live in `src/lib/translations.ts` and the `src/lib/translations/` directory (split by domain: `about`, `legal`, `shippingAgents`). Default language is English (`'en'`).
