@@ -36,7 +36,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 nav-brand">
+    <nav className="nav-brand fixed left-0 right-0 top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8" ref={menuRef}>
         <div className="flex h-[6.5rem] items-center justify-between">
           <a href="#" className="flex items-center">
@@ -44,25 +44,25 @@ const Navbar = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden items-center gap-8 lg:flex">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="text-sm font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+                className="text-sm font-medium text-primary-foreground/70 transition-colors hover:text-primary-foreground"
               >
                 {item.label}
               </a>
             ))}
             <Link
               to="/for-shipping-agents"
-              className="text-sm font-semibold text-secondary hover:text-secondary/80 transition-colors border border-secondary/30 hover:border-secondary/60 px-3 py-1 rounded-full"
+              className="rounded-full border border-secondary/30 px-3 py-1 text-sm font-semibold text-secondary transition-colors hover:border-secondary/60 hover:text-secondary/80"
             >
               {saT.nav.link}
             </Link>
           </div>
 
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden items-center gap-3 lg:flex">
             <LanguageSwitcher variant="dark" />
             <a
               href="https://www.nauticops.com/demo/marin"
@@ -73,7 +73,7 @@ const Navbar = () => {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10"
+                className="text-primary-foreground/70 hover:bg-primary-foreground/10 hover:text-primary-foreground"
               >
                 {t.nav.viewPlatform}
               </Button>
@@ -92,7 +92,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex lg:hidden items-center gap-3">
+          <div className="flex items-center gap-3 lg:hidden">
             <LanguageSwitcher variant="dark" />
             <button className="p-2" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
               {isOpen ? (
@@ -106,13 +106,13 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="lg:hidden py-4 border-t border-primary-foreground/10">
+          <div className="border-t border-primary-foreground/10 py-4 lg:hidden">
             <div className="flex flex-col gap-4">
               {navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="text-sm font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+                  className="text-sm font-medium text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
@@ -121,11 +121,11 @@ const Navbar = () => {
               <Link
                 to="/for-shipping-agents"
                 onClick={() => setIsOpen(false)}
-                className="text-sm font-semibold text-secondary hover:text-secondary/80 transition-colors"
+                className="text-sm font-semibold text-secondary transition-colors hover:text-secondary/80"
               >
                 {saT.nav.link} →
               </Link>
-              <div className="flex flex-col gap-2 pt-4 border-t border-primary-foreground/10">
+              <div className="flex flex-col gap-2 border-t border-primary-foreground/10 pt-4">
                 <a
                   href="https://www.nauticops.com/demo/marin"
                   target="_blank"
@@ -134,7 +134,7 @@ const Navbar = () => {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="w-full text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10"
+                    className="w-full text-primary-foreground/70 hover:bg-primary-foreground/10 hover:text-primary-foreground"
                   >
                     {t.nav.viewPlatform}
                   </Button>

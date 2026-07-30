@@ -24,7 +24,7 @@ const LanguageSwitcher = ({ variant = "light" }: LanguageSwitcherProps) => {
     >
       <button
         onClick={() => handleLanguageChange("en")}
-        className={`px-2.5 py-1 text-sm font-medium rounded transition-all duration-200 ${
+        className={`rounded px-2.5 py-1 text-sm font-medium transition-all duration-200 ${
           language === "en"
             ? isDark
               ? "bg-primary-foreground/15 text-primary-foreground"
@@ -39,7 +39,7 @@ const LanguageSwitcher = ({ variant = "light" }: LanguageSwitcherProps) => {
       </button>
       <button
         onClick={() => handleLanguageChange("es")}
-        className={`px-2.5 py-1 text-sm font-medium rounded transition-all duration-200 ${
+        className={`rounded px-2.5 py-1 text-sm font-medium transition-all duration-200 ${
           language === "es"
             ? isDark
               ? "bg-primary-foreground/15 text-primary-foreground"

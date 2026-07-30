@@ -29,18 +29,18 @@ const Footer = () => {
 
   return (
     <footer className="hero-gradient text-primary-foreground">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-8">
+      <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-6 lg:gap-8">
           {/* Brand — uses same logo as Navbar */}
           <div className="lg:col-span-2">
             <div className="mb-6">
               <img src={nauticopsLogo} alt="NauticOps" className="h-14 w-auto" />
             </div>
-            <p className="text-primary-foreground/60 mb-6 max-w-xs text-sm leading-relaxed">
+            <p className="mb-6 max-w-xs text-sm leading-relaxed text-primary-foreground/60">
               {t.footer.description}
             </p>
             <div className="mt-6">
-              <h4 className="font-semibold mb-4 text-sm">{t.footer.directContact}</h4>
+              <h4 className="mb-4 text-sm font-semibold">{t.footer.directContact}</h4>
               <ul className="space-y-3">
                 <li>
                   <a
@@ -48,7 +48,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackContactClick("linkedin")}
-                    className="inline-flex items-center gap-2 text-sm text-primary-foreground/60 hover:text-primary-foreground hover:underline underline-offset-4 transition-colors cursor-pointer"
+                    className="inline-flex cursor-pointer items-center gap-2 text-sm text-primary-foreground/60 underline-offset-4 transition-colors hover:text-primary-foreground hover:underline"
                   >
                     <Linkedin className="h-4 w-4" />
                     LinkedIn · Abraham Riveiro
@@ -58,7 +58,7 @@ const Footer = () => {
                   <a
                     href="mailto:info@nauticops.com"
                     onClick={() => trackContactClick("email")}
-                    className="inline-flex items-center gap-2 text-sm text-primary-foreground/60 hover:text-primary-foreground hover:underline underline-offset-4 transition-colors cursor-pointer"
+                    className="inline-flex cursor-pointer items-center gap-2 text-sm text-primary-foreground/60 underline-offset-4 transition-colors hover:text-primary-foreground hover:underline"
                   >
                     <Mail className="h-4 w-4" />
                     info@nauticops.com
@@ -68,17 +68,17 @@ const Footer = () => {
                   <a
                     href="tel:+34673108104"
                     onClick={() => trackContactClick("phone")}
-                    className="inline-flex items-center gap-2 text-sm text-primary-foreground/60 hover:text-primary-foreground hover:underline underline-offset-4 transition-colors cursor-pointer"
+                    className="inline-flex cursor-pointer items-center gap-2 text-sm text-primary-foreground/60 underline-offset-4 transition-colors hover:text-primary-foreground hover:underline"
                   >
                     <Phone className="h-4 w-4" />
                     +34 673 108 104
                   </a>
                 </li>
               </ul>
-              <p className="text-xs text-primary-foreground/40 mt-4 max-w-xs leading-relaxed">
+              <p className="mt-4 max-w-xs text-xs leading-relaxed text-primary-foreground/40">
                 {t.footer.directContactDescription}
               </p>
-              <p className="text-xs text-primary-foreground/30 mt-2 max-w-xs leading-relaxed italic">
+              <p className="mt-2 max-w-xs text-xs italic leading-relaxed text-primary-foreground/30">
                 {t.footer.directContactFallback}
               </p>
             </div>
@@ -91,21 +91,21 @@ const Footer = () => {
             { title: t.footer.legal, links: footerLinks.legal },
           ].map((section) => (
             <div key={section.title}>
-              <h4 className="font-semibold mb-4 text-sm">{section.title}</h4>
+              <h4 className="mb-4 text-sm font-semibold">{section.title}</h4>
               <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.label}>
                     {link.href.startsWith("/") ? (
                       <Link
                         to={link.href}
-                        className="text-primary-foreground/60 hover:text-primary-foreground transition-colors text-sm"
+                        className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
                       >
                         {link.label}
                       </Link>
                     ) : (
                       <a
                         href={link.href}
-                        className="text-primary-foreground/60 hover:text-primary-foreground transition-colors text-sm"
+                        className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
                       >
                         {link.label}
                       </a>
@@ -118,11 +118,11 @@ const Footer = () => {
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-primary-foreground/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-primary-foreground/10 pt-8 md:flex-row">
           <p className="text-xs text-primary-foreground/50">
             © {new Date().getFullYear()} NauticOps. {t.footer.copyright}
           </p>
-          <p className="text-xs text-primary-foreground/30 italic tracking-wide">
+          <p className="text-xs italic tracking-wide text-primary-foreground/30">
             {t.footer.tagline}
           </p>
         </div>

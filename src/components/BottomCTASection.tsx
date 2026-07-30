@@ -9,9 +9,9 @@ const BottomCTASection = () => {
   return (
     <section className="section-padding bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="heading-lg text-foreground mb-6 text-balance">{t.bottomCta.title}</h2>
-          <p className="body-lg text-muted-foreground mb-10 text-balance">{t.bottomCta.text}</p>
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="heading-lg mb-6 text-balance text-foreground">{t.bottomCta.title}</h2>
+          <p className="body-lg mb-10 text-balance text-muted-foreground">{t.bottomCta.text}</p>
           <Button
             variant="default"
             size="xl"

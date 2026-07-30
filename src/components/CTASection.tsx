@@ -93,13 +93,13 @@ const CTASection = () => {
 
   return (
     <section id="cta" className="section-padding bg-section-alt relative">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
             {/* Left Content */}
             <div>
-              <h2 className="heading-lg text-foreground mb-6 text-balance">{t.cta.title}</h2>
-              <p className="body-lg text-muted-foreground mb-8">{t.cta.subtitle}</p>
+              <h2 className="heading-lg mb-6 text-balance text-foreground">{t.cta.title}</h2>
+              <p className="body-lg mb-8 text-muted-foreground">{t.cta.subtitle}</p>
               <ul className="space-y-4">
                 {t.cta.benefits.map((item) => (
                   <li key={item} className="flex items-center gap-3">
@@ -113,15 +113,15 @@ const CTASection = () => {
             </div>
 
             {/* Form */}
-            <div className="bg-card rounded-2xl p-5 sm:p-8 shadow-xl">
+            <div className="rounded-2xl bg-card p-5 shadow-xl sm:p-8">
               {!isSubmitted ? (
                 <>
-                  <h3 className="heading-sm text-foreground mb-6 text-center">{t.cta.formTitle}</h3>
+                  <h3 className="heading-sm mb-6 text-center text-foreground">{t.cta.formTitle}</h3>
                   <form onSubmit={handleSubmit} onFocus={handleFormFocus} className="space-y-5">
                     <div>
                       <label
                         htmlFor="name"
-                        className="block text-sm font-medium text-foreground mb-2"
+                        className="mb-2 block text-sm font-medium text-foreground"
                       >
                         {t.cta.form.name}
                       </label>
@@ -139,7 +139,7 @@ const CTASection = () => {
                     <div>
                       <label
                         htmlFor="email"
-                        className="block text-sm font-medium text-foreground mb-2"
+                        className="mb-2 block text-sm font-medium text-foreground"
                       >
                         {t.cta.form.email}
                       </label>
@@ -157,7 +157,7 @@ const CTASection = () => {
                     <div>
                       <label
                         htmlFor="company"
-                        className="block text-sm font-medium text-foreground mb-2"
+                        className="mb-2 block text-sm font-medium text-foreground"
                       >
                         {t.cta.form.company}
                       </label>
@@ -175,7 +175,7 @@ const CTASection = () => {
                     <div>
                       <label
                         htmlFor="role"
-                        className="block text-sm font-medium text-foreground mb-2"
+                        className="mb-2 block text-sm font-medium text-foreground"
                       >
                         {t.cta.form.role}
                       </label>
@@ -198,7 +198,7 @@ const CTASection = () => {
                     <div>
                       <label
                         htmlFor="message"
-                        className="block text-sm font-medium text-foreground mb-2"
+                        className="mb-2 block text-sm font-medium text-foreground"
                       >
                         {t.cta.form.message}
                       </label>
@@ -228,18 +228,18 @@ const CTASection = () => {
                         </>
                       )}
                     </Button>
-                    {error && <p className="text-sm text-destructive text-center">{error}</p>}
-                    <p className="text-xs text-muted-foreground text-center">
+                    {error && <p className="text-center text-sm text-destructive">{error}</p>}
+                    <p className="text-center text-xs text-muted-foreground">
                       {t.cta.form.disclaimer}
                     </p>
                   </form>
                 </>
               ) : (
-                <div className="text-center py-8">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-secondary/10 mx-auto mb-6">
+                <div className="py-8 text-center">
+                  <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-secondary/10">
                     <Check className="h-8 w-8 text-secondary" />
                   </div>
-                  <h3 className="heading-sm text-foreground mb-3">{t.cta.success.title}</h3>
+                  <h3 className="heading-sm mb-3 text-foreground">{t.cta.success.title}</h3>
                   <p className="body-md text-muted-foreground">{t.cta.success.message}</p>
                 </div>
               )}

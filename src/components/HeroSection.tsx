@@ -8,14 +8,14 @@ const HeroSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <img src={heroImage} alt="Modern port operations" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 hero-gradient opacity-[0.88]" />
-        <div className="absolute inset-0 hero-pattern" />
-        <div className="absolute inset-0 hero-tech-overlay" />
-        <div className="absolute inset-0 hero-vignette" />
+        <img src={heroImage} alt="Modern port operations" className="h-full w-full object-cover" />
+        <div className="hero-gradient absolute inset-0 opacity-[0.88]" />
+        <div className="hero-pattern absolute inset-0" />
+        <div className="hero-tech-overlay absolute inset-0" />
+        <div className="hero-vignette absolute inset-0" />
       </div>
 
       {/* Wave Bottom */}
@@ -29,31 +29,31 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="container relative z-10 mx-auto px-5 sm:px-6 lg:px-8 pt-28 md:pt-32 pb-20 sm:pb-32">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="animate-fade-in-up opacity-0 mt-6 md:mt-8">
-            <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium rounded-full bg-primary-foreground/10 text-primary-foreground border border-primary-foreground/20">
+      <div className="container relative z-10 mx-auto px-5 pb-20 pt-28 sm:px-6 sm:pb-32 md:pt-32 lg:px-8">
+        <div className="mx-auto max-w-4xl text-center">
+          <div className="mt-6 animate-fade-in-up opacity-0 md:mt-8">
+            <span className="mb-6 inline-block rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-1.5 text-sm font-medium text-primary-foreground">
               {t.hero.badge}
             </span>
           </div>
 
-          <h1 className="heading-xl text-primary-foreground mb-6 animate-fade-in-up opacity-0 stagger-1 text-balance">
+          <h1 className="heading-xl stagger-1 mb-6 animate-fade-in-up text-balance text-primary-foreground opacity-0">
             {t.hero.title}
           </h1>
 
-          <p className="body-lg text-primary-foreground/85 mb-4 max-w-2xl mx-auto animate-fade-in-up opacity-0 stagger-2 text-balance">
+          <p className="body-lg stagger-2 mx-auto mb-4 max-w-2xl animate-fade-in-up text-balance text-primary-foreground/85 opacity-0">
             {t.hero.subtitle}
           </p>
 
-          <p className="text-sm font-medium text-primary-foreground/50 mb-10 animate-fade-in-up opacity-0 stagger-2 tracking-wide">
+          <p className="stagger-2 mb-10 animate-fade-in-up text-sm font-medium tracking-wide text-primary-foreground/50 opacity-0">
             {t.hero.supportingLine}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button
               variant="hero"
               size="xl"
-              className="w-full sm:w-auto shadow-[0_0_30px_-5px_hsl(200_70%_45%/0.4)] animate-fade-in-up opacity-0 stagger-4"
+              className="stagger-4 w-full animate-fade-in-up opacity-0 shadow-[0_0_30px_-5px_hsl(200_70%_45%/0.4)] sm:w-auto"
               onClick={() => {
                 trackCtaClick("hero");
                 document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" });
@@ -63,7 +63,7 @@ const HeroSection = () => {
               {t.hero.ctaPrimary}
               <ArrowRight className="h-5 w-5" />
             </Button>
-            <div className="w-full sm:w-auto animate-fade-in-up opacity-0 stagger-5 flex flex-col items-center gap-1">
+            <div className="stagger-5 flex w-full animate-fade-in-up flex-col items-center gap-1 opacity-0 sm:w-auto">
               <a
                 href="https://www.nauticops.com/demo/marin"
                 target="_blank"
@@ -80,21 +80,21 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <div className="mt-10 sm:mt-16 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 animate-fade-in-up opacity-0 stagger-4">
-            <div className="text-center max-w-[250px] sm:max-w-[200px]">
-              <div className="text-xs sm:text-sm font-medium text-primary-foreground/80">
+          <div className="stagger-4 mt-10 flex animate-fade-in-up flex-col items-center justify-center gap-4 opacity-0 sm:mt-16 sm:flex-row sm:gap-8">
+            <div className="max-w-[250px] text-center sm:max-w-[200px]">
+              <div className="text-xs font-medium text-primary-foreground/80 sm:text-sm">
                 {t.hero.stats.portCalls}
               </div>
             </div>
-            <div className="hidden sm:block h-8 w-px bg-primary-foreground/20" />
-            <div className="text-center max-w-[250px] sm:max-w-[200px]">
-              <div className="text-xs sm:text-sm font-medium text-primary-foreground/80">
+            <div className="hidden h-8 w-px bg-primary-foreground/20 sm:block" />
+            <div className="max-w-[250px] text-center sm:max-w-[200px]">
+              <div className="text-xs font-medium text-primary-foreground/80 sm:text-sm">
                 {t.hero.stats.realTime}
               </div>
             </div>
-            <div className="hidden sm:block h-8 w-px bg-primary-foreground/20" />
-            <div className="text-center max-w-[250px] sm:max-w-[200px]">
-              <div className="text-xs sm:text-sm font-medium text-primary-foreground/80">
+            <div className="hidden h-8 w-px bg-primary-foreground/20 sm:block" />
+            <div className="max-w-[250px] text-center sm:max-w-[200px]">
+              <div className="text-xs font-medium text-primary-foreground/80 sm:text-sm">
                 {t.hero.stats.systemAgnostic}
               </div>
             </div>

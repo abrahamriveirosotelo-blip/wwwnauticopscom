@@ -9,34 +9,34 @@ const HowItFitsSection = () => {
   return (
     <section id="how-it-fits" className="section-padding bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-muted text-muted-foreground">
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <span className="mb-4 inline-block rounded-full bg-muted px-4 py-1.5 text-sm font-medium text-muted-foreground">
             {t.howItFits.badge}
           </span>
-          <h2 className="heading-lg text-foreground mb-6 text-balance">{t.howItFits.title}</h2>
-          <p className="body-lg text-muted-foreground text-balance">{t.howItFits.subtitle}</p>
+          <h2 className="heading-lg mb-6 text-balance text-foreground">{t.howItFits.title}</h2>
+          <p className="body-lg text-balance text-muted-foreground">{t.howItFits.subtitle}</p>
         </div>
 
-        <div className="relative max-w-5xl mx-auto">
-          <div className="hidden lg:block absolute top-24 left-[16.67%] right-[16.67%] h-0.5 bg-gradient-to-r from-secondary/20 via-secondary to-secondary/20" />
+        <div className="relative mx-auto max-w-5xl">
+          <div className="absolute left-[16.67%] right-[16.67%] top-24 hidden h-0.5 bg-gradient-to-r from-secondary/20 via-secondary to-secondary/20 lg:block" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-6">
             {t.howItFits.steps.map((step, index) => {
               const Icon = iconMap[index];
               return (
                 <div key={step.title} className="relative text-center">
-                  <div className="relative inline-flex items-center justify-center mb-6">
-                    <div className="absolute inset-0 bg-secondary/10 rounded-full scale-150" />
-                    <div className="relative icon-container w-20 h-20 !rounded-full border-4 border-background">
+                  <div className="relative mb-6 inline-flex items-center justify-center">
+                    <div className="absolute inset-0 scale-150 rounded-full bg-secondary/10" />
+                    <div className="icon-container relative h-20 w-20 !rounded-full border-4 border-background">
                       <Icon className="h-8 w-8 text-secondary" />
                     </div>
-                    <span className="absolute -top-2 -right-2 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">
+                    <span className="absolute -right-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
                       {index + 1}
                     </span>
                   </div>
 
-                  <h3 className="heading-sm text-foreground mb-4">{step.title}</h3>
-                  <p className="body-md text-muted-foreground max-w-sm mx-auto">
+                  <h3 className="heading-sm mb-4 text-foreground">{step.title}</h3>
+                  <p className="body-md mx-auto max-w-sm text-muted-foreground">
                     {step.description}
                   </p>
                 </div>

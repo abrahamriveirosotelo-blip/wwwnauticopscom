@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         // Primary CTA — NauticOps navy blue bg, white text
-        default: "bg-primary text-primary-foreground hover:bg-navy-light shadow-md hover:shadow-lg",
+        default: "bg-primary text-primary-foreground shadow-md hover:bg-navy-light hover:shadow-lg",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         // Secondary — navy blue outline, transparent bg
         outline: "border-2 border-primary bg-transparent text-primary hover:bg-primary/5",
@@ -18,10 +18,10 @@ const buttonVariants = cva(
         ghost: "hover:bg-primary/5 hover:text-primary",
         link: "text-primary underline-offset-4 hover:underline",
         // Hero primary — white bg, navy text (used on dark hero backgrounds)
-        hero: "bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-lg hover:shadow-xl",
+        hero: "bg-primary-foreground text-primary shadow-lg hover:bg-primary-foreground/90 hover:shadow-xl",
         // Hero secondary — outline on dark bg
         heroOutline:
-          "border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:border-primary-foreground/50",
+          "border-2 border-primary-foreground/30 text-primary-foreground hover:border-primary-foreground/50 hover:bg-primary-foreground/10",
       },
       size: {
         default: "h-11 px-6 py-2",

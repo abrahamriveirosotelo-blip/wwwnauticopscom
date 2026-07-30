@@ -58,13 +58,13 @@ const Hero = ({ t }: { t: typeof shippingAgentsEn }) => {
       <div className="hero-tech-overlay absolute inset-0" />
       <div className="hero-vignette absolute inset-0" />
 
-      <div className="container relative z-10 mx-auto px-5 sm:px-6 lg:px-8 py-20 sm:py-28">
-        <div className="max-w-3xl mx-auto text-center">
-          <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium rounded-full bg-primary-foreground/10 text-primary-foreground border border-primary-foreground/20">
+      <div className="container relative z-10 mx-auto px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="mb-6 inline-block rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-1.5 text-sm font-medium text-primary-foreground">
             {t.hero.badge}
           </span>
 
-          <h1 className="heading-xl text-primary-foreground mb-6 text-balance">
+          <h1 className="heading-xl mb-6 text-balance text-primary-foreground">
             {lines.map((line, i) => (
               <span key={i}>
                 {line}
@@ -73,17 +73,17 @@ const Hero = ({ t }: { t: typeof shippingAgentsEn }) => {
             ))}
           </h1>
 
-          <p className="body-lg text-primary-foreground/80 mb-4 max-w-2xl mx-auto text-balance">
+          <p className="body-lg mx-auto mb-4 max-w-2xl text-balance text-primary-foreground/80">
             {t.hero.subtitle}
           </p>
 
-          <p className="text-sm font-medium text-primary-foreground/50 mb-10 tracking-wide">
+          <p className="mb-10 text-sm font-medium tracking-wide text-primary-foreground/50">
             {t.hero.supportingLine}
           </p>
 
           {/* Impact phrase */}
-          <div className="inline-block mb-10 px-6 py-4 rounded-xl border border-primary-foreground/20 bg-primary-foreground/5">
-            <p className="text-base sm:text-lg font-semibold text-primary-foreground/90 text-balance">
+          <div className="mb-10 inline-block rounded-xl border border-primary-foreground/20 bg-primary-foreground/5 px-6 py-4">
+            <p className="text-balance text-base font-semibold text-primary-foreground/90 sm:text-lg">
               {phraseLines.map((line, i) => (
                 <span key={i}>
                   {line}
@@ -93,11 +93,11 @@ const Hero = ({ t }: { t: typeof shippingAgentsEn }) => {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button
               variant="hero"
               size="xl"
-              className="w-full sm:w-auto shadow-[0_0_30px_-5px_hsl(200_70%_45%/0.4)]"
+              className="w-full shadow-[0_0_30px_-5px_hsl(200_70%_45%/0.4)] sm:w-auto"
               onClick={() => {
                 trackCtaClick("hero");
                 scrollToForm();
@@ -134,23 +134,23 @@ const painIcons = [MessageSquareOff, Clock, FileX, AlertTriangle];
 const PainSection = ({ t }: { t: typeof shippingAgentsEn }) => (
   <section className="section-padding bg-background">
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto text-center mb-16">
-        <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-muted text-muted-foreground">
+      <div className="mx-auto mb-16 max-w-3xl text-center">
+        <span className="mb-4 inline-block rounded-full bg-muted px-4 py-1.5 text-sm font-medium text-muted-foreground">
           {t.pain.badge}
         </span>
-        <h2 className="heading-lg text-foreground mb-6 text-balance">{t.pain.title}</h2>
-        <p className="body-lg text-muted-foreground text-balance">{t.pain.subtitle}</p>
+        <h2 className="heading-lg mb-6 text-balance text-foreground">{t.pain.title}</h2>
+        <p className="body-lg text-balance text-muted-foreground">{t.pain.subtitle}</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
         {t.pain.items.map(({ title, body }, i) => {
           const Icon = painIcons[i];
           return (
             <div key={title} className="card-maritime p-5 sm:p-8">
-              <div className="icon-container w-14 h-14 mb-6">
+              <div className="icon-container mb-6 h-14 w-14">
                 <Icon className="h-7 w-7 text-secondary" />
               </div>
-              <h3 className="heading-sm text-foreground mb-3">{title}</h3>
+              <h3 className="heading-sm mb-3 text-foreground">{title}</h3>
               <p className="body-md text-muted-foreground">{body}</p>
             </div>
           );
@@ -167,24 +167,24 @@ const solutionIcons = [Eye, Bell, CheckCircle2, Layers];
 const SolutionSection = ({ t }: { t: typeof shippingAgentsEn }) => (
   <section className="section-padding bg-section-alt">
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto text-center mb-16">
-        <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-secondary/10 text-secondary">
+      <div className="mx-auto mb-16 max-w-3xl text-center">
+        <span className="mb-4 inline-block rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-medium text-secondary">
           {t.solution.badge}
         </span>
-        <h2 className="heading-lg text-foreground mb-6 text-balance">{t.solution.title}</h2>
-        <p className="body-lg text-muted-foreground text-balance">{t.solution.subtitle}</p>
+        <h2 className="heading-lg mb-6 text-balance text-foreground">{t.solution.title}</h2>
+        <p className="body-lg text-balance text-muted-foreground">{t.solution.subtitle}</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 lg:grid-cols-2">
         {t.solution.features.map(({ title, body }, i) => {
           const Icon = solutionIcons[i];
           return (
             <div key={title} className="flex gap-5">
-              <div className="icon-container w-14 h-14 flex-shrink-0">
+              <div className="icon-container h-14 w-14 flex-shrink-0">
                 <Icon className="h-7 w-7 text-secondary" />
               </div>
               <div>
-                <h3 className="heading-sm text-foreground mb-2">{title}</h3>
+                <h3 className="heading-sm mb-2 text-foreground">{title}</h3>
                 <p className="body-md text-muted-foreground">{body}</p>
               </div>
             </div>
@@ -202,11 +202,11 @@ const HowItWorks = ({ t }: { t: typeof shippingAgentsEn }) => {
   return (
     <section className="section-padding bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-muted text-muted-foreground">
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <span className="mb-4 inline-block rounded-full bg-muted px-4 py-1.5 text-sm font-medium text-muted-foreground">
             {t.howItWorks.badge}
           </span>
-          <h2 className="heading-lg text-foreground mb-6 text-balance">
+          <h2 className="heading-lg mb-6 text-balance text-foreground">
             {titleLines.map((line, i) => (
               <span key={i}>
                 {line}
@@ -214,20 +214,20 @@ const HowItWorks = ({ t }: { t: typeof shippingAgentsEn }) => {
               </span>
             ))}
           </h2>
-          <p className="body-lg text-muted-foreground text-balance">{t.howItWorks.subtitle}</p>
+          <p className="body-lg text-balance text-muted-foreground">{t.howItWorks.subtitle}</p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="mx-auto max-w-4xl">
           <div className="relative">
-            <div className="hidden lg:block absolute left-[2.75rem] top-16 bottom-16 w-px bg-border" />
+            <div className="absolute bottom-16 left-[2.75rem] top-16 hidden w-px bg-border lg:block" />
             <div className="space-y-10">
               {t.howItWorks.steps.map(({ number, title, body }) => (
-                <div key={number} className="flex gap-6 items-start">
-                  <div className="flex-shrink-0 w-[5.5rem] h-[5.5rem] flex items-center justify-center rounded-2xl bg-primary text-primary-foreground relative z-10">
+                <div key={number} className="flex items-start gap-6">
+                  <div className="relative z-10 flex h-[5.5rem] w-[5.5rem] flex-shrink-0 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
                     <span className="text-xl font-bold tracking-tight">{number}</span>
                   </div>
-                  <div className="pt-3 flex-1">
-                    <h3 className="heading-sm text-foreground mb-2">{title}</h3>
+                  <div className="flex-1 pt-3">
+                    <h3 className="heading-sm mb-2 text-foreground">{title}</h3>
                     <p className="body-md text-muted-foreground">{body}</p>
                   </div>
                 </div>
@@ -245,25 +245,25 @@ const HowItWorks = ({ t }: { t: typeof shippingAgentsEn }) => {
 const NoReplacement = ({ t }: { t: typeof shippingAgentsEn }) => (
   <section className="section-padding bg-section-alt">
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="mx-auto max-w-4xl">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-secondary/10 text-secondary">
+            <span className="mb-4 inline-block rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-medium text-secondary">
               {t.noReplacement.badge}
             </span>
-            <h2 className="heading-lg text-foreground mb-6 text-balance">
+            <h2 className="heading-lg mb-6 text-balance text-foreground">
               {t.noReplacement.title}
             </h2>
-            <p className="body-lg text-muted-foreground mb-4">{t.noReplacement.text1}</p>
+            <p className="body-lg mb-4 text-muted-foreground">{t.noReplacement.text1}</p>
             <p className="body-md text-muted-foreground">{t.noReplacement.text2}</p>
           </div>
 
           <div className="card-maritime p-6 sm:p-8">
-            <h3 className="heading-sm text-foreground mb-6">{t.noReplacement.cardTitle}</h3>
+            <h3 className="heading-sm mb-6 text-foreground">{t.noReplacement.cardTitle}</h3>
             <ul className="space-y-5">
               {t.noReplacement.items.map(({ label, note }) => (
                 <li key={label}>
-                  <p className="font-semibold text-foreground text-sm mb-0.5">{label}</p>
+                  <p className="mb-0.5 text-sm font-semibold text-foreground">{label}</p>
                   <p className="text-sm text-muted-foreground">{note}</p>
                 </li>
               ))}
@@ -280,22 +280,22 @@ const NoReplacement = ({ t }: { t: typeof shippingAgentsEn }) => (
 const CredibilitySection = ({ t }: { t: typeof shippingAgentsEn }) => (
   <section className="section-padding bg-background">
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-secondary/10 text-secondary">
+      <div className="mx-auto max-w-4xl">
+        <div className="mb-12 text-center">
+          <span className="mb-4 inline-block rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-medium text-secondary">
             {t.credibility.badge}
           </span>
-          <h2 className="heading-lg text-foreground mb-6 text-balance">{t.credibility.title}</h2>
-          <p className="body-lg text-muted-foreground text-balance max-w-2xl mx-auto">
+          <h2 className="heading-lg mb-6 text-balance text-foreground">{t.credibility.title}</h2>
+          <p className="body-lg mx-auto max-w-2xl text-balance text-muted-foreground">
             {t.credibility.subtitle}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           {/* Ecosystem actors */}
           <div className="card-maritime p-6 sm:p-8">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="icon-container w-10 h-10">
+            <div className="mb-6 flex items-center gap-3">
+              <div className="icon-container h-10 w-10">
                 <Award className="h-5 w-5 text-secondary" />
               </div>
               <h3 className="font-semibold text-foreground">{t.credibility.actorsTitle}</h3>
@@ -303,8 +303,8 @@ const CredibilitySection = ({ t }: { t: typeof shippingAgentsEn }) => (
             <ul className="space-y-3">
               {t.credibility.actors.map((actor) => (
                 <li key={actor} className="flex items-center gap-3">
-                  <div className="h-2 w-2 rounded-full bg-secondary flex-shrink-0" />
-                  <span className="text-foreground font-medium text-sm">{actor}</span>
+                  <div className="h-2 w-2 flex-shrink-0 rounded-full bg-secondary" />
+                  <span className="text-sm font-medium text-foreground">{actor}</span>
                 </li>
               ))}
             </ul>
@@ -312,8 +312,8 @@ const CredibilitySection = ({ t }: { t: typeof shippingAgentsEn }) => (
 
           {/* Supporters */}
           <div className="card-maritime p-6 sm:p-8">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="icon-container w-10 h-10">
+            <div className="mb-6 flex items-center gap-3">
+              <div className="icon-container h-10 w-10">
                 <CheckCircle2 className="h-5 w-5 text-secondary" />
               </div>
               <h3 className="font-semibold text-foreground">{t.credibility.supportedTitle}</h3>
@@ -322,7 +322,7 @@ const CredibilitySection = ({ t }: { t: typeof shippingAgentsEn }) => (
               {t.credibility.supporters.map((s) => (
                 <li
                   key={s}
-                  className="text-sm text-muted-foreground leading-relaxed border-l-2 border-secondary/30 pl-4"
+                  className="border-l-2 border-secondary/30 pl-4 text-sm leading-relaxed text-muted-foreground"
                 >
                   {s}
                 </li>
@@ -340,23 +340,23 @@ const CredibilitySection = ({ t }: { t: typeof shippingAgentsEn }) => (
 const PilotPorts = ({ t }: { t: typeof shippingAgentsEn }) => (
   <section className="section-padding bg-section-alt">
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto text-center mb-12">
-        <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-secondary/10 text-secondary">
+      <div className="mx-auto mb-12 max-w-3xl text-center">
+        <span className="mb-4 inline-block rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-medium text-secondary">
           {t.pilotPorts.badge}
         </span>
-        <h2 className="heading-md text-foreground mb-4 text-balance">{t.pilotPorts.title}</h2>
-        <p className="body-md text-muted-foreground text-balance">{t.pilotPorts.subtitle}</p>
+        <h2 className="heading-md mb-4 text-balance text-foreground">{t.pilotPorts.title}</h2>
+        <p className="body-md text-balance text-muted-foreground">{t.pilotPorts.subtitle}</p>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
+      <div className="mx-auto flex max-w-2xl flex-wrap justify-center gap-4">
         {t.pilotPorts.ports.map(({ name, country }) => (
           <div
             key={name}
-            className="flex items-center gap-2 px-5 py-3 rounded-full border border-border bg-card shadow-sm"
+            className="flex items-center gap-2 rounded-full border border-border bg-card px-5 py-3 shadow-sm"
           >
-            <MapPin className="h-4 w-4 text-secondary flex-shrink-0" />
-            <span className="font-semibold text-foreground text-sm">{name}</span>
-            <span className="text-muted-foreground text-xs">· {country}</span>
+            <MapPin className="h-4 w-4 flex-shrink-0 text-secondary" />
+            <span className="text-sm font-semibold text-foreground">{name}</span>
+            <span className="text-xs text-muted-foreground">· {country}</span>
           </div>
         ))}
       </div>
@@ -369,15 +369,15 @@ const PilotPorts = ({ t }: { t: typeof shippingAgentsEn }) => (
 const FormSection = ({ t }: { t: typeof shippingAgentsEn }) => (
   <section id="pilot-form" className="section-padding bg-background">
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+      <div className="mx-auto max-w-5xl">
+        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left */}
           <div className="lg:pt-4">
-            <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-secondary/10 text-secondary">
+            <span className="mb-4 inline-block rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-medium text-secondary">
               {t.form.badge}
             </span>
-            <h2 className="heading-lg text-foreground mb-6 text-balance">{t.bottomCta.title}</h2>
-            <p className="body-lg text-muted-foreground mb-8 text-balance">
+            <h2 className="heading-lg mb-6 text-balance text-foreground">{t.bottomCta.title}</h2>
+            <p className="body-lg mb-8 text-balance text-muted-foreground">
               {t.bottomCta.subtitle}
             </p>
             <ul className="space-y-3">
@@ -391,15 +391,15 @@ const FormSection = ({ t }: { t: typeof shippingAgentsEn }) => (
                   <div className="flex h-6 w-6 items-center justify-center rounded-full bg-secondary/10">
                     <CheckCircle2 className="h-4 w-4 text-secondary" />
                   </div>
-                  <span className="text-foreground font-medium">{actor}</span>
+                  <span className="font-medium text-foreground">{actor}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Form */}
-          <div className="bg-card rounded-2xl p-5 sm:p-8 shadow-xl">
-            <h3 className="heading-sm text-foreground mb-6 text-center">{t.form.title}</h3>
+          <div className="rounded-2xl bg-card p-5 shadow-xl sm:p-8">
+            <h3 className="heading-sm mb-6 text-center text-foreground">{t.form.title}</h3>
             <ShippingAgentsCTAForm t={t.form} />
           </div>
         </div>
@@ -413,9 +413,9 @@ const FormSection = ({ t }: { t: typeof shippingAgentsEn }) => (
 const BottomCTA = ({ t }: { t: typeof shippingAgentsEn }) => (
   <section className="section-padding bg-section-alt">
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="max-w-2xl mx-auto text-center">
-        <h2 className="heading-lg text-foreground mb-6 text-balance">{t.bottomCta.title}</h2>
-        <p className="body-lg text-muted-foreground mb-10 text-balance">{t.bottomCta.subtitle}</p>
+      <div className="mx-auto max-w-2xl text-center">
+        <h2 className="heading-lg mb-6 text-balance text-foreground">{t.bottomCta.title}</h2>
+        <p className="body-lg mb-10 text-balance text-muted-foreground">{t.bottomCta.subtitle}</p>
         <Button
           variant="default"
           size="xl"
