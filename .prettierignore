@@ -1,0 +1,27 @@
+# Build / deps
+dist
+build
+coverage
+node_modules
+
+# Lockfiles
+bun.lockb
+package-lock.json
+
+# Datos generados por el cron / scrapers — no formatear (evita churn y conflictos con las escrituras automáticas)
+src/pages/demos/**/data.json
+src/pages/demos/**/vessel-cache.json
+
+# Fixtures de scrapers — HTML/PDF crudo capturado de las fuentes (no es código; Prettier no lo parsea)
+scripts/fixtures
+
+# Assets estáticos / demo autocontenida
+public/demo/v2
+public/placeholder.svg
+public/favicon.ico
+public/robots.txt
+public/sitemap.xml
+public/_redirects
+
+# Minificados
+*.min.*
