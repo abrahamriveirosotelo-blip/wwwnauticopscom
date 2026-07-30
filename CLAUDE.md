@@ -11,6 +11,14 @@ React + TypeScript + Vite SPA. The public marketing website for NauticOps (`naut
 - **Vercel** for deployment (`vercel.json` present; apex `nauticops.com` 308-redirects to `www.nauticops.com`). A legacy `netlify.toml` remains and Netlify still builds PR deploy-previews.
 - No backend, no auth.
 
+## Formato y calidad de código
+
+- **Prettier** es el formateador único (`.prettierrc.json`: `printWidth` 100, comillas dobles, `;`, `trailingComma: all`). Corre `npm run format` antes de commitear y `npm run format:check` para verificar.
+- **`.prettierignore`** excluye lo que **no** debe reformatearse: `dist`, lockfiles, los `data.json` / `vessel-cache.json` que generan los scrapers/cron (evita churn y conflictos con las escrituras automáticas), `scripts/fixtures/` (HTML crudo de las fuentes) y `public/demo/v2`.
+- **ESLint** usa flat config (`eslint.config.js`) con `eslint-config-prettier` al final para no solapar reglas de estilo con Prettier. Lint: `npm run lint`.
+- **Typecheck**: `npx tsc --noEmit` (hay errores baseline que se sanean en #80; ojo: `npm run build` de Vite **no** hace typecheck).
+- El **quality gate en CI** (`format:check → lint → typecheck → test/coverage` + protección de `main`) se está montando en las issues **#79–#83**. Hasta que aterrice, **corre el gate en local antes de cada PR**.
+
 ## Pages
 
 | Route                  | Component                                   | Purpose                                          |
