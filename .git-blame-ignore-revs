@@ -13,4 +13,8 @@
 # Es decir: un PR de reformateo no puede registrarse a sí mismo. Se mergea
 # primero y se añade la línea justo después, en un PR aparte de una sola línea.
 
-# (todavía sin entradas — pendiente de registrar #84 y #85 al mergearlas)
+# Quality gate #79 · Prettier + format:check (#84) — reformateo de todo el repo
+b2eabb4c01989a5e436e8095f78572585e971ba8
+
+# Orden determinista de clases Tailwind (#85) — reordenado de classNames
+f2ef838e265f9108d0d42a35542aee232a36ac65
