@@ -19,41 +19,49 @@
  *   node scripts/enrich-marin.mjs --vessel "GLORIOUS"   # prueba un nombre
  */
 
-import { readFileSync, writeFileSync, existsSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { readFileSync, writeFileSync, existsSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
 import {
-  SEARCH_URL, DETAIL_URL, parseSearchResults, parseDetail,
-  matchVessel, pickDetailFields, normName,
-  THROTTLE_MS, sleep, fetchText,
-} from './lib/vesselfinder.mjs';
+  SEARCH_URL,
+  DETAIL_URL,
+  parseSearchResults,
+  parseDetail,
+  matchVessel,
+  pickDetailFields,
+  normName,
+  THROTTLE_MS,
+  sleep,
+  fetchText,
+} from "./lib/vesselfinder.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_PATH = join(__dirname, '../src/pages/demos/marin/data.json');
-const CACHE_PATH = join(__dirname, '../src/pages/demos/marin/vessel-cache.json');
+const DATA_PATH = join(__dirname, "../src/pages/demos/marin/data.json");
+const CACHE_PATH = join(__dirname, "../src/pages/demos/marin/vessel-cache.json");
 
-const UNRESOLVED_TTL_DAYS = 7;     // reintentar "sin match" estable pasada 1 semana
-const ERROR_RETRY_HOURS = 6;       // reintentar fallos de red mucho antes (no en cada cron)
+const UNRESOLVED_TTL_DAYS = 7; // reintentar "sin match" estable pasada 1 semana
+const ERROR_RETRY_HOURS = 6; // reintentar fallos de red mucho antes (no en cada cron)
 
-const fetchDetail = async id => parseDetail(await fetchText(DETAIL_URL(id)));
+const fetchDetail = async (id) => parseDetail(await fetchText(DETAIL_URL(id)));
 
 /** Resuelve un buque por nombre: search → match conservador → detalle. */
 async function resolveVessel(call, searchHtml = null) {
   // Reutiliza el HTML de búsqueda si se pasa (p. ej. desde --vessel) para no
   // repetir la misma petición a vesselfinder.com.
-  const search = searchHtml ?? await fetchText(SEARCH_URL(call.name));
+  const search = searchHtml ?? (await fetchText(SEARCH_URL(call.name)));
   if (!searchHtml) await sleep(THROTTLE_MS);
   const candidates = parseSearchResults(search);
-  const match = await matchVessel(call, candidates, async id => {
+  const match = await matchVessel(call, candidates, async (id) => {
     const d = await fetchDetail(id);
     await sleep(THROTTLE_MS);
     return d;
   });
   if (!match) {
     const n = candidates.length;
-    const reason = n === 0
-      ? 'sin resultados en VesselFinder'
-      : `${n} resultado${n === 1 ? '' : 's'} pero ninguno aceptable (nombre/tipo comercial/IMO)`;
+    const reason =
+      n === 0
+        ? "sin resultados en VesselFinder"
+        : `${n} resultado${n === 1 ? "" : "s"} pero ninguno aceptable (nombre/tipo comercial/IMO)`;
     return { resolved: false, reason };
   }
 
@@ -63,42 +71,42 @@ async function resolveVessel(call, searchHtml = null) {
   // Si el match es 'destination-confirmed', matchVessel ya descargó la ficha y
   // verificó el IMO → evitamos una petición (y un throttle) redundantes.
   let merged = { ...match.candidate };
-  if (match.confidence !== 'destination-confirmed') {
+  if (match.confidence !== "destination-confirmed") {
     let detail;
     try {
       detail = await fetchDetail(match.candidate.detailId);
       await sleep(THROTTLE_MS);
     } catch {
-      return { resolved: false, reason: 'no se pudo verificar la ficha (IMO sin confirmar)' };
+      return { resolved: false, reason: "no se pudo verificar la ficha (IMO sin confirmar)" };
     }
-    if (!detail.imo) return { resolved: false, reason: 'ficha sin IMO verificable' };
+    if (!detail.imo) return { resolved: false, reason: "ficha sin IMO verificable" };
     merged = { ...merged, ...pickDetailFields(detail) };
   }
 
-  if (!merged.imo) return { resolved: false, reason: 'IMO no verificado' };
+  if (!merged.imo) return { resolved: false, reason: "IMO no verificado" };
   return {
     resolved: true,
     imo: merged.imo,
-    mmsi: merged.mmsi || '',                 // para futura integración AIS (aisstream)
+    mmsi: merged.mmsi || "", // para futura integración AIS (aisstream)
     detailId: merged.detailId || merged.imo, // id de ficha VesselFinder (a veces ≠ IMO)
     gt: merged.gt || 0,
     dwt: merged.dwt || 0,
     len: merged.length || 0,
     beam: merged.beam || 0,
-    flag: merged.flag || '',
-    vesselType: merged.type || '',
+    flag: merged.flag || "",
+    vesselType: merged.type || "",
     built: merged.built || 0,
-    callsign: merged.callsign || '',
-    destination: merged.destination || '',
+    callsign: merged.callsign || "",
+    destination: merged.destination || "",
     confidence: match.confidence,
-    source: 'vesselfinder.com',
+    source: "vesselfinder.com",
   };
 }
 
 function nowIso() {
   // ISO en UTC conservando la 'Z' para que new Date(checkedAt) reparse en UTC
   // (sin la Z se interpretaría como hora local y desplazaría el TTL).
-  return new Date().toISOString().slice(0, 19) + 'Z';
+  return new Date().toISOString().slice(0, 19) + "Z";
 }
 
 /** Clave de caché/agrupación: nombre + destino normalizados (los nombres no son únicos). */
@@ -121,18 +129,18 @@ function applyToCall(call, e) {
   call.gt = e.gt ?? 0;
   call.dwt = e.dwt ?? 0;
   call.len = e.len ?? 0;
-  call.beam = e.beam ?? 0;   // la caché ya guarda manga y buildCalls la arrastra; materialízala
-  call.flag = e.flag || '';
-  call.vesselType = e.vesselType || '';
+  call.beam = e.beam ?? 0; // la caché ya guarda manga y buildCalls la arrastra; materialízala
+  call.flag = e.flag || "";
+  call.vesselType = e.vesselType || "";
   call.built = e.built ?? 0;
-  call.callsign = e.callsign || '';
+  call.callsign = e.callsign || "";
 }
 
 async function main() {
   const args = process.argv.slice(2);
-  const isDryRun = args.includes('--dry-run');
-  const force = args.includes('--force');
-  const vIdx = args.indexOf('--vessel');
+  const isDryRun = args.includes("--dry-run");
+  const force = args.includes("--force");
+  const vIdx = args.indexOf("--vessel");
 
   // Modo prueba: un solo nombre, imprime candidatos y resultado.
   if (vIdx !== -1) {
@@ -142,16 +150,18 @@ async function main() {
     await sleep(THROTTLE_MS); // cortesía antes de las posibles peticiones de ficha en resolveVessel
     const candidates = parseSearchResults(html);
     console.log(`\nCandidatos para "${name}": ${candidates.length}`);
-    candidates.forEach(c =>
-      console.log(`  ${c.imo || c.detailId} | ${c.name} | ${c.type} | ${c.flag} | ${c.gt} GT | ${c.length}m`)
+    candidates.forEach((c) =>
+      console.log(
+        `  ${c.imo || c.detailId} | ${c.name} | ${c.type} | ${c.flag} | ${c.gt} GT | ${c.length}m`,
+      ),
     );
-    const r = await resolveVessel({ name, to: '—', op: '' }, html);
-    console.log('\nResultado:', JSON.stringify(r, null, 2));
+    const r = await resolveVessel({ name, to: "—", op: "" }, html);
+    console.log("\nResultado:", JSON.stringify(r, null, 2));
     return;
   }
 
-  const data = JSON.parse(readFileSync(DATA_PATH, 'utf-8'));
-  const cache = existsSync(CACHE_PATH) ? JSON.parse(readFileSync(CACHE_PATH, 'utf-8')) : {};
+  const data = JSON.parse(readFileSync(DATA_PATH, "utf-8"));
+  const cache = existsSync(CACHE_PATH) ? JSON.parse(readFileSync(CACHE_PATH, "utf-8")) : {};
 
   // Clave de caché = nombre + destino (`to`): los nombres NO son únicos, así que
   // dos buques distintos con el mismo nombre pero diferente destino se resuelven
@@ -162,7 +172,10 @@ async function main() {
     if (!byKey.has(key)) byKey.set(key, call);
   }
 
-  let enriched = 0, resolvedNow = 0, unresolved = 0, fromCache = 0;
+  let enriched = 0,
+    resolvedNow = 0,
+    unresolved = 0,
+    fromCache = 0;
   const ttlMs = UNRESOLVED_TTL_DAYS * 86400 * 1000;
   const errorMs = ERROR_RETRY_HOURS * 3600 * 1000;
 
@@ -172,7 +185,9 @@ async function main() {
     const checkedMs = entry ? new Date(entry.checkedAt || 0).getTime() : 0;
     // Los fallos de red (entry.error) se reintentan mucho antes que un "sin match" estable.
     const maxAge = entry?.error ? errorMs : ttlMs;
-    const stale = entry && entry.resolved === false &&
+    const stale =
+      entry &&
+      entry.resolved === false &&
       (!Number.isFinite(checkedMs) || Date.now() - checkedMs > maxAge);
 
     if (!entry || (entry.resolved === false && (force || stale)) || (force && entry.resolved)) {
@@ -183,12 +198,16 @@ async function main() {
           entry = { ...r, resolvedAt: nowIso() };
           cache[key] = entry;
           resolvedNow++;
-          console.log(`✓ ${call.name} → IMO ${r.imo} · ${r.vesselType} · ${r.flag} · ${r.gt} GT · ${r.len}m (${r.confidence})`);
+          console.log(
+            `✓ ${call.name} → IMO ${r.imo} · ${r.vesselType} · ${r.flag} · ${r.gt} GT · ${r.len}m (${r.confidence})`,
+          );
         } else if (prev?.resolved) {
           // No degradar una resolución válida (datos estáticos inmutables) por un
           // reintento --force que no encuentra match (cambio de HTML / fallo de parsing).
           entry = prev;
-          console.log(`· ${call.name} → reintento sin match; se conserva la resolución previa (IMO ${prev.imo})`);
+          console.log(
+            `· ${call.name} → reintento sin match; se conserva la resolución previa (IMO ${prev.imo})`,
+          );
         } else {
           entry = { resolved: false, reason: r.reason, checkedAt: nowIso() };
           cache[key] = entry;
@@ -200,7 +219,9 @@ async function main() {
         // No usar `continue`: si había una entrada cacheada previa (resuelta),
         // se re-aplica más abajo. Así un error transitorio (sobre todo en
         // --force) no descarta el enriquecimiento ya guardado en data.json.
-        console.warn(`⚠️  ${call.name}: ${msg}${entry?.resolved ? ' — se conserva la caché previa' : ''}`);
+        console.warn(
+          `⚠️  ${call.name}: ${msg}${entry?.resolved ? " — se conserva la caché previa" : ""}`,
+        );
         // Persistir el fallo (con checkedAt + TTL corto) para no reintentar en
         // CADA ejecución del cron si es persistente. No pisa una entrada resuelta.
         if (!entry?.resolved) {
@@ -220,18 +241,20 @@ async function main() {
     }
   }
 
-  console.log(`\nResumen: ${enriched} buques enriquecidos · ${resolvedNow} resueltos ahora · ${fromCache} de caché · ${unresolved} sin match`);
+  console.log(
+    `\nResumen: ${enriched} buques enriquecidos · ${resolvedNow} resueltos ahora · ${fromCache} de caché · ${unresolved} sin match`,
+  );
 
   if (isDryRun) {
-    console.log('\n--- DRY RUN: no se escribe data.json ni cache ---');
+    console.log("\n--- DRY RUN: no se escribe data.json ni cache ---");
     return;
   }
-  writeFileSync(CACHE_PATH, JSON.stringify(cache, null, 2) + '\n', 'utf-8');
-  writeFileSync(DATA_PATH, JSON.stringify(data, null, 2) + '\n', 'utf-8');
-  console.log('✓ data.json y vessel-cache.json actualizados');
+  writeFileSync(CACHE_PATH, JSON.stringify(cache, null, 2) + "\n", "utf-8");
+  writeFileSync(DATA_PATH, JSON.stringify(data, null, 2) + "\n", "utf-8");
+  console.log("✓ data.json y vessel-cache.json actualizados");
 }
 
-main().catch(err => {
-  console.error('Error:', err instanceof Error ? err.message : String(err));
+main().catch((err) => {
+  console.error("Error:", err instanceof Error ? err.message : String(err));
   process.exit(1);
 });

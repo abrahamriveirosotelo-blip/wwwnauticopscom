@@ -42,25 +42,25 @@ El schema es idéntico al de [Alicante](../alicante/CLAUDE.md). Resumen de campo
 
 ### `calls[]`
 
-| Campo        | Tipo    | Descripción                                              |
-|--------------|---------|----------------------------------------------------------|
-| `id`         | string  | Identificador de escala (p. ej. `H202600XXX`)            |
-| `status`     | string  | `"Iniciado"` / `"Prevista"` / `"Alerta"`                 |
-| `imo`        | string  | Número IMO del buque                                     |
-| `name`       | string  | Nombre del buque                                         |
-| `gt`         | number  | Arqueo bruto (toneladas)                                 |
-| `len`        | number  | Eslora en metros                                         |
-| `berth`      | string  | Muelle asignado                                          |
-| `agent`      | string  | Consignataria                                            |
-| `op`         | string  | Tipo de operación                                        |
-| `eta`        | string  | ISO 8601 — llegada prevista                              |
-| `etd`        | string  | ISO 8601 — salida prevista                               |
-| `from`       | string  | Puerto de origen                                         |
-| `to`         | string  | Puerto de destino                                        |
-| `delay`      | string? | Solo en `status: "Alerta"`                               |
-| `alertNote`  | string? | Solo en `status: "Alerta"`                               |
-| `affectedBy` | string? | `id` de la escala que causa el impacto                   |
-| `affectRisk` | string? | `"ALTO"` / `"MEDIO"`                                   |
+| Campo        | Tipo    | Descripción                                   |
+| ------------ | ------- | --------------------------------------------- |
+| `id`         | string  | Identificador de escala (p. ej. `H202600XXX`) |
+| `status`     | string  | `"Iniciado"` / `"Prevista"` / `"Alerta"`      |
+| `imo`        | string  | Número IMO del buque                          |
+| `name`       | string  | Nombre del buque                              |
+| `gt`         | number  | Arqueo bruto (toneladas)                      |
+| `len`        | number  | Eslora en metros                              |
+| `berth`      | string  | Muelle asignado                               |
+| `agent`      | string  | Consignataria                                 |
+| `op`         | string  | Tipo de operación                             |
+| `eta`        | string  | ISO 8601 — llegada prevista                   |
+| `etd`        | string  | ISO 8601 — salida prevista                    |
+| `from`       | string  | Puerto de origen                              |
+| `to`         | string  | Puerto de destino                             |
+| `delay`      | string? | Solo en `status: "Alerta"`                    |
+| `alertNote`  | string? | Solo en `status: "Alerta"`                    |
+| `affectedBy` | string? | `id` de la escala que causa el impacto        |
+| `affectRisk` | string? | `"ALTO"` / `"MEDIO"`                          |
 
 ### `tugService` y `milestones`
 

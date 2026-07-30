@@ -32,24 +32,31 @@
  *   (Ctrl-C en cualquier momento: guarda lo captado y sale)
  */
 
-import { readFileSync, writeFileSync, renameSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { readFileSync, writeFileSync, renameSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_PATH = join(__dirname, '../src/pages/demos/marin/data.json');
+const DATA_PATH = join(__dirname, "../src/pages/demos/marin/data.json");
 
-const STREAM_URL = 'wss://stream.aisstream.io/v0/stream';
+const STREAM_URL = "wss://stream.aisstream.io/v0/stream";
 const DEFAULT_SECONDS = 90;
 const DEFAULT_FLUSH_SECONDS = 60; // en runs largos, vuelca data.json cada 60 s
 const MMSI_LIMIT = 50; // límite de FiltersShipMMSI de aisstream
 
 /** Instante (Date) → ISO naive en hora de España (Europe/Madrid, con DST). */
 function toSpainIso(date) {
-  const p = new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Europe/Madrid', year: 'numeric', month: '2-digit', day: '2-digit',
-    hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
-  }).formatToParts(date).reduce((a, x) => (a[x.type] = x.value, a), {});
+  const p = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/Madrid",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  })
+    .formatToParts(date)
+    .reduce((a, x) => ((a[x.type] = x.value), a), {});
   return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}`;
 }
 
@@ -62,7 +69,7 @@ const round = (n, d) => (n == null ? null : Math.round(n * 10 ** d) / 10 ** d);
 function parseAisTime(timeUtc) {
   if (!timeUtc) return null;
   // Formato de Go: fecha<space>hora<fracción opcional><space>+0000<space>UTC.
-  const iso = timeUtc.replace(' ', 'T').replace(/(\.\d+)?\s*\+?0000.*$/, 'Z');
+  const iso = timeUtc.replace(" ", "T").replace(/(\.\d+)?\s*\+?0000.*$/, "Z");
   const t = new Date(iso);
   return Number.isNaN(t.getTime()) ? null : t;
 }
@@ -74,7 +81,7 @@ function parseAisTime(timeUtc) {
  * siempre (nunca rechaza): lo captado hasta el corte es el resultado (best-effort).
  */
 function collectPositions(WS, key, mmsis, sec, { onFlush, flushSeconds = 0 } = {}) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const positions = new Map();
     const endAt = Date.now() + sec * 1000;
     let ws = null;
@@ -89,23 +96,39 @@ function collectPositions(WS, key, mmsis, sec, { onFlush, flushSeconds = 0 } = {
       clearTimeout(deadlineTimer);
       clearInterval(flushTimer);
       clearTimeout(reconnectTimer); // no reabrir el socket tras terminar
-      process.off('SIGINT', onSigint);
-      try { ws && ws.close(); } catch { /* noop */ }
+      process.off("SIGINT", onSigint);
+      try {
+        ws && ws.close();
+      } catch {
+        /* noop */
+      }
       resolve(positions);
     };
     // Ctrl-C: cortar limpio conservando lo captado (para runs largos que se paran a mano).
-    const onSigint = () => { console.log('\n⏹  Ctrl-C: guardo lo captado y salgo…'); finish(); };
+    const onSigint = () => {
+      console.log("\n⏹  Ctrl-C: guardo lo captado y salgo…");
+      finish();
+    };
 
-    const onMessage = ev => {
+    const onMessage = (ev) => {
       let msg;
-      try { msg = JSON.parse(typeof ev.data === 'string' ? ev.data : Buffer.from(ev.data).toString('utf8')); }
-      catch { return; }
+      try {
+        msg = JSON.parse(
+          typeof ev.data === "string" ? ev.data : Buffer.from(ev.data).toString("utf8"),
+        );
+      } catch {
+        return;
+      }
       // Error del protocolo (p. ej. API key inválida): es fatal → parar, no reconectar en bucle.
-      if (msg.error) { console.error('aisstream error:', msg.error); finish(); return; }
-      if (msg.MessageType !== 'PositionReport') return;
+      if (msg.error) {
+        console.error("aisstream error:", msg.error);
+        finish();
+        return;
+      }
+      if (msg.MessageType !== "PositionReport") return;
       const meta = msg.MetaData || {};
       const pr = msg.Message.PositionReport;
-      const mmsi = String(meta.MMSI ?? '');
+      const mmsi = String(meta.MMSI ?? "");
       if (!mmsi) return;
       const first = !positions.has(mmsi);
       positions.set(mmsi, {
@@ -120,27 +143,43 @@ function collectPositions(WS, key, mmsis, sec, { onFlush, flushSeconds = 0 } = {
         timeUtc: meta.time_utc || null,
       });
       if (first) {
-        console.log(`  ✓ MMSI ${mmsi}: ${pr.Latitude.toFixed(3)}, ${pr.Longitude.toFixed(3)} · ${pr.Sog} kn · COG ${pr.Cog}° · ${positions.size}/${mmsis.length}`);
+        console.log(
+          `  ✓ MMSI ${mmsi}: ${pr.Latitude.toFixed(3)}, ${pr.Longitude.toFixed(3)} · ${pr.Sog} kn · COG ${pr.Cog}° · ${positions.size}/${mmsis.length}`,
+        );
       }
     };
 
     const connect = () => {
       if (stopped) return; // finish() pudo dispararse durante el backoff de reconexión
       ws = new WS(STREAM_URL);
-      ws.binaryType = 'arraybuffer'; // aisstream envía frames binarios
-      ws.addEventListener('open', () => ws.send(JSON.stringify({
-        APIKey: key,
-        BoundingBoxes: [[[-90, -180], [90, 180]]], // todo el globo; acotamos por MMSI
-        FiltersShipMMSI: mmsis,
-        FilterMessageTypes: ['PositionReport'],
-      })));
-      ws.addEventListener('message', onMessage);
-      ws.addEventListener('error', e => console.error('WS error:', e?.message || e));
-      ws.addEventListener('close', () => {
+      ws.binaryType = "arraybuffer"; // aisstream envía frames binarios
+      ws.addEventListener("open", () =>
+        ws.send(
+          JSON.stringify({
+            APIKey: key,
+            BoundingBoxes: [
+              [
+                [-90, -180],
+                [90, 180],
+              ],
+            ], // todo el globo; acotamos por MMSI
+            FiltersShipMMSI: mmsis,
+            FilterMessageTypes: ["PositionReport"],
+          }),
+        ),
+      );
+      ws.addEventListener("message", onMessage);
+      ws.addEventListener("error", (e) => console.error("WS error:", e?.message || e));
+      ws.addEventListener("close", () => {
         if (stopped) return;
         const leftMs = endAt - Date.now();
-        if (leftMs <= 1500) { finish(); return; } // ya casi en el deadline: no reconectar
-        console.log(`  … socket cerrado; reconectando (${Math.round(leftMs / 1000)}s restantes, ${positions.size}/${mmsis.length} captados)`);
+        if (leftMs <= 1500) {
+          finish();
+          return;
+        } // ya casi en el deadline: no reconectar
+        console.log(
+          `  … socket cerrado; reconectando (${Math.round(leftMs / 1000)}s restantes, ${positions.size}/${mmsis.length} captados)`,
+        );
         reconnectTimer = setTimeout(connect, 1000);
       });
     };
@@ -150,10 +189,15 @@ function collectPositions(WS, key, mmsis, sec, { onFlush, flushSeconds = 0 } = {
     // sin parar el proceso, y que un corte no planificado no pierda más de una ventana.
     // Guarda `stopped`: un tick ya encolado no se cancela con clearInterval, así que
     // sin esto podría colarse un volcado extra tras finish() (Ctrl-C/deadline).
-    if (onFlush && flushSeconds > 0) flushTimer = setInterval(() => { if (!stopped) onFlush(positions); }, flushSeconds * 1000);
-    process.once('SIGINT', onSigint);
+    if (onFlush && flushSeconds > 0)
+      flushTimer = setInterval(() => {
+        if (!stopped) onFlush(positions);
+      }, flushSeconds * 1000);
+    process.once("SIGINT", onSigint);
     connect();
-    console.log(`aisstream · ${mmsis.length} MMSI · ventana ${sec}s (reconecta si el socket se cae${onFlush && flushSeconds > 0 ? `; vuelca cada ${flushSeconds}s` : ''})…`);
+    console.log(
+      `aisstream · ${mmsis.length} MMSI · ventana ${sec}s (reconecta si el socket se cae${onFlush && flushSeconds > 0 ? `; vuelca cada ${flushSeconds}s` : ""})…`,
+    );
   });
 }
 
@@ -161,8 +205,8 @@ function collectPositions(WS, key, mmsis, sec, { onFlush, flushSeconds = 0 } = {
 function applyPosition(call, p, scrapedAt) {
   call.aisLat = round(p.lat, 5);
   call.aisLon = round(p.lon, 5);
-  call.aisSog = p.sog;         // nudos o null
-  call.aisCog = p.cog;         // grados (rumbo sobre el fondo) o null
+  call.aisSog = p.sog; // nudos o null
+  call.aisCog = p.cog; // grados (rumbo sobre el fondo) o null
   call.aisHeading = p.heading; // grados (proa) o null
   // Instante de la posición según AIS (time_utc), convertido a hora España; si no
   // viene, el instante del scrape. Sirve para mostrar la frescura en la UI.
@@ -172,40 +216,58 @@ function applyPosition(call, p, scrapedAt) {
 
 async function main() {
   const args = process.argv.slice(2);
-  const isDryRun = args.includes('--dry-run');
-  const sIdx = args.indexOf('--seconds');
-  const seconds = sIdx !== -1 ? (parseInt(args[sIdx + 1], 10) || DEFAULT_SECONDS) : DEFAULT_SECONDS;
-  const fIdx = args.indexOf('--flush');
-  const flushSeconds = fIdx !== -1 ? (parseInt(args[fIdx + 1], 10) || 0) : DEFAULT_FLUSH_SECONDS;
+  const isDryRun = args.includes("--dry-run");
+  const sIdx = args.indexOf("--seconds");
+  const seconds = sIdx !== -1 ? parseInt(args[sIdx + 1], 10) || DEFAULT_SECONDS : DEFAULT_SECONDS;
+  const fIdx = args.indexOf("--flush");
+  const flushSeconds = fIdx !== -1 ? parseInt(args[fIdx + 1], 10) || 0 : DEFAULT_FLUSH_SECONDS;
 
   const key = process.env.AISSTREAM_KEY;
   if (!key) {
-    console.warn('⚠️  Falta AISSTREAM_KEY — se omite el enriquecimiento de posición (best-effort). ' +
-      'Genera una gratis en https://aisstream.io/apikeys');
+    console.warn(
+      "⚠️  Falta AISSTREAM_KEY — se omite el enriquecimiento de posición (best-effort). " +
+        "Genera una gratis en https://aisstream.io/apikeys",
+    );
     return; // salir 0: paso opcional
   }
   // WebSocket global llegó en Node 22; en Node 20 (permitido por engines) usa undici.
   let WS = globalThis.WebSocket;
   if (!WS) {
-    try { ({ WebSocket: WS } = await import('undici')); }
-    catch { /* undici no instalado */ }
+    try {
+      ({ WebSocket: WS } = await import("undici"));
+    } catch {
+      /* undici no instalado */
+    }
   }
   if (!WS) {
-    console.warn('⚠️  Sin WebSocket (ni global ni undici) — se omite. Usa Node ≥ 22 o instala undici.');
+    console.warn(
+      "⚠️  Sin WebSocket (ni global ni undici) — se omite. Usa Node ≥ 22 o instala undici.",
+    );
     return;
   }
 
-  const data = JSON.parse(readFileSync(DATA_PATH, 'utf-8'));
+  const data = JSON.parse(readFileSync(DATA_PATH, "utf-8"));
   // Un MMSI puede repetirse en varias escalas del mismo buque: se consulta una vez.
-  const mmsis = [...new Set(data.calls.map(c => c.mmsi).filter(Boolean).map(String))];
+  const mmsis = [
+    ...new Set(
+      data.calls
+        .map((c) => c.mmsi)
+        .filter(Boolean)
+        .map(String),
+    ),
+  ];
   console.log(`Buques con MMSI a localizar: ${mmsis.length}`);
   if (!mmsis.length) {
-    console.warn('⚠️  Ninguna escala tiene MMSI — ejecuta antes enrich-marin.mjs (rellena el mmsi).');
+    console.warn(
+      "⚠️  Ninguna escala tiene MMSI — ejecuta antes enrich-marin.mjs (rellena el mmsi).",
+    );
     return;
   }
   if (mmsis.length > MMSI_LIMIT) {
     // aisstream ignora los MMSI por encima del límite; avísalo en vez de fallar en silencio.
-    console.warn(`⚠️  ${mmsis.length} MMSI > límite ${MMSI_LIMIT} de aisstream; solo se localizarán los primeros ${MMSI_LIMIT}.`);
+    console.warn(
+      `⚠️  ${mmsis.length} MMSI > límite ${MMSI_LIMIT} de aisstream; solo se localizarán los primeros ${MMSI_LIMIT}.`,
+    );
   }
   // Solo se consultan los primeros MMSI_LIMIT; el resto ni se pide (no cuenta como "sin posición").
   const queried = mmsis.slice(0, MMSI_LIMIT);
@@ -229,38 +291,45 @@ async function main() {
       // memoria y se aplican en el siguiente, cuando el fichero vuelva a ser legible. Caer al
       // snapshot de arranque volvería a pisar los cambios externos que se quieren respetar.
       try {
-        disk = JSON.parse(readFileSync(DATA_PATH, 'utf-8'));
+        disk = JSON.parse(readFileSync(DATA_PATH, "utf-8"));
       } catch (e) {
-        console.warn(`${label}: data.json no legible ahora (${e?.message ?? e}); se pospone el volcado, las posiciones quedan en memoria.`);
+        console.warn(
+          `${label}: data.json no legible ahora (${e?.message ?? e}); se pospone el volcado, las posiciones quedan en memoria.`,
+        );
         return;
       }
     }
     let located = 0;
     for (const call of disk.calls) {
       const p = call.mmsi ? pos.get(String(call.mmsi)) : null;
-      if (p) { applyPosition(call, p, scrapedAt); located++; }
+      if (p) {
+        applyPosition(call, p, scrapedAt);
+        located++;
+      }
     }
     if (!isDryRun) {
       // Escritura atómica: se escribe a un temporal y se renombra (rename es atómico en POSIX).
       // Así un lector concurrente nunca ve el fichero a medias ni a 0 bytes.
-      const tmp = DATA_PATH + '.tmp';
-      writeFileSync(tmp, JSON.stringify(disk, null, 2) + '\n', 'utf-8');
+      const tmp = DATA_PATH + ".tmp";
+      writeFileSync(tmp, JSON.stringify(disk, null, 2) + "\n", "utf-8");
       renameSync(tmp, DATA_PATH);
     }
-    console.log(`${label}: ${located}/${disk.calls.length} escalas con posición · ${pos.size}/${queried.length} MMSI · ${scrapedAt}${isDryRun ? ' · DRY RUN (no escrito)' : ' · data.json escrito'}`);
+    console.log(
+      `${label}: ${located}/${disk.calls.length} escalas con posición · ${pos.size}/${queried.length} MMSI · ${scrapedAt}${isDryRun ? " · DRY RUN (no escrito)" : " · data.json escrito"}`,
+    );
   };
 
   const positions = await collectPositions(WS, key, queried, seconds, {
-    onFlush: isDryRun ? null : pos => write(pos, '  💾 volcado parcial'),
+    onFlush: isDryRun ? null : (pos) => write(pos, "  💾 volcado parcial"),
     flushSeconds,
   });
 
-  write(positions, '\nResumen final');
-  const missing = queried.filter(m => !positions.has(m));
-  if (missing.length) console.log(`Sin posición (se conserva la anterior): ${missing.join(', ')}`);
+  write(positions, "\nResumen final");
+  const missing = queried.filter((m) => !positions.has(m));
+  if (missing.length) console.log(`Sin posición (se conserva la anterior): ${missing.join(", ")}`);
 }
 
-main().catch(err => {
-  console.error('Error:', err instanceof Error ? err.message : String(err));
+main().catch((err) => {
+  console.error("Error:", err instanceof Error ? err.message : String(err));
   process.exit(1);
 });

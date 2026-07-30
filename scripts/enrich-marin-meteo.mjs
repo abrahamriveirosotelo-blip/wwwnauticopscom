@@ -19,23 +19,32 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA = path.join(__dirname, "..", "src", "pages", "demos", "marin", "data.json");
 const DRY = process.argv.includes("--dry-run");
 
-const MG_URL = "https://servizos.meteogalicia.gal/mgrss/observacion/ultimosHorariosEstacions.action?idEst=14005";
-const AEMET_URL = "https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAC71_ATOM.xml";
+const MG_URL =
+  "https://servizos.meteogalicia.gal/mgrss/observacion/ultimosHorariosEstacions.action?idEst=14005";
+const AEMET_URL =
+  "https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAC71_ATOM.xml";
 const UA = "NauticOps-DemoUpdater/1.0"; // User-Agent explícito, como el resto de scripts (evita 403/rate-limit)
-const get = url => fetch(url, { headers: { "User-Agent": UA } });
+const get = (url) => fetch(url, { headers: { "User-Agent": UA } });
 const MARIN_ZONES = new Set(["713601C"]); // Rías Baixas - Costa (solo avisos costeros por ahora)
 
 /** Cualquier Date → ISO naive en hora de España (Europe/Madrid, con DST). Igual que en los
  *  otros enrich (evita el desfase fijo +2h que rompería en invierno / CET). */
 function toSpainIso(date) {
   const p = new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Europe/Madrid", year: "numeric", month: "2-digit", day: "2-digit",
-    hour: "2-digit", minute: "2-digit", hourCycle: "h23",
-  }).formatToParts(date).reduce((a, x) => (a[x.type] = x.value, a), {});
+    timeZone: "Europe/Madrid",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  })
+    .formatToParts(date)
+    .reduce((a, x) => ((a[x.type] = x.value), a), {});
   return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}`;
 }
 /** ISO UTC de MeteoGalicia ("2026-07-02T16:00:00") → hora local de España. */
-const utcToLocal = isoUtc => toSpainIso(new Date(isoUtc + (isoUtc.endsWith("Z") ? "" : "Z")));
+const utcToLocal = (isoUtc) => toSpainIso(new Date(isoUtc + (isoUtc.endsWith("Z") ? "" : "Z")));
 
 /** Observación de MeteoGalicia (último instante válido). */
 async function fetchObs() {
@@ -47,12 +56,12 @@ async function fetchObs() {
   const inst = est.listaInstantes[est.listaInstantes.length - 1];
   const val = {};
   for (const m of inst.listaMedidas) if (m.valor > -9000) val[m.codigoParametro] = m.valor;
-  const kn = ms => (ms == null ? null : Math.round(ms * 1.94384)); // m/s → nudos (uso marítimo)
+  const kn = (ms) => (ms == null ? null : Math.round(ms * 1.94384)); // m/s → nudos (uso marítimo)
   return {
     estacion: est.estacion,
     instante: utcToLocal(inst.instanteLecturaUTC),
     vientoRachaKn: kn(val.VV_RACHA_10m),
-    vientoMediaKn: kn(val.VV_AVG_10m),      // puede no venir en el feed horario
+    vientoMediaKn: kn(val.VV_AVG_10m), // puede no venir en el feed horario
     vientoDirDeg: val.DV_AVG_10m ?? null,
     tempC: val.TA_AVG_1_5m ?? val["TA_AVG_1.5m"] ?? null,
     presionHpa: val["PR_AVG_1.5m"] ?? null,
@@ -68,11 +77,26 @@ async function capDetail(url) {
     if (!r.ok) return {};
     const xml = await r.text();
     const infos = xml.match(/<info>[\s\S]*?<\/info>/g) || [];
-    const es = infos.find(i => i.includes("es-ES")) || infos[0] || "";
-    const tag = t => { const m = es.match(new RegExp(`<${t}>([\\s\\S]*?)</${t}>`)); return m ? m[1].trim() : ""; };
-    const param = n => { const m = es.match(new RegExp(`AEMET-Meteoalerta ${n}</valueName>\\s*<value>([\\s\\S]*?)</value>`)); return m ? m[1].trim() : ""; };
-    return { descripcion: tag("description"), instruccion: tag("instruction"), probabilidad: param("probabilidad"), web: tag("web") };
-  } catch { return {}; }
+    const es = infos.find((i) => i.includes("es-ES")) || infos[0] || "";
+    const tag = (t) => {
+      const m = es.match(new RegExp(`<${t}>([\\s\\S]*?)</${t}>`));
+      return m ? m[1].trim() : "";
+    };
+    const param = (n) => {
+      const m = es.match(
+        new RegExp(`AEMET-Meteoalerta ${n}</valueName>\\s*<value>([\\s\\S]*?)</value>`),
+      );
+      return m ? m[1].trim() : "";
+    };
+    return {
+      descripcion: tag("description"),
+      instruccion: tag("instruction"),
+      probabilidad: param("probabilidad"),
+      web: tag("web"),
+    };
+  } catch {
+    return {};
+  }
 }
 
 /** Avisos AEMET del feed de Galicia, filtrados a la zona COSTERA de Marín (Rías Baixas -
@@ -92,19 +116,24 @@ async function fetchAvisos() {
     const summ = ((e.match(/<summary>([\s\S]*?)<\/summary>/) || [])[1] || "").trim();
     const tm = title.match(/Nivel (\w+)\.\s*(.+?)\.\s*(.+)$/i);
     // "de 13:00 03-07-2026 CEST (UTC+2) a 20:59 03-07-2026 CEST". CES?T → acepta CEST (verano) y CET (invierno).
-    const wm = summ.match(/de (\d{2}):(\d{2}) (\d{2})-(\d{2})-(\d{4}) CES?T[\s\S]*? a (\d{2}):(\d{2}) (\d{2})-(\d{2})-(\d{4}) CES?T/);
+    const wm = summ.match(
+      /de (\d{2}):(\d{2}) (\d{2})-(\d{2})-(\d{4}) CES?T[\s\S]*? a (\d{2}):(\d{2}) (\d{2})-(\d{2})-(\d{4}) CES?T/,
+    );
     if (!tm || !wm) continue;
-    matches.push({ href, base: {
-      nivel: tm[1].toLowerCase(),                 // amarillo | naranja | rojo
-      fenomeno: tm[2].trim(),                     // Costeros | Viento | Temperaturas máximas | …
-      zona: tm[3].trim(),                         // Rias Baixas | Rias Baixas - Costa
-      costa: zona.endsWith("C"),
-      desde: iso(wm[1], wm[2], wm[3], wm[4], wm[5]),
-      hasta: iso(wm[6], wm[7], wm[8], wm[9], wm[10]),
-    } });
+    matches.push({
+      href,
+      base: {
+        nivel: tm[1].toLowerCase(), // amarillo | naranja | rojo
+        fenomeno: tm[2].trim(), // Costeros | Viento | Temperaturas máximas | …
+        zona: tm[3].trim(), // Rias Baixas | Rias Baixas - Costa
+        costa: zona.endsWith("C"),
+        desde: iso(wm[1], wm[2], wm[3], wm[4], wm[5]),
+        hasta: iso(wm[6], wm[7], wm[8], wm[9], wm[10]),
+      },
+    });
   }
   // Detalle del CAP de cada aviso EN PARALELO (evita N round-trips en serie).
-  const dets = await Promise.all(matches.map(m => capDetail(m.href)));
+  const dets = await Promise.all(matches.map((m) => capDetail(m.href)));
   const avisos = matches.map((m, i) => ({ ...m.base, ...dets[i] }));
   avisos.sort((a, b) => a.desde.localeCompare(b.desde));
   return avisos;
@@ -121,19 +150,30 @@ async function main() {
     avisos = await fetchAvisos();
   } catch (e) {
     avisos = data?.meta?.meteo?.avisos || [];
-    console.warn(`⚠ AEMET no disponible (${e.message}); se conservan los avisos previos (${avisos.length}).`);
+    console.warn(
+      `⚠ AEMET no disponible (${e.message}); se conservan los avisos previos (${avisos.length}).`,
+    );
   }
   const meteo = { updatedAt: toSpainIso(new Date()), obs, avisos };
 
   console.log("Observación (Porto de Marín):", JSON.stringify(obs));
   console.log(`Avisos Rías Baixas (${avisos.length}):`);
-  for (const a of avisos) console.log(`  ${a.nivel.padEnd(8)} ${a.fenomeno.padEnd(24)} ${a.desde} → ${a.hasta}${a.costa ? " (costa)" : ""}`);
+  for (const a of avisos)
+    console.log(
+      `  ${a.nivel.padEnd(8)} ${a.fenomeno.padEnd(24)} ${a.desde} → ${a.hasta}${a.costa ? " (costa)" : ""}`,
+    );
 
-  if (DRY) { console.log("\n--dry-run: no se escribe data.json"); return; }
+  if (DRY) {
+    console.log("\n--dry-run: no se escribe data.json");
+    return;
+  }
   data.meta = data.meta || {};
   data.meta.meteo = meteo;
   fs.writeFileSync(DATA, JSON.stringify(data, null, 2) + "\n");
   console.log("\n✓ data.json → meta.meteo actualizado");
 }
 
-main().catch(e => { console.error("✗", e.message); process.exit(1); });
+main().catch((e) => {
+  console.error("✗", e.message);
+  process.exit(1);
+});

@@ -34,13 +34,15 @@ const ShippingAgentsCTAForm = ({ t }: Props) => {
   const handleFocus = () => {
     if (!formStarted.current) {
       formStarted.current = true;
-      try { trackFormStart(); } catch { /* analytics must not break UX */ }
+      try {
+        trackFormStart();
+      } catch {
+        /* analytics must not break UX */
+      }
     }
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -49,7 +51,11 @@ const ShippingAgentsCTAForm = ({ t }: Props) => {
     setIsSubmitting(true);
     setError("");
 
-    try { trackFormSubmit(formData.role); } catch { /* analytics must not break UX */ }
+    try {
+      trackFormSubmit(formData.role);
+    } catch {
+      /* analytics must not break UX */
+    }
 
     try {
       const res = await fetch("https://formspree.io/f/mvzboodr", {
@@ -174,13 +180,7 @@ const ShippingAgentsCTAForm = ({ t }: Props) => {
         />
       </div>
 
-      <Button
-        type="submit"
-        variant="default"
-        size="xl"
-        className="w-full"
-        disabled={isSubmitting}
-      >
+      <Button type="submit" variant="default" size="xl" className="w-full" disabled={isSubmitting}>
         {isSubmitting ? (
           <Loader2 className="h-5 w-5 animate-spin" />
         ) : (
@@ -191,9 +191,7 @@ const ShippingAgentsCTAForm = ({ t }: Props) => {
         )}
       </Button>
 
-      {error && (
-        <p className="text-sm text-destructive text-center">{error}</p>
-      )}
+      {error && <p className="text-sm text-destructive text-center">{error}</p>}
 
       <p className="text-xs text-muted-foreground text-center">{t.disclaimer}</p>
     </form>

@@ -11,17 +11,13 @@ const HeroSection = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Modern port operations"
-          className="w-full h-full object-cover"
-        />
+        <img src={heroImage} alt="Modern port operations" className="w-full h-full object-cover" />
         <div className="absolute inset-0 hero-gradient opacity-[0.88]" />
         <div className="absolute inset-0 hero-pattern" />
         <div className="absolute inset-0 hero-tech-overlay" />
         <div className="absolute inset-0 hero-vignette" />
       </div>
-      
+
       {/* Wave Bottom */}
       <div className="wave-bottom">
         <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -31,7 +27,7 @@ const HeroSection = () => {
           />
         </svg>
       </div>
-      
+
       {/* Content */}
       <div className="container relative z-10 mx-auto px-5 sm:px-6 lg:px-8 pt-28 md:pt-32 pb-20 sm:pb-32">
         <div className="max-w-4xl mx-auto text-center">
@@ -40,11 +36,11 @@ const HeroSection = () => {
               {t.hero.badge}
             </span>
           </div>
-          
+
           <h1 className="heading-xl text-primary-foreground mb-6 animate-fade-in-up opacity-0 stagger-1 text-balance">
             {t.hero.title}
           </h1>
-          
+
           <p className="body-lg text-primary-foreground/85 mb-4 max-w-2xl mx-auto animate-fade-in-up opacity-0 stagger-2 text-balance">
             {t.hero.subtitle}
           </p>
@@ -59,7 +55,7 @@ const HeroSection = () => {
               size="xl"
               className="w-full sm:w-auto shadow-[0_0_30px_-5px_hsl(200_70%_45%/0.4)] animate-fade-in-up opacity-0 stagger-4"
               onClick={() => {
-                trackCtaClick('hero');
+                trackCtaClick("hero");
                 document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" });
                 setTimeout(() => document.getElementById("name")?.focus(), 800);
               }}
@@ -68,7 +64,13 @@ const HeroSection = () => {
               <ArrowRight className="h-5 w-5" />
             </Button>
             <div className="w-full sm:w-auto animate-fade-in-up opacity-0 stagger-5 flex flex-col items-center gap-1">
-              <a href="https://www.nauticops.com/demo/marin" target="_blank" rel="noopener noreferrer" onClick={() => trackPlatformClick('hero')} className="w-full">
+              <a
+                href="https://www.nauticops.com/demo/marin"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackPlatformClick("hero")}
+                className="w-full"
+              >
                 <Button variant="heroOutline" size="xl" className="w-full">
                   <Play className="h-5 w-5" />
                   {t.hero.ctaSecondary}
@@ -77,18 +79,24 @@ const HeroSection = () => {
               <span className="text-xs text-primary-foreground/50">{t.hero.ctaSecondaryHint}</span>
             </div>
           </div>
-          
+
           <div className="mt-10 sm:mt-16 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 animate-fade-in-up opacity-0 stagger-4">
             <div className="text-center max-w-[250px] sm:max-w-[200px]">
-              <div className="text-xs sm:text-sm font-medium text-primary-foreground/80">{t.hero.stats.portCalls}</div>
+              <div className="text-xs sm:text-sm font-medium text-primary-foreground/80">
+                {t.hero.stats.portCalls}
+              </div>
             </div>
             <div className="hidden sm:block h-8 w-px bg-primary-foreground/20" />
             <div className="text-center max-w-[250px] sm:max-w-[200px]">
-              <div className="text-xs sm:text-sm font-medium text-primary-foreground/80">{t.hero.stats.realTime}</div>
+              <div className="text-xs sm:text-sm font-medium text-primary-foreground/80">
+                {t.hero.stats.realTime}
+              </div>
             </div>
             <div className="hidden sm:block h-8 w-px bg-primary-foreground/20" />
             <div className="text-center max-w-[250px] sm:max-w-[200px]">
-              <div className="text-xs sm:text-sm font-medium text-primary-foreground/80">{t.hero.stats.systemAgnostic}</div>
+              <div className="text-xs sm:text-sm font-medium text-primary-foreground/80">
+                {t.hero.stats.systemAgnostic}
+              </div>
             </div>
           </div>
         </div>

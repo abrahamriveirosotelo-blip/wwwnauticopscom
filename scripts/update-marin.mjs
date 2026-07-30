@@ -19,25 +19,25 @@
  *   node scripts/update-marin.mjs --file <esperados.html> <puerto.html>
  */
 
-import { readFileSync, writeFileSync, existsSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { parseMarinPage, buildCalls } from './lib/marin-updater.mjs';
+import { readFileSync, writeFileSync, existsSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+import { parseMarinPage, buildCalls } from "./lib/marin-updater.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_PATH = join(__dirname, '../src/pages/demos/marin/data.json');
+const DATA_PATH = join(__dirname, "../src/pages/demos/marin/data.json");
 
-const URL_ESPERADOS = 'https://www.apmarin.com/es/paginas/buques_esperados';
-const URL_PUERTO    = 'https://www.apmarin.com/es/paginas/buques_puerto';
+const URL_ESPERADOS = "https://www.apmarin.com/es/paginas/buques_esperados";
+const URL_PUERTO = "https://www.apmarin.com/es/paginas/buques_puerto";
 
 // Debe coincidir con la cadencia del cron en .github/workflows/update-demos.yml.
 const REFRESH_HOURS = 2;
 
 const SEED = {
   meta: {
-    port: 'Puerto de Marín',
-    source: 'apmarin.com · buques esperados + en puerto',
-    date: '',
+    port: "Puerto de Marín",
+    source: "apmarin.com · buques esperados + en puerto",
+    date: "",
     refreshHours: REFRESH_HOURS,
   },
   calls: [],
@@ -45,19 +45,19 @@ const SEED = {
 
 async function fetchHtml(url) {
   console.log(`Descargando ${url} …`);
-  const res = await fetch(url, { headers: { 'User-Agent': 'NauticOps-DemoUpdater/1.0' } });
+  const res = await fetch(url, { headers: { "User-Agent": "NauticOps-DemoUpdater/1.0" } });
   if (!res.ok) throw new Error(`HTTP ${res.status} al descargar ${url}`);
   return res.text();
 }
 
 async function loadPages(args) {
-  const fileIdx = args.indexOf('--file');
+  const fileIdx = args.indexOf("--file");
   if (fileIdx !== -1) {
     const esp = args[fileIdx + 1];
     const pue = args[fileIdx + 2];
-    if (!esp || !pue) throw new Error('Uso: --file <esperados.html> <puerto.html>');
+    if (!esp || !pue) throw new Error("Uso: --file <esperados.html> <puerto.html>");
     console.log(`Leyendo HTML local: ${esp} · ${pue}`);
-    return { esperadosHtml: readFileSync(esp, 'utf-8'), puertoHtml: readFileSync(pue, 'utf-8') };
+    return { esperadosHtml: readFileSync(esp, "utf-8"), puertoHtml: readFileSync(pue, "utf-8") };
   }
   const [esperadosHtml, puertoHtml] = await Promise.all([
     fetchHtml(URL_ESPERADOS),
@@ -68,14 +68,14 @@ async function loadPages(args) {
 
 function todayStr() {
   const d = new Date();
-  const pad = n => String(n).padStart(2, '0');
+  const pad = (n) => String(n).padStart(2, "0");
   return `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()}`;
 }
 
 async function main() {
   const args = process.argv.slice(2);
-  const isDryRun = args.includes('--dry-run');
-  const printRows = args.includes('--print-rows');
+  const isDryRun = args.includes("--dry-run");
+  const printRows = args.includes("--print-rows");
 
   const { esperadosHtml, puertoHtml } = await loadPages(args);
 
@@ -84,31 +84,31 @@ async function main() {
 
   if (printRows) {
     console.log(`\nEsperados (${esperados.kind}): ${esperados.rows.length} filas`);
-    esperados.rows.forEach(r => console.log(`  ${r.escala} | ${r.name} | ${r.berth} | ${r.when}`));
+    esperados.rows.forEach((r) =>
+      console.log(`  ${r.escala} | ${r.name} | ${r.berth} | ${r.when}`),
+    );
     console.log(`\nEn puerto (${puerto.kind}): ${puerto.rows.length} filas`);
-    puerto.rows.forEach(r => console.log(`  ${r.escala} | ${r.name} | ${r.berth} | ${r.when}`));
+    puerto.rows.forEach((r) => console.log(`  ${r.escala} | ${r.name} | ${r.berth} | ${r.when}`));
     return;
   }
 
   // Si cambia la estructura de las tablas (otra cabecera/orden de columnas), fallar
   // explícitamente en vez de escribir un data.json incoherente (p. ej. todo "Prevista")
   // que el workflow commitearía sin que nadie lo revise. Usa --print-rows para diagnosticar.
-  if (esperados.kind !== 'eta' || puerto.kind !== 'etd') {
+  if (esperados.kind !== "eta" || puerto.kind !== "etd") {
     throw new Error(
       `Estructura inesperada en apmarin.com (esperados=${esperados.kind}, en-puerto=${puerto.kind}; ` +
-      `se esperaba eta/etd). ¿Cambió la tabla? Revisa con --print-rows.`
+        `se esperaba eta/etd). ¿Cambió la tabla? Revisa con --print-rows.`,
     );
   }
 
-  const existing = existsSync(DATA_PATH)
-    ? JSON.parse(readFileSync(DATA_PATH, 'utf-8'))
-    : SEED;
+  const existing = existsSync(DATA_PATH) ? JSON.parse(readFileSync(DATA_PATH, "utf-8")) : SEED;
 
   const fallbackYear = new Date().getFullYear();
   const calls = buildCalls(esperados, puerto, existing.calls || [], fallbackYear);
 
   console.log(
-    `✓ ${esperados.rows.length} esperados + ${puerto.rows.length} en puerto → ${calls.length} escalas`
+    `✓ ${esperados.rows.length} esperados + ${puerto.rows.length} en puerto → ${calls.length} escalas`,
   );
 
   // Guard: en momentos sin barcos, apmarin devuelve las tablas vacías. No sobre-
@@ -116,7 +116,7 @@ async function main() {
   // conserva el snapshot anterior hasta que el puerto vuelva a listar escalas.
   if (calls.length === 0 && (existing.calls?.length || 0) > 0) {
     console.warn(
-      `⚠️  El scrape no devolvió escalas (puerto sin barcos ahora mismo); se conserva el data.json anterior (${existing.calls.length} escalas).`
+      `⚠️  El scrape no devolvió escalas (puerto sin barcos ahora mismo); se conserva el data.json anterior (${existing.calls.length} escalas).`,
     );
     return;
   }
@@ -126,14 +126,15 @@ async function main() {
   // páginas → nos quedamos con la más reciente. Si el h4 no aparece (estructura cambiada), se
   // conserva la frescura anterior en vez de borrarla.
   const sourceUpdatedAt =
-    [esperados.freshness, puerto.freshness].filter(Boolean).sort().pop()
-    || base.meta?.sourceUpdatedAt || null;
+    [esperados.freshness, puerto.freshness].filter(Boolean).sort().pop() ||
+    base.meta?.sourceUpdatedAt ||
+    null;
 
   const updated = {
     meta: {
       ...base.meta,
-      port: 'Puerto de Marín',
-      source: 'apmarin.com · buques esperados + en puerto',
+      port: "Puerto de Marín",
+      source: "apmarin.com · buques esperados + en puerto",
       date: todayStr(),
       sourceUpdatedAt, // frescura declarada por la AP (h4), hora local España
       refreshHours: REFRESH_HOURS, // se sobrescribe siempre para reflejar la cadencia real del cron
@@ -142,20 +143,26 @@ async function main() {
   };
 
   if (isDryRun) {
-    console.log('\n--- DRY RUN: data.json no modificado ---');
-    console.log(`Escalas: ${calls.length}  |  Fecha: ${updated.meta.date}  |  Frescura AP: ${updated.meta.sourceUpdatedAt || '—'}`);
-    calls.slice(0, 8).forEach(c =>
-      console.log(`  ${c.id} | ${c.name} | ${c.status} | ETA ${c.eta || '—'} | ETD ${c.etd || '—'} | ${c.berth}`)
+    console.log("\n--- DRY RUN: data.json no modificado ---");
+    console.log(
+      `Escalas: ${calls.length}  |  Fecha: ${updated.meta.date}  |  Frescura AP: ${updated.meta.sourceUpdatedAt || "—"}`,
     );
+    calls
+      .slice(0, 8)
+      .forEach((c) =>
+        console.log(
+          `  ${c.id} | ${c.name} | ${c.status} | ETA ${c.eta || "—"} | ETD ${c.etd || "—"} | ${c.berth}`,
+        ),
+      );
     if (calls.length > 8) console.log(`  … y ${calls.length - 8} más`);
     return;
   }
 
-  writeFileSync(DATA_PATH, JSON.stringify(updated, null, 2) + '\n', 'utf-8');
+  writeFileSync(DATA_PATH, JSON.stringify(updated, null, 2) + "\n", "utf-8");
   console.log(`✓ data.json actualizado (${updated.meta.date})`);
 }
 
-main().catch(err => {
-  console.error('Error:', err.message);
+main().catch((err) => {
+  console.error("Error:", err.message);
   process.exit(1);
 });

@@ -5,40 +5,37 @@ declare global {
   }
 }
 
-const GA_ID = 'G-LBV7LSXJDD';
+const GA_ID = "G-LBV7LSXJDD";
 
 export function trackPageView(path: string, title?: string) {
-  if (typeof window.gtag !== 'function') return;
-  window.gtag('config', GA_ID, {
+  if (typeof window.gtag !== "function") return;
+  window.gtag("config", GA_ID, {
     page_path: path,
     page_title: title ?? document.title,
   });
 }
 
-export function trackEvent(
-  eventName: string,
-  params?: Record<string, string | number | boolean>
-) {
-  if (typeof window.gtag !== 'function') return;
-  window.gtag('event', eventName, params);
+export function trackEvent(eventName: string, params?: Record<string, string | number | boolean>) {
+  if (typeof window.gtag !== "function") return;
+  window.gtag("event", eventName, params);
 }
 
-export function trackCtaClick(location: 'navbar' | 'hero' | 'bottom_cta') {
-  trackEvent('cta_click', { button_location: location });
+export function trackCtaClick(location: "navbar" | "hero" | "bottom_cta") {
+  trackEvent("cta_click", { button_location: location });
 }
 
 export function trackFormStart() {
-  trackEvent('form_start', { form_name: 'demo_request' });
+  trackEvent("form_start", { form_name: "demo_request" });
 }
 
 export function trackFormSubmit(role: string) {
-  trackEvent('demo_request_submitted', { role, form_name: 'demo_request' });
+  trackEvent("demo_request_submitted", { role, form_name: "demo_request" });
 }
 
-export function trackContactClick(type: 'email' | 'phone' | 'linkedin') {
-  trackEvent('contact_click', { contact_type: type });
+export function trackContactClick(type: "email" | "phone" | "linkedin") {
+  trackEvent("contact_click", { contact_type: type });
 }
 
-export function trackPlatformClick(location: 'navbar' | 'hero') {
-  trackEvent('platform_demo_click', { button_location: location });
+export function trackPlatformClick(location: "navbar" | "hero") {
+  trackEvent("platform_demo_click", { button_location: location });
 }

@@ -1,0 +1,16 @@
+# Revisiones que solo cambian formato — se ignoran en `git blame`.
+#
+# Uso local (una vez por clon):
+#   git config blame.ignoreRevsFile .git-blame-ignore-revs
+# GitHub lo aplica automáticamente en su vista de blame.
+#
+# IMPORTANTE: `main` se mergea siempre con SQUASH (un commit por PR), así que el
+# SHA de la rama NO sobrevive al merge. El SHA a apuntar aquí es el del commit
+# YA EN MAIN, y por tanto solo se conoce DESPUÉS de mergear:
+#
+#   gh pr view <n> --json mergeCommit --jq .mergeCommit.oid
+#
+# Es decir: un PR de reformateo no puede registrarse a sí mismo. Se mergea
+# primero y se añade la línea justo después, en un PR aparte de una sola línea.
+
+# (todavía sin entradas — pendiente de registrar #84 y #85 al mergearlas)

@@ -13,14 +13,10 @@ const TrustSection = () => {
           <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-secondary/10 text-secondary">
             {t.trust.badge}
           </span>
-          <h2 className="heading-lg text-foreground mb-6 text-balance">
-            {t.trust.title}
-          </h2>
-          <p className="body-lg text-muted-foreground text-balance">
-            {t.trust.subtitle}
-          </p>
+          <h2 className="heading-lg text-foreground mb-6 text-balance">{t.trust.title}</h2>
+          <p className="body-lg text-muted-foreground text-balance">{t.trust.subtitle}</p>
         </div>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-16">
           {t.trust.points.map((point, index) => {
             const Icon = iconMap[index];
@@ -35,7 +31,7 @@ const TrustSection = () => {
             );
           })}
         </div>
-        
+
         <div className="max-w-4xl mx-auto mb-16">
           <p className="text-center text-sm text-muted-foreground mb-8 uppercase tracking-wider font-medium">
             {t.trust.ecosystemTitle}

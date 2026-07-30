@@ -7,18 +7,19 @@
  * se deja sin enriquecer y la demo degrada a '—').
  */
 
-export const SEARCH_URL = name =>
+export const SEARCH_URL = (name) =>
   `https://www.vesselfinder.com/vessels?name=${encodeURIComponent(name)}`;
-export const DETAIL_URL = id => `https://www.vesselfinder.com/vessels/details/${id}`;
+export const DETAIL_URL = (id) => `https://www.vesselfinder.com/vessels/details/${id}`;
 
 /* ------------------------------------------------------------------ *
  * Cliente HTTP compartido (un único punto para UA/throttle/timeout).
  * ------------------------------------------------------------------ */
-export const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36';
-export const THROTTLE_MS = 1500;          // cortesía entre peticiones
-export const REQUEST_TIMEOUT_MS = 15000;  // aborta si VesselFinder se cuelga (CI predecible)
+export const UA =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36";
+export const THROTTLE_MS = 1500; // cortesía entre peticiones
+export const REQUEST_TIMEOUT_MS = 15000; // aborta si VesselFinder se cuelga (CI predecible)
 
-export const sleep = ms => new Promise(r => setTimeout(r, ms));
+export const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export async function fetchText(url) {
   const ctrl = new AbortController();
@@ -28,7 +29,11 @@ export async function fetchText(url) {
     // ("IMO number", "Gross Tonnage", "Bulk Carrier"…); evita que VesselFinder
     // localice el HTML y rompa el parseo.
     const res = await fetch(url, {
-      headers: { 'User-Agent': UA, 'Accept': 'text/html,application/xhtml+xml', 'Accept-Language': 'en-US,en;q=0.9' },
+      headers: {
+        "User-Agent": UA,
+        Accept: "text/html,application/xhtml+xml",
+        "Accept-Language": "en-US,en;q=0.9",
+      },
       signal: ctrl.signal,
     });
     if (!res.ok) throw new Error(`HTTP ${res.status} en ${url}`);
@@ -46,14 +51,30 @@ const NONCOMMERCIAL_TYPE =
   /pleasure|sailing|yacht|tug|fishing|pilot|dredg|unknown|high speed|dive|research|law enforce|search and rescue|buoy|tender|supply|passenger|ferry|sar\b/i;
 
 const ENTITIES = {
-  '&amp;': '&', '&quot;': '"', '&#39;': "'", '&apos;': "'", '&nbsp;': ' ',
-  '&aacute;': 'á', '&eacute;': 'é', '&iacute;': 'í', '&oacute;': 'ó', '&uacute;': 'ú',
-  '&Aacute;': 'Á', '&Eacute;': 'É', '&Iacute;': 'Í', '&Oacute;': 'Ó', '&Uacute;': 'Ú',
-  '&ntilde;': 'ñ', '&Ntilde;': 'Ñ', '&uuml;': 'ü', '&ouml;': 'ö', '&auml;': 'ä',
+  "&amp;": "&",
+  "&quot;": '"',
+  "&#39;": "'",
+  "&apos;": "'",
+  "&nbsp;": " ",
+  "&aacute;": "á",
+  "&eacute;": "é",
+  "&iacute;": "í",
+  "&oacute;": "ó",
+  "&uacute;": "ú",
+  "&Aacute;": "Á",
+  "&Eacute;": "É",
+  "&Iacute;": "Í",
+  "&Oacute;": "Ó",
+  "&Uacute;": "Ú",
+  "&ntilde;": "ñ",
+  "&Ntilde;": "Ñ",
+  "&uuml;": "ü",
+  "&ouml;": "ö",
+  "&auml;": "ä",
 };
 
 function decodeEntities(str) {
-  return str.replace(/&#x([0-9a-fA-F]+);|&#(\d+);|&[a-zA-Z]+;/g, m => {
+  return str.replace(/&#x([0-9a-fA-F]+);|&#(\d+);|&[a-zA-Z]+;/g, (m) => {
     if (ENTITIES[m] !== undefined) return ENTITIES[m];
     const hex = m.match(/&#x([0-9a-fA-F]+);/);
     if (hex) return String.fromCharCode(parseInt(hex[1], 16));
@@ -63,27 +84,35 @@ function decodeEntities(str) {
   });
 }
 
-const clean = s => decodeEntities((s || '').replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
-const toInt = s => {
-  const n = parseInt(String(s).replace(/[^\d]/g, ''), 10);
+const clean = (s) =>
+  decodeEntities((s || "").replace(/<[^>]+>/g, ""))
+    .replace(/\s+/g, " ")
+    .trim();
+const toInt = (s) => {
+  const n = parseInt(String(s).replace(/[^\d]/g, ""), 10);
   return Number.isFinite(n) ? n : 0;
 };
 
 /** Normaliza un nombre de buque para comparar (mayúsculas, sin puntos/acentos). */
 export function normName(s) {
-  return (s || '')
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .toUpperCase().replace(/[^A-Z0-9]+/g, ' ').trim();
+  return (s || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toUpperCase()
+    .replace(/[^A-Z0-9]+/g, " ")
+    .trim();
 }
 
 /** ¿El destino AIS contiene `port` como TOKEN completo (no substring)? Usa normName
  *  (mayúsculas + sin acentos + sin puntuación) para comparar de forma robusta.
  *  Token-match evita falsos positivos tipo "MARINA DI CARRARA"/"SAN MARINO" para "MARIN". */
 export function destMatchesPort(dest, port) {
-  const d = normName(dest).split(' ').filter(Boolean);
-  const p = normName(port).split(' ').filter(t => t.length > 3); // tokens significativos
+  const d = normName(dest).split(" ").filter(Boolean);
+  const p = normName(port)
+    .split(" ")
+    .filter((t) => t.length > 3); // tokens significativos
   if (!d.length || !p.length) return false;
-  return p.some(t => d.includes(t));
+  return p.some((t) => d.includes(t));
 }
 
 /** ¿El destino AIS es Marín? Reconoce el nombre ("MARIN" como token) y el UN/LOCODE
@@ -91,10 +120,10 @@ export function destMatchesPort(dest, port) {
  *  del topónimo (p. ej. FWN ATLANTIDE). Exigir "ES"+"MAR" contiguos evita el "MAR"
  *  suelto de otros topónimos (Mar del Plata, Mar Ligure…). */
 export function destIsMarin(dest) {
-  const toks = normName(dest).split(' ').filter(Boolean);
-  if (toks.includes('MARIN') || toks.includes('ESMAR')) return true;
-  const i = toks.indexOf('ES');
-  return i !== -1 && toks[i + 1] === 'MAR';
+  const toks = normName(dest).split(" ").filter(Boolean);
+  if (toks.includes("MARIN") || toks.includes("ESMAR")) return true;
+  const i = toks.indexOf("ES");
+  return i !== -1 && toks[i + 1] === "MAR";
 }
 
 /** ¿Es un tipo de buque mercante (candidato válido para una escala de Marín)? */
@@ -121,10 +150,12 @@ export function parseSearchResults(html) {
     const name = clean((r.match(/<div class="slna">([\s\S]*?)<\/div>/i) || [])[1]);
     const type = clean((r.match(/<div class="slty">([\s\S]*?)<\/div>/i) || [])[1]);
     const flag = clean((r.match(/flag-icon[^>]*title="([^"]*)"/i) || [])[1]);
-    const flagCode = (r.match(/flags\/4x3\/([a-z]{2})\.svg/i) || [])[1] || '';
-    const cells = [...r.matchAll(/<td class="v[3-6][^"]*">([\s\S]*?)<\/td>/gi)].map(m => clean(m[1]));
+    const flagCode = (r.match(/flags\/4x3\/([a-z]{2})\.svg/i) || [])[1] || "";
+    const cells = [...r.matchAll(/<td class="v[3-6][^"]*">([\s\S]*?)<\/td>/gi)].map((m) =>
+      clean(m[1]),
+    );
     const [built, gt, dwt, size] = cells;
-    const sizeParts = (size || '').split('/').map(x => toInt(x));
+    const sizeParts = (size || "").split("/").map((x) => toInt(x));
     out.push({
       detailId,
       imo: /^\d{7}$/.test(detailId) ? detailId : null,
@@ -157,24 +188,25 @@ export function parseDetail(html) {
   const dest =
     (html.match(/Destination<\/[^>]+>\s*<[^>]+>([^<]{2,})\s*</i) || [])[1] ||
     (html.match(/"vilabel">Destination[\s\S]{0,40}?>([^<]{2,})\s*</i) || [])[1] ||
-    '';
+    "";
 
-  const imo = pairs['IMO number'];
+  const imo = pairs["IMO number"];
   // MMSI: del resumen "(IMO xxx, MMSI yyy)" o de la fila "IMO / MMSI" (imo / mmsi).
   const mmsi =
-    ((html.match(/,\s*MMSI\s+(\d{6,9})/i) || [])[1]) ||
-    ((html.match(/\b\d{7}\s*\/\s*(\d{6,9})\b/) || [])[1]) || '';
+    (html.match(/,\s*MMSI\s+(\d{6,9})/i) || [])[1] ||
+    (html.match(/\b\d{7}\s*\/\s*(\d{6,9})\b/) || [])[1] ||
+    "";
   return {
     imo: imo && /^\d{7}$/.test(imo) ? imo : null,
     mmsi,
-    name: pairs['Vessel Name'] || '',
-    flag: pairs['AIS Flag'] || pairs['Flag'] || '',
-    callsign: pairs['Callsign'] || '',
-    gt: toInt(pairs['Gross Tonnage']),
-    dwt: toInt(pairs['Deadweight (t)'] || pairs['Deadweight']),
-    loa: parseFloat(pairs['Length Overall']) || 0,
-    built: toInt(pairs['Year of Build']),
-    type: pairs['AIS Type'] || pairs['Ship type'] || '',
+    name: pairs["Vessel Name"] || "",
+    flag: pairs["AIS Flag"] || pairs["Flag"] || "",
+    callsign: pairs["Callsign"] || "",
+    gt: toInt(pairs["Gross Tonnage"]),
+    dwt: toInt(pairs["Deadweight (t)"] || pairs["Deadweight"]),
+    loa: parseFloat(pairs["Length Overall"]) || 0,
+    built: toInt(pairs["Year of Build"]),
+    type: pairs["AIS Type"] || pairs["Ship type"] || "",
     destination: clean(dest),
   };
 }
@@ -187,7 +219,7 @@ export function destinationConfirms(vfDestination, call) {
   // falsos positivos ("SAN MARINO"/"MARINA DI ...") y reconoce "ES MAR"/"ESMAR".
   if (destIsMarin(vfDestination)) return true; // entrante
   const to = normName(call.to); // normName('—') === '' → basta con comprobar `to`
-  if (to && d.split(' ').some(tok => tok.length > 3 && to.includes(tok))) return true;
+  if (to && d.split(" ").some((tok) => tok.length > 3 && to.includes(tok))) return true;
   return false;
 }
 
@@ -203,19 +235,26 @@ export async function matchVessel(call, candidates, fetchDetail) {
   const wanted = normName(call.name);
   // 1) nombre exacto (normalizado) + tipo comercial + con IMO.
   const viable = candidates.filter(
-    c => c.imo && normName(c.name) === wanted && isCommercialType(c.type)
+    (c) => c.imo && normName(c.name) === wanted && isCommercialType(c.type),
   );
   if (viable.length === 0) return null;
-  if (viable.length === 1) return { candidate: viable[0], confidence: 'single-commercial' };
+  if (viable.length === 1) return { candidate: viable[0], confidence: "single-commercial" };
 
   // 2) varios candidatos comerciales con el mismo nombre → desambiguar por destino.
   for (const c of viable) {
     let detail = null;
-    try { detail = await fetchDetail(c.detailId); } catch { /* sigue */ }
+    try {
+      detail = await fetchDetail(c.detailId);
+    } catch {
+      /* sigue */
+    }
     // Conservador: exige IMO verificado en la ficha (el id de búsqueda de 7
     // dígitos no garantiza un IMO real) Y un destino que confirme la escala.
     if (detail && detail.imo && destinationConfirms(detail.destination, call)) {
-      return { candidate: { ...c, ...pickDetailFields(detail) }, confidence: 'destination-confirmed' };
+      return {
+        candidate: { ...c, ...pickDetailFields(detail) },
+        confidence: "destination-confirmed",
+      };
     }
   }
   // 3) ambiguo y sin confirmación → no enriquecer (conservador).
@@ -236,7 +275,7 @@ export async function matchVessel(call, candidates, fetchDetail) {
  */
 export function parseLiveData(html) {
   const navStatus = clean(
-    (html.match(/Navigation Status<\/td>\s*<td[^>]*>([\s\S]*?)<\/td>/i) || [])[1]
+    (html.match(/Navigation Status<\/td>\s*<td[^>]*>([\s\S]*?)<\/td>/i) || [])[1],
   );
 
   // Velocidad y ETA por separado: un buque puede navegar (con velocidad) sin que
@@ -245,23 +284,23 @@ export function parseLiveData(html) {
   const speed = speedM ? parseFloat(speedM[1]) || 0 : 0;
   const etaSpan = (html.match(/_mcol12ext">ETA:\s*([^<]+?)\s*</i) || [])[1];
   const etaSum = (html.match(/expected to arrive there on\s*<strong>([^<]+)<\/strong>/i) || [])[1];
-  const aisEta = clean(etaSpan || etaSum || '');
+  const aisEta = clean(etaSpan || etaSum || "");
 
-  const dest =
-    (html.match(/Destination<\/[^>]+>\s*<[^>]+>([^<]{2,})\s*</i) || [])[1] || '';
+  const dest = (html.match(/Destination<\/[^>]+>\s*<[^>]+>([^<]{2,})\s*</i) || [])[1] || "";
   const positionReceived = clean(
-    (html.match(/id="lastrep"[\s\S]*?<span[^>]*>\s*([^<]+?ago)\s*<\/span>/i) || [])[1]
+    (html.match(/id="lastrep"[\s\S]*?<span[^>]*>\s*([^<]+?ago)\s*<\/span>/i) || [])[1],
   );
   // Calado AIS en vivo (cómo va de cargado el buque ahora), p. ej. "7.0 m".
-  const draught = parseFloat((html.match(/Current draught<\/td>\s*<td[^>]*>\s*([\d.]+)/i) || [])[1]) || 0;
+  const draught =
+    parseFloat((html.match(/Current draught<\/td>\s*<td[^>]*>\s*([\d.]+)/i) || [])[1]) || 0;
 
   return {
-    navStatus: navStatus === '—' ? '' : navStatus,
-    aisEta: aisEta === '—' ? '' : aisEta,
+    navStatus: navStatus === "—" ? "" : navStatus,
+    aisEta: aisEta === "—" ? "" : aisEta,
     speed,
     draught,
-    destination: clean(dest) === '—' ? '' : clean(dest),
-    positionReceived: positionReceived === '—' ? '' : positionReceived,
+    destination: clean(dest) === "—" ? "" : clean(dest),
+    positionReceived: positionReceived === "—" ? "" : positionReceived,
   };
 }
 

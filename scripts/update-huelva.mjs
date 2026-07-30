@@ -11,19 +11,15 @@
  *   node scripts/update-huelva.mjs --file scripts/fixtures/huelva-previsiones.pdf
  */
 
-import { readFileSync, writeFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { PDFParse } from 'pdf-parse';
-import {
-  parseDateParts,
-  isStillActive,
-  buildAlertScenario,
-} from './lib/huelva-updater.mjs';
+import { readFileSync, writeFileSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+import { PDFParse } from "pdf-parse";
+import { parseDateParts, isStillActive, buildAlertScenario } from "./lib/huelva-updater.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_PATH = join(__dirname, '../src/pages/demos/huelva/data.json');
-const PDF_URL = 'https://intranet.huelvapilots.com/informes/previsiones';
+const DATA_PATH = join(__dirname, "../src/pages/demos/huelva/data.json");
+const PDF_URL = "https://intranet.huelvapilots.com/informes/previsiones";
 const AGENT_RE = /\b(E\.CIA|ERS|IBM|PCIA|LAM|PAM|MM|TER|BAL|BER|NEX|LAI|CON|SER|SUAR)\b/;
 
 // num  E|S  [F|-]  [-]  NAME  DD/MM/YYYY  HH:MM  BAN  GT  esl  cal  MUELLE  …
@@ -31,24 +27,20 @@ const ROW_RE =
   /^(\d+)\s+([ES])\s+(?:(F|-)\s+)?(?:-\s+)?(.+?)\s+(\d{2}\/\d{2}\/\d{4})\s+(\d{1,2}:\d{2})\s+(\S+)\s+(\d+)\s+([\d.]+)\s+([\d.]+)\s+(\S+)\s*(.*)$/;
 
 function normalizeVesselName(name) {
-  return name
-    .trim()
-    .replace(/\.+$/, '')
-    .replace(/\s+/g, ' ')
-    .toUpperCase();
+  return name.trim().replace(/\.+$/, "").replace(/\s+/g, " ").toUpperCase();
 }
 
 function extractAgent(tail) {
   const m = tail.match(AGENT_RE);
-  return m ? m[1] : '—';
+  return m ? m[1] : "—";
 }
 
 function extractOp(mov, subMov, tail) {
   const obs = tail.trim();
-  if (/bunkering/i.test(obs)) return 'BUNKERING';
-  if (subMov === 'F') return 'Fondo';
-  if (mov === 'S') return 'Salida';
-  if (mov === 'E') return 'Entrada';
+  if (/bunkering/i.test(obs)) return "BUNKERING";
+  if (subMov === "F") return "Fondo";
+  if (mov === "S") return "Salida";
+  if (mov === "E") return "Entrada";
   return mov;
 }
 
@@ -60,7 +52,7 @@ function parseMetaDate(text) {
 function parsePdfText(text) {
   const lines = text
     .split(/\r?\n/)
-    .map(l => l.trim())
+    .map((l) => l.trim())
     .filter(Boolean);
 
   const rows = [];
@@ -87,26 +79,26 @@ function parsePdfText(text) {
       // AGENT_RE must be kept up to date with agents seen in the PDF; a ⚠ warning
       // is printed in --print-rows mode whenever an unrecognised value ends up in
       // berth so new codes are visible at a glance.
-      const rawAgent     = extractAgent(tail);
-      const agentInBerth = rawAgent === '—' && AGENT_RE.test(rawBerth);
+      const rawAgent = extractAgent(tail);
+      const agentInBerth = rawAgent === "—" && AGENT_RE.test(rawBerth);
       pending = {
         num: parseInt(num, 10),
         mov,
-        subMov: subMov || '',
-        name: name.trim().replace(/\.+$/, '').trim(),
+        subMov: subMov || "",
+        name: name.trim().replace(/\.+$/, "").trim(),
         date,
         time,
         ban,
         gt: parseFloat(gt) || 0,
         len: parseFloat(len) || 0,
         cal: parseFloat(cal) || 0,
-        berth: agentInBerth ? '—' : (rawBerth || '—'),
+        berth: agentInBerth ? "—" : rawBerth || "—",
         agent: agentInBerth ? rawBerth.match(AGENT_RE)[1] : rawAgent,
-        op: extractOp(mov, subMov || '', tail),
+        op: extractOp(mov, subMov || "", tail),
         observations: tail.trim(),
       };
     } else if (pending) {
-      pending.observations = [pending.observations, line].filter(Boolean).join(' ');
+      pending.observations = [pending.observations, line].filter(Boolean).join(" ");
     }
   }
   if (pending) rows.push(pending);
@@ -122,9 +114,9 @@ function groupMovements(rows) {
       groups.set(key, { name: row.name, entries: [], salidas: [], fondo: false });
     }
     const g = groups.get(key);
-    if (row.subMov === 'F') g.fondo = true;
-    if (row.mov === 'E') g.entries.push(row);
-    else if (row.mov === 'S') g.salidas.push(row);
+    if (row.subMov === "F") g.fondo = true;
+    if (row.mov === "E") g.entries.push(row);
+    else if (row.mov === "S") g.salidas.push(row);
   }
 
   return groups;
@@ -137,7 +129,7 @@ function pickPrimaryEntry(entries) {
     const db = parseDateParts(b.date, b.time);
     return new Date(da) - new Date(db);
   });
-  const future = sorted.find(e => {
+  const future = sorted.find((e) => {
     const eta = parseDateParts(e.date, e.time);
     return eta && new Date(eta).getTime() > Date.now();
   });
@@ -145,24 +137,24 @@ function pickPrimaryEntry(entries) {
 }
 
 function pickEtd(salidas, etaIso) {
-  if (!salidas.length) return '';
+  if (!salidas.length) return "";
   const etaMs = etaIso ? new Date(etaIso).getTime() : 0;
   const sorted = [...salidas].sort((a, b) => {
     const da = parseDateParts(a.date, a.time);
     const db = parseDateParts(b.date, b.time);
     return new Date(da) - new Date(db);
   });
-  const afterEta = sorted.find(s => {
+  const afterEta = sorted.find((s) => {
     const etd = parseDateParts(s.date, s.time);
     return etd && new Date(etd).getTime() >= etaMs;
   });
   const pick = afterEta || sorted[0];
-  return parseDateParts(pick.date, pick.time) || '';
+  return parseDateParts(pick.date, pick.time) || "";
 }
 
 function buildCallId(entry) {
-  const [d, m, y] = entry.date.split('/');
-  return `H${y}${m}${d}${String(entry.num).padStart(3, '0')}`;
+  const [d, m, y] = entry.date.split("/");
+  return `H${y}${m}${d}${String(entry.num).padStart(3, "0")}`;
 }
 
 function movementsToCalls(groups) {
@@ -178,24 +170,23 @@ function movementsToCalls(groups) {
     if (!isStillActive(etd)) continue;
 
     const etaMs = eta ? new Date(eta).getTime() : null;
-    let status = (g.fondo || entry.subMov === 'F' || (etaMs && etaMs <= Date.now()))
-      ? 'Iniciado'
-      : 'Prevista';
+    let status =
+      g.fondo || entry.subMov === "F" || (etaMs && etaMs <= Date.now()) ? "Iniciado" : "Prevista";
 
     calls.push({
       id: buildCallId(entry),
       status,
-      imo: '—',
+      imo: "—",
       name: g.name,
       gt: entry.gt,
       len: entry.len,
       berth: entry.berth,
       agent: entry.agent,
       op: entry.op,
-      eta: eta || '',
-      etd: etd || '',
-      from: '—',
-      to: '—',
+      eta: eta || "",
+      etd: etd || "",
+      from: "—",
+      to: "—",
     });
   }
 
@@ -204,21 +195,21 @@ function movementsToCalls(groups) {
 }
 
 async function loadPdfBuffer(args) {
-  const fileIdx = args.indexOf('--file');
+  const fileIdx = args.indexOf("--file");
   if (fileIdx !== -1) {
     const filePath = args[fileIdx + 1];
-    if (!filePath) throw new Error('Uso: --file <ruta-al-pdf>');
+    if (!filePath) throw new Error("Uso: --file <ruta-al-pdf>");
     console.log(`Leyendo PDF local: ${filePath}`);
     return readFileSync(filePath);
   }
 
   console.log(`Descargando PDF desde ${PDF_URL} …`);
   const res = await fetch(PDF_URL, {
-    headers: { 'User-Agent': 'NauticOps-DemoUpdater/1.0' },
+    headers: { "User-Agent": "NauticOps-DemoUpdater/1.0" },
   });
   if (!res.ok) throw new Error(`HTTP ${res.status} al descargar el PDF`);
-  const ct = res.headers.get('content-type') || '';
-  if (!ct.includes('pdf') && !ct.includes('octet-stream')) {
+  const ct = res.headers.get("content-type") || "";
+  if (!ct.includes("pdf") && !ct.includes("octet-stream")) {
     console.warn(`⚠️  Content-Type inesperado: ${ct}`);
   }
   const buf = await res.arrayBuffer();
@@ -229,7 +220,7 @@ async function extractTextFromPdf(buffer) {
   const parser = new PDFParse({ data: buffer });
   try {
     const result = await parser.getText();
-    return result.text || '';
+    return result.text || "";
   } finally {
     await parser.destroy();
   }
@@ -237,19 +228,19 @@ async function extractTextFromPdf(buffer) {
 
 async function main() {
   const args = process.argv.slice(2);
-  const isDryRun = args.includes('--dry-run');
-  const printRows = args.includes('--print-rows');
+  const isDryRun = args.includes("--dry-run");
+  const printRows = args.includes("--print-rows");
 
   const buffer = await loadPdfBuffer(args);
-  const header = buffer.slice(0, 5).toString('ascii');
-  if (!header.startsWith('%PDF')) {
-    throw new Error('El fichero no parece un PDF válido');
+  const header = buffer.slice(0, 5).toString("ascii");
+  if (!header.startsWith("%PDF")) {
+    throw new Error("El fichero no parece un PDF válido");
   }
 
   const text = await extractTextFromPdf(buffer);
-  if (!text.includes('Previsión de movimientos') && !text.includes('NOMBRE')) {
+  if (!text.includes("Previsión de movimientos") && !text.includes("NOMBRE")) {
     throw new Error(
-      'No se encontró la tabla de previsiones en el PDF. ¿Requiere login? Prueba --file con un PDF descargado manualmente.'
+      "No se encontró la tabla de previsiones en el PDF. ¿Requiere login? Prueba --file con un PDF descargado manualmente.",
     );
   }
 
@@ -259,13 +250,13 @@ async function main() {
   if (printRows) {
     console.log(`\nFilas parseadas: ${rows.length}`);
     if (metaDateFromPdf) console.log(`Fecha informe: ${metaDateFromPdf}`);
-    rows.forEach(r => {
+    rows.forEach((r) => {
       // Warn when berth is a short all-alpha code with no agent found — likely a
       // new agent code not yet in AGENT_RE that got captured as berth.
-      const suspectBerth = r.berth !== '—' && /^[A-Z.]{2,6}$/.test(r.berth) && r.agent === '—';
-      const flag = suspectBerth ? ' ⚠ berth parece agente — añadir a AGENT_RE' : '';
+      const suspectBerth = r.berth !== "—" && /^[A-Z.]{2,6}$/.test(r.berth) && r.agent === "—";
+      const flag = suspectBerth ? " ⚠ berth parece agente — añadir a AGENT_RE" : "";
       console.log(
-        `  ${r.num} ${r.mov}${r.subMov ? ' ' + r.subMov : ''} | ${r.name} | ${r.date} ${r.time} | ${r.berth} | ${r.agent}${flag}`
+        `  ${r.num} ${r.mov}${r.subMov ? " " + r.subMov : ""} | ${r.name} | ${r.date} ${r.time} | ${r.berth} | ${r.agent}${flag}`,
       );
     });
     return;
@@ -278,47 +269,48 @@ async function main() {
 
   const alert = buildAlertScenario(calls);
   if (alert) {
-    const ac = calls.find(c => c.id === alert.alertId);
+    const ac = calls.find((c) => c.id === alert.alertId);
     console.log(`✓ Alerta de demo → ${alert.alertName} · Muelle ${ac?.berth}`);
     if (alert.affectedName) console.log(`  → Impacto ALTO en ${alert.affectedName} (mismo muelle)`);
   } else {
-    console.warn('⚠️  No hay barcos en puerto — escenario de alerta no aplicado');
+    console.warn("⚠️  No hay barcos en puerto — escenario de alerta no aplicado");
   }
 
-  const existing = JSON.parse(readFileSync(DATA_PATH, 'utf-8'));
+  const existing = JSON.parse(readFileSync(DATA_PATH, "utf-8"));
 
   const now = new Date();
-  const dateStr = metaDateFromPdf ||
-    `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()}`;
+  const dateStr =
+    metaDateFromPdf ||
+    `${String(now.getDate()).padStart(2, "0")}/${String(now.getMonth() + 1).padStart(2, "0")}/${now.getFullYear()}`;
 
   const updated = {
     meta: {
       ...existing.meta,
-      source: 'huelvapilots.com · previsiones',
+      source: "huelvapilots.com · previsiones",
       date: dateStr,
     },
     calls,
-    tugService: alert
-      ? { ...existing.tugService, callId: alert.alertId }
-      : existing.tugService,
+    tugService: alert ? { ...existing.tugService, callId: alert.alertId } : existing.tugService,
     milestones: alert ? alert.milestones : existing.milestones,
   };
 
   if (isDryRun) {
-    console.log('\n--- DRY RUN: data.json no modificado ---');
+    console.log("\n--- DRY RUN: data.json no modificado ---");
     console.log(`Escalas: ${calls.length}  |  Fecha: ${dateStr}`);
-    calls.slice(0, 5).forEach(c =>
-      console.log(`  ${c.id} | ${c.name} | ${c.status} | ETA ${c.eta} | Muelle ${c.berth}`)
-    );
+    calls
+      .slice(0, 5)
+      .forEach((c) =>
+        console.log(`  ${c.id} | ${c.name} | ${c.status} | ETA ${c.eta} | Muelle ${c.berth}`),
+      );
     if (calls.length > 5) console.log(`  … y ${calls.length - 5} más`);
     return;
   }
 
-  writeFileSync(DATA_PATH, JSON.stringify(updated, null, 2), 'utf-8');
+  writeFileSync(DATA_PATH, JSON.stringify(updated, null, 2), "utf-8");
   console.log(`✓ data.json actualizado (${dateStr})`);
 }
 
-main().catch(err => {
-  console.error('Error:', err.message);
+main().catch((err) => {
+  console.error("Error:", err.message);
   process.exit(1);
 });

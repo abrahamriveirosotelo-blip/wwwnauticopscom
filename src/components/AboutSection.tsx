@@ -8,8 +8,7 @@ const AboutSection = () => {
   const { t } = useLanguage();
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
-  const toggle = (index: number) =>
-    setExpandedIndex((prev) => (prev === index ? null : index));
+  const toggle = (index: number) => setExpandedIndex((prev) => (prev === index ? null : index));
 
   return (
     <section id="about" className="section-padding bg-background">
@@ -18,12 +17,8 @@ const AboutSection = () => {
           <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium rounded-full bg-secondary/10 text-secondary">
             {t.about.badge}
           </span>
-          <h2 className="heading-lg text-foreground mb-6 text-balance">
-            {t.about.title}
-          </h2>
-          <p className="body-lg text-muted-foreground text-balance">
-            {t.about.subtitle}
-          </p>
+          <h2 className="heading-lg text-foreground mb-6 text-balance">{t.about.title}</h2>
+          <p className="body-lg text-muted-foreground text-balance">{t.about.subtitle}</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -39,23 +34,15 @@ const AboutSection = () => {
                     <Icon className="h-7 w-7 text-secondary" />
                   </div>
                   <div>
-                    <h3 className="heading-sm text-foreground leading-tight">
-                      {member.name}
-                    </h3>
-                    <p className="text-sm font-medium text-secondary">
-                      {member.role}
-                    </p>
+                    <h3 className="heading-sm text-foreground leading-tight">{member.name}</h3>
+                    <p className="text-sm font-medium text-secondary">{member.role}</p>
                   </div>
                 </div>
 
-                <p className="text-xs text-muted-foreground mb-4 tracking-wide">
-                  {member.tags}
-                </p>
+                <p className="text-xs text-muted-foreground mb-4 tracking-wide">{member.tags}</p>
 
                 {/* Short bio */}
-                <p className="body-md text-muted-foreground mb-4">
-                  {member.shortBio}
-                </p>
+                <p className="body-md text-muted-foreground mb-4">{member.shortBio}</p>
 
                 {/* Expand / collapse */}
                 <button
@@ -74,10 +61,7 @@ const AboutSection = () => {
                 {isExpanded && (
                   <div className="mt-6 pt-6 border-t border-border animate-fade-in">
                     {member.fullBio.map((paragraph, i) => (
-                      <p
-                        key={i}
-                        className="body-md text-muted-foreground mb-4"
-                      >
+                      <p key={i} className="body-md text-muted-foreground mb-4">
                         {paragraph}
                       </p>
                     ))}

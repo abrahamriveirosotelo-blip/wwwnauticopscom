@@ -42,7 +42,7 @@ const Navbar = () => {
           <a href="#" className="flex items-center">
             <img src={nauticopsLogo} alt="NauticOps" className="h-[4.5rem] w-auto" />
           </a>
-          
+
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
             {navItems.map((item) => (
@@ -61,11 +61,20 @@ const Navbar = () => {
               {saT.nav.link}
             </Link>
           </div>
-          
+
           <div className="hidden lg:flex items-center gap-3">
             <LanguageSwitcher variant="dark" />
-            <a href="https://www.nauticops.com/demo/marin" target="_blank" rel="noopener noreferrer" onClick={() => trackPlatformClick('navbar')}>
-              <Button variant="ghost" size="sm" className="text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10">
+            <a
+              href="https://www.nauticops.com/demo/marin"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackPlatformClick("navbar")}
+            >
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10"
+              >
                 {t.nav.viewPlatform}
               </Button>
             </a>
@@ -73,7 +82,7 @@ const Navbar = () => {
               variant="hero"
               size="sm"
               onClick={() => {
-                trackCtaClick('navbar');
+                trackCtaClick("navbar");
                 document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" });
                 setTimeout(() => document.getElementById("name")?.focus(), 800);
               }}
@@ -85,11 +94,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <div className="flex lg:hidden items-center gap-3">
             <LanguageSwitcher variant="dark" />
-            <button
-              className="p-2"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle menu"
-            >
+            <button className="p-2" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
               {isOpen ? (
                 <X className="h-6 w-6 text-primary-foreground" />
               ) : (
@@ -98,7 +103,7 @@ const Navbar = () => {
             </button>
           </div>
         </div>
-        
+
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="lg:hidden py-4 border-t border-primary-foreground/10">
@@ -121,8 +126,16 @@ const Navbar = () => {
                 {saT.nav.link} →
               </Link>
               <div className="flex flex-col gap-2 pt-4 border-t border-primary-foreground/10">
-                <a href="https://www.nauticops.com/demo/marin" target="_blank" rel="noopener noreferrer">
-                  <Button variant="ghost" size="sm" className="w-full text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10">
+                <a
+                  href="https://www.nauticops.com/demo/marin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="w-full text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10"
+                  >
                     {t.nav.viewPlatform}
                   </Button>
                 </a>
@@ -130,7 +143,7 @@ const Navbar = () => {
                   variant="hero"
                   size="sm"
                   onClick={() => {
-                    trackCtaClick('navbar');
+                    trackCtaClick("navbar");
                     setIsOpen(false);
                     document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" });
                     setTimeout(() => document.getElementById("name")?.focus(), 800);

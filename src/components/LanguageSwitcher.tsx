@@ -15,11 +15,13 @@ const LanguageSwitcher = ({ variant = "light" }: LanguageSwitcherProps) => {
   const isDark = variant === "dark";
 
   return (
-    <div className={`flex items-center gap-1 rounded-md p-0.5 ${
-      isDark 
-        ? "border border-primary-foreground/20 bg-primary-foreground/5"
-        : "border border-border bg-muted/50"
-    }`}>
+    <div
+      className={`flex items-center gap-1 rounded-md p-0.5 ${
+        isDark
+          ? "border border-primary-foreground/20 bg-primary-foreground/5"
+          : "border border-border bg-muted/50"
+      }`}
+    >
       <button
         onClick={() => handleLanguageChange("en")}
         className={`px-2.5 py-1 text-sm font-medium rounded transition-all duration-200 ${
