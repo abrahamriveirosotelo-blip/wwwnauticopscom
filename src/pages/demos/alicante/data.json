@@ -2,27 +2,10 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "29/07/2026",
+    "date": "30/07/2026",
     "refreshHours": 2
   },
   "calls": [
-    {
-      "id": "A202600533",
-      "status": "Alerta",
-      "imo": "1114901",
-      "name": "BLACKSEA STAR",
-      "gt": 6641,
-      "len": 141,
-      "berth": "13",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "D/ CRISTAL",
-      "eta": "2026-07-24T16:00",
-      "etd": "2026-07-29T23:00",
-      "from": "SEVILLA",
-      "to": "ALGER",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en descarga. El buque no liberará el Muelle 13 según lo previsto."
-    },
     {
       "id": "A202600550",
       "status": "Prevista",
