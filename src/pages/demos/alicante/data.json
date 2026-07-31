@@ -2,27 +2,10 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "30/07/2026",
+    "date": "31/07/2026",
     "refreshHours": 2
   },
   "calls": [
-    {
-      "id": "A202600537",
-      "status": "Alerta",
-      "imo": "9302255",
-      "name": "SPIRIT",
-      "gt": 7713,
-      "len": 141.65,
-      "berth": "23",
-      "agent": "A. PEREZ Y CIA. S.L.",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-30T20:00",
-      "etd": "2026-07-31T14:00",
-      "from": "ALGECIRAS",
-      "to": "ALMERIA",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
-    },
     {
       "id": "A202600542",
       "status": "Prevista",
@@ -36,9 +19,7 @@
       "eta": "2026-07-31T08:00",
       "etd": "2026-07-31T23:00",
       "from": "LAS PALMAS",
-      "to": "LAS PALMAS",
-      "affectedBy": "A202600537",
-      "affectRisk": "ALTO"
+      "to": "LAS PALMAS"
     },
     {
       "id": "A202600556",
@@ -104,7 +85,7 @@
       "id": "A202600512",
       "status": "Prevista",
       "imo": "9349227",
-      "name": "HERCULES J",
+      "name": "NJORD",
       "gt": 7720,
       "len": 142,
       "berth": "11",
