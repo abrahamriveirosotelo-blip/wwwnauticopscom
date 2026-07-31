@@ -15,6 +15,7 @@ type TranslationSchema = AboutTranslations &
       howItFits: string;
       whoItsFor: string;
       useCases: string;
+      about: string;
       viewPlatform: string;
       requestDemo: string;
     };
@@ -22,8 +23,10 @@ type TranslationSchema = AboutTranslations &
       badge: string;
       title: string;
       subtitle: string;
+      supportingLine: string;
       ctaPrimary: string;
       ctaSecondary: string;
+      ctaSecondaryHint: string;
       stats: {
         portCalls: string;
         realTime: string;
@@ -102,8 +105,11 @@ type TranslationSchema = AboutTranslations &
           investor: string;
           other: string;
         };
+        message: string;
+        messagePlaceholder: string;
         submit: string;
         disclaimer: string;
+        errorFallback: string;
       };
       success: {
         title: string;
@@ -154,6 +160,7 @@ export const translations: Record<Language, TranslationSchema> = {
       howItFits: "How It Fits",
       whoItsFor: "Who It's For",
       useCases: "Use Cases",
+      about: "About",
       viewPlatform: "View Platform",
       requestDemo: "Request Demo",
     },
@@ -163,8 +170,12 @@ export const translations: Record<Language, TranslationSchema> = {
       title: "Shared Visibility for Every Port Call",
       subtitle:
         "NauticOps provides a shared coordination layer across the different actors involved in a port call, while respecting the systems and responsibilities of each organization. It complements existing systems, without replacing them or interfering with current processes.",
+      // TODO(#80): copy propuesta, pendiente de revisión editorial.
+      supportingLine: "No system replacement. No integration project. Operational from day one.",
       ctaPrimary: "Request a Demo",
       ctaSecondary: "View Platform",
+      // TODO(#80): copy propuesta, pendiente de revisión editorial.
+      ctaSecondaryHint: "Live demo with real data from the Port of Marín",
       stats: {
         portCalls: "Multi-Actor Coordination",
         realTime: "Near Real-Time Shared Updates",
@@ -429,8 +440,12 @@ export const translations: Record<Language, TranslationSchema> = {
           investor: "Investor / Partner",
           other: "Other",
         },
+        message: "Message",
+        messagePlaceholder: "Tell us about your port and what you'd like to see in the demo",
         submit: "Request Demo",
         disclaimer: "We'll get back to you within 24 hours.",
+        errorFallback:
+          "Something went wrong. Please try again or write to us at info@nauticops.com",
       },
       success: {
         title: "Thank You!",
@@ -487,6 +502,7 @@ export const translations: Record<Language, TranslationSchema> = {
       howItFits: "Cómo Encaja",
       whoItsFor: "Para Quién",
       useCases: "Casos de Uso",
+      about: "Sobre Nosotros",
       viewPlatform: "Ver Plataforma",
       requestDemo: "Solicitar Demo",
     },
@@ -496,8 +512,13 @@ export const translations: Record<Language, TranslationSchema> = {
       title: "Coordinación y Visibilidad Compartida en Cada Escala Portuaria",
       subtitle:
         "NauticOps ofrece una capa de coordinación compartida entre los actores de la escala portuaria, respetando los sistemas y responsabilidades de cada organización. Complementa los sistemas existentes sin interferir en los procesos actuales.",
+      // TODO(#80): copy propuesta, pendiente de revisión editorial.
+      supportingLine:
+        "Sin sustituir sistemas. Sin proyecto de integración. Operativo desde el primer día.",
       ctaPrimary: "Solicitar una Demo",
       ctaSecondary: "Ver Plataforma",
+      // TODO(#80): copy propuesta, pendiente de revisión editorial.
+      ctaSecondaryHint: "Demo en vivo con datos reales del Puerto de Marín",
       stats: {
         portCalls: "Coordinación Multiactor",
         realTime: "Actualizaciones Compartidas en Tiempo Casi Real",
@@ -762,8 +783,11 @@ export const translations: Record<Language, TranslationSchema> = {
           investor: "Inversor / Socio",
           other: "Otro",
         },
+        message: "Mensaje",
+        messagePlaceholder: "Cuéntenos sobre su puerto y qué le gustaría ver en la demo",
         submit: "Solicitar Demo",
         disclaimer: "Le responderemos en menos de 24 horas.",
+        errorFallback: "Ha ocurrido un error. Inténtelo de nuevo o escríbanos a info@nauticops.com",
       },
       success: {
         title: "¡Gracias!",
