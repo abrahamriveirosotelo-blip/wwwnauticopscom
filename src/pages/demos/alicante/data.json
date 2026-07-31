@@ -54,23 +54,6 @@
       "to": "IBIZA"
     },
     {
-      "id": "A202600555",
-      "status": "Prevista",
-      "imo": "9277383",
-      "name": "TINA",
-      "gt": 7519,
-      "len": 136,
-      "berth": "23",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-08-02T06:00",
-      "etd": "2026-08-02T14:00",
-      "from": "VALENCIA",
-      "to": "CARTAGENA",
-      "affectedBy": "A202600542",
-      "affectRisk": "ALTO"
-    },
-    {
       "id": "A202600513",
       "status": "Prevista",
       "imo": "9430193",
@@ -99,6 +82,23 @@
       "etd": "2026-08-03T09:00",
       "from": "BARCELONA",
       "to": "DERINCE"
+    },
+    {
+      "id": "A202600555",
+      "status": "Prevista",
+      "imo": "9277383",
+      "name": "TINA",
+      "gt": 7519,
+      "len": 136,
+      "berth": "23",
+      "agent": "ROMEU Y CIA. S A",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-08-03T06:00",
+      "etd": "2026-08-03T14:00",
+      "from": "VALENCIA",
+      "to": "CARTAGENA",
+      "affectedBy": "A202600542",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600559",

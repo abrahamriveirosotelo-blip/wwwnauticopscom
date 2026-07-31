@@ -1114,5 +1114,23 @@
     "resolved": false,
     "reason": "15 resultados pero ninguno aceptable (nombre/tipo comercial/IMO)",
     "checkedAt": "2026-07-30T17:36:20Z"
+  },
+  "TREVILLE::CUXHAVEN": {
+    "resolved": true,
+    "imo": "9815331",
+    "mmsi": "255915793",
+    "detailId": "9815331",
+    "gt": 3415,
+    "dwt": 4938,
+    "len": 90,
+    "beam": 15,
+    "flag": "Portugal (Madeira)",
+    "vesselType": "General Cargo Ship",
+    "built": 2018,
+    "callsign": "CQ2251",
+    "destination": "Ayr, United Kingdom (UK)",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-07-31T14:10:39Z"
   }
 }
