@@ -24,21 +24,6 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
     },
     {
-      "id": "A202600551",
-      "status": "Iniciado",
-      "imo": "9803625",
-      "name": "MSC VIRTUOSA",
-      "gt": 181541,
-      "len": 331,
-      "berth": "14",
-      "agent": "LANTIMAR",
-      "op": "CRUCERISTAS",
-      "eta": "2026-07-31T09:00",
-      "etd": "2026-07-31T20:00",
-      "from": "MALAGA",
-      "to": "IBIZA"
-    },
-    {
       "id": "A202600513",
       "status": "Prevista",
       "imo": "9430193",
