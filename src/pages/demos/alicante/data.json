@@ -24,21 +24,6 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
     },
     {
-      "id": "A202600556",
-      "status": "Iniciado",
-      "imo": "9265419",
-      "name": "TASSILI 2",
-      "gt": 20024,
-      "len": 142.92,
-      "berth": "25",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-07-31T08:00",
-      "etd": "2026-07-31T15:00",
-      "from": "ORAN",
-      "to": "ALGER"
-    },
-    {
       "id": "A202600551",
       "status": "Iniciado",
       "imo": "9803625",
