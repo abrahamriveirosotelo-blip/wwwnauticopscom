@@ -9,8 +9,8 @@ Marketing site for NauticOps (`nauticops.com`) plus interactive port demos. Reac
 The quality gate is **not enforced**: protecting `main` needs repo admin, which this account does not have. It is a convention, kept by hand, without exceptions.
 
 1. **Before every commit**: `npm run format`.
-2. **Before opening or updating a PR**: `npm run verify` (`format:check → lint → typecheck → test → build`). Treat it as the target to iterate against, not a formality — change, run, fix, repeat. Report the outcome in the PR body **with numbers** ("3 errors / 8 warnings, same as baseline"), never "all green".
-3. **Acceptance**: `format:check`, `typecheck`, `test` and `build` green, always. `lint` must not exceed its baseline of **3 errors + 8 warnings** (2× `no-empty-object-type`, 1× `no-require-imports`), which #80 will clear.
+2. **Before opening or updating a PR**: `npm run verify` (`format:check → lint → typecheck → test → build`). Treat it as the target to iterate against, not a formality — change, run, fix, repeat. Report the outcome in the PR body **with numbers** ("0 errors / 8 warnings, same as baseline"), never "all green".
+3. **Acceptance**: the whole chain green, no exceptions. `lint` allows **0 errors**; its 8 `react-refresh/only-export-components` warnings are the known ceiling — 7 come from shadcn components that export variants alongside the component, 1 from `LanguageContext.tsx`. Do not add a ninth.
 4. If something fails for a **pre-existing** reason, say so explicitly in the PR. Never silence it.
 5. **Squash merge only** — one commit per PR, linear history. Merging `main` into a PR branch to catch up is fine; the squash collapses it anyway.
 6. **`Closes #NN`** in the PR body when it closes an issue, or the issue stays open after the merge.
@@ -45,6 +45,7 @@ Scaling means **moving an instruction down a tier, never deleting it** — below
 ## Traps
 
 - `npm run build` (Vite) **does not typecheck**. That is `npm run typecheck`.
+- Never reduce `typecheck` to a bare `tsc --noEmit`. The root `tsconfig.json` is a solution file (`"files": []` plus project references) and `tsc` does not follow references without `-b`, so a bare run checks **zero files and exits 0**. It hid 14 real errors — four of them blank text on the live landing page — until #80. The script names each project explicitly for that reason.
 - The legal route is `/legal/:section`. Plain `/legal` falls through to the 404 catch-all.
 - `/demo/v2` is **not** a SPA route: it is `public/demo/v2/index.html`, self-contained, served by a `vercel.json` rewrite. Outside the Vite build and outside Prettier.
 - **Two brand palettes that do not match.** The site uses Tailwind tokens backed by HSL CSS vars in `src/index.css` (`bg-navy-deep`, `bg-cyan-brand`, …), while each `Demo*.tsx` carries its own literal-hex `const B` (cyan is `#079FE6` there). `bg-cyan-brand` is **not** the demos' cyan. Unifying both is a natural candidate for the v2 consolidation (#28).

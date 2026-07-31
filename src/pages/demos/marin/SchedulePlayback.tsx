@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import L from "leaflet";
+import L, { type LatLngTuple } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { nivelColor, worstAviso } from "./meteo";
 
@@ -254,7 +254,7 @@ export default function SchedulePlayback({
     if (darknessRef.current > 0) darkLayerRef.current.addTo(map);
     // Encuadre centrado EN Marín: caja simétrica (aproximación al O + su reflejo al E) →
     // el puerto queda en el centro y el corredor de entrada/salida se ve a la izquierda.
-    const mirror = [2 * MARIN.lat - APPROACH.lat, 2 * MARIN.lon - APPROACH.lon];
+    const mirror: LatLngTuple = [2 * MARIN.lat - APPROACH.lat, 2 * MARIN.lon - APPROACH.lon];
     map.fitBounds(L.latLngBounds([[APPROACH.lat, APPROACH.lon], mirror]), {
       padding: [40, 40],
       maxZoom: 14,

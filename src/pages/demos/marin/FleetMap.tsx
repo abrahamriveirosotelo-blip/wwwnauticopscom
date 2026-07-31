@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import L from "leaflet";
+import L, { type LatLngTuple } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 /* Mapa global de la flota. Cada buque de la lista (ya filtrada) se pinta según:
@@ -188,10 +188,10 @@ export default function FleetMap({
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
-    const pts = [
+    const pts: LatLngTuple[] = [
       [MARIN.lat, MARIN.lon],
-      ...aisItems.map((i) => [i.lat, i.lon]),
-      ...berthItems.map((i) => [i.lat, i.lon]),
+      ...aisItems.map((i): LatLngTuple => [i.lat, i.lon]),
+      ...berthItems.map((i): LatLngTuple => [i.lat, i.lon]),
     ];
     if (pts.length <= 1) map.setView([MARIN.lat, MARIN.lon], 8);
     else map.fitBounds(L.latLngBounds(pts), { padding: [40, 40], maxZoom: 12 });
@@ -233,7 +233,7 @@ export default function FleetMap({
     // Buques con AIS (siempre individuales). El seleccionado va destacado y por encima.
     for (const it of aisItems) {
       const c = it.call;
-      const ll = [it.lat, it.lon];
+      const ll: LatLngTuple = [it.lat, it.lon];
       const sel = selectedKey != null && shipKey(c) === selectedKey;
       const m = L.marker(ll, {
         icon: vesselIcon(c.aisHeading ?? c.aisCog ?? null, statusColor(c.aisStatus), sel),
@@ -256,7 +256,7 @@ export default function FleetMap({
     if (!clusterBerth) {
       for (const it of berthItems) {
         const c = it.call;
-        const ll = [it.lat, it.lon];
+        const ll: LatLngTuple = [it.lat, it.lon];
         const sel = selectedKey != null && shipKey(c) === selectedKey;
         const m = L.marker(ll, {
           icon: vesselIcon(null, C.success, sel),
