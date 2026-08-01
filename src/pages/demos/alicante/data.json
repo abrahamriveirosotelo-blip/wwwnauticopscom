@@ -2,27 +2,10 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "31/07/2026",
+    "date": "01/08/2026",
     "refreshHours": 2
   },
   "calls": [
-    {
-      "id": "A202600542",
-      "status": "Alerta",
-      "imo": "9322578",
-      "name": "DREAM",
-      "gt": 7852,
-      "len": 140,
-      "berth": "23",
-      "agent": "MILLER Y COMPAÑIA S.A",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-07-31T08:00",
-      "etd": "2026-07-31T23:00",
-      "from": "LAS PALMAS",
-      "to": "LAS PALMAS",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
-    },
     {
       "id": "A202600513",
       "status": "Prevista",
@@ -66,9 +49,7 @@
       "eta": "2026-08-03T06:00",
       "etd": "2026-08-03T14:00",
       "from": "VALENCIA",
-      "to": "CARTAGENA",
-      "affectedBy": "A202600542",
-      "affectRisk": "ALTO"
+      "to": "CARTAGENA"
     },
     {
       "id": "A202600559",
