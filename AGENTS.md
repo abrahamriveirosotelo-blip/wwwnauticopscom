@@ -9,13 +9,14 @@ Marketing site for NauticOps (`nauticops.com`) plus interactive port demos. Reac
 The gate runs in two places: a **pre-push hook** (`.githooks/pre-push`, wired by the `prepare` script on `npm install`) that aborts a push when it fails, and **CI** on every PR and every push to `main`. CI can only report — required status checks need repo admin, which this account does not have — so the hook is the actual barrier. `git push --no-verify` skips it; that is a legitimate escape hatch, but say so in the PR, because CI will still catch it.
 
 1. **Before every commit**: `npm run format`.
-2. **Before opening or updating a PR**: `npm run verify` (`format:check → lint → typecheck → test → build`). Treat it as the target to iterate against, not a formality — change, run, fix, repeat. Report the outcome in the PR body **with numbers** ("0 errors / 8 warnings, same as baseline"), never "all green".
+2. **Before opening or updating a PR**: `npm run verify` (`format:check → lint → typecheck → test+coverage → build`). Treat it as the target to iterate against, not a formality — change, run, fix, repeat. Report the outcome in the PR body **with numbers** ("0 errors / 8 warnings, same as baseline"), never "all green".
 3. **Acceptance**: the whole chain green, no exceptions. `lint` allows **0 errors**; its 8 `react-refresh/only-export-components` warnings are the known ceiling — 7 come from shadcn components that export variants alongside the component, 1 from `LanguageContext.tsx`. Do not add a ninth.
-4. If something fails for a **pre-existing** reason, say so explicitly in the PR. Never silence it.
-5. **Squash merge only** — one commit per PR, linear history. Merging `main` into a PR branch to catch up is fine; the squash collapses it anyway.
-6. **`Closes #NN`** in the PR body when it closes an issue, or the issue stays open after the merge.
-7. **Never hand-edit** `src/pages/demos/**/data.json` or `vessel-cache.json`: the cron rewrites them every 2h and commits straight to `main`.
-8. **A repo-wide reformat gets its own PR**, with nothing else in it. Register its SHA in `.git-blame-ignore-revs` **afterwards**, in a separate PR — under squash the SHA only exists once merged (`gh pr view <n> --json mergeCommit --jq .mergeCommit.oid`).
+4. **Coverage is a ratchet**: the thresholds in `vitest.config.ts` may go up, never down. What is measured and what is left out is argued there, file by file — read it before adding an exclusion.
+5. If something fails for a **pre-existing** reason, say so explicitly in the PR. Never silence it.
+6. **Squash merge only** — one commit per PR, linear history. Merging `main` into a PR branch to catch up is fine; the squash collapses it anyway.
+7. **`Closes #NN`** in the PR body when it closes an issue, or the issue stays open after the merge.
+8. **Never hand-edit** `src/pages/demos/**/data.json` or `vessel-cache.json`: the cron rewrites them every 2h and commits straight to `main`.
+9. **A repo-wide reformat gets its own PR**, with nothing else in it. Register its SHA in `.git-blame-ignore-revs` **afterwards**, in a separate PR — under squash the SHA only exists once merged (`gh pr view <n> --json mergeCommit --jq .mergeCommit.oid`).
 
 **Language**: commit messages and these instruction files are in **English**. Issues and PR titles and bodies stay in **Spanish**.
 
@@ -27,7 +28,7 @@ Once per clone: `git config blame.ignoreRevsFile .git-blame-ignore-revs`. GitHub
 - Nothing an agent can work out by reading the code. Routes, file trees, dependency lists and colour values belong in the code, not here.
 - Descriptive documentation goes in the README. This file is only for what changes an agent's behaviour.
 - Anything that applies to a single folder goes in that folder's instructions.
-- A rule that exists because of an open issue names it, and dies with it: rule 3 goes when #80 closes, the demo exception when #28 does.
+- A rule that exists because of an open issue names it, and dies with it. Live ones: the demo instructions exception goes when #28 merges the demos, the "CI can only report" caveat when #90 lands.
 
 ## Scaling instructions
 

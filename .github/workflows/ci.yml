@@ -40,5 +40,16 @@ jobs:
       - name: Instalar dependencias
         run: npm ci
 
-      - name: Gate completo (format:check → lint → typecheck → test → build)
+      - name: Gate completo (format:check → lint → typecheck → test+coverage → build)
         run: npm run verify
+
+      # lcov queda disponible para SonarCloud (#83) y para inspeccionarlo sin
+      # reproducir el run en local.
+      - name: Publicar informe de cobertura
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-lcov
+          path: coverage/lcov.info
+          if-no-files-found: warn
+          retention-days: 14
