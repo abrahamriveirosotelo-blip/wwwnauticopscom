@@ -16,6 +16,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "update-demo": "node scripts/update-alicante.mjs",
     "update-demo:dry": "node scripts/update-alicante.mjs --dry-run",
     "update-demo:headers": "node scripts/update-alicante.mjs --print-headers",
@@ -38,7 +39,7 @@
     "enrich-demo:marin:meteo:dry": "node scripts/enrich-marin-meteo.mjs --dry-run",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "verify": "npm run format:check && npm run lint && npm run typecheck && npm run test && npm run build"
+    "verify": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage && npm run build"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -102,6 +103,7 @@
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react-swc": "^3.11.0",
+    "@vitest/coverage-v8": "^3.2.7",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.32.0",
     "eslint-config-prettier": "^10.1.8",

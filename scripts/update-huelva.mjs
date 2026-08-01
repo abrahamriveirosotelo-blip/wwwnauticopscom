@@ -15,7 +15,8 @@ import { readFileSync, writeFileSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { PDFParse } from "pdf-parse";
-import { parseDateParts, isStillActive, buildAlertScenario } from "./lib/huelva-updater.mjs";
+import { parseDateParts, isStillActive } from "./lib/huelva-updater.mjs";
+import { buildAlertScenario } from "./lib/alert-scenario.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_PATH = join(__dirname, "../src/pages/demos/huelva/data.json");
@@ -267,7 +268,7 @@ async function main() {
 
   console.log(`✓ ${rows.length} movimientos → ${calls.length} escalas activas/previstas`);
 
-  const alert = buildAlertScenario(calls);
+  const alert = buildAlertScenario(calls, { pilotLabel: "Práctico (Huelva)" });
   if (alert) {
     const ac = calls.find((c) => c.id === alert.alertId);
     console.log(`✓ Alerta de demo → ${alert.alertName} · Muelle ${ac?.berth}`);

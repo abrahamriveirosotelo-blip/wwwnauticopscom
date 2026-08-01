@@ -12,6 +12,7 @@
 import { readFileSync, writeFileSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import { buildAlertScenario } from "./lib/alert-scenario.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_PATH = join(__dirname, "../src/pages/demos/alicante/data.json");
@@ -99,69 +100,6 @@ function fmtMilestoneTime(ms) {
 // una incidencia real: preferiblemente uno que comparta muelle con otro barco previsto
 // (así se puede mostrar el impacto en cascada durante la demo).
 // No depende de IDs fijos: siempre funciona con los barcos que haya en el CSV.
-const ALERT_DELAY = "+4h 30min";
-
-function buildAlertScenario(calls) {
-  // Buscar par: Iniciado con muelle compartido por un Prevista (cascada de impacto)
-  let alertCall = null;
-  let affectedCall = null;
-  for (const c of calls.filter((c) => c.status === "Iniciado")) {
-    if (c.berth === "—") continue;
-    const next = calls.find((x) => x.status === "Prevista" && x.berth === c.berth);
-    if (next) {
-      alertCall = c;
-      affectedCall = next;
-      break;
-    }
-  }
-  // Fallback: primer Iniciado sin cascada
-  if (!alertCall) alertCall = calls.find((c) => c.status === "Iniciado");
-  if (!alertCall) return null;
-
-  const op = alertCall.op || "";
-  const opCtx = op.startsWith("D/") ? "descarga" : op.startsWith("C/") ? "carga" : "operaciones";
-
-  alertCall.status = "Alerta";
-  alertCall.delay = ALERT_DELAY;
-  alertCall.alertNote = `Incidencia en ${opCtx}. El buque no liberará el Muelle ${alertCall.berth} según lo previsto.`;
-
-  if (affectedCall) {
-    affectedCall.affectedBy = alertCall.id;
-    affectedCall.affectRisk = "ALTO";
-  }
-
-  const etaMs = new Date(alertCall.eta).getTime();
-  const milestones = {
-    [alertCall.id]: [
-      {
-        label: "Atracado",
-        status: "done",
-        time: fmtMilestoneTime(etaMs + 25 * 60000),
-        by: "Práctico (APA)",
-      },
-      {
-        label: "Inicio de operaciones",
-        status: "done",
-        time: fmtMilestoneTime(etaMs + 90 * 60000),
-        by: `Agente: ${alertCall.agent}`,
-      },
-      {
-        label: "Fin de operaciones",
-        status: "in_progress",
-        time: "En curso — con incidencia",
-        by: null,
-      },
-      { label: "Desatracado", status: "pending", time: null, by: null },
-    ],
-  };
-
-  return {
-    alertId: alertCall.id,
-    alertName: alertCall.name,
-    affectedName: affectedCall?.name,
-    milestones,
-  };
-}
 
 // --- Main ---
 
@@ -268,7 +206,7 @@ async function main() {
   console.log(`✓ ${calls.length} escalas activas/previstas encontradas`);
 
   // Escenario de alerta dinámico (modifica calls[] en el lugar)
-  const alert = buildAlertScenario(calls);
+  const alert = buildAlertScenario(calls, { pilotLabel: "Práctico (APA)" });
   if (alert) {
     const ac = calls.find((c) => c.id === alert.alertId);
     console.log(`✓ Alerta de demo → ${alert.alertName} · Muelle ${ac?.berth}`);
