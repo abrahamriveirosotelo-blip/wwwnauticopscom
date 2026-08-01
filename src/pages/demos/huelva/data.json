@@ -130,6 +130,21 @@
     },
     {
       "id": "H20260801009",
+      "status": "Iniciado",
+      "imo": "—",
+      "name": "SLOMAN HERA",
+      "gt": 11311,
+      "len": 145,
+      "berth": "DEC",
+      "agent": "—",
+      "op": "Fondo",
+      "eta": "2026-08-01T14:45",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260801010",
       "status": "Prevista",
       "imo": "—",
       "name": "ONEGO.GLOMMA",
@@ -139,21 +154,6 @@
       "agent": "PAM",
       "op": "Entrada",
       "eta": "2026-08-01T18:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260801010",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "ISLAS.TRES",
-      "gt": 4075,
-      "len": 97,
-      "berth": "JGV",
-      "agent": "ERS",
-      "op": "Entrada",
-      "eta": "2026-08-01T19:00",
       "etd": "",
       "from": "—",
       "to": "—"
