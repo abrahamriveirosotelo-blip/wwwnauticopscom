@@ -1,4 +1,5 @@
-import { describe, it, expect } from "vitest";
+// @vitest-environment node
+import { describe, it, expect, beforeAll } from "vitest";
 import { readFileSync } from "fs";
 import { resolve } from "path";
 import {
@@ -15,8 +16,15 @@ const fixture = (n) => readFileSync(resolve(import.meta.dirname, "../fixtures", 
 describe("parseMarinPage — contra el HTML real de apmarin.com", () => {
   // Las fixtures son capturas reales de las dos tablas. Si la AP cambia la estructura,
   // estos tests fallan aquí y no en producción tres horas después.
-  const esperados = parseMarinPage(fixture("marin-esperados.html"));
-  const puerto = parseMarinPage(fixture("marin-puerto.html"));
+  // En beforeAll y no en el cuerpo del describe: si el marcado de la AP cambia,
+  // parseMarinPage lanza. Desde aquí falla un test con nombre; desde el cuerpo se
+  // caería la colección entera y no llegaría a correr ni el caso que comprueba
+  // justamente que revienta con mensaje claro.
+  let esperados, puerto;
+  beforeAll(() => {
+    esperados = parseMarinPage(fixture("marin-esperados.html"));
+    puerto = parseMarinPage(fixture("marin-puerto.html"));
+  });
 
   it("distingue la tabla de esperados (ETA) de la de en puerto (ETD)", () => {
     expect(esperados.kind).toBe("eta");

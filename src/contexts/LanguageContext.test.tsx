@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import { LanguageProvider, useLanguage } from "./LanguageContext";
 
@@ -42,6 +42,11 @@ describe("LanguageContext", () => {
   });
 
   it("falla ruidosamente si se usa fuera del provider", () => {
+    // React vuelca el error no capturado + el aviso de error boundary: ~40 líneas de
+    // stack en stdout y en el log de CI. Se acalla SOLO aquí, así que un console.error
+    // inesperado en cualquier otro test se sigue viendo.
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
     expect(() => renderHook(() => useLanguage())).toThrow(/LanguageProvider/);
+    spy.mockRestore();
   });
 });
