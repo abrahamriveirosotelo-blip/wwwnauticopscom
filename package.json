@@ -10,6 +10,7 @@
     "dev": "vite",
     "build": "vite build",
     "build:dev": "vite build --mode development",
+    "prepare": "git config core.hooksPath .githooks || echo '⚠️  pre-push hook NOT installed: this is not a git checkout. The quality gate will not run on push.'",
     "lint": "eslint .",
     "typecheck": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.node.json --noEmit",
     "preview": "vite preview",

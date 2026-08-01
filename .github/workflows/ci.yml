@@ -1,0 +1,44 @@
+name: CI
+
+# Runs the same gate as `npm run verify` on every PR and on everything that
+# lands on main — including the data commits the demo cron pushes directly.
+#
+# This check is ADVISORY: making it block a merge needs required status checks,
+# which needs repo admin (see the follow-up issue). Until then the real barrier
+# is the pre-push hook in .githooks/, and this is the safety net for when a push
+# skips it.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  # Superseding a PR run is fine — a new commit replaces it. On main it is not:
+  # the data cron pushes every 2h, and a cancelled run counts as "not passed",
+  # so once `verify` becomes a required check (#90) it would leave commits stuck.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    # The gate takes ~2 min; the GitHub default is 6 hours, which a hung
+    # `npm ci` would happily burn.
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Gate completo (format:check → lint → typecheck → test → build)
+        run: npm run verify

@@ -6,7 +6,7 @@ Marketing site for NauticOps (`nauticops.com`) plus interactive port demos. Reac
 
 ## Working rules
 
-The quality gate is **not enforced**: protecting `main` needs repo admin, which this account does not have. It is a convention, kept by hand, without exceptions.
+The gate runs in two places: a **pre-push hook** (`.githooks/pre-push`, wired by the `prepare` script on `npm install`) that aborts a push when it fails, and **CI** on every PR and every push to `main`. CI can only report — required status checks need repo admin, which this account does not have — so the hook is the actual barrier. `git push --no-verify` skips it; that is a legitimate escape hatch, but say so in the PR, because CI will still catch it.
 
 1. **Before every commit**: `npm run format`.
 2. **Before opening or updating a PR**: `npm run verify` (`format:check → lint → typecheck → test → build`). Treat it as the target to iterate against, not a formality — change, run, fix, repeat. Report the outcome in the PR body **with numbers** ("0 errors / 8 warnings, same as baseline"), never "all green".

@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# Runs the quality gate before every push.
+#
+# `main` is not protected — that needs repo admin, which this account does not
+# have — so CI can only report, never block. This hook is the one thing that
+# actually stops a broken branch from going up, on every machine that has run
+# `npm install` (the `prepare` script points core.hooksPath here).
+#
+# To skip it: `git push --no-verify`.
+
+set -e
+
+# git feeds one line per ref on stdin: <local ref> <local sha> <remote ref> <remote sha>.
+# A deletion (`git push --delete`) sends an all-zero local sha and pushes no commits,
+# so there is nothing to verify — running the gate there is pure waiting.
+pushes_commits=0
+while read -r _local_ref local_sha _remote_ref _remote_sha; do
+  case "$local_sha" in
+    *[!0]*) pushes_commits=1 ;;
+  esac
+done
+
+[ "$pushes_commits" -eq 1 ] || exit 0
+
+echo "pre-push → npm run verify (skip with --no-verify)"
+npm run verify
