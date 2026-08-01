@@ -53,3 +53,38 @@ jobs:
           path: coverage/lcov.info
           if-no-files-found: warn
           retention-days: 14
+
+  # Auditoría continua (#83). Se salta entero mientras no exista el secreto
+  # SONAR_TOKEN, para que el repo no arrastre un check en rojo hasta que alguien
+  # con admin cree el proyecto en SonarCloud y lo añada. Pasos de activación: #96.
+  sonar:
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: ¿Está configurado SonarCloud?
+        id: gate
+        run: echo "ready=${{ secrets.SONAR_TOKEN != '' }}" >> "$GITHUB_OUTPUT"
+
+      - if: steps.gate.outputs.ready != 'true'
+        run: echo "SONAR_TOKEN no configurado — análisis omitido (ver #96)."
+
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.ready == 'true'
+        with:
+          # Sonar necesita el histórico completo para fechar cada línea y saber
+          # qué es "código nuevo"; con el clon superficial lo daría todo por nuevo.
+          fetch-depth: 0
+
+      - name: Recuperar la cobertura del job verify
+        if: steps.gate.outputs.ready == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage-lcov
+          path: coverage
+
+      - name: Analizar
+        if: steps.gate.outputs.ready == 'true'
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
