@@ -66,8 +66,10 @@ jobs:
         id: gate
         run: echo "ready=${{ secrets.SONAR_TOKEN != '' }}" >> "$GITHUB_OUTPUT"
 
+      # Entrecomillado a propósito: en un escalar YAML sin comillas, ` #` abre un
+      # comentario y se comería el resto de la orden, dejando el `echo` sin cerrar.
       - if: steps.gate.outputs.ready != 'true'
-        run: echo "SONAR_TOKEN no configurado — análisis omitido (ver #96)."
+        run: 'echo "SONAR_TOKEN no configurado: analisis omitido (ver issue 96)."'
 
       - uses: actions/checkout@v4
         if: steps.gate.outputs.ready == 'true'
