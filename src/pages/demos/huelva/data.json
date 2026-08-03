@@ -24,22 +24,7 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle PET según lo previsto."
     },
     {
-      "id": "H20260730002",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "MED ANTARCTIC",
-      "gt": 5651,
-      "len": 124,
-      "berth": "DEC",
-      "agent": "IBM",
-      "op": "Fondo",
-      "eta": "2026-07-30T18:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260731003",
+      "id": "H20260731002",
       "status": "Iniciado",
       "imo": "—",
       "name": "ORUBA",
@@ -54,7 +39,7 @@
       "to": "—"
     },
     {
-      "id": "H20260731004",
+      "id": "H20260731003",
       "status": "Iniciado",
       "imo": "—",
       "name": "PACIFIC",
@@ -69,7 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260801005",
+      "id": "H20260801004",
       "status": "Iniciado",
       "imo": "—",
       "name": "SLOMAN HERA",
@@ -84,22 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260801006",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "DOLPHIN.08",
-      "gt": 12776,
-      "len": 165,
-      "berth": "DEC",
-      "agent": "—",
-      "op": "Fondo",
-      "eta": "2026-08-01T20:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260803007",
+      "id": "H20260803005",
       "status": "Iniciado",
       "imo": "—",
       "name": "ARCTIC AURORA",
@@ -114,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260803008",
+      "id": "H20260803006",
       "status": "Iniciado",
       "imo": "—",
       "name": "GAS AEGEAN",
@@ -122,14 +92,14 @@
       "len": 120,
       "berth": "FER",
       "agent": "BER",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-08-03T09:30",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260803009",
+      "id": "H20260803007",
       "status": "Iniciado",
       "imo": "—",
       "name": "MED PAKIZE",
@@ -137,29 +107,14 @@
       "len": 124,
       "berth": "DEC",
       "agent": "—",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-08-03T10:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260803010",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "KATJA",
-      "gt": 4255,
-      "len": 114,
-      "berth": "JGV",
-      "agent": "BER",
-      "op": "Entrada",
-      "eta": "2026-08-03T19:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260803011",
+      "id": "H20260803008",
       "status": "Prevista",
       "imo": "—",
       "name": "ARION",
@@ -174,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260804012",
+      "id": "H20260804009",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -191,7 +146,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260804013",
+      "id": "H20260804010",
       "status": "Prevista",
       "imo": "—",
       "name": "PERA",
@@ -206,7 +161,7 @@
       "to": "—"
     },
     {
-      "id": "H20260804014",
+      "id": "H20260804011",
       "status": "Prevista",
       "imo": "—",
       "name": "SEN ARCHE",
@@ -221,7 +176,7 @@
       "to": "—"
     },
     {
-      "id": "H20260804015",
+      "id": "H20260804012",
       "status": "Prevista",
       "imo": "—",
       "name": "MARIE CURIE",
@@ -236,7 +191,7 @@
       "to": "—"
     },
     {
-      "id": "H20260804016",
+      "id": "H20260804013",
       "status": "Prevista",
       "imo": "—",
       "name": "BELLIS.THERESA",
@@ -251,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260804017",
+      "id": "H20260804014",
       "status": "Prevista",
       "imo": "—",
       "name": "LADY.LAVELA",
@@ -266,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260804018",
+      "id": "H20260804015",
       "status": "Prevista",
       "imo": "—",
       "name": "ADALADY",
@@ -281,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260805019",
+      "id": "H20260805016",
       "status": "Prevista",
       "imo": "—",
       "name": "PRIDE",
@@ -296,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260805020",
+      "id": "H20260805017",
       "status": "Prevista",
       "imo": "—",
       "name": "NORDIC",
@@ -311,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260808022",
+      "id": "H20260808019",
       "status": "Prevista",
       "imo": "—",
       "name": "OKOLCHITSA",
