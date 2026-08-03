@@ -2,30 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "02/08/2026",
+    "date": "03/08/2026",
     "refreshHours": 2
   },
   "calls": [
     {
-      "id": "A202600513",
-      "status": "Alerta",
-      "imo": "9430193",
-      "name": "HERCULES J",
-      "gt": 10585,
-      "len": 152,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-08-02T07:00",
-      "etd": "2026-08-02T21:00",
-      "from": "ARRECIFE",
-      "to": "SANTA CRUZ DE TENERIFE",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
-    },
-    {
       "id": "A202600512",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9349227",
       "name": "NJORD",
       "gt": 7720,
@@ -36,11 +19,13 @@
       "eta": "2026-08-02T19:00",
       "etd": "2026-08-03T09:00",
       "from": "BARCELONA",
-      "to": "DERINCE"
+      "to": "DERINCE",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
       "id": "A202600555",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9277383",
       "name": "TINA",
       "gt": 7519,
@@ -69,6 +54,98 @@
       "to": "ORAN"
     },
     {
+      "id": "A202600554",
+      "status": "Prevista",
+      "imo": "9302255",
+      "name": "SPIRIT",
+      "gt": 7713,
+      "len": 141,
+      "berth": "23",
+      "agent": "PEREZ Y CIA",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-08-04T02:00",
+      "etd": "2026-08-04T14:00",
+      "from": "ALGECIRAS",
+      "to": "ALMERIA"
+    },
+    {
+      "id": "A202600558",
+      "status": "Prevista",
+      "imo": "9221281",
+      "name": "OOSTERDAM",
+      "gt": 82305,
+      "len": 285,
+      "berth": "14",
+      "agent": "OCEAN PORTS & SHIPPING",
+      "op": "CRUCERISTAS",
+      "eta": "2026-08-04T07:00",
+      "etd": "2026-08-04T18:00",
+      "from": "VALENCIA",
+      "to": "PALMA DE MALLORCA"
+    },
+    {
+      "id": "A202600561",
+      "status": "Prevista",
+      "imo": "9265421",
+      "name": "DJAZAIR II",
+      "gt": 20024,
+      "len": 146,
+      "berth": "25",
+      "agent": "ROMEU Y CIA. S A",
+      "op": "PASAJE Y VEHICULOS",
+      "eta": "2026-08-04T08:00",
+      "etd": "2026-08-04T20:00",
+      "from": "ORAN",
+      "to": "ORAN"
+    },
+    {
+      "id": "A202600565",
+      "status": "Prevista",
+      "imo": "9312200",
+      "name": "ENDURANCE",
+      "gt": 7642,
+      "len": 135,
+      "berth": "11",
+      "agent": "EUROPEAN FORWARDING SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-08-05T07:00",
+      "etd": "2026-08-05T21:00",
+      "from": "DERINCE",
+      "to": "DERINCE",
+      "affectedBy": "A202600512",
+      "affectRisk": "ALTO"
+    },
+    {
+      "id": "A202600560",
+      "status": "Prevista",
+      "imo": "9237242",
+      "name": "CRACOVIA",
+      "gt": 25028,
+      "len": 180,
+      "berth": "25",
+      "agent": "ROMEU Y CIA. S A",
+      "op": "PASAJE Y VEHICULOS",
+      "eta": "2026-08-05T08:00",
+      "etd": "2026-08-05T20:00",
+      "from": "ORAN",
+      "to": "ORAN"
+    },
+    {
+      "id": "A202600552",
+      "status": "Prevista",
+      "imo": "9483683",
+      "name": "NIEVES B",
+      "gt": 10318,
+      "len": 152,
+      "berth": "23",
+      "agent": "MILLER Y COMPAÑÍA",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-08-05T08:00",
+      "etd": "2026-08-05T12:00",
+      "from": "SANTA CRUZ DE LA PALMA",
+      "to": "BARCELONA"
+    },
+    {
       "id": "A202600519",
       "status": "Prevista",
       "imo": "9083043",
@@ -81,13 +158,11 @@
       "eta": "2026-08-31T01:00",
       "etd": "2026-08-31T15:00",
       "from": "BARCELONA",
-      "to": "LAS PALMAS",
-      "affectedBy": "A202600513",
-      "affectRisk": "ALTO"
+      "to": "LAS PALMAS"
     }
   ],
   "tugService": {
-    "callId": "A202600513",
+    "callId": "A202600512",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -114,17 +189,17 @@
     }
   },
   "milestones": {
-    "A202600513": [
+    "A202600512": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "02/08 · 07:25",
+        "time": "02/08 · 19:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "02/08 · 08:30",
+        "time": "02/08 · 20:30",
         "by": "Agente: EUROPEAN FORWARDING SL"
       },
       {
