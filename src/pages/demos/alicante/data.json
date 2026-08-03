@@ -114,21 +114,6 @@
       "etd": "2026-08-05T12:00",
       "from": "SANTA CRUZ DE LA PALMA",
       "to": "BARCELONA"
-    },
-    {
-      "id": "A202600519",
-      "status": "Prevista",
-      "imo": "9083043",
-      "name": "NANTO",
-      "gt": 7550,
-      "len": 151.14,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-08-31T01:00",
-      "etd": "2026-08-31T15:00",
-      "from": "BARCELONA",
-      "to": "LAS PALMAS"
     }
   ],
   "tugService": {
