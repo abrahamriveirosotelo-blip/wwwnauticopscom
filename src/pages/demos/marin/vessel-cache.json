@@ -1132,5 +1132,41 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-07-31T14:10:39Z"
+  },
+  "SIERRA GUARDIAN::MACAPA": {
+    "resolved": true,
+    "imo": "9913808",
+    "mmsi": "636021624",
+    "detailId": "9913808",
+    "gt": 41458,
+    "dwt": 49294,
+    "len": 200,
+    "beam": 32,
+    "flag": "Liberia",
+    "vesselType": "Wood Chips Carrier",
+    "built": 2022,
+    "callsign": "5LEW6",
+    "destination": "Marin, Pontevedra, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-08-03T11:25:06Z"
+  },
+  "ODERBORG::AVEIRO": {
+    "resolved": true,
+    "imo": "9374703",
+    "mmsi": "244995000",
+    "detailId": "9374703",
+    "gt": 2528,
+    "dwt": 3500,
+    "len": 90,
+    "beam": 12,
+    "flag": "Netherlands",
+    "vesselType": "General Cargo Ship",
+    "built": 2007,
+    "callsign": "PHLZ",
+    "destination": "Marin, Pontevedra, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-08-03T11:25:09Z"
   }
 }
