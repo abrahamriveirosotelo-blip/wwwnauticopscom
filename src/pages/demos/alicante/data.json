@@ -7,23 +7,6 @@
   },
   "calls": [
     {
-      "id": "A202600559",
-      "status": "Alerta",
-      "imo": "9237242",
-      "name": "CRACOVIA",
-      "gt": 25028,
-      "len": 180,
-      "berth": "25",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-08-03T08:00",
-      "etd": "2026-08-03T20:00",
-      "from": "ALGER",
-      "to": "ORAN",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 25 según lo previsto."
-    },
-    {
       "id": "A202600554",
       "status": "Prevista",
       "imo": "9302255",
@@ -66,9 +49,7 @@
       "eta": "2026-08-04T08:00",
       "etd": "2026-08-04T20:00",
       "from": "ORAN",
-      "to": "ORAN",
-      "affectedBy": "A202600559",
-      "affectRisk": "ALTO"
+      "to": "ORAN"
     },
     {
       "id": "A202600565",
