@@ -21,5 +21,10 @@ scripts/fixtures
 # Prettier no infiere parser para esas extensiones y ya las ignora.
 public/demo/v2
 
+# Ajustes locales de agentes: existen solo en la máquina de cada uno y están en el
+# gitignore GLOBAL, que Prettier no lee — sin esta línea, format:check sale rojo por
+# un fichero que ni siquiera está en el repo.
+.claude/settings.local.json
+
 # Minificados
 *.min.*

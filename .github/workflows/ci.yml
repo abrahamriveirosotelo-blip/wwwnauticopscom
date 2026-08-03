@@ -10,6 +10,7 @@ name: CI
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened]
   push:
     branches: [main]
 
@@ -54,39 +55,28 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
-  # Auditoría continua (#83). Se salta entero mientras no exista el secreto
-  # SONAR_TOKEN, para que el repo no arrastre un check en rojo hasta que alguien
-  # con admin cree el proyecto en SonarCloud y lo añada. Pasos de activación: #96.
-  sonar:
+  sonarqube:
     needs: verify
+    name: SonarQube
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: ¿Está configurado SonarCloud?
-        id: gate
-        run: echo "ready=${{ secrets.SONAR_TOKEN != '' }}" >> "$GITHUB_OUTPUT"
-
-      # Entrecomillado a propósito: en un escalar YAML sin comillas, ` #` abre un
-      # comentario y se comería el resto de la orden, dejando el `echo` sin cerrar.
-      - if: steps.gate.outputs.ready != 'true'
-        run: 'echo "SONAR_TOKEN no configurado: analisis omitido (ver issue 96)."'
-
-      - uses: actions/checkout@v4
-        if: steps.gate.outputs.ready == 'true'
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
-          # Sonar necesita el histórico completo para fechar cada línea y saber
-          # qué es "código nuevo"; con el clon superficial lo daría todo por nuevo.
+          # Sin histórico, Sonar no puede fechar las líneas y da todo por código
+          # nuevo: el gate de clean-as-you-code saldría rojo por construcción.
           fetch-depth: 0
 
+      # Sin este paso, `coverage/lcov.info` no existe en el runner y Sonar publica
+      # 0% — sin fallar, que es lo peor: el número sale, es falso, y contradice al
+      # que da `npm run verify`. La ruta la fija sonar.javascript.lcov.reportPaths.
       - name: Recuperar la cobertura del job verify
-        if: steps.gate.outputs.ready == 'true'
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
           name: coverage-lcov
           path: coverage
 
-      - name: Analizar
-        if: steps.gate.outputs.ready == 'true'
-        uses: SonarSource/sonarqube-scan-action@v5
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@7006c4492b2e0ee0f816d36501671557c97f5995 # v8.1.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
