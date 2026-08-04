@@ -4,19 +4,19 @@
     "source": "apmarin.com · buques esperados + en puerto",
     "date": "04/08/2026",
     "refreshHours": 2,
-    "sourceUpdatedAt": "2026-08-04T16:10",
+    "sourceUpdatedAt": "2026-08-04T19:10",
     "meteo": {
-      "updatedAt": "2026-08-04T16:18",
+      "updatedAt": "2026-08-04T19:50",
       "obs": {
         "estacion": "Porto de Marín",
-        "instante": "2026-08-04T13:00",
-        "vientoRachaKn": 13,
+        "instante": "2026-08-04T16:00",
+        "vientoRachaKn": 10,
         "vientoMediaKn": null,
-        "vientoDirDeg": 223,
-        "tempC": 23.73,
-        "presionHpa": 1016.4,
+        "vientoDirDeg": 249,
+        "tempC": 24.48,
+        "presionHpa": 1017.43,
         "lluviaMm": 0,
-        "humedadPct": 100
+        "humedadPct": 96
       },
       "avisos": []
     }
@@ -49,7 +49,7 @@
       "aisSpeed": 0,
       "aisDraught": 9.7,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-08-04T16:18",
+      "aisAt": "2026-08-04T19:50",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -81,7 +81,7 @@
       "aisSpeed": 0,
       "aisDraught": 7.2,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-08-04T16:18",
+      "aisAt": "2026-08-04T19:50",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -113,7 +113,7 @@
       "aisSpeed": 0,
       "aisDraught": 3.6,
       "aisDestination": "Aveiro, Portugal",
-      "aisAt": "2026-08-04T16:18",
+      "aisAt": "2026-08-04T19:50",
       "aisAtMarin": false,
       "aisToFinal": true,
       "aisArrivedMarin": false
@@ -145,7 +145,7 @@
       "aisSpeed": 0,
       "aisDraught": 4.9,
       "aisDestination": "Marin, Pontevedra Anch., Spain",
-      "aisAt": "2026-08-04T16:18",
+      "aisAt": "2026-08-04T19:50",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -177,7 +177,7 @@
       "aisSpeed": 0,
       "aisDraught": 10.2,
       "aisDestination": "ES MAR",
-      "aisAt": "2026-08-04T16:18",
+      "aisAt": "2026-08-04T19:50",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -206,10 +206,10 @@
       "callsign": "CQUZ",
       "aisStatus": "Fondeado",
       "aisEta": "2026-08-06T13:00",
-      "aisSpeed": 0.2,
+      "aisSpeed": 0.5,
       "aisDraught": 8.2,
       "aisDestination": "Algeciras, Spain",
-      "aisAt": "2026-08-04T16:18",
+      "aisAt": "2026-08-04T19:50",
       "aisAtMarin": false,
       "aisToFinal": true,
       "aisArrivedMarin": false
@@ -253,10 +253,10 @@
       "callsign": "CQ2251",
       "aisStatus": "Navegando",
       "aisEta": "2026-08-08T17:00",
-      "aisSpeed": 1,
+      "aisSpeed": 9.7,
       "aisDraught": 4.9,
       "aisDestination": "Aveiro, Portugal",
-      "aisAt": "2026-08-04T16:18",
+      "aisAt": "2026-08-04T19:50",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false

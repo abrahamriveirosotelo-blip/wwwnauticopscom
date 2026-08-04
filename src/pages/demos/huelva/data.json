@@ -39,22 +39,7 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle JGV según lo previsto."
     },
     {
-      "id": "H20260731003",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "PACIFIC",
-      "gt": 5445,
-      "len": 115,
-      "berth": "DCN",
-      "agent": "IBM",
-      "op": "Fondo",
-      "eta": "2026-07-31T15:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260801004",
+      "id": "H20260801003",
       "status": "Iniciado",
       "imo": "—",
       "name": "SLOMAN HERA",
@@ -69,7 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260803005",
+      "id": "H20260803004",
       "status": "Iniciado",
       "imo": "—",
       "name": "ARCTIC AURORA",
@@ -84,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260803006",
+      "id": "H20260803005",
       "status": "Iniciado",
       "imo": "—",
       "name": "GAS AEGEAN",
@@ -99,7 +84,7 @@
       "to": "—"
     },
     {
-      "id": "H20260803007",
+      "id": "H20260803006",
       "status": "Iniciado",
       "imo": "—",
       "name": "MED PAKIZE",
@@ -114,7 +99,7 @@
       "to": "—"
     },
     {
-      "id": "H20260804008",
+      "id": "H20260804007",
       "status": "Iniciado",
       "imo": "—",
       "name": "STELLA THERESA",
@@ -129,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260804009",
+      "id": "H20260804008",
       "status": "Iniciado",
       "imo": "—",
       "name": "SEN ARCHE",
@@ -137,38 +122,38 @@
       "len": 110,
       "berth": "DEC",
       "agent": "—",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-08-04T12:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260804010",
-      "status": "Iniciado",
+      "id": "H20260804009",
+      "status": "Prevista",
       "imo": "—",
-      "name": "MARKO.MARULIC",
-      "gt": 6515,
-      "len": 116,
-      "berth": "PES",
+      "name": "RC BEHAR",
+      "gt": 3997,
+      "len": 108,
+      "berth": "PET",
       "agent": "—",
-      "op": "Fondo",
-      "eta": "2026-08-04T14:00",
+      "op": "Entrada",
+      "eta": "2026-08-04T22:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260804011",
+      "id": "H20260804010",
       "status": "Prevista",
       "imo": "—",
-      "name": "LADY.LAVELA",
-      "gt": 17000,
-      "len": 169,
+      "name": "ADALADY",
+      "gt": 9037,
+      "len": 119,
       "berth": "JGV",
       "agent": "PAM",
       "op": "Entrada",
-      "eta": "2026-08-04T18:00",
+      "eta": "2026-08-04T23:00",
       "etd": "",
       "from": "—",
       "to": "—",
@@ -176,52 +161,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260804012",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "BUENAVISTA.EXPRESS",
-      "gt": 26916,
-      "len": 157,
-      "berth": "MUL",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-08-04T18:30",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260804013",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "ADALADY",
-      "gt": 5581,
-      "len": 108,
-      "berth": "JGV",
-      "agent": "PAM",
-      "op": "Entrada",
-      "eta": "2026-08-04T23:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260805014",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "PRIDE",
-      "gt": 2061,
-      "len": 88,
-      "berth": "TI",
-      "agent": "BER",
-      "op": "Entrada",
-      "eta": "2026-08-05T03:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260805015",
+      "id": "H20260805011",
       "status": "Prevista",
       "imo": "—",
       "name": "SDS RED",
@@ -236,7 +176,7 @@
       "to": "—"
     },
     {
-      "id": "H20260805016",
+      "id": "H20260805012",
       "status": "Prevista",
       "imo": "—",
       "name": "ALICE.COSULICH",
@@ -251,7 +191,37 @@
       "to": "—"
     },
     {
-      "id": "H20260805017",
+      "id": "H20260805013",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "KOKOLIGHT",
+      "gt": 30948,
+      "len": 183,
+      "berth": "DEC",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-08-05T06:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260805014",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "LADY.LAVELA",
+      "gt": 17000,
+      "len": 169,
+      "berth": "JGV",
+      "agent": "PAM",
+      "op": "Entrada",
+      "eta": "2026-08-05T10:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260805015",
       "status": "Prevista",
       "imo": "—",
       "name": "SHENG.HUA.WAN",
@@ -266,7 +236,22 @@
       "to": "—"
     },
     {
-      "id": "H20260806018",
+      "id": "H20260806016",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "PRIDE",
+      "gt": 2061,
+      "len": 88,
+      "berth": "TI",
+      "agent": "BER",
+      "op": "Entrada",
+      "eta": "2026-08-06T03:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260806017",
       "status": "Prevista",
       "imo": "—",
       "name": "NORDIC",
@@ -281,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260806019",
+      "id": "H20260806018",
       "status": "Prevista",
       "imo": "—",
       "name": "CAROLINE ESSBERGER",
@@ -296,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260807020",
+      "id": "H20260807019",
       "status": "Prevista",
       "imo": "—",
       "name": "LOCH CRINAN",
@@ -311,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260808021",
+      "id": "H20260808020",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -326,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260808022",
+      "id": "H20260808021",
       "status": "Prevista",
       "imo": "—",
       "name": "OKOLCHITSA",
