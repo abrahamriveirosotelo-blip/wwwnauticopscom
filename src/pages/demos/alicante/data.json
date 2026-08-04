@@ -2,13 +2,13 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "03/08/2026",
+    "date": "04/08/2026",
     "refreshHours": 2
   },
   "calls": [
     {
       "id": "A202600554",
-      "status": "Prevista",
+      "status": "Alerta",
       "imo": "9302255",
       "name": "SPIRIT",
       "gt": 7713,
@@ -19,7 +19,9 @@
       "eta": "2026-08-04T02:00",
       "etd": "2026-08-04T14:00",
       "from": "ALGECIRAS",
-      "to": "ALMERIA"
+      "to": "ALMERIA",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
     },
     {
       "id": "A202600558",
@@ -94,11 +96,13 @@
       "eta": "2026-08-05T08:00",
       "etd": "2026-08-05T12:00",
       "from": "SANTA CRUZ DE LA PALMA",
-      "to": "BARCELONA"
+      "to": "BARCELONA",
+      "affectedBy": "A202600554",
+      "affectRisk": "ALTO"
     }
   ],
   "tugService": {
-    "callId": "A202600559",
+    "callId": "A202600554",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -125,18 +129,18 @@
     }
   },
   "milestones": {
-    "A202600559": [
+    "A202600554": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "03/08 · 08:25",
+        "time": "04/08 · 02:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "03/08 · 09:30",
-        "by": "Agente: ROMEU Y CIA. S A"
+        "time": "04/08 · 03:30",
+        "by": "Agente: PEREZ Y CIA"
       },
       {
         "label": "Fin de operaciones",

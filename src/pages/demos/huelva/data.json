@@ -2,7 +2,7 @@
   "meta": {
     "port": "Puerto de Huelva",
     "source": "huelvapilots.com · previsiones",
-    "date": "03/08/2026",
+    "date": "04/08/2026",
     "refreshHours": 24
   },
   "calls": [
@@ -14,7 +14,7 @@
       "gt": 18335,
       "len": 169,
       "berth": "PET",
-      "agent": "—",
+      "agent": "CON",
       "op": "Fondo",
       "eta": "2026-07-23T13:30",
       "etd": "",
@@ -114,54 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260803008",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "ARION",
-      "gt": 60177,
-      "len": 244,
-      "berth": "MON",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-08-03T20:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260804009",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "EPIC BORINQUEN",
-      "gt": 6220,
-      "len": 113,
-      "berth": "PET",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-08-04T00:00",
-      "etd": "",
-      "from": "—",
-      "to": "—",
-      "affectedBy": "H20260723001",
-      "affectRisk": "ALTO"
-    },
-    {
-      "id": "H20260804010",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "PERA",
-      "gt": 23264,
-      "len": 179,
-      "berth": "MIN",
-      "agent": "ERS",
-      "op": "Entrada",
-      "eta": "2026-08-04T01:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260804011",
+      "id": "H20260804008",
       "status": "Prevista",
       "imo": "—",
       "name": "SEN ARCHE",
@@ -170,28 +123,13 @@
       "berth": "DEC",
       "agent": "—",
       "op": "Entrada",
-      "eta": "2026-08-04T04:00",
+      "eta": "2026-08-04T08:30",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260804012",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "MARIE CURIE",
-      "gt": 28658,
-      "len": 187,
-      "berth": "MUL",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-08-04T08:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260804013",
+      "id": "H20260804009",
       "status": "Prevista",
       "imo": "—",
       "name": "STELLA THERESA",
@@ -200,13 +138,30 @@
       "berth": "RSF",
       "agent": "—",
       "op": "Entrada",
-      "eta": "2026-08-04T08:00",
+      "eta": "2026-08-04T10:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260804014",
+      "id": "H20260804010",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "MAKRO.MARULIC",
+      "gt": 6515,
+      "len": 116,
+      "berth": "PET",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-08-04T10:00",
+      "etd": "",
+      "from": "—",
+      "to": "—",
+      "affectedBy": "H20260723001",
+      "affectRisk": "ALTO"
+    },
+    {
+      "id": "H20260804011",
       "status": "Prevista",
       "imo": "—",
       "name": "BELLIS.THERESA",
@@ -215,13 +170,13 @@
       "berth": "ATC",
       "agent": "ERS",
       "op": "Entrada",
-      "eta": "2026-08-04T09:00",
+      "eta": "2026-08-04T11:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260804015",
+      "id": "H20260804012",
       "status": "Prevista",
       "imo": "—",
       "name": "LADY.LAVELA",
@@ -236,7 +191,7 @@
       "to": "—"
     },
     {
-      "id": "H20260804016",
+      "id": "H20260804013",
       "status": "Prevista",
       "imo": "—",
       "name": "ADALADY",
@@ -251,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260805017",
+      "id": "H20260805014",
       "status": "Prevista",
       "imo": "—",
       "name": "PRIDE",
@@ -266,7 +221,37 @@
       "to": "—"
     },
     {
-      "id": "H20260805018",
+      "id": "H20260805015",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "SDS RED",
+      "gt": 5629,
+      "len": 108,
+      "berth": "JGV",
+      "agent": "CON",
+      "op": "Entrada",
+      "eta": "2026-08-05T05:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260805016",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "ALICE.COSULICH",
+      "gt": 8847,
+      "len": 113,
+      "berth": "ENA",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-08-05T06:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260805017",
       "status": "Prevista",
       "imo": "—",
       "name": "NORDIC",
@@ -281,6 +266,36 @@
       "to": "—"
     },
     {
+      "id": "H20260806018",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "EPIC BORINQUEN",
+      "gt": 6220,
+      "len": 113,
+      "berth": "PET",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-08-06T13:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260807019",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "LOCH CRINAN",
+      "gt": 31508,
+      "len": 190,
+      "berth": "JGV",
+      "agent": "ERS",
+      "op": "Entrada",
+      "eta": "2026-08-07T14:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
       "id": "H20260808020",
       "status": "Prevista",
       "imo": "—",
@@ -290,7 +305,7 @@
       "berth": "JGV",
       "agent": "ERS",
       "op": "Entrada",
-      "eta": "2026-08-08T11:00",
+      "eta": "2026-08-08T15:00",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -335,7 +350,7 @@
         "label": "Inicio de operaciones",
         "status": "done",
         "time": "23/07 · 15:00",
-        "by": "Agente: —"
+        "by": "Agente: CON"
       },
       {
         "label": "Fin de operaciones",
