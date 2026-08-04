@@ -1168,5 +1168,23 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-08-03T11:25:09Z"
+  },
+  "OCCITAN PAUILLAC::LA PALLICE": {
+    "resolved": true,
+    "imo": "9483451",
+    "mmsi": "215362000",
+    "detailId": "9483451",
+    "gt": 18493,
+    "dwt": 29231,
+    "len": 170,
+    "beam": 27,
+    "flag": "Malta",
+    "vesselType": "Bulk Carrier",
+    "built": 2008,
+    "callsign": "9HA5079",
+    "destination": "ES MAR",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-08-04T14:18:09Z"
   }
 }
