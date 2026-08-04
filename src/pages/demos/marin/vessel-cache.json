@@ -1186,5 +1186,23 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-08-04T14:18:09Z"
+  },
+  "ROSI::A ORDENES": {
+    "resolved": true,
+    "imo": "9517238",
+    "mmsi": "255805952",
+    "detailId": "9517238",
+    "gt": 2545,
+    "dwt": 3850,
+    "len": 89,
+    "beam": 12,
+    "flag": "Portugal (Madeira)",
+    "vesselType": "General Cargo Ship",
+    "built": 2010,
+    "callsign": "CQIG4",
+    "destination": "Jorf Lasfar, Morocco",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-08-04T21:13:42Z"
   }
 }

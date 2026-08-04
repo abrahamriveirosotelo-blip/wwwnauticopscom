@@ -144,24 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260804010",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "ADALADY",
-      "gt": 9037,
-      "len": 119,
-      "berth": "JGV",
-      "agent": "PAM",
-      "op": "Entrada",
-      "eta": "2026-08-04T23:00",
-      "etd": "",
-      "from": "—",
-      "to": "—",
-      "affectedBy": "H20260731002",
-      "affectRisk": "ALTO"
-    },
-    {
-      "id": "H20260805011",
+      "id": "H20260805010",
       "status": "Prevista",
       "imo": "—",
       "name": "SDS RED",
@@ -173,10 +156,12 @@
       "eta": "2026-08-05T05:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "affectedBy": "H20260731002",
+      "affectRisk": "ALTO"
     },
     {
-      "id": "H20260805012",
+      "id": "H20260805011",
       "status": "Prevista",
       "imo": "—",
       "name": "ALICE.COSULICH",
@@ -191,7 +176,7 @@
       "to": "—"
     },
     {
-      "id": "H20260805013",
+      "id": "H20260805012",
       "status": "Prevista",
       "imo": "—",
       "name": "KOKOLIGHT",
@@ -206,7 +191,7 @@
       "to": "—"
     },
     {
-      "id": "H20260805014",
+      "id": "H20260805013",
       "status": "Prevista",
       "imo": "—",
       "name": "LADY.LAVELA",
@@ -221,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260805015",
+      "id": "H20260805014",
       "status": "Prevista",
       "imo": "—",
       "name": "SHENG.HUA.WAN",
@@ -236,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260806016",
+      "id": "H20260806015",
       "status": "Prevista",
       "imo": "—",
       "name": "PRIDE",
@@ -251,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260806017",
+      "id": "H20260806016",
       "status": "Prevista",
       "imo": "—",
       "name": "NORDIC",
@@ -266,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260806018",
+      "id": "H20260806017",
       "status": "Prevista",
       "imo": "—",
       "name": "CAROLINE ESSBERGER",
@@ -281,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260807019",
+      "id": "H20260807018",
       "status": "Prevista",
       "imo": "—",
       "name": "LOCH CRINAN",
@@ -296,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260808020",
+      "id": "H20260808019",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -311,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260808021",
+      "id": "H20260808020",
       "status": "Prevista",
       "imo": "—",
       "name": "OKOLCHITSA",

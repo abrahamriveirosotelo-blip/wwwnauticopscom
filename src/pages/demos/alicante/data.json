@@ -7,23 +7,6 @@
   },
   "calls": [
     {
-      "id": "A202600561",
-      "status": "Alerta",
-      "imo": "9265421",
-      "name": "DJAZAIR II",
-      "gt": 20024,
-      "len": 146,
-      "berth": "25",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-08-04T08:00",
-      "etd": "2026-08-04T20:00",
-      "from": "ORAN",
-      "to": "ORAN",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 25 según lo previsto."
-    },
-    {
       "id": "A202600565",
       "status": "Prevista",
       "imo": "9312200",
@@ -51,9 +34,7 @@
       "eta": "2026-08-05T08:00",
       "etd": "2026-08-05T20:00",
       "from": "ORAN",
-      "to": "ORAN",
-      "affectedBy": "A202600561",
-      "affectRisk": "ALTO"
+      "to": "ORAN"
     },
     {
       "id": "A202600552",
