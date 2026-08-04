@@ -7,21 +7,6 @@
   },
   "calls": [
     {
-      "id": "A202600558",
-      "status": "Iniciado",
-      "imo": "9221281",
-      "name": "OOSTERDAM",
-      "gt": 82305,
-      "len": 285,
-      "berth": "14",
-      "agent": "OCEAN PORTS & SHIPPING",
-      "op": "CRUCERISTAS",
-      "eta": "2026-08-04T07:00",
-      "etd": "2026-08-04T18:00",
-      "from": "VALENCIA",
-      "to": "PALMA DE MALLORCA"
-    },
-    {
       "id": "A202600561",
       "status": "Alerta",
       "imo": "9265421",
