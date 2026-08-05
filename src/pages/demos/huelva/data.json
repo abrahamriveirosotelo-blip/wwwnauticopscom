@@ -54,22 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260803004",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "MED PAKIZE",
-      "gt": 5665,
-      "len": 124,
-      "berth": "DCS",
-      "agent": "—",
-      "op": "Fondo",
-      "eta": "2026-08-03T10:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260804005",
+      "id": "H20260804004",
       "status": "Iniciado",
       "imo": "—",
       "name": "SEN ARCHE",
@@ -84,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260805006",
+      "id": "H20260805005",
       "status": "Iniciado",
       "imo": "—",
       "name": "ALICE.COSULICH",
@@ -99,13 +84,13 @@
       "to": "—"
     },
     {
-      "id": "H20260805007",
+      "id": "H20260805006",
       "status": "Iniciado",
       "imo": "—",
       "name": "KOKOLIGHT",
       "gt": 30948,
       "len": 183,
-      "berth": "DEC",
+      "berth": "DCS",
       "agent": "—",
       "op": "Fondo",
       "eta": "2026-08-05T13:00",
@@ -114,7 +99,7 @@
       "to": "—"
     },
     {
-      "id": "H20260805008",
+      "id": "H20260805007",
       "status": "Iniciado",
       "imo": "—",
       "name": "SHENG.HUA.WAN",
@@ -129,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260805009",
+      "id": "H20260805008",
       "status": "Prevista",
       "imo": "—",
       "name": "LADY.LAVELA",
@@ -146,7 +131,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260806010",
+      "id": "H20260806009",
       "status": "Prevista",
       "imo": "—",
       "name": "ARS.ET.LABOR",
@@ -161,7 +146,7 @@
       "to": "—"
     },
     {
-      "id": "H20260806011",
+      "id": "H20260806010",
       "status": "Prevista",
       "imo": "—",
       "name": "NORDIC",
@@ -176,7 +161,7 @@
       "to": "—"
     },
     {
-      "id": "H20260806012",
+      "id": "H20260806011",
       "status": "Prevista",
       "imo": "—",
       "name": "CAROLINE ESSBERGER",
@@ -191,7 +176,7 @@
       "to": "—"
     },
     {
-      "id": "H20260806013",
+      "id": "H20260806012",
       "status": "Prevista",
       "imo": "—",
       "name": "PRIDE",
@@ -206,13 +191,13 @@
       "to": "—"
     },
     {
-      "id": "H20260806014",
+      "id": "H20260806013",
       "status": "Prevista",
       "imo": "—",
       "name": "KING ARTHUR",
       "gt": 4761,
       "len": 104,
-      "berth": "RS4",
+      "berth": "RSN",
       "agent": "—",
       "op": "Entrada",
       "eta": "2026-08-06T14:00",
@@ -221,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260806015",
+      "id": "H20260806014",
       "status": "Prevista",
       "imo": "—",
       "name": "FLAMOURI",
@@ -236,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260806016",
+      "id": "H20260806015",
       "status": "Prevista",
       "imo": "—",
       "name": "TATIANA",
@@ -251,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260807017",
+      "id": "H20260807016",
       "status": "Prevista",
       "imo": "—",
       "name": "BERMEO.NM",
@@ -266,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260807018",
+      "id": "H20260807017",
       "status": "Prevista",
       "imo": "—",
       "name": "LOCH CRINAN",
@@ -281,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260807019",
+      "id": "H20260807018",
       "status": "Prevista",
       "imo": "—",
       "name": "SELANDIA SWAN",
@@ -296,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260807020",
+      "id": "H20260807019",
       "status": "Prevista",
       "imo": "—",
       "name": "BLUE STAR",
@@ -311,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260808021",
+      "id": "H20260808020",
       "status": "Prevista",
       "imo": "—",
       "name": "BLUE TUNE",
@@ -326,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260808022",
+      "id": "H20260808021",
       "status": "Prevista",
       "imo": "—",
       "name": "BW.NIVALIS",
@@ -341,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260808023",
+      "id": "H20260808022",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -356,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260809024",
+      "id": "H20260809023",
       "status": "Prevista",
       "imo": "—",
       "name": "OKOLCHITSA",
@@ -371,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260809025",
+      "id": "H20260809024",
       "status": "Prevista",
       "imo": "—",
       "name": "CONTSHIP.CUB",
@@ -386,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260811026",
+      "id": "H20260811025",
       "status": "Prevista",
       "imo": "—",
       "name": "CASTILLO DE PAMBRE",
@@ -401,7 +386,7 @@
       "to": "—"
     },
     {
-      "id": "H20260811027",
+      "id": "H20260811026",
       "status": "Prevista",
       "imo": "—",
       "name": "BOW.TITANIUM",
