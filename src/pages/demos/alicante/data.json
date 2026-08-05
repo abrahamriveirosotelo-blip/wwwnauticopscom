@@ -7,38 +7,6 @@
   },
   "calls": [
     {
-      "id": "A202600565",
-      "status": "Alerta",
-      "imo": "9312200",
-      "name": "ENDURANCE",
-      "gt": 7642,
-      "len": 135,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-08-05T07:00",
-      "etd": "2026-08-05T21:00",
-      "from": "DERINCE",
-      "to": "DERINCE",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
-    },
-    {
-      "id": "A202600560",
-      "status": "Iniciado",
-      "imo": "9237242",
-      "name": "CRACOVIA",
-      "gt": 25028,
-      "len": 180,
-      "berth": "25",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-08-05T08:00",
-      "etd": "2026-08-05T20:00",
-      "from": "ORAN",
-      "to": "ORAN"
-    },
-    {
       "id": "A202600514",
       "status": "Prevista",
       "imo": "1043358",
@@ -51,9 +19,7 @@
       "eta": "2026-08-06T07:00",
       "etd": "2026-08-07T15:00",
       "from": "LAS PALMAS",
-      "to": "LAS PALMAS",
-      "affectedBy": "A202600565",
-      "affectRisk": "ALTO"
+      "to": "LAS PALMAS"
     },
     {
       "id": "A202600562",
