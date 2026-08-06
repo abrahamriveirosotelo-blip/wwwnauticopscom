@@ -2,7 +2,7 @@
   "meta": {
     "port": "Puerto de Huelva",
     "source": "huelvapilots.com · previsiones",
-    "date": "05/08/2026",
+    "date": "06/08/2026",
     "refreshHours": 24
   },
   "calls": [
@@ -39,22 +39,7 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle JGV según lo previsto."
     },
     {
-      "id": "H20260803003",
-      "status": "Iniciado",
-      "imo": "—",
-      "name": "GAS AEGEAN",
-      "gt": 9134,
-      "len": 120,
-      "berth": "FER",
-      "agent": "BER",
-      "op": "Fondo",
-      "eta": "2026-08-03T09:30",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260804004",
+      "id": "H20260804003",
       "status": "Iniciado",
       "imo": "—",
       "name": "SEN ARCHE",
@@ -69,7 +54,7 @@
       "to": "—"
     },
     {
-      "id": "H20260805005",
+      "id": "H20260805004",
       "status": "Iniciado",
       "imo": "—",
       "name": "ALICE.COSULICH",
@@ -84,7 +69,7 @@
       "to": "—"
     },
     {
-      "id": "H20260805006",
+      "id": "H20260805005",
       "status": "Iniciado",
       "imo": "—",
       "name": "KOKOLIGHT",
@@ -99,84 +84,67 @@
       "to": "—"
     },
     {
-      "id": "H20260805007",
+      "id": "H20260805006",
       "status": "Iniciado",
-      "imo": "—",
-      "name": "SHENG.HUA.WAN",
-      "gt": 7414,
-      "len": 115,
-      "berth": "RSS",
-      "agent": "—",
-      "op": "Fondo",
-      "eta": "2026-08-05T15:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260805008",
-      "status": "Prevista",
       "imo": "—",
       "name": "LADY.LAVELA",
       "gt": 17000,
       "len": 169,
       "berth": "JGV",
       "agent": "PAM",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-08-05T23:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260731002",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
-      "id": "H20260806009",
-      "status": "Prevista",
+      "id": "H20260806007",
+      "status": "Iniciado",
       "imo": "—",
       "name": "ARS.ET.LABOR",
       "gt": 25864,
       "len": 180,
       "berth": "RSF",
       "agent": "—",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-08-06T05:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260806010",
-      "status": "Prevista",
+      "id": "H20260806008",
+      "status": "Iniciado",
       "imo": "—",
       "name": "NORDIC",
       "gt": 8198,
       "len": 130,
       "berth": "DEC",
       "agent": "IBM",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-08-06T06:30",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260806011",
-      "status": "Prevista",
+      "id": "H20260806009",
+      "status": "Iniciado",
       "imo": "—",
       "name": "CAROLINE ESSBERGER",
       "gt": 5642,
       "len": 125,
       "berth": "DEC",
       "agent": "IBM",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-08-06T07:00",
       "etd": "",
       "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260806012",
+      "id": "H20260806010",
       "status": "Prevista",
       "imo": "—",
       "name": "PRIDE",
@@ -191,22 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260806013",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "KING ARTHUR",
-      "gt": 4761,
-      "len": 104,
-      "berth": "RSN",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-08-06T14:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260806014",
+      "id": "H20260806011",
       "status": "Prevista",
       "imo": "—",
       "name": "FLAMOURI",
@@ -218,10 +171,27 @@
       "eta": "2026-08-06T15:00",
       "etd": "",
       "from": "—",
+      "to": "—",
+      "affectedBy": "H20260731002",
+      "affectRisk": "ALTO"
+    },
+    {
+      "id": "H20260806012",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "KING ARTHUR",
+      "gt": 4761,
+      "len": 104,
+      "berth": "RSN",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-08-06T23:00",
+      "etd": "",
+      "from": "—",
       "to": "—"
     },
     {
-      "id": "H20260806015",
+      "id": "H20260806013",
       "status": "Prevista",
       "imo": "—",
       "name": "TATIANA",
@@ -236,7 +206,7 @@
       "to": "—"
     },
     {
-      "id": "H20260807016",
+      "id": "H20260807014",
       "status": "Prevista",
       "imo": "—",
       "name": "BERMEO.NM",
@@ -251,7 +221,7 @@
       "to": "—"
     },
     {
-      "id": "H20260807017",
+      "id": "H20260807015",
       "status": "Prevista",
       "imo": "—",
       "name": "LOCH CRINAN",
@@ -266,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260807018",
+      "id": "H20260807016",
       "status": "Prevista",
       "imo": "—",
       "name": "SELANDIA SWAN",
@@ -281,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260807019",
+      "id": "H20260807017",
       "status": "Prevista",
       "imo": "—",
       "name": "BLUE STAR",
@@ -296,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260808020",
+      "id": "H20260808018",
       "status": "Prevista",
       "imo": "—",
       "name": "BLUE TUNE",
@@ -311,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260808021",
+      "id": "H20260808019",
       "status": "Prevista",
       "imo": "—",
       "name": "BW.NIVALIS",
@@ -326,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260808022",
+      "id": "H20260808020",
       "status": "Prevista",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -341,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260809023",
+      "id": "H20260809021",
       "status": "Prevista",
       "imo": "—",
       "name": "OKOLCHITSA",
@@ -356,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260809024",
+      "id": "H20260809022",
       "status": "Prevista",
       "imo": "—",
       "name": "CONTSHIP.CUB",
@@ -371,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260811025",
+      "id": "H20260811023",
       "status": "Prevista",
       "imo": "—",
       "name": "CASTILLO DE PAMBRE",
@@ -386,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260811026",
+      "id": "H20260811024",
       "status": "Prevista",
       "imo": "—",
       "name": "BOW.TITANIUM",

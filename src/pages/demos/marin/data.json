@@ -2,21 +2,21 @@
   "meta": {
     "port": "Puerto de Marín",
     "source": "apmarin.com · buques esperados + en puerto",
-    "date": "05/08/2026",
+    "date": "06/08/2026",
     "refreshHours": 2,
-    "sourceUpdatedAt": "2026-08-05T21:10",
+    "sourceUpdatedAt": "2026-08-06T08:10",
     "meteo": {
-      "updatedAt": "2026-08-05T21:37",
+      "updatedAt": "2026-08-06T08:32",
       "obs": {
         "estacion": "Porto de Marín",
-        "instante": "2026-08-05T18:00",
-        "vientoRachaKn": 14,
+        "instante": "2026-08-06T05:00",
+        "vientoRachaKn": 8,
         "vientoMediaKn": null,
-        "vientoDirDeg": 225,
-        "tempC": 26.83,
-        "presionHpa": 1018.24,
+        "vientoDirDeg": 47,
+        "tempC": 20.36,
+        "presionHpa": 1018.8,
         "lluviaMm": 0,
-        "humedadPct": 33
+        "humedadPct": 77
       },
       "avisos": []
     }
@@ -49,7 +49,7 @@
       "aisSpeed": 0,
       "aisDraught": 9.7,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-08-05T21:37",
+      "aisAt": "2026-08-06T08:32",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -81,7 +81,7 @@
       "aisSpeed": 0,
       "aisDraught": 7.2,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-08-05T21:37",
+      "aisAt": "2026-08-06T08:32",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -113,7 +113,7 @@
       "aisSpeed": 0,
       "aisDraught": 4.9,
       "aisDestination": "Marin, Pontevedra Anch., Spain",
-      "aisAt": "2026-08-05T21:37",
+      "aisAt": "2026-08-06T08:32",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -145,7 +145,7 @@
       "aisSpeed": 0,
       "aisDraught": 10.2,
       "aisDestination": "ES MAR",
-      "aisAt": "2026-08-05T21:37",
+      "aisAt": "2026-08-06T08:32",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -177,7 +177,7 @@
       "aisSpeed": 0,
       "aisDraught": 3,
       "aisDestination": "Jorf Lasfar, Morocco",
-      "aisAt": "2026-08-05T21:37",
+      "aisAt": "2026-08-06T08:32",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -219,12 +219,12 @@
       "vesselType": "Container Ship",
       "built": 2006,
       "callsign": "CQUZ",
-      "aisStatus": "Fondeado",
+      "aisStatus": "Navegando",
       "aisEta": "2026-08-06T13:00",
-      "aisSpeed": 0.4,
+      "aisSpeed": 14.8,
       "aisDraught": 8.2,
       "aisDestination": "Algeciras, Spain",
-      "aisAt": "2026-08-05T21:37",
+      "aisAt": "2026-08-06T08:32",
       "aisAtMarin": false,
       "aisToFinal": true,
       "aisArrivedMarin": false
@@ -251,12 +251,12 @@
       "vesselType": "General Cargo Ship",
       "built": 2018,
       "callsign": "CQ2251",
-      "aisStatus": "Navegando",
+      "aisStatus": "-",
       "aisEta": "2026-08-08T17:00",
       "aisSpeed": 8.9,
       "aisDraught": 5.4,
       "aisDestination": "Aveiro, Portugal",
-      "aisAt": "2026-08-05T21:37",
+      "aisAt": "2026-08-06T08:32",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
