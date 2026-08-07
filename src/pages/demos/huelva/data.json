@@ -152,7 +152,7 @@
       "len": 104,
       "berth": "RSN",
       "agent": "—",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-08-06T23:00",
       "etd": "",
       "from": "—",
@@ -162,13 +162,13 @@
       "id": "H20260807011",
       "status": "Iniciado",
       "imo": "—",
-      "name": "SAFI.LION",
-      "gt": 7758,
-      "len": 131,
+      "name": "WILSON.HOLLA",
+      "gt": 2896,
+      "len": 89,
       "berth": "JGV",
-      "agent": "ERS",
-      "op": "Entrada",
-      "eta": "2026-08-07T00:00",
+      "agent": "BER",
+      "op": "Fondo",
+      "eta": "2026-08-07T09:00",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -183,7 +183,7 @@
       "berth": "TI",
       "agent": "BER",
       "op": "Entrada",
-      "eta": "2026-08-07T09:00",
+      "eta": "2026-08-07T13:00",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -192,51 +192,19 @@
       "id": "H20260807013",
       "status": "Prevista",
       "imo": "—",
-      "name": "WILSON.HOLLA",
-      "gt": 2896,
-      "len": 89,
-      "berth": "JGV",
+      "name": "HIGH.FREEDOM",
+      "gt": 29935,
+      "len": 183,
+      "berth": "PET",
       "agent": "BER",
       "op": "Entrada",
-      "eta": "2026-08-07T09:00",
+      "eta": "2026-08-07T16:00",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260731002",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
       "id": "H20260807014",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "LOCH CRINAN",
-      "gt": 31508,
-      "len": 190,
-      "berth": "JGV",
-      "agent": "ERS",
-      "op": "Entrada",
-      "eta": "2026-08-07T14:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260807015",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "SELANDIA SWAN",
-      "gt": 3994,
-      "len": 100,
-      "berth": "DEC",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-08-07T18:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260807016",
       "status": "Prevista",
       "imo": "—",
       "name": "MARIE CURIE",
@@ -251,7 +219,7 @@
       "to": "—"
     },
     {
-      "id": "H20260807017",
+      "id": "H20260807015",
       "status": "Prevista",
       "imo": "—",
       "name": "EINSTEIN",
@@ -264,6 +232,38 @@
       "etd": "",
       "from": "—",
       "to": "—"
+    },
+    {
+      "id": "H20260807016",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "SELANDIA SWAN",
+      "gt": 3994,
+      "len": 100,
+      "berth": "DEC",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-08-07T21:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260807017",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "LOCH CRINAN",
+      "gt": 31508,
+      "len": 190,
+      "berth": "JGV",
+      "agent": "ERS",
+      "op": "Entrada",
+      "eta": "2026-08-07T23:00",
+      "etd": "",
+      "from": "—",
+      "to": "—",
+      "affectedBy": "H20260731002",
+      "affectRisk": "ALTO"
     },
     {
       "id": "H20260807018",
@@ -329,6 +329,36 @@
       "id": "H20260808022",
       "status": "Prevista",
       "imo": "—",
+      "name": "TRANS TIND",
+      "gt": 8260,
+      "len": 134,
+      "berth": "RSF",
+      "agent": "IBM",
+      "op": "Entrada",
+      "eta": "2026-08-08T14:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260808023",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "TOLMI",
+      "gt": 1971,
+      "len": 81,
+      "berth": "JGV",
+      "agent": "PAM",
+      "op": "Entrada",
+      "eta": "2026-08-08T15:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260808024",
+      "status": "Prevista",
+      "imo": "—",
       "name": "SPAR.URSA",
       "gt": 32839,
       "len": 189,
@@ -341,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260809023",
+      "id": "H20260809025",
       "status": "Prevista",
       "imo": "—",
       "name": "IMERA",
@@ -356,7 +386,7 @@
       "to": "—"
     },
     {
-      "id": "H20260809024",
+      "id": "H20260809026",
       "status": "Prevista",
       "imo": "—",
       "name": "CHEMICAL.RANGER",
@@ -371,7 +401,7 @@
       "to": "—"
     },
     {
-      "id": "H20260809025",
+      "id": "H20260809027",
       "status": "Prevista",
       "imo": "—",
       "name": "CONTSHIP.CUB",
@@ -386,7 +416,7 @@
       "to": "—"
     },
     {
-      "id": "H20260809026",
+      "id": "H20260809028",
       "status": "Prevista",
       "imo": "—",
       "name": "BLUE TUNE",
@@ -401,7 +431,22 @@
       "to": "—"
     },
     {
-      "id": "H20260810027",
+      "id": "H20260809029",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "SAFI.LION",
+      "gt": 7758,
+      "len": 131,
+      "berth": "JGV",
+      "agent": "ERS",
+      "op": "Entrada",
+      "eta": "2026-08-09T23:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260810030",
       "status": "Prevista",
       "imo": "—",
       "name": "KARRUCA",
@@ -416,7 +461,7 @@
       "to": "—"
     },
     {
-      "id": "H20260810028",
+      "id": "H20260810031",
       "status": "Prevista",
       "imo": "—",
       "name": "SIGRID.THERESA",
@@ -431,7 +476,7 @@
       "to": "—"
     },
     {
-      "id": "H20260810029",
+      "id": "H20260810032",
       "status": "Prevista",
       "imo": "—",
       "name": "BWEK.BREEZE",
@@ -446,7 +491,22 @@
       "to": "—"
     },
     {
-      "id": "H20260811030",
+      "id": "H20260811033",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "CASTILLO DE PAMBRE",
+      "gt": 6388,
+      "len": 110,
+      "berth": "RSF",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-08-11T03:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260811034",
       "status": "Prevista",
       "imo": "—",
       "name": "OKOLCHITSA",
@@ -461,22 +521,7 @@
       "to": "—"
     },
     {
-      "id": "H20260811031",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "CASTILLO DE PAMBRE",
-      "gt": 6388,
-      "len": 110,
-      "berth": "RSF",
-      "agent": "—",
-      "op": "Entrada",
-      "eta": "2026-08-11T10:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260811032",
+      "id": "H20260811035",
       "status": "Prevista",
       "imo": "—",
       "name": "BOW.TITANIUM",
@@ -491,7 +536,7 @@
       "to": "—"
     },
     {
-      "id": "H20260813033",
+      "id": "H20260813036",
       "status": "Prevista",
       "imo": "—",
       "name": "LEVANTE.LNG",
@@ -501,6 +546,36 @@
       "agent": "—",
       "op": "Entrada",
       "eta": "2026-08-13T00:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260813037",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "SPEEDWAY",
+      "gt": 81413,
+      "len": 274,
+      "berth": "MON",
+      "agent": "—",
+      "op": "Entrada",
+      "eta": "2026-08-13T08:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260814038",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "QUEEN.GHAIDAA",
+      "gt": 19885,
+      "len": 177,
+      "berth": "JGV",
+      "agent": "BER",
+      "op": "Entrada",
+      "eta": "2026-08-14T00:00",
       "etd": "",
       "from": "—",
       "to": "—"
