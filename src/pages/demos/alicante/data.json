@@ -7,23 +7,6 @@
   },
   "calls": [
     {
-      "id": "A202600514",
-      "status": "Alerta",
-      "imo": "1043358",
-      "name": "MILAGREEN",
-      "gt": 13719,
-      "len": 154,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-08-06T07:00",
-      "etd": "2026-08-07T15:00",
-      "from": "LAS PALMAS",
-      "to": "LAS PALMAS",
-      "delay": "+4h 30min",
-      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
-    },
-    {
       "id": "A202600563",
       "status": "Iniciado",
       "imo": "9432505",
@@ -40,7 +23,7 @@
     },
     {
       "id": "A202600553",
-      "status": "Iniciado",
+      "status": "Alerta",
       "imo": "9404065",
       "name": "CARLOTA B",
       "gt": 7852,
@@ -51,7 +34,9 @@
       "eta": "2026-08-07T08:00",
       "etd": "2026-08-07T23:00",
       "from": "LAS PALMAS",
-      "to": "LAS PALMAS"
+      "to": "LAS PALMAS",
+      "delay": "+4h 30min",
+      "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 23 según lo previsto."
     },
     {
       "id": "A202600547",
@@ -66,9 +51,7 @@
       "eta": "2026-08-07T21:00",
       "etd": "2026-08-15T15:00",
       "from": "SANTA CRUZ",
-      "to": "LAS PALMAS",
-      "affectedBy": "A202600514",
-      "affectRisk": "ALTO"
+      "to": "LAS PALMAS"
     },
     {
       "id": "A202600574",
@@ -143,7 +126,9 @@
       "eta": "2026-08-09T08:00",
       "etd": "2026-08-09T14:00",
       "from": "BARCELONA",
-      "to": "HUELVA"
+      "to": "HUELVA",
+      "affectedBy": "A202600553",
+      "affectRisk": "ALTO"
     },
     {
       "id": "A202600564",
@@ -222,7 +207,7 @@
     }
   ],
   "tugService": {
-    "callId": "A202600514",
+    "callId": "A202600553",
     "reportNumber": "027892",
     "tugboat": "HÉRCULES APA",
     "powerPct": 75,
@@ -249,18 +234,18 @@
     }
   },
   "milestones": {
-    "A202600514": [
+    "A202600553": [
       {
         "label": "Atracado",
         "status": "done",
-        "time": "06/08 · 07:25",
+        "time": "07/08 · 08:25",
         "by": "Práctico (APA)"
       },
       {
         "label": "Inicio de operaciones",
         "status": "done",
-        "time": "06/08 · 08:30",
-        "by": "Agente: EUROPEAN FORWARDING SL"
+        "time": "07/08 · 09:30",
+        "by": "Agente: MILLER Y COMPAÑÍA"
       },
       {
         "label": "Fin de operaciones",
