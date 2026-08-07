@@ -2,7 +2,7 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "06/08/2026",
+    "date": "07/08/2026",
     "refreshHours": 2
   },
   "calls": [
@@ -22,21 +22,6 @@
       "to": "LAS PALMAS",
       "delay": "+4h 30min",
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
-    },
-    {
-      "id": "A202600562",
-      "status": "Iniciado",
-      "imo": "9265421",
-      "name": "DJAZAIR II",
-      "gt": 20024,
-      "len": 146,
-      "berth": "25",
-      "agent": "ROMEU Y CIA. S A",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-08-06T08:00",
-      "etd": "2026-08-06T20:00",
-      "from": "ORAN",
-      "to": "ORAN"
     },
     {
       "id": "A202600563",
