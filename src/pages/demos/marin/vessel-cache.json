@@ -1240,5 +1240,41 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-08-07T05:41:15Z"
+  },
+  "MONIKA::VIGO": {
+    "resolved": true,
+    "imo": "9815317",
+    "mmsi": "255915721",
+    "detailId": "9815317",
+    "gt": 3415,
+    "dwt": 4938,
+    "len": 90,
+    "beam": 15,
+    "flag": "Portugal (Madeira)",
+    "vesselType": "General Cargo Ship",
+    "built": 2018,
+    "callsign": "CQ2179",
+    "destination": "Marin, Pontevedra, Spain",
+    "confidence": "destination-confirmed",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-08-07T10:53:33Z"
+  },
+  "COE LUISA::PORTO EMPEDOCLE": {
+    "resolved": true,
+    "imo": "9435026",
+    "mmsi": "305172000",
+    "detailId": "9435026",
+    "gt": 9611,
+    "dwt": 12668,
+    "len": 138,
+    "beam": 21,
+    "flag": "Antigua & Barbuda",
+    "vesselType": "General Cargo Ship",
+    "built": 2008,
+    "callsign": "V2DC9",
+    "destination": "Destination not available",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-08-07T10:53:36Z"
   }
 }
