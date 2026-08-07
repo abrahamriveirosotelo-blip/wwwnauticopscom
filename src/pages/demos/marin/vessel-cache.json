@@ -1113,7 +1113,7 @@
   "SAN ANDRES::MANTA": {
     "resolved": false,
     "reason": "15 resultados pero ninguno aceptable (nombre/tipo comercial/IMO)",
-    "checkedAt": "2026-07-30T17:36:20Z"
+    "checkedAt": "2026-08-07T05:41:12Z"
   },
   "TREVILLE::CUXHAVEN": {
     "resolved": true,
@@ -1204,5 +1204,41 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-08-04T21:13:42Z"
+  },
+  "PLATAANBORG::SZCZECIN": {
+    "resolved": true,
+    "imo": "9489522",
+    "mmsi": "245169000",
+    "detailId": "9489522",
+    "gt": 2409,
+    "dwt": 3755,
+    "len": 83,
+    "beam": 12,
+    "flag": "Netherlands",
+    "vesselType": "General Cargo Ship",
+    "built": 2009,
+    "callsign": "PBRB",
+    "destination": "Marin, Pontevedra, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-08-07T05:41:10Z"
+  },
+  "HAV SNAPPER::SETUBAL": {
+    "resolved": true,
+    "imo": "9001813",
+    "mmsi": "311014800",
+    "detailId": "9001813",
+    "gt": 1961,
+    "dwt": 3014,
+    "len": 88,
+    "beam": 12,
+    "flag": "Bahamas",
+    "vesselType": "General Cargo Ship",
+    "built": 1991,
+    "callsign": "C6XN4",
+    "destination": "Marin, Pontevedra, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-08-07T05:41:15Z"
   }
 }
