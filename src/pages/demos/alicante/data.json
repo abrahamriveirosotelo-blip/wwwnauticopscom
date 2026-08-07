@@ -131,21 +131,6 @@
       "to": "MARSELLA"
     },
     {
-      "id": "A202600567",
-      "status": "Prevista",
-      "imo": "9430193",
-      "name": "HERCULES J",
-      "gt": 10585,
-      "len": 152,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-08-09T07:00",
-      "etd": "2026-08-09T23:00",
-      "from": "ARRECIFE",
-      "to": "SANTA CRUZ"
-    },
-    {
       "id": "A202600526",
       "status": "Prevista",
       "imo": "9398773",
@@ -174,6 +159,36 @@
       "etd": "2026-08-12T16:00",
       "from": "GABES",
       "to": "A ORDENES"
+    },
+    {
+      "id": "A202600529",
+      "status": "Prevista",
+      "imo": "9165310",
+      "name": "MERNA 2",
+      "gt": 29303,
+      "len": 195,
+      "berth": "19",
+      "agent": "ROMEU Y CIA",
+      "op": "E/PLATAFORMAS",
+      "eta": "2026-08-09T19:00",
+      "etd": "2026-08-10T14:00",
+      "from": "AMSTERDAM",
+      "to": "MISURATA"
+    },
+    {
+      "id": "A202600567",
+      "status": "Prevista",
+      "imo": "9430193",
+      "name": "HERCULES J",
+      "gt": 10585,
+      "len": 152,
+      "berth": "11",
+      "agent": "EUROPEAN FORWARDING SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-08-10T07:00",
+      "etd": "2026-08-10T23:00",
+      "from": "ARRECIFE",
+      "to": "SANTA CRUZ"
     },
     {
       "id": "A202600578",

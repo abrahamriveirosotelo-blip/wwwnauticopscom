@@ -1276,5 +1276,28 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-08-07T10:53:36Z"
+  },
+  "ROSI::ST MALO": {
+    "resolved": true,
+    "imo": "9517238",
+    "mmsi": "255805952",
+    "detailId": "9517238",
+    "gt": 2545,
+    "dwt": 3850,
+    "len": 89,
+    "beam": 12,
+    "flag": "Portugal (Madeira)",
+    "vesselType": "General Cargo Ship",
+    "built": 2010,
+    "callsign": "CQIG4",
+    "destination": "Marin, Pontevedra, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-08-07T13:07:03Z"
+  },
+  "MANUEL ANGEL NORES::A ORDENES": {
+    "resolved": false,
+    "reason": "1 resultado pero ninguno aceptable (nombre/tipo comercial/IMO)",
+    "checkedAt": "2026-08-07T13:07:04Z"
   }
 }
