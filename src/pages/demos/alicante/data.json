@@ -54,36 +54,6 @@
       "to": "GIJÓN"
     },
     {
-      "id": "A202600579",
-      "status": "Iniciado",
-      "imo": "9250464",
-      "name": "MSC OPERA",
-      "gt": 65591,
-      "len": 274,
-      "berth": "14",
-      "agent": "LANTIMAR",
-      "op": "CRUCERISTAS",
-      "eta": "2026-08-08T07:15",
-      "etd": "2026-08-08T17:00",
-      "from": "LISBOA",
-      "to": "MAHON"
-    },
-    {
-      "id": "A202600570",
-      "status": "Iniciado",
-      "imo": "9849693",
-      "name": "ARVIA",
-      "gt": 185581,
-      "len": 344,
-      "berth": "14",
-      "agent": "NOATUM MARITIME SPAIN ",
-      "op": "CRUCERISTAS",
-      "eta": "2026-08-08T07:45",
-      "etd": "2026-08-08T17:30",
-      "from": "MALAGA",
-      "to": "MARSELLA"
-    },
-    {
       "id": "A202600526",
       "status": "Prevista",
       "imo": "9398773",
