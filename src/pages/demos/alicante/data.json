@@ -54,21 +54,6 @@
       "to": "GIJÓN"
     },
     {
-      "id": "A202600566",
-      "status": "Iniciado",
-      "imo": "9312200",
-      "name": "ENDURANCE",
-      "gt": 7642,
-      "len": 135,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-08-08T07:00",
-      "etd": "2026-08-08T15:00",
-      "from": "BARCELONA",
-      "to": "DERINCE"
-    },
-    {
       "id": "A202600579",
       "status": "Iniciado",
       "imo": "9250464",
