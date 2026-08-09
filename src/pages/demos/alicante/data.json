@@ -2,7 +2,7 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "08/08/2026",
+    "date": "09/08/2026",
     "refreshHours": 2
   },
   "calls": [
@@ -37,21 +37,6 @@
       "to": "LAS PALMAS",
       "delay": "+4h 30min",
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
-    },
-    {
-      "id": "A202600574",
-      "status": "Iniciado",
-      "imo": "1079668",
-      "name": "FU ZHOU WAN",
-      "gt": 8505,
-      "len": 119,
-      "berth": "17",
-      "agent": "OCEAN PORTS & SHIPPING",
-      "op": "IE/ASFALTO",
-      "eta": "2026-08-08T04:00",
-      "etd": "2026-08-08T23:00",
-      "from": "TARRAGONA",
-      "to": "GIJÓN"
     },
     {
       "id": "A202600526",
