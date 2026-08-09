@@ -24,21 +24,6 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
-      "id": "A202600526",
-      "status": "Iniciado",
-      "imo": "9398773",
-      "name": "ELBWINTER",
-      "gt": 10585,
-      "len": 151,
-      "berth": "23",
-      "agent": "MCI. S.L.",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-08-09T08:00",
-      "etd": "2026-08-09T14:00",
-      "from": "BARCELONA",
-      "to": "HUELVA"
-    },
-    {
       "id": "A202600564",
       "status": "Iniciado",
       "imo": "9433511",

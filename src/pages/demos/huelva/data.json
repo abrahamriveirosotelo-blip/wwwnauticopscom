@@ -102,21 +102,6 @@
       "id": "H20260808007",
       "status": "Iniciado",
       "imo": "—",
-      "name": "TRANS EMERALD",
-      "gt": 5815,
-      "len": 115,
-      "berth": "DEC",
-      "agent": "IBM",
-      "op": "Entrada",
-      "eta": "2026-08-08T12:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260808008",
-      "status": "Iniciado",
-      "imo": "—",
       "name": "TOLMI",
       "gt": 1971,
       "len": 81,
@@ -129,7 +114,7 @@
       "to": "—"
     },
     {
-      "id": "H20260808009",
+      "id": "H20260808008",
       "status": "Iniciado",
       "imo": "—",
       "name": "EPIC BORINQUEN",
@@ -144,7 +129,7 @@
       "to": "—"
     },
     {
-      "id": "H20260808010",
+      "id": "H20260808009",
       "status": "Iniciado",
       "imo": "—",
       "name": "TRANS TIND",
@@ -159,7 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260809012",
+      "id": "H20260809011",
       "status": "Iniciado",
       "imo": "—",
       "name": "IMERA",
@@ -174,7 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260809013",
+      "id": "H20260809012",
       "status": "Prevista",
       "imo": "—",
       "name": "OLIB",
@@ -189,7 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260809014",
+      "id": "H20260809013",
       "status": "Prevista",
       "imo": "—",
       "name": "SAFI.LION",
@@ -204,7 +189,7 @@
       "to": "—"
     },
     {
-      "id": "H20260810015",
+      "id": "H20260810014",
       "status": "Prevista",
       "imo": "—",
       "name": "SIGRID.THERESA",
@@ -219,7 +204,7 @@
       "to": "—"
     },
     {
-      "id": "H20260810016",
+      "id": "H20260810015",
       "status": "Prevista",
       "imo": "—",
       "name": "MANISA.MATILDE",
@@ -236,7 +221,7 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "H20260810017",
+      "id": "H20260810016",
       "status": "Prevista",
       "imo": "—",
       "name": "BLUE TUNE",
@@ -251,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260810018",
+      "id": "H20260810017",
       "status": "Prevista",
       "imo": "—",
       "name": "KARRUCA",
@@ -266,7 +251,7 @@
       "to": "—"
     },
     {
-      "id": "H20260810019",
+      "id": "H20260810018",
       "status": "Prevista",
       "imo": "—",
       "name": "DH.ADMIRAL",
@@ -281,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260810020",
+      "id": "H20260810019",
       "status": "Prevista",
       "imo": "—",
       "name": "BWEK.BREEZE",
@@ -296,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260811021",
+      "id": "H20260811020",
       "status": "Prevista",
       "imo": "—",
       "name": "ELBWINTER",
@@ -311,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260811022",
+      "id": "H20260811021",
       "status": "Prevista",
       "imo": "—",
       "name": "CASTILLO DE PAMBRE",
@@ -326,7 +311,7 @@
       "to": "—"
     },
     {
-      "id": "H20260811023",
+      "id": "H20260811022",
       "status": "Prevista",
       "imo": "—",
       "name": "OKOLCHITSA",
@@ -341,7 +326,7 @@
       "to": "—"
     },
     {
-      "id": "H20260811024",
+      "id": "H20260811023",
       "status": "Prevista",
       "imo": "—",
       "name": "BOW.TITANIUM",
@@ -356,7 +341,7 @@
       "to": "—"
     },
     {
-      "id": "H20260811025",
+      "id": "H20260811024",
       "status": "Prevista",
       "imo": "—",
       "name": "GINA",
@@ -371,7 +356,7 @@
       "to": "—"
     },
     {
-      "id": "H20260813026",
+      "id": "H20260813025",
       "status": "Prevista",
       "imo": "—",
       "name": "LEVANTE.LNG",
@@ -386,7 +371,7 @@
       "to": "—"
     },
     {
-      "id": "H20260813027",
+      "id": "H20260813026",
       "status": "Prevista",
       "imo": "—",
       "name": "SPEEDWAY",
@@ -401,7 +386,7 @@
       "to": "—"
     },
     {
-      "id": "H20260814028",
+      "id": "H20260814027",
       "status": "Prevista",
       "imo": "—",
       "name": "QUEEN.GHAIDAA",
@@ -416,7 +401,7 @@
       "to": "—"
     },
     {
-      "id": "H20260815029",
+      "id": "H20260815028",
       "status": "Prevista",
       "imo": "—",
       "name": "ALISIOS.LNG",
