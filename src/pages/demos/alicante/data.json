@@ -7,21 +7,6 @@
   },
   "calls": [
     {
-      "id": "A202600563",
-      "status": "Iniciado",
-      "imo": "9432505",
-      "name": "SIDER SONJA",
-      "gt": 5629,
-      "len": 108,
-      "berth": "21",
-      "agent": "TERMINALES MARÍTIMAS DEL SURESTE",
-      "op": "IE-D/CEMENTO",
-      "eta": "2026-08-07T06:00",
-      "etd": "2026-08-09T12:00",
-      "from": "LA GOULETTE NORD",
-      "to": "TARRAGONA"
-    },
-    {
       "id": "A202600547",
       "status": "Alerta",
       "imo": "9083043",
@@ -55,7 +40,7 @@
     },
     {
       "id": "A202600564",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9433511",
       "name": "GEORGIOS ALEXIOS",
       "gt": 3845,
