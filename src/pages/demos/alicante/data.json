@@ -24,21 +24,6 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
-      "id": "A202600529",
-      "status": "Iniciado",
-      "imo": "9165310",
-      "name": "MERNA 2",
-      "gt": 29303,
-      "len": 195,
-      "berth": "19",
-      "agent": "ROMEU Y CIA",
-      "op": "E/PLATAFORMAS",
-      "eta": "2026-08-09T19:00",
-      "etd": "2026-08-10T14:00",
-      "from": "AMSTERDAM",
-      "to": "MISURATA"
-    },
-    {
       "id": "A202600567",
       "status": "Iniciado",
       "imo": "9430193",
