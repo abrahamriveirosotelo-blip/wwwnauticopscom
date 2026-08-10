@@ -1299,5 +1299,23 @@
     "resolved": false,
     "reason": "1 resultado pero ninguno aceptable (nombre/tipo comercial/IMO)",
     "checkedAt": "2026-08-07T13:07:04Z"
+  },
+  "BALSARE 1::LEIXOES": {
+    "resolved": true,
+    "imo": "9963994",
+    "mmsi": "249778000",
+    "detailId": "9963994",
+    "gt": 3799,
+    "dwt": 5500,
+    "len": 95,
+    "beam": 15,
+    "flag": "Malta",
+    "vesselType": "General Cargo Ship",
+    "built": 2025,
+    "callsign": "9HA6381",
+    "destination": "Pasajes, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-08-10T07:44:19Z"
   }
 }
