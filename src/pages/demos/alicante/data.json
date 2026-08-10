@@ -39,21 +39,6 @@
       "to": "SANTA CRUZ"
     },
     {
-      "id": "A202600578",
-      "status": "Iniciado",
-      "imo": "9237242",
-      "name": "CRACOVIA",
-      "gt": 25028,
-      "len": 180,
-      "berth": "25",
-      "agent": "OCEAN PORTS & SHIPPING",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-08-10T08:00",
-      "etd": "2026-08-10T18:00",
-      "from": "ARGEL",
-      "to": "ORAN"
-    },
-    {
       "id": "A202600576",
       "status": "Iniciado",
       "imo": "9504633",
