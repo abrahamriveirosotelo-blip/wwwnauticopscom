@@ -69,21 +69,6 @@
       "to": "ORAN"
     },
     {
-      "id": "A202600580",
-      "status": "Prevista",
-      "imo": "9557795",
-      "name": "SEDRATA",
-      "gt": 8161,
-      "len": 119,
-      "berth": "13",
-      "agent": "ROMEU Y CIA",
-      "op": "D/CRISTAL",
-      "eta": "2026-08-10T16:00",
-      "etd": "2026-08-11T13:00",
-      "from": "ARGEL",
-      "to": "ARGEL"
-    },
-    {
       "id": "A202600576",
       "status": "Prevista",
       "imo": "9504633",
@@ -144,23 +129,6 @@
       "to": "A ORDENES"
     },
     {
-      "id": "A202600568",
-      "status": "Prevista",
-      "imo": "9349227",
-      "name": "NJORD",
-      "gt": 7720,
-      "len": 142,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-08-12T00:01",
-      "etd": "2026-08-14T00:01",
-      "from": "DERINCE",
-      "to": "BARCELONA",
-      "affectedBy": "A202600547",
-      "affectRisk": "ALTO"
-    },
-    {
       "id": "A202600571",
       "status": "Prevista",
       "imo": "9483358",
@@ -174,6 +142,53 @@
       "etd": "2026-08-12T12:01",
       "from": "SANTA CRUZ",
       "to": "BARCELONA"
+    },
+    {
+      "id": "A202600580",
+      "status": "Prevista",
+      "imo": "9557795",
+      "name": "SEDRATA",
+      "gt": 8161,
+      "len": 119,
+      "berth": "13",
+      "agent": "ROMEU Y CIA",
+      "op": "D/CRISTAL",
+      "eta": "2026-08-12T16:00",
+      "etd": "2026-08-14T13:00",
+      "from": "ARGEL",
+      "to": "ARGEL"
+    },
+    {
+      "id": "A202600568",
+      "status": "Prevista",
+      "imo": "9349227",
+      "name": "NJORD",
+      "gt": 7720,
+      "len": 142,
+      "berth": "11",
+      "agent": "EUROPEAN FORWARDING SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-08-13T07:00",
+      "etd": "2026-08-13T21:01",
+      "from": "DERINCE",
+      "to": "BARCELONA",
+      "affectedBy": "A202600547",
+      "affectRisk": "ALTO"
+    },
+    {
+      "id": "A202600569",
+      "status": "Prevista",
+      "imo": "1043358",
+      "name": "MILAGREEN",
+      "gt": 13719,
+      "len": 154,
+      "berth": "11",
+      "agent": "EUROPEAN FORWARDING SL",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-08-13T19:00",
+      "etd": "2026-08-14T15:00",
+      "from": "SANTA CRUZ",
+      "to": "LAS PALMAS"
     }
   ],
   "tugService": {
