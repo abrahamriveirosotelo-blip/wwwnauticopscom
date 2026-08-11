@@ -2,7 +2,7 @@
   "meta": {
     "port": "Alicante Port",
     "source": "puertoalicante.com · V_TC_ESCALAS.csv",
-    "date": "10/08/2026",
+    "date": "11/08/2026",
     "refreshHours": 2
   },
   "calls": [
@@ -22,21 +22,6 @@
       "to": "LAS PALMAS",
       "delay": "+4h 30min",
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
-    },
-    {
-      "id": "A202600567",
-      "status": "Iniciado",
-      "imo": "9430193",
-      "name": "HERCULES J",
-      "gt": 10585,
-      "len": 152,
-      "berth": "11",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "PORTACONTENEDORES",
-      "eta": "2026-08-10T07:00",
-      "etd": "2026-08-10T23:00",
-      "from": "ARRECIFE",
-      "to": "SANTA CRUZ"
     },
     {
       "id": "A202600576",
