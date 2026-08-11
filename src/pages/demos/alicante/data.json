@@ -55,7 +55,7 @@
     },
     {
       "id": "A202600581",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9265419",
       "name": "TASSILI 2",
       "gt": 20024,
@@ -99,21 +99,6 @@
       "to": "BARCELONA"
     },
     {
-      "id": "A202600580",
-      "status": "Prevista",
-      "imo": "9557795",
-      "name": "SEDRATA",
-      "gt": 8161,
-      "len": 119,
-      "berth": "13",
-      "agent": "ROMEU Y CIA",
-      "op": "D/CRISTAL",
-      "eta": "2026-08-12T16:00",
-      "etd": "2026-08-14T13:00",
-      "from": "ARGEL",
-      "to": "ARGEL"
-    },
-    {
       "id": "A202600568",
       "status": "Prevista",
       "imo": "9349227",
@@ -131,6 +116,51 @@
       "affectRisk": "ALTO"
     },
     {
+      "id": "A202600573",
+      "status": "Prevista",
+      "imo": "9498559",
+      "name": "ALIKI FORCE",
+      "gt": 34402,
+      "len": 196,
+      "berth": "13",
+      "agent": "OCEAN PORTS & SHIPPING SL",
+      "op": "GRANEL ",
+      "eta": "2026-08-13T08:00",
+      "etd": "2026-08-18T12:00",
+      "from": "ISDEMIR",
+      "to": "A ORDENES"
+    },
+    {
+      "id": "A202600586",
+      "status": "Prevista",
+      "imo": "9265419",
+      "name": "TASSILI 2",
+      "gt": 20024,
+      "len": 143,
+      "berth": "25",
+      "agent": "ROMEU Y CIA. S A",
+      "op": "PASAJE Y VEHICULOS",
+      "eta": "2026-08-13T08:00",
+      "etd": "2026-08-13T20:00",
+      "from": "ORAN",
+      "to": "ALGER"
+    },
+    {
+      "id": "A202600580",
+      "status": "Prevista",
+      "imo": "9557795",
+      "name": "SEDRATA",
+      "gt": 8161,
+      "len": 119,
+      "berth": "13",
+      "agent": "ROMEU Y CIA",
+      "op": "D/CRISTAL",
+      "eta": "2026-08-13T16:00",
+      "etd": "2026-08-13T13:00",
+      "from": "ARGEL",
+      "to": "ARGEL"
+    },
+    {
       "id": "A202600569",
       "status": "Prevista",
       "imo": "1043358",
@@ -144,6 +174,21 @@
       "etd": "2026-08-14T15:00",
       "from": "SANTA CRUZ",
       "to": "LAS PALMAS"
+    },
+    {
+      "id": "A202600575",
+      "status": "Prevista",
+      "imo": "9302255",
+      "name": "SPIRIT",
+      "gt": 7713,
+      "len": 142,
+      "berth": "23",
+      "agent": "A. PEREZ Y CIA. S.L.",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-08-13T20:00",
+      "etd": "2026-08-14T08:00",
+      "from": "ALGECIRAS",
+      "to": "ALMERIA"
     }
   ],
   "tugService": {
