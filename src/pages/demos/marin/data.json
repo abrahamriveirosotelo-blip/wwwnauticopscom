@@ -4,19 +4,19 @@
     "source": "apmarin.com · buques esperados + en puerto",
     "date": "11/08/2026",
     "refreshHours": 2,
-    "sourceUpdatedAt": "2026-08-11T20:10",
+    "sourceUpdatedAt": "2026-08-11T22:10",
     "meteo": {
-      "updatedAt": "2026-08-11T21:03",
+      "updatedAt": "2026-08-11T22:46",
       "obs": {
         "estacion": "Porto de Marín",
-        "instante": "2026-08-11T18:00",
-        "vientoRachaKn": 15,
+        "instante": "2026-08-11T19:00",
+        "vientoRachaKn": 14,
         "vientoMediaKn": null,
-        "vientoDirDeg": 232,
-        "tempC": 24.43,
-        "presionHpa": 1014.2,
+        "vientoDirDeg": 229,
+        "tempC": 25.05,
+        "presionHpa": 1014.3,
         "lluviaMm": 0,
-        "humedadPct": 76
+        "humedadPct": 56
       },
       "avisos": []
     }
@@ -49,7 +49,7 @@
       "aisSpeed": 0,
       "aisDraught": 4.6,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-08-11T21:03",
+      "aisAt": "2026-08-11T22:46",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": true
@@ -93,10 +93,10 @@
       "callsign": "V2DC9",
       "aisStatus": "Navegando",
       "aisEta": "2026-08-13T05:00",
-      "aisSpeed": 15.3,
+      "aisSpeed": 13.1,
       "aisDraught": 5.4,
       "aisDestination": "Marin, Pontevedra, Spain",
-      "aisAt": "2026-08-11T21:03",
+      "aisAt": "2026-08-11T22:46",
       "aisAtMarin": true,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -128,7 +128,7 @@
       "aisSpeed": 0,
       "aisDraught": 5.8,
       "aisDestination": "Pasajes, Spain",
-      "aisAt": "2026-08-11T21:03",
+      "aisAt": "2026-08-11T22:46",
       "aisAtMarin": false,
       "aisToFinal": false,
       "aisArrivedMarin": false
@@ -157,10 +157,10 @@
       "callsign": "CQUZ",
       "aisStatus": "Navegando",
       "aisEta": "2026-08-12T20:00",
-      "aisSpeed": 12,
+      "aisSpeed": 11.9,
       "aisDraught": 8,
       "aisDestination": "Algeciras, Spain",
-      "aisAt": "2026-08-11T21:03",
+      "aisAt": "2026-08-11T22:46",
       "aisAtMarin": false,
       "aisToFinal": true,
       "aisArrivedMarin": false
