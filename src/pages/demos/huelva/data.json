@@ -90,7 +90,7 @@
       "name": "DH.ADMIRAL",
       "gt": 6052,
       "len": 120,
-      "berth": "PET",
+      "berth": "PEN",
       "agent": "—",
       "op": "Fondo",
       "eta": "2026-08-10T20:30",
@@ -100,23 +100,36 @@
     },
     {
       "id": "H20260811007",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "—",
       "name": "OKOLCHITSA",
       "gt": 29041,
       "len": 190,
       "berth": "JGV",
       "agent": "ERS",
-      "op": "Entrada",
+      "op": "Fondo",
       "eta": "2026-08-11T10:30",
       "etd": "",
       "from": "—",
-      "to": "—",
-      "affectedBy": "H20260731001",
-      "affectRisk": "ALTO"
+      "to": "—"
     },
     {
       "id": "H20260811008",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "EBERHART.ESSBERGER",
+      "gt": 6377,
+      "len": 120,
+      "berth": "DCN",
+      "agent": "IBM",
+      "op": "Entrada",
+      "eta": "2026-08-11T13:45",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260811009",
       "status": "Prevista",
       "imo": "—",
       "name": "BWEK.BREEZE",
@@ -131,37 +144,7 @@
       "to": "—"
     },
     {
-      "id": "H20260811009",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "ELBWINTER",
-      "gt": 10585,
-      "len": 151,
-      "berth": "MUL",
-      "agent": "TER",
-      "op": "Entrada",
-      "eta": "2026-08-11T14:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
       "id": "H20260811010",
-      "status": "Prevista",
-      "imo": "—",
-      "name": "EBERHART.ESSBERGER",
-      "gt": 6377,
-      "len": 120,
-      "berth": "DEC",
-      "agent": "IBM",
-      "op": "Entrada",
-      "eta": "2026-08-11T14:00",
-      "etd": "",
-      "from": "—",
-      "to": "—"
-    },
-    {
-      "id": "H20260811011",
       "status": "Prevista",
       "imo": "—",
       "name": "BUENAVISTA.EXPRESS",
@@ -176,7 +159,7 @@
       "to": "—"
     },
     {
-      "id": "H20260811012",
+      "id": "H20260811011",
       "status": "Prevista",
       "imo": "—",
       "name": "BOW.TITANIUM",
@@ -191,7 +174,7 @@
       "to": "—"
     },
     {
-      "id": "H20260812013",
+      "id": "H20260812012",
       "status": "Prevista",
       "imo": "—",
       "name": "GINA",
@@ -206,7 +189,7 @@
       "to": "—"
     },
     {
-      "id": "H20260812014",
+      "id": "H20260812013",
       "status": "Prevista",
       "imo": "—",
       "name": "HELME",
@@ -221,7 +204,7 @@
       "to": "—"
     },
     {
-      "id": "H20260812015",
+      "id": "H20260812014",
       "status": "Prevista",
       "imo": "—",
       "name": "JONABORG",
@@ -233,16 +216,18 @@
       "eta": "2026-08-12T09:00",
       "etd": "",
       "from": "—",
-      "to": "—"
+      "to": "—",
+      "affectedBy": "H20260731001",
+      "affectRisk": "ALTO"
     },
     {
-      "id": "H20260812016",
+      "id": "H20260812015",
       "status": "Prevista",
       "imo": "—",
       "name": "SAKURA.THERESA",
       "gt": 7908,
       "len": 119,
-      "berth": "RSF",
+      "berth": "RSN",
       "agent": "—",
       "op": "Entrada",
       "eta": "2026-08-12T10:00",
@@ -251,7 +236,7 @@
       "to": "—"
     },
     {
-      "id": "H20260812017",
+      "id": "H20260812016",
       "status": "Prevista",
       "imo": "—",
       "name": "MANISA.MATILDE",
@@ -266,13 +251,13 @@
       "to": "—"
     },
     {
-      "id": "H20260812018",
+      "id": "H20260812017",
       "status": "Prevista",
       "imo": "—",
       "name": "KING ARTHUR",
       "gt": 4761,
       "len": 104,
-      "berth": "RSF",
+      "berth": "RSN",
       "agent": "—",
       "op": "Entrada",
       "eta": "2026-08-12T16:00",
@@ -281,7 +266,7 @@
       "to": "—"
     },
     {
-      "id": "H20260812019",
+      "id": "H20260812018",
       "status": "Prevista",
       "imo": "—",
       "name": "SILVER LONDON",
@@ -296,7 +281,7 @@
       "to": "—"
     },
     {
-      "id": "H20260812020",
+      "id": "H20260812019",
       "status": "Prevista",
       "imo": "—",
       "name": "ALISIOS.LNG",
@@ -311,7 +296,7 @@
       "to": "—"
     },
     {
-      "id": "H20260812021",
+      "id": "H20260812020",
       "status": "Prevista",
       "imo": "—",
       "name": "RADBOD",
@@ -395,7 +380,7 @@
       "berth": "ATC",
       "agent": "ERS",
       "op": "Entrada",
-      "eta": "2026-08-14T01:00",
+      "eta": "2026-08-14T01:30",
       "etd": "",
       "from": "—",
       "to": "—"
