@@ -39,21 +39,6 @@
       "to": "AJJACCIO"
     },
     {
-      "id": "A202600581",
-      "status": "Iniciado",
-      "imo": "9265419",
-      "name": "TASSILI 2",
-      "gt": 20024,
-      "len": 146,
-      "berth": "25",
-      "agent": "ROMEU Y CIA",
-      "op": "PASAJE Y VEHICULOS",
-      "eta": "2026-08-11T08:00",
-      "etd": "2026-08-11T18:00",
-      "from": "ORAN",
-      "to": "ORAN"
-    },
-    {
       "id": "A202600564",
       "status": "Prevista",
       "imo": "9433511",
