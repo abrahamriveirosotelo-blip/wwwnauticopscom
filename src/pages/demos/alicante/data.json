@@ -24,21 +24,6 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
-      "id": "A202600576",
-      "status": "Iniciado",
-      "imo": "9504633",
-      "name": "CDRY BLACK",
-      "gt": 5629,
-      "len": 108,
-      "berth": "15",
-      "agent": "A. PEREZ Y CIA",
-      "op": "E/MADERAS",
-      "eta": "2026-08-10T16:00",
-      "etd": "2026-08-11T13:00",
-      "from": "CASTELLÓN",
-      "to": "CROTONE"
-    },
-    {
       "id": "A202600557",
       "status": "Iniciado",
       "imo": "9221281",
