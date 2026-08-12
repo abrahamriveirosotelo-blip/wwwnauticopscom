@@ -177,13 +177,13 @@
       "id": "H20260812012",
       "status": "Prevista",
       "imo": "—",
-      "name": "SAKURA.THERESA",
-      "gt": 7908,
-      "len": 119,
-      "berth": "RSN",
-      "agent": "—",
+      "name": "MED ADRIATIC",
+      "gt": 5665,
+      "len": 124,
+      "berth": "DEC",
+      "agent": "NEX",
       "op": "Entrada",
-      "eta": "2026-08-12T12:00",
+      "eta": "2026-08-12T11:00",
       "etd": "",
       "from": "—",
       "to": "—"
@@ -461,7 +461,22 @@
       "to": "—"
     },
     {
-      "id": "H20260818031",
+      "id": "H20260816031",
+      "status": "Prevista",
+      "imo": "—",
+      "name": "ONEGO.NEVA",
+      "gt": 7878,
+      "len": 145,
+      "berth": "CPA",
+      "agent": "PAM",
+      "op": "Entrada",
+      "eta": "2026-08-16T18:00",
+      "etd": "",
+      "from": "—",
+      "to": "—"
+    },
+    {
+      "id": "H20260818032",
       "status": "Prevista",
       "imo": "—",
       "name": "PATHAWAY",
@@ -476,7 +491,7 @@
       "to": "—"
     },
     {
-      "id": "H20260819032",
+      "id": "H20260819033",
       "status": "Prevista",
       "imo": "—",
       "name": "NAVIG8.EXCELLENCE",

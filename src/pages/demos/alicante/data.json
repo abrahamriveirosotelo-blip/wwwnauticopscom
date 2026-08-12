@@ -24,23 +24,23 @@
       "alertNote": "Incidencia en operaciones. El buque no liberará el Muelle 11 según lo previsto."
     },
     {
-      "id": "A202600564",
+      "id": "A202600580",
       "status": "Iniciado",
-      "imo": "9433511",
-      "name": "GEORGIOS ALEXIOS",
-      "gt": 3845,
-      "len": 90,
-      "berth": "19",
-      "agent": "EUROPEAN FORWARDING SL",
-      "op": "D/CEMENTO",
-      "eta": "2026-08-12T00:01",
-      "etd": "2026-08-14T00:01",
-      "from": "GABES",
-      "to": "A ORDENES"
+      "imo": "9557795",
+      "name": "SEDRATA",
+      "gt": 8161,
+      "len": 119,
+      "berth": "13",
+      "agent": "ROMEU Y CIA",
+      "op": "D/CRISTAL",
+      "eta": "2026-08-11T16:00",
+      "etd": "2026-08-17T13:00",
+      "from": "ARGEL",
+      "to": "ARGEL"
     },
     {
       "id": "A202600571",
-      "status": "Prevista",
+      "status": "Iniciado",
       "imo": "9483358",
       "name": "ISABELLA B",
       "gt": 10585,
@@ -52,6 +52,21 @@
       "etd": "2026-08-12T12:01",
       "from": "SANTA CRUZ",
       "to": "BARCELONA"
+    },
+    {
+      "id": "A202600573",
+      "status": "Iniciado",
+      "imo": "9498559",
+      "name": "ALIKI FORCE",
+      "gt": 34402,
+      "len": 196,
+      "berth": "13",
+      "agent": "OCEAN PORTS & SHIPPING SL",
+      "op": "GRANEL ",
+      "eta": "2026-08-12T08:00",
+      "etd": "2026-08-18T12:00",
+      "from": "ISDEMIR",
+      "to": "A ORDENES"
     },
     {
       "id": "A202600568",
@@ -71,21 +86,6 @@
       "affectRisk": "ALTO"
     },
     {
-      "id": "A202600573",
-      "status": "Prevista",
-      "imo": "9498559",
-      "name": "ALIKI FORCE",
-      "gt": 34402,
-      "len": 196,
-      "berth": "13",
-      "agent": "OCEAN PORTS & SHIPPING SL",
-      "op": "GRANEL ",
-      "eta": "2026-08-13T08:00",
-      "etd": "2026-08-18T12:00",
-      "from": "ISDEMIR",
-      "to": "A ORDENES"
-    },
-    {
       "id": "A202600586",
       "status": "Prevista",
       "imo": "9265419",
@@ -99,21 +99,6 @@
       "etd": "2026-08-13T20:00",
       "from": "ORAN",
       "to": "ALGER"
-    },
-    {
-      "id": "A202600580",
-      "status": "Prevista",
-      "imo": "9557795",
-      "name": "SEDRATA",
-      "gt": 8161,
-      "len": 119,
-      "berth": "13",
-      "agent": "ROMEU Y CIA",
-      "op": "D/CRISTAL",
-      "eta": "2026-08-13T16:00",
-      "etd": "2026-08-13T13:00",
-      "from": "ARGEL",
-      "to": "ARGEL"
     },
     {
       "id": "A202600569",
@@ -144,6 +129,36 @@
       "etd": "2026-08-14T08:00",
       "from": "ALGECIRAS",
       "to": "ALMERIA"
+    },
+    {
+      "id": "A202600564",
+      "status": "Prevista",
+      "imo": "9433511",
+      "name": "GEORGIOS ALEXIOS",
+      "gt": 3845,
+      "len": 90,
+      "berth": "19",
+      "agent": "EUROPEAN FORWARDING SL",
+      "op": "D/CEMENTO",
+      "eta": "2026-08-14T00:01",
+      "etd": "2026-08-18T00:01",
+      "from": "GABES",
+      "to": "A ORDENES"
+    },
+    {
+      "id": "A202600572",
+      "status": "Prevista",
+      "imo": "9322578",
+      "name": "DREAM",
+      "gt": 7852,
+      "len": 140,
+      "berth": "23",
+      "agent": "MILLER Y COMPAÑIA S.A",
+      "op": "PORTACONTENEDORES",
+      "eta": "2026-08-14T08:00",
+      "etd": "2026-08-14T23:00",
+      "from": "LAS PALMAS",
+      "to": "LAS PALMAS"
     }
   ],
   "tugService": {

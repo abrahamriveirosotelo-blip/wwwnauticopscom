@@ -1317,5 +1317,46 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-08-10T07:44:19Z"
+  },
+  "ENDEAVOUR::ISKENDERUN HATAY": {
+    "resolved": false,
+    "reason": "20 resultados pero ninguno aceptable (nombre/tipo comercial/IMO)",
+    "checkedAt": "2026-08-12T09:13:07Z"
+  },
+  "VELSERDIJK::CONSTANTA": {
+    "resolved": true,
+    "imo": "9346691",
+    "mmsi": "244865000",
+    "detailId": "9346691",
+    "gt": 2984,
+    "dwt": 4891,
+    "len": 90,
+    "beam": 14,
+    "flag": "Netherlands",
+    "vesselType": "General Cargo Ship",
+    "built": 2008,
+    "callsign": "PBIC",
+    "destination": "ESLSG",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-08-12T09:13:10Z"
+  },
+  "ARTEAGA NM::SETUBAL": {
+    "resolved": true,
+    "imo": "9972921",
+    "mmsi": "225370000",
+    "detailId": "9972921",
+    "gt": 4137,
+    "dwt": 6270,
+    "len": 103,
+    "beam": 16,
+    "flag": "Spain",
+    "vesselType": "General Cargo Ship",
+    "built": 2024,
+    "callsign": "EAGQ",
+    "destination": "Pasajes, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-08-12T09:13:13Z"
   }
 }
