@@ -1358,5 +1358,23 @@
     "confidence": "single-commercial",
     "source": "vesselfinder.com",
     "resolvedAt": "2026-08-12T09:13:13Z"
+  },
+  "ARTEAGA NM::AVEIRO": {
+    "resolved": true,
+    "imo": "9972921",
+    "mmsi": "225370000",
+    "detailId": "9972921",
+    "gt": 4137,
+    "dwt": 6270,
+    "len": 103,
+    "beam": 16,
+    "flag": "Spain",
+    "vesselType": "General Cargo Ship",
+    "built": 2024,
+    "callsign": "EAGQ",
+    "destination": "Pasajes, Spain",
+    "confidence": "single-commercial",
+    "source": "vesselfinder.com",
+    "resolvedAt": "2026-08-12T11:00:47Z"
   }
 }
